@@ -76,24 +76,11 @@ function useIsMobile(breakpoint = 768) {
   return isMobile;
 }
 
-const PRODUCTS = [
-  {id:1,name:"Kampana Fren Balata Seti",cat:"balata",veh:["kamyon","tir"],price:1250,old:1500,brand:"Knorr-Bremse",stock:24,sku:"KB-BLT-4210",oem:"29108",rating:4.8,reviews:142,img:"https://placehold.co/400x400/2d1b1b/e8c4c4?text=BALATA%0ASET%C4%B0&font=montserrat",desc:"ECE R-90 sertifikalı seramik kompozit balata seti.",specs:{Malzeme:"Seramik Kompozit",Genişlik:"220mm",Kalınlık:"18mm",Adet:"4 Adet/Set",Ağırlık:"6.2 kg",Sertifika:"ECE R-90"},compat:["Mercedes Actros","MAN TGA/TGS","DAF XF","Volvo FH"]},
-  {id:2,name:"Hava Kurutucusu Kartuşu",cat:"pnomatik",veh:["tir","kamyon"],price:890,old:null,brand:"Wabco",stock:18,sku:"WB-HK-3301",oem:"432 410 222 7",rating:4.6,reviews:87,img:"https://placehold.co/400x400/1a2332/a8c4e0?text=HAVA%0AKURUTUCU&font=montserrat",desc:"Pnömatik fren sistemi koalesans filtre kartuşu.",specs:{Tip:"Koalesans",Basınç:"12.5 bar",Bağlantı:"M39x1.5",Ağırlık:"1.8 kg"},compat:["Universal"]},
-  {id:3,name:"Fren Diski Ø430 Havalandırmalı",cat:"disk",veh:["otobus"],price:3200,old:3800,brand:"SAF-Holland",stock:7,sku:"SF-DSK-430V",oem:"4079001300",rating:4.9,reviews:203,img:"https://placehold.co/400x400/1c1c1c/b0b0b0?text=FREN%0AD%C4%B0SK%C4%B0%0A%C3%98430&font=montserrat",desc:"Havalandırmalı yapı ile üstün ısı dağılımı.",specs:{Çap:"430mm",Kalınlık:"45mm",Tip:"Havalandırmalı",Ağırlık:"32 kg"},compat:["Mercedes Tourismo","MAN Lion's Coach","Setra 500"]},
-  {id:4,name:"ABS Sensörü Komple",cat:"elektronik",veh:["kamyon","dorse"],price:450,old:null,brand:"Haldex",stock:35,sku:"HX-ABS-2201",oem:"441 032 578 0",rating:4.5,reviews:64,img:"https://placehold.co/400x400/0f2618/7bc8a4?text=ABS%0ASENS%C3%96R&font=montserrat",desc:"Dijital sinyal çıkışlı ABS tekerlek hız sensörü.",specs:{Kablo:"1200mm",Bağlantı:"Bayonet",Sinyal:"Dijital",Koruma:"IP69K"},compat:["SAF Dingil","BPW Dingil"]},
-  {id:5,name:"Fren Kaliperi Sol",cat:"disk",veh:["dorse"],price:2800,old:3200,brand:"Knorr-Bremse",stock:0,sku:"KB-KLP-L910",oem:"SB/SN 7",rating:4.7,reviews:91,img:"https://placehold.co/400x400/1c1c1c/b0b0b0?text=FREN%0AKAL%C4%B0PER%C4%B0&font=montserrat",desc:"Çift pistonlu yüzen disk fren kaliperi.",specs:{Piston:"Ø68mm Çift",Tip:"Yüzen",Tork:"28 kNm"},compat:["BPW Disk","SAF INTRADISC"]},
-  {id:6,name:"Körük Tamir Takımı",cat:"suspansiyon",veh:["tir","kamyon"],price:680,old:750,brand:"ContiTech",stock:42,sku:"CT-KRK-5501",oem:"81.43601.0078",rating:4.4,reviews:56,img:"https://placehold.co/400x400/1a2a2a/80bfbf?text=K%C3%96R%C3%9CK%0ATAKIM&font=montserrat",desc:"Haddeleme körüğü komple tamir seti.",specs:{Tip:"Haddeleme",Çap:"Ø270mm",Strok:"120mm"},compat:["MAN TGA/TGS/TGX"]},
-  {id:7,name:"Otomatik Fren Ayar Kolu",cat:"mekanik",veh:["kamyon","tir"],price:1100,old:null,brand:"Haldex",stock:19,sku:"HX-AYR-7801",oem:"72523",rating:4.8,reviews:118,img:"https://placehold.co/400x400/2a2018/d4b896?text=AYAR%0AKOLU&font=montserrat",desc:"Kampana freni otomatik boşluk ayar kolu.",specs:{Tip:"Otomatik",Kol:"150mm",Spline:"10 Dişli"},compat:["Mercedes Actros","MAN TGA","DAF CF/XF"]},
-  {id:8,name:"Fren Kampanası Ø410",cat:"mekanik",veh:["otobus","kamyon"],price:2450,old:2900,brand:"BPW",stock:11,sku:"BW-KMP-410",oem:"0310667290",rating:4.7,reviews:167,img:"https://placehold.co/400x400/2a2018/d4b896?text=KAMPANA%0A%C3%98410&font=montserrat",desc:"Yüksek karbon alaşımlı döküm kampana.",specs:{Çap:"410mm",Genişlik:"200mm",Malzeme:"GG25",Ağırlık:"48 kg"},compat:["BPW 12T","SAF 9T/11T"]},
-  {id:9,name:"Fren Sibop Seti",cat:"pnomatik",veh:["dorse"],price:560,old:null,brand:"Wabco",stock:53,sku:"WB-SBP-4400",oem:"961 723 142 0",rating:4.3,reviews:45,img:"https://placehold.co/400x400/1a2332/a8c4e0?text=S%C4%B0BOP%0ASET%C4%B0&font=montserrat",desc:"Dorse rölanti valfı seti.",specs:{Tip:"Rölanti",Basınç:"10 bar",Adet:"4/Set"},compat:["Tüm Dorseler"]},
-  {id:10,name:"Fren Silindir T24",cat:"pnomatik",veh:["tir","kamyon"],price:1750,old:2100,brand:"Knorr-Bremse",stock:15,sku:"KB-SLN-T24",oem:"BS 9404",rating:4.9,reviews:198,img:"https://placehold.co/400x400/1a2332/a8c4e0?text=FREN%0AS%C4%B0L%C4%B0ND%C4%B0R%0AT24&font=montserrat",desc:"T24 membran fren silindiri.",specs:{Tip:"T24",Strok:"76mm",Sertifika:"ECE R-13"},compat:["Mercedes Actros","MAN TGX","Volvo FH"]},
-  {id:11,name:"EBS Modülatör Valfı",cat:"elektronik",veh:["tir","dorse"],price:4200,old:4800,brand:"Wabco",stock:5,sku:"WB-EBS-2210",oem:"480 102 070 0",rating:4.8,reviews:76,img:"https://placehold.co/400x400/0f2618/7bc8a4?text=EBS%0AMOD%C3%9CLAT%C3%96R&font=montserrat",desc:"2 kanallı CAN Bus aks modülatör.",specs:{Kanal:"2",Voltaj:"24V",Koruma:"IP67"},compat:["Wabco EBS","Dorse EBS"]},
-  {id:12,name:"Disk Balata Seti Premium",cat:"balata",veh:["otobus","kamyon"],price:1680,old:1900,brand:"SAF-Holland",stock:28,sku:"SF-BLT-P770",oem:"3057008400",rating:4.6,reviews:134,img:"https://placehold.co/400x400/2d1b1b/e8c4c4?text=D%C4%B0SK%0ABALATA%0APREM%C4%B0UM&font=montserrat",desc:"Düşük metalik premium disk fren balatası.",specs:{Malzeme:"Düşük Metalik",Genişlik:"250mm",Adet:"4/Set"},compat:["SAF INTRADISC","BPW Disk"]},
-];
-
-const CATS = [{id:"all",name:"Tüm Ürünler"},{id:"disk",name:"Disk Fren"},{id:"mekanik",name:"Kampana & Mekanik"},{id:"pnomatik",name:"Pnömatik Sistem"},{id:"elektronik",name:"Elektronik"},{id:"balata",name:"Balatalar"},{id:"suspansiyon",name:"Süspansiyon"}];
+// Ürünler ve kategoriler /data/ klasöründen yüklenir
+let PRODUCTS = [];
+let CATS = [{id:"all",name:"Tüm Ürünler"}];
 const VEHS = [{id:"all",name:"Tüm Araçlar"},{id:"kamyon",name:"Kamyon"},{id:"tir",name:"Tır"},{id:"otobus",name:"Otobüs"},{id:"dorse",name:"Dorse"}];
-const BRANDS = ["Knorr-Bremse","Wabco","SAF-Holland","Haldex","BPW","ContiTech","Mercedes OE","Vaden","Polmo"];
+const BRANDS = ["Ekersan"];
 
 const Ctx = createContext();
 const use$ = () => useContext(Ctx);
@@ -103,6 +90,22 @@ export default function App() {
   const [page, setPage] = useState(isAdminMode ? "admin-login" : "home");
   const [params, setParams] = useState({});
   const [cart, setCart] = useState([]);
+  const [products, setProducts] = useState(PRODUCTS);
+  const [cats, setCatsState] = useState(CATS);
+  const [dataLoaded, setDataLoaded] = useState(false);
+
+  useEffect(() => {
+    Promise.all([
+      fetch("/data/products.json").then(r => r.json()),
+      fetch("/data/categories.json").then(r => r.json()),
+    ]).then(([prods, categories]) => {
+      PRODUCTS = prods;
+      CATS = categories;
+      setProducts(prods);
+      setCatsState(categories);
+      setDataLoaded(true);
+    }).catch(() => setDataLoaded(true));
+  }, []);
   const [favs, setFavs] = useState([]);
   const [viewed, setViewed] = useState([]);
   const [user, setUser] = useState(null);
