@@ -1660,32 +1660,65 @@ function ChatWidget() {
   const [input, setInput] = useState("");
   const [typing, setTyping] = useState(false);
   const messagesEndRef = useRef(null);
+  const sessionIdRef = useRef(null);
+  const pollRef = useRef(null);
 
-  const autoReplies = [
-    "Teşekkür ederiz, en kısa sürede size dönüş yapacağız.",
-    "Bu konuda teknik ekibimiz size yardımcı olabilir. Araç bilgilerinizi paylaşır mısınız?",
-    "OEM veya parça kodunu paylaşırsanız stok ve fiyat bilgisini hemen kontrol edebiliriz.",
-    "Toplu alım için özel fiyat teklifi hazırlayabiliriz. Miktar ve ürün detaylarını iletir misiniz?",
-    "Sipariş ve kargo takibi için sipariş numaranızı paylaşabilir misiniz?",
-    "Çalışma saatlerimiz Pazartesi-Cumartesi 08:00-18:00 arasıdır. Size nasıl yardımcı olabiliriz?"
-  ];
+  // Session ID oluştur/al
+  useEffect(() => {
+    let sid = localStorage.getItem("frenciniz_chat_session");
+    if (!sid) {
+      sid = "s_" + Date.now() + "_" + Math.random().toString(36).slice(2, 8);
+      localStorage.setItem("frenciniz_chat_session", sid);
+    }
+    sessionIdRef.current = sid;
+  }, []);
+
+  // Admin cevaplarını poll et
+  useEffect(() => {
+    if (!chatOpen) return;
+    const poll = async () => {
+      try {
+        const sid = sessionIdRef.current;
+        if (!sid) return;
+        const res = await fetch(`/api/chat/messages?sessionId=${sid}`);
+        if (!res.ok) return;
+        const data = await res.json();
+        if (data.messages && data.messages.length > 0) {
+          setChatMessages(data.messages.map(m => ({...m, time: m.time || new Date().toISOString()})));
+        }
+      } catch {}
+    };
+    poll();
+    pollRef.current = setInterval(poll, 5000);
+    return () => clearInterval(pollRef.current);
+  }, [chatOpen]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({behavior:"smooth"});
   }, [chatMessages]);
 
-  const sendMessage = () => {
+  const sendMessage = async () => {
     if (!input.trim()) return;
-    const userMsg = {from:"user", text:input, time:new Date()};
+    const text = input;
+    const userMsg = {from:"user", text, time:new Date().toISOString()};
     setChatMessages(prev => [...prev, userMsg]);
     setInput("");
     setTyping(true);
 
-    setTimeout(() => {
-      const reply = autoReplies[Math.floor(Math.random() * autoReplies.length)];
-      setChatMessages(prev => [...prev, {from:"bot", text:reply, time:new Date()}]);
-      setTyping(false);
-    }, 1200 + Math.random() * 800);
+    try {
+      const res = await fetch("/api/chat/send", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({sessionId: sessionIdRef.current, message: text, from: "user"})
+      });
+      const data = await res.json();
+      if (data.botReply) {
+        setChatMessages(prev => [...prev, data.botReply]);
+      }
+    } catch {
+      setChatMessages(prev => [...prev, {from:"bot", text:"Bağlantı hatası. Lütfen tekrar deneyin veya WhatsApp'tan ulaşın: 0545 608 7008", time:new Date().toISOString()}]);
+    }
+    setTyping(false);
   };
 
   const formatTime = (d) => {
@@ -1718,7 +1751,7 @@ function ChatWidget() {
         <div style={{flex:1,overflowY:"auto",padding:"14px 16px",display:"flex",flexDirection:"column",gap:10,background:"#f9f9f9"}}>
           {chatMessages.map((msg, i) => (
             <div key={i} style={{display:"flex",justifyContent:msg.from==="user"?"flex-end":"flex-start"}}>
-              <div style={{maxWidth:"80%",padding:"10px 14px",borderRadius:msg.from==="user"?"12px 12px 2px 12px":"12px 12px 12px 2px",background:msg.from==="user"?"#ff6000":"#fff",color:msg.from==="user"?"#fff":"#333",fontSize:13,lineHeight:1.5,boxShadow:msg.from==="bot"?"0 1px 3px rgba(0,0,0,.06)":"none"}}>
+              <div style={{maxWidth:"80%",padding:"10px 14px",borderRadius:msg.from==="user"?"12px 12px 2px 12px":"12px 12px 12px 2px",background:msg.from==="user"?"#ff6000":msg.from==="admin"?"#1a73e8":"#fff",color:msg.from==="user"||msg.from==="admin"?"#fff":"#333",fontSize:13,lineHeight:1.5,boxShadow:msg.from==="bot"?"0 1px 3px rgba(0,0,0,.06)":"none",whiteSpace:"pre-line"}}>
                 {msg.text}
                 <div style={{fontSize:10,opacity:.6,marginTop:4,textAlign:"right"}}>{formatTime(msg.time)}</div>
               </div>
