@@ -99,7 +99,8 @@ const Ctx = createContext();
 const use$ = () => useContext(Ctx);
 
 export default function App() {
-  const [page, setPage] = useState("home");
+  const isAdminMode = typeof window !== 'undefined' && window.__ADMIN_MODE__;
+  const [page, setPage] = useState(isAdminMode ? "admin-login" : "home");
   const [params, setParams] = useState({});
   const [cart, setCart] = useState([]);
   const [favs, setFavs] = useState([]);
