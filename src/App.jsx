@@ -381,7 +381,7 @@ export default function App() {
               </div>
             </div>
             <div style={{marginTop:24,paddingTop:16,borderTop:"1px solid #333",display:"flex",flexDirection:isMobile?"column":"row",justifyContent:"space-between",gap:8,fontSize:12,color:"#666"}}>
-              <span>© 2026 Frenciniz — Tüm hakları saklıdır.</span>
+              <span>© 2026 <span onClick={()=>go("admin-login")} style={{cursor:"pointer"}}>Frenciniz</span> — Tüm hakları saklıdır.</span>
               <span>Visa · Mastercard · Troy · Havale/EFT</span>
             </div>
           </div>
