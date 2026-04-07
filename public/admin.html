@@ -1377,47 +1377,127 @@ function MailTemplatesTab() {
 
 /* ──────────── CHAT HISTORY ──────────── */
 function ChatHistoryTab() {
-  const [activeChat, setActiveChat] = useState(CHAT_HISTORY[0].id);
-  const current = CHAT_HISTORY.find(c=>c.id===activeChat);
+  const AUTH = 'Bearer frenciniz-admin-2026';
+  const [sessions, setSessions] = useState([]);
+  const [activeChat, setActiveChat] = useState(null);
+  const [messages, setMessages] = useState([]);
+  const [reply, setReply] = useState('');
+  const [sending, setSending] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const messagesEndRef = useRef(null);
+
+  // Oturumları yükle
+  const loadSessions = () => {
+    fetch('/api/chat/sessions', {headers:{Authorization:AUTH}})
+      .then(r=>r.json())
+      .then(d=>{setSessions(d.sessions||[]);setLoading(false)})
+      .catch(()=>setLoading(false));
+  };
+
+  // Mesajları yükle
+  const loadMessages = (sid) => {
+    fetch('/api/chat/messages?sessionId='+sid, {headers:{Authorization:AUTH}})
+      .then(r=>r.json())
+      .then(d=>setMessages(d.messages||[]))
+      .catch(()=>{});
+  };
+
+  useEffect(()=>{loadSessions()}, []);
+
+  // Aktif chat değişince mesajları yükle + polling
+  useEffect(()=>{
+    if(!activeChat) return;
+    loadMessages(activeChat);
+    const iv = setInterval(()=>{loadMessages(activeChat);loadSessions()}, 4000);
+    return ()=>clearInterval(iv);
+  }, [activeChat]);
+
+  // Scroll to bottom
+  useEffect(()=>{
+    messagesEndRef.current?.scrollIntoView({behavior:'smooth'});
+  }, [messages]);
+
+  const sendReply = () => {
+    if(!reply.trim()||!activeChat) return;
+    setSending(true);
+    fetch('/api/chat/reply', {
+      method:'POST',
+      headers:{'Content-Type':'application/json',Authorization:AUTH},
+      body:JSON.stringify({sessionId:activeChat, message:reply})
+    }).then(()=>{
+      setReply('');
+      setSending(false);
+      loadMessages(activeChat);
+      loadSessions();
+    }).catch(()=>setSending(false));
+  };
+
+  const formatTime = (t) => {
+    if(!t) return '';
+    const d = new Date(t);
+    return d.toLocaleString('tr-TR',{hour:'2-digit',minute:'2-digit',day:'2-digit',month:'2-digit'});
+  };
+
+  const current = sessions.find(s=>s.id===activeChat);
 
   return (
     <div className="card">
-      <div className="card-header"><h3>Chat Geçmişi</h3></div>
-      <div style={{display:'flex',gap:'24px',minHeight:'400px'}}>
-        <div style={{width:'240px',borderRight:'1px solid #eee',paddingRight:'16px'}}>
-          <p style={{fontSize:'12px',color:'#888',marginBottom:'8px',textTransform:'uppercase',letterSpacing:'1px'}}>Konuşmalar</p>
-          {CHAT_HISTORY.map(c=>(
-            <div key={c.id}
-              onClick={()=>setActiveChat(c.id)}
-              style={{padding:'12px',cursor:'pointer',borderRadius:'8px',marginBottom:'8px',background:activeChat===c.id?'#fff7ed':'#f9fafb',border:activeChat===c.id?'1px solid #ffedd5':'1px solid transparent'}}>
+      <div className="card-header" style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+        <h3>Canlı Chat ({sessions.length} sohbet)</h3>
+        <button onClick={loadSessions} style={{padding:'6px 14px',border:'1px solid #ddd',borderRadius:'6px',background:'#fff',fontSize:'12px',cursor:'pointer'}}>🔄 Yenile</button>
+      </div>
+      <div style={{display:'flex',gap:'0',minHeight:'500px'}}>
+        {/* Sol: Oturum listesi */}
+        <div style={{width:'280px',borderRight:'1px solid #eee',overflowY:'auto',maxHeight:'500px'}}>
+          {loading && <div style={{padding:'24px',textAlign:'center',color:'#888'}}>Yükleniyor...</div>}
+          {!loading && sessions.length===0 && <div style={{padding:'24px',textAlign:'center',color:'#888',fontSize:'13px'}}>Henüz chat yok.<br/>Müşteriler sitedeki chat widget'ından mesaj gönderince burada görünür.</div>}
+          {sessions.map(s=>(
+            <div key={s.id}
+              onClick={()=>setActiveChat(s.id)}
+              style={{padding:'14px 16px',cursor:'pointer',borderBottom:'1px solid #f0f0f0',background:activeChat===s.id?'#fff7ed':'#fff',transition:'background .15s'}}>
               <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'4px'}}>
-                <span style={{fontWeight:600,fontSize:'14px'}}>{c.customer}</span>
-                <span className={`badge ${c.status==='Açık'?'badge-green':'badge-gray'}`} style={{fontSize:'11px'}}>{c.status}</span>
+                <span style={{fontWeight:600,fontSize:'13px'}}>🧑 {s.id?.slice(0,12)}...</span>
+                {s.unread>0 && <span style={{background:'#ff6000',color:'#fff',borderRadius:'10px',padding:'2px 8px',fontSize:'11px',fontWeight:700}}>{s.unread}</span>}
               </div>
-              <div style={{fontSize:'12px',color:'#888'}}>{c.date}</div>
-              <div style={{fontSize:'12px',color:'#666',marginTop:'4px',overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{c.messages[c.messages.length-1].text}</div>
+              <div style={{fontSize:'12px',color:'#888'}}>{formatTime(s.lastTime)}</div>
+              <div style={{fontSize:'12px',color:'#555',marginTop:'4px',overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{s.lastMessage||''}</div>
+              <div style={{fontSize:'11px',color:'#bbb',marginTop:'2px'}}>{s.messageCount||0} mesaj</div>
             </div>
           ))}
         </div>
+
+        {/* Sağ: Mesajlar + yanıt */}
         <div style={{flex:1,display:'flex',flexDirection:'column'}}>
-          {current && (
+          {!activeChat && <div style={{flex:1,display:'flex',alignItems:'center',justifyContent:'center',color:'#888',fontSize:'14px'}}>Bir sohbet seçin</div>}
+          {activeChat && (
             <>
-              <div style={{padding:'12px 0',borderBottom:'1px solid #eee',marginBottom:'16px',display:'flex',justifyContent:'space-between',alignItems:'center'}}>
-                <div>
-                  <span style={{fontWeight:600,fontSize:'16px'}}>{current.customer}</span>
-                  <span style={{marginLeft:'12px',fontSize:'13px',color:'#888'}}>{current.date}</span>
-                </div>
-                <span className={`badge ${current.status==='Açık'?'badge-green':'badge-gray'}`}>{current.status}</span>
-              </div>
-              <div style={{flex:1,overflow:'auto'}}>
-                {current.messages.map((m,i)=>(
-                  <div key={i} style={{display:'flex',justifyContent:m.from==='admin'?'flex-end':'flex-start',marginBottom:'12px'}}>
-                    <div style={{maxWidth:'70%',padding:'10px 14px',borderRadius:m.from==='admin'?'12px 12px 4px 12px':'12px 12px 12px 4px',background:m.from==='admin'?'#ff6000':'#f3f4f6',color:m.from==='admin'?'#fff':'#333',fontSize:'14px'}}>
+              {/* Mesajlar */}
+              <div style={{flex:1,overflowY:'auto',padding:'16px',background:'#f9f9f9',maxHeight:'380px'}}>
+                {messages.map((m,i)=>(
+                  <div key={i} style={{display:'flex',justifyContent:m.from==='user'?'flex-start':m.from==='admin'?'flex-end':'flex-start',marginBottom:'10px'}}>
+                    <div style={{maxWidth:'70%',padding:'10px 14px',borderRadius:m.from==='user'?'12px 12px 12px 4px':m.from==='admin'?'12px 12px 4px 12px':'12px 12px 12px 4px',background:m.from==='admin'?'#ff6000':m.from==='bot'?'#e8e8e8':'#fff',color:m.from==='admin'?'#fff':'#333',fontSize:'13px',lineHeight:'1.5',whiteSpace:'pre-line',boxShadow:'0 1px 2px rgba(0,0,0,.05)'}}>
+                      {m.from==='bot' && <div style={{fontSize:'10px',color:'#888',marginBottom:'4px'}}>🤖 Bot</div>}
+                      {m.from==='user' && <div style={{fontSize:'10px',color:'#888',marginBottom:'4px'}}>🧑 Müşteri</div>}
+                      {m.from==='admin' && <div style={{fontSize:'10px',color:'rgba(255,255,255,.7)',marginBottom:'4px'}}>👤 Admin</div>}
                       <div>{m.text}</div>
-                      <div style={{fontSize:'11px',marginTop:'4px',opacity:.7,textAlign:'right'}}>{m.time}</div>
+                      <div style={{fontSize:'10px',marginTop:'4px',opacity:.6,textAlign:'right'}}>{formatTime(m.time)}</div>
                     </div>
                   </div>
                 ))}
+                <div ref={messagesEndRef}/>
+              </div>
+
+              {/* Yanıt kutusu */}
+              <div style={{padding:'12px 16px',borderTop:'1px solid #eee',display:'flex',gap:'8px',background:'#fff'}}>
+                <input value={reply}
+                  onChange={e=>setReply(e.target.value)}
+                  onKeyDown={e=>{if(e.key==='Enter'&&!e.shiftKey)sendReply()}}
+                  placeholder="Yanıt yazın..."
+                  style={{flex:1,padding:'10px 14px',border:'1px solid #ddd',borderRadius:'8px',fontSize:'13px',outline:'none'}}/>
+                <button onClick={sendReply} disabled={sending||!reply.trim()}
+                  style={{padding:'10px 20px',background:sending?'#ccc':'#ff6000',color:'#fff',border:'none',borderRadius:'8px',fontSize:'13px',fontWeight:600,cursor:sending?'default':'pointer'}}>
+                  {sending?'...':'Gönder'}
+                </button>
               </div>
             </>
           )}
