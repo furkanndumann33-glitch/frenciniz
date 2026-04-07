@@ -1796,19 +1796,27 @@ function StockAlertInline({productId, onClose}) {
 
 function AdminLoginPage() {
   const {go, setAdmin} = use$();
+  const [email, setEmail] = useState("");
   const [pw, setPw] = useState("");
   const [err, setErr] = useState(false);
+  const handleLogin = () => {
+    const adminEmail = import.meta.env.VITE_ADMIN_EMAIL || "tarkanduman4@gmail.com";
+    const adminPass = import.meta.env.VITE_ADMIN_PASSWORD || "123456_xx";
+    if(email === adminEmail && pw === adminPass){setAdmin(true);go("admin")}else setErr(true);
+  };
   return (
     <div style={{maxWidth:380,margin:"60px auto",padding:"0 20px"}}>
       <div style={{border:"1px solid #eee",borderRadius:8,padding:32,textAlign:"center"}}>
         <div style={{fontSize:28,fontWeight:800,color:"#ff6000",marginBottom:4}}>frenciniz</div>
         <div style={{fontSize:13,color:"#999",marginBottom:24}}>Yönetim Paneli Girişi</div>
-        <input value={pw} onChange={e=>{setPw(e.target.value);setErr(false)}} type="password" placeholder="Admin şifresi"
+        <input value={email} onChange={e=>{setEmail(e.target.value);setErr(false)}} type="email" placeholder="E-posta"
           style={{width:"100%",padding:"12px 14px",border:`1px solid ${err?"#e53935":"#ddd"}`,borderRadius:6,fontSize:14,marginBottom:12,outline:"none"}}/>
-        {err&&<div style={{fontSize:12,color:"#e53935",marginBottom:8}}>Şifre yanlış.</div>}
-        <button onClick={()=>{if(pw==="admin123"){setAdmin(true);go("admin")}else setErr(true)}}
+        <input value={pw} onChange={e=>{setPw(e.target.value);setErr(false)}} type="password" placeholder="Şifre"
+          onKeyDown={e=>{if(e.key==="Enter")handleLogin()}}
+          style={{width:"100%",padding:"12px 14px",border:`1px solid ${err?"#e53935":"#ddd"}`,borderRadius:6,fontSize:14,marginBottom:12,outline:"none"}}/>
+        {err&&<div style={{fontSize:12,color:"#e53935",marginBottom:8}}>E-posta veya şifre yanlış.</div>}
+        <button onClick={handleLogin}
           style={{width:"100%",padding:"12px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:15,fontWeight:700,cursor:"pointer"}}>Giriş Yap</button>
-        <div style={{fontSize:11,color:"#ccc",marginTop:12}}>Demo şifre: admin123</div>
       </div>
     </div>
   );
