@@ -12,9 +12,18 @@ async function ekersanLogin() {
     method: "POST",
     headers: { "Content-Type": "application/json", "Accept": "application/json" },
     body: JSON.stringify({ username: EKERSAN_USER, password: EKERSAN_PASS }),
+    redirect: "manual",
   });
-  const cookies = res.headers.getSetCookie?.() || [];
-  const cookieStr = cookies.map(c => c.split(";")[0]).join("; ");
+
+  // Cookie extraction - uyumlu yöntem
+  let cookieParts = [];
+  if (typeof res.headers.getSetCookie === "function") {
+    cookieParts = res.headers.getSetCookie().map(c => c.split(";")[0]);
+  } else {
+    const raw = res.headers.get("set-cookie") || "";
+    cookieParts = raw.split(/,(?=[^ ]+=)/).map(c => c.split(";")[0].trim()).filter(Boolean);
+  }
+  const cookieStr = cookieParts.join("; ");
   const data = await res.json();
   return { csrf: data.csrf, cookies: cookieStr };
 }
