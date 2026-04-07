@@ -95,15 +95,30 @@ export default function App() {
   const [dataLoaded, setDataLoaded] = useState(false);
 
   useEffect(() => {
+    // Önce KV API'den dene, yoksa static JSON'dan yükle
     Promise.all([
-      fetch("/data/products.json").then(r => r.json()),
-      fetch("/data/categories.json").then(r => r.json()),
+      fetch("/api/products").then(r => r.ok ? r.json() : null).catch(() => null),
+      fetch("/api/products?type=categories").then(r => r.ok ? r.json() : null).catch(() => null),
     ]).then(([prods, categories]) => {
-      PRODUCTS = prods;
-      CATS = categories;
-      setProducts(prods);
-      setCatsState(categories);
-      setDataLoaded(true);
+      if (prods && Array.isArray(prods) && prods.length > 0) {
+        PRODUCTS = prods;
+        CATS = categories || CATS;
+        setProducts(prods);
+        if (categories) setCatsState(categories);
+        setDataLoaded(true);
+      } else {
+        // Fallback: static JSON
+        return Promise.all([
+          fetch("/data/products.json").then(r => r.json()),
+          fetch("/data/categories.json").then(r => r.json()),
+        ]).then(([p, c]) => {
+          PRODUCTS = p;
+          CATS = c;
+          setProducts(p);
+          setCatsState(c);
+          setDataLoaded(true);
+        });
+      }
     }).catch(() => setDataLoaded(true));
   }, []);
   const [favs, setFavs] = useState([]);
