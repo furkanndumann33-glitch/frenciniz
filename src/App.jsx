@@ -80,7 +80,12 @@ function useIsMobile(breakpoint = 768) {
 let PRODUCTS = [];
 let CATS = [{id:"all",name:"Tüm Ürünler"}];
 const VEHS = [{id:"all",name:"Tüm Araçlar"},{id:"kamyon",name:"Kamyon"},{id:"tir",name:"Tır"},{id:"otobus",name:"Otobüs"},{id:"dorse",name:"Dorse"}];
-const BRANDS = ["Ekersan"];
+let BRANDS = ["Ekersan"];
+function deriveBrands(prods) {
+  const set = new Set();
+  for (const p of prods) if (p.brand) set.add(p.brand);
+  return [...set].sort();
+}
 
 const Ctx = createContext();
 const use$ = () => useContext(Ctx);
@@ -103,6 +108,7 @@ export default function App() {
       if (prods && Array.isArray(prods) && prods.length > 0) {
         PRODUCTS = prods;
         CATS = categories || CATS;
+        BRANDS = deriveBrands(prods);
         setProducts(prods);
         if (categories) setCatsState(categories);
         setDataLoaded(true);
@@ -114,6 +120,7 @@ export default function App() {
         ]).then(([p, c]) => {
           PRODUCTS = p;
           CATS = c;
+          BRANDS = deriveBrands(p);
           setProducts(p);
           setCatsState(c);
           setDataLoaded(true);
@@ -380,7 +387,7 @@ export default function App() {
               {/* Kategoriler */}
               <div>
                 <div style={{fontSize:14,fontWeight:700,color:"#fff",marginBottom:12}}>Kategoriler</div>
-                {[{l:"Disk Fren",p:"products",pr:{cat:"disk"}},{l:"Kampana",p:"products",pr:{cat:"mekanik"}},{l:"Pnömatik",p:"products",pr:{cat:"pnomatik"}},{l:"Elektronik",p:"products",pr:{cat:"elektronik"}},{l:"Balatalar",p:"products",pr:{cat:"balata"}}].map((item,j) => (
+                {CATS.filter(c=>c.id!=="all").slice(0,6).map((c,j) => ({l:c.name,p:"products",pr:{cat:c.id}})).map((item,j) => (
                   <div key={j} onClick={()=>go(item.p,item.pr)} style={{fontSize:13,color:"#888",marginBottom:8,cursor:"pointer",transition:"color .15s"}} onMouseEnter={e=>e.currentTarget.style.color="#ff6000"} onMouseLeave={e=>e.currentTarget.style.color="#888"}>{item.l}</div>
                 ))}
               </div>
@@ -676,7 +683,7 @@ function ProductDetailPage() {
       </div>
       <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr",gap:isMobile?20:32,marginBottom:40}}>
         {/* Image Gallery */}
-        <ImageGallery images={PROD_IMAGES[p.id] || [p.img]} discount={disc} />
+        <ImageGallery images={(p.images && p.images.length ? p.images : [p.img])} discount={disc} />
         <div>
           <div style={{fontSize:13,color:"#ff6000",fontWeight:600,marginBottom:6}}>{p.brand}</div>
           <h1 style={{fontSize:24,fontWeight:700,marginBottom:8}}>{p.name}</h1>
