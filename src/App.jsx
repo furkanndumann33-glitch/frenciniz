@@ -495,6 +495,21 @@ function HomePage() {
   const discounted = PRODUCTS.filter(p => p.old);
 
   return <>
+    {/* Sol kenar kategori çubuğu (sadece geniş ekran) */}
+    {!isMobile && (
+      <aside style={{position:"fixed",left:16,top:140,width:200,maxHeight:"calc(100vh - 160px)",overflowY:"auto",border:"1px solid #eee",borderRadius:8,background:"#fff",padding:"12px 0",zIndex:50,boxShadow:"0 2px 8px rgba(0,0,0,.04)"}}>
+        <div style={{padding:"4px 16px 10px",fontSize:13,fontWeight:700,color:"#1a1a1a",borderBottom:"1px solid #f0f0f0",marginBottom:6}}>Kategoriler</div>
+        {CATS.filter(c=>c.id!=="all").map(c => (
+          <div key={c.id} onClick={() => go("products",{cat:c.id})}
+            style={{padding:"8px 16px",fontSize:12,color:"#555",cursor:"pointer",transition:"background .15s,color .15s"}}
+            onMouseEnter={e=>{e.currentTarget.style.background="#fff5ee";e.currentTarget.style.color="#ff6000"}}
+            onMouseLeave={e=>{e.currentTarget.style.background="transparent";e.currentTarget.style.color="#555"}}>
+            {c.name}
+          </div>
+        ))}
+      </aside>
+    )}
+
     {/* Banner */}
     <div style={{background:"linear-gradient(90deg, #ff6000, #ff8c00)",padding:"40px 0"}}>
       <div style={{maxWidth:1200,margin:"0 auto",padding:"0 20px",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
@@ -542,14 +557,6 @@ function HomePage() {
         <div style={{display:"grid",gridTemplateColumns:isMobile?"repeat(2,1fr)":"repeat(4,1fr)",gap:isMobile?10:16}}>{discounted.slice(0,4).map(p => <ProductCard key={p.id} p={p} />)}</div>
       </div>
     </div>}
-
-    {/* Brands */}
-    <div style={{maxWidth:1200,margin:"0 auto",padding:"32px 20px"}}>
-      <h2 style={{fontSize:20,fontWeight:700,marginBottom:16}}>Markalar</h2>
-      <div style={{display:"flex",gap:12,flexWrap:"wrap"}}>
-        {BRANDS.map(b => <button key={b} onClick={() => go("products",{brand:b})} style={{padding:"10px 20px",border:"1px solid #e0e0e0",borderRadius:6,background:"#fff",fontSize:13,fontWeight:600,color:"#444",cursor:"pointer"}}>{b}</button>)}
-      </div>
-    </div>
 
     {/* Info */}
     <div style={{maxWidth:1200,margin:"0 auto",padding:"16px 20px 40px"}}>
