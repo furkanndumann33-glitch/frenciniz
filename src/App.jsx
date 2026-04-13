@@ -628,12 +628,11 @@ function ProductCard({p}) {
       <div style={{padding:"12px 14px 16px"}}>
         <div style={{fontSize:12,color:"#ff6000",fontWeight:600,marginBottom:4}}>{p.brand}</div>
         <div style={{fontSize:14,fontWeight:500,color:"#1a1a1a",lineHeight:1.35,marginBottom:4,minHeight:38}}>{p.name}</div>
-        <div style={{fontSize:11,color:"#bbb",marginBottom:8}}>{p.sku}</div>
-        <div style={{display:"flex",alignItems:"center",gap:4,marginBottom:10}}>
-          <span style={{color:"#f5a623",fontSize:13}}>★</span>
-          <span style={{fontSize:13,color:"#666"}}>{p.rating}</span>
-          <span style={{fontSize:12,color:"#bbb"}}>({p.reviews})</span>
-        </div>
+        <div style={{fontSize:11,color:"#bbb",marginBottom:4}}>{p.sku}</div>
+        {p.compat && p.compat.length > 0 && <div style={{display:"flex",flexWrap:"wrap",gap:3,marginBottom:6}}>
+          {p.compat.slice(0,4).map((c,i) => <span key={i} style={{fontSize:9,padding:"2px 6px",background:"#f0f4ff",color:"#336",borderRadius:3,fontWeight:600}}>{c}</span>)}
+          {p.compat.length > 4 && <span style={{fontSize:9,padding:"2px 6px",color:"#999"}}>+{p.compat.length-4}</span>}
+        </div>}
         <div style={{display:"flex",alignItems:"center",justifyContent:"space-between"}}>
           <div>
             <span style={{fontSize:20,fontWeight:700,color:"#1a1a1a"}}>{fp(p.price)}</span>
@@ -777,7 +776,7 @@ function ProductsPage() {
       if(catMatch && !catMatch.includes(p.cat)) return false;
       if(veh!=="all" && !p.veh.includes(veh)) return false;
       if(brand!=="all" && p.brand!==brand) return false;
-      if(term && ![p.name,p.brand,p.sku,p.oem].some(s=>s.toLowerCase().includes(term.toLowerCase()))) return false;
+      if(term && ![p.name,p.brand,p.sku,p.oem,...(p.compat||[])].some(s=>(s||"").toLowerCase().includes(term.toLowerCase()))) return false;
       return true;
     });
     if(sort==="price-asc") r=[...r].sort((a,b)=>a.price-b.price);
@@ -949,7 +948,9 @@ function ProductDetailPage() {
       </div>
       {tab==="desc" && <p style={{fontSize:15,color:"#555",lineHeight:1.8,marginBottom:32}}>{p.desc}</p>}
       {tab==="specs" && <div style={{marginBottom:32}}>{Object.entries(p.specs).map(([k,v],i) => (<div key={k} style={{display:"flex",padding:"10px 0",borderBottom:"1px solid #f0f0f0"}}><span style={{width:200,color:"#999"}}>{k}</span><span style={{fontWeight:500,color:"#333"}}>{v}</span></div>))}</div>}
-      {tab==="compat" && <div style={{display:"flex",flexWrap:"wrap",gap:8,marginBottom:32}}>{p.compat.map((c,i) => <span key={i} style={{padding:"8px 16px",background:"#f5f5f5",borderRadius:6,fontSize:13,color:"#555"}}>{c}</span>)}</div>}
+      {tab==="compat" && <div style={{marginBottom:32}}>
+        {p.compat && p.compat.length > 0 ? <div style={{display:"flex",flexWrap:"wrap",gap:10}}>{p.compat.map((c,i) => <div key={i} onClick={() => go("products",{q:c})} style={{padding:"12px 20px",background:"#f0f4ff",borderRadius:8,fontSize:14,fontWeight:600,color:"#336",cursor:"pointer",border:"1px solid #dde4f0",transition:"all .2s"}} onMouseEnter={e=>{e.currentTarget.style.borderColor="#ff6000";e.currentTarget.style.color="#ff6000"}} onMouseLeave={e=>{e.currentTarget.style.borderColor="#dde4f0";e.currentTarget.style.color="#336"}}>{c}</div>)}</div> : <div style={{color:"#999",fontSize:14}}>{lang==="en"?"No compatibility info available":"Uyumluluk bilgisi bulunamadı"}</div>}
+      </div>}
       {related.length > 0 && <div><h2 style={{fontSize:20,fontWeight:700,marginBottom:16}}>{t("similarProducts")}</h2><div style={{display:"grid",gridTemplateColumns:isMobile?"repeat(2,1fr)":"repeat(4,1fr)",gap:isMobile?10:16}}>{related.map(rp => <ProductCard key={rp.id} p={rp} />)}</div></div>}
       <RecentlyViewed />
     </div>

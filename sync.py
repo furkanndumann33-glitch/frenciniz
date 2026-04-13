@@ -242,6 +242,37 @@ CATEGORY_HIERARCHY = {
 }
 # CATEGORY_HIERARCHY'de olmayanlar otomatik olarak "DİĞER" grubuna düşer.
 
+# Araç marka tespiti (ürün adı + OEM'den)
+VEHICLE_PATTERNS = {
+    "Mercedes": [r"MERCEDES", r"\bMB\b", r"\bACTROS\b", r"\bATEGO\b", r"\bAXOR\b", r"\bSPRINTER\b", r"TRAVEGO", r"TOURISMO"],
+    "MAN": [r"\bMAN\b", r"\bTGA\b", r"\bTGS\b", r"\bTGX\b", r"\bTGM\b", r"\bTGL\b"],
+    "Volvo": [r"\bVOLVO\b", r"\bFH\d", r"\bFM\d"],
+    "Scania": [r"\bSCANIA\b"],
+    "DAF": [r"\bDAF\b", r"\bCF\d", r"\bXF\d"],
+    "Renault": [r"\bRENAULT\b", r"\bPREMIUM\b", r"\bMAGNUM\b", r"\bKERAX\b"],
+    "Iveco": [r"\bIVECO\b", r"\bEUROCARGO\b", r"\bSTRALIS\b", r"\bEUROBUS\b"],
+    "Ford": [r"\bFORD\b", r"\bCARGO\b"],
+    "BMC": [r"\bBMC\b", r"\bFATIH\b"],
+    "Dodge": [r"\bDODGE\b"],
+    "Isuzu": [r"\bISUZU\b", r"\bNPR\b"],
+    "Mitsubishi": [r"\bMITSUBISHI\b", r"\bCANTER\b"],
+    "BPW": [r"\bBPW\b"],
+    "SAF": [r"\bSAF\b"],
+    "ROR": [r"\bROR\b"],
+    "Knorr": [r"\bKNORR\b", r"\bSB[5-7]\b", r"\bSN[6-7]\b"],
+    "Wabco": [r"\bWABCO\b", r"\bMAXX\b"],
+}
+
+def detect_compat(name, oem):
+    haystack = ((name or "") + " " + (oem or "")).upper()
+    found = []
+    for brand, patterns in VEHICLE_PATTERNS.items():
+        for pat in patterns:
+            if re.search(pat, haystack, re.IGNORECASE):
+                found.append(brand)
+                break
+    return found
+
 def slug(name):
     if not name:
         return "diger"
@@ -435,7 +466,7 @@ def main():
             "images": images,  # YENİ: galeri için
             "desc": a.get("name", ""),
             "specs": {},
-            "compat": [],
+            "compat": detect_compat(a.get("name", ""), a.get("field1", "")),
             "veh": ["kamyon", "tir"],
         })
         pid += 1
