@@ -665,7 +665,7 @@ function RecentlyViewed() {
 
 // ===== HOME =====
 function HomePage() {
-  const {go, isMobile, t} = use$();
+  const {go, isMobile, t, lang} = use$();
   const popular = useMemo(() => [...PRODUCTS].sort((a,b) => b.reviews - a.reviews).slice(0,8), []);
   const discounted = PRODUCTS.filter(p => p.old);
 
