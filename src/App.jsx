@@ -79,6 +79,20 @@ function useIsMobile(breakpoint = 768) {
 // Ürünler ve kategoriler /data/ klasöründen yüklenir
 let PRODUCTS = [];
 let CATS = [{id:"all",name:"Tüm Ürünler",parent:null}];
+
+// Ürün görsellerini arka planda önceden indir (browser cache'e alır)
+function preloadImages(prods) {
+  const imgs = prods.filter(p => p.img && !p.img.includes("placehold")).map(p => p.img);
+  let i = 0;
+  function next() {
+    if (i >= imgs.length) return;
+    const img = new Image();
+    img.src = imgs[i++];
+    img.onload = img.onerror = () => setTimeout(next, 0);
+  }
+  // 6 paralel indirme başlat
+  for (let j = 0; j < 6; j++) next();
+}
 // Yardımcı: Grup ID'ye ait tüm alt kategori id'lerini döndür
 function getSubCatIds(groupId) {
   return CATS.filter(c => c.parent === groupId).map(c => c.id);
@@ -120,6 +134,7 @@ export default function App() {
         setProducts(prods);
         if (categories) setCatsState(categories);
         setDataLoaded(true);
+        preloadImages(prods);
       } else {
         // Fallback: static JSON
         return Promise.all([
@@ -132,6 +147,7 @@ export default function App() {
           setProducts(p);
           setCatsState(c);
           setDataLoaded(true);
+          preloadImages(p);
         });
       }
     }).catch(() => setDataLoaded(true));
@@ -483,7 +499,7 @@ function ProductCard({p}) {
       onMouseEnter={e => e.currentTarget.style.boxShadow="0 4px 16px rgba(0,0,0,.08)"}
       onMouseLeave={e => e.currentTarget.style.boxShadow="none"}>
       <div style={{height:200,background:"#f9f9f9",display:"flex",alignItems:"center",justifyContent:"center",position:"relative"}}>
-        <img src={p.img} alt={p.name} loading="lazy" width={240} height={160} style={{maxWidth:"80%",maxHeight:"80%",objectFit:"contain"}} onError={e=>{e.target.style.display="none"}}/>
+        <img src={p.img} alt={p.name} loading="eager"width={240} height={160} style={{maxWidth:"80%",maxHeight:"80%",objectFit:"contain"}} onError={e=>{e.target.style.display="none"}}/>
         {disc > 0 && <span style={{position:"absolute",top:8,left:8,background:"#ff6000",color:"#fff",fontSize:12,fontWeight:700,padding:"3px 8px",borderRadius:4}}>%{disc}</span>}
         {/* Favorite button */}
         <button onClick={e => {e.stopPropagation(); toggleFav(p.id)}}
@@ -531,7 +547,7 @@ function RecentlyViewed() {
         {items.slice(0,6).map(p => (
           <div key={p.id} onClick={() => go("product",{id:p.id})}
             style={{minWidth:160,border:"1px solid #eee",borderRadius:8,padding:12,cursor:"pointer",background:"#fff",flexShrink:0}}>
-            <img src={p.img} alt="" loading="lazy" width={120} height={100} style={{width:"100%",height:100,objectFit:"contain",marginBottom:8}} onError={e=>{e.target.style.display="none"}}/>
+            <img src={p.img} alt="" loading="eager"width={120} height={100} style={{width:"100%",height:100,objectFit:"contain",marginBottom:8}} onError={e=>{e.target.style.display="none"}}/>
             <div style={{fontSize:12,fontWeight:500,color:"#333",lineHeight:1.3,marginBottom:4}}>{p.name}</div>
             <div style={{fontSize:14,fontWeight:700,color:"#1a1a1a"}}>{fp(p.price)}</div>
           </div>
@@ -853,7 +869,7 @@ function CartPage() {
             <div style={{border:"1px solid #eee",borderRadius:8}}>
               {cart.map((item,i) => (
                 <div key={item.id} style={{display:"flex",gap:16,padding:"16px",borderBottom:i<cart.length-1?"1px solid #f0f0f0":"none",alignItems:"center"}}>
-                  <img src={item.img} alt="" loading="lazy" width={72} height={72} style={{width:72,height:72,objectFit:"contain",borderRadius:6,background:"#f9f9f9"}} onError={e=>{e.target.style.display="none"}}/>
+                  <img src={item.img} alt="" loading="eager"width={72} height={72} style={{width:72,height:72,objectFit:"contain",borderRadius:6,background:"#f9f9f9"}} onError={e=>{e.target.style.display="none"}}/>
                   <div style={{flex:1}}><div style={{fontSize:14,fontWeight:600}}>{item.name}</div><div style={{fontSize:12,color:"#999"}}>{item.brand} · {item.sku}</div></div>
                   <div style={{display:"flex",alignItems:"center",border:"1px solid #ddd",borderRadius:6,overflow:"hidden"}}>
                     <button onClick={() => updateQty(item.id, item.qty-1)} style={{width:32,height:32,background:"#f9f9f9",border:"none",fontSize:16,color:"#555",cursor:"pointer"}}>−</button>
@@ -1123,7 +1139,7 @@ function AccountPage() {
           <div style={{border:"1px solid #eee",borderRadius:8,overflow:"hidden"}}>
             {frequentItems.map((item, i) => (
               <div key={item.id} style={{display:"flex",gap:14,padding:"14px 16px",borderBottom:i<frequentItems.length-1?"1px solid #f0f0f0":"none",alignItems:"center"}}>
-                <img src={item.img} alt="" loading="lazy" width={52} height={52} style={{width:52,height:52,objectFit:"contain",borderRadius:6,background:"#f9f9f9"}} onError={e=>{e.target.style.display="none"}}/>
+                <img src={item.img} alt="" loading="eager"width={52} height={52} style={{width:52,height:52,objectFit:"contain",borderRadius:6,background:"#f9f9f9"}} onError={e=>{e.target.style.display="none"}}/>
                 <div style={{flex:1}}>
                   <div style={{fontSize:14,fontWeight:600}}>{item.name}</div>
                   <div style={{fontSize:12,color:"#999"}}>{item.brand} · {item.sku}</div>
@@ -1716,7 +1732,7 @@ function ImageGallery({images, discount}) {
           {images.map((img, i) => (
             <div key={i} onClick={() => setActive(i)}
               style={{width:72,height:72,borderRadius:6,border:`2px solid ${active===i?"#ff6000":"#eee"}`,background:"#f9f9f9",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",flexShrink:0,transition:"border-color .2s"}}>
-              <img src={img} alt="" loading="lazy" width={72} height={72} style={{maxWidth:"85%",maxHeight:"85%",objectFit:"contain"}} onError={e=>{e.target.style.display="none"}}/>
+              <img src={img} alt="" loading="eager"width={72} height={72} style={{maxWidth:"85%",maxHeight:"85%",objectFit:"contain"}} onError={e=>{e.target.style.display="none"}}/>
             </div>
           ))}
         </div>
