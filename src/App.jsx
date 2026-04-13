@@ -134,9 +134,16 @@ function useIsMobile(breakpoint = 768) {
 let PRODUCTS = [];
 let CATS = [{id:"all",name:"Tüm Ürünler",parent:null}];
 
-// Ürün görsellerini arka planda önceden indir (browser cache'e alır)
+// CDN proxy — S3 görsellerini hızlı CDN üzerinden cache'le ve sıkıştır
+function cdnImg(url, w) {
+  if (!url || url.includes("placehold")) return url;
+  // wsrv.nl: ücretsiz görsel CDN proxy, global edge cache, WebP otomatik
+  return `https://wsrv.nl/?url=${encodeURIComponent(url)}&w=${w||400}&q=80&output=webp`;
+}
+
+// Ürün görsellerini arka planda önceden indir (CDN cache'i ısıtır)
 function preloadImages(prods) {
-  const imgs = prods.filter(p => p.img && !p.img.includes("placehold")).map(p => p.img);
+  const imgs = prods.filter(p => p.img && !p.img.includes("placehold")).slice(0, 50).map(p => cdnImg(p.img, 400));
   let i = 0;
   function next() {
     if (i >= imgs.length) return;
@@ -144,8 +151,8 @@ function preloadImages(prods) {
     img.src = imgs[i++];
     img.onload = img.onerror = () => setTimeout(next, 0);
   }
-  // 6 paralel indirme başlat
-  for (let j = 0; j < 6; j++) next();
+  // 8 paralel indirme başlat (CDN hızlı, paralel artırılabilir)
+  for (let j = 0; j < 8; j++) next();
 }
 // Yardımcı: Grup ID'ye ait tüm alt kategori id'lerini döndür
 function getSubCatIds(groupId) {
@@ -580,15 +587,16 @@ function CategorySidebar({go, activeCat, onSelect, isFixed}) {
   );
 }
 
-// ===== OPTIMIZED IMAGE with skeleton =====
-function OptImg({src, alt, w, h, style, className}) {
+// ===== OPTIMIZED IMAGE with skeleton + CDN =====
+function OptImg({src, alt, w, h, style, cdnW}) {
   const [loaded, setLoaded] = useState(false);
   const [err, setErr] = useState(false);
+  const cdnSrc = cdnImg(src, cdnW || 400);
   if (err) return null;
   return (
     <>
       {!loaded && <div style={{width:w||"100%",height:h||"100%",background:"linear-gradient(90deg,#f0f0f0 25%,#e0e0e0 50%,#f0f0f0 75%)",backgroundSize:"200% 100%",animation:"shimmer 1.5s infinite",borderRadius:4,...(style||{})}} />}
-      <img src={src} alt={alt||""} width={w} height={h}
+      <img src={cdnSrc} alt={alt||""} width={w} height={h}
         style={{...style,display:loaded?"block":"none"}}
         onLoad={()=>setLoaded(true)} onError={()=>{setErr(true);setLoaded(true)}} />
     </>
@@ -656,7 +664,7 @@ function RecentlyViewed() {
         {items.slice(0,6).map(p => (
           <div key={p.id} onClick={() => go("product",{id:p.id})}
             style={{minWidth:160,border:"1px solid #eee",borderRadius:8,padding:12,cursor:"pointer",background:"#fff",flexShrink:0}}>
-            <img src={p.img} alt="" loading="eager" width={120} height={100} style={{width:"100%",height:100,objectFit:"contain",marginBottom:8}} onError={e=>{e.target.style.display="none"}}/>
+            <img src={cdnImg(p.img,200)} alt="" loading="eager" width={120} height={100} style={{width:"100%",height:100,objectFit:"contain",marginBottom:8}} onError={e=>{e.target.style.display="none"}}/>
             <div style={{fontSize:12,fontWeight:500,color:"#333",lineHeight:1.3,marginBottom:4}}>{p.name}</div>
             <div style={{fontSize:14,fontWeight:700,color:"#1a1a1a"}}>{fp(p.price)}</div>
           </div>
@@ -982,7 +990,7 @@ function CartPage() {
             <div style={{border:"1px solid #eee",borderRadius:8}}>
               {cart.map((item,i) => (
                 <div key={item.id} style={{display:"flex",gap:16,padding:"16px",borderBottom:i<cart.length-1?"1px solid #f0f0f0":"none",alignItems:"center"}}>
-                  <img src={item.img} alt="" loading="eager" width={72} height={72} style={{width:72,height:72,objectFit:"contain",borderRadius:6,background:"#f9f9f9"}} onError={e=>{e.target.style.display="none"}}/>
+                  <img src={cdnImg(item.img,100)} alt="" loading="eager" width={72} height={72} style={{width:72,height:72,objectFit:"contain",borderRadius:6,background:"#f9f9f9"}} onError={e=>{e.target.style.display="none"}}/>
                   <div style={{flex:1}}><div style={{fontSize:14,fontWeight:600}}>{item.name}</div><div style={{fontSize:12,color:"#999"}}>{item.brand} · {item.sku}</div></div>
                   <div style={{display:"flex",alignItems:"center",border:"1px solid #ddd",borderRadius:6,overflow:"hidden"}}>
                     <button onClick={() => updateQty(item.id, item.qty-1)} style={{width:32,height:32,background:"#f9f9f9",border:"none",fontSize:16,color:"#555",cursor:"pointer"}}>−</button>
@@ -1252,7 +1260,7 @@ function AccountPage() {
           <div style={{border:"1px solid #eee",borderRadius:8,overflow:"hidden"}}>
             {frequentItems.map((item, i) => (
               <div key={item.id} style={{display:"flex",gap:14,padding:"14px 16px",borderBottom:i<frequentItems.length-1?"1px solid #f0f0f0":"none",alignItems:"center"}}>
-                <img src={item.img} alt="" loading="eager" width={52} height={52} style={{width:52,height:52,objectFit:"contain",borderRadius:6,background:"#f9f9f9"}} onError={e=>{e.target.style.display="none"}}/>
+                <img src={cdnImg(item.img,80)} alt="" loading="eager" width={52} height={52} style={{width:52,height:52,objectFit:"contain",borderRadius:6,background:"#f9f9f9"}} onError={e=>{e.target.style.display="none"}}/>
                 <div style={{flex:1}}>
                   <div style={{fontSize:14,fontWeight:600}}>{item.name}</div>
                   <div style={{fontSize:12,color:"#999"}}>{item.brand} · {item.sku}</div>
@@ -2063,7 +2071,7 @@ function ImageGallery({images, discount}) {
       {/* Main image */}
       <div onClick={() => setZoomed(true)}
         style={{background:"#f9f9f9",borderRadius:8,height:400,display:"flex",alignItems:"center",justifyContent:"center",border:"1px solid #eee",position:"relative",cursor:"zoom-in",overflow:"hidden"}}>
-        <img src={images[active]} alt="" style={{maxWidth:"80%",maxHeight:"80%",objectFit:"contain",transition:"transform .3s"}} onError={e=>{e.target.style.display="none"}}/>
+        <img src={cdnImg(images[active],600)} alt="" style={{maxWidth:"80%",maxHeight:"80%",objectFit:"contain",transition:"transform .3s"}} onError={e=>{e.target.style.display="none"}}/>
         {discount > 0 && <span style={{position:"absolute",top:16,left:16,background:"#ff6000",color:"#fff",fontSize:14,fontWeight:700,padding:"6px 14px",borderRadius:6}}>%{discount}</span>}
         <div style={{position:"absolute",bottom:12,right:12,background:"rgba(0,0,0,.5)",color:"#fff",padding:"4px 10px",borderRadius:4,fontSize:11}}>🔍 Büyütmek için tıklayın</div>
       </div>
@@ -2074,7 +2082,7 @@ function ImageGallery({images, discount}) {
           {images.map((img, i) => (
             <div key={i} onClick={() => setActive(i)}
               style={{width:72,height:72,borderRadius:6,border:`2px solid ${active===i?"#ff6000":"#eee"}`,background:"#f9f9f9",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",flexShrink:0,transition:"border-color .2s"}}>
-              <img src={img} alt="" loading="eager" width={72} height={72} style={{maxWidth:"85%",maxHeight:"85%",objectFit:"contain"}} onError={e=>{e.target.style.display="none"}}/>
+              <img src={cdnImg(img,100)} alt="" loading="eager" width={72} height={72} style={{maxWidth:"85%",maxHeight:"85%",objectFit:"contain"}} onError={e=>{e.target.style.display="none"}}/>
             </div>
           ))}
         </div>
@@ -2091,7 +2099,7 @@ function ImageGallery({images, discount}) {
             <button onClick={e => {e.stopPropagation();setActive((active+1)%images.length)}}
               style={{position:"absolute",right:20,background:"rgba(255,255,255,.15)",border:"none",color:"#fff",fontSize:28,width:48,height:48,borderRadius:"50%",cursor:"pointer"}}>›</button>
           </>}
-          <img src={images[active]} alt="" style={{maxWidth:"90vw",maxHeight:"90vh",objectFit:"contain"}} onError={e=>{e.target.style.display="none"}}/>
+          <img src={cdnImg(images[active],1200)} alt="" style={{maxWidth:"90vw",maxHeight:"90vh",objectFit:"contain"}} onError={e=>{e.target.style.display="none"}}/>
           {/* Dots */}
           {images.length > 1 && <div style={{position:"absolute",bottom:24,display:"flex",gap:8}}>
             {images.map((_,i) => <div key={i} onClick={e=>{e.stopPropagation();setActive(i)}} style={{width:10,height:10,borderRadius:"50%",background:active===i?"#ff6000":"rgba(255,255,255,.4)",cursor:"pointer"}}/>)}
