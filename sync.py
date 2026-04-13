@@ -160,75 +160,87 @@ CATEGORY_PATTERNS = [
     (r"\bSET\s*KOMPLE\b|^SET\s|SET\s*SOL|SET\s*SAĞ", "Kaliper Tamir Seti"),
 ]
 
-# Alt kategori → ana kategori grup eşlemesi
-# Her alt kategori adı (detect_category çıktısı) hangi gruba ait
+# Alt kategori → ana kategori grup eşlemesi (Ekersan B2B yapısına uygun)
 CATEGORY_HIERARCHY = {
-    # Fren Diskleri & Kampanaları
-    "Fren Diski":               {"group_id": "fren-diskleri-kampanalari", "group_name": "Fren Diskleri & Kampanaları"},
-    "Fren Diski ABS'li":        {"group_id": "fren-diskleri-kampanalari", "group_name": "Fren Diskleri & Kampanaları"},
-    "Fren Kampanası":           {"group_id": "fren-diskleri-kampanalari", "group_name": "Fren Diskleri & Kampanaları"},
-    "Disk Bijonu/Civatası":     {"group_id": "fren-diskleri-kampanalari", "group_name": "Fren Diskleri & Kampanaları"},
-    # Fren Balatası & Pabucu
-    "Fren Balatası":            {"group_id": "fren-balata-pabucu", "group_name": "Fren Balatası & Pabucu"},
-    "Fren Pabucu":              {"group_id": "fren-balata-pabucu", "group_name": "Fren Balatası & Pabucu"},
-    "Perçin":                   {"group_id": "fren-balata-pabucu", "group_name": "Fren Balatası & Pabucu"},
-    # Kaliper
-    "Kaliper":                       {"group_id": "kaliper-grubu", "group_name": "Kaliper"},
-    "Kaliper Ayar Mekanizması":      {"group_id": "kaliper-grubu", "group_name": "Kaliper"},
-    "Kaliper Dürbün Takımı":         {"group_id": "kaliper-grubu", "group_name": "Kaliper"},
-    "Kaliper Kapak/Conta":           {"group_id": "kaliper-grubu", "group_name": "Kaliper"},
-    "Kaliper Perno Tamir Takımı":    {"group_id": "kaliper-grubu", "group_name": "Kaliper"},
-    "Kaliper Tamir Seti":            {"group_id": "kaliper-grubu", "group_name": "Kaliper"},
-    "Kaliper Tamir Takımı":          {"group_id": "kaliper-grubu", "group_name": "Kaliper"},
-    "Kaliper Tamir Takımı (Duco)":   {"group_id": "kaliper-grubu", "group_name": "Kaliper"},
-    "Kaliper Tamir Takımı (Elsa)":   {"group_id": "kaliper-grubu", "group_name": "Kaliper"},
-    "Kaliper Tamir Takımı (Frenco)": {"group_id": "kaliper-grubu", "group_name": "Kaliper"},
-    "Kaliper Tamir Takımı (Maxx22)": {"group_id": "kaliper-grubu", "group_name": "Kaliper"},
-    "Kaliper Tamir Takımı (Modulx)": {"group_id": "kaliper-grubu", "group_name": "Kaliper"},
-    "Kaliper Tamir Takımı (PAN)":    {"group_id": "kaliper-grubu", "group_name": "Kaliper"},
-    "Kaliper Tamir Takımı (Wabco)":  {"group_id": "kaliper-grubu", "group_name": "Kaliper"},
-    "Kaliper Toz Lastiği":           {"group_id": "kaliper-grubu", "group_name": "Kaliper"},
-    "Kızak":                         {"group_id": "kaliper-grubu", "group_name": "Kaliper"},
-    "Perno":                         {"group_id": "kaliper-grubu", "group_name": "Kaliper"},
-    # Fren Cırcırı & Ayar
-    "Fren Cırcırı":             {"group_id": "fren-circiri-grubu", "group_name": "Fren Cırcırı & Ayar"},
-    "Mekanik Fren Cırcırı":     {"group_id": "fren-circiri-grubu", "group_name": "Fren Cırcırı & Ayar"},
-    "Otomatik Fren Cırcırı":    {"group_id": "fren-circiri-grubu", "group_name": "Fren Cırcırı & Ayar"},
-    "Fren Ayar Parçaları":      {"group_id": "fren-circiri-grubu", "group_name": "Fren Cırcırı & Ayar"},
-    "Ayar Kolu / El Fren":      {"group_id": "fren-circiri-grubu", "group_name": "Fren Cırcırı & Ayar"},
-    # Fren Körüğü & Hava Sistemi
-    "Fren Körüğü":              {"group_id": "fren-korugu-hava", "group_name": "Fren Körüğü & Hava Sistemi"},
-    "Hava Kurutucu":            {"group_id": "fren-korugu-hava", "group_name": "Fren Körüğü & Hava Sistemi"},
-    "Hava Tüpü":                {"group_id": "fren-korugu-hava", "group_name": "Fren Körüğü & Hava Sistemi"},
-    "Filtre / Kartuş":          {"group_id": "fren-korugu-hava", "group_name": "Fren Körüğü & Hava Sistemi"},
-    # Valf & Ventil
-    "Valf / Ventil":                 {"group_id": "valf-ventil-grubu", "group_name": "Valf & Ventil"},
-    "Dağıtıcı Ventil":              {"group_id": "valf-ventil-grubu", "group_name": "Valf & Ventil"},
-    "Röle Ventili":                  {"group_id": "valf-ventil-grubu", "group_name": "Valf & Ventil"},
-    "Süspansiyon/Basınç Ventili":    {"group_id": "valf-ventil-grubu", "group_name": "Valf & Ventil"},
-    "Şanzıman Ventili":              {"group_id": "valf-ventil-grubu", "group_name": "Valf & Ventil"},
-    # ABS & EBS & Sensör
-    "ABS Sensörü/Modülü/Kablo":     {"group_id": "abs-ebs-grubu", "group_name": "ABS & EBS & Sensör"},
-    "EBS Modülatör":                 {"group_id": "abs-ebs-grubu", "group_name": "ABS & EBS & Sensör"},
-    "Sensör":                        {"group_id": "abs-ebs-grubu", "group_name": "ABS & EBS & Sensör"},
-    "Elektrik Kablosu":              {"group_id": "abs-ebs-grubu", "group_name": "ABS & EBS & Sensör"},
-    # Kompresör
-    "Kompresör Piston/Segman":       {"group_id": "kompresor-grubu", "group_name": "Kompresör"},
-    "Kompresör Silindiri":           {"group_id": "kompresor-grubu", "group_name": "Kompresör"},
-    "Kompresör Tamir Takımı":        {"group_id": "kompresor-grubu", "group_name": "Kompresör"},
-    # Porya & Bijon
-    "Porya":                    {"group_id": "porya-bijon-grubu", "group_name": "Porya & Bijon"},
-    "Bijon":                    {"group_id": "porya-bijon-grubu", "group_name": "Porya & Bijon"},
-    "Bijon DPS":                {"group_id": "porya-bijon-grubu", "group_name": "Porya & Bijon"},
-    "Rulman":                   {"group_id": "porya-bijon-grubu", "group_name": "Porya & Bijon"},
-    "Somun / Cıvata":           {"group_id": "porya-bijon-grubu", "group_name": "Porya & Bijon"},
-    # Süspansiyon & Dingil
-    "Süspansiyon Körüğü":       {"group_id": "suspansiyon-grubu", "group_name": "Süspansiyon & Dingil"},
-    "Dingil":                   {"group_id": "suspansiyon-grubu", "group_name": "Süspansiyon & Dingil"},
-    "Yay":                      {"group_id": "suspansiyon-grubu", "group_name": "Süspansiyon & Dingil"},
-    "Burç / Muylu":             {"group_id": "suspansiyon-grubu", "group_name": "Süspansiyon & Dingil"},
+    # DİSK
+    "Fren Diski":               {"group_id": "disk", "group_name": "DİSK"},
+    "Fren Diski ABS'li":        {"group_id": "disk", "group_name": "DİSK"},
+    # KAMPANA
+    "Fren Kampanası":           {"group_id": "kampana", "group_name": "KAMPANA"},
+    # BALATA
+    "Fren Balatası":            {"group_id": "balata", "group_name": "BALATA"},
+    # FREN PABUÇLARI
+    "Fren Pabucu":              {"group_id": "fren-pabuclari", "group_name": "FREN PABUÇLARI"},
+    "Perçin":                   {"group_id": "fren-pabuclari", "group_name": "FREN PABUÇLARI"},
+    # CIRCIR
+    "Fren Cırcırı":             {"group_id": "circir", "group_name": "CIRCIR"},
+    "Mekanik Fren Cırcırı":     {"group_id": "circir", "group_name": "CIRCIR"},
+    "Otomatik Fren Cırcırı":    {"group_id": "circir", "group_name": "CIRCIR"},
+    # FREN AYAR PARÇALARI
+    "Fren Ayar Parçaları":      {"group_id": "fren-ayar", "group_name": "FREN AYAR PARÇALARI"},
+    "Ayar Kolu / El Fren":      {"group_id": "fren-ayar", "group_name": "FREN AYAR PARÇALARI"},
+    "Cam Set":                  {"group_id": "fren-ayar", "group_name": "FREN AYAR PARÇALARI"},
+    # KALİPER ÜRÜNLERİ
+    "Kaliper":                       {"group_id": "kaliper-urunleri", "group_name": "KALİPER ÜRÜNLERİ"},
+    "Kaliper Ayar Mekanizması":      {"group_id": "kaliper-urunleri", "group_name": "KALİPER ÜRÜNLERİ"},
+    "Kaliper Dürbün Takımı":         {"group_id": "kaliper-urunleri", "group_name": "KALİPER ÜRÜNLERİ"},
+    "Kaliper Kapak/Conta":           {"group_id": "kaliper-urunleri", "group_name": "KALİPER ÜRÜNLERİ"},
+    "Kaliper Perno Tamir Takımı":    {"group_id": "kaliper-urunleri", "group_name": "KALİPER ÜRÜNLERİ"},
+    "Kaliper Tamir Seti":            {"group_id": "kaliper-urunleri", "group_name": "KALİPER ÜRÜNLERİ"},
+    "Kaliper Tamir Takımı":          {"group_id": "kaliper-urunleri", "group_name": "KALİPER ÜRÜNLERİ"},
+    "Kaliper Tamir Takımı (Duco)":   {"group_id": "kaliper-urunleri", "group_name": "KALİPER ÜRÜNLERİ"},
+    "Kaliper Tamir Takımı (Elsa)":   {"group_id": "kaliper-urunleri", "group_name": "KALİPER ÜRÜNLERİ"},
+    "Kaliper Tamir Takımı (Frenco)": {"group_id": "kaliper-urunleri", "group_name": "KALİPER ÜRÜNLERİ"},
+    "Kaliper Tamir Takımı (Maxx22)": {"group_id": "kaliper-urunleri", "group_name": "KALİPER ÜRÜNLERİ"},
+    "Kaliper Tamir Takımı (Modulx)": {"group_id": "kaliper-urunleri", "group_name": "KALİPER ÜRÜNLERİ"},
+    "Kaliper Tamir Takımı (PAN)":    {"group_id": "kaliper-urunleri", "group_name": "KALİPER ÜRÜNLERİ"},
+    "Kaliper Tamir Takımı (Wabco)":  {"group_id": "kaliper-urunleri", "group_name": "KALİPER ÜRÜNLERİ"},
+    "Kaliper Toz Lastiği":           {"group_id": "kaliper-urunleri", "group_name": "KALİPER ÜRÜNLERİ"},
+    "Kızak":                         {"group_id": "kaliper-urunleri", "group_name": "KALİPER ÜRÜNLERİ"},
+    "Perno":                         {"group_id": "kaliper-urunleri", "group_name": "KALİPER ÜRÜNLERİ"},
+    # FREN KÖRÜKLERİ
+    "Fren Körüğü":              {"group_id": "fren-korukleri", "group_name": "FREN KÖRÜKLERİ"},
+    "Lastik":                   {"group_id": "fren-korukleri", "group_name": "FREN KÖRÜKLERİ"},
+    # BİJON
+    "Bijon":                    {"group_id": "bijon-grup", "group_name": "BİJON"},
+    "Bijon DPS":                {"group_id": "bijon-grup", "group_name": "BİJON"},
+    "Disk Bijonu/Civatası":     {"group_id": "bijon-grup", "group_name": "BİJON"},
+    "Somun / Cıvata":           {"group_id": "bijon-grup", "group_name": "BİJON"},
+    # PORYA
+    "Porya":                    {"group_id": "porya-grup", "group_name": "PORYA"},
+    "Rulman":                   {"group_id": "porya-grup", "group_name": "PORYA"},
+    "Keçe":                     {"group_id": "porya-grup", "group_name": "PORYA"},
+    # SENSÖR VE UZATMALAR
+    "ABS Sensörü/Modülü/Kablo": {"group_id": "sensor-uzatma", "group_name": "SENSÖR VE UZATMALAR"},
+    "EBS Modülatör":            {"group_id": "sensor-uzatma", "group_name": "SENSÖR VE UZATMALAR"},
+    "Sensör":                   {"group_id": "sensor-uzatma", "group_name": "SENSÖR VE UZATMALAR"},
+    "Elektrik Kablosu":         {"group_id": "sensor-uzatma", "group_name": "SENSÖR VE UZATMALAR"},
+    # HAVALI FREN PARÇALARI
+    "Valf / Ventil":            {"group_id": "havali-fren", "group_name": "HAVALI FREN PARÇALARI"},
+    "Dağıtıcı Ventil":         {"group_id": "havali-fren", "group_name": "HAVALI FREN PARÇALARI"},
+    "Röle Ventili":             {"group_id": "havali-fren", "group_name": "HAVALI FREN PARÇALARI"},
+    "Süspansiyon/Basınç Ventili": {"group_id": "havali-fren", "group_name": "HAVALI FREN PARÇALARI"},
+    "Şanzıman Ventili":         {"group_id": "havali-fren", "group_name": "HAVALI FREN PARÇALARI"},
+    "Hava Kurutucu":            {"group_id": "havali-fren", "group_name": "HAVALI FREN PARÇALARI"},
+    "Filtre / Kartuş":          {"group_id": "havali-fren", "group_name": "HAVALI FREN PARÇALARI"},
+    "Hava Tüpü":                {"group_id": "havali-fren", "group_name": "HAVALI FREN PARÇALARI"},
+    # FREN YAYLARI
+    "Yay":                      {"group_id": "fren-yaylari", "group_name": "FREN YAYLARI"},
+    # SÜSP. KÖRÜĞÜ
+    "Süspansiyon Körüğü":       {"group_id": "susp-korugu", "group_name": "SÜSP. KÖRÜĞÜ"},
+    "Dingil":                   {"group_id": "susp-korugu", "group_name": "SÜSP. KÖRÜĞÜ"},
+    "Burç / Muylu":             {"group_id": "susp-korugu", "group_name": "SÜSP. KÖRÜĞÜ"},
+    # KOMPRESÖR
+    "Kompresör Piston/Segman":  {"group_id": "kompresor-grup", "group_name": "KOMPRESÖR"},
+    "Kompresör Silindiri":      {"group_id": "kompresor-grup", "group_name": "KOMPRESÖR"},
+    "Kompresör Tamir Takımı":   {"group_id": "kompresor-grup", "group_name": "KOMPRESÖR"},
+    # REKOR / HORTUM
+    "Bağlantı Elemanları":      {"group_id": "rekor-hortum", "group_name": "REKOR / HORTUM"},
+    "Nipel":                    {"group_id": "rekor-hortum", "group_name": "REKOR / HORTUM"},
+    "Hortum":                   {"group_id": "rekor-hortum", "group_name": "REKOR / HORTUM"},
+    "Hortum Adaptörü":          {"group_id": "rekor-hortum", "group_name": "REKOR / HORTUM"},
 }
-# CATEGORY_HIERARCHY'de olmayanlar otomatik olarak "Diğer Parçalar" grubuna düşer.
+# CATEGORY_HIERARCHY'de olmayanlar otomatik olarak "DİĞER" grubuna düşer.
 
 def slug(name):
     if not name:
