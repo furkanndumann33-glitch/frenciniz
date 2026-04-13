@@ -23,6 +23,33 @@ const TR = {
   filterTitle:"Filtreler",apply:"Uygula",close:"Kapat",menu:"Menü",
   truck:"Kamyon",trailer:"Tır / Çekici",bus:"Otobüs",semitrailer:"Dorse",allVehicles:"Tüm Araçlar",allBrands:"Tüm Markalar",
   product:"ürün",pieces:"ürün",reviews:"değerlendirme",inStock:"Stokta",
+  // Hesap & Kullanıcı
+  signIn:"Giriş Yap",signUp:"Kayıt Ol",myOrders:"Siparişlerim",myFavorites:"Favorilerim",myAccount:"Hesabım",
+  myAddresses:"Adreslerim",accountDetails:"Hesap Bilgileri",notifications:"Bildirimler",changePassword:"Şifre Değiştir",
+  currentPassword:"Mevcut Şifre",newPassword:"Yeni Şifre",minChars:"En az 6 karakter",logout:"Çıkış Yap",
+  save:"Kaydet",saved:"Kaydedildi",update:"Güncelle",cancel:"İptal",delete:"Sil",edit:"Düzenle",add:"Ekle",
+  // Navigasyon & Footer
+  categories:"Kategoriler",companyInfo:"Şirket Bilgileri",shippingPolicy:"Gönderim Politikası",
+  returnPolicyPage:"İade Politikası",termsConditions:"Şartlar ve Koşullar",privacyPolicy:"Gizlilik Politikası",
+  kvkk:"KVKK Aydınlatma",accessibility:"Erişilebilirlik",allRightsReserved:"Tüm hakları saklıdır.",
+  // Ürün Detay
+  addedToCart:"Sepete eklendi",stockXItems:"Stokta ({0} adet)",outOfStockFull:"Stok Dışı",
+  securePayment:"Ödemeniz 3D Secure ile korunmaktadır.",quantity:"Adet",
+  // Sipariş Durumları
+  preparing:"Hazırlanıyor",inTransit:"Kargoda",delivered:"Teslim Edildi",cancelled:"İptal",
+  // Adres
+  newAddress:"Yeni Adres",addNewAddress:"Yeni Adres Ekle",
+  // Bildirim Ayarları
+  emailNotif:"E-posta Bildirimleri",smsNotif:"SMS Bildirimleri",campaignNotif:"Kampanya Bildirimleri",stockNotif:"Stok Bildirimleri",
+  // Para Birimi
+  currency:"Para Birimi",
+  // Chat
+  chatGreeting:"Merhaba! Size nasıl yardımcı olabilirim?",
+  // Kupon
+  applied:"Uygulandı",
+  // Cookie
+  cookieText:"Bu siteyi kullanarak",cookieLink:"Gizlilik Politikamızı",cookieAccept:"Kabul Et",
+  brakeParts:"Fren Aksamları",
 };
 const EN = {
   search:"Search product, part code or OEM...",searchBtn:"Search",cart:"My Cart",login:"Sign In",favs:"Favorites",
@@ -46,6 +73,33 @@ const EN = {
   filterTitle:"Filters",apply:"Apply",close:"Close",menu:"Menu",
   truck:"Truck",trailer:"Tractor",bus:"Bus",semitrailer:"Trailer",allVehicles:"All Vehicles",allBrands:"All Brands",
   product:"product",pieces:"products",reviews:"reviews",inStock:"In Stock",
+  // Account & User
+  signIn:"Sign In",signUp:"Sign Up",myOrders:"My Orders",myFavorites:"My Favorites",myAccount:"My Account",
+  myAddresses:"My Addresses",accountDetails:"Account Details",notifications:"Notifications",changePassword:"Change Password",
+  currentPassword:"Current Password",newPassword:"New Password",minChars:"At least 6 characters",logout:"Log Out",
+  save:"Save",saved:"Saved",update:"Update",cancel:"Cancel",delete:"Delete",edit:"Edit",add:"Add",
+  // Navigation & Footer
+  categories:"Categories",companyInfo:"Company Info",shippingPolicy:"Shipping Policy",
+  returnPolicyPage:"Return Policy",termsConditions:"Terms & Conditions",privacyPolicy:"Privacy Policy",
+  kvkk:"GDPR Disclosure",accessibility:"Accessibility",allRightsReserved:"All rights reserved.",
+  // Product Detail
+  addedToCart:"Added to cart",stockXItems:"In Stock ({0} items)",outOfStockFull:"Out of Stock",
+  securePayment:"Your payment is protected with 3D Secure.",quantity:"Qty",
+  // Order Statuses
+  preparing:"Preparing",inTransit:"In Transit",delivered:"Delivered",cancelled:"Cancelled",
+  // Address
+  newAddress:"New Address",addNewAddress:"Add New Address",
+  // Notification Settings
+  emailNotif:"Email Notifications",smsNotif:"SMS Notifications",campaignNotif:"Campaign Notifications",stockNotif:"Stock Notifications",
+  // Currency
+  currency:"Currency",
+  // Chat
+  chatGreeting:"Hello! How can I help you?",
+  // Coupon
+  applied:"Applied",
+  // Cookie
+  cookieText:"By using this site you agree to our",cookieLink:"Privacy Policy",cookieAccept:"Accept",
+  brakeParts:"Brake Parts",
 };
 const LANGS = {tr:TR, en:EN};
 
@@ -162,9 +216,11 @@ export default function App() {
   const [couponApplied, setCouponApplied] = useState(false);
   const [stockAlerts, setStockAlerts] = useState([]);
   const [chatOpen, setChatOpen] = useState(false);
-  const [chatMessages, setChatMessages] = useState([{from:"bot",text:"Merhaba! Size nasıl yardımcı olabilirim?",time:new Date()}]);
+  const [chatMessages, setChatMessages] = useState([]);
   const [pastOrders, setPastOrders] = useState([]);
   const [lang, setLang] = useState("tr");
+  const [curr, setCurr] = useState("TRY"); // TRY, EUR, USD
+  const [rates, setRates] = useState({EUR:1,USD:1,TRY:1}); // base=TRY
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
   const [admin, setAdmin] = useState(false);
@@ -172,7 +228,34 @@ export default function App() {
   const [socialMedia, setSocialMedia] = useState({facebook:"",instagram:"",twitter:"",youtube:""});
   const isMobile = useIsMobile();
   const t = useCallback((key) => LANGS[lang]?.[key] || key, [lang]);
-  const fp = useCallback((price) => price ? `₺${price.toLocaleString("tr-TR")}` : "", []);
+  // Döviz kuru ile fiyat formatlama
+  const CURR_SYMBOLS = {TRY:"₺",EUR:"€",USD:"$"};
+  const fp = useCallback((price) => {
+    if (!price) return "";
+    const converted = curr === "TRY" ? price : price * rates[curr];
+    const symbol = CURR_SYMBOLS[curr] || "₺";
+    if (curr === "TRY") return `${symbol}${converted.toLocaleString("tr-TR",{minimumFractionDigits:0,maximumFractionDigits:0})}`;
+    return `${symbol}${converted.toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2})}`;
+  }, [curr, rates]);
+
+  // Döviz kurlarını çek (başlangıçta ve her 30dk)
+  useEffect(() => {
+    function fetchRates() {
+      fetch("https://api.exchangerate-data.com/latest?base=TRY")
+        .then(r => r.ok ? r.json() : null)
+        .then(d => { if(d?.rates) setRates({EUR:d.rates.EUR||0.026,USD:d.rates.USD||0.028,TRY:1}); })
+        .catch(() => {
+          // Fallback: yaklaşık kurlar
+          fetch("https://open.er-api.com/v6/latest/TRY")
+            .then(r=>r.json())
+            .then(d=>{ if(d?.rates) setRates({EUR:d.rates.EUR||0.026,USD:d.rates.USD||0.028,TRY:1}); })
+            .catch(()=> setRates({EUR:0.026,USD:0.028,TRY:1}));
+        });
+    }
+    fetchRates();
+    const iv = setInterval(fetchRates, 30*60*1000);
+    return () => clearInterval(iv);
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setShowTop(window.scrollY > 400);
@@ -211,7 +294,7 @@ export default function App() {
   const cartTotal = cart.reduce((s,c) => s + c.price * c.qty, 0);
   const discount = couponApplied ? Math.round(cartTotal * 0.1) : 0;
 
-  const ctx = useMemo(() => ({page, params, go, cart, addToCart, updateQty, removeItem, cartCount, cartTotal, q, setQ, favs, toggleFav, viewed, addViewed, user, setUser, coupon, setCoupon, couponApplied, setCouponApplied, discount, stockAlerts, addStockAlert, chatOpen, setChatOpen, chatMessages, setChatMessages, pastOrders, completePurchase, lang, setLang, t, isMobile, mobileMenuOpen, setMobileMenuOpen, mobileFilterOpen, setMobileFilterOpen, fp, admin, setAdmin, socialMedia, setSocialMedia}), [page, params, go, cart, addToCart, updateQty, removeItem, cartCount, cartTotal, q, favs, toggleFav, viewed, addViewed, user, coupon, couponApplied, discount, stockAlerts, addStockAlert, chatOpen, chatMessages, pastOrders, completePurchase, lang, t, isMobile, mobileMenuOpen, mobileFilterOpen, fp, admin]);
+  const ctx = useMemo(() => ({page, params, go, cart, addToCart, updateQty, removeItem, cartCount, cartTotal, q, setQ, favs, toggleFav, viewed, addViewed, user, setUser, coupon, setCoupon, couponApplied, setCouponApplied, discount, stockAlerts, addStockAlert, chatOpen, setChatOpen, chatMessages, setChatMessages, pastOrders, completePurchase, lang, setLang, curr, setCurr, t, isMobile, mobileMenuOpen, setMobileMenuOpen, mobileFilterOpen, setMobileFilterOpen, fp, admin, setAdmin, socialMedia, setSocialMedia}), [page, params, go, cart, addToCart, updateQty, removeItem, cartCount, cartTotal, q, favs, toggleFav, viewed, addViewed, user, coupon, couponApplied, discount, stockAlerts, addStockAlert, chatOpen, chatMessages, pastOrders, completePurchase, lang, curr, t, isMobile, mobileMenuOpen, mobileFilterOpen, fp, admin]);
 
   return (
     <Ctx.Provider value={ctx}>
@@ -223,10 +306,11 @@ export default function App() {
           input:focus, textarea:focus, select:focus { outline: none; border-color: #ff6000 !important; }
           @keyframes fadeIn { from { opacity:0 } to { opacity:1 } }
           @keyframes slideUp { from { transform:translateY(20px);opacity:0 } to { transform:translateY(0);opacity:1 } }
+          @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
         `}</style>
 
         {/* Toast */}
-        {toast && <div style={{position:"fixed",top:80,right:20,zIndex:9999,background:"#4caf50",color:"#fff",padding:"12px 20px",borderRadius:8,fontSize:14,fontWeight:500,boxShadow:"0 4px 12px rgba(0,0,0,.15)",animation:"slideUp .3s"}}>✓ {toast} sepete eklendi</div>}
+        {toast && <div style={{position:"fixed",top:80,right:20,zIndex:9999,background:"#4caf50",color:"#fff",padding:"12px 20px",borderRadius:8,fontSize:14,fontWeight:500,boxShadow:"0 4px 12px rgba(0,0,0,.15)",animation:"slideUp .3s"}}>✓ {toast} — {t("addedToCart")}</div>}
 
         {/* Live Chat Widget */}
         <ChatWidget />
@@ -262,6 +346,12 @@ export default function App() {
                 <div style={{display:"flex",gap:0,borderRadius:4,overflow:"hidden",border:"1px solid #444"}}>
                   <button onClick={()=>setLang("tr")} style={{padding:"2px 8px",background:lang==="tr"?"#ff6000":"transparent",color:lang==="tr"?"#fff":"#999",border:"none",fontSize:11,fontWeight:600,cursor:"pointer"}}>TR</button>
                   <button onClick={()=>setLang("en")} style={{padding:"2px 8px",background:lang==="en"?"#ff6000":"transparent",color:lang==="en"?"#fff":"#999",border:"none",fontSize:11,fontWeight:600,cursor:"pointer"}}>EN</button>
+                </div>
+                {/* Currency toggle */}
+                <div style={{display:"flex",gap:0,borderRadius:4,overflow:"hidden",border:"1px solid #444",marginLeft:6}}>
+                  {["TRY","EUR","USD"].map(c=>(
+                    <button key={c} onClick={()=>setCurr(c)} style={{padding:"2px 7px",background:curr===c?"#ff6000":"transparent",color:curr===c?"#fff":"#999",border:"none",fontSize:11,fontWeight:600,cursor:"pointer"}}>{c==="TRY"?"₺":c==="EUR"?"€":"$"}</button>
+                  ))}
                 </div>
               </div>
             </div>
@@ -410,7 +500,7 @@ export default function App() {
               </div>
               {/* Kategoriler */}
               <div>
-                <div style={{fontSize:14,fontWeight:700,color:"#fff",marginBottom:12}}>Kategoriler</div>
+                <div style={{fontSize:14,fontWeight:700,color:"#fff",marginBottom:12}}>{t("categories")}</div>
                 {CATS.filter(c=>c.isGroup).slice(0,6).map((c,j) => ({l:c.name,p:"products",pr:{cat:c.id}})).map((item,j) => (
                   <div key={j} onClick={()=>go(item.p,item.pr)} style={{fontSize:13,color:"#888",marginBottom:8,cursor:"pointer",transition:"color .15s"}} onMouseEnter={e=>e.currentTarget.style.color="#ff6000"} onMouseLeave={e=>e.currentTarget.style.color="#888"}>{item.l}</div>
                 ))}
@@ -431,7 +521,7 @@ export default function App() {
               </div>
             </div>
             <div style={{marginTop:24,paddingTop:16,borderTop:"1px solid #333",display:"flex",flexDirection:isMobile?"column":"row",justifyContent:"space-between",gap:8,fontSize:12,color:"#666"}}>
-              <span>© 2026 <span onClick={()=>go("admin-login")} style={{cursor:"pointer"}}>Frenciniz</span> — Tüm hakları saklıdır.</span>
+              <span>© 2026 <span onClick={()=>go("admin-login")} style={{cursor:"pointer"}}>Frenciniz</span> — {t("allRightsReserved")}</span>
               <span>Visa · Mastercard · Troy · Havale/EFT</span>
             </div>
           </div>
@@ -444,12 +534,13 @@ export default function App() {
 // ===== CATEGORY SIDEBAR (Hiyerarşik) =====
 function CategorySidebar({go, activeCat, onSelect, isFixed}) {
   const [openGroup, setOpenGroup] = useState(null);
+  const {t} = use$();
   const groups = getGroups();
   const fixedStyle = isFixed ? {position:"fixed",left:16,top:140,width:200,maxHeight:"calc(100vh - 160px)",overflowY:"auto",border:"1px solid #eee",borderRadius:8,background:"#fff",padding:"12px 0",zIndex:50,boxShadow:"0 2px 8px rgba(0,0,0,.04)"} : {};
   return (
     <aside style={fixedStyle}>
-      {isFixed && <div style={{padding:"4px 16px 10px",fontSize:13,fontWeight:700,color:"#1a1a1a",borderBottom:"1px solid #f0f0f0",marginBottom:6}}>Kategoriler</div>}
-      {onSelect && <div onClick={() => onSelect("all")} style={{padding:"8px 16px",fontSize:12,color:activeCat==="all"?"#ff6000":"#555",fontWeight:activeCat==="all"?700:400,cursor:"pointer"}}>Tüm Ürünler</div>}
+      {isFixed && <div style={{padding:"4px 16px 10px",fontSize:13,fontWeight:700,color:"#1a1a1a",borderBottom:"1px solid #f0f0f0",marginBottom:6}}>{t("categories")}</div>}
+      {onSelect && <div onClick={() => onSelect("all")} style={{padding:"8px 16px",fontSize:12,color:activeCat==="all"?"#ff6000":"#555",fontWeight:activeCat==="all"?700:400,cursor:"pointer"}}>{t("allProducts")}</div>}
       {groups.map(g => {
         const subs = CATS.filter(c => c.parent === g.id);
         const isOpen = openGroup === g.id;
@@ -486,9 +577,24 @@ function CategorySidebar({go, activeCat, onSelect, isFixed}) {
   );
 }
 
+// ===== OPTIMIZED IMAGE with skeleton =====
+function OptImg({src, alt, w, h, style, className}) {
+  const [loaded, setLoaded] = useState(false);
+  const [err, setErr] = useState(false);
+  if (err) return null;
+  return (
+    <>
+      {!loaded && <div style={{width:w||"100%",height:h||"100%",background:"linear-gradient(90deg,#f0f0f0 25%,#e0e0e0 50%,#f0f0f0 75%)",backgroundSize:"200% 100%",animation:"shimmer 1.5s infinite",borderRadius:4,...(style||{})}} />}
+      <img src={src} alt={alt||""} width={w} height={h}
+        style={{...style,display:loaded?"block":"none"}}
+        onLoad={()=>setLoaded(true)} onError={()=>{setErr(true);setLoaded(true)}} />
+    </>
+  );
+}
+
 // ===== PRODUCT CARD with Favorite =====
 function ProductCard({p}) {
-  const {go, addToCart, favs, toggleFav, fp} = use$();
+  const {go, addToCart, favs, toggleFav, fp, t} = use$();
   const [showAlert, setShowAlert] = useState(false);
   const disc = p.old ? Math.round((1 - p.price/p.old) * 100) : 0;
   const isFav = favs.includes(p.id);
@@ -499,14 +605,14 @@ function ProductCard({p}) {
       onMouseEnter={e => e.currentTarget.style.boxShadow="0 4px 16px rgba(0,0,0,.08)"}
       onMouseLeave={e => e.currentTarget.style.boxShadow="none"}>
       <div style={{height:200,background:"#f9f9f9",display:"flex",alignItems:"center",justifyContent:"center",position:"relative"}}>
-        <img src={p.img} alt={p.name} loading="eager"width={240} height={160} style={{maxWidth:"80%",maxHeight:"80%",objectFit:"contain"}} onError={e=>{e.target.style.display="none"}}/>
+        <OptImg src={p.img} alt={p.name} style={{maxWidth:"80%",maxHeight:"80%",objectFit:"contain"}} />
         {disc > 0 && <span style={{position:"absolute",top:8,left:8,background:"#ff6000",color:"#fff",fontSize:12,fontWeight:700,padding:"3px 8px",borderRadius:4}}>%{disc}</span>}
         {/* Favorite button */}
         <button onClick={e => {e.stopPropagation(); toggleFav(p.id)}}
           style={{position:"absolute",top:8,right:8,width:32,height:32,borderRadius:"50%",background:"#fff",border:"1px solid #eee",display:"flex",alignItems:"center",justifyContent:"center",fontSize:16,color:isFav?"#ff6000":"#ccc",cursor:"pointer",boxShadow:"0 1px 4px rgba(0,0,0,.08)"}}>
           {isFav ? "♥" : "♡"}
         </button>
-        {!p.stock && <div style={{position:"absolute",inset:0,background:"rgba(255,255,255,.8)",display:"flex",alignItems:"center",justifyContent:"center"}}><span style={{background:"#f0f0f0",padding:"6px 16px",borderRadius:4,fontSize:12,fontWeight:600,color:"#999"}}>Tükendi</span></div>}
+        {!p.stock && <div style={{position:"absolute",inset:0,background:"rgba(255,255,255,.8)",display:"flex",alignItems:"center",justifyContent:"center"}}><span style={{background:"#f0f0f0",padding:"6px 16px",borderRadius:4,fontSize:12,fontWeight:600,color:"#999"}}>{t("outOfStock")}</span></div>}
       </div>
       <div style={{padding:"12px 14px 16px"}}>
         <div style={{fontSize:12,color:"#ff6000",fontWeight:600,marginBottom:4}}>{p.brand}</div>
@@ -524,7 +630,7 @@ function ProductCard({p}) {
           </div>
           <button onClick={e => {e.stopPropagation(); p.stock ? addToCart(p) : setShowAlert(true)}}
             style={{padding:"8px 14px",background:p.stock?"#ff6000":"#fff",color:p.stock?"#fff":"#ff6000",border:p.stock?"none":"1px solid #ff6000",borderRadius:6,fontSize:p.stock?13:11,fontWeight:600}}>
-            {p.stock ? "Sepete Ekle" : "🔔 Haber Ver"}
+            {p.stock ? t("addToCart") : t("notifyMe")}
           </button>
         </div>
         {/* Stock Alert Mini Form */}
@@ -536,13 +642,13 @@ function ProductCard({p}) {
 
 // ===== Recently Viewed =====
 function RecentlyViewed() {
-  const {viewed, go, fp} = use$();
+  const {viewed, go, fp, t} = use$();
   const items = viewed.map(id => PRODUCTS.find(p => p.id === id)).filter(Boolean);
   if (items.length === 0) return null;
 
   return (
     <div style={{maxWidth:1200,margin:"0 auto",padding:"32px 20px"}}>
-      <h2 style={{fontSize:18,fontWeight:700,color:"#1a1a1a",marginBottom:16}}>Son Görüntülediğiniz Ürünler</h2>
+      <h2 style={{fontSize:18,fontWeight:700,color:"#1a1a1a",marginBottom:16}}>{t("recentlyViewed")}</h2>
       <div style={{display:"flex",gap:12,overflowX:"auto",paddingBottom:8}}>
         {items.slice(0,6).map(p => (
           <div key={p.id} onClick={() => go("product",{id:p.id})}
@@ -571,12 +677,12 @@ function HomePage() {
     <div style={{background:"linear-gradient(90deg, #ff6000, #ff8c00)",padding:"40px 0"}}>
       <div style={{maxWidth:1200,margin:"0 auto",padding:"0 20px",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
         <div>
-          <h1 style={{fontSize:32,fontWeight:800,color:"#fff",marginBottom:8}}>Fren Aksamı Uzmanı</h1>
-          <p style={{fontSize:16,color:"rgba(255,255,255,.85)",marginBottom:20}}>10.000+ orijinal ve eşdeğer parça. Aynı gün kargo, 12 taksit.</p>
-          <button onClick={() => go("products")} style={{padding:"12px 28px",background:"#fff",color:"#ff6000",border:"none",borderRadius:6,fontSize:15,fontWeight:700,cursor:"pointer"}}>Ürünleri İncele</button>
+          <h1 style={{fontSize:32,fontWeight:800,color:"#fff",marginBottom:8}}>{t("heroTitle")}</h1>
+          <p style={{fontSize:16,color:"rgba(255,255,255,.85)",marginBottom:20}}>{t("heroDesc")}</p>
+          <button onClick={() => go("products")} style={{padding:"12px 28px",background:"#fff",color:"#ff6000",border:"none",borderRadius:6,fontSize:15,fontWeight:700,cursor:"pointer"}}>{t("browseProducts")}</button>
         </div>
         <div style={{display:"flex",gap:20}}>
-          {[{n:"10.000+",l:"Ürün"},{n:"25+",l:"Marka"},{n:"5.000+",l:"Müşteri"}].map((s,i) => (
+          {[{n:"10.000+",l:t("products")},{n:"25+",l:t("brands")},{n:"5.000+",l:lang==="tr"?"Müşteri":"Customers"}].map((s,i) => (
             <div key={i} style={{textAlign:"center",color:"#fff"}}><div style={{fontSize:28,fontWeight:800}}>{s.n}</div><div style={{fontSize:12,opacity:.8}}>{s.l}</div></div>
           ))}
         </div>
@@ -587,7 +693,7 @@ function HomePage() {
     <div style={{maxWidth:1200,margin:"0 auto",padding:"32px 20px"}}>
       <h2 style={{fontSize:20,fontWeight:700,marginBottom:16}}>{t("byVehicle")}</h2>
       <div style={{display:"grid",gridTemplateColumns:isMobile?"repeat(2,1fr)":"repeat(4,1fr)",gap:12}}>
-        {[{id:"kamyon",name:"Kamyon",emoji:"🚚",count:"4.200+"},{id:"tir",name:"Tır / Çekici",emoji:"🚛",count:"3.800+"},{id:"otobus",name:"Otobüs",emoji:"🚌",count:"2.900+"},{id:"dorse",name:"Dorse",emoji:"⬜",count:"1.600+"}].map(v => (
+        {[{id:"kamyon",name:t("truck"),emoji:"🚚",count:"4.200+"},{id:"tir",name:t("trailer"),emoji:"🚛",count:"3.800+"},{id:"otobus",name:t("bus"),emoji:"🚌",count:"2.900+"},{id:"dorse",name:t("semitrailer"),emoji:"⬜",count:"1.600+"}].map(v => (
           <div key={v.id} onClick={() => go("products",{veh:v.id})}
             style={{padding:isMobile?"14px":"20px",border:"1px solid #eee",borderRadius:8,cursor:"pointer",display:"flex",alignItems:"center",gap:14,transition:"border-color .2s"}}
             onMouseEnter={e => e.currentTarget.style.borderColor="#ff6000"} onMouseLeave={e => e.currentTarget.style.borderColor="#eee"}>
@@ -760,7 +866,7 @@ function ProductDetailPage() {
   return (
     <div style={{maxWidth:1200,margin:"0 auto",padding:"20px"}}>
       <div style={{fontSize:13,color:"#999",marginBottom:20}}>
-        <span style={{cursor:"pointer"}} onClick={() => go("home")}>Ana Sayfa</span> / {(() => { const sub = CATS.find(c=>c.id===p.cat); const grp = sub?.parent ? CATS.find(c=>c.id===sub.parent) : null; return <>{grp && <><span style={{cursor:"pointer"}} onClick={() => go("products",{cat:grp.id})}>{grp.name}</span> / </>}<span style={{cursor:"pointer"}} onClick={() => go("products",{cat:p.cat})}>{sub?.name || p.cat}</span></>; })()} / <span style={{color:"#555"}}>{p.name}</span>
+        <span style={{cursor:"pointer"}} onClick={() => go("home")}>{t("home")}</span> / {(() => { const sub = CATS.find(c=>c.id===p.cat); const grp = sub?.parent ? CATS.find(c=>c.id===sub.parent) : null; return <>{grp && <><span style={{cursor:"pointer"}} onClick={() => go("products",{cat:grp.id})}>{grp.name}</span> / </>}<span style={{cursor:"pointer"}} onClick={() => go("products",{cat:p.cat})}>{sub?.name || p.cat}</span></>; })()} / <span style={{color:"#555"}}>{p.name}</span>
       </div>
       <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr",gap:isMobile?20:32,marginBottom:40}}>
         {/* Image Gallery */}
@@ -780,7 +886,7 @@ function ProductDetailPage() {
               {p.old && <span style={{fontSize:16,color:"#bbb",textDecoration:"line-through"}}>{fp(p.old)}</span>}
               <span style={{fontSize:12,color:"#999"}}>+ KDV</span>
             </div>
-            <div style={{marginTop:8,fontSize:13,color:p.stock?"#4caf50":"#e53935",fontWeight:600}}>{p.stock ? `Stokta (${p.stock} adet)` : "Stok Dışı"}</div>
+            <div style={{marginTop:8,fontSize:13,color:p.stock?"#4caf50":"#e53935",fontWeight:600}}>{p.stock ? t("stockXItems").replace("{0}",p.stock) : t("outOfStockFull")}</div>
           </div>
           <div style={{display:"flex",gap:10,marginBottom:p.stock?20:10}}>
             <div style={{display:"flex",border:"1px solid #ddd",borderRadius:6,overflow:"hidden"}}>
@@ -789,7 +895,7 @@ function ProductDetailPage() {
               <button onClick={() => setQty(qty+1)} style={{width:40,height:44,background:"#f5f5f5",border:"none",fontSize:18,color:"#555"}}>+</button>
             </div>
             <button onClick={() => p.stock && addToCart(p, qty)} style={{flex:1,padding:"12px",background:p.stock?"#ff6000":"#eee",color:p.stock?"#fff":"#999",border:"none",borderRadius:6,fontSize:16,fontWeight:700,cursor:p.stock?"pointer":"default"}}>
-              {p.stock ? "Sepete Ekle" : "Stok Dışı"}
+              {p.stock ? t("addToCart") : t("outOfStockFull")}
             </button>
             <button onClick={() => toggleFav(p.id)} style={{width:48,height:48,border:"1px solid #eee",borderRadius:6,background:"#fff",fontSize:22,color:isFav?"#ff6000":"#ccc",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer"}}>
               {isFav ? "♥" : "♡"}
@@ -799,22 +905,22 @@ function ProductDetailPage() {
           {!p.stock && (
             <div style={{padding:"14px 16px",background:"#fffbf0",border:"1px solid #ffeeba",borderRadius:8,marginBottom:20}}>
               {alertSent ? (
-                <div style={{fontSize:14,color:"#4caf50",fontWeight:600,display:"flex",alignItems:"center",gap:8}}>✓ Kayıt alındı! Stok gelince size haber vereceğiz.</div>
+                <div style={{fontSize:14,color:"#4caf50",fontWeight:600,display:"flex",alignItems:"center",gap:8}}>✓ {t("alertDone")}</div>
               ) : (
                 <>
-                  <div style={{fontSize:13,fontWeight:600,color:"#856404",marginBottom:8}}>🔔 Bu ürün şu anda stokta yok. Gelince haber verelim mi?</div>
+                  <div style={{fontSize:13,fontWeight:600,color:"#856404",marginBottom:8}}>🔔 {t("stockAlert")}</div>
                   <div style={{display:"flex",gap:8}}>
-                    <input value={alertEmail} onChange={e => setAlertEmail(e.target.value)} placeholder="E-posta veya telefon numaranız"
+                    <input value={alertEmail} onChange={e => setAlertEmail(e.target.value)} placeholder={t("contactPlaceholder")}
                       style={{flex:1,padding:"9px 12px",border:"1px solid #ddd",borderRadius:6,fontSize:13,outline:"none"}} />
                     <button onClick={() => {if(alertEmail.trim()){addStockAlert(p.id,alertEmail);setAlertSent(true)}}}
-                      style={{padding:"9px 18px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:13,fontWeight:600,cursor:"pointer",whiteSpace:"nowrap"}}>Haber Ver</button>
+                      style={{padding:"9px 18px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:13,fontWeight:600,cursor:"pointer",whiteSpace:"nowrap"}}>{t("notify")}</button>
                   </div>
                 </>
               )}
             </div>
           )}
           <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}}>
-            {[{icon:"🚚",text:"Aynı gün kargo"},{icon:"🔄",text:"14 gün iade"},{icon:"🛡️",text:"Orijinal garanti"},{icon:"💳",text:"12 taksit"}].map((f,i) => (
+            {[{icon:"🚚",text:t("sameDay")},{icon:"🔄",text:t("returnPolicy")},{icon:"🛡️",text:t("origGuarantee")},{icon:"💳",text:t("installment")}].map((f,i) => (
               <div key={i} style={{display:"flex",alignItems:"center",gap:8,padding:"8px 10px",background:"#f9f9f9",borderRadius:6,fontSize:12,color:"#666"}}><span>{f.icon}</span>{f.text}</div>
             ))}
           </div>
@@ -822,8 +928,8 @@ function ProductDetailPage() {
       </div>
       {/* Tabs */}
       <div style={{borderBottom:"1px solid #eee",display:"flex",gap:0,marginBottom:20}}>
-        {[{id:"desc",l:"Açıklama"},{id:"specs",l:"Teknik Özellikler"},{id:"compat",l:"Uyumlu Araçlar"}].map(t => (
-          <button key={t.id} onClick={() => setTab(t.id)} style={{padding:"12px 24px",background:"none",border:"none",borderBottom:`2px solid ${tab===t.id?"#ff6000":"transparent"}`,color:tab===t.id?"#1a1a1a":"#999",fontSize:14,fontWeight:tab===t.id?600:400,cursor:"pointer",marginBottom:-1}}>{t.l}</button>
+        {[{id:"desc",l:t("description")},{id:"specs",l:t("techSpecs")},{id:"compat",l:t("compatVehicles")}].map(tb => (
+          <button key={tb.id} onClick={() => setTab(tb.id)} style={{padding:"12px 24px",background:"none",border:"none",borderBottom:`2px solid ${tab===tb.id?"#ff6000":"transparent"}`,color:tab===tb.id?"#1a1a1a":"#999",fontSize:14,fontWeight:tab===tb.id?600:400,cursor:"pointer",marginBottom:-1}}>{tb.l}</button>
         ))}
       </div>
       {tab==="desc" && <p style={{fontSize:15,color:"#555",lineHeight:1.8,marginBottom:32}}>{p.desc}</p>}
