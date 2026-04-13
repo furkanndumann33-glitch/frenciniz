@@ -330,7 +330,10 @@ export default function App() {
         <header style={{background:"#fff",borderBottom:"1px solid #e0e0e0",position:"sticky",top:0,zIndex:100}}>
           <div style={{background:"#1a1a1a",padding:"6px 0"}}>
             <div style={{maxWidth:1200,margin:"0 auto",padding:"0 20px",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-              <span style={{color:"#ccc",fontSize:12}}>Türkiye geneli kargo | 500₺ üzeri ücretsiz</span>
+              <div style={{display:"flex",gap:12,alignItems:"center"}}>
+                <span style={{color:"#ccc",fontSize:12}}>{lang==="tr"?"Türkiye geneli kargo | 500₺ üzeri ücretsiz":"Free shipping over 500₺ in Turkey"}</span>
+                {!isMobile && rates.EUR>0 && <span style={{color:"#aaa",fontSize:11,borderLeft:"1px solid #444",paddingLeft:10}}>€1 = ₺{(1/rates.EUR).toFixed(2)} | $1 = ₺{(1/rates.USD).toFixed(2)}</span>}
+              </div>
               <div style={{display:"flex",gap:12,alignItems:"center"}}>
                 {!isMobile && <span style={{color:"#ccc",fontSize:12}}>📞 0850 888 7881</span>}
                 {/* Social media in header */}
@@ -746,7 +749,11 @@ function ProductsPage() {
   const [sort, setSort] = useState("popular");
   const [showFilters, setShowFilters] = useState(false);
 
-  useEffect(() => {setCat(params?.cat||"all"); setVeh(params?.veh||"all"); setBrand(params?.brand||"all")}, [params]);
+  useEffect(() => {
+    // Arama yapılınca filtreleri sıfırla (global arama)
+    if (params?.q) { setCat("all"); setVeh("all"); setBrand("all"); }
+    else { setCat(params?.cat||"all"); setVeh(params?.veh||"all"); setBrand(params?.brand||"all"); }
+  }, [params]);
 
   const term = params?.q || q || "";
   // Kategori filtresi: grup seçilmişse altındaki tüm alt kategorileri dahil et
@@ -919,7 +926,7 @@ function ProductDetailPage() {
               )}
             </div>
           )}
-          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}}>
+          <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr",gap:8}}>
             {[{icon:"🚚",text:t("sameDay")},{icon:"🔄",text:t("returnPolicy")},{icon:"🛡️",text:t("origGuarantee")},{icon:"💳",text:t("installment")}].map((f,i) => (
               <div key={i} style={{display:"flex",alignItems:"center",gap:8,padding:"8px 10px",background:"#f9f9f9",borderRadius:6,fontSize:12,color:"#666"}}><span>{f.icon}</span>{f.text}</div>
             ))}
@@ -1288,20 +1295,29 @@ function FavsPage() {
 
 // ===== BRANDS / ABOUT / CONTACT / FAQ =====
 function BrandsPage() {
-  const {go}=use$();
-  return <div style={{maxWidth:1200,margin:"0 auto",padding:"20px"}}><h1 style={{fontSize:22,fontWeight:700,marginBottom:20}}>Markalar</h1>
-    <div style={{display:"grid",gridTemplateColumns:"repeat(5,1fr)",gap:12}}>
+  const {go,isMobile,t}=use$();
+  return <div style={{maxWidth:1200,margin:"0 auto",padding:"20px"}}><h1 style={{fontSize:22,fontWeight:700,marginBottom:20}}>{t("brands")}</h1>
+    <div style={{display:"grid",gridTemplateColumns:isMobile?"repeat(2,1fr)":"repeat(5,1fr)",gap:12}}>
       {BRANDS.map(b => <div key={b} onClick={() => go("products",{brand:b})} style={{padding:"24px 16px",border:"1px solid #eee",borderRadius:8,textAlign:"center",cursor:"pointer",fontSize:15,fontWeight:600,transition:"border-color .2s"}} onMouseEnter={e=>e.currentTarget.style.borderColor="#ff6000"} onMouseLeave={e=>e.currentTarget.style.borderColor="#eee"}>{b}</div>)}
     </div></div>;
 }
 
 function AboutPage() {
-  return <div style={{maxWidth:700,margin:"0 auto",padding:"20px"}}><h1 style={{fontSize:22,fontWeight:700,marginBottom:16}}>Hakkımızda</h1>
+  const {lang} = use$();
+  const en = lang==="en";
+  return <div style={{maxWidth:700,margin:"0 auto",padding:"20px"}}><h1 style={{fontSize:22,fontWeight:700,marginBottom:16}}>{en?"About Us":"Hakkımızda"}</h1>
     <div style={{color:"#555",fontSize:15,lineHeight:1.8}}>
-      <p style={{marginBottom:14}}><strong>Frenciniz</strong>, Dumanlar Ticaret çatısı altında otobüs, kamyon, tır ve dorse fren aksamı ürünlerini sizlere güvenle sunar. Bizim için sadece ürün satmak değil, yolda güveninizi sağlamak en büyük önceliğimizdir.</p>
-      <p style={{marginBottom:14}}>Her parçamızda kaliteyi, dayanıklılığı ve uyumu ön planda tutuyoruz. Çünkü biliyoruz ki, ağır vasıta dünyasında en önemli şey güvenli bir duruştur.</p>
-      <p style={{marginBottom:14}}>Frenciniz olarak, müşterilerimizle uzun vadeli dostluklar kurmayı, doğru ürünü doğru zamanda ulaştırmayı ve alışverişinizi kolay, şeffaf ve keyifli hale getirmeyi hedefliyoruz.</p>
-      <p style={{fontWeight:600,color:"#ff6000",fontSize:16}}>Yolda güven, Frenciniz ile mümkün.</p>
+      {en ? <>
+        <p style={{marginBottom:14}}><strong>Frenciniz</strong> offers bus, truck, tractor and trailer brake parts with confidence under Dumanlar Ticaret. Our top priority is not just selling products, but ensuring your safety on the road.</p>
+        <p style={{marginBottom:14}}>We prioritize quality, durability and compatibility in every part. Because we know that the most important thing in the heavy vehicle world is a safe stop.</p>
+        <p style={{marginBottom:14}}>At Frenciniz, we aim to build long-term relationships with our customers, deliver the right product at the right time, and make your shopping experience easy, transparent and enjoyable.</p>
+        <p style={{fontWeight:600,color:"#ff6000",fontSize:16}}>Safety on the road is possible with Frenciniz.</p>
+      </> : <>
+        <p style={{marginBottom:14}}><strong>Frenciniz</strong>, Dumanlar Ticaret çatısı altında otobüs, kamyon, tır ve dorse fren aksamı ürünlerini sizlere güvenle sunar. Bizim için sadece ürün satmak değil, yolda güveninizi sağlamak en büyük önceliğimizdir.</p>
+        <p style={{marginBottom:14}}>Her parçamızda kaliteyi, dayanıklılığı ve uyumu ön planda tutuyoruz. Çünkü biliyoruz ki, ağır vasıta dünyasında en önemli şey güvenli bir duruştur.</p>
+        <p style={{marginBottom:14}}>Frenciniz olarak, müşterilerimizle uzun vadeli dostluklar kurmayı, doğru ürünü doğru zamanda ulaştırmayı ve alışverişinizi kolay, şeffaf ve keyifli hale getirmeyi hedefliyoruz.</p>
+        <p style={{fontWeight:600,color:"#ff6000",fontSize:16}}>Yolda güven, Frenciniz ile mümkün.</p>
+      </>}
     </div></div>;
 }
 
@@ -1459,9 +1475,26 @@ function ChangePasswordPage() {
 }
 
 function AccessibilityPage() {
+  const {lang} = use$();
+  const en = lang==="en";
   return <div style={{maxWidth:700,margin:"0 auto",padding:"20px"}}>
-    <h1 style={{fontSize:22,fontWeight:700,marginBottom:20}}>Erişilebilirlik Bildirimi</h1>
+    <h1 style={{fontSize:22,fontWeight:700,marginBottom:20}}>{en?"Accessibility Statement":"Erişilebilirlik Bildirimi"}</h1>
     <div style={{color:"#555",fontSize:14.5,lineHeight:1.85}}>
+      {en ? <>
+      <p style={{marginBottom:16}}>Frenciniz (Dumanlar Ticaret) is committed to meeting accessibility standards so that everyone can use our website and services equally. Our goal is to make our bus, truck, trailer and semi-trailer brake parts products accessible to all users.</p>
+
+      <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>1. Compliance with Standards</h2>
+      <p style={{marginBottom:16}}>Our website has been designed in accordance with international accessibility standards (WCAG 2.1). Necessary adjustments are made to ensure that visual, textual and interactive content can be used by everyone.</p>
+
+      <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>2. Continuous Improvement</h2>
+      <p style={{marginBottom:16}}>Accessibility is a continuously evolving process. We regularly update and improve our website based on feedback from our users.</p>
+
+      <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>3. Support and Contact</h2>
+      <p style={{marginBottom:16}}>If you experience any accessibility issues while using our website, please contact us. Your request will be evaluated as soon as possible and necessary steps will be taken to resolve it.</p>
+
+      <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>4. Commitment</h2>
+      <p>At Frenciniz, we consider accessibility a priority responsibility to ensure all our customers have a safe and easy shopping experience.</p>
+      </> : <>
       <p style={{marginBottom:16}}>Frenciniz (Dumanlar Ticaret), herkesin web sitemizi ve hizmetlerimizi eşit şekilde kullanabilmesi için erişilebilirlik standartlarına uymayı taahhüt eder. Amacımız, otobüs, kamyon, tır ve dorse fren aksamı ürünlerimizi tüm kullanıcılarımız için erişilebilir hale getirmektir.</p>
 
       <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>1. Standartlara Uyum</h2>
@@ -1475,6 +1508,7 @@ function AccessibilityPage() {
 
       <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>4. Taahhüt</h2>
       <p>Frenciniz olarak, tüm müşterilerimizin güvenli ve kolay bir alışveriş deneyimi yaşaması için erişilebilirlik konusunu öncelikli bir sorumluluk olarak kabul ediyoruz.</p>
+      </>}
 
       <div style={{marginTop:24,padding:"16px 20px",background:"#f9f9f9",borderRadius:8,border:"1px solid #eee",fontSize:13,color:"#888",lineHeight:2}}>
         📍 Hızırbey Mah. 1509 Sok. No:24, Isparta Merkez<br/>
@@ -1486,17 +1520,19 @@ function AccessibilityPage() {
 }
 
 function CompanyPage() {
+  const {lang} = use$();
+  const en = lang==="en";
   return <div style={{maxWidth:700,margin:"0 auto",padding:"20px"}}>
-    <h1 style={{fontSize:22,fontWeight:700,marginBottom:20}}>Şirket Bilgileri</h1>
+    <h1 style={{fontSize:22,fontWeight:700,marginBottom:20}}>{en?"Company Information":"Şirket Bilgileri"}</h1>
     <div style={{border:"1px solid #eee",borderRadius:8,overflow:"hidden"}}>
       {[
-        {label:"Şirket Ünvanı",value:"Dumanlar Ticaret"},
-        {label:"Vergi Dairesi",value:"Kaymakkapı"},
-        {label:"Vergi Numarası",value:"3140853144"},
-        {label:"Adres",value:"Hızırbey Mahallesi, 1509 Sokak, No:24, Isparta Merkez"},
-        {label:"KEP Adresi",value:"tarkan.duman.2@hs01.kep.tr"},
-        {label:"Kurumsal E-posta",value:"info@frenciniz.com"},
-        {label:"Telefon",value:"0850 888 7881 – 0545 608 7008"},
+        {label:en?"Company Name":"Şirket Ünvanı",value:"Dumanlar Ticaret"},
+        {label:en?"Tax Office":"Vergi Dairesi",value:"Kaymakkapı"},
+        {label:en?"Tax Number":"Vergi Numarası",value:"3140853144"},
+        {label:en?"Address":"Adres",value:"Hızırbey Mahallesi, 1509 Sokak, No:24, Isparta Merkez"},
+        {label:en?"KEP Address":"KEP Adresi",value:"tarkan.duman.2@hs01.kep.tr"},
+        {label:en?"Corporate Email":"Kurumsal E-posta",value:"info@frenciniz.com"},
+        {label:en?"Phone":"Telefon",value:"0850 888 7881 – 0545 608 7008"},
       ].map((row,i) => (
         <div key={i} style={{display:"flex",padding:"14px 20px",borderBottom:i<6?"1px solid #f0f0f0":"none",background:i%2===0?"#fafafa":"#fff"}}>
           <span style={{width:180,flexShrink:0,fontSize:14,fontWeight:600,color:"#1a1a1a"}}>{row.label}</span>
@@ -1508,9 +1544,45 @@ function CompanyPage() {
 }
 
 function KvkkPage() {
+  const {lang} = use$();
+  const en = lang==="en";
   return <div style={{maxWidth:700,margin:"0 auto",padding:"20px"}}>
-    <h1 style={{fontSize:22,fontWeight:700,marginBottom:20}}>KVKK Aydınlatma Metni</h1>
+    <h1 style={{fontSize:22,fontWeight:700,marginBottom:20}}>{en?"KVKK Disclosure Text":"KVKK Aydınlatma Metni"}</h1>
     <div style={{color:"#555",fontSize:14.5,lineHeight:1.85}}>
+      {en ? <>
+      <p style={{marginBottom:16}}>At Frenciniz (Dumanlar Ticaret), we attach great importance to the protection of your personal data within the scope of the Personal Data Protection Law No. 6698 ("KVKK"). This text explains for what purposes your personal data is processed, with whom it may be shared, and the rights you have.</p>
+
+      <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>1. Data Controller</h2>
+      <p style={{marginBottom:16}}>Frenciniz (Dumanlar Ticaret) processes your personal data as the "Data Controller" within the scope of KVKK.</p>
+
+      <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>2. Purposes of Processing Personal Data</h2>
+      <p style={{marginBottom:8}}>Your personal data is processed for the following purposes:</p>
+      <ul style={{marginBottom:16,paddingLeft:20}}>
+        <li style={{marginBottom:6}}>Receiving orders, preparing and delivering products,</li>
+        <li style={{marginBottom:6}}>Processing payments,</li>
+        <li style={{marginBottom:6}}>Managing customer service and support processes,</li>
+        <li>Fulfilling legal obligations.</li>
+      </ul>
+
+      <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>3. Transfer of Personal Data</h2>
+      <p style={{marginBottom:16}}>Your personal data may be shared with third parties only when required by legal obligations or necessary for the performance of the service (e.g., cargo companies, payment providers).</p>
+
+      <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>4. Method of Collecting Personal Data</h2>
+      <p style={{marginBottom:16}}>Your data is collected electronically through membership, order and contact forms on our website.</p>
+
+      <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>5. Your Rights Under KVKK</h2>
+      <p style={{marginBottom:8}}>Pursuant to Article 11 of KVKK, you have the right to:</p>
+      <ul style={{marginBottom:16,paddingLeft:20}}>
+        <li style={{marginBottom:6}}>Learn whether your personal data is being processed,</li>
+        <li style={{marginBottom:6}}>Request information if it has been processed,</li>
+        <li style={{marginBottom:6}}>Learn whether it is used in accordance with its purpose,</li>
+        <li style={{marginBottom:6}}>Request correction or deletion,</li>
+        <li>Object to its processing.</li>
+      </ul>
+
+      <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>6. Contact</h2>
+      <p>To exercise your rights or for any questions, please contact Frenciniz customer service.</p>
+      </> : <>
       <p style={{marginBottom:16}}>Frenciniz (Dumanlar Ticaret) olarak, 6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") kapsamında kişisel verilerinizin korunmasına büyük önem veriyoruz. Bu metin, kişisel verilerinizin hangi amaçlarla işlendiğini, kimlerle paylaşılabileceğini ve sahip olduğunuz hakları açıklamaktadır.</p>
 
       <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>1. Veri Sorumlusu</h2>
@@ -1545,6 +1617,7 @@ function KvkkPage() {
 
       <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>6. İletişim</h2>
       <p>Haklarınızı kullanmak veya sorularınız için Frenciniz müşteri hizmetleri ile iletişime geçebilirsiniz.</p>
+      </>}
 
       <div style={{marginTop:24,padding:"16px 20px",background:"#f9f9f9",borderRadius:8,border:"1px solid #eee",fontSize:13,color:"#888",lineHeight:2}}>
         📍 Hızırbey Mah. 1509 Sok. No:24, Isparta Merkez<br/>
@@ -1556,9 +1629,46 @@ function KvkkPage() {
 }
 
 function ReturnPolicyPage() {
+  const {lang} = use$();
+  const en = lang==="en";
   return <div style={{maxWidth:700,margin:"0 auto",padding:"20px"}}>
-    <h1 style={{fontSize:22,fontWeight:700,marginBottom:20}}>İade Politikası</h1>
+    <h1 style={{fontSize:22,fontWeight:700,marginBottom:20}}>{en?"Return Policy":"İade Politikası"}</h1>
     <div style={{color:"#555",fontSize:14.5,lineHeight:1.85}}>
+      {en ? <>
+      <p style={{marginBottom:16}}>Frenciniz (Dumanlar Ticaret) prioritizes customer satisfaction and protects your right to return/exchange purchased products. This Return Policy has been prepared in accordance with Consumer Protection Law No. 6502 and related legislation.</p>
+
+      <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>1. Return Period</h2>
+      <ul style={{marginBottom:16,paddingLeft:20}}>
+        <li style={{marginBottom:6}}>You have the right to return products within 14 days of delivery.</li>
+        <li>You must contact our customer service for your return request.</li>
+      </ul>
+
+      <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>2. Return Conditions</h2>
+      <ul style={{marginBottom:16,paddingLeft:20}}>
+        <li style={{marginBottom:6}}>Products must be unused, undamaged and in their original packaging.</li>
+        <li style={{marginBottom:6}}>Returns are not accepted if technical parts such as brake components have been installed or used.</li>
+        <li>In case of incorrect or damaged product delivery, product cost and shipping fees will be covered by us.</li>
+      </ul>
+
+      <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>3. Return Process</h2>
+      <ul style={{marginBottom:16,paddingLeft:20}}>
+        <li style={{marginBottom:6}}>After your return request is approved, the product must be sent to us via contracted cargo company.</li>
+        <li>After the product reaches us, it will be inspected and if approved, the refund will be processed within 7 business days.</li>
+      </ul>
+
+      <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>4. Exchange</h2>
+      <ul style={{marginBottom:16,paddingLeft:20}}>
+        <li>You may request an exchange instead of a return. Product exchange is made based on stock availability.</li>
+      </ul>
+
+      <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>5. Exceptions</h2>
+      <ul style={{marginBottom:16,paddingLeft:20}}>
+        <li>Products damaged through use, installed parts and custom order products are excluded from returns.</li>
+      </ul>
+
+      <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>6. Contact</h2>
+      <p>For return and exchange requests, please contact Frenciniz customer service.</p>
+      </> : <>
       <p style={{marginBottom:16}}>Frenciniz (Dumanlar Ticaret), müşteri memnuniyetini ön planda tutar ve satın aldığınız ürünlerde iade/değişim hakkınızı korur. Bu İade Politikası, 6502 sayılı Tüketicinin Korunması Hakkında Kanun ve ilgili mevzuat çerçevesinde hazırlanmıştır.</p>
 
       <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>1. İade Süresi</h2>
@@ -1592,6 +1702,7 @@ function ReturnPolicyPage() {
 
       <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>6. İletişim</h2>
       <p>İade ve değişim talepleriniz için Frenciniz müşteri hizmetleri ile iletişime geçebilirsiniz.</p>
+      </>}
 
       <div style={{marginTop:24,padding:"16px 20px",background:"#f9f9f9",borderRadius:8,border:"1px solid #eee",fontSize:13,color:"#888",lineHeight:2}}>
         📍 Hızırbey Mah. 1509 Sok. No:24, Isparta Merkez<br/>
@@ -1603,9 +1714,59 @@ function ReturnPolicyPage() {
 }
 
 function TermsPage() {
+  const {lang} = use$();
+  const en = lang==="en";
   return <div style={{maxWidth:700,margin:"0 auto",padding:"20px"}}>
-    <h1 style={{fontSize:22,fontWeight:700,marginBottom:20}}>Şartlar ve Koşullar</h1>
+    <h1 style={{fontSize:22,fontWeight:700,marginBottom:20}}>{en?"Terms and Conditions":"Şartlar ve Koşullar"}</h1>
     <div style={{color:"#555",fontSize:14.5,lineHeight:1.85}}>
+      {en ? <>
+      <p style={{marginBottom:16}}>All users who visit and shop on the Frenciniz (Dumanlar Ticaret) website are deemed to have accepted the following terms.</p>
+
+      <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>1. General Provisions</h2>
+      <ul style={{marginBottom:16,paddingLeft:20}}>
+        <li style={{marginBottom:6}}>All transactions made through this site are subject to the laws of the Republic of Turkey.</li>
+        <li>By visiting and shopping on the site, the user accepts these terms.</li>
+      </ul>
+
+      <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>2. Products and Services</h2>
+      <ul style={{marginBottom:16,paddingLeft:20}}>
+        <li style={{marginBottom:6}}>Product information and prices on the site are updated regularly.</li>
+        <li>Stock availability and price changes may be made without prior notice.</li>
+      </ul>
+
+      <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>3. Orders and Payment</h2>
+      <ul style={{marginBottom:16,paddingLeft:20}}>
+        <li style={{marginBottom:6}}>Orders are processed after payment confirmation is received.</li>
+        <li>Payment methods are carried out through secure infrastructure.</li>
+      </ul>
+
+      <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>4. Shipping and Delivery</h2>
+      <ul style={{marginBottom:16,paddingLeft:20}}>
+        <li style={{marginBottom:6}}>Products are shipped via contracted cargo companies.</li>
+        <li>Delivery times may vary by region.</li>
+      </ul>
+
+      <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>5. Returns and Exchanges</h2>
+      <ul style={{marginBottom:16,paddingLeft:20}}>
+        <li style={{marginBottom:6}}>Return and exchange processes are managed under the "Return and Exchange Policy".</li>
+        <li>In case of damaged or incorrect product delivery, customer service should be contacted.</li>
+      </ul>
+
+      <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>6. Privacy and Data Protection</h2>
+      <ul style={{marginBottom:16,paddingLeft:20}}>
+        <li style={{marginBottom:6}}>Users' personal data is protected under KVKK.</li>
+        <li>Data is used only for order and customer service processes.</li>
+      </ul>
+
+      <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>7. Disclaimer</h2>
+      <ul style={{marginBottom:16,paddingLeft:20}}>
+        <li style={{marginBottom:6}}>Frenciniz cannot be held responsible for indirect damages arising from use of the site.</li>
+        <li>The user uses the site at their own responsibility.</li>
+      </ul>
+
+      <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>8. Jurisdiction</h2>
+      <p>Isparta Courts and Enforcement Offices are authorized for disputes arising from these terms and conditions.</p>
+      </> : <>
       <p style={{marginBottom:16}}>Frenciniz (Dumanlar Ticaret) web sitesini ziyaret eden ve alışveriş yapan tüm kullanıcılar aşağıdaki şartları kabul etmiş sayılır.</p>
 
       <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>1. Genel Hükümler</h2>
@@ -1652,14 +1813,49 @@ function TermsPage() {
 
       <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>8. Yetkili Mahkeme</h2>
       <p>İşbu şartlar ve koşullardan doğabilecek uyuşmazlıklarda Isparta Mahkemeleri ve İcra Daireleri yetkilidir.</p>
+      </>}
     </div>
   </div>;
 }
 
 function ShippingPolicyPage() {
+  const {lang} = use$();
+  const en = lang==="en";
   return <div style={{maxWidth:700,margin:"0 auto",padding:"20px"}}>
-    <h1 style={{fontSize:22,fontWeight:700,marginBottom:20}}>Gönderim Politikası</h1>
+    <h1 style={{fontSize:22,fontWeight:700,marginBottom:20}}>{en?"Shipping Policy":"Gönderim Politikası"}</h1>
     <div style={{color:"#555",fontSize:14.5,lineHeight:1.85}}>
+      {en ? <>
+      <p style={{marginBottom:16}}>Frenciniz (Dumanlar Ticaret) is committed to providing a safe, fast and transparent shipping process to its customers. This Shipping Policy explains the principles followed in the preparation and delivery of your orders.</p>
+
+      <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>1. Order Preparation</h2>
+      <ul style={{marginBottom:16,paddingLeft:20}}>
+        <li style={{marginBottom:6}}>All orders are processed as soon as possible after payment confirmation.</li>
+        <li>In-stock products are generally shipped within 1-3 business days.</li>
+      </ul>
+
+      <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>2. Cargo and Delivery</h2>
+      <ul style={{marginBottom:16,paddingLeft:20}}>
+        <li style={{marginBottom:6}}>Shipments are made via contracted cargo companies.</li>
+        <li style={{marginBottom:6}}>Delivery time may vary depending on your region.</li>
+        <li>A cargo tracking number will be provided after your order is shipped.</li>
+      </ul>
+
+      <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>3. Shipping Fees</h2>
+      <ul style={{marginBottom:16,paddingLeft:20}}>
+        <li style={{marginBottom:6}}>Shipping fees may vary based on order amount and delivery address.</li>
+        <li>Free shipping may be offered during certain promotional periods.</li>
+      </ul>
+
+      <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>4. Responsibility and Returns</h2>
+      <ul style={{marginBottom:16,paddingLeft:20}}>
+        <li style={{marginBottom:6}}>Products are under Frenciniz's responsibility until handed over to the cargo company.</li>
+        <li style={{marginBottom:6}}>For damage or loss that may occur after delivery, the cargo company should be contacted.</li>
+        <li>In case of damaged or incorrect product delivery, return and exchange processes are managed under the "Return and Exchange Policy".</li>
+      </ul>
+
+      <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>5. Contact</h2>
+      <p>For any questions and requests regarding the shipping process, please contact our customer service.</p>
+      </> : <>
       <p style={{marginBottom:16}}>Frenciniz (Dumanlar Ticaret), müşterilerine güvenli, hızlı ve şeffaf bir gönderim süreci sunmayı taahhüt eder. Bu Gönderim Politikası, siparişlerinizin hazırlanması ve teslim edilmesi aşamalarında izlenen esasları açıklamaktadır.</p>
 
       <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>1. Sipariş Hazırlığı</h2>
@@ -1690,6 +1886,7 @@ function ShippingPolicyPage() {
 
       <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>5. İletişim</h2>
       <p>Gönderim süreciyle ilgili her türlü soru ve talebiniz için müşteri hizmetlerimizle iletişime geçebilirsiniz.</p>
+      </>}
 
       <div style={{marginTop:24,padding:"16px 20px",background:"#f9f9f9",borderRadius:8,border:"1px solid #eee",fontSize:13,color:"#888",lineHeight:2}}>
         📍 Hızırbey Mah. 1509 Sok. No:24, Isparta Merkez<br/>
@@ -1701,11 +1898,31 @@ function ShippingPolicyPage() {
 }
 
 function PrivacyPage() {
+  const {lang} = use$();
+  const en = lang==="en";
   return <div style={{maxWidth:700,margin:"0 auto",padding:"20px"}}>
-    <h1 style={{fontSize:22,fontWeight:700,marginBottom:20}}>Gizlilik Politikası</h1>
+    <h1 style={{fontSize:22,fontWeight:700,marginBottom:20}}>{en?"Privacy Policy":"Gizlilik Politikası"}</h1>
     <div style={{color:"#555",fontSize:14.5,lineHeight:1.85}}>
+      {en ? <>
+      <p style={{marginBottom:16}}>Frenciniz operates under Dumanlar Ticaret and attaches great importance to the protection of our customers' personal data. This Privacy Policy has been prepared in accordance with the Personal Data Protection Law No. 6698 ("KVKK") and related legislation.</p>
+
+      <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>1. Collection and Processing of Personal Data</h2>
+      <p style={{marginBottom:16}}>Name, surname, address, phone, email and payment information shared by our customers during order, membership and contact processes are processed solely for the purpose of service delivery, product delivery and ensuring customer satisfaction.</p>
+
+      <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>2. Sharing of Personal Data</h2>
+      <p style={{marginBottom:16}}>Collected data is not shared with third parties except for legal obligations. However, necessary information may be shared with service providers such as logistics and cargo companies solely for the purpose of delivery.</p>
+
+      <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>3. Data Security</h2>
+      <p style={{marginBottom:16}}>Frenciniz takes the necessary technical and administrative measures to prevent unauthorized access, loss or misuse of personal data.</p>
+
+      <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>4. Your Rights</h2>
+      <p style={{marginBottom:16}}>Under KVKK, you have the right to learn whether your personal data is being processed, request correction, request deletion and object to its processing. You may contact us to exercise these rights.</p>
+
+      <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>5. Contact</h2>
+      <p>For any questions, requests and applications, please contact Frenciniz customer service.</p>
+      </> : <>
       <p style={{marginBottom:16}}>Frenciniz, Dumanlar Ticaret çatısı altında faaliyet göstermekte olup, müşterilerimizin kişisel verilerinin korunmasına büyük önem vermektedir. Bu Gizlilik Politikası, 6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") ve ilgili mevzuat çerçevesinde hazırlanmıştır.</p>
-      
+
       <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>1. Kişisel Verilerin Toplanması ve İşlenmesi</h2>
       <p style={{marginBottom:16}}>Müşterilerimizin sipariş, üyelik ve iletişim süreçlerinde paylaştığı ad, soyad, adres, telefon, e-posta ve ödeme bilgileri; yalnızca hizmetin ifası, ürün teslimi ve müşteri memnuniyetinin sağlanması amacıyla işlenmektedir.</p>
 
@@ -1720,6 +1937,7 @@ function PrivacyPage() {
 
       <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>5. İletişim</h2>
       <p>Her türlü soru, talep ve başvurularınız için Frenciniz müşteri hizmetleri ile iletişime geçebilirsiniz.</p>
+      </>}
 
       <div style={{marginTop:24,padding:"16px 20px",background:"#f9f9f9",borderRadius:8,border:"1px solid #eee",fontSize:13,color:"#888",lineHeight:2}}>
         📍 Hızırbey Mah. 1509 Sok. No:24, Isparta Merkez<br/>
@@ -1731,18 +1949,20 @@ function PrivacyPage() {
 }
 
 function ContactPage() {
+  const {lang, isMobile} = use$();
+  const en = lang==="en";
   const IS = {width:"100%",padding:"10px 14px",border:"1px solid #ddd",borderRadius:6,fontSize:14};
-  return <div style={{maxWidth:1200,margin:"0 auto",padding:"20px"}}><h1 style={{fontSize:22,fontWeight:700,marginBottom:20}}>İletişim</h1>
-    <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:24}}>
+  return <div style={{maxWidth:1200,margin:"0 auto",padding:"20px"}}><h1 style={{fontSize:22,fontWeight:700,marginBottom:20}}>{en?"Contact":"İletişim"}</h1>
+    <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr",gap:24}}>
       <div style={{border:"1px solid #eee",borderRadius:8,padding:24}}>
         <div style={{display:"flex",flexDirection:"column",gap:12}}>
-          <input placeholder="Ad Soyad" style={IS}/><input placeholder="E-posta" style={IS}/><input placeholder="Telefon" style={IS}/>
-          <textarea rows={4} placeholder="Mesajınız..." style={{...IS,resize:"vertical"}}/>
-          <button style={{padding:"12px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:14,fontWeight:600,cursor:"pointer",alignSelf:"flex-start"}}>Gönder</button>
+          <input placeholder={en?"Full Name":"Ad Soyad"} style={IS}/><input placeholder={en?"Email":"E-posta"} style={IS}/><input placeholder={en?"Phone":"Telefon"} style={IS}/>
+          <textarea rows={4} placeholder={en?"Your message...":"Mesajınız..."} style={{...IS,resize:"vertical"}}/>
+          <button style={{padding:"12px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:14,fontWeight:600,cursor:"pointer",alignSelf:"flex-start"}}>{en?"Send":"Gönder"}</button>
         </div>
       </div>
       <div>
-        {[{icon:"📍",label:"Adres",value:"Hızırbey Mah. 1509 Sok. No:24, Isparta Merkez"},{icon:"📞",label:"Telefon",value:"0850 888 7881 – 0545 608 7008"},{icon:"✉️",label:"E-posta",value:"info@frenciniz.com"},{icon:"⏰",label:"Çalışma",value:"Pzt–Cmt 08:00–18:00"},{icon:"💬",label:"WhatsApp",value:"0850 888 7881"}].map((c,i) => (
+        {[{icon:"📍",label:en?"Address":"Adres",value:"Hızırbey Mah. 1509 Sok. No:24, Isparta Merkez"},{icon:"📞",label:en?"Phone":"Telefon",value:"0850 888 7881 – 0545 608 7008"},{icon:"✉️",label:en?"Email":"E-posta",value:"info@frenciniz.com"},{icon:"⏰",label:en?"Working Hours":"Çalışma",value:en?"Mon–Sat 08:00–18:00":"Pzt–Cmt 08:00–18:00"},{icon:"💬",label:"WhatsApp",value:"0850 888 7881"}].map((c,i) => (
           <div key={i} style={{display:"flex",gap:14,alignItems:"center",padding:16,borderBottom:"1px solid #f0f0f0"}}>
             <span style={{fontSize:24}}>{c.icon}</span>
             <div><div style={{fontSize:12,color:"#999"}}>{c.label}</div><div style={{fontSize:15,fontWeight:600}}>{c.value}</div></div>
@@ -1753,9 +1973,25 @@ function ContactPage() {
 }
 
 function FaqPage() {
+  const {lang} = use$();
+  const en = lang==="en";
   const [open, setOpen] = useState(null);
-  const faqs = [{q:"Kargo süresi nedir?",a:"14:00'a kadar verilen siparişler aynı gün kargoya verilir."},{q:"Ürünler orijinal mi?",a:"Orijinal ve sertifikalı eşdeğer parçalar sunuyoruz."},{q:"İade yapabilir miyim?",a:"Kullanılmamış ürünler 14 gün içinde iade edilebilir."},{q:"Toplu alım indirimi var mı?",a:"5.000₺ üzeri siparişlerde indirim. B2B teklif alabilirsiniz."},{q:"Taksit yapılıyor mu?",a:"Tüm kredi kartlarına 12 taksit imkânı mevcuttur."},{q:"Ürün aracıma uyar mı?",a:"Ürün sayfasında uyumlu araç listesi ve OEM referansları yer alır."}];
-  return <div style={{maxWidth:700,margin:"0 auto",padding:"20px"}}><h1 style={{fontSize:22,fontWeight:700,marginBottom:20}}>Sık Sorulan Sorular</h1>
+  const faqs = en ? [
+    {q:"What is the shipping time?",a:"Orders placed before 2 PM are shipped the same day."},
+    {q:"Are the products original?",a:"We offer original and certified equivalent parts."},
+    {q:"Can I make a return?",a:"Unused products can be returned within 14 days."},
+    {q:"Is there a bulk purchase discount?",a:"Discounts on orders over 5,000 TL. You can request a B2B quote."},
+    {q:"Is installment payment available?",a:"12-month installment options are available for all credit cards."},
+    {q:"Will the product fit my vehicle?",a:"Compatible vehicle list and OEM references are available on the product page."}
+  ] : [
+    {q:"Kargo süresi nedir?",a:"14:00'a kadar verilen siparişler aynı gün kargoya verilir."},
+    {q:"Ürünler orijinal mi?",a:"Orijinal ve sertifikalı eşdeğer parçalar sunuyoruz."},
+    {q:"İade yapabilir miyim?",a:"Kullanılmamış ürünler 14 gün içinde iade edilebilir."},
+    {q:"Toplu alım indirimi var mı?",a:"5.000₺ üzeri siparişlerde indirim. B2B teklif alabilirsiniz."},
+    {q:"Taksit yapılıyor mu?",a:"Tüm kredi kartlarına 12 taksit imkânı mevcuttur."},
+    {q:"Ürün aracıma uyar mı?",a:"Ürün sayfasında uyumlu araç listesi ve OEM referansları yer alır."}
+  ];
+  return <div style={{maxWidth:700,margin:"0 auto",padding:"20px"}}><h1 style={{fontSize:22,fontWeight:700,marginBottom:20}}>{en?"Frequently Asked Questions":"Sık Sorulan Sorular"}</h1>
     {faqs.map((f,i) => <div key={i} style={{borderBottom:"1px solid #eee"}}>
       <button onClick={() => setOpen(open===i?null:i)} style={{width:"100%",padding:"16px 0",background:"none",border:"none",textAlign:"left",display:"flex",justifyContent:"space-between",alignItems:"center",fontSize:15,fontWeight:600,cursor:"pointer"}}>{f.q}<span style={{color:"#999",transform:open===i?"rotate(180deg)":"none",transition:"transform .2s"}}>▼</span></button>
       {open===i && <div style={{padding:"0 0 16px",fontSize:14,color:"#666",lineHeight:1.7}}>{f.a}</div>}
@@ -2169,7 +2405,8 @@ function ADash(){
 }
 
 function AProds(){
-  const [prods,setProds]=useState(PRODUCTS);
+  const [prods,setProds]=useState(()=>PRODUCTS);
+  useEffect(()=>{if(PRODUCTS.length>0) setProds([...PRODUCTS])},[PRODUCTS.length]);
   const [editId,setEditId]=useState(null);
   const [showAdd,setShowAdd]=useState(false);
   const [form,setForm]=useState({name:"",brand:"",sku:"",oem:"",price:"",stock:"",cat:"disk",desc:""});
@@ -2226,12 +2463,23 @@ function AProds(){
 }
 
 function ACats(){
-  const [cats,setCats]=useState(CATS.filter(c=>c.id!=="all"));
+  const [cats,setCats]=useState(()=>CATS.filter(c=>c.id!=="all"));
+  useEffect(()=>{if(CATS.length>1) setCats(CATS.filter(c=>c.id!=="all"))},[CATS.length]);
   const [n,setN]=useState("");
-  return <ACard title="Kategoriler" action={<div style={{display:"flex",gap:6}}><AIn placeholder="Yeni kategori" value={n} onChange={e=>setN(e.target.value)} style={{width:200}}/><ABtn onClick={()=>{if(n.trim()){setCats(p=>[...p,{id:n.toLowerCase().replace(/\s/g,"-"),name:n}]);setN("")}}}>Ekle</ABtn></div>}>
-    {cats.map((c,i)=><div key={c.id} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"10px 0",borderBottom:i<cats.length-1?"1px solid #f0f0f0":"none"}}>
-      <span style={{fontSize:14,fontWeight:500}}>{c.name}</span>
-      <button onClick={()=>setCats(p=>p.filter(x=>x.id!==c.id))} style={{padding:"4px 12px",border:"1px solid #fcc",borderRadius:4,background:"#fff",fontSize:12,color:"#e53935",cursor:"pointer"}}>Sil</button>
+  const groups = cats.filter(c=>c.isGroup);
+  const subs = (gid) => cats.filter(c=>c.parent===gid);
+  const ungrouped = cats.filter(c=>!c.isGroup && !c.parent);
+  return <ACard title={`Kategoriler (${cats.filter(c=>!c.isGroup).length})`} action={<div style={{display:"flex",gap:6}}><AIn placeholder="Yeni kategori" value={n} onChange={e=>setN(e.target.value)} style={{width:200}}/><ABtn onClick={()=>{if(n.trim()){setCats(p=>[...p,{id:n.toLowerCase().replace(/\s/g,"-"),name:n}]);setN("")}}}>Ekle</ABtn></div>}>
+    {groups.map(g=><div key={g.id} style={{marginBottom:12}}>
+      <div style={{fontSize:13,fontWeight:700,color:"#ff6000",padding:"8px 0",borderBottom:"1px solid #eee"}}>{g.name} ({subs(g.id).length})</div>
+      {subs(g.id).map((c,i)=><div key={c.id} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"8px 0 8px 16px",borderBottom:"1px solid #f8f8f8"}}>
+        <span style={{fontSize:13}}>{c.name}</span>
+        <span style={{fontSize:11,color:"#999"}}>{PRODUCTS.filter(p=>p.cat===c.id).length} ürün</span>
+      </div>)}
+    </div>)}
+    {ungrouped.length>0 && ungrouped.map((c,i)=><div key={c.id} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"8px 0",borderBottom:"1px solid #f0f0f0"}}>
+      <span style={{fontSize:13}}>{c.name}</span>
+      <span style={{fontSize:11,color:"#999"}}>{PRODUCTS.filter(p=>p.cat===c.id).length} ürün</span>
     </div>)}
   </ACard>;
 }
