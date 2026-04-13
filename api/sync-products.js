@@ -230,10 +230,46 @@ function processProducts(raw) {
     });
   }
 
-  const cats = [{ id: "all", name: "Tüm Ürünler" }];
-  Object.keys(catsMap)
-    .sort((x, y) => catsMap[x].localeCompare(catsMap[y], "tr"))
-    .forEach(id => cats.push({ id, name: catsMap[id] }));
+  // Hiyerarşik kategori listesi
+  const HIERARCHY = {
+    "Fren Diski":"fren-diskleri-kampanalari","Fren Diski ABS'li":"fren-diskleri-kampanalari","Fren Kampanası":"fren-diskleri-kampanalari","Disk Bijonu/Civatası":"fren-diskleri-kampanalari",
+    "Fren Balatası":"fren-balata-pabucu","Fren Pabucu":"fren-balata-pabucu","Perçin":"fren-balata-pabucu",
+    "Kaliper":"kaliper-grubu","Kaliper Ayar Mekanizması":"kaliper-grubu","Kaliper Dürbün Takımı":"kaliper-grubu","Kaliper Kapak/Conta":"kaliper-grubu","Kaliper Perno Tamir Takımı":"kaliper-grubu","Kaliper Tamir Seti":"kaliper-grubu","Kaliper Tamir Takımı":"kaliper-grubu","Kaliper Tamir Takımı (Duco)":"kaliper-grubu","Kaliper Tamir Takımı (Elsa)":"kaliper-grubu","Kaliper Tamir Takımı (Frenco)":"kaliper-grubu","Kaliper Tamir Takımı (Maxx22)":"kaliper-grubu","Kaliper Tamir Takımı (Modulx)":"kaliper-grubu","Kaliper Tamir Takımı (PAN)":"kaliper-grubu","Kaliper Tamir Takımı (Wabco)":"kaliper-grubu","Kaliper Toz Lastiği":"kaliper-grubu","Kızak":"kaliper-grubu","Perno":"kaliper-grubu",
+    "Fren Cırcırı":"fren-circiri-grubu","Mekanik Fren Cırcırı":"fren-circiri-grubu","Otomatik Fren Cırcırı":"fren-circiri-grubu","Fren Ayar Parçaları":"fren-circiri-grubu","Ayar Kolu / El Fren":"fren-circiri-grubu",
+    "Fren Körüğü":"fren-korugu-hava","Hava Kurutucu":"fren-korugu-hava","Hava Tüpü":"fren-korugu-hava","Filtre / Kartuş":"fren-korugu-hava",
+    "Valf / Ventil":"valf-ventil-grubu","Dağıtıcı Ventil":"valf-ventil-grubu","Röle Ventili":"valf-ventil-grubu","Süspansiyon/Basınç Ventili":"valf-ventil-grubu","Şanzıman Ventili":"valf-ventil-grubu",
+    "ABS Sensörü/Modülü/Kablo":"abs-ebs-grubu","EBS Modülatör":"abs-ebs-grubu","Sensör":"abs-ebs-grubu","Elektrik Kablosu":"abs-ebs-grubu",
+    "Kompresör Piston/Segman":"kompresor-grubu","Kompresör Silindiri":"kompresor-grubu","Kompresör Tamir Takımı":"kompresor-grubu",
+    "Porya":"porya-bijon-grubu","Bijon":"porya-bijon-grubu","Bijon DPS":"porya-bijon-grubu","Rulman":"porya-bijon-grubu","Somun / Cıvata":"porya-bijon-grubu",
+    "Süspansiyon Körüğü":"suspansiyon-grubu","Dingil":"suspansiyon-grubu","Yay":"suspansiyon-grubu","Burç / Muylu":"suspansiyon-grubu",
+  };
+  const GROUP_NAMES = {
+    "fren-diskleri-kampanalari":"Fren Diskleri & Kampanaları","fren-balata-pabucu":"Fren Balatası & Pabucu",
+    "kaliper-grubu":"Kaliper","fren-circiri-grubu":"Fren Cırcırı & Ayar","fren-korugu-hava":"Fren Körüğü & Hava Sistemi",
+    "valf-ventil-grubu":"Valf & Ventil","abs-ebs-grubu":"ABS & EBS & Sensör","kompresor-grubu":"Kompresör",
+    "porya-bijon-grubu":"Porya & Bijon","suspansiyon-grubu":"Süspansiyon & Dingil","diger-parcalar":"Diğer Parçalar",
+  };
+  const cats = [{ id: "all", name: "Tüm Ürünler", parent: null }];
+  const groupOrder = []; const groupChildren = {}; const ungrouped = [];
+  const sortedIds = Object.keys(catsMap).sort((x, y) => catsMap[x].localeCompare(catsMap[y], "tr"));
+  for (const cid of sortedIds) {
+    const catName = catsMap[cid];
+    const gid = HIERARCHY[catName];
+    if (gid) {
+      if (!groupChildren[gid]) { groupOrder.push(gid); groupChildren[gid] = []; }
+      groupChildren[gid].push({ id: cid, name: catName, parent: gid });
+    } else {
+      ungrouped.push({ id: cid, name: catName, parent: "diger-parcalar" });
+    }
+  }
+  for (const gid of groupOrder) {
+    cats.push({ id: gid, name: GROUP_NAMES[gid], parent: null, isGroup: true });
+    cats.push(...groupChildren[gid]);
+  }
+  if (ungrouped.length) {
+    cats.push({ id: "diger-parcalar", name: "Diğer Parçalar", parent: null, isGroup: true });
+    cats.push(...ungrouped);
+  }
 
   return { products: final, categories: cats };
 }

@@ -78,7 +78,15 @@ function useIsMobile(breakpoint = 768) {
 
 // Ürünler ve kategoriler /data/ klasöründen yüklenir
 let PRODUCTS = [];
-let CATS = [{id:"all",name:"Tüm Ürünler"}];
+let CATS = [{id:"all",name:"Tüm Ürünler",parent:null}];
+// Yardımcı: Grup ID'ye ait tüm alt kategori id'lerini döndür
+function getSubCatIds(groupId) {
+  return CATS.filter(c => c.parent === groupId).map(c => c.id);
+}
+// Grup listesi (isGroup:true olanlar)
+function getGroups() {
+  return CATS.filter(c => c.isGroup);
+}
 const VEHS = [{id:"all",name:"Tüm Araçlar"},{id:"kamyon",name:"Kamyon"},{id:"tir",name:"Tır"},{id:"otobus",name:"Otobüs"},{id:"dorse",name:"Dorse"}];
 let BRANDS = ["Ekersan"];
 function deriveBrands(prods) {
@@ -286,7 +294,7 @@ export default function App() {
           {/* Category nav — desktop only */}
           {!isMobile && <div style={{borderTop:"1px solid #eee",background:"#fafafa"}}>
             <div style={{maxWidth:1200,margin:"0 auto",padding:"0 20px",display:"flex",alignItems:"center",gap:0,overflowX:"auto"}}>
-              {[{l:t("home"),p:"home"},...CATS.filter(c=>c.id!=="all").map(c=>({l:c.name,p:"products",pr:{cat:c.id}})),{l:t("brands"),p:"brands"},{l:t("contact"),p:"contact"}].map((n,i) => (
+              {[{l:t("home"),p:"home"},...CATS.filter(c=>c.isGroup).map(c=>({l:c.name,p:"products",pr:{cat:c.id}})),{l:t("brands"),p:"brands"},{l:t("contact"),p:"contact"}].map((n,i) => (
                 <button key={i} onClick={() => go(n.p, n.pr||{})}
                   style={{padding:"10px 14px",background:"none",border:"none",fontSize:13,color:page===n.p?"#ff6000":"#555",fontWeight:page===n.p?600:400,borderBottom:page===n.p?"2px solid #ff6000":"2px solid transparent",whiteSpace:"nowrap"}}>
                   {n.l}
@@ -387,7 +395,7 @@ export default function App() {
               {/* Kategoriler */}
               <div>
                 <div style={{fontSize:14,fontWeight:700,color:"#fff",marginBottom:12}}>Kategoriler</div>
-                {CATS.filter(c=>c.id!=="all").slice(0,6).map((c,j) => ({l:c.name,p:"products",pr:{cat:c.id}})).map((item,j) => (
+                {CATS.filter(c=>c.isGroup).slice(0,6).map((c,j) => ({l:c.name,p:"products",pr:{cat:c.id}})).map((item,j) => (
                   <div key={j} onClick={()=>go(item.p,item.pr)} style={{fontSize:13,color:"#888",marginBottom:8,cursor:"pointer",transition:"color .15s"}} onMouseEnter={e=>e.currentTarget.style.color="#ff6000"} onMouseLeave={e=>e.currentTarget.style.color="#888"}>{item.l}</div>
                 ))}
               </div>
@@ -417,6 +425,51 @@ export default function App() {
   );
 }
 
+// ===== CATEGORY SIDEBAR (Hiyerarşik) =====
+function CategorySidebar({go, activeCat, onSelect, isFixed}) {
+  const [openGroup, setOpenGroup] = useState(null);
+  const groups = getGroups();
+  const fixedStyle = isFixed ? {position:"fixed",left:16,top:140,width:200,maxHeight:"calc(100vh - 160px)",overflowY:"auto",border:"1px solid #eee",borderRadius:8,background:"#fff",padding:"12px 0",zIndex:50,boxShadow:"0 2px 8px rgba(0,0,0,.04)"} : {};
+  return (
+    <aside style={fixedStyle}>
+      {isFixed && <div style={{padding:"4px 16px 10px",fontSize:13,fontWeight:700,color:"#1a1a1a",borderBottom:"1px solid #f0f0f0",marginBottom:6}}>Kategoriler</div>}
+      {onSelect && <div onClick={() => onSelect("all")} style={{padding:"8px 16px",fontSize:12,color:activeCat==="all"?"#ff6000":"#555",fontWeight:activeCat==="all"?700:400,cursor:"pointer"}}>Tüm Ürünler</div>}
+      {groups.map(g => {
+        const subs = CATS.filter(c => c.parent === g.id);
+        const isOpen = openGroup === g.id;
+        const isActive = activeCat === g.id || subs.some(s => s.id === activeCat);
+        return (
+          <div key={g.id}>
+            <div onClick={() => {
+              setOpenGroup(isOpen ? null : g.id);
+              if (onSelect) onSelect(g.id);
+              else go("products",{cat:g.id});
+            }}
+              style={{padding:"8px 16px",fontSize:12,fontWeight:600,color:isActive?"#ff6000":"#333",cursor:"pointer",display:"flex",justifyContent:"space-between",alignItems:"center",transition:"background .15s"}}
+              onMouseEnter={e=>{e.currentTarget.style.background="#fff5ee"}}
+              onMouseLeave={e=>{e.currentTarget.style.background="transparent"}}>
+              <span>{g.name}</span>
+              <span style={{fontSize:10,transition:"transform .2s",transform:isOpen?"rotate(90deg)":"rotate(0deg)"}}>▶</span>
+            </div>
+            {isOpen && subs.map(s => (
+              <div key={s.id} onClick={(e) => {
+                e.stopPropagation();
+                if (onSelect) onSelect(s.id);
+                else go("products",{cat:s.id});
+              }}
+                style={{padding:"6px 16px 6px 32px",fontSize:11,color:activeCat===s.id?"#ff6000":"#777",fontWeight:activeCat===s.id?600:400,cursor:"pointer",transition:"background .15s,color .15s"}}
+                onMouseEnter={e=>{e.currentTarget.style.background="#fff5ee";e.currentTarget.style.color="#ff6000"}}
+                onMouseLeave={e=>{e.currentTarget.style.background="transparent";e.currentTarget.style.color=activeCat===s.id?"#ff6000":"#777"}}>
+                {s.name}
+              </div>
+            ))}
+          </div>
+        );
+      })}
+    </aside>
+  );
+}
+
 // ===== PRODUCT CARD with Favorite =====
 function ProductCard({p}) {
   const {go, addToCart, favs, toggleFav, fp} = use$();
@@ -430,7 +483,7 @@ function ProductCard({p}) {
       onMouseEnter={e => e.currentTarget.style.boxShadow="0 4px 16px rgba(0,0,0,.08)"}
       onMouseLeave={e => e.currentTarget.style.boxShadow="none"}>
       <div style={{height:200,background:"#f9f9f9",display:"flex",alignItems:"center",justifyContent:"center",position:"relative"}}>
-        <img src={p.img} alt={p.name} style={{maxWidth:"80%",maxHeight:"80%",objectFit:"contain"}} onError={e=>{e.target.style.display="none"}}/>
+        <img src={p.img} alt={p.name} loading="lazy" width={240} height={160} style={{maxWidth:"80%",maxHeight:"80%",objectFit:"contain"}} onError={e=>{e.target.style.display="none"}}/>
         {disc > 0 && <span style={{position:"absolute",top:8,left:8,background:"#ff6000",color:"#fff",fontSize:12,fontWeight:700,padding:"3px 8px",borderRadius:4}}>%{disc}</span>}
         {/* Favorite button */}
         <button onClick={e => {e.stopPropagation(); toggleFav(p.id)}}
@@ -478,7 +531,7 @@ function RecentlyViewed() {
         {items.slice(0,6).map(p => (
           <div key={p.id} onClick={() => go("product",{id:p.id})}
             style={{minWidth:160,border:"1px solid #eee",borderRadius:8,padding:12,cursor:"pointer",background:"#fff",flexShrink:0}}>
-            <img src={p.img} alt="" style={{width:"100%",height:100,objectFit:"contain",marginBottom:8}} onError={e=>{e.target.style.display="none"}}/>
+            <img src={p.img} alt="" loading="lazy" width={120} height={100} style={{width:"100%",height:100,objectFit:"contain",marginBottom:8}} onError={e=>{e.target.style.display="none"}}/>
             <div style={{fontSize:12,fontWeight:500,color:"#333",lineHeight:1.3,marginBottom:4}}>{p.name}</div>
             <div style={{fontSize:14,fontWeight:700,color:"#1a1a1a"}}>{fp(p.price)}</div>
           </div>
@@ -495,20 +548,8 @@ function HomePage() {
   const discounted = PRODUCTS.filter(p => p.old);
 
   return <>
-    {/* Sol kenar kategori çubuğu (sadece geniş ekran) */}
-    {!isMobile && (
-      <aside style={{position:"fixed",left:16,top:140,width:200,maxHeight:"calc(100vh - 160px)",overflowY:"auto",border:"1px solid #eee",borderRadius:8,background:"#fff",padding:"12px 0",zIndex:50,boxShadow:"0 2px 8px rgba(0,0,0,.04)"}}>
-        <div style={{padding:"4px 16px 10px",fontSize:13,fontWeight:700,color:"#1a1a1a",borderBottom:"1px solid #f0f0f0",marginBottom:6}}>Kategoriler</div>
-        {CATS.filter(c=>c.id!=="all").map(c => (
-          <div key={c.id} onClick={() => go("products",{cat:c.id})}
-            style={{padding:"8px 16px",fontSize:12,color:"#555",cursor:"pointer",transition:"background .15s,color .15s"}}
-            onMouseEnter={e=>{e.currentTarget.style.background="#fff5ee";e.currentTarget.style.color="#ff6000"}}
-            onMouseLeave={e=>{e.currentTarget.style.background="transparent";e.currentTarget.style.color="#555"}}>
-            {c.name}
-          </div>
-        ))}
-      </aside>
-    )}
+    {/* Sol kenar kategori çubuğu (sadece geniş ekran) - hiyerarşik */}
+    {!isMobile && <CategorySidebar go={go} isFixed={true} />}
 
     {/* Banner */}
     <div style={{background:"linear-gradient(90deg, #ff6000, #ff8c00)",padding:"40px 0"}}>
@@ -586,9 +627,17 @@ function ProductsPage() {
   useEffect(() => {setCat(params?.cat||"all"); setVeh(params?.veh||"all"); setBrand(params?.brand||"all")}, [params]);
 
   const term = params?.q || q || "";
+  // Kategori filtresi: grup seçilmişse altındaki tüm alt kategorileri dahil et
+  const catMatch = useMemo(() => {
+    if (cat === "all") return null;
+    const group = CATS.find(c => c.id === cat && c.isGroup);
+    if (group) return getSubCatIds(cat);
+    return [cat];
+  }, [cat]);
+
   const items = useMemo(() => {
     let r = PRODUCTS.filter(p => {
-      if(cat!=="all" && p.cat!==cat) return false;
+      if(catMatch && !catMatch.includes(p.cat)) return false;
       if(veh!=="all" && !p.veh.includes(veh)) return false;
       if(brand!=="all" && p.brand!==brand) return false;
       if(term && ![p.name,p.brand,p.sku,p.oem].some(s=>s.toLowerCase().includes(term.toLowerCase()))) return false;
@@ -598,18 +647,27 @@ function ProductsPage() {
     else if(sort==="price-desc") r=[...r].sort((a,b)=>b.price-a.price);
     else r=[...r].sort((a,b)=>b.reviews-a.reviews);
     return r;
-  }, [cat,veh,brand,sort,term]);
+  }, [cat,catMatch,veh,brand,sort,term]);
 
   const activeFilters = (cat!=="all"?1:0)+(veh!=="all"?1:0)+(brand!=="all"?1:0);
 
+  // Aktif kategori adı (breadcrumb ve başlık için)
+  const catName = useMemo(() => {
+    if (cat === "all") return t("allProducts");
+    const found = CATS.find(c => c.id === cat);
+    return found ? found.name : t("allProducts");
+  }, [cat, t]);
+
   const FilterPanel = () => (
     <>
-      {[{t:t("category"),items:CATS,val:cat,set:setCat},{t:t("vehicleType"),items:VEHS,val:veh,set:setVeh}].map((sec,si) => (
-        <div key={si} style={{border:"1px solid #eee",borderRadius:8,padding:16,marginBottom:16}}>
-          <div style={{fontSize:14,fontWeight:700,marginBottom:12}}>{sec.t}</div>
-          {sec.items.map(item => <div key={item.id} onClick={() => sec.set(item.id)} style={{padding:"7px 0",fontSize:13,color:sec.val===item.id?"#ff6000":"#555",fontWeight:sec.val===item.id?600:400,cursor:"pointer"}}>{item.name}</div>)}
-        </div>
-      ))}
+      <div style={{border:"1px solid #eee",borderRadius:8,padding:16,marginBottom:16}}>
+        <div style={{fontSize:14,fontWeight:700,marginBottom:12}}>{t("category")}</div>
+        <CategorySidebar activeCat={cat} onSelect={setCat} />
+      </div>
+      <div style={{border:"1px solid #eee",borderRadius:8,padding:16,marginBottom:16}}>
+        <div style={{fontSize:14,fontWeight:700,marginBottom:12}}>{t("vehicleType")}</div>
+        {VEHS.map(item => <div key={item.id} onClick={() => setVeh(item.id)} style={{padding:"7px 0",fontSize:13,color:veh===item.id?"#ff6000":"#555",fontWeight:veh===item.id?600:400,cursor:"pointer"}}>{item.name}</div>)}
+      </div>
       <div style={{border:"1px solid #eee",borderRadius:8,padding:16}}>
         <div style={{fontSize:14,fontWeight:700,marginBottom:12}}>{t("brand")}</div>
         <div onClick={() => setBrand("all")} style={{padding:"7px 0",fontSize:13,color:brand==="all"?"#ff6000":"#555",fontWeight:brand==="all"?600:400,cursor:"pointer"}}>{t("allBrands")}</div>
@@ -620,7 +678,7 @@ function ProductsPage() {
 
   return (
     <div style={{maxWidth:1200,margin:"0 auto",padding:"20px"}}>
-      <div style={{fontSize:13,color:"#999",marginBottom:16}}><span style={{cursor:"pointer"}} onClick={() => go("home")}>{t("home")}</span> / <span style={{color:"#555"}}>{term ? `"${term}"` : cat!=="all" ? CATS.find(c=>c.id===cat)?.name : t("allProducts")}</span></div>
+      <div style={{fontSize:13,color:"#999",marginBottom:16}}><span style={{cursor:"pointer"}} onClick={() => go("home")}>{t("home")}</span> / <span style={{color:"#555"}}>{term ? `"${term}"` : catName}</span></div>
       
       <div style={{display:"flex",gap:20}}>
         {/* Desktop sidebar */}
@@ -628,7 +686,7 @@ function ProductsPage() {
 
         <div style={{flex:1}}>
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:16,gap:10,flexWrap:"wrap"}}>
-            <h1 style={{fontSize:isMobile?18:20,fontWeight:700}}>{term ? `"${term}"` : cat!=="all" ? CATS.find(c=>c.id===cat)?.name : t("allProducts")} <span style={{fontSize:14,fontWeight:400,color:"#999"}}>({items.length})</span></h1>
+            <h1 style={{fontSize:isMobile?18:20,fontWeight:700}}>{term ? `"${term}"` : catName} <span style={{fontSize:14,fontWeight:400,color:"#999"}}>({items.length})</span></h1>
             <div style={{display:"flex",gap:8,alignItems:"center"}}>
               {/* Mobile filter button */}
               {isMobile && <button onClick={() => setShowFilters(true)} style={{padding:"8px 14px",border:"1px solid #ddd",borderRadius:6,background:"#fff",fontSize:13,fontWeight:600,cursor:"pointer",display:"flex",alignItems:"center",gap:6}}>
@@ -686,7 +744,7 @@ function ProductDetailPage() {
   return (
     <div style={{maxWidth:1200,margin:"0 auto",padding:"20px"}}>
       <div style={{fontSize:13,color:"#999",marginBottom:20}}>
-        <span style={{cursor:"pointer"}} onClick={() => go("home")}>Ana Sayfa</span> / <span style={{cursor:"pointer"}} onClick={() => go("products",{cat:p.cat})}>{CATS.find(c=>c.id===p.cat)?.name}</span> / <span style={{color:"#555"}}>{p.name}</span>
+        <span style={{cursor:"pointer"}} onClick={() => go("home")}>Ana Sayfa</span> / {(() => { const sub = CATS.find(c=>c.id===p.cat); const grp = sub?.parent ? CATS.find(c=>c.id===sub.parent) : null; return <>{grp && <><span style={{cursor:"pointer"}} onClick={() => go("products",{cat:grp.id})}>{grp.name}</span> / </>}<span style={{cursor:"pointer"}} onClick={() => go("products",{cat:p.cat})}>{sub?.name || p.cat}</span></>; })()} / <span style={{color:"#555"}}>{p.name}</span>
       </div>
       <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr",gap:isMobile?20:32,marginBottom:40}}>
         {/* Image Gallery */}
@@ -795,7 +853,7 @@ function CartPage() {
             <div style={{border:"1px solid #eee",borderRadius:8}}>
               {cart.map((item,i) => (
                 <div key={item.id} style={{display:"flex",gap:16,padding:"16px",borderBottom:i<cart.length-1?"1px solid #f0f0f0":"none",alignItems:"center"}}>
-                  <img src={item.img} alt="" style={{width:72,height:72,objectFit:"contain",borderRadius:6,background:"#f9f9f9"}} onError={e=>{e.target.style.display="none"}}/>
+                  <img src={item.img} alt="" loading="lazy" width={72} height={72} style={{width:72,height:72,objectFit:"contain",borderRadius:6,background:"#f9f9f9"}} onError={e=>{e.target.style.display="none"}}/>
                   <div style={{flex:1}}><div style={{fontSize:14,fontWeight:600}}>{item.name}</div><div style={{fontSize:12,color:"#999"}}>{item.brand} · {item.sku}</div></div>
                   <div style={{display:"flex",alignItems:"center",border:"1px solid #ddd",borderRadius:6,overflow:"hidden"}}>
                     <button onClick={() => updateQty(item.id, item.qty-1)} style={{width:32,height:32,background:"#f9f9f9",border:"none",fontSize:16,color:"#555",cursor:"pointer"}}>−</button>
@@ -1065,7 +1123,7 @@ function AccountPage() {
           <div style={{border:"1px solid #eee",borderRadius:8,overflow:"hidden"}}>
             {frequentItems.map((item, i) => (
               <div key={item.id} style={{display:"flex",gap:14,padding:"14px 16px",borderBottom:i<frequentItems.length-1?"1px solid #f0f0f0":"none",alignItems:"center"}}>
-                <img src={item.img} alt="" style={{width:52,height:52,objectFit:"contain",borderRadius:6,background:"#f9f9f9"}} onError={e=>{e.target.style.display="none"}}/>
+                <img src={item.img} alt="" loading="lazy" width={52} height={52} style={{width:52,height:52,objectFit:"contain",borderRadius:6,background:"#f9f9f9"}} onError={e=>{e.target.style.display="none"}}/>
                 <div style={{flex:1}}>
                   <div style={{fontSize:14,fontWeight:600}}>{item.name}</div>
                   <div style={{fontSize:12,color:"#999"}}>{item.brand} · {item.sku}</div>
@@ -1609,7 +1667,7 @@ function MobileMenu() {
           ))}
           <div style={{height:1,background:"#eee",margin:"8px 20px"}} />
           <div style={{padding:"8px 20px",fontSize:12,fontWeight:700,color:"#999",textTransform:"uppercase"}}>{t("category")}</div>
-          {CATS.filter(c=>c.id!=="all").map(c => (
+          {CATS.filter(c=>c.isGroup).map(c => (
             <button key={c.id} onClick={() => {go("products",{cat:c.id});setMobileMenuOpen(false)}}
               style={{display:"block",width:"100%",padding:"10px 20px 10px 32px",background:"none",border:"none",fontSize:14,color:"#555",cursor:"pointer",textAlign:"left"}}>
               {c.name}
@@ -1658,7 +1716,7 @@ function ImageGallery({images, discount}) {
           {images.map((img, i) => (
             <div key={i} onClick={() => setActive(i)}
               style={{width:72,height:72,borderRadius:6,border:`2px solid ${active===i?"#ff6000":"#eee"}`,background:"#f9f9f9",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",flexShrink:0,transition:"border-color .2s"}}>
-              <img src={img} alt="" style={{maxWidth:"85%",maxHeight:"85%",objectFit:"contain"}} onError={e=>{e.target.style.display="none"}}/>
+              <img src={img} alt="" loading="lazy" width={72} height={72} style={{maxWidth:"85%",maxHeight:"85%",objectFit:"contain"}} onError={e=>{e.target.style.display="none"}}/>
             </div>
           ))}
         </div>
@@ -2006,7 +2064,7 @@ function AProds(){
         <AIn placeholder="OEM" value={form.oem} onChange={e=>setForm({...form,oem:e.target.value})}/>
         <AIn placeholder="Fiyat (₺)" type="number" value={form.price} onChange={e=>setForm({...form,price:e.target.value})}/>
         <AIn placeholder="Stok" type="number" value={form.stock} onChange={e=>setForm({...form,stock:e.target.value})}/>
-        <select value={form.cat} onChange={e=>setForm({...form,cat:e.target.value})} style={{padding:"9px",border:"1px solid #ddd",borderRadius:6,fontSize:13}}>{CATS.filter(c=>c.id!=="all").map(c=><option key={c.id} value={c.id}>{c.name}</option>)}</select>
+        <select value={form.cat} onChange={e=>setForm({...form,cat:e.target.value})} style={{padding:"9px",border:"1px solid #ddd",borderRadius:6,fontSize:13}}>{CATS.filter(c=>c.id!=="all"&&!c.isGroup).map(c=><option key={c.id} value={c.id}>{(c.parent?CATS.find(g=>g.id===c.parent)?.name+" > ":"") + c.name}</option>)}</select>
         <AIn placeholder="Açıklama" value={form.desc} onChange={e=>setForm({...form,desc:e.target.value})}/>
       </div>
       {/* Görsel Yükleme */}

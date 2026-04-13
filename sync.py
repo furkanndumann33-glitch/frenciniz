@@ -160,6 +160,76 @@ CATEGORY_PATTERNS = [
     (r"\bSET\s*KOMPLE\b|^SET\s|SET\s*SOL|SET\s*SAĞ", "Kaliper Tamir Seti"),
 ]
 
+# Alt kategori → ana kategori grup eşlemesi
+# Her alt kategori adı (detect_category çıktısı) hangi gruba ait
+CATEGORY_HIERARCHY = {
+    # Fren Diskleri & Kampanaları
+    "Fren Diski":               {"group_id": "fren-diskleri-kampanalari", "group_name": "Fren Diskleri & Kampanaları"},
+    "Fren Diski ABS'li":        {"group_id": "fren-diskleri-kampanalari", "group_name": "Fren Diskleri & Kampanaları"},
+    "Fren Kampanası":           {"group_id": "fren-diskleri-kampanalari", "group_name": "Fren Diskleri & Kampanaları"},
+    "Disk Bijonu/Civatası":     {"group_id": "fren-diskleri-kampanalari", "group_name": "Fren Diskleri & Kampanaları"},
+    # Fren Balatası & Pabucu
+    "Fren Balatası":            {"group_id": "fren-balata-pabucu", "group_name": "Fren Balatası & Pabucu"},
+    "Fren Pabucu":              {"group_id": "fren-balata-pabucu", "group_name": "Fren Balatası & Pabucu"},
+    "Perçin":                   {"group_id": "fren-balata-pabucu", "group_name": "Fren Balatası & Pabucu"},
+    # Kaliper
+    "Kaliper":                       {"group_id": "kaliper-grubu", "group_name": "Kaliper"},
+    "Kaliper Ayar Mekanizması":      {"group_id": "kaliper-grubu", "group_name": "Kaliper"},
+    "Kaliper Dürbün Takımı":         {"group_id": "kaliper-grubu", "group_name": "Kaliper"},
+    "Kaliper Kapak/Conta":           {"group_id": "kaliper-grubu", "group_name": "Kaliper"},
+    "Kaliper Perno Tamir Takımı":    {"group_id": "kaliper-grubu", "group_name": "Kaliper"},
+    "Kaliper Tamir Seti":            {"group_id": "kaliper-grubu", "group_name": "Kaliper"},
+    "Kaliper Tamir Takımı":          {"group_id": "kaliper-grubu", "group_name": "Kaliper"},
+    "Kaliper Tamir Takımı (Duco)":   {"group_id": "kaliper-grubu", "group_name": "Kaliper"},
+    "Kaliper Tamir Takımı (Elsa)":   {"group_id": "kaliper-grubu", "group_name": "Kaliper"},
+    "Kaliper Tamir Takımı (Frenco)": {"group_id": "kaliper-grubu", "group_name": "Kaliper"},
+    "Kaliper Tamir Takımı (Maxx22)": {"group_id": "kaliper-grubu", "group_name": "Kaliper"},
+    "Kaliper Tamir Takımı (Modulx)": {"group_id": "kaliper-grubu", "group_name": "Kaliper"},
+    "Kaliper Tamir Takımı (PAN)":    {"group_id": "kaliper-grubu", "group_name": "Kaliper"},
+    "Kaliper Tamir Takımı (Wabco)":  {"group_id": "kaliper-grubu", "group_name": "Kaliper"},
+    "Kaliper Toz Lastiği":           {"group_id": "kaliper-grubu", "group_name": "Kaliper"},
+    "Kızak":                         {"group_id": "kaliper-grubu", "group_name": "Kaliper"},
+    "Perno":                         {"group_id": "kaliper-grubu", "group_name": "Kaliper"},
+    # Fren Cırcırı & Ayar
+    "Fren Cırcırı":             {"group_id": "fren-circiri-grubu", "group_name": "Fren Cırcırı & Ayar"},
+    "Mekanik Fren Cırcırı":     {"group_id": "fren-circiri-grubu", "group_name": "Fren Cırcırı & Ayar"},
+    "Otomatik Fren Cırcırı":    {"group_id": "fren-circiri-grubu", "group_name": "Fren Cırcırı & Ayar"},
+    "Fren Ayar Parçaları":      {"group_id": "fren-circiri-grubu", "group_name": "Fren Cırcırı & Ayar"},
+    "Ayar Kolu / El Fren":      {"group_id": "fren-circiri-grubu", "group_name": "Fren Cırcırı & Ayar"},
+    # Fren Körüğü & Hava Sistemi
+    "Fren Körüğü":              {"group_id": "fren-korugu-hava", "group_name": "Fren Körüğü & Hava Sistemi"},
+    "Hava Kurutucu":            {"group_id": "fren-korugu-hava", "group_name": "Fren Körüğü & Hava Sistemi"},
+    "Hava Tüpü":                {"group_id": "fren-korugu-hava", "group_name": "Fren Körüğü & Hava Sistemi"},
+    "Filtre / Kartuş":          {"group_id": "fren-korugu-hava", "group_name": "Fren Körüğü & Hava Sistemi"},
+    # Valf & Ventil
+    "Valf / Ventil":                 {"group_id": "valf-ventil-grubu", "group_name": "Valf & Ventil"},
+    "Dağıtıcı Ventil":              {"group_id": "valf-ventil-grubu", "group_name": "Valf & Ventil"},
+    "Röle Ventili":                  {"group_id": "valf-ventil-grubu", "group_name": "Valf & Ventil"},
+    "Süspansiyon/Basınç Ventili":    {"group_id": "valf-ventil-grubu", "group_name": "Valf & Ventil"},
+    "Şanzıman Ventili":              {"group_id": "valf-ventil-grubu", "group_name": "Valf & Ventil"},
+    # ABS & EBS & Sensör
+    "ABS Sensörü/Modülü/Kablo":     {"group_id": "abs-ebs-grubu", "group_name": "ABS & EBS & Sensör"},
+    "EBS Modülatör":                 {"group_id": "abs-ebs-grubu", "group_name": "ABS & EBS & Sensör"},
+    "Sensör":                        {"group_id": "abs-ebs-grubu", "group_name": "ABS & EBS & Sensör"},
+    "Elektrik Kablosu":              {"group_id": "abs-ebs-grubu", "group_name": "ABS & EBS & Sensör"},
+    # Kompresör
+    "Kompresör Piston/Segman":       {"group_id": "kompresor-grubu", "group_name": "Kompresör"},
+    "Kompresör Silindiri":           {"group_id": "kompresor-grubu", "group_name": "Kompresör"},
+    "Kompresör Tamir Takımı":        {"group_id": "kompresor-grubu", "group_name": "Kompresör"},
+    # Porya & Bijon
+    "Porya":                    {"group_id": "porya-bijon-grubu", "group_name": "Porya & Bijon"},
+    "Bijon":                    {"group_id": "porya-bijon-grubu", "group_name": "Porya & Bijon"},
+    "Bijon DPS":                {"group_id": "porya-bijon-grubu", "group_name": "Porya & Bijon"},
+    "Rulman":                   {"group_id": "porya-bijon-grubu", "group_name": "Porya & Bijon"},
+    "Somun / Cıvata":           {"group_id": "porya-bijon-grubu", "group_name": "Porya & Bijon"},
+    # Süspansiyon & Dingil
+    "Süspansiyon Körüğü":       {"group_id": "suspansiyon-grubu", "group_name": "Süspansiyon & Dingil"},
+    "Dingil":                   {"group_id": "suspansiyon-grubu", "group_name": "Süspansiyon & Dingil"},
+    "Yay":                      {"group_id": "suspansiyon-grubu", "group_name": "Süspansiyon & Dingil"},
+    "Burç / Muylu":             {"group_id": "suspansiyon-grubu", "group_name": "Süspansiyon & Dingil"},
+}
+# CATEGORY_HIERARCHY'de olmayanlar otomatik olarak "Diğer Parçalar" grubuna düşer.
+
 def slug(name):
     if not name:
         return "diger"
@@ -358,9 +428,32 @@ def main():
         })
         pid += 1
 
-    cats_list = [{"id": "all", "name": "Tüm Ürünler"}]
+    # Hiyerarşik kategori listesi oluştur
+    cats_list = [{"id": "all", "name": "Tüm Ürünler", "parent": None}]
+    # Grup sırasını koru, her grubun alt kategorilerini topla
+    group_order = []
+    group_children = {}  # group_id -> [(cat_id, cat_name)]
+    ungrouped = []  # CATEGORY_HIERARCHY'de olmayan kategoriler
     for cid in sorted(cats_set.keys(), key=lambda k: cats_set[k].lower()):
-        cats_list.append({"id": cid, "name": cats_set[cid]})
+        cat_name = cats_set[cid]
+        hier = CATEGORY_HIERARCHY.get(cat_name)
+        if hier:
+            gid = hier["group_id"]
+            gname = hier["group_name"]
+            if gid not in group_children:
+                group_order.append((gid, gname))
+                group_children[gid] = []
+            group_children[gid].append({"id": cid, "name": cat_name, "parent": gid})
+        else:
+            ungrouped.append({"id": cid, "name": cat_name, "parent": "diger-parcalar"})
+    # Grup başlıkları + alt kategoriler
+    for gid, gname in group_order:
+        cats_list.append({"id": gid, "name": gname, "parent": None, "isGroup": True})
+        cats_list.extend(group_children[gid])
+    # Diğer Parçalar grubu
+    if ungrouped:
+        cats_list.append({"id": "diger-parcalar", "name": "Diğer Parçalar", "parent": None, "isGroup": True})
+        cats_list.extend(ungrouped)
 
     log(f"Stokta: {len(final)} ürün, {len(cats_list)-1} kategori")
 
@@ -403,7 +496,9 @@ def main():
     os.chdir(BASE_DIR)
     subprocess.run(["git", "add", "public/data/products.json", "public/data/categories.json"], check=True)
     now = datetime.now().strftime("%d.%m.%Y %H:%M")
-    msg = f"Otomatik ürün sync - {len(final)} ürün, {len(cats_list)-1} kategori ({now})"
+    sub_count = len([c for c in cats_list if c.get("parent") and not c.get("isGroup")])
+    grp_count = len([c for c in cats_list if c.get("isGroup")])
+    msg = f"Otomatik ürün sync - {len(final)} ürün, {grp_count} ana kategori, {sub_count} alt kategori ({now})"
     subprocess.run(["git", "commit", "-m", msg], check=True)
     subprocess.run(["git", "push", "origin", "master"], check=True)
     log(f"Tamamlandı! {len(final)} ürün senkronize edildi.")
