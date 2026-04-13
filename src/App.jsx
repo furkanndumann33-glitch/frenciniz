@@ -653,7 +653,7 @@ function RecentlyViewed() {
         {items.slice(0,6).map(p => (
           <div key={p.id} onClick={() => go("product",{id:p.id})}
             style={{minWidth:160,border:"1px solid #eee",borderRadius:8,padding:12,cursor:"pointer",background:"#fff",flexShrink:0}}>
-            <img src={p.img} alt="" loading="eager"width={120} height={100} style={{width:"100%",height:100,objectFit:"contain",marginBottom:8}} onError={e=>{e.target.style.display="none"}}/>
+            <img src={p.img} alt="" loading="eager" width={120} height={100} style={{width:"100%",height:100,objectFit:"contain",marginBottom:8}} onError={e=>{e.target.style.display="none"}}/>
             <div style={{fontSize:12,fontWeight:500,color:"#333",lineHeight:1.3,marginBottom:4}}>{p.name}</div>
             <div style={{fontSize:14,fontWeight:700,color:"#1a1a1a"}}>{fp(p.price)}</div>
           </div>
@@ -975,7 +975,7 @@ function CartPage() {
             <div style={{border:"1px solid #eee",borderRadius:8}}>
               {cart.map((item,i) => (
                 <div key={item.id} style={{display:"flex",gap:16,padding:"16px",borderBottom:i<cart.length-1?"1px solid #f0f0f0":"none",alignItems:"center"}}>
-                  <img src={item.img} alt="" loading="eager"width={72} height={72} style={{width:72,height:72,objectFit:"contain",borderRadius:6,background:"#f9f9f9"}} onError={e=>{e.target.style.display="none"}}/>
+                  <img src={item.img} alt="" loading="eager" width={72} height={72} style={{width:72,height:72,objectFit:"contain",borderRadius:6,background:"#f9f9f9"}} onError={e=>{e.target.style.display="none"}}/>
                   <div style={{flex:1}}><div style={{fontSize:14,fontWeight:600}}>{item.name}</div><div style={{fontSize:12,color:"#999"}}>{item.brand} · {item.sku}</div></div>
                   <div style={{display:"flex",alignItems:"center",border:"1px solid #ddd",borderRadius:6,overflow:"hidden"}}>
                     <button onClick={() => updateQty(item.id, item.qty-1)} style={{width:32,height:32,background:"#f9f9f9",border:"none",fontSize:16,color:"#555",cursor:"pointer"}}>−</button>
@@ -1245,7 +1245,7 @@ function AccountPage() {
           <div style={{border:"1px solid #eee",borderRadius:8,overflow:"hidden"}}>
             {frequentItems.map((item, i) => (
               <div key={item.id} style={{display:"flex",gap:14,padding:"14px 16px",borderBottom:i<frequentItems.length-1?"1px solid #f0f0f0":"none",alignItems:"center"}}>
-                <img src={item.img} alt="" loading="eager"width={52} height={52} style={{width:52,height:52,objectFit:"contain",borderRadius:6,background:"#f9f9f9"}} onError={e=>{e.target.style.display="none"}}/>
+                <img src={item.img} alt="" loading="eager" width={52} height={52} style={{width:52,height:52,objectFit:"contain",borderRadius:6,background:"#f9f9f9"}} onError={e=>{e.target.style.display="none"}}/>
                 <div style={{flex:1}}>
                   <div style={{fontSize:14,fontWeight:600}}>{item.name}</div>
                   <div style={{fontSize:12,color:"#999"}}>{item.brand} · {item.sku}</div>
@@ -1838,7 +1838,7 @@ function ImageGallery({images, discount}) {
           {images.map((img, i) => (
             <div key={i} onClick={() => setActive(i)}
               style={{width:72,height:72,borderRadius:6,border:`2px solid ${active===i?"#ff6000":"#eee"}`,background:"#f9f9f9",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",flexShrink:0,transition:"border-color .2s"}}>
-              <img src={img} alt="" loading="eager"width={72} height={72} style={{maxWidth:"85%",maxHeight:"85%",objectFit:"contain"}} onError={e=>{e.target.style.display="none"}}/>
+              <img src={img} alt="" loading="eager" width={72} height={72} style={{maxWidth:"85%",maxHeight:"85%",objectFit:"contain"}} onError={e=>{e.target.style.display="none"}}/>
             </div>
           ))}
         </div>
