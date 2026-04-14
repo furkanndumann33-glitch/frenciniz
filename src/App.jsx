@@ -411,7 +411,10 @@ export default function App() {
                 {!isMobile && rates.EUR>0 && <span style={{color:"#aaa",fontSize:11,borderLeft:"1px solid #444",paddingLeft:10}}>€1 = ₺{(1/rates.EUR).toFixed(2)} | $1 = ₺{(1/rates.USD).toFixed(2)}</span>}
               </div>
               <div style={{display:"flex",gap:12,alignItems:"center"}}>
-                {!isMobile && <span style={{color:"#ccc",fontSize:12}}>📞 0850 888 7881</span>}
+                {!isMobile && <>
+                  <a href="tel:+908508887881" style={{color:"#ccc",fontSize:12,textDecoration:"none"}} onMouseEnter={e=>e.currentTarget.style.color="#ff6000"} onMouseLeave={e=>e.currentTarget.style.color="#ccc"}>📞 0850 888 7881</a>
+                  <a href="https://wa.me/905456087008" target="_blank" rel="noopener noreferrer" style={{color:"#25D366",fontSize:12,textDecoration:"none",fontWeight:600}} onMouseEnter={e=>e.currentTarget.style.color="#4ade80"} onMouseLeave={e=>e.currentTarget.style.color="#25D366"}>💬 WhatsApp</a>
+                </>}
                 {/* Social media in header */}
                 {!isMobile && (socialMedia.facebook||socialMedia.instagram) && <div style={{display:"flex",gap:6,marginLeft:4}}>
                   {socialMedia.facebook&&<a href={socialMedia.facebook} target="_blank" rel="noopener noreferrer" style={{color:"#888",fontSize:12,textDecoration:"none"}} onMouseEnter={e=>e.currentTarget.style.color="#fff"} onMouseLeave={e=>e.currentTarget.style.color="#888"}>f</a>}
@@ -561,7 +564,7 @@ export default function App() {
                   <a href="https://facebook.com/frenciniz" target="_blank" rel="noopener noreferrer" style={{width:36,height:36,borderRadius:8,background:"#333",display:"flex",alignItems:"center",justifyContent:"center",color:"#888",fontSize:16,textDecoration:"none",transition:"background .2s"}} onMouseEnter={e=>{e.currentTarget.style.background="#1877F2";e.currentTarget.style.color="#fff"}} onMouseLeave={e=>{e.currentTarget.style.background="#333";e.currentTarget.style.color="#888"}}>f</a>
                   <a href="https://instagram.com/frenciniz" target="_blank" rel="noopener noreferrer" style={{width:36,height:36,borderRadius:8,background:"#333",display:"flex",alignItems:"center",justifyContent:"center",color:"#888",fontSize:16,textDecoration:"none",transition:"background .2s"}} onMouseEnter={e=>{e.currentTarget.style.background="#E4405F";e.currentTarget.style.color="#fff"}} onMouseLeave={e=>{e.currentTarget.style.background="#333";e.currentTarget.style.color="#888"}}>📷</a>
                 </div>
-                <div style={{marginTop:16,fontSize:13,color:"#888",lineHeight:2}}>📍 Hızırbey Mah. 1509 Sok. No:24, Isparta<br/>📞 0850 888 7881 – 0545 608 7008<br/>✉ info@frenciniz.com</div>
+                <div style={{marginTop:16,fontSize:13,color:"#888",lineHeight:2}}>📍 Hızırbey Mah. 1509 Sok. No:24, Isparta<br/>📞 <a href="tel:+908508887881" style={{color:"#888",textDecoration:"none"}} onMouseEnter={e=>e.currentTarget.style.color="#ff6000"} onMouseLeave={e=>e.currentTarget.style.color="#888"}>0850 888 7881</a> – <a href="https://wa.me/905456087008" target="_blank" rel="noopener noreferrer" style={{color:"#888",textDecoration:"none"}} onMouseEnter={e=>e.currentTarget.style.color="#25D366"} onMouseLeave={e=>e.currentTarget.style.color="#888"}>💬 0545 608 7008</a><br/>✉ <a href="mailto:info@frenciniz.com" style={{color:"#888",textDecoration:"none"}} onMouseEnter={e=>e.currentTarget.style.color="#ff6000"} onMouseLeave={e=>e.currentTarget.style.color="#888"}>info@frenciniz.com</a></div>
                 {/* Social Media Icons */}
                 <div style={{display:"flex",gap:10,marginTop:14}}>
                   {[{key:"facebook",icon:"f",color:"#1877F2",label:"Facebook"},{key:"instagram",icon:"📷",color:"#E4405F",label:"Instagram"},{key:"twitter",icon:"𝕏",color:"#000",label:"X"},{key:"youtube",icon:"▶",color:"#FF0000",label:"YouTube"}]
@@ -1019,7 +1022,14 @@ function ProductDetailPage() {
           <button key={tb.id} onClick={() => setTab(tb.id)} style={{padding:"12px 24px",background:"none",border:"none",borderBottom:`2px solid ${tab===tb.id?"#ff6000":"transparent"}`,color:tab===tb.id?"#1a1a1a":"#999",fontSize:14,fontWeight:tab===tb.id?600:400,cursor:"pointer",marginBottom:-1}}>{tb.l}</button>
         ))}
       </div>
-      {tab==="desc" && <p style={{fontSize:15,color:"#555",lineHeight:1.8,marginBottom:32}}>{p.desc}</p>}
+      {tab==="desc" && <div style={{fontSize:15,color:"#555",lineHeight:1.8,marginBottom:32,whiteSpace:"pre-line"}}>
+        {(p.desc||"").split(/(\b0850 888 7881\b|\b0545 608 7008\b|info@frenciniz\.com)/g).map((part, i) => {
+          if (part === "0850 888 7881") return <a key={i} href="tel:+908508887881" style={{color:"#ff6000",fontWeight:600,textDecoration:"none"}}>{part}</a>;
+          if (part === "0545 608 7008") return <a key={i} href="https://wa.me/905456087008" target="_blank" rel="noopener noreferrer" style={{color:"#25D366",fontWeight:600,textDecoration:"none"}}>{part}</a>;
+          if (part === "info@frenciniz.com") return <a key={i} href="mailto:info@frenciniz.com" style={{color:"#ff6000",textDecoration:"none"}}>{part}</a>;
+          return part;
+        })}
+      </div>}
       {tab==="specs" && <div style={{marginBottom:32}}>{Object.entries(p.specs).map(([k,v],i) => (<div key={k} style={{display:"flex",padding:"10px 0",borderBottom:"1px solid #f0f0f0"}}><span style={{width:200,color:"#999"}}>{k}</span><span style={{fontWeight:500,color:"#333"}}>{v}</span></div>))}</div>}
       {tab==="compat" && <div style={{marginBottom:32}}>
         {p.compat && p.compat.length > 0 ? <div style={{display:"flex",flexWrap:"wrap",gap:10}}>{p.compat.map((c,i) => {
@@ -1598,7 +1608,7 @@ function AccessibilityPage() {
 
       <div style={{marginTop:24,padding:"16px 20px",background:"#f9f9f9",borderRadius:8,border:"1px solid #eee",fontSize:13,color:"#888",lineHeight:2}}>
         📍 Hızırbey Mah. 1509 Sok. No:24, Isparta Merkez<br/>
-        📞 0850 888 7881 – 0545 608 7008<br/>
+        📞 <a href="tel:+908508887881" style={{color:"#ff6000",textDecoration:"none"}}>0850 888 7881</a> – <a href="https://wa.me/905456087008" target="_blank" rel="noopener noreferrer" style={{color:"#25D366",textDecoration:"none"}}>💬 0545 608 7008</a><br/>
         ✉ info@frenciniz.com
       </div>
     </div>
@@ -1707,7 +1717,7 @@ function KvkkPage() {
 
       <div style={{marginTop:24,padding:"16px 20px",background:"#f9f9f9",borderRadius:8,border:"1px solid #eee",fontSize:13,color:"#888",lineHeight:2}}>
         📍 Hızırbey Mah. 1509 Sok. No:24, Isparta Merkez<br/>
-        📞 0850 888 7881 – 0545 608 7008<br/>
+        📞 <a href="tel:+908508887881" style={{color:"#ff6000",textDecoration:"none"}}>0850 888 7881</a> – <a href="https://wa.me/905456087008" target="_blank" rel="noopener noreferrer" style={{color:"#25D366",textDecoration:"none"}}>💬 0545 608 7008</a><br/>
         ✉ info@frenciniz.com
       </div>
     </div>
@@ -1792,7 +1802,7 @@ function ReturnPolicyPage() {
 
       <div style={{marginTop:24,padding:"16px 20px",background:"#f9f9f9",borderRadius:8,border:"1px solid #eee",fontSize:13,color:"#888",lineHeight:2}}>
         📍 Hızırbey Mah. 1509 Sok. No:24, Isparta Merkez<br/>
-        📞 0850 888 7881 – 0545 608 7008<br/>
+        📞 <a href="tel:+908508887881" style={{color:"#ff6000",textDecoration:"none"}}>0850 888 7881</a> – <a href="https://wa.me/905456087008" target="_blank" rel="noopener noreferrer" style={{color:"#25D366",textDecoration:"none"}}>💬 0545 608 7008</a><br/>
         ✉ info@frenciniz.com
       </div>
     </div>
@@ -1976,7 +1986,7 @@ function ShippingPolicyPage() {
 
       <div style={{marginTop:24,padding:"16px 20px",background:"#f9f9f9",borderRadius:8,border:"1px solid #eee",fontSize:13,color:"#888",lineHeight:2}}>
         📍 Hızırbey Mah. 1509 Sok. No:24, Isparta Merkez<br/>
-        📞 0850 888 7881 – 0545 608 7008<br/>
+        📞 <a href="tel:+908508887881" style={{color:"#ff6000",textDecoration:"none"}}>0850 888 7881</a> – <a href="https://wa.me/905456087008" target="_blank" rel="noopener noreferrer" style={{color:"#25D366",textDecoration:"none"}}>💬 0545 608 7008</a><br/>
         ✉ info@frenciniz.com
       </div>
     </div>
@@ -2027,7 +2037,7 @@ function PrivacyPage() {
 
       <div style={{marginTop:24,padding:"16px 20px",background:"#f9f9f9",borderRadius:8,border:"1px solid #eee",fontSize:13,color:"#888",lineHeight:2}}>
         📍 Hızırbey Mah. 1509 Sok. No:24, Isparta Merkez<br/>
-        📞 0850 888 7881 – 0545 608 7008<br/>
+        📞 <a href="tel:+908508887881" style={{color:"#ff6000",textDecoration:"none"}}>0850 888 7881</a> – <a href="https://wa.me/905456087008" target="_blank" rel="noopener noreferrer" style={{color:"#25D366",textDecoration:"none"}}>💬 0545 608 7008</a><br/>
         ✉ info@frenciniz.com
       </div>
     </div>
@@ -2048,12 +2058,20 @@ function ContactPage() {
         </div>
       </div>
       <div>
-        {[{icon:"📍",label:en?"Address":"Adres",value:"Hızırbey Mah. 1509 Sok. No:24, Isparta Merkez"},{icon:"📞",label:en?"Phone":"Telefon",value:"0850 888 7881 – 0545 608 7008"},{icon:"✉️",label:en?"Email":"E-posta",value:"info@frenciniz.com"},{icon:"⏰",label:en?"Working Hours":"Çalışma",value:en?"Mon–Sat 08:00–18:00":"Pzt–Cmt 08:00–18:00"},{icon:"💬",label:"WhatsApp",value:"0850 888 7881"}].map((c,i) => (
-          <div key={i} style={{display:"flex",gap:14,alignItems:"center",padding:16,borderBottom:"1px solid #f0f0f0"}}>
+        {[
+          {icon:"📍",label:en?"Address":"Adres",value:"Hızırbey Mah. 1509 Sok. No:24, Isparta Merkez",href:"https://maps.google.com/?q=Hızırbey+Mah+1509+Sok+24+Isparta"},
+          {icon:"📞",label:en?"Phone":"Telefon",value:"0850 888 7881",href:"tel:+908508887881"},
+          {icon:"💬",label:"WhatsApp",value:"0545 608 7008",href:"https://wa.me/905456087008",color:"#25D366"},
+          {icon:"✉️",label:en?"Email":"E-posta",value:"info@frenciniz.com",href:"mailto:info@frenciniz.com"},
+          {icon:"⏰",label:en?"Working Hours":"Çalışma",value:en?"Mon–Sat 08:00–18:00":"Pzt–Cmt 08:00–18:00"},
+        ].map((c,i) => {
+          const inner = <>
             <span style={{fontSize:24}}>{c.icon}</span>
-            <div><div style={{fontSize:12,color:"#999"}}>{c.label}</div><div style={{fontSize:15,fontWeight:600}}>{c.value}</div></div>
-          </div>
-        ))}
+            <div><div style={{fontSize:12,color:"#999"}}>{c.label}</div><div style={{fontSize:15,fontWeight:600,color:c.color||"#333"}}>{c.value}</div></div>
+          </>;
+          return c.href ? <a key={i} href={c.href} target={c.href.startsWith("http")?"_blank":undefined} rel="noopener noreferrer" style={{display:"flex",gap:14,alignItems:"center",padding:16,borderBottom:"1px solid #f0f0f0",textDecoration:"none",cursor:"pointer",transition:"background .15s"}} onMouseEnter={e=>e.currentTarget.style.background="#f9f9f9"} onMouseLeave={e=>e.currentTarget.style.background="transparent"}>{inner}</a>
+            : <div key={i} style={{display:"flex",gap:14,alignItems:"center",padding:16,borderBottom:"1px solid #f0f0f0"}}>{inner}</div>;
+        })}
       </div>
     </div></div>;
 }
