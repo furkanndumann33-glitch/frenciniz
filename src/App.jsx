@@ -680,12 +680,12 @@ export default function App() {
             <div style={{maxWidth:1200,margin:"0 auto",padding:"0 20px",display:"flex",alignItems:isMobile?"flex-start":"center",gap:isMobile?12:20,flexDirection:isMobile?"column":"row"}}>
               <div style={{flex:1}}>
                 <div style={{fontSize:13,color:"#ccc",lineHeight:1.7}}>
-                  🍪 Bu web sitesi, deneyiminizi iyileştirmek ve hizmetlerimizi sunmak için çerezler kullanmaktadır. Sitemizi kullanarak <span onClick={()=>go("privacy")} style={{color:"#ff6000",cursor:"pointer",textDecoration:"underline"}}>Gizlilik Politikamızı</span> ve <span onClick={()=>go("kvkk")} style={{color:"#ff6000",cursor:"pointer",textDecoration:"underline"}}>KVKK Aydınlatma Metnimizi</span> kabul etmiş sayılırsınız.
+                  🍪 {lang==="en"?<>This website uses cookies to improve your experience and provide our services. By using our site you accept our <span onClick={()=>go("privacy")} style={{color:"#ff6000",cursor:"pointer",textDecoration:"underline"}}>Privacy Policy</span> and <span onClick={()=>go("kvkk")} style={{color:"#ff6000",cursor:"pointer",textDecoration:"underline"}}>GDPR Disclosure</span>.</>:<>Bu web sitesi, deneyiminizi iyileştirmek ve hizmetlerimizi sunmak için çerezler kullanmaktadır. Sitemizi kullanarak <span onClick={()=>go("privacy")} style={{color:"#ff6000",cursor:"pointer",textDecoration:"underline"}}>Gizlilik Politikamızı</span> ve <span onClick={()=>go("kvkk")} style={{color:"#ff6000",cursor:"pointer",textDecoration:"underline"}}>KVKK Aydınlatma Metnimizi</span> kabul etmiş sayılırsınız.</>}
                 </div>
               </div>
               <div style={{display:"flex",gap:8,flexShrink:0}}>
-                <button onClick={()=>setCookieOk(true)} style={{padding:"10px 24px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:13,fontWeight:600,cursor:"pointer"}}>Kabul Et</button>
-                <button onClick={()=>setCookieOk(true)} style={{padding:"10px 24px",background:"transparent",color:"#999",border:"1px solid #555",borderRadius:6,fontSize:13,fontWeight:500,cursor:"pointer"}}>Sadece Gerekli</button>
+                <button onClick={()=>setCookieOk(true)} style={{padding:"10px 24px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:13,fontWeight:600,cursor:"pointer"}}>{lang==="en"?"Accept":"Kabul Et"}</button>
+                <button onClick={()=>setCookieOk(true)} style={{padding:"10px 24px",background:"transparent",color:"#999",border:"1px solid #555",borderRadius:6,fontSize:13,fontWeight:500,cursor:"pointer"}}>{lang==="en"?"Essential Only":"Sadece Gerekli"}</button>
               </div>
             </div>
           </div>
@@ -701,7 +701,7 @@ export default function App() {
                 <div style={{fontSize:13,color:"#888"}}>{t("newsletterDesc")}</div>
               </div>
               <div style={{display:"flex",gap:0,flexShrink:0}}>
-                <input placeholder="E-posta" style={{padding:"10px 14px",border:"1px solid #444",borderRight:"none",borderRadius:"6px 0 0 6px",background:"#333",color:"#fff",fontSize:13,width:isMobile?"100%":240,flex:isMobile?1:"none",outline:"none"}}/>
+                <input placeholder={lang==="en"?"Email":"E-posta"} style={{padding:"10px 14px",border:"1px solid #444",borderRight:"none",borderRadius:"6px 0 0 6px",background:"#333",color:"#fff",fontSize:13,width:isMobile?"100%":240,flex:isMobile?1:"none",outline:"none"}}/>
                 <button style={{padding:"10px 20px",background:"#ff6000",color:"#fff",border:"none",borderRadius:"0 6px 6px 0",fontSize:13,fontWeight:600,cursor:"pointer"}}>{t("subscribe")}</button>
               </div>
             </div>
@@ -709,7 +709,7 @@ export default function App() {
             <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr 1fr":"2fr 1fr 1fr 1fr",gap:isMobile?20:32}}>
               <div style={isMobile?{gridColumn:"1 / -1"}:{}}>
                 <div style={{fontSize:22,fontWeight:800,color:"#ff6000",marginBottom:12,cursor:"pointer"}} onClick={()=>go("home")}>frenciniz</div>
-                <p style={{fontSize:13,color:"#888",lineHeight:1.7}}>Otobüs, kamyon, tır ve dorse için fren aksamı ürünleri.</p>
+                <p style={{fontSize:13,color:"#888",lineHeight:1.7}}>{lang==="en"?"Brake parts for buses, trucks, tractors and trailers.":"Otobüs, kamyon, tır ve dorse için fren aksamı ürünleri."}</p>
                 <div style={{display:"flex",gap:10,marginTop:14}}>
                   <a href="https://facebook.com/frenciniz" target="_blank" rel="noopener noreferrer" style={{width:36,height:36,borderRadius:8,background:"#333",display:"flex",alignItems:"center",justifyContent:"center",color:"#888",fontSize:16,textDecoration:"none",transition:"background .2s"}} onMouseEnter={e=>{e.currentTarget.style.background="#1877F2";e.currentTarget.style.color="#fff"}} onMouseLeave={e=>{e.currentTarget.style.background="#333";e.currentTarget.style.color="#888"}}>f</a>
                   <a href="https://instagram.com/frenciniz" target="_blank" rel="noopener noreferrer" style={{width:36,height:36,borderRadius:8,background:"#333",display:"flex",alignItems:"center",justifyContent:"center",color:"#888",fontSize:16,textDecoration:"none",transition:"background .2s"}} onMouseEnter={e=>{e.currentTarget.style.background="#E4405F";e.currentTarget.style.color="#fff"}} onMouseLeave={e=>{e.currentTarget.style.background="#333";e.currentTarget.style.color="#888"}}>📷</a>
@@ -727,7 +727,7 @@ export default function App() {
                         title={s.label}>{s.icon}</a>
                     ))}
                   {!socialMedia.facebook&&!socialMedia.instagram&&!socialMedia.twitter&&!socialMedia.youtube&&
-                    <span style={{fontSize:11,color:"#555"}}>Sosyal medya hesapları admin panelinden eklenebilir.</span>}
+                    <span style={{fontSize:11,color:"#555"}}>{lang==="en"?"Social media accounts can be added from admin panel.":"Sosyal medya hesapları admin panelinden eklenebilir."}</span>}
                 </div>
               </div>
               {/* Kategoriler */}
@@ -739,15 +739,15 @@ export default function App() {
               </div>
               {/* Bilgi */}
               <div>
-                <div style={{fontSize:14,fontWeight:700,color:"#fff",marginBottom:12}}>Bilgi</div>
-                {[{l:"Hakkımızda",p:"about"},{l:"Şirket Bilgileri",p:"company"},{l:"SSS",p:"faq"},{l:"Gönderim Politikası",p:"shipping-policy"},{l:"İade Politikası",p:"return-policy"},{l:"Şartlar ve Koşullar",p:"terms"},{l:"Gizlilik Politikası",p:"privacy"},{l:"KVKK Aydınlatma",p:"kvkk"},{l:"Erişilebilirlik",p:"accessibility"}].map((item,j) => (
+                <div style={{fontSize:14,fontWeight:700,color:"#fff",marginBottom:12}}>{lang==="en"?"Information":"Bilgi"}</div>
+                {[{l:lang==="en"?"About Us":"Hakkımızda",p:"about"},{l:lang==="en"?"Company Info":"Şirket Bilgileri",p:"company"},{l:lang==="en"?"FAQ":"SSS",p:"faq"},{l:lang==="en"?"Shipping Policy":"Gönderim Politikası",p:"shipping-policy"},{l:lang==="en"?"Return Policy":"İade Politikası",p:"return-policy"},{l:lang==="en"?"Terms & Conditions":"Şartlar ve Koşullar",p:"terms"},{l:lang==="en"?"Privacy Policy":"Gizlilik Politikası",p:"privacy"},{l:lang==="en"?"GDPR Disclosure":"KVKK Aydınlatma",p:"kvkk"},{l:lang==="en"?"Accessibility":"Erişilebilirlik",p:"accessibility"}].map((item,j) => (
                   <div key={j} onClick={()=>go(item.p)} style={{fontSize:13,color:"#888",marginBottom:8,cursor:"pointer",transition:"color .15s"}} onMouseEnter={e=>e.currentTarget.style.color="#ff6000"} onMouseLeave={e=>e.currentTarget.style.color="#888"}>{item.l}</div>
                 ))}
               </div>
               {/* Hesap */}
               <div>
-                <div style={{fontSize:14,fontWeight:700,color:"#fff",marginBottom:12}}>Hesap</div>
-                {[{l:"Giriş Yap",p:"auth"},{l:"Kayıt Ol",p:"auth"},{l:"Siparişlerim",p:"account"},{l:"Favorilerim",p:"favs"}].map((item,j) => (
+                <div style={{fontSize:14,fontWeight:700,color:"#fff",marginBottom:12}}>{lang==="en"?"Account":"Hesap"}</div>
+                {[{l:lang==="en"?"Sign In":"Giriş Yap",p:"auth"},{l:lang==="en"?"Sign Up":"Kayıt Ol",p:"auth"},{l:lang==="en"?"My Orders":"Siparişlerim",p:"account"},{l:lang==="en"?"My Favorites":"Favorilerim",p:"favs"}].map((item,j) => (
                   <div key={j} onClick={()=>go(item.p)} style={{fontSize:13,color:"#888",marginBottom:8,cursor:"pointer",transition:"color .15s"}} onMouseEnter={e=>e.currentTarget.style.color="#ff6000"} onMouseLeave={e=>e.currentTarget.style.color="#888"}>{item.l}</div>
                 ))}
               </div>
