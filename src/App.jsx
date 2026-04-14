@@ -303,7 +303,7 @@ export default function App() {
   const cartTotal = cart.reduce((s,c) => s + c.price * c.qty, 0);
   const discount = couponApplied ? Math.round(cartTotal * 0.1) : 0;
 
-  const ctx = useMemo(() => ({page, params, go, cart, addToCart, updateQty, removeItem, cartCount, cartTotal, q, setQ, favs, toggleFav, viewed, addViewed, user, setUser, coupon, setCoupon, couponApplied, setCouponApplied, discount, stockAlerts, addStockAlert, chatOpen, setChatOpen, chatMessages, setChatMessages, pastOrders, completePurchase, lang, setLang, curr, setCurr, t, isMobile, mobileMenuOpen, setMobileMenuOpen, mobileFilterOpen, setMobileFilterOpen, fp, admin, setAdmin, socialMedia, setSocialMedia}), [page, params, go, cart, addToCart, updateQty, removeItem, cartCount, cartTotal, q, favs, toggleFav, viewed, addViewed, user, coupon, couponApplied, discount, stockAlerts, addStockAlert, chatOpen, chatMessages, pastOrders, completePurchase, lang, curr, t, isMobile, mobileMenuOpen, mobileFilterOpen, fp, admin]);
+  const ctx = useMemo(() => ({page, params, go, cart, addToCart, updateQty, removeItem, cartCount, cartTotal, q, setQ, favs, toggleFav, viewed, addViewed, user, setUser, coupon, setCoupon, couponApplied, setCouponApplied, discount, stockAlerts, addStockAlert, chatOpen, setChatOpen, chatMessages, setChatMessages, pastOrders, completePurchase, lang, setLang, curr, setCurr, t, isMobile, mobileMenuOpen, setMobileMenuOpen, mobileFilterOpen, setMobileFilterOpen, fp, admin, setAdmin, socialMedia, setSocialMedia, products, cats, dataLoaded}), [page, params, go, cart, addToCart, updateQty, removeItem, cartCount, cartTotal, q, favs, toggleFav, viewed, addViewed, user, coupon, couponApplied, discount, stockAlerts, addStockAlert, chatOpen, chatMessages, pastOrders, completePurchase, lang, curr, t, isMobile, mobileMenuOpen, mobileFilterOpen, fp, admin, products, cats, dataLoaded]);
 
   return (
     <Ctx.Provider value={ctx}>
@@ -2424,8 +2424,9 @@ function ADash(){
 }
 
 function AProds(){
-  const [prods,setProds]=useState(()=>PRODUCTS);
-  useEffect(()=>{if(PRODUCTS.length>0) setProds([...PRODUCTS])},[PRODUCTS.length]);
+  const {products:ctxProds} = use$();
+  const [prods,setProds]=useState(()=>ctxProds||PRODUCTS||[]);
+  useEffect(()=>{if(ctxProds && ctxProds.length>0) setProds(ctxProds)},[ctxProds]);
   const [editId,setEditId]=useState(null);
   const [showAdd,setShowAdd]=useState(false);
   const [form,setForm]=useState({name:"",brand:"",sku:"",oem:"",price:"",stock:"",cat:"disk",desc:""});
@@ -2482,8 +2483,9 @@ function AProds(){
 }
 
 function ACats(){
-  const [cats,setCats]=useState(()=>CATS.filter(c=>c.id!=="all"));
-  useEffect(()=>{if(CATS.length>1) setCats(CATS.filter(c=>c.id!=="all"))},[CATS.length]);
+  const {cats:ctxCats, products:ctxProds} = use$();
+  const [cats,setCats]=useState(()=>(ctxCats||CATS).filter(c=>c.id!=="all"));
+  useEffect(()=>{if(ctxCats && ctxCats.length>1) setCats(ctxCats.filter(c=>c.id!=="all"))},[ctxCats]);
   const [n,setN]=useState("");
   const groups = cats.filter(c=>c.isGroup);
   const subs = (gid) => cats.filter(c=>c.parent===gid);
@@ -2493,12 +2495,12 @@ function ACats(){
       <div style={{fontSize:13,fontWeight:700,color:"#ff6000",padding:"8px 0",borderBottom:"1px solid #eee"}}>{g.name} ({subs(g.id).length})</div>
       {subs(g.id).map((c,i)=><div key={c.id} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"8px 0 8px 16px",borderBottom:"1px solid #f8f8f8"}}>
         <span style={{fontSize:13}}>{c.name}</span>
-        <span style={{fontSize:11,color:"#999"}}>{PRODUCTS.filter(p=>p.cat===c.id).length} ürün</span>
+        <span style={{fontSize:11,color:"#999"}}>{(ctxProds||PRODUCTS).filter(p=>p.cat===c.id).length} ürün</span>
       </div>)}
     </div>)}
     {ungrouped.length>0 && ungrouped.map((c,i)=><div key={c.id} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"8px 0",borderBottom:"1px solid #f0f0f0"}}>
       <span style={{fontSize:13}}>{c.name}</span>
-      <span style={{fontSize:11,color:"#999"}}>{PRODUCTS.filter(p=>p.cat===c.id).length} ürün</span>
+      <span style={{fontSize:11,color:"#999"}}>{(ctxProds||PRODUCTS).filter(p=>p.cat===c.id).length} ürün</span>
     </div>)}
   </ACard>;
 }
