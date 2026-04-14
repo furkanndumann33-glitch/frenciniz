@@ -939,7 +939,7 @@ function ProductsPage() {
 
 // ===== PRODUCT DETAIL =====
 function ProductDetailPage() {
-  const {params, go, addToCart, addViewed, favs, toggleFav, addStockAlert, isMobile, t, fp} = use$();
+  const {params, go, addToCart, addViewed, favs, toggleFav, addStockAlert, isMobile, t, fp, lang} = use$();
   const p = PRODUCTS.find(x => x.id === params?.id);
   const [qty, setQty] = useState(1);
   const [tab, setTab] = useState("desc");
