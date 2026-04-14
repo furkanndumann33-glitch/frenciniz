@@ -50,6 +50,7 @@ const TR = {
   // Cookie
   cookieText:"Bu siteyi kullanarak",cookieLink:"Gizlilik Politikamızı",cookieAccept:"Kabul Et",
   brakeParts:"Fren Aksamları",
+  heavyDuty:"Ağır Vasıta",
 };
 const EN = {
   search:"Search product, part code or OEM...",searchBtn:"Search",cart:"My Cart",login:"Sign In",favs:"Favorites",
@@ -100,6 +101,7 @@ const EN = {
   // Cookie
   cookieText:"By using this site you agree to our",cookieLink:"Privacy Policy",cookieAccept:"Accept",
   brakeParts:"Brake Parts",
+  heavyDuty:"Heavy Duty",
 };
 const LANGS = {tr:TR, en:EN};
 
@@ -630,7 +632,11 @@ function ProductCard({p}) {
         <div style={{fontSize:14,fontWeight:500,color:"#1a1a1a",lineHeight:1.35,marginBottom:4,minHeight:38}}>{p.name}</div>
         <div style={{fontSize:11,color:"#bbb",marginBottom:4}}>{p.sku}</div>
         {p.compat && p.compat.length > 0 && <div style={{display:"flex",flexWrap:"wrap",gap:3,marginBottom:6}}>
-          {p.compat.slice(0,4).map((c,i) => <span key={i} style={{fontSize:9,padding:"2px 6px",background:"#f0f4ff",color:"#336",borderRadius:3,fontWeight:600}}>{c}</span>)}
+          {p.compat.slice(0,4).map((c,i) => {
+            const isUniv = c==="Ağır Vasıta";
+            const label = isUniv && t("heavyDuty") ? t("heavyDuty") : c;
+            return <span key={i} style={{fontSize:9,padding:"2px 6px",background:isUniv?"#fff4e6":"#f0f4ff",color:isUniv?"#c05200":"#336",borderRadius:3,fontWeight:600}}>{label}</span>;
+          })}
           {p.compat.length > 4 && <span style={{fontSize:9,padding:"2px 6px",color:"#999"}}>+{p.compat.length-4}</span>}
         </div>}
         <div style={{display:"flex",alignItems:"center",justifyContent:"space-between"}}>
@@ -949,7 +955,11 @@ function ProductDetailPage() {
       {tab==="desc" && <p style={{fontSize:15,color:"#555",lineHeight:1.8,marginBottom:32}}>{p.desc}</p>}
       {tab==="specs" && <div style={{marginBottom:32}}>{Object.entries(p.specs).map(([k,v],i) => (<div key={k} style={{display:"flex",padding:"10px 0",borderBottom:"1px solid #f0f0f0"}}><span style={{width:200,color:"#999"}}>{k}</span><span style={{fontWeight:500,color:"#333"}}>{v}</span></div>))}</div>}
       {tab==="compat" && <div style={{marginBottom:32}}>
-        {p.compat && p.compat.length > 0 ? <div style={{display:"flex",flexWrap:"wrap",gap:10}}>{p.compat.map((c,i) => <div key={i} onClick={() => go("products",{q:c})} style={{padding:"12px 20px",background:"#f0f4ff",borderRadius:8,fontSize:14,fontWeight:600,color:"#336",cursor:"pointer",border:"1px solid #dde4f0",transition:"all .2s"}} onMouseEnter={e=>{e.currentTarget.style.borderColor="#ff6000";e.currentTarget.style.color="#ff6000"}} onMouseLeave={e=>{e.currentTarget.style.borderColor="#dde4f0";e.currentTarget.style.color="#336"}}>{c}</div>)}</div> : <div style={{color:"#999",fontSize:14}}>{lang==="en"?"No compatibility info available":"Uyumluluk bilgisi bulunamadı"}</div>}
+        {p.compat && p.compat.length > 0 ? <div style={{display:"flex",flexWrap:"wrap",gap:10}}>{p.compat.map((c,i) => {
+          const isUniv = c==="Ağır Vasıta";
+          const label = isUniv ? (lang==="en"?"Heavy Duty (Universal)":"Ağır Vasıta (Evrensel)") : c;
+          return <div key={i} onClick={() => go("products",{q:c})} style={{padding:"12px 20px",background:isUniv?"#fff4e6":"#f0f4ff",borderRadius:8,fontSize:14,fontWeight:600,color:isUniv?"#c05200":"#336",cursor:"pointer",border:`1px solid ${isUniv?"#ffd9b3":"#dde4f0"}`,transition:"all .2s"}} onMouseEnter={e=>{e.currentTarget.style.borderColor="#ff6000";e.currentTarget.style.color="#ff6000"}} onMouseLeave={e=>{e.currentTarget.style.borderColor=isUniv?"#ffd9b3":"#dde4f0";e.currentTarget.style.color=isUniv?"#c05200":"#336"}}>{label}</div>;
+        })}</div> : <div style={{color:"#999",fontSize:14}}>{lang==="en"?"No compatibility info available":"Uyumluluk bilgisi bulunamadı"}</div>}
       </div>}
       {related.length > 0 && <div><h2 style={{fontSize:20,fontWeight:700,marginBottom:16}}>{t("similarProducts")}</h2><div style={{display:"grid",gridTemplateColumns:isMobile?"repeat(2,1fr)":"repeat(4,1fr)",gap:isMobile?10:16}}>{related.map(rp => <ProductCard key={rp.id} p={rp} />)}</div></div>}
       <RecentlyViewed />
