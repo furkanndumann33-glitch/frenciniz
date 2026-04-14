@@ -1371,22 +1371,23 @@ function AuthPage() {
   const [showPw, setShowPw] = useState(false);
   const [otpSent, setOtpSent] = useState(false);
   const [regData, setRegData] = useState({name:"",email:"",phone:"",password:""});
-  const {go, setUser} = use$();
+  const {go, setUser, lang} = use$();
+  const en = lang === "en";
 
   const IS = {width:"100%",padding:"10px 14px",border:"1px solid #ddd",borderRadius:6,fontSize:14};
 
   if(mode === "forgot") return (
     <div style={{maxWidth:400,margin:"40px auto",padding:"0 20px"}}>
       <div style={{border:"1px solid #eee",borderRadius:8,padding:28}}>
-        <h2 style={{fontSize:20,fontWeight:700,marginBottom:8}}>Şifremi Unuttum</h2>
-        <p style={{fontSize:14,color:"#888",marginBottom:20}}>Kayıtlı e-posta adresinizi veya telefon numaranızı girin.</p>
-        <input placeholder="E-posta veya telefon numarası" style={{...IS, marginBottom:14}}/>
+        <h2 style={{fontSize:20,fontWeight:700,marginBottom:8}}>{en?"Forgot Password":"Şifremi Unuttum"}</h2>
+        <p style={{fontSize:14,color:"#888",marginBottom:20}}>{en?"Enter your registered email or phone number.":"Kayıtlı e-posta adresinizi veya telefon numaranızı girin."}</p>
+        <input placeholder={en?"Email or phone number":"E-posta veya telefon numarası"} style={{...IS, marginBottom:14}}/>
         <button onClick={() => {setOtpSent(true)}}
           style={{width:"100%",padding:"12px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:15,fontWeight:700,cursor:"pointer",marginBottom:12}}>
-          {otpSent ? "✓ Gönderildi" : "Sıfırlama Kodu Gönder"}
+          {otpSent ? (en?"✓ Sent":"✓ Gönderildi") : (en?"Send Reset Code":"Sıfırlama Kodu Gönder")}
         </button>
-        {otpSent && <div style={{padding:"12px",background:"#e8f5e9",borderRadius:6,fontSize:13,color:"#2e7d32",textAlign:"center",marginBottom:12}}>Şifre sıfırlama bağlantısı gönderildi.</div>}
-        <button onClick={() => setMode("login")} style={{background:"none",border:"none",color:"#ff6000",fontSize:13,cursor:"pointer",display:"block",margin:"0 auto"}}>← Giriş ekranına dön</button>
+        {otpSent && <div style={{padding:"12px",background:"#e8f5e9",borderRadius:6,fontSize:13,color:"#2e7d32",textAlign:"center",marginBottom:12}}>{en?"Password reset link sent.":"Şifre sıfırlama bağlantısı gönderildi."}</div>}
+        <button onClick={() => setMode("login")} style={{background:"none",border:"none",color:"#ff6000",fontSize:13,cursor:"pointer",display:"block",margin:"0 auto"}}>{en?"← Back to login":"← Giriş ekranına dön"}</button>
       </div>
     </div>
   );
@@ -1398,7 +1399,7 @@ function AuthPage() {
         <div style={{display:"flex",marginBottom:24}}>
           {["login","register"].map(m => (
             <button key={m} onClick={() => setMode(m)} style={{flex:1,padding:"10px",background:"none",border:"none",borderBottom:`2px solid ${mode===m?"#ff6000":"#eee"}`,color:mode===m?"#1a1a1a":"#999",fontSize:14,fontWeight:mode===m?700:400,cursor:"pointer"}}>
-              {m === "login" ? "Giriş Yap" : "Kayıt Ol"}
+              {m === "login" ? (en?"Sign In":"Giriş Yap") : (en?"Sign Up":"Kayıt Ol")}
             </button>
           ))}
         </div>
@@ -1406,11 +1407,11 @@ function AuthPage() {
         {mode === "login" ? (
           <div style={{display:"flex",flexDirection:"column",gap:12}}>
             <div>
-              <label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>E-posta veya Telefon</label>
-              <input placeholder="ornek@email.com veya 05xx xxx xx xx" style={IS}/>
+              <label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>{en?"Email or Phone":"E-posta veya Telefon"}</label>
+              <input placeholder={en?"example@email.com or 05xx xxx xx xx":"ornek@email.com veya 05xx xxx xx xx"} style={IS}/>
             </div>
             <div>
-              <label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>Şifre</label>
+              <label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>{en?"Password":"Şifre"}</label>
               <div style={{position:"relative"}}>
                 <input type={showPw?"text":"password"} placeholder="••••••••" style={{...IS,paddingRight:44}}/>
                 <button onClick={() => setShowPw(!showPw)} style={{position:"absolute",right:8,top:"50%",transform:"translateY(-50%)",background:"none",border:"none",color:"#999",fontSize:13,cursor:"pointer"}}>{showPw?"🙈":"👁"}</button>
@@ -1418,21 +1419,21 @@ function AuthPage() {
             </div>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
               <label style={{display:"flex",alignItems:"center",gap:6,fontSize:13,color:"#666",cursor:"pointer"}}>
-                <input type="checkbox" style={{accentColor:"#ff6000"}}/> Beni hatırla
+                <input type="checkbox" style={{accentColor:"#ff6000"}}/> {en?"Remember me":"Beni hatırla"}
               </label>
-              <button onClick={() => {setMode("forgot"); setOtpSent(false)}} style={{background:"none",border:"none",color:"#ff6000",fontSize:13,cursor:"pointer"}}>Şifremi unuttum</button>
+              <button onClick={() => {setMode("forgot"); setOtpSent(false)}} style={{background:"none",border:"none",color:"#ff6000",fontSize:13,cursor:"pointer"}}>{en?"Forgot password":"Şifremi unuttum"}</button>
             </div>
-            <button onClick={() => {setUser({name:"Kullanıcı"}); go("account")}}
-              style={{padding:"12px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:15,fontWeight:700,cursor:"pointer",marginTop:4}}>Giriş Yap</button>
+            <button onClick={() => {setUser({name:en?"User":"Kullanıcı"}); go("account")}}
+              style={{padding:"12px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:15,fontWeight:700,cursor:"pointer",marginTop:4}}>{en?"Sign In":"Giriş Yap"}</button>
           </div>
         ) : (
           <div style={{display:"flex",flexDirection:"column",gap:12}}>
             <div>
-              <label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>Ad Soyad</label>
-              <input value={regData.name} onChange={e => setRegData({...regData,name:e.target.value})} placeholder="Adınız Soyadınız" style={IS}/>
+              <label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>{en?"Full Name":"Ad Soyad"}</label>
+              <input value={regData.name} onChange={e => setRegData({...regData,name:e.target.value})} placeholder={en?"Your Full Name":"Adınız Soyadınız"} style={IS}/>
             </div>
             <div>
-              <label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>Telefon Numarası</label>
+              <label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>{en?"Phone Number":"Telefon Numarası"}</label>
               <div style={{display:"flex",gap:0}}>
                 <span style={{padding:"10px 12px",background:"#f5f5f5",border:"1px solid #ddd",borderRight:"none",borderRadius:"6px 0 0 6px",fontSize:14,color:"#555"}}>+90</span>
                 <input value={regData.phone} onChange={e => setRegData({...regData,phone:e.target.value.replace(/\D/g,"")})} placeholder="5XX XXX XX XX" maxLength={10}
@@ -1440,22 +1441,23 @@ function AuthPage() {
               </div>
             </div>
             <div>
-              <label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>E-posta</label>
-              <input value={regData.email} onChange={e => setRegData({...regData,email:e.target.value})} type="email" placeholder="ornek@email.com" style={IS}/>
+              <label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>{en?"Email":"E-posta"}</label>
+              <input value={regData.email} onChange={e => setRegData({...regData,email:e.target.value})} type="email" placeholder="example@email.com" style={IS}/>
             </div>
             <div>
-              <label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>Şifre</label>
+              <label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>{en?"Password":"Şifre"}</label>
               <div style={{position:"relative"}}>
-                <input type={showPw?"text":"password"} value={regData.password} onChange={e => setRegData({...regData,password:e.target.value})} placeholder="En az 6 karakter" style={{...IS,paddingRight:44}}/>
+                <input type={showPw?"text":"password"} value={regData.password} onChange={e => setRegData({...regData,password:e.target.value})} placeholder={en?"At least 6 characters":"En az 6 karakter"} style={{...IS,paddingRight:44}}/>
                 <button onClick={() => setShowPw(!showPw)} style={{position:"absolute",right:8,top:"50%",transform:"translateY(-50%)",background:"none",border:"none",color:"#999",fontSize:13,cursor:"pointer"}}>{showPw?"🙈":"👁"}</button>
               </div>
             </div>
             <label style={{display:"flex",alignItems:"flex-start",gap:6,fontSize:12,color:"#888",cursor:"pointer"}}>
-              <input type="checkbox" style={{accentColor:"#ff6000",marginTop:2}}/> 
-              <span><span onClick={()=>go("terms")} style={{color:"#ff6000",cursor:"pointer"}}>Kullanım koşullarını</span> ve <span onClick={()=>go("privacy")} style={{color:"#ff6000",cursor:"pointer"}}>gizlilik politikasını</span> kabul ediyorum.</span>
+              <input type="checkbox" style={{accentColor:"#ff6000",marginTop:2}}/>
+              {en ? <span>I accept the <span onClick={()=>go("terms")} style={{color:"#ff6000",cursor:"pointer"}}>Terms & Conditions</span> and <span onClick={()=>go("privacy")} style={{color:"#ff6000",cursor:"pointer"}}>Privacy Policy</span>.</span>
+                  : <span><span onClick={()=>go("terms")} style={{color:"#ff6000",cursor:"pointer"}}>Kullanım koşullarını</span> ve <span onClick={()=>go("privacy")} style={{color:"#ff6000",cursor:"pointer"}}>gizlilik politikasını</span> kabul ediyorum.</span>}
             </label>
-            <button onClick={() => {setUser({name:regData.name||"Kullanıcı"}); go("account")}}
-              style={{padding:"12px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:15,fontWeight:700,cursor:"pointer",marginTop:4}}>Kayıt Ol</button>
+            <button onClick={() => {setUser({name:regData.name||(en?"User":"Kullanıcı")}); go("account")}}
+              style={{padding:"12px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:15,fontWeight:700,cursor:"pointer",marginTop:4}}>{en?"Sign Up":"Kayıt Ol"}</button>
           </div>
         )}
       </div>
@@ -1466,7 +1468,8 @@ function AuthPage() {
 // ===== ACCOUNT =====
 function AccountPage() {
   const {user, setUser, go, pastOrders, addToCart, fp, lang} = use$();
-  if(!user) return <div style={{textAlign:"center",padding:"60px 20px"}}><p style={{color:"#999",marginBottom:16}}>Giriş yapmanız gerekiyor.</p><button onClick={() => go("auth")} style={{padding:"12px 28px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:14,fontWeight:600,cursor:"pointer"}}>Giriş Yap</button></div>;
+  const en = lang === "en";
+  if(!user) return <div style={{textAlign:"center",padding:"60px 20px"}}><p style={{color:"#999",marginBottom:16}}>{en?"You need to sign in.":"Giriş yapmanız gerekiyor."}</p><button onClick={() => go("auth")} style={{padding:"12px 28px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:14,fontWeight:600,cursor:"pointer"}}>{en?"Sign In":"Giriş Yap"}</button></div>;
 
   // Deduplicate past orders for "frequently bought"
   const frequentItems = useMemo(() => {
@@ -1486,17 +1489,17 @@ function AccountPage() {
   return (
     <div style={{maxWidth:900,margin:"0 auto",padding:"20px"}}>
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:24}}>
-        <h1 style={{fontSize:22,fontWeight:700}}>Hesabım</h1>
-        <button onClick={() => {setUser(null); go("home")}} style={{padding:"8px 16px",background:"none",border:"1px solid #ddd",borderRadius:6,fontSize:13,color:"#999",cursor:"pointer"}}>Çıkış Yap</button>
+        <h1 style={{fontSize:22,fontWeight:700}}>{en?"My Account":"Hesabım"}</h1>
+        <button onClick={() => {setUser(null); go("home")}} style={{padding:"8px 16px",background:"none",border:"1px solid #ddd",borderRadius:6,fontSize:13,color:"#999",cursor:"pointer"}}>{en?"Log Out":"Çıkış Yap"}</button>
       </div>
       <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:16,marginBottom:32}}>
         {[
-          {icon:"📦",title:"Siparişlerim",desc:"Sipariş geçmişinizi takip edin",onClick:()=>go("orders")},
-          {icon:"📍",title:"Adreslerim",desc:"Teslimat adreslerinizi yönetin",onClick:()=>go("addresses")},
-          {icon:"👤",title:"Hesap Bilgileri",desc:"Kişisel bilgilerinizi güncelleyin",onClick:()=>go("profile")},
-          {icon:"♥",title:"Favorilerim",desc:"Beğendiğiniz ürünleri görüntüleyin",onClick:()=>go("favs")},
-          {icon:"🔔",title:"Bildirimler",desc:"E-posta ve SMS tercihleriniz",onClick:()=>go("notifications")},
-          {icon:"🔑",title:"Şifre Değiştir",desc:"Hesap güvenliğinizi güncelleyin",onClick:()=>go("change-password")},
+          {icon:"📦",title:en?"My Orders":"Siparişlerim",desc:en?"Track your order history":"Sipariş geçmişinizi takip edin",onClick:()=>go("orders")},
+          {icon:"📍",title:en?"My Addresses":"Adreslerim",desc:en?"Manage your delivery addresses":"Teslimat adreslerinizi yönetin",onClick:()=>go("addresses")},
+          {icon:"👤",title:en?"Account Details":"Hesap Bilgileri",desc:en?"Update your personal info":"Kişisel bilgilerinizi güncelleyin",onClick:()=>go("profile")},
+          {icon:"♥",title:en?"My Favorites":"Favorilerim",desc:en?"View your liked products":"Beğendiğiniz ürünleri görüntüleyin",onClick:()=>go("favs")},
+          {icon:"🔔",title:en?"Notifications":"Bildirimler",desc:en?"Email and SMS preferences":"E-posta ve SMS tercihleriniz",onClick:()=>go("notifications")},
+          {icon:"🔑",title:en?"Change Password":"Şifre Değiştir",desc:en?"Update account security":"Hesap güvenliğinizi güncelleyin",onClick:()=>go("change-password")},
         ].map((item,i) => (
           <div key={i} onClick={item.onClick} style={{padding:20,border:"1px solid #eee",borderRadius:8,cursor:"pointer",transition:"border-color .2s"}}
             onMouseEnter={e => e.currentTarget.style.borderColor="#ff6000"} onMouseLeave={e => e.currentTarget.style.borderColor="#eee"}>
@@ -1510,7 +1513,7 @@ function AccountPage() {
       {/* Sık Alınanlar — Frequently Purchased */}
       {frequentItems.length > 0 && (
         <div style={{marginBottom:32}}>
-          <h2 style={{fontSize:18,fontWeight:700,marginBottom:16}}>🔄 Sık Aldığınız Ürünler</h2>
+          <h2 style={{fontSize:18,fontWeight:700,marginBottom:16}}>🔄 {en?"Frequently Purchased":"Sık Aldığınız Ürünler"}</h2>
           <div style={{border:"1px solid #eee",borderRadius:8,overflow:"hidden"}}>
             {frequentItems.map((item, i) => (
               <div key={item.id} style={{display:"flex",gap:14,padding:"14px 16px",borderBottom:i<frequentItems.length-1?"1px solid #f0f0f0":"none",alignItems:"center"}}>
@@ -1518,15 +1521,15 @@ function AccountPage() {
                 <div style={{flex:1}}>
                   <div style={{fontSize:14,fontWeight:600}}>{translateName(item.name,lang)}</div>
                   <div style={{fontSize:12,color:"#999"}}>{item.brand} · {item.sku}</div>
-                  <div style={{fontSize:11,color:"#bbb",marginTop:2}}>Toplam {item.totalQty} adet sipariş edildi</div>
+                  <div style={{fontSize:11,color:"#bbb",marginTop:2}}>{en?`Ordered ${item.totalQty} pcs total`:`Toplam ${item.totalQty} adet sipariş edildi`}</div>
                 </div>
                 <div style={{textAlign:"right",marginRight:12}}>
                   <div style={{fontSize:16,fontWeight:700}}>{fp(item.price)}</div>
-                  {item.currentProduct && <div style={{fontSize:11,color:item.currentProduct.stock?"#4caf50":"#e53935"}}>{item.currentProduct.stock ? "Stokta" : "Tükendi"}</div>}
+                  {item.currentProduct && <div style={{fontSize:11,color:item.currentProduct.stock?"#4caf50":"#e53935"}}>{item.currentProduct.stock ? (en?"In Stock":"Stokta") : (en?"Sold Out":"Tükendi")}</div>}
                 </div>
                 <button onClick={() => {if(item.currentProduct?.stock) addToCart(item.currentProduct)}}
                   style={{padding:"8px 16px",background:item.currentProduct?.stock?"#ff6000":"#eee",color:item.currentProduct?.stock?"#fff":"#999",border:"none",borderRadius:6,fontSize:13,fontWeight:600,cursor:item.currentProduct?.stock?"pointer":"default",whiteSpace:"nowrap"}}>
-                  Tekrar Al
+                  {en?"Reorder":"Tekrar Al"}
                 </button>
               </div>
             ))}
@@ -1539,15 +1542,16 @@ function AccountPage() {
 
 // ===== FAVORITES =====
 function FavsPage() {
-  const {favs, go, isMobile} = use$();
+  const {favs, go, isMobile, lang} = use$();
+  const en = lang === "en";
   const items = favs.map(id => PRODUCTS.find(p => p.id === id)).filter(Boolean);
 
   return (
     <div style={{maxWidth:1200,margin:"0 auto",padding:"20px"}}>
-      <h1 style={{fontSize:22,fontWeight:700,marginBottom:20}}>Favorilerim ({items.length})</h1>
+      <h1 style={{fontSize:22,fontWeight:700,marginBottom:20}}>{en?"My Favorites":"Favorilerim"} ({items.length})</h1>
       {items.length === 0 ? (
-        <div style={{textAlign:"center",padding:"60px 0"}}><div style={{fontSize:48,marginBottom:12}}>♡</div><p style={{color:"#999",marginBottom:16}}>Henüz favori ürününüz yok</p>
-          <button onClick={() => go("products")} style={{padding:"12px 28px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:14,fontWeight:600,cursor:"pointer"}}>Ürünleri İncele</button></div>
+        <div style={{textAlign:"center",padding:"60px 0"}}><div style={{fontSize:48,marginBottom:12}}>♡</div><p style={{color:"#999",marginBottom:16}}>{en?"You have no favorites yet":"Henüz favori ürününüz yok"}</p>
+          <button onClick={() => go("products")} style={{padding:"12px 28px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:14,fontWeight:600,cursor:"pointer"}}>{en?"Browse Products":"Ürünleri İncele"}</button></div>
       ) : (
         <div style={{display:"grid",gridTemplateColumns:isMobile?"repeat(2,1fr)":"repeat(4,1fr)",gap:isMobile?10:16}}>{items.map(p => <ProductCard key={p.id} p={p} />)}</div>
       )}
@@ -1585,25 +1589,26 @@ function AboutPage() {
 
 // ===== ACCOUNT SUB-PAGES =====
 function OrdersPage() {
-  const {go, pastOrders} = use$();
+  const {go, pastOrders, lang} = use$();
+  const en = lang === "en";
   return <div style={{maxWidth:800,margin:"0 auto",padding:"20px"}}>
-    <div style={{fontSize:13,color:"#999",marginBottom:16}}><span style={{cursor:"pointer"}} onClick={()=>go("account")}>Hesabım</span> / <span style={{color:"#555"}}>Siparişlerim</span></div>
-    <h1 style={{fontSize:22,fontWeight:700,marginBottom:20}}>Siparişlerim</h1>
+    <div style={{fontSize:13,color:"#999",marginBottom:16}}><span style={{cursor:"pointer"}} onClick={()=>go("account")}>{en?"My Account":"Hesabım"}</span> / <span style={{color:"#555"}}>{en?"My Orders":"Siparişlerim"}</span></div>
+    <h1 style={{fontSize:22,fontWeight:700,marginBottom:20}}>{en?"My Orders":"Siparişlerim"}</h1>
     {pastOrders.length === 0 ? (
       <div style={{textAlign:"center",padding:"48px 0"}}>
         <div style={{fontSize:48,marginBottom:12}}>📦</div>
-        <p style={{color:"#999",marginBottom:16}}>Henüz siparişiniz bulunmuyor.</p>
-        <button onClick={()=>go("products")} style={{padding:"12px 28px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:14,fontWeight:600,cursor:"pointer"}}>Alışverişe Başla</button>
+        <p style={{color:"#999",marginBottom:16}}>{en?"You have no orders yet.":"Henüz siparişiniz bulunmuyor."}</p>
+        <button onClick={()=>go("products")} style={{padding:"12px 28px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:14,fontWeight:600,cursor:"pointer"}}>{en?"Start Shopping":"Alışverişe Başla"}</button>
       </div>
     ) : (
       <div style={{border:"1px solid #eee",borderRadius:8,overflow:"hidden"}}>
         <div style={{display:"grid",gridTemplateColumns:"2fr 1fr 1fr 1fr",gap:8,padding:"10px 16px",background:"#fafafa",borderBottom:"1px solid #eee"}}>
-          {["Ürün","Adet","Tutar","Tarih"].map((h,i) => <span key={i} style={{fontSize:12,fontWeight:700,color:"#999"}}>{h}</span>)}
+          {(en?["Product","Qty","Total","Date"]:["Ürün","Adet","Tutar","Tarih"]).map((h,i) => <span key={i} style={{fontSize:12,fontWeight:700,color:"#999"}}>{h}</span>)}
         </div>
         {pastOrders.map((order,i) => (
           <div key={i} style={{display:"grid",gridTemplateColumns:"2fr 1fr 1fr 1fr",gap:8,padding:"12px 16px",borderBottom:i<pastOrders.length-1?"1px solid #f0f0f0":"none",alignItems:"center"}}>
             <div><div style={{fontSize:14,fontWeight:500}}>{translateName(order.name,lang)}</div><div style={{fontSize:12,color:"#999"}}>{order.brand} · {order.sku}</div></div>
-            <span style={{fontSize:13}}>{order.qty} adet</span>
+            <span style={{fontSize:13}}>{order.qty} {en?"pcs":"adet"}</span>
             <span style={{fontSize:14,fontWeight:600}}>₺{(order.price * order.qty).toLocaleString("tr-TR")}</span>
             <span style={{fontSize:12,color:"#999"}}>{new Date(order.date).toLocaleDateString("tr-TR")}</span>
           </div>
