@@ -659,6 +659,18 @@ function CategorySidebar({go, activeCat, onSelect, isFixed}) {
   );
 }
 
+// ===== Text içindeki telefon/mail'leri tıklanabilir link yapar =====
+function linkifyContacts(text) {
+  if (!text) return null;
+  return text.split(/(0850\s?888\s?7881|0545\s?608\s?7008|info@frenciniz\.com)/g).map((part, i) => {
+    const clean = (part||"").replace(/\s+/g," ");
+    if (clean === "0850 888 7881" || clean === "08508887881") return <a key={i} href="tel:+908508887881" style={{color:"#ff6000",fontWeight:700,textDecoration:"underline"}}>{part}</a>;
+    if (clean === "0545 608 7008" || clean === "05456087008") return <a key={i} href="https://wa.me/905456087008" target="_blank" rel="noopener noreferrer" style={{color:"#25D366",fontWeight:700,textDecoration:"underline"}}>{part}</a>;
+    if (clean === "info@frenciniz.com") return <a key={i} href="mailto:info@frenciniz.com" style={{color:"#ff6000",textDecoration:"underline"}}>{part}</a>;
+    return part;
+  });
+}
+
 // ===== OPTIMIZED IMAGE with skeleton + CDN =====
 function OptImg({src, alt, w, h, style, cdnW}) {
   const [loaded, setLoaded] = useState(false);
@@ -969,7 +981,7 @@ function ProductDetailPage() {
             <span style={{color:"#999",fontSize:13}}>{p.reviews} değerlendirme</span>
           </div>
           <div style={{fontSize:13,color:"#999",marginBottom:16}}>SKU: {p.sku} | OEM: {p.oem}</div>
-          <p style={{fontSize:14,color:"#666",lineHeight:1.7,marginBottom:16}}>{p.desc}</p>
+          <div style={{fontSize:14,color:"#666",lineHeight:1.7,marginBottom:16,whiteSpace:"pre-line"}}>{linkifyContacts(p.desc)}</div>
           <div style={{padding:"16px 20px",background:"#f9f9f9",borderRadius:8,marginBottom:20,border:"1px solid #eee"}}>
             <div style={{display:"flex",alignItems:"baseline",gap:10}}>
               <span style={{fontSize:32,fontWeight:800}}>{fp(p.price)}</span>
@@ -1024,13 +1036,7 @@ function ProductDetailPage() {
       </div>
       {tab==="desc" && <div style={{marginBottom:32}}>
         <div style={{fontSize:15,color:"#555",lineHeight:1.8,whiteSpace:"pre-line",marginBottom:20}}>
-          {(p.desc||"").split(/(0850\s?888\s?7881|0545\s?608\s?7008|info@frenciniz\.com)/g).map((part, i) => {
-            const clean = part.replace(/\s+/g," ");
-            if (clean === "0850 888 7881" || clean === "08508887881") return <a key={i} href="tel:+908508887881" style={{color:"#ff6000",fontWeight:700,textDecoration:"underline"}}>📞 {part}</a>;
-            if (clean === "0545 608 7008" || clean === "05456087008") return <a key={i} href="https://wa.me/905456087008" target="_blank" rel="noopener noreferrer" style={{color:"#25D366",fontWeight:700,textDecoration:"underline"}}>💬 {part}</a>;
-            if (clean === "info@frenciniz.com") return <a key={i} href="mailto:info@frenciniz.com" style={{color:"#ff6000",textDecoration:"underline"}}>{part}</a>;
-            return part;
-          })}
+          {linkifyContacts(p.desc)}
         </div>
         {/* Hızlı iletişim butonları */}
         <div style={{display:"flex",flexWrap:"wrap",gap:10,padding:16,background:"#fff8f0",borderRadius:10,border:"1px solid #ffd9b3"}}>
