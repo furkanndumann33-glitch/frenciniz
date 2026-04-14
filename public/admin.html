@@ -134,29 +134,9 @@ input[type="checkbox"]{accent-color:#ff6000;width:16px;height:16px;cursor:pointe
 const { useState, useEffect, useRef, useMemo } = React;
 
 /* ──────────── DATA ──────────── */
-const PRODUCTS_INIT = [
-  {id:1,name:"Kampana Fren Balata Seti",cat:"balata",price:1250,brand:"Knorr-Bremse",stock:24,sku:"KB-BLT-4210"},
-  {id:2,name:"Hava Kurutucusu Kartuşu",cat:"pnomatik",price:890,brand:"Wabco",stock:18,sku:"WB-HK-3301"},
-  {id:3,name:"Fren Diski Ø430 Havalandırmalı",cat:"disk",price:3200,brand:"SAF-Holland",stock:7,sku:"SF-DSK-430V"},
-  {id:4,name:"ABS Sensörü Komple",cat:"elektronik",price:450,brand:"Haldex",stock:35,sku:"HX-ABS-2201"},
-  {id:5,name:"Fren Kaliperi Sol",cat:"disk",price:2800,brand:"Knorr-Bremse",stock:0,sku:"KB-KLP-L910"},
-  {id:6,name:"Körük Tamir Takımı",cat:"suspansiyon",price:680,brand:"ContiTech",stock:42,sku:"CT-KRK-5501"},
-  {id:7,name:"Otomatik Fren Ayar Kolu",cat:"mekanik",price:1100,brand:"Haldex",stock:19,sku:"HX-AYR-7801"},
-  {id:8,name:"Fren Kampanası Ø410",cat:"mekanik",price:2450,brand:"BPW",stock:11,sku:"BW-KMP-410"},
-  {id:9,name:"Fren Sibop Seti",cat:"pnomatik",price:560,brand:"Wabco",stock:53,sku:"WB-SBP-4400"},
-  {id:10,name:"Fren Silindir T24",cat:"pnomatik",price:1750,brand:"Knorr-Bremse",stock:15,sku:"KB-SLN-T24"},
-  {id:11,name:"EBS Modülatör Valfı",cat:"elektronik",price:4200,brand:"Wabco",stock:5,sku:"WB-EBS-2210"},
-  {id:12,name:"Disk Balata Seti Premium",cat:"balata",price:1680,brand:"SAF-Holland",stock:28,sku:"SF-BLT-P770"},
-];
-
-const CATEGORIES_INIT = [
-  {id:1,name:"Balata",slug:"balata",count:2},
-  {id:2,name:"Pnömatik",slug:"pnomatik",count:3},
-  {id:3,name:"Disk",slug:"disk",count:2},
-  {id:4,name:"Elektronik",slug:"elektronik",count:2},
-  {id:5,name:"Suspansiyon",slug:"suspansiyon",count:1},
-  {id:6,name:"Mekanik",slug:"mekanik",count:2},
-];
+// Gerçek ürünler ve kategoriler /data/ klasöründen yüklenir (fetch ile)
+const PRODUCTS_INIT = [];
+const CATEGORIES_INIT = [];
 
 const ORDERS_INIT = [
   {id:1001,customer:"Ahmet Yılmaz",email:"ahmet@example.com",items:"Kampana Fren Balata Seti x2",total:2500,status:"Hazırlanıyor",date:"2026-04-06"},
@@ -294,6 +274,32 @@ function App() {
   // Data states
   const [products, setProducts] = useState(PRODUCTS_INIT);
   const [categories, setCategories] = useState(CATEGORIES_INIT);
+  const [dataLoaded, setDataLoaded] = useState(false);
+
+  // Gerçek ürünleri ve kategorileri /data/ klasöründen yükle
+  useEffect(() => {
+    Promise.all([
+      fetch("/api/products").then(r => r.ok ? r.json() : null).catch(() => null),
+      fetch("/api/products?type=categories").then(r => r.ok ? r.json() : null).catch(() => null),
+    ]).then(([prods, cats]) => {
+      if (prods && Array.isArray(prods) && prods.length > 0) {
+        setProducts(prods);
+        if (cats) setCategories(cats);
+        setDataLoaded(true);
+      } else {
+        // Fallback: static JSON
+        Promise.all([
+          fetch("/data/products.json").then(r => r.json()),
+          fetch("/data/categories.json").then(r => r.json()),
+        ]).then(([p, c]) => {
+          setProducts(p || []);
+          setCategories(c || []);
+          setDataLoaded(true);
+        }).catch(() => setDataLoaded(true));
+      }
+    }).catch(() => setDataLoaded(true));
+  }, []);
+
   const [orders, setOrders] = useState(ORDERS_INIT);
   const [returns, setReturns] = useState(RETURNS_INIT);
   const [customers] = useState(CUSTOMERS_INIT);
@@ -473,7 +479,19 @@ function ProductsTab({products, setProducts, categories}) {
   const [selected, setSelected] = useState([]);
   const [form, setForm] = useState({name:'',cat:'',price:'',brand:'',stock:'',sku:''});
 
-  const filtered = products.filter(p=>p.name.toLowerCase().includes(search.toLowerCase()) || p.sku.toLowerCase().includes(search.toLowerCase()));
+  const [page, setPage] = useState(1);
+  const PAGE_SIZE = 50;
+  const filtered = products.filter(p => {
+    const s = search.toLowerCase();
+    return (p.name||"").toLowerCase().includes(s) ||
+           (p.sku||"").toLowerCase().includes(s) ||
+           (p.oem||"").toLowerCase().includes(s) ||
+           (p.brand||"").toLowerCase().includes(s) ||
+           (p.cat||"").toLowerCase().includes(s);
+  });
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const pageItems = filtered.slice((page-1)*PAGE_SIZE, page*PAGE_SIZE);
+  useEffect(() => { if (page > totalPages) setPage(1); }, [filtered.length]);
 
   const openAdd = () => {setForm({name:'',cat:categories[0]?.slug||'',price:'',brand:'',stock:'',sku:''});setModal('add')};
   const openEdit = (p) => {setForm({...p,price:String(p.price),stock:String(p.stock)});setModal('edit')};
@@ -503,13 +521,19 @@ function ProductsTab({products, setProducts, categories}) {
           </div>
         </div>
         <table>
-          <thead><tr><th><input type="checkbox" checked={selected.length===filtered.length && filtered.length>0} onChange={toggleAll}/></th><th>SKU</th><th>Ürün Adı</th><th>Kategori</th><th>Marka</th><th>Fiyat</th><th>Stok</th><th>İşlem</th></tr></thead>
+          <thead><tr><th><input type="checkbox" checked={selected.length===pageItems.length && pageItems.length>0} onChange={toggleAll}/></th><th>Görsel</th><th>SKU / OEM</th><th>Ürün Adı</th><th>Kategori</th><th>Uyumlu</th><th>Fiyat</th><th>Stok</th><th>İşlem</th></tr></thead>
           <tbody>
-            {filtered.map(p=>(
+            {pageItems.map(p=>(
               <tr key={p.id}>
                 <td><input type="checkbox" checked={selected.includes(p.id)} onChange={()=>toggleSelect(p.id)}/></td>
-                <td style={{fontFamily:'monospace',fontSize:'12px'}}>{p.sku}</td>
-                <td>{p.name}</td><td>{p.cat}</td><td>{p.brand}</td>
+                <td>{p.img ? <img src={`https://wsrv.nl/?url=${encodeURIComponent(p.img)}&w=60&q=70&output=webp`} alt="" style={{width:40,height:40,objectFit:'contain',background:'#f5f5f5',borderRadius:4}} onError={e=>{e.target.style.display='none'}}/> : <div style={{width:40,height:40,background:'#f0f0f0',borderRadius:4}}/>}</td>
+                <td style={{fontFamily:'monospace',fontSize:'11px'}}>
+                  <div style={{fontWeight:600}}>{p.sku}</div>
+                  <div style={{color:'#999',fontSize:'10px',maxWidth:'120px',overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{(p.oem||'').slice(0,30)}</div>
+                </td>
+                <td style={{maxWidth:'250px'}}>{p.name}</td>
+                <td style={{fontSize:'12px'}}>{p.cat}</td>
+                <td style={{fontSize:'11px'}}>{(p.compat||[]).slice(0,2).join(', ')}{(p.compat||[]).length>2 && ` +${p.compat.length-2}`}</td>
                 <td>{fmtCurrency(p.price)}</td>
                 <td><span className={`badge ${p.stock===0?'badge-red':p.stock<10?'badge-yellow':'badge-green'}`}>{p.stock}</span></td>
                 <td>
@@ -520,6 +544,14 @@ function ProductsTab({products, setProducts, categories}) {
             ))}
           </tbody>
         </table>
+        {/* Sayfalama */}
+        {totalPages > 1 && <div style={{display:'flex',justifyContent:'center',alignItems:'center',gap:10,padding:'16px',borderTop:'1px solid #eee'}}>
+          <button className="btn btn-secondary btn-sm" onClick={()=>setPage(1)} disabled={page===1}>« İlk</button>
+          <button className="btn btn-secondary btn-sm" onClick={()=>setPage(Math.max(1,page-1))} disabled={page===1}>‹ Önceki</button>
+          <span style={{fontSize:'13px',color:'#555'}}>Sayfa {page} / {totalPages} (Toplam: {filtered.length} ürün)</span>
+          <button className="btn btn-secondary btn-sm" onClick={()=>setPage(Math.min(totalPages,page+1))} disabled={page===totalPages}>Sonraki ›</button>
+          <button className="btn btn-secondary btn-sm" onClick={()=>setPage(totalPages)} disabled={page===totalPages}>Son »</button>
+        </div>}
       </div>
       {modal && (
         <div className="modal-overlay" onClick={()=>setModal(null)}>
@@ -559,24 +591,38 @@ function CategoriesTab({categories, setCategories}) {
     setNewCat('');
   };
   const deleteCat = (id) => setCategories(categories.filter(c=>c.id!==id));
+  const subCats = categories.filter(c => !c.isGroup && c.id !== "all");
+  const groups = categories.filter(c => c.isGroup);
+  const prodCount = (catId) => products.filter(p => p.cat === catId).length;
+
   return (
     <div className="card">
       <div className="card-header">
-        <h3>Kategoriler ({categories.length})</h3>
+        <h3>Kategoriler ({subCats.length} alt, {groups.length} ana grup)</h3>
         <div style={{display:'flex',gap:'10px'}}>
           <input className="search-box" placeholder="Yeni kategori adı..." value={newCat} onChange={e=>setNewCat(e.target.value)} onKeyDown={e=>e.key==='Enter'&&addCategory()} style={{width:'220px'}}/>
           <button className="btn btn-primary" onClick={addCategory}>+ Ekle</button>
         </div>
       </div>
       <table>
-        <thead><tr><th>ID</th><th>Kategori Adı</th><th>Slug</th><th>Ürün Sayısı</th><th>İşlem</th></tr></thead>
+        <thead><tr><th>Kategori</th><th>ID</th><th>Ana Grup</th><th>Ürün Sayısı</th></tr></thead>
         <tbody>
-          {categories.map(c=>(
-            <tr key={c.id}>
-              <td>{c.id}</td><td style={{fontWeight:500}}>{c.name}</td><td style={{fontFamily:'monospace',fontSize:'13px',color:'#888'}}>{c.slug}</td><td>{c.count}</td>
-              <td><button className="btn btn-danger btn-sm" onClick={()=>deleteCat(c.id)}>Sil</button></td>
-            </tr>
-          ))}
+          {groups.map(g => {
+            const subs = categories.filter(c => c.parent === g.id);
+            const totalProds = subs.reduce((sum, s) => sum + prodCount(s.id), 0);
+            return <React.Fragment key={g.id}>
+              <tr style={{background:'#fff4e6'}}>
+                <td colSpan={3} style={{fontWeight:700,color:'#c05200'}}>📁 {g.name}</td>
+                <td style={{fontWeight:600}}>{totalProds} ürün</td>
+              </tr>
+              {subs.map(c => <tr key={c.id}>
+                <td style={{paddingLeft:'28px'}}>↳ {c.name}</td>
+                <td style={{fontFamily:'monospace',fontSize:'12px',color:'#888'}}>{c.id}</td>
+                <td style={{fontSize:'12px',color:'#999'}}>{g.name}</td>
+                <td>{prodCount(c.id)}</td>
+              </tr>)}
+            </React.Fragment>;
+          })}
         </tbody>
       </table>
     </div>
