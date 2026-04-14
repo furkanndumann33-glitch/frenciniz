@@ -1080,7 +1080,7 @@ function CheckoutPage() {
           <div style={{marginBottom:20}}>
             <label style={{fontSize:13,color:"#666",display:"block",marginBottom:8}}>Ödeme Yöntemi</label>
             <div style={{display:"grid",gridTemplateColumns:"repeat(2,1fr)",gap:8}}>
-              {[{id:"card",icon:"💳",name:"Kredi / Banka Kartı",desc:"Garanti BBVA / PayTR / Param"},{id:"havale",icon:"🏦",name:"Havale / EFT",desc:"Banka havalesi ile ödeme"},{id:"kapida",icon:"🚚",name:"Kapıda Ödeme",desc:"Teslimat sırasında ödeme"},{id:"taksit",icon:"📊",name:"Taksitli Ödeme",desc:"2-12 taksit imkânı"}].map(m=>(
+              {[{id:"card",icon:"💳",name:"Kredi / Banka Kartı",desc:"Garanti BBVA / PayTR / Param"},{id:"havale",icon:"🏦",name:"Havale / EFT",desc:"Banka havalesi ile ödeme"},{id:"taksit",icon:"📊",name:"Taksitli Ödeme",desc:"2-12 taksit imkânı"}].map(m=>(
                 <div key={m.id} style={{padding:"12px 14px",border:"2px solid #eee",borderRadius:8,cursor:"pointer",display:"flex",alignItems:"center",gap:10,transition:"border-color .2s"}}
                   onMouseEnter={e=>e.currentTarget.style.borderColor="#ff6000"} onMouseLeave={e=>e.currentTarget.style.borderColor="#eee"}>
                   <span style={{fontSize:22}}>{m.icon}</span>
@@ -3168,13 +3168,9 @@ function APaymentCfg(){
           <div><div style={{fontSize:14,fontWeight:600}}>3D Secure Zorunlu</div><div style={{fontSize:12,color:"#888"}}>Tüm ödemelerde 3D Secure doğrulaması</div></div>
           <input type="checkbox" defaultChecked style={{accentColor:"#ff6000"}}/>
         </div>
-        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"10px 0",borderBottom:"1px solid #f0f0f0"}}>
+        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"10px 0"}}>
           <div><div style={{fontSize:14,fontWeight:600}}>Havale / EFT</div><div style={{fontSize:12,color:"#888"}}>Manuel havale ile ödeme seçeneği</div></div>
           <input type="checkbox" defaultChecked style={{accentColor:"#ff6000"}}/>
-        </div>
-        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"10px 0"}}>
-          <div><div style={{fontSize:14,fontWeight:600}}>Kapıda Ödeme</div><div style={{fontSize:12,color:"#888"}}>Kapıda nakit veya kart ile ödeme</div></div>
-          <input type="checkbox" style={{accentColor:"#ff6000"}}/>
         </div>
       </div>
     </ACard>
