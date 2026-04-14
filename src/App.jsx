@@ -272,7 +272,74 @@ export default function App() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const go = useCallback((p, pr={}) => { setPage(p); setParams(pr); window.scrollTo?.({top:0}); }, []);
+  // URL ↔ state dönüşümü
+  const buildUrl = useCallback((p, pr={}) => {
+    if (p === "home") return "/";
+    if (p === "products") {
+      if (pr.cat && pr.cat !== "all") return `/${pr.cat}`;
+      if (pr.q) return `/?q=${encodeURIComponent(pr.q)}`;
+      if (pr.brand) return `/?brand=${encodeURIComponent(pr.brand)}`;
+      if (pr.veh) return `/?veh=${encodeURIComponent(pr.veh)}`;
+      return "/urunler";
+    }
+    if (p === "product") return `/urun/${pr.id}`;
+    return `/${p}`;
+  }, []);
+
+  const parseUrl = useCallback(() => {
+    const path = window.location.pathname.replace(/^\/+|\/+$/g, "");
+    const search = new URLSearchParams(window.location.search);
+    if (!path) {
+      // Ana sayfa, query ile arama varsa products'a yönlendir
+      if (search.get("q") || search.get("brand") || search.get("veh")) {
+        return { page: "products", params: {
+          q: search.get("q") || undefined,
+          brand: search.get("brand") || undefined,
+          veh: search.get("veh") || undefined,
+        }};
+      }
+      return { page: "home", params: {} };
+    }
+    // Statik sayfalar
+    const STATIC = ["urunler","contact","about","faq","brands","cart","account","auth","favs","orders","checkout","return-policy","terms","shipping","privacy","kvkk","accessibility","company","admin-login","admin-panel"];
+    if (STATIC.includes(path)) {
+      return { page: path === "urunler" ? "products" : path, params: {} };
+    }
+    // Ürün detay: /urun/123
+    const prodMatch = path.match(/^urun\/(.+)$/);
+    if (prodMatch) return { page: "product", params: { id: Number(prodMatch[1]) || prodMatch[1] } };
+    // Diğer: kategori slug (örn: /disk, /kampana, /fren-diski)
+    return { page: "products", params: { cat: path } };
+  }, []);
+
+  const go = useCallback((p, pr={}) => {
+    setPage(p); setParams(pr);
+    window.scrollTo?.({top:0});
+    const url = buildUrl(p, pr);
+    if (window.location.pathname + window.location.search !== url) {
+      window.history.pushState({page:p, params:pr}, "", url);
+    }
+  }, [buildUrl]);
+
+  // İlk yüklemede URL'i oku
+  useEffect(() => {
+    const parsed = parseUrl();
+    if (parsed.page !== "home" || Object.keys(parsed.params).length > 0) {
+      setPage(parsed.page);
+      setParams(parsed.params);
+    }
+  }, []);
+
+  // Geri/ileri butonu
+  useEffect(() => {
+    const onPop = () => {
+      const parsed = parseUrl();
+      setPage(parsed.page);
+      setParams(parsed.params);
+    };
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, [parseUrl]);
 
   const addToCart = useCallback((product, qty=1) => {
     if(!product.stock) return;

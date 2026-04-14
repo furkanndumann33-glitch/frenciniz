@@ -1,6 +1,11 @@
 {
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/$1" }
+    { "source": "/api/(.*)", "destination": "/api/$1" },
+    { "source": "/admin.html", "destination": "/admin.html" },
+    { "source": "/data/(.*)", "destination": "/data/$1" },
+    { "source": "/assets/(.*)", "destination": "/assets/$1" },
+    { "source": "/favicon.svg", "destination": "/favicon.svg" },
+    { "source": "/(.*)", "destination": "/index.html" }
   ],
   "crons": [
     {
