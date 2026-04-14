@@ -70,15 +70,15 @@ const rules = [
 
   // Vedalaşma
   { match: /^(görüşürüz|bye|hoşça|güle güle|bb|bay bay|iyi günler$)/i,
-    reply: "İyi günler! 👋 Tekrar bekleriz.\n\n📞 0850 888 7881 | 📱 0545 608 7008" },
+    reply: "İyi günler! 👋 Tekrar bekleriz.\n\n📞 0545 608 7008 | 💬 WhatsApp: 0850 888 7881" },
 
   // Sipariş takibi
   { match: /(FRN-\d+|sipariş.*takip|takip.*sipariş|kargom nerede|siparişim nerede)/i,
-    reply: "📦 Sipariş takibi için:\n\n1️⃣ Hesabım > Siparişlerim sayfasından takip edebilirsiniz\n2️⃣ Kargo takip numarası e-postanıza gönderilir\n3️⃣ Aras Kargo üzerinden https://kargotakip.araskargo.com.tr\n\nSorun yaşıyorsanız sipariş numaranızı (FRN-XXXX) paylaşın, hemen kontrol edelim.\n\n📞 Hızlı destek: 0545 608 7008 (WhatsApp)" },
+    reply: "📦 Sipariş takibi için:\n\n1️⃣ Hesabım > Siparişlerim sayfasından takip edebilirsiniz\n2️⃣ Kargo takip numarası e-postanıza gönderilir\n3️⃣ Aras Kargo üzerinden https://kargotakip.araskargo.com.tr\n\nSorun yaşıyorsanız sipariş numaranızı (FRN-XXXX) paylaşın, hemen kontrol edelim.\n\n📞 Hızlı destek: 0545 608 7008 | 💬 WhatsApp: 0850 888 7881" },
 
   // İade
   { match: /(iade|geri iade|ürün geldi ama|hasarlı|bozuk|yanlış.*gel|değişim|değiştir)/i,
-    reply: "♻️ İade ve Değişim Politikası:\n\n✅ 14 gün içinde koşulsuz iade hakkı\n✅ Hasarlı/yanlış ürün → iade kargo ücreti bize ait\n✅ Kullanılmamış ve orijinal ambalajında olmalı\n✅ Fatura/irsaliye ile birlikte\n\n📋 Nasıl başlatırım?\n1. Hesabım > Siparişlerim > İade Başlat\n2. Veya 0850 888 7881'i arayın\n3. Ya da info@frenciniz.com'a mail atın\n\nİşlem 3-5 iş günü içinde tamamlanır." },
+    reply: "♻️ İade ve Değişim Politikası:\n\n✅ 14 gün içinde koşulsuz iade hakkı\n✅ Hasarlı/yanlış ürün → iade kargo ücreti bize ait\n✅ Kullanılmamış ve orijinal ambalajında olmalı\n✅ Fatura/irsaliye ile birlikte\n\n📋 Nasıl başlatırım?\n1. Hesabım > Siparişlerim > İade Başlat\n2. Veya 0545 608 7008'i arayın\n3. Ya da info@frenciniz.com'a mail atın\n\nİşlem 3-5 iş günü içinde tamamlanır." },
 
   // Kargo
   { match: /(kargo|gönderi|teslimat|kaç günde|ne zaman gelir|ücretsiz kargo)/i,
@@ -94,7 +94,7 @@ const rules = [
 
   // İletişim
   { match: /(iletişim|telefon|numara|adres|nerede|mail|e-posta|whatsapp|ara)/i,
-    reply: "📍 İletişim Bilgilerimiz:\n\n📞 **Telefon**\n• 0850 888 7881 (Sabit)\n• 0545 608 7008 (WhatsApp)\n\n✉️ **E-posta**\n• info@frenciniz.com\n\n📍 **Adres**\nHızırbey Mah. 1509 Sok. No:24\nIsparta / TÜRKİYE\n\n⏰ **Çalışma Saatleri**\nPazartesi – Cumartesi: 08:00 – 18:00\nPazar: Kapalı\n\n🌐 Online sipariş 7/24 açık!" },
+    reply: "📍 İletişim Bilgilerimiz:\n\n📞 **Telefon**\n• 0545 608 7008 (Sabit)\n\n💬 **WhatsApp**\n• 0850 888 7881\n\n✉️ **E-posta**\n• info@frenciniz.com\n\n📍 **Adres**\nHızırbey Mah. 1509 Sok. No:24\nIsparta / TÜRKİYE\n\n⏰ **Çalışma Saatleri**\nPazartesi – Cumartesi: 08:00 – 18:00\nPazar: Kapalı\n\n🌐 Online sipariş 7/24 açık!" },
 
   // Çalışma saatleri
   { match: /(çalışma saat|saat kaç|açık mı|kaçta kapanıyor|hafta sonu|pazar)/i,
@@ -102,7 +102,7 @@ const rules = [
 
   // Toplu alım / B2B
   { match: /(toplu|bayi|b2b|toptancı|iskonto|özel fiyat|müşteri olmak|üye olmak|kurumsal)/i,
-    reply: "🤝 Kurumsal / B2B Müşteriler:\n\n💰 **Kademeli İndirim**\n• 10+ adet: %5 indirim\n• 25+ adet: %10 indirim\n• 50+ adet: Özel teklif\n• 100+ adet: Fabrika fiyatı\n\n📋 **Bayilik İmkanları**\n• İl/ilçe bayiliği\n• Özel fiyat listesi\n• Vadeli satış seçenekleri\n• Teknik destek\n\n📞 Direkt iletişim:\n• 0545 608 7008 (WhatsApp)\n• info@frenciniz.com" },
+    reply: "🤝 Kurumsal / B2B Müşteriler:\n\n💰 **Kademeli İndirim**\n• 10+ adet: %5 indirim\n• 25+ adet: %10 indirim\n• 50+ adet: Özel teklif\n• 100+ adet: Fabrika fiyatı\n\n📋 **Bayilik İmkanları**\n• İl/ilçe bayiliği\n• Özel fiyat listesi\n• Vadeli satış seçenekleri\n• Teknik destek\n\n📞 Direkt iletişim:\n• Telefon: 0545 608 7008\n• WhatsApp: 0850 888 7881\n• info@frenciniz.com" },
 
   // Çalıştığımız markalar (ürün markaları)
   { match: /(hangi marka|marka.*var|marka.*satıyor|markalar nedir|brand)/i,
@@ -195,5 +195,5 @@ export function getSmartReply(message) {
   }
 
   // 4. Varsayılan
-  return "Anlayamadım 🤔 Size nasıl yardımcı olabilirim?\n\n💡 **Şunları deneyebilirsiniz:**\n• Ürün adı, SKU veya OEM yazın\n• Araç markası + parça (örn: \"Mercedes Actros balata\")\n• \"Kargo\", \"Ödeme\", \"İade\" gibi konular\n• \"Toplu alım\" veya \"B2B\"\n\n📞 Direkt destek: 0545 608 7008 (WhatsApp)\n✉️ info@frenciniz.com";
+  return "Anlayamadım 🤔 Size nasıl yardımcı olabilirim?\n\n💡 **Şunları deneyebilirsiniz:**\n• Ürün adı, SKU veya OEM yazın\n• Araç markası + parça (örn: \"Mercedes Actros balata\")\n• \"Kargo\", \"Ödeme\", \"İade\" gibi konular\n• \"Toplu alım\" veya \"B2B\"\n\n📞 Telefon: 0545 608 7008 | 💬 WhatsApp: 0850 888 7881\n✉️ info@frenciniz.com";
 }
