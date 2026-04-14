@@ -871,7 +871,7 @@ function ProductsPage() {
     <>
       <div style={{border:"1px solid #eee",borderRadius:8,padding:16,marginBottom:16}}>
         <div style={{fontSize:14,fontWeight:700,marginBottom:12}}>{t("category")}</div>
-        <CategorySidebar activeCat={cat} onSelect={setCat} />
+        <CategorySidebar activeCat={cat} onSelect={(id) => {setCat(id); go("products", {...params, cat: id === "all" ? undefined : id})}} />
       </div>
       <div style={{border:"1px solid #eee",borderRadius:8,padding:16,marginBottom:16}}>
         <div style={{fontSize:14,fontWeight:700,marginBottom:12}}>{t("vehicleType")}</div>
