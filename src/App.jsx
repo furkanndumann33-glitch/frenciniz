@@ -105,6 +105,156 @@ const EN = {
 };
 const LANGS = {tr:TR, en:EN};
 
+// ===== CATEGORY EN MAP (by id) =====
+const CAT_EN = {
+  "all":"All Products",
+  "disk":"DISC","fren-diski":"Brake Disc","fren-diski-abs-li":"ABS Brake Disc",
+  "kampana":"DRUM","fren-kampanasi":"Brake Drum",
+  "balata":"PAD","fren-balatasi":"Brake Pad",
+  "fren-pabuclari":"BRAKE SHOES","fren-pabucu":"Brake Shoe","percin":"Rivet",
+  "circir":"SLACK ADJUSTER","fren-circiri":"Brake Slack Adjuster","mekanik-fren-circiri":"Manual Slack Adjuster","otomatik-fren-circiri":"Automatic Slack Adjuster",
+  "fren-ayar":"BRAKE ADJUSTMENT PARTS","fren-ayar-parcalari":"Brake Adjustment Parts","ayar-kolu-el-fren":"Adjuster Arm / Handbrake","cam-set":"Cam Set (Z-CAM)",
+  "kaliper-urunleri":"CALIPER PRODUCTS","kaliper":"Caliper","kaliper-ayar-mekanizmasi":"Caliper Adjuster Mechanism","kaliper-durbun-takimi":"Caliper Bridge Kit","kaliper-kapak-conta":"Caliper Cover/Gasket","kaliper-perno-tamir-takimi":"Caliper Pin Repair Kit","kaliper-tamir-seti":"Caliper Repair Set","kaliper-tamir-takimi":"Caliper Repair Kit","kaliper-tamir-takimi-duco":"Caliper R.K. (Duco)","kaliper-tamir-takimi-elsa":"Caliper R.K. (Elsa)","kaliper-tamir-takimi-frenco":"Caliper R.K. (Frenco)","kaliper-tamir-takimi-maxx22":"Caliper R.K. (Maxx22)","kaliper-tamir-takimi-modulx":"Caliper R.K. (Modulx)","kaliper-tamir-takimi-pan":"Caliper R.K. (PAN)","kaliper-tamir-takimi-wabco":"Caliper R.K. (Wabco)","kaliper-toz-lastigi":"Caliper Dust Boot","kizak":"Slider - Carrier","perno":"Pin",
+  "fren-korukleri":"BRAKE CHAMBERS","fren-korugu":"Brake Chamber","lastik":"Chamber Boots",
+  "bijon-grup":"WHEEL STUDS","bijon":"Wheel Stud","bijon-dps":"Wheel Stud DPS","disk-bijonu-civatasi":"Disc Stud/Bolt","somun-civata":"Nut / Bolt",
+  "porya-grup":"HUB","porya":"Hub","rulman":"Bearing","kece":"Seal",
+  "sensor-uzatma":"SENSORS & EXTENSIONS","abs-sensoru-modulu-kablo":"ABS Sensor/Module/Cable","ebs-modulator":"EBS Modulator","sensor":"Sensor","elektrik-kablosu":"Electrical Cable",
+  "havali-fren":"AIR BRAKE PARTS","valf-ventil":"Valve","dagitici-ventil":"Distribution Valve","role-ventili":"Relay Valve","suspansiyon-basinc-ventili":"Suspension/Pressure Valve","sanziman-ventili":"Transmission Valve","hava-kurutucu":"Air Dryer","filtre-kartus":"Filter / Cartridge","hava-tupu":"Air Tank",
+  "fren-yaylari":"BRAKE SPRINGS","yay":"Spring",
+  "susp-korugu":"SUSP. BELLOWS","suspansiyon-korugu":"Suspension Bellows","dingil":"Axle","burc-muylu":"Bushing / Trunnion",
+  "kompresor-grup":"COMPRESSOR","kompresor-piston-segman":"Compressor Piston/Ring","kompresor-silindiri":"Compressor Cylinder","kompresor-tamir-takimi":"Compressor Repair Kit",
+  "rekor-hortum":"FITTINGS / HOSES","baglanti-elemanlari":"Connectors","nipel":"Nipple","hortum":"Hose","hortum-adaptoru":"Hose Adapter",
+  "diger-parcalar":"OTHER","tamir-takimi":"Repair Kit","volan-debriyaj":"Flywheel / Clutch","camurluk":"Fender","makara":"Pulley","diger":"Other",
+};
+
+// Longest-first dictionary for product name translation (TR → EN)
+const PROD_TERMS = [
+  ["Mekanik Fren Cırcırı","Manual Slack Adjuster"],
+  ["Otomatik Fren Cırcırı","Automatic Slack Adjuster"],
+  ["Fren Cırcırı","Slack Adjuster"],
+  ["Kaliper Tamir Takımı","Caliper Repair Kit"],
+  ["Kaliper Tamir Seti","Caliper Repair Set"],
+  ["Kaliper Dürbün Takımı","Caliper Bridge Kit"],
+  ["Kaliper Perno Tamir Takımı","Caliper Pin Repair Kit"],
+  ["Kaliper Toz Lastiği","Caliper Dust Boot"],
+  ["Kaliper Ayar Mekanizması","Caliper Adjuster Mechanism"],
+  ["Kompresör Tamir Takımı","Compressor Repair Kit"],
+  ["Kompresör Piston","Compressor Piston"],
+  ["Kompresör Silindiri","Compressor Cylinder"],
+  ["Süspansiyon Körüğü","Suspension Bellows"],
+  ["Hortum Adaptörü","Hose Adapter"],
+  ["Bağlantı Elemanı","Connector"],
+  ["Bağlantı Elemanları","Connectors"],
+  ["Röle Ventili","Relay Valve"],
+  ["Dağıtıcı Ventil","Distribution Valve"],
+  ["Şanzıman Ventili","Transmission Valve"],
+  ["Hava Kurutucu","Air Dryer"],
+  ["Hava Tüpü","Air Tank"],
+  ["ABS Sensörü","ABS Sensor"],
+  ["ABS Sensör","ABS Sensor"],
+  ["EBS Modülatör","EBS Modulator"],
+  ["Elektrik Kablosu","Electrical Cable"],
+  ["Fren Diski","Brake Disc"],
+  ["Fren Kampanası","Brake Drum"],
+  ["Fren Balatası","Brake Pad"],
+  ["Fren Pabucu","Brake Shoe"],
+  ["Fren Körüğü","Brake Chamber"],
+  ["Fren Silindiri","Brake Cylinder"],
+  ["Fren Ayar Parçası","Brake Adjustment Part"],
+  ["Fren Ayar Parçaları","Brake Adjustment Parts"],
+  ["Ayar Kolu","Adjuster Arm"],
+  ["El Fren","Handbrake"],
+  ["Körük Lastiği","Chamber Boot"],
+  ["Tamir Takımı","Repair Kit"],
+  ["Tamir Seti","Repair Set"],
+  ["Disk Bijonu","Disc Stud"],
+  ["Disk Civatası","Disc Bolt"],
+  ["Ağır Vasıta","Heavy Duty"],
+  ["Stok durumu ve aracınıza uygunluk için lütfen iletişime geçiniz","For stock and vehicle compatibility please contact us"],
+  ["Uyumlu araç markaları","Compatible vehicle brands"],
+  ["Ürün Kodu","Product Code"],
+  ["OEM No","OEM No"],
+  ["Marka","Brand"],
+  ["Kaliper","Caliper"],
+  ["Kampana","Drum"],
+  ["Balata","Pad"],
+  ["Pabuç","Shoe"],
+  ["Körük","Bellows"],
+  ["Kompresör","Compressor"],
+  ["Sensör","Sensor"],
+  ["Modülatör","Modulator"],
+  ["Modül","Module"],
+  ["Kablo","Cable"],
+  ["Rulman","Bearing"],
+  ["Keçe","Seal"],
+  ["Porya","Hub"],
+  ["Bijon","Wheel Stud"],
+  ["Somun","Nut"],
+  ["Cıvata","Bolt"],
+  ["Civatası","Bolt"],
+  ["Perçin","Rivet"],
+  ["Perno","Pin"],
+  ["Kızak","Slider"],
+  ["Taşıyıcı","Carrier"],
+  ["Dingil","Axle"],
+  ["Burç","Bushing"],
+  ["Muylu","Trunnion"],
+  ["Valf","Valve"],
+  ["Ventil","Valve"],
+  ["Filtre","Filter"],
+  ["Kartuş","Cartridge"],
+  ["Hortum","Hose"],
+  ["Nipel","Nipple"],
+  ["Rekor","Fitting"],
+  ["Volan","Flywheel"],
+  ["Debriyaj","Clutch"],
+  ["Çamurluk","Fender"],
+  ["Makara","Pulley"],
+  ["Segman","Ring"],
+  ["Silindir","Cylinder"],
+  ["Piston","Piston"],
+  ["Dorse","Trailer"],
+  ["Kamyon","Truck"],
+  ["Otobüs","Bus"],
+  ["Çekici","Tractor"],
+  ["Tır","Tractor"],
+  ["Evrensel","Universal"],
+  ["Delik","Hole"],
+  ["Kanal","Slot"],
+  ["Yay","Spring"],
+  ["Diski","Disc"],
+  ["Disk","Disc"],
+  ["Fren","Brake"],
+  ["Ön","Front"],
+  ["Arka","Rear"],
+  ["Sağ","Right"],
+  ["Sol","Left"],
+  ["Takımı","Kit"],
+  ["Takım","Kit"],
+  ["Seti","Set"],
+  ["Adet","pcs"],
+];
+
+function escReg(s){return s.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");}
+const PROD_REGEX = new RegExp(PROD_TERMS.map(([t])=>escReg(t)).join("|"),"gi");
+const PROD_MAP = {};
+PROD_TERMS.forEach(([t,e])=>{PROD_MAP[t.toLowerCase()]=e;});
+
+function translateName(s, lang){
+  if (lang !== "en" || !s) return s;
+  return s.replace(PROD_REGEX, (m) => {
+    const en = PROD_MAP[m.toLowerCase()];
+    if (!en) return m;
+    if (m === m.toUpperCase()) return en.toUpperCase();
+    return en;
+  });
+}
+function translateCat(c, lang){
+  if (!c) return c;
+  if (lang !== "en") return c.name;
+  return CAT_EN[c.id] || translateName(c.name, lang);
+}
+
 // ===== PRODUCT IMAGES (multiple per product) =====
 const PROD_IMAGES = {
   1:["https://placehold.co/600x600/2d1b1b/e8c4c4?text=BALATA%0ASET%C4%B0&font=montserrat","https://placehold.co/600x600/3d2525/e8c4c4?text=BALATA%0A%C3%96N+Y%C3%9CZ&font=montserrat","https://placehold.co/600x600/4d2f2f/e8c4c4?text=BALATA%0AARKA+Y%C3%9CZ&font=montserrat"],
@@ -482,7 +632,7 @@ export default function App() {
           {/* Category nav — desktop only */}
           {!isMobile && <div style={{borderTop:"1px solid #eee",background:"#fafafa"}}>
             <div style={{maxWidth:1200,margin:"0 auto",padding:"0 20px",display:"flex",alignItems:"center",gap:0,overflowX:"auto"}}>
-              {[{l:t("home"),p:"home"},...CATS.filter(c=>c.isGroup).map(c=>({l:c.name,p:"products",pr:{cat:c.id}})),{l:t("brands"),p:"brands"},{l:t("contact"),p:"contact"}].map((n,i) => (
+              {[{l:t("home"),p:"home"},...CATS.filter(c=>c.isGroup).map(c=>({l:translateCat(c,lang),p:"products",pr:{cat:c.id}})),{l:t("brands"),p:"brands"},{l:t("contact"),p:"contact"}].map((n,i) => (
                 <button key={i} onClick={() => go(n.p, n.pr||{})}
                   style={{padding:"10px 14px",background:"none",border:"none",fontSize:13,color:page===n.p?"#ff6000":"#555",fontWeight:page===n.p?600:400,borderBottom:page===n.p?"2px solid #ff6000":"2px solid transparent",whiteSpace:"nowrap"}}>
                   {n.l}
@@ -583,7 +733,7 @@ export default function App() {
               {/* Kategoriler */}
               <div>
                 <div style={{fontSize:14,fontWeight:700,color:"#fff",marginBottom:12}}>{t("categories")}</div>
-                {CATS.filter(c=>c.isGroup).slice(0,6).map((c,j) => ({l:c.name,p:"products",pr:{cat:c.id}})).map((item,j) => (
+                {CATS.filter(c=>c.isGroup).slice(0,6).map((c,j) => ({l:translateCat(c,lang),p:"products",pr:{cat:c.id}})).map((item,j) => (
                   <div key={j} onClick={()=>go(item.p,item.pr)} style={{fontSize:13,color:"#888",marginBottom:8,cursor:"pointer",transition:"color .15s"}} onMouseEnter={e=>e.currentTarget.style.color="#ff6000"} onMouseLeave={e=>e.currentTarget.style.color="#888"}>{item.l}</div>
                 ))}
               </div>
@@ -616,7 +766,7 @@ export default function App() {
 // ===== CATEGORY SIDEBAR (Hiyerarşik) =====
 function CategorySidebar({go, activeCat, onSelect, isFixed}) {
   const [openGroup, setOpenGroup] = useState(null);
-  const {t} = use$();
+  const {t, lang} = use$();
   const groups = getGroups();
   const fixedStyle = isFixed ? {position:"fixed",left:16,top:140,width:200,maxHeight:"calc(100vh - 160px)",overflowY:"auto",border:"1px solid #eee",borderRadius:8,background:"#fff",padding:"12px 0",zIndex:50,boxShadow:"0 2px 8px rgba(0,0,0,.04)"} : {};
   return (
@@ -637,7 +787,7 @@ function CategorySidebar({go, activeCat, onSelect, isFixed}) {
               style={{padding:"8px 16px",fontSize:12,fontWeight:600,color:isActive?"#ff6000":"#333",cursor:"pointer",display:"flex",justifyContent:"space-between",alignItems:"center",transition:"background .15s"}}
               onMouseEnter={e=>{e.currentTarget.style.background="#fff5ee"}}
               onMouseLeave={e=>{e.currentTarget.style.background="transparent"}}>
-              <span>{g.name}</span>
+              <span>{translateCat(g,lang)}</span>
               <span style={{fontSize:10,transition:"transform .2s",transform:isOpen?"rotate(90deg)":"rotate(0deg)"}}>▶</span>
             </div>
             {isOpen && subs.map(s => (
@@ -649,7 +799,7 @@ function CategorySidebar({go, activeCat, onSelect, isFixed}) {
                 style={{padding:"6px 16px 6px 32px",fontSize:11,color:activeCat===s.id?"#ff6000":"#777",fontWeight:activeCat===s.id?600:400,cursor:"pointer",transition:"background .15s,color .15s"}}
                 onMouseEnter={e=>{e.currentTarget.style.background="#fff5ee";e.currentTarget.style.color="#ff6000"}}
                 onMouseLeave={e=>{e.currentTarget.style.background="transparent";e.currentTarget.style.color=activeCat===s.id?"#ff6000":"#777"}}>
-                {s.name}
+                {translateCat(s,lang)}
               </div>
             ))}
           </div>
@@ -689,7 +839,7 @@ function OptImg({src, alt, w, h, style, cdnW}) {
 
 // ===== PRODUCT CARD with Favorite =====
 function ProductCard({p}) {
-  const {go, addToCart, favs, toggleFav, fp, t} = use$();
+  const {go, addToCart, favs, toggleFav, fp, t, lang} = use$();
   const [showAlert, setShowAlert] = useState(false);
   const disc = p.old ? Math.round((1 - p.price/p.old) * 100) : 0;
   const isFav = favs.includes(p.id);
@@ -700,7 +850,7 @@ function ProductCard({p}) {
       onMouseEnter={e => e.currentTarget.style.boxShadow="0 4px 16px rgba(0,0,0,.08)"}
       onMouseLeave={e => e.currentTarget.style.boxShadow="none"}>
       <div style={{height:200,background:"#f9f9f9",display:"flex",alignItems:"center",justifyContent:"center",position:"relative"}}>
-        <OptImg src={p.img} alt={p.name} style={{maxWidth:"80%",maxHeight:"80%",objectFit:"contain"}} />
+        <OptImg src={p.img} alt={translateName(p.name,lang)} style={{maxWidth:"80%",maxHeight:"80%",objectFit:"contain"}} />
         {disc > 0 && <span style={{position:"absolute",top:8,left:8,background:"#ff6000",color:"#fff",fontSize:12,fontWeight:700,padding:"3px 8px",borderRadius:4}}>%{disc}</span>}
         {/* Favorite button */}
         <button onClick={e => {e.stopPropagation(); toggleFav(p.id)}}
@@ -711,7 +861,7 @@ function ProductCard({p}) {
       </div>
       <div style={{padding:"12px 14px 16px"}}>
         <div style={{fontSize:12,color:"#ff6000",fontWeight:600,marginBottom:4}}>{p.brand}</div>
-        <div style={{fontSize:14,fontWeight:500,color:"#1a1a1a",lineHeight:1.35,marginBottom:4,minHeight:38}}>{p.name}</div>
+        <div style={{fontSize:14,fontWeight:500,color:"#1a1a1a",lineHeight:1.35,marginBottom:4,minHeight:38}}>{translateName(p.name,lang)}</div>
         <div style={{fontSize:11,color:"#bbb",marginBottom:4}}>{p.sku}</div>
         {p.compat && p.compat.length > 0 && <div style={{display:"flex",flexWrap:"wrap",gap:3,marginBottom:6}}>
           {p.compat.slice(0,4).map((c,i) => {
@@ -740,7 +890,7 @@ function ProductCard({p}) {
 
 // ===== Recently Viewed =====
 function RecentlyViewed() {
-  const {viewed, go, fp, t} = use$();
+  const {viewed, go, fp, t, lang} = use$();
   const items = viewed.map(id => PRODUCTS.find(p => p.id === id)).filter(Boolean);
   if (items.length === 0) return null;
 
@@ -752,7 +902,7 @@ function RecentlyViewed() {
           <div key={p.id} onClick={() => go("product",{id:p.id})}
             style={{minWidth:160,border:"1px solid #eee",borderRadius:8,padding:12,cursor:"pointer",background:"#fff",flexShrink:0}}>
             <img src={cdnImg(p.img,200)} alt="" loading="eager" width={120} height={100} style={{width:"100%",height:100,objectFit:"contain",marginBottom:8}} onError={e=>{e.target.style.display="none"}}/>
-            <div style={{fontSize:12,fontWeight:500,color:"#333",lineHeight:1.3,marginBottom:4}}>{p.name}</div>
+            <div style={{fontSize:12,fontWeight:500,color:"#333",lineHeight:1.3,marginBottom:4}}>{translateName(p.name,lang)}</div>
             <div style={{fontSize:14,fontWeight:700,color:"#1a1a1a"}}>{fp(p.price)}</div>
           </div>
         ))}
@@ -837,7 +987,7 @@ function HomePage() {
 
 // ===== PRODUCTS =====
 function ProductsPage() {
-  const {params, q, go, isMobile, t} = use$();
+  const {params, q, go, isMobile, t, lang} = use$();
   const [cat, setCat] = useState(params?.cat || "all");
   const [veh, setVeh] = useState(params?.veh || "all");
   const [brand, setBrand] = useState(params?.brand || "all");
@@ -879,8 +1029,8 @@ function ProductsPage() {
   const catName = useMemo(() => {
     if (cat === "all") return t("allProducts");
     const found = CATS.find(c => c.id === cat);
-    return found ? found.name : t("allProducts");
-  }, [cat, t]);
+    return found ? translateCat(found,lang) : t("allProducts");
+  }, [cat, t, lang]);
 
   const FilterPanel = () => (
     <>
@@ -968,20 +1118,20 @@ function ProductDetailPage() {
   return (
     <div style={{maxWidth:1200,margin:"0 auto",padding:"20px"}}>
       <div style={{fontSize:13,color:"#999",marginBottom:20}}>
-        <span style={{cursor:"pointer"}} onClick={() => go("home")}>{t("home")}</span> / {(() => { const sub = CATS.find(c=>c.id===p.cat); const grp = sub?.parent ? CATS.find(c=>c.id===sub.parent) : null; return <>{grp && <><span style={{cursor:"pointer"}} onClick={() => go("products",{cat:grp.id})}>{grp.name}</span> / </>}<span style={{cursor:"pointer"}} onClick={() => go("products",{cat:p.cat})}>{sub?.name || p.cat}</span></>; })()} / <span style={{color:"#555"}}>{p.name}</span>
+        <span style={{cursor:"pointer"}} onClick={() => go("home")}>{t("home")}</span> / {(() => { const sub = CATS.find(c=>c.id===p.cat); const grp = sub?.parent ? CATS.find(c=>c.id===sub.parent) : null; return <>{grp && <><span style={{cursor:"pointer"}} onClick={() => go("products",{cat:grp.id})}>{translateCat(grp,lang)}</span> / </>}<span style={{cursor:"pointer"}} onClick={() => go("products",{cat:p.cat})}>{sub ? translateCat(sub,lang) : p.cat}</span></>; })()} / <span style={{color:"#555"}}>{translateName(p.name,lang)}</span>
       </div>
       <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr",gap:isMobile?20:32,marginBottom:40}}>
         {/* Image Gallery */}
         <ImageGallery images={(p.images && p.images.length ? p.images : [p.img])} discount={disc} />
         <div>
           <div style={{fontSize:13,color:"#ff6000",fontWeight:600,marginBottom:6}}>{p.brand}</div>
-          <h1 style={{fontSize:24,fontWeight:700,marginBottom:8}}>{p.name}</h1>
+          <h1 style={{fontSize:24,fontWeight:700,marginBottom:8}}>{translateName(p.name,lang)}</h1>
           <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
             <span style={{color:"#f5a623"}}>★ {p.rating}</span>
             <span style={{color:"#999",fontSize:13}}>{p.reviews} değerlendirme</span>
           </div>
           <div style={{fontSize:13,color:"#999",marginBottom:16}}>SKU: {p.sku} | OEM: {p.oem}</div>
-          <div style={{fontSize:14,color:"#666",lineHeight:1.7,marginBottom:16,whiteSpace:"pre-line"}}>{linkifyContacts(p.desc)}</div>
+          <div style={{fontSize:14,color:"#666",lineHeight:1.7,marginBottom:16,whiteSpace:"pre-line"}}>{linkifyContacts(translateName(p.desc,lang))}</div>
           <div style={{padding:"16px 20px",background:"#f9f9f9",borderRadius:8,marginBottom:20,border:"1px solid #eee"}}>
             <div style={{display:"flex",alignItems:"baseline",gap:10}}>
               <span style={{fontSize:32,fontWeight:800}}>{fp(p.price)}</span>
@@ -1036,7 +1186,7 @@ function ProductDetailPage() {
       </div>
       {tab==="desc" && <div style={{marginBottom:32}}>
         <div style={{fontSize:15,color:"#555",lineHeight:1.8,whiteSpace:"pre-line",marginBottom:20}}>
-          {linkifyContacts(p.desc)}
+          {linkifyContacts(translateName(p.desc,lang))}
         </div>
         {/* Hızlı iletişim butonları */}
         <div style={{display:"flex",flexWrap:"wrap",gap:10,padding:16,background:"#fff8f0",borderRadius:10,border:"1px solid #ffd9b3"}}>
@@ -1062,7 +1212,7 @@ function ProductDetailPage() {
 
 // ===== CART with Coupon + Shipping Progress =====
 function CartPage() {
-  const {cart, updateQty, removeItem, cartTotal, go, coupon, setCoupon, couponApplied, setCouponApplied, discount, isMobile, t, fp} = use$();
+  const {cart, updateQty, removeItem, cartTotal, go, coupon, setCoupon, couponApplied, setCouponApplied, discount, isMobile, t, fp, lang} = use$();
   const ship = cartTotal >= 500 ? 0 : 45;
   const shippingProgress = Math.min((cartTotal / 500) * 100, 100);
   const remaining = Math.max(500 - cartTotal, 0);
@@ -1095,7 +1245,7 @@ function CartPage() {
               {cart.map((item,i) => (
                 <div key={item.id} style={{display:"flex",gap:16,padding:"16px",borderBottom:i<cart.length-1?"1px solid #f0f0f0":"none",alignItems:"center"}}>
                   <img src={cdnImg(item.img,100)} alt="" loading="eager" width={72} height={72} style={{width:72,height:72,objectFit:"contain",borderRadius:6,background:"#f9f9f9"}} onError={e=>{e.target.style.display="none"}}/>
-                  <div style={{flex:1}}><div style={{fontSize:14,fontWeight:600}}>{item.name}</div><div style={{fontSize:12,color:"#999"}}>{item.brand} · {item.sku}</div></div>
+                  <div style={{flex:1}}><div style={{fontSize:14,fontWeight:600}}>{translateName(item.name,lang)}</div><div style={{fontSize:12,color:"#999"}}>{item.brand} · {item.sku}</div></div>
                   <div style={{display:"flex",alignItems:"center",border:"1px solid #ddd",borderRadius:6,overflow:"hidden"}}>
                     <button onClick={() => updateQty(item.id, item.qty-1)} style={{width:32,height:32,background:"#f9f9f9",border:"none",fontSize:16,color:"#555",cursor:"pointer"}}>−</button>
                     <span style={{width:36,textAlign:"center",fontSize:13,fontWeight:600}}>{item.qty}</span>
@@ -1315,7 +1465,7 @@ function AuthPage() {
 
 // ===== ACCOUNT =====
 function AccountPage() {
-  const {user, setUser, go, pastOrders, addToCart, fp} = use$();
+  const {user, setUser, go, pastOrders, addToCart, fp, lang} = use$();
   if(!user) return <div style={{textAlign:"center",padding:"60px 20px"}}><p style={{color:"#999",marginBottom:16}}>Giriş yapmanız gerekiyor.</p><button onClick={() => go("auth")} style={{padding:"12px 28px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:14,fontWeight:600,cursor:"pointer"}}>Giriş Yap</button></div>;
 
   // Deduplicate past orders for "frequently bought"
@@ -1366,7 +1516,7 @@ function AccountPage() {
               <div key={item.id} style={{display:"flex",gap:14,padding:"14px 16px",borderBottom:i<frequentItems.length-1?"1px solid #f0f0f0":"none",alignItems:"center"}}>
                 <img src={cdnImg(item.img,80)} alt="" loading="eager" width={52} height={52} style={{width:52,height:52,objectFit:"contain",borderRadius:6,background:"#f9f9f9"}} onError={e=>{e.target.style.display="none"}}/>
                 <div style={{flex:1}}>
-                  <div style={{fontSize:14,fontWeight:600}}>{item.name}</div>
+                  <div style={{fontSize:14,fontWeight:600}}>{translateName(item.name,lang)}</div>
                   <div style={{fontSize:12,color:"#999"}}>{item.brand} · {item.sku}</div>
                   <div style={{fontSize:11,color:"#bbb",marginTop:2}}>Toplam {item.totalQty} adet sipariş edildi</div>
                 </div>
@@ -1452,7 +1602,7 @@ function OrdersPage() {
         </div>
         {pastOrders.map((order,i) => (
           <div key={i} style={{display:"grid",gridTemplateColumns:"2fr 1fr 1fr 1fr",gap:8,padding:"12px 16px",borderBottom:i<pastOrders.length-1?"1px solid #f0f0f0":"none",alignItems:"center"}}>
-            <div><div style={{fontSize:14,fontWeight:500}}>{order.name}</div><div style={{fontSize:12,color:"#999"}}>{order.brand} · {order.sku}</div></div>
+            <div><div style={{fontSize:14,fontWeight:500}}>{translateName(order.name,lang)}</div><div style={{fontSize:12,color:"#999"}}>{order.brand} · {order.sku}</div></div>
             <span style={{fontSize:13}}>{order.qty} adet</span>
             <span style={{fontSize:14,fontWeight:600}}>₺{(order.price * order.qty).toLocaleString("tr-TR")}</span>
             <span style={{fontSize:12,color:"#999"}}>{new Date(order.date).toLocaleDateString("tr-TR")}</span>
@@ -2120,7 +2270,7 @@ function FaqPage() {
 
 // ===== MOBILE MENU =====
 function MobileMenu() {
-  const {go, setMobileMenuOpen, t, user, favs} = use$();
+  const {go, setMobileMenuOpen, t, user, favs, lang} = use$();
   return (
     <div style={{position:"fixed",inset:0,zIndex:200}}>
       <div onClick={() => setMobileMenuOpen(false)} style={{position:"absolute",inset:0,background:"rgba(0,0,0,.5)"}} />
@@ -2148,7 +2298,7 @@ function MobileMenu() {
           {CATS.filter(c=>c.isGroup).map(c => (
             <button key={c.id} onClick={() => {go("products",{cat:c.id});setMobileMenuOpen(false)}}
               style={{display:"block",width:"100%",padding:"10px 20px 10px 32px",background:"none",border:"none",fontSize:14,color:"#555",cursor:"pointer",textAlign:"left"}}>
-              {c.name}
+              {translateCat(c,lang)}
             </button>
           ))}
           <div style={{height:1,background:"#eee",margin:"8px 20px"}} />
