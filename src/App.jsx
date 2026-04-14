@@ -254,6 +254,20 @@ function translateCat(c, lang){
   if (lang !== "en") return c.name;
   return CAT_EN[c.id] || translateName(c.name, lang);
 }
+function hasRealImg(p){
+  return !!(p && p.img && !p.img.includes("placehold"));
+}
+function prodImg(p){
+  return hasRealImg(p) ? p.img : "/logo.png";
+}
+function prodDesc(p, lang){
+  const base = p?.desc || "";
+  if (!hasRealImg(p)) {
+    const prefix = lang === "en" ? "📸 Image coming soon\n\n" : "📸 Görsel hazırlanıyor\n\n";
+    return prefix + base;
+  }
+  return base;
+}
 
 // ===== PRODUCT IMAGES (multiple per product) =====
 const PROD_IMAGES = {
@@ -571,8 +585,8 @@ export default function App() {
                   {socialMedia.instagram&&<a href={socialMedia.instagram} target="_blank" rel="noopener noreferrer" style={{color:"#888",fontSize:12,textDecoration:"none"}} onMouseEnter={e=>e.currentTarget.style.color="#fff"} onMouseLeave={e=>e.currentTarget.style.color="#888"}>📷</a>}
                 </div>}
                 <div style={{display:"flex",gap:8,alignItems:"center"}}>
-                  <a href="https://facebook.com/frenciniz" target="_blank" rel="noopener noreferrer" style={{color:"#888",fontSize:14,textDecoration:"none",transition:"color .2s"}} onMouseEnter={e=>e.currentTarget.style.color="#1877F2"} onMouseLeave={e=>e.currentTarget.style.color="#888"}>f</a>
-                  <a href="https://instagram.com/frenciniz" target="_blank" rel="noopener noreferrer" style={{color:"#888",fontSize:14,textDecoration:"none",transition:"color .2s"}} onMouseEnter={e=>e.currentTarget.style.color="#E4405F"} onMouseLeave={e=>e.currentTarget.style.color="#888"}>📷</a>
+                  <a href="https://www.facebook.com/profile.php?id=61573354240573" target="_blank" rel="noopener noreferrer" style={{color:"#888",fontSize:14,textDecoration:"none",transition:"color .2s"}} onMouseEnter={e=>e.currentTarget.style.color="#1877F2"} onMouseLeave={e=>e.currentTarget.style.color="#888"}>f</a>
+                  <a href="https://www.instagram.com/frenciniz.co" target="_blank" rel="noopener noreferrer" style={{color:"#888",fontSize:14,textDecoration:"none",transition:"color .2s"}} onMouseEnter={e=>e.currentTarget.style.color="#E4405F"} onMouseLeave={e=>e.currentTarget.style.color="#888"}>📷</a>
                 </div>
                 {/* Language toggle */}
                 <div style={{display:"flex",gap:0,borderRadius:4,overflow:"hidden",border:"1px solid #444"}}>
@@ -593,8 +607,7 @@ export default function App() {
             {isMobile && <button onClick={()=>setMobileMenuOpen(!mobileMenuOpen)} style={{background:"none",border:"none",fontSize:22,color:"#333",padding:4,cursor:"pointer"}}>☰</button>}
             
             <div style={{cursor:"pointer",flexShrink:0}} onClick={() => go("home")}>
-              <div style={{fontSize:isMobile?20:24,fontWeight:800,color:"#ff6000"}}>frenciniz</div>
-              {!isMobile && <div style={{fontSize:10,color:"#999",marginTop:-2}}>Fren Aksamları</div>}
+              <img src="/logo.png" alt="Frenciniz" style={{height:isMobile?44:60,width:"auto",display:"block"}}/>
             </div>
             
             {/* Search — full on desktop, compact on mobile */}
@@ -629,17 +642,6 @@ export default function App() {
             </>}
           </div>
           
-          {/* Category nav — desktop only */}
-          {!isMobile && <div style={{borderTop:"1px solid #eee",background:"#fafafa"}}>
-            <div style={{maxWidth:1200,margin:"0 auto",padding:"0 20px",display:"flex",alignItems:"center",gap:0,overflowX:"auto"}}>
-              {[{l:t("home"),p:"home"},...CATS.filter(c=>c.isGroup).map(c=>({l:translateCat(c,lang),p:"products",pr:{cat:c.id}})),{l:t("brands"),p:"brands"},{l:t("contact"),p:"contact"}].map((n,i) => (
-                <button key={i} onClick={() => go(n.p, n.pr||{})}
-                  style={{padding:"10px 14px",background:"none",border:"none",fontSize:13,color:page===n.p?"#ff6000":"#555",fontWeight:page===n.p?600:400,borderBottom:page===n.p?"2px solid #ff6000":"2px solid transparent",whiteSpace:"nowrap"}}>
-                  {n.l}
-                </button>
-              ))}
-            </div>
-          </div>}
         </header>
 
         {/* CONTENT */}
@@ -708,27 +710,15 @@ export default function App() {
 
             <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr 1fr":"2fr 1fr 1fr 1fr",gap:isMobile?20:32}}>
               <div style={isMobile?{gridColumn:"1 / -1"}:{}}>
-                <div style={{fontSize:22,fontWeight:800,color:"#ff6000",marginBottom:12,cursor:"pointer"}} onClick={()=>go("home")}>frenciniz</div>
+                <div style={{cursor:"pointer",marginBottom:12}} onClick={()=>go("home")}>
+                  <img src="/logo.png" alt="Frenciniz" style={{height:80,width:"auto",display:"block",background:"#fff",borderRadius:8,padding:6}}/>
+                </div>
                 <p style={{fontSize:13,color:"#888",lineHeight:1.7}}>{lang==="en"?"Brake parts for buses, trucks, tractors and trailers.":"Otobüs, kamyon, tır ve dorse için fren aksamı ürünleri."}</p>
                 <div style={{display:"flex",gap:10,marginTop:14}}>
-                  <a href="https://facebook.com/frenciniz" target="_blank" rel="noopener noreferrer" style={{width:36,height:36,borderRadius:8,background:"#333",display:"flex",alignItems:"center",justifyContent:"center",color:"#888",fontSize:16,textDecoration:"none",transition:"background .2s"}} onMouseEnter={e=>{e.currentTarget.style.background="#1877F2";e.currentTarget.style.color="#fff"}} onMouseLeave={e=>{e.currentTarget.style.background="#333";e.currentTarget.style.color="#888"}}>f</a>
-                  <a href="https://instagram.com/frenciniz" target="_blank" rel="noopener noreferrer" style={{width:36,height:36,borderRadius:8,background:"#333",display:"flex",alignItems:"center",justifyContent:"center",color:"#888",fontSize:16,textDecoration:"none",transition:"background .2s"}} onMouseEnter={e=>{e.currentTarget.style.background="#E4405F";e.currentTarget.style.color="#fff"}} onMouseLeave={e=>{e.currentTarget.style.background="#333";e.currentTarget.style.color="#888"}}>📷</a>
+                  <a href="https://www.facebook.com/profile.php?id=61573354240573" target="_blank" rel="noopener noreferrer" title="Facebook" style={{width:36,height:36,borderRadius:8,background:"#333",display:"flex",alignItems:"center",justifyContent:"center",color:"#fff",fontSize:18,fontWeight:700,textDecoration:"none",transition:"background .2s"}} onMouseEnter={e=>{e.currentTarget.style.background="#1877F2"}} onMouseLeave={e=>{e.currentTarget.style.background="#333"}}>f</a>
+                  <a href="https://www.instagram.com/frenciniz.co" target="_blank" rel="noopener noreferrer" title="Instagram" style={{width:36,height:36,borderRadius:8,background:"#333",display:"flex",alignItems:"center",justifyContent:"center",color:"#fff",fontSize:16,textDecoration:"none",transition:"background .2s"}} onMouseEnter={e=>{e.currentTarget.style.background="linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)"}} onMouseLeave={e=>{e.currentTarget.style.background="#333"}}>📷</a>
                 </div>
                 <div style={{marginTop:16,fontSize:13,color:"#888",lineHeight:2}}>📍 Hızırbey Mah. 1509 Sok. No:24, Isparta<br/>📞 <a href="tel:+905456087008" style={{color:"#888",textDecoration:"none"}} onMouseEnter={e=>e.currentTarget.style.color="#ff6000"} onMouseLeave={e=>e.currentTarget.style.color="#888"}>0545 608 7008</a> – <a href="https://wa.me/908508887881" target="_blank" rel="noopener noreferrer" style={{color:"#888",textDecoration:"none"}} onMouseEnter={e=>e.currentTarget.style.color="#25D366"} onMouseLeave={e=>e.currentTarget.style.color="#888"}>💬 0850 888 7881</a><br/>✉ <a href="mailto:info@frenciniz.com" style={{color:"#888",textDecoration:"none"}} onMouseEnter={e=>e.currentTarget.style.color="#ff6000"} onMouseLeave={e=>e.currentTarget.style.color="#888"}>info@frenciniz.com</a></div>
-                {/* Social Media Icons */}
-                <div style={{display:"flex",gap:10,marginTop:14}}>
-                  {[{key:"facebook",icon:"f",color:"#1877F2",label:"Facebook"},{key:"instagram",icon:"📷",color:"#E4405F",label:"Instagram"},{key:"twitter",icon:"𝕏",color:"#000",label:"X"},{key:"youtube",icon:"▶",color:"#FF0000",label:"YouTube"}]
-                    .filter(s=>socialMedia[s.key])
-                    .map(s=>(
-                      <a key={s.key} href={socialMedia[s.key]} target="_blank" rel="noopener noreferrer"
-                        style={{width:34,height:34,borderRadius:8,background:"#333",display:"flex",alignItems:"center",justifyContent:"center",color:"#999",fontSize:14,fontWeight:700,textDecoration:"none",transition:"background .2s"}}
-                        onMouseEnter={e=>{e.currentTarget.style.background=s.color;e.currentTarget.style.color="#fff"}}
-                        onMouseLeave={e=>{e.currentTarget.style.background="#333";e.currentTarget.style.color="#999"}}
-                        title={s.label}>{s.icon}</a>
-                    ))}
-                  {!socialMedia.facebook&&!socialMedia.instagram&&!socialMedia.twitter&&!socialMedia.youtube&&
-                    <span style={{fontSize:11,color:"#555"}}>{lang==="en"?"Social media accounts can be added from admin panel.":"Sosyal medya hesapları admin panelinden eklenebilir."}</span>}
-                </div>
               </div>
               {/* Kategoriler */}
               <div>
@@ -768,7 +758,7 @@ function CategorySidebar({go, activeCat, onSelect, isFixed}) {
   const [openGroup, setOpenGroup] = useState(null);
   const {t, lang} = use$();
   const groups = getGroups();
-  const fixedStyle = isFixed ? {position:"fixed",left:16,top:140,width:200,maxHeight:"calc(100vh - 160px)",overflowY:"auto",border:"1px solid #eee",borderRadius:8,background:"#fff",padding:"12px 0",zIndex:50,boxShadow:"0 2px 8px rgba(0,0,0,.04)"} : {};
+  const fixedStyle = isFixed ? {position:"fixed",left:0,top:120,width:220,height:"calc(100vh - 120px)",overflowY:"auto",borderRight:"1px solid #eee",background:"#fff",padding:"12px 0",zIndex:50} : {};
   return (
     <aside style={fixedStyle}>
       {isFixed && <div style={{padding:"4px 16px 10px",fontSize:13,fontWeight:700,color:"#1a1a1a",borderBottom:"1px solid #f0f0f0",marginBottom:6}}>{t("categories")}</div>}
@@ -850,7 +840,7 @@ function ProductCard({p}) {
       onMouseEnter={e => e.currentTarget.style.boxShadow="0 4px 16px rgba(0,0,0,.08)"}
       onMouseLeave={e => e.currentTarget.style.boxShadow="none"}>
       <div style={{height:200,background:"#f9f9f9",display:"flex",alignItems:"center",justifyContent:"center",position:"relative"}}>
-        <OptImg src={p.img} alt={translateName(p.name,lang)} style={{maxWidth:"80%",maxHeight:"80%",objectFit:"contain"}} />
+        <OptImg src={prodImg(p)} alt={translateName(p.name,lang)} style={{maxWidth:"80%",maxHeight:"80%",objectFit:"contain"}} />
         {disc > 0 && <span style={{position:"absolute",top:8,left:8,background:"#ff6000",color:"#fff",fontSize:12,fontWeight:700,padding:"3px 8px",borderRadius:4}}>%{disc}</span>}
         {/* Favorite button */}
         <button onClick={e => {e.stopPropagation(); toggleFav(p.id)}}
@@ -901,7 +891,7 @@ function RecentlyViewed() {
         {items.slice(0,6).map(p => (
           <div key={p.id} onClick={() => go("product",{id:p.id})}
             style={{minWidth:160,border:"1px solid #eee",borderRadius:8,padding:12,cursor:"pointer",background:"#fff",flexShrink:0}}>
-            <img src={cdnImg(p.img,200)} alt="" loading="eager" width={120} height={100} style={{width:"100%",height:100,objectFit:"contain",marginBottom:8}} onError={e=>{e.target.style.display="none"}}/>
+            <img src={hasRealImg(p)?cdnImg(p.img,200):"/logo.png"} alt="" loading="eager" width={120} height={100} style={{width:"100%",height:100,objectFit:"contain",marginBottom:8}} onError={e=>{e.target.src="/logo.png"}}/>
             <div style={{fontSize:12,fontWeight:500,color:"#333",lineHeight:1.3,marginBottom:4}}>{translateName(p.name,lang)}</div>
             <div style={{fontSize:14,fontWeight:700,color:"#1a1a1a"}}>{fp(p.price)}</div>
           </div>
@@ -914,7 +904,14 @@ function RecentlyViewed() {
 // ===== HOME =====
 function HomePage() {
   const {go, isMobile, t, lang} = use$();
-  const popular = useMemo(() => [...PRODUCTS].sort((a,b) => b.reviews - a.reviews).slice(0,8), []);
+  const popular = useMemo(() => {
+    const targetCats = ["fren-diski","fren-diski-abs-li","fren-kampanasi","fren-balatasi"];
+    const pool = PRODUCTS.filter(p => targetCats.includes(p.cat) && hasRealImg(p) && p.stock > 0);
+    const perCat = {};
+    targetCats.forEach(c => { perCat[c] = pool.filter(p => p.cat === c).slice(0, 2); });
+    const balanced = [...(perCat["fren-diski"]||[]), ...(perCat["fren-kampanasi"]||[]), ...(perCat["fren-balatasi"]||[]), ...(perCat["fren-diski-abs-li"]||[])];
+    return balanced.slice(0, 8);
+  }, []);
   const discounted = PRODUCTS.filter(p => p.old);
 
   return <>
@@ -1122,7 +1119,7 @@ function ProductDetailPage() {
       </div>
       <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr",gap:isMobile?20:32,marginBottom:40}}>
         {/* Image Gallery */}
-        <ImageGallery images={(p.images && p.images.length ? p.images : [p.img])} discount={disc} />
+        <ImageGallery images={hasRealImg(p) ? (p.images && p.images.length ? p.images : [p.img]) : ["/logo.png"]} discount={disc} />
         <div>
           <div style={{fontSize:13,color:"#ff6000",fontWeight:600,marginBottom:6}}>{p.brand}</div>
           <h1 style={{fontSize:24,fontWeight:700,marginBottom:8}}>{translateName(p.name,lang)}</h1>
@@ -1131,7 +1128,7 @@ function ProductDetailPage() {
             <span style={{color:"#999",fontSize:13}}>{p.reviews} değerlendirme</span>
           </div>
           <div style={{fontSize:13,color:"#999",marginBottom:16}}>SKU: {p.sku} | OEM: {p.oem}</div>
-          <div style={{fontSize:14,color:"#666",lineHeight:1.7,marginBottom:16,whiteSpace:"pre-line"}}>{linkifyContacts(translateName(p.desc,lang))}</div>
+          <div style={{fontSize:14,color:"#666",lineHeight:1.7,marginBottom:16,whiteSpace:"pre-line"}}>{linkifyContacts(translateName(prodDesc(p,lang),lang))}</div>
           <div style={{padding:"16px 20px",background:"#f9f9f9",borderRadius:8,marginBottom:20,border:"1px solid #eee"}}>
             <div style={{display:"flex",alignItems:"baseline",gap:10}}>
               <span style={{fontSize:32,fontWeight:800}}>{fp(p.price)}</span>
@@ -1186,7 +1183,7 @@ function ProductDetailPage() {
       </div>
       {tab==="desc" && <div style={{marginBottom:32}}>
         <div style={{fontSize:15,color:"#555",lineHeight:1.8,whiteSpace:"pre-line",marginBottom:20}}>
-          {linkifyContacts(translateName(p.desc,lang))}
+          {linkifyContacts(translateName(prodDesc(p,lang),lang))}
         </div>
         {/* Hızlı iletişim butonları */}
         <div style={{display:"flex",flexWrap:"wrap",gap:10,padding:16,background:"#fff8f0",borderRadius:10,border:"1px solid #ffd9b3"}}>
@@ -1244,7 +1241,7 @@ function CartPage() {
             <div style={{border:"1px solid #eee",borderRadius:8}}>
               {cart.map((item,i) => (
                 <div key={item.id} style={{display:"flex",gap:16,padding:"16px",borderBottom:i<cart.length-1?"1px solid #f0f0f0":"none",alignItems:"center"}}>
-                  <img src={cdnImg(item.img,100)} alt="" loading="eager" width={72} height={72} style={{width:72,height:72,objectFit:"contain",borderRadius:6,background:"#f9f9f9"}} onError={e=>{e.target.style.display="none"}}/>
+                  <img src={item.img && !item.img.includes("placehold") ? cdnImg(item.img,100) : "/logo.png"} alt="" loading="eager" width={72} height={72} style={{width:72,height:72,objectFit:"contain",borderRadius:6,background:"#f9f9f9"}} onError={e=>{e.target.src="/logo.png"}}/>
                   <div style={{flex:1}}><div style={{fontSize:14,fontWeight:600}}>{translateName(item.name,lang)}</div><div style={{fontSize:12,color:"#999"}}>{item.brand} · {item.sku}</div></div>
                   <div style={{display:"flex",alignItems:"center",border:"1px solid #ddd",borderRadius:6,overflow:"hidden"}}>
                     <button onClick={() => updateQty(item.id, item.qty-1)} style={{width:32,height:32,background:"#f9f9f9",border:"none",fontSize:16,color:"#555",cursor:"pointer"}}>−</button>
@@ -1517,7 +1514,7 @@ function AccountPage() {
           <div style={{border:"1px solid #eee",borderRadius:8,overflow:"hidden"}}>
             {frequentItems.map((item, i) => (
               <div key={item.id} style={{display:"flex",gap:14,padding:"14px 16px",borderBottom:i<frequentItems.length-1?"1px solid #f0f0f0":"none",alignItems:"center"}}>
-                <img src={cdnImg(item.img,80)} alt="" loading="eager" width={52} height={52} style={{width:52,height:52,objectFit:"contain",borderRadius:6,background:"#f9f9f9"}} onError={e=>{e.target.style.display="none"}}/>
+                <img src={item.img && !item.img.includes("placehold") ? cdnImg(item.img,80) : "/logo.png"} alt="" loading="eager" width={52} height={52} style={{width:52,height:52,objectFit:"contain",borderRadius:6,background:"#f9f9f9"}} onError={e=>{e.target.src="/logo.png"}}/>
                 <div style={{flex:1}}>
                   <div style={{fontSize:14,fontWeight:600}}>{translateName(item.name,lang)}</div>
                   <div style={{fontSize:12,color:"#999"}}>{item.brand} · {item.sku}</div>
