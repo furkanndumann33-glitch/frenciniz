@@ -1686,24 +1686,62 @@ function AddressesPage() {
 function ProfilePage() {
   const {go, user} = use$();
   const IS = {width:"100%",padding:"10px 14px",border:"1px solid #ddd",borderRadius:6,fontSize:14};
+  const RO = {padding:"10px 14px",border:"1px solid #eee",borderRadius:6,fontSize:14,background:"#fafafa",color:"#333"};
+  const HDR = {display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:4};
+  const LBL = {fontSize:13,color:"#666"};
+  const BTN = {background:"none",border:"none",color:"#ff6000",fontSize:12,fontWeight:600,cursor:"pointer",padding:"2px 6px"};
+  const MISSING = <span style={{color:"#bbb",fontStyle:"italic"}}>Belirtilmemiş</span>;
+
   const [saved, setSaved] = useState(false);
+  const [form, setForm] = useState({
+    name: user?.name || "",
+    email: user?.email || "",
+    phone: user?.phone || "",
+    birth: user?.birth || "",
+  });
+  const [edit, setEdit] = useState({name:false, email:false, phone:false, birth:false});
+  const toggleEdit = (k) => setEdit(p => ({...p, [k]: !p[k]}));
+  const update = (k, v) => setForm(p => ({...p, [k]: v}));
+  const fmtBirth = form.birth ? new Date(form.birth).toLocaleDateString("tr-TR") : null;
 
   return <div style={{maxWidth:500,margin:"0 auto",padding:"20px"}}>
     <div style={{fontSize:13,color:"#999",marginBottom:16}}><span style={{cursor:"pointer"}} onClick={()=>go("account")}>Hesabım</span> / <span style={{color:"#555"}}>Hesap Bilgileri</span></div>
     <h1 style={{fontSize:22,fontWeight:700,marginBottom:20}}>Hesap Bilgileri</h1>
     <div style={{border:"1px solid #eee",borderRadius:8,padding:24}}>
       <div style={{display:"flex",flexDirection:"column",gap:14}}>
-        <div><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>Ad Soyad</label><input defaultValue={user?.name||""} placeholder="Adınız Soyadınız" style={IS}/></div>
-        <div><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>E-posta</label><input type="email" placeholder="ornek@email.com" style={IS}/></div>
-        <div><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>Telefon</label>
-          <div style={{display:"flex",gap:0}}>
-            <span style={{padding:"10px 12px",background:"#f5f5f5",border:"1px solid #ddd",borderRight:"none",borderRadius:"6px 0 0 6px",fontSize:14,color:"#555"}}>+90</span>
-            <input placeholder="5XX XXX XX XX" style={{...IS,borderRadius:"0 6px 6px 0",flex:1}}/>
-          </div>
+        {/* Ad Soyad */}
+        <div>
+          <div style={HDR}><label style={LBL}>Ad Soyad</label><button onClick={()=>toggleEdit("name")} style={BTN}>{edit.name?"İptal":"Güncelle"}</button></div>
+          {edit.name
+            ? <input value={form.name} onChange={e=>update("name",e.target.value)} placeholder="Adınız Soyadınız" style={IS} autoFocus/>
+            : <div style={RO}>{form.name || MISSING}</div>}
         </div>
-        <div><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>Doğum Tarihi</label><input type="date" style={IS}/></div>
-        <button onClick={()=>{setSaved(true);setTimeout(()=>setSaved(false),2000)}} style={{padding:"12px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:15,fontWeight:700,cursor:"pointer",marginTop:4}}>
-          {saved ? "✓ Kaydedildi" : "Bilgileri Güncelle"}
+        {/* E-posta */}
+        <div>
+          <div style={HDR}><label style={LBL}>E-posta</label><button onClick={()=>toggleEdit("email")} style={BTN}>{edit.email?"İptal":"Güncelle"}</button></div>
+          {edit.email
+            ? <input type="email" value={form.email} onChange={e=>update("email",e.target.value)} placeholder="ornek@email.com" style={IS} autoFocus/>
+            : <div style={RO}>{form.email || MISSING}</div>}
+        </div>
+        {/* Telefon */}
+        <div>
+          <div style={HDR}><label style={LBL}>Telefon</label><button onClick={()=>toggleEdit("phone")} style={BTN}>{edit.phone?"İptal":"Güncelle"}</button></div>
+          {edit.phone
+            ? <div style={{display:"flex",gap:0}}>
+                <span style={{padding:"10px 12px",background:"#f5f5f5",border:"1px solid #ddd",borderRight:"none",borderRadius:"6px 0 0 6px",fontSize:14,color:"#555"}}>+90</span>
+                <input value={form.phone} onChange={e=>update("phone",e.target.value)} placeholder="5XX XXX XX XX" style={{...IS,borderRadius:"0 6px 6px 0",flex:1}} autoFocus/>
+              </div>
+            : <div style={RO}>{form.phone ? `+90 ${form.phone}` : MISSING}</div>}
+        </div>
+        {/* Doğum Tarihi */}
+        <div>
+          <div style={HDR}><label style={LBL}>Doğum Tarihi</label><button onClick={()=>toggleEdit("birth")} style={BTN}>{edit.birth?"İptal":"Güncelle"}</button></div>
+          {edit.birth
+            ? <input type="date" value={form.birth} onChange={e=>update("birth",e.target.value)} style={IS} autoFocus/>
+            : <div style={RO}>{fmtBirth || MISSING}</div>}
+        </div>
+        <button onClick={()=>{setSaved(true);setEdit({name:false,email:false,phone:false,birth:false});setTimeout(()=>setSaved(false),2000)}} style={{padding:"12px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:15,fontWeight:700,cursor:"pointer",marginTop:4}}>
+          {saved ? "✓ Kaydedildi" : "Bilgileri Kaydet"}
         </button>
       </div>
     </div>
