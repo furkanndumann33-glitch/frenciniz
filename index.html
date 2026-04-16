@@ -9,6 +9,9 @@
   <link rel="dns-prefetch" href="https://wsrv.nl" />
   <link rel="preconnect" href="https://s3-eu-west-1.amazonaws.com" crossorigin />
   <link rel="dns-prefetch" href="https://s3-eu-west-1.amazonaws.com" />
+  <!-- Critical resource hints: logo (header) + products.json paralel başlat -->
+  <link rel="preload" as="image" href="/logo.webp" fetchpriority="high" />
+  <link rel="preload" as="fetch" href="/data/products.json" crossorigin="anonymous" />
   <title>Frenciniz</title>
 </head>
 <body>

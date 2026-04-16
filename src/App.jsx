@@ -258,7 +258,7 @@ function hasRealImg(p){
   return !!(p && p.img && !p.img.includes("placehold"));
 }
 function prodImg(p){
-  return hasRealImg(p) ? p.img : "/logo.png";
+  return hasRealImg(p) ? p.img : "/logo-small.webp";
 }
 function prodDesc(p, lang){
   const base = p?.desc || "";
@@ -615,7 +615,7 @@ export default function App() {
             {isMobile && <button onClick={()=>setMobileMenuOpen(!mobileMenuOpen)} style={{background:"none",border:"none",fontSize:22,color:"#333",padding:4,cursor:"pointer"}}>☰</button>}
             
             <div style={{cursor:"pointer",flexShrink:0}} onClick={() => go("home")}>
-              <img src="/logo.png" alt="Frenciniz" style={{height:isMobile?44:60,width:"auto",display:"block"}}/>
+              <img src="/logo.webp" alt="Frenciniz" width={isMobile?88:120} height={isMobile?44:60} fetchpriority="high" style={{height:isMobile?44:60,width:"auto",display:"block"}} onError={e=>{e.target.src="/logo.png"}}/>
             </div>
             
             {/* Search — full on desktop, compact on mobile */}
@@ -720,7 +720,7 @@ export default function App() {
             <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr 1fr":"2fr 1fr 1fr 1fr",gap:isMobile?20:32}}>
               <div style={isMobile?{gridColumn:"1 / -1"}:{}}>
                 <div style={{cursor:"pointer",marginBottom:12}} onClick={()=>go("home")}>
-                  <img src="/logo.png" alt="Frenciniz" style={{height:80,width:"auto",display:"block",background:"#fff",borderRadius:8,padding:6}}/>
+                  <img src="/logo.webp" alt="Frenciniz" width={120} height={80} loading="lazy" decoding="async" style={{height:80,width:"auto",display:"block",background:"#fff",borderRadius:8,padding:6}} onError={e=>{e.target.src="/logo.png"}}/>
                 </div>
                 <p style={{fontSize:13,color:"#888",lineHeight:1.7}}>{lang==="en"?"Brake parts for buses, trucks, tractors and trailers.":"Otobüs, kamyon, tır ve dorse için fren aksamı ürünleri."}</p>
                 <div style={{display:"flex",gap:10,marginTop:14}}>
@@ -826,7 +826,7 @@ function linkifyContacts(text) {
 function OptImg({src, alt, w, h, style, cdnW, eager}) {
   const [loaded, setLoaded] = useState(false);
   const [stage, setStage] = useState(0);
-  const finalSrc = stage === 0 ? cdnImg(src, cdnW || 300) : stage === 1 ? directImg(src) : "/logo.png";
+  const finalSrc = stage === 0 ? cdnImg(src, cdnW || 300) : stage === 1 ? directImg(src) : "/logo-small.webp";
   return (
     <>
       {!loaded && <div style={{width:w||"100%",height:h||"100%",background:"linear-gradient(90deg,#f0f0f0 25%,#e0e0e0 50%,#f0f0f0 75%)",backgroundSize:"200% 100%",animation:"shimmer 1.5s infinite",borderRadius:4,...(style||{})}} />}
@@ -903,7 +903,7 @@ function RecentlyViewed() {
         {items.slice(0,6).map(p => (
           <div key={p.id} onClick={() => go("product",{id:p.id})}
             style={{minWidth:160,border:"1px solid #eee",borderRadius:8,padding:12,cursor:"pointer",background:"#fff",flexShrink:0}}>
-            <img src={hasRealImg(p)?cdnImg(p.img,200):"/logo.png"} alt="" loading="eager" width={120} height={100} style={{width:"100%",height:100,objectFit:"contain",marginBottom:8}} onError={e=>{e.target.src="/logo.png"}}/>
+            <img src={hasRealImg(p)?cdnImg(p.img,200):"/logo-small.webp"} alt="" loading="lazy" decoding="async" width={120} height={100} style={{width:"100%",height:100,objectFit:"contain",marginBottom:8}} onError={e=>{e.target.src="/logo-small.png"}}/>
             <div style={{fontSize:12,fontWeight:500,color:"#333",lineHeight:1.3,marginBottom:4}}>{translateName(p.name,lang)}</div>
             <div style={{fontSize:14,fontWeight:700,color:"#1a1a1a"}}>{fp(p.price)}</div>
           </div>
@@ -1131,7 +1131,7 @@ function ProductDetailPage() {
       </div>
       <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr",gap:isMobile?20:32,marginBottom:40}}>
         {/* Image Gallery */}
-        <ImageGallery images={hasRealImg(p) ? (p.images && p.images.length ? p.images : [p.img]) : ["/logo.png"]} discount={disc} />
+        <ImageGallery images={hasRealImg(p) ? (p.images && p.images.length ? p.images : [p.img]) : ["/logo-small.webp"]} discount={disc} />
         <div>
           <div style={{fontSize:13,color:"#ff6000",fontWeight:600,marginBottom:6}}>{p.brand}</div>
           <h1 style={{fontSize:24,fontWeight:700,marginBottom:8}}>{translateName(p.name,lang)}</h1>
@@ -1253,7 +1253,7 @@ function CartPage() {
             <div style={{border:"1px solid #eee",borderRadius:8}}>
               {cart.map((item,i) => (
                 <div key={item.id} style={{display:"flex",gap:16,padding:"16px",borderBottom:i<cart.length-1?"1px solid #f0f0f0":"none",alignItems:"center"}}>
-                  <img src={item.img && !item.img.includes("placehold") ? cdnImg(item.img,100) : "/logo.png"} alt="" loading="eager" width={72} height={72} style={{width:72,height:72,objectFit:"contain",borderRadius:6,background:"#f9f9f9"}} onError={e=>{e.target.src="/logo.png"}}/>
+                  <img src={item.img && !item.img.includes("placehold") ? cdnImg(item.img,100) : "/logo-small.webp"} alt="" loading="lazy" decoding="async" width={72} height={72} style={{width:72,height:72,objectFit:"contain",borderRadius:6,background:"#f9f9f9"}} onError={e=>{e.target.src="/logo-small.png"}}/>
                   <div style={{flex:1}}><div style={{fontSize:14,fontWeight:600}}>{translateName(item.name,lang)}</div><div style={{fontSize:12,color:"#999"}}>{item.brand} · {item.sku}</div></div>
                   <div style={{display:"flex",alignItems:"center",border:"1px solid #ddd",borderRadius:6,overflow:"hidden"}}>
                     <button onClick={() => updateQty(item.id, item.qty-1)} style={{width:32,height:32,background:"#f9f9f9",border:"none",fontSize:16,color:"#555",cursor:"pointer"}}>−</button>
@@ -1524,7 +1524,7 @@ function AccountPage() {
           <div style={{border:"1px solid #eee",borderRadius:8,overflow:"hidden"}}>
             {frequentItems.map((item, i) => (
               <div key={item.id} style={{display:"flex",gap:14,padding:"14px 16px",borderBottom:i<frequentItems.length-1?"1px solid #f0f0f0":"none",alignItems:"center"}}>
-                <img src={item.img && !item.img.includes("placehold") ? cdnImg(item.img,80) : "/logo.png"} alt="" loading="eager" width={52} height={52} style={{width:52,height:52,objectFit:"contain",borderRadius:6,background:"#f9f9f9"}} onError={e=>{e.target.src="/logo.png"}}/>
+                <img src={item.img && !item.img.includes("placehold") ? cdnImg(item.img,80) : "/logo-small.webp"} alt="" loading="lazy" decoding="async" width={52} height={52} style={{width:52,height:52,objectFit:"contain",borderRadius:6,background:"#f9f9f9"}} onError={e=>{e.target.src="/logo-small.png"}}/>
                 <div style={{flex:1}}>
                   <div style={{fontSize:14,fontWeight:600}}>{translateName(item.name,lang)}</div>
                   <div style={{fontSize:12,color:"#999"}}>{item.brand} · {item.sku}</div>
