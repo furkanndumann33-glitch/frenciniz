@@ -615,7 +615,7 @@ export default function App() {
             {isMobile && <button onClick={()=>setMobileMenuOpen(!mobileMenuOpen)} style={{background:"none",border:"none",fontSize:22,color:"#333",padding:4,cursor:"pointer"}}>☰</button>}
             
             <div style={{cursor:"pointer",flexShrink:0}} onClick={() => go("home")}>
-              <img src="/logo.webp" alt="Frenciniz" width={isMobile?88:120} height={isMobile?44:60} fetchpriority="high" style={{height:isMobile?44:60,width:"auto",display:"block"}} onError={e=>{e.target.src="/logo.png"}}/>
+              <img src="/logo.webp" alt="Frenciniz" width={isMobile?108:160} height={isMobile?56:88} fetchpriority="high" style={{height:isMobile?56:88,width:"auto",display:"block",imageRendering:"auto"}} onError={e=>{e.target.src="/logo.png"}}/>
             </div>
             
             {/* Search — full on desktop, compact on mobile */}
@@ -720,12 +720,16 @@ export default function App() {
             <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr 1fr":"2fr 1fr 1fr 1fr",gap:isMobile?20:32}}>
               <div style={isMobile?{gridColumn:"1 / -1"}:{}}>
                 <div style={{cursor:"pointer",marginBottom:12}} onClick={()=>go("home")}>
-                  <img src="/logo.webp" alt="Frenciniz" width={120} height={80} loading="lazy" decoding="async" style={{height:80,width:"auto",display:"block",background:"#fff",borderRadius:8,padding:6}} onError={e=>{e.target.src="/logo.png"}}/>
+                  <img src="/logo.webp" alt="Frenciniz" width={120} height={80} loading="lazy" decoding="async" style={{height:80,width:"auto",display:"block"}} onError={e=>{e.target.src="/logo.png"}}/>
                 </div>
                 <p style={{fontSize:13,color:"#888",lineHeight:1.7}}>{lang==="en"?"Brake parts for buses, trucks, tractors and trailers.":"Otobüs, kamyon, tır ve dorse için fren aksamı ürünleri."}</p>
                 <div style={{display:"flex",gap:10,marginTop:14}}>
-                  <a href="https://www.facebook.com/profile.php?id=61573354240573" target="_blank" rel="noopener noreferrer" title="Facebook" style={{width:36,height:36,borderRadius:8,background:"#333",display:"flex",alignItems:"center",justifyContent:"center",color:"#fff",fontSize:18,fontWeight:700,textDecoration:"none",transition:"background .2s"}} onMouseEnter={e=>{e.currentTarget.style.background="#1877F2"}} onMouseLeave={e=>{e.currentTarget.style.background="#333"}}>f</a>
-                  <a href="https://www.instagram.com/frenciniz.co" target="_blank" rel="noopener noreferrer" title="Instagram" style={{width:36,height:36,borderRadius:8,background:"#333",display:"flex",alignItems:"center",justifyContent:"center",color:"#fff",fontSize:16,textDecoration:"none",transition:"background .2s"}} onMouseEnter={e=>{e.currentTarget.style.background="linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)"}} onMouseLeave={e=>{e.currentTarget.style.background="#333"}}>📷</a>
+                  <a href="https://www.facebook.com/profile.php?id=61573354240573" target="_blank" rel="noopener noreferrer" title="Facebook" style={{width:40,height:40,display:"flex",alignItems:"center",justifyContent:"center",textDecoration:"none",transition:"transform .15s"}} onMouseEnter={e=>{e.currentTarget.style.transform="scale(1.08)"}} onMouseLeave={e=>{e.currentTarget.style.transform="scale(1)"}}>
+                    <img src="/facebook.png" alt="Facebook" width={40} height={40} loading="lazy" decoding="async" style={{width:40,height:40,display:"block"}}/>
+                  </a>
+                  <a href="https://www.instagram.com/frenciniz.co" target="_blank" rel="noopener noreferrer" title="Instagram" style={{width:40,height:40,display:"flex",alignItems:"center",justifyContent:"center",textDecoration:"none",transition:"transform .15s"}} onMouseEnter={e=>{e.currentTarget.style.transform="scale(1.08)"}} onMouseLeave={e=>{e.currentTarget.style.transform="scale(1)"}}>
+                    <img src="/instagram.png" alt="Instagram" width={40} height={40} loading="lazy" decoding="async" style={{width:40,height:40,display:"block",borderRadius:8}}/>
+                  </a>
                 </div>
                 <div style={{marginTop:16,fontSize:13,color:"#888",lineHeight:2}}>📍 Hızırbey Mah. 1509 Sok. No:24, Isparta<br/>📞 <a href="tel:+905456087008" style={{color:"#888",textDecoration:"none"}} onMouseEnter={e=>e.currentTarget.style.color="#ff6000"} onMouseLeave={e=>e.currentTarget.style.color="#888"}>0545 608 7008</a> – <a href="https://wa.me/908508887881" target="_blank" rel="noopener noreferrer" style={{color:"#888",textDecoration:"none"}} onMouseEnter={e=>e.currentTarget.style.color="#25D366"} onMouseLeave={e=>e.currentTarget.style.color="#888"}>💬 0850 888 7881</a><br/>✉ <a href="mailto:info@frenciniz.com" style={{color:"#888",textDecoration:"none"}} onMouseEnter={e=>e.currentTarget.style.color="#ff6000"} onMouseLeave={e=>e.currentTarget.style.color="#888"}>info@frenciniz.com</a></div>
               </div>
@@ -826,6 +830,12 @@ function linkifyContacts(text) {
 function OptImg({src, alt, w, h, style, cdnW, eager}) {
   const [loaded, setLoaded] = useState(false);
   const [stage, setStage] = useState(0);
+  // CDN 3sn'de yüklenmezse direkt S3'e atla
+  useEffect(() => {
+    if (stage !== 0 || loaded) return;
+    const timer = setTimeout(() => { if (!loaded) { setStage(1); } }, 3000);
+    return () => clearTimeout(timer);
+  }, [stage, loaded, src]);
   const finalSrc = stage === 0 ? cdnImg(src, cdnW || 300) : stage === 1 ? directImg(src) : "/logo-small.webp";
   return (
     <>
@@ -840,7 +850,7 @@ function OptImg({src, alt, w, h, style, cdnW, eager}) {
 }
 
 // ===== PRODUCT CARD with Favorite =====
-function ProductCard({p}) {
+function ProductCard({p, eager}) {
   const {go, addToCart, favs, toggleFav, fp, t, lang} = use$();
   const [showAlert, setShowAlert] = useState(false);
   const disc = p.old ? Math.round((1 - p.price/p.old) * 100) : 0;
@@ -852,7 +862,7 @@ function ProductCard({p}) {
       onMouseEnter={e => e.currentTarget.style.boxShadow="0 4px 16px rgba(0,0,0,.08)"}
       onMouseLeave={e => e.currentTarget.style.boxShadow="none"}>
       <div style={{height:200,background:"#f9f9f9",display:"flex",alignItems:"center",justifyContent:"center",position:"relative"}}>
-        <OptImg src={prodImg(p)} alt={translateName(p.name,lang)} style={{maxWidth:"80%",maxHeight:"80%",objectFit:"contain"}} />
+        <OptImg src={prodImg(p)} alt={translateName(p.name,lang)} eager={eager} style={{maxWidth:"80%",maxHeight:"80%",objectFit:"contain"}} />
         {disc > 0 && <span style={{position:"absolute",top:8,left:8,background:"#ff6000",color:"#fff",fontSize:12,fontWeight:700,padding:"3px 8px",borderRadius:4}}>%{disc}</span>}
         {/* Favorite button */}
         <button onClick={e => {e.stopPropagation(); toggleFav(p.id)}}
@@ -967,14 +977,14 @@ function HomePage() {
         <h2 style={{fontSize:20,fontWeight:700}}>{t("bestSellers")}</h2>
         <button onClick={() => go("products")} style={{background:"none",border:"none",color:"#ff6000",fontSize:13,fontWeight:600,cursor:"pointer"}}>{t("seeAll")}</button>
       </div>
-      <div style={{display:"grid",gridTemplateColumns:isMobile?"repeat(2,1fr)":"repeat(4,1fr)",gap:isMobile?10:16}}>{popular.slice(0,4).map(p => <ProductCard key={p.id} p={p} />)}</div>
+      <div style={{display:"grid",gridTemplateColumns:isMobile?"repeat(2,1fr)":"repeat(4,1fr)",gap:isMobile?10:16}}>{popular.slice(0,4).map((p,i) => <ProductCard key={p.id} p={p} eager={i<4} />)}</div>
     </div>
 
     {/* Discounted */}
     {discounted.length > 0 && <div style={{background:"#fff8f0",padding:"32px 0"}}>
       <div style={{maxWidth:1200,margin:"0 auto",padding:"0 20px"}}>
         <h2 style={{fontSize:20,fontWeight:700,marginBottom:16}}>{t("discounted")}</h2>
-        <div style={{display:"grid",gridTemplateColumns:isMobile?"repeat(2,1fr)":"repeat(4,1fr)",gap:isMobile?10:16}}>{discounted.slice(0,4).map(p => <ProductCard key={p.id} p={p} />)}</div>
+        <div style={{display:"grid",gridTemplateColumns:isMobile?"repeat(2,1fr)":"repeat(4,1fr)",gap:isMobile?10:16}}>{discounted.slice(0,4).map((p,i) => <ProductCard key={p.id} p={p} eager={i<2} />)}</div>
       </div>
     </div>}
 
@@ -1085,7 +1095,7 @@ function ProductsPage() {
           {items.length === 0 ? (
             <div style={{textAlign:"center",padding:"60px 0",color:"#999"}}><div style={{fontSize:48,marginBottom:12}}>🔍</div><div style={{fontSize:16,fontWeight:600}}>{t("noResults")}</div></div>
           ) : (
-            <div style={{display:"grid",gridTemplateColumns:isMobile?"repeat(2,1fr)":"repeat(3,1fr)",gap:isMobile?10:16}}>{items.map(p => <ProductCard key={p.id} p={p} />)}</div>
+            <div style={{display:"grid",gridTemplateColumns:isMobile?"repeat(2,1fr)":"repeat(3,1fr)",gap:isMobile?10:16}}>{items.map((p,i) => <ProductCard key={p.id} p={p} eager={i<6} />)}</div>
           )}
         </div>
       </div>
