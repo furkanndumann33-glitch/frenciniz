@@ -389,7 +389,18 @@ export default function App() {
   }, []);
   const [favs, setFavs] = useState([]);
   const [viewed, setViewed] = useState([]);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(() => {
+    try {
+      const raw = typeof window !== 'undefined' && localStorage.getItem("frenciniz_user");
+      return raw ? JSON.parse(raw) : null;
+    } catch { return null; }
+  });
+  useEffect(() => {
+    try {
+      if (user) localStorage.setItem("frenciniz_user", JSON.stringify(user));
+      else localStorage.removeItem("frenciniz_user");
+    } catch {}
+  }, [user]);
   const [q, setQ] = useState("");
   const [toast, setToast] = useState(null);
   const [showTop, setShowTop] = useState(false);
@@ -1481,7 +1492,7 @@ function AuthPage() {
               {en ? <span>I accept the <span onClick={()=>go("terms")} style={{color:"#ff6000",cursor:"pointer"}}>Terms & Conditions</span> and <span onClick={()=>go("privacy")} style={{color:"#ff6000",cursor:"pointer"}}>Privacy Policy</span>.</span>
                   : <span><span onClick={()=>go("terms")} style={{color:"#ff6000",cursor:"pointer"}}>Kullanım koşullarını</span> ve <span onClick={()=>go("privacy")} style={{color:"#ff6000",cursor:"pointer"}}>gizlilik politikasını</span> kabul ediyorum.</span>}
             </label>
-            <button onClick={() => {setUser({name:regData.name||(en?"User":"Kullanıcı")}); go("account")}}
+            <button onClick={() => {setUser({name:regData.name||(en?"User":"Kullanıcı"), email:regData.email||"", phone:regData.phone||""}); go("account")}}
               style={{padding:"12px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:15,fontWeight:700,cursor:"pointer",marginTop:4}}>{en?"Sign Up":"Kayıt Ol"}</button>
           </div>
         )}
@@ -1684,7 +1695,7 @@ function AddressesPage() {
 }
 
 function ProfilePage() {
-  const {go, user} = use$();
+  const {go, user, setUser} = use$();
   const IS = {width:"100%",padding:"10px 14px",border:"1px solid #ddd",borderRadius:6,fontSize:14};
   const RO = {padding:"10px 14px",border:"1px solid #eee",borderRadius:6,fontSize:14,background:"#fafafa",color:"#333"};
   const HDR = {display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:4};
@@ -1699,10 +1710,25 @@ function ProfilePage() {
     phone: user?.phone || "",
     birth: user?.birth || "",
   });
+  // user context değişince form'u senkronla (giriş yenilenince vb.)
+  useEffect(() => {
+    setForm({
+      name: user?.name || "",
+      email: user?.email || "",
+      phone: user?.phone || "",
+      birth: user?.birth || "",
+    });
+  }, [user]);
   const [edit, setEdit] = useState({name:false, email:false, phone:false, birth:false});
   const toggleEdit = (k) => setEdit(p => ({...p, [k]: !p[k]}));
   const update = (k, v) => setForm(p => ({...p, [k]: v}));
   const fmtBirth = form.birth ? new Date(form.birth).toLocaleDateString("tr-TR") : null;
+  const saveAll = () => {
+    setUser({...(user||{}), ...form});
+    setEdit({name:false,email:false,phone:false,birth:false});
+    setSaved(true);
+    setTimeout(()=>setSaved(false), 2000);
+  };
 
   return <div style={{maxWidth:500,margin:"0 auto",padding:"20px"}}>
     <div style={{fontSize:13,color:"#999",marginBottom:16}}><span style={{cursor:"pointer"}} onClick={()=>go("account")}>Hesabım</span> / <span style={{color:"#555"}}>Hesap Bilgileri</span></div>
@@ -1740,7 +1766,7 @@ function ProfilePage() {
             ? <input type="date" value={form.birth} onChange={e=>update("birth",e.target.value)} style={IS} autoFocus/>
             : <div style={RO}>{fmtBirth || MISSING}</div>}
         </div>
-        <button onClick={()=>{setSaved(true);setEdit({name:false,email:false,phone:false,birth:false});setTimeout(()=>setSaved(false),2000)}} style={{padding:"12px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:15,fontWeight:700,cursor:"pointer",marginTop:4}}>
+        <button onClick={saveAll} style={{padding:"12px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:15,fontWeight:700,cursor:"pointer",marginTop:4}}>
           {saved ? "✓ Kaydedildi" : "Bilgileri Kaydet"}
         </button>
       </div>
