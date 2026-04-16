@@ -918,6 +918,8 @@ function HomePage() {
     {/* Sol kenar kategori çubuğu (sadece geniş ekran) - hiyerarşik */}
     {!isMobile && <CategorySidebar go={go} isFixed={true} />}
 
+    <div style={{marginLeft: isMobile ? 0 : 220}}>
+
     {/* Banner */}
     <div style={{background:"linear-gradient(90deg, #ff6000, #ff8c00)",padding:"40px 0"}}>
       <div style={{maxWidth:1200,margin:"0 auto",padding:"0 20px",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
@@ -979,6 +981,7 @@ function HomePage() {
     </div>
 
     <RecentlyViewed />
+    </div>
   </>;
 }
 
