@@ -798,7 +798,7 @@ export default function App() {
             <div style={{marginTop:24,paddingTop:16,borderTop:"1px solid #333",display:"flex",flexDirection:isMobile?"column":"row",justifyContent:"space-between",alignItems:isMobile?"flex-start":"center",gap:12,fontSize:12,color:"#666"}}>
               <span>© 2026 <span onClick={()=>go("admin-login")} style={{cursor:"pointer"}}>Frenciniz</span> — {t("allRightsReserved")}</span>
               <div style={{display:"flex",alignItems:"center",gap:8,flexWrap:"wrap"}}>
-                <img src="/payment/tami.svg" alt="Tami Sanal POS" width={72} height={24} loading="lazy" decoding="async" style={{display:"block"}}/>
+                <img src="/payment/tami.webp" alt="Tami Sanal POS" width={72} height={24} loading="lazy" decoding="async" style={{display:"block",borderRadius:4}} onError={e=>{e.target.src="/payment/tami.png"}}/>
                 <img src="/payment/visa.svg" alt="Visa" width={72} height={24} loading="lazy" decoding="async" style={{display:"block"}}/>
                 <img src="/payment/mastercard.svg" alt="Mastercard" width={72} height={24} loading="lazy" decoding="async" style={{display:"block"}}/>
                 <img src="/payment/troy.svg" alt="Troy" width={72} height={24} loading="lazy" decoding="async" style={{display:"block"}}/>
@@ -1448,7 +1448,7 @@ function CheckoutPage() {
           </div>
           {/* Card logos */}
           <div style={{display:"flex",gap:12,marginBottom:16,alignItems:"center"}}>
-            <span style={{padding:"4px 12px",borderRadius:4,fontSize:11,fontWeight:600,background:"#e3061315",color:"#e30613"}}>Tami Sanal POS</span>
+            <img src="/payment/tami.webp" alt="Tami Sanal POS" width={84} height={28} style={{display:"block",borderRadius:4}} onError={e=>{e.target.src="/payment/tami.png"}}/>
             <span style={{fontSize:11,color:"#999",marginLeft:4}}>ile güvenli ödeme</span>
           </div>
           <div style={{marginBottom:14}}><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>Kart Numarası</label>
