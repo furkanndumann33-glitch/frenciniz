@@ -1,0 +1,2109 @@
+[
+  {
+    "id": 202,
+    "name": "ABS DİŞLİSİ",
+    "ancestry": "/",
+    "path": "/abs-dislisi-c202",
+    "priority": 0,
+    "image_path": null,
+    "products_count": 29,
+    "children": []
+  },
+  {
+    "id": 179,
+    "name": "BALATA",
+    "ancestry": "/",
+    "path": "/balata-c179",
+    "priority": 0,
+    "image_path": null,
+    "products_count": 0,
+    "children": [
+      {
+        "id": 181,
+        "name": "EKERSAN BALATA",
+        "ancestry": "/179/",
+        "path": "/ekersan-balata-c181",
+        "priority": 0,
+        "image_path": null,
+        "products_count": 34,
+        "children": []
+      },
+      {
+        "id": 180,
+        "name": "PWR",
+        "ancestry": "/179/",
+        "path": "/pwr-c180",
+        "priority": 0,
+        "image_path": null,
+        "products_count": 75,
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "name": "BİJON",
+    "ancestry": "/",
+    "path": "/bijon-c1",
+    "priority": 0,
+    "image_path": null,
+    "products_count": 136,
+    "children": [
+      {
+        "id": 194,
+        "name": "DODGE",
+        "ancestry": "/1/",
+        "path": "/dodge-c194",
+        "priority": 0,
+        "image_path": null,
+        "products_count": 6,
+        "children": []
+      },
+      {
+        "id": 5,
+        "name": "MAN",
+        "ancestry": "/1/",
+        "path": "/man-c5",
+        "priority": 1,
+        "image_path": null,
+        "products_count": 23,
+        "children": []
+      },
+      {
+        "id": 6,
+        "name": "FORD",
+        "ancestry": "/1/",
+        "path": "/ford-c6",
+        "priority": 2,
+        "image_path": null,
+        "products_count": 9,
+        "children": []
+      },
+      {
+        "id": 7,
+        "name": "CHRYSLER",
+        "ancestry": "/1/",
+        "path": "/chrysler-c7",
+        "priority": 3,
+        "image_path": null,
+        "products_count": 0,
+        "children": []
+      },
+      {
+        "id": 9,
+        "name": "DAF",
+        "ancestry": "/1/",
+        "path": "/daf-c9",
+        "priority": 4,
+        "image_path": null,
+        "products_count": 4,
+        "children": []
+      },
+      {
+        "id": 10,
+        "name": "RENAULT",
+        "ancestry": "/1/",
+        "path": "/renault-c10",
+        "priority": 5,
+        "image_path": null,
+        "products_count": 4,
+        "children": []
+      },
+      {
+        "id": 11,
+        "name": "SCANIA",
+        "ancestry": "/1/",
+        "path": "/scania-c11",
+        "priority": 6,
+        "image_path": null,
+        "products_count": 7,
+        "children": []
+      },
+      {
+        "id": 12,
+        "name": "VOLVO",
+        "ancestry": "/1/",
+        "path": "/volvo-c12",
+        "priority": 7,
+        "image_path": null,
+        "products_count": 8,
+        "children": []
+      },
+      {
+        "id": 13,
+        "name": "MİTSUBISHI",
+        "ancestry": "/1/",
+        "path": "/mitsubishi-c13",
+        "priority": 8,
+        "image_path": null,
+        "products_count": 16,
+        "children": []
+      },
+      {
+        "id": 17,
+        "name": "DORSE",
+        "ancestry": "/1/",
+        "path": "/dorse-c17",
+        "priority": 9,
+        "image_path": null,
+        "products_count": 26,
+        "children": []
+      },
+      {
+        "id": 18,
+        "name": "SERİN DORSE",
+        "ancestry": "/1/",
+        "path": "/serin-dorse-c18",
+        "priority": 10,
+        "image_path": null,
+        "products_count": 0,
+        "children": []
+      },
+      {
+        "id": 19,
+        "name": "OSMAN KOÇ",
+        "ancestry": "/1/",
+        "path": "/osman-koc-c19",
+        "priority": 11,
+        "image_path": null,
+        "products_count": 0,
+        "children": []
+      },
+      {
+        "id": 20,
+        "name": "OTOKAR-MAGIRUS",
+        "ancestry": "/1/",
+        "path": "/otokar-magirus-c20",
+        "priority": 12,
+        "image_path": null,
+        "products_count": 3,
+        "children": []
+      },
+      {
+        "id": 21,
+        "name": "ÖZKOÇ DİNGİL",
+        "ancestry": "/1/",
+        "path": "/ozkoc-dingil-c21",
+        "priority": 13,
+        "image_path": null,
+        "products_count": 0,
+        "children": []
+      },
+      {
+        "id": 22,
+        "name": "SERİN",
+        "ancestry": "/1/",
+        "path": "/serin-c22",
+        "priority": 14,
+        "image_path": null,
+        "products_count": 1,
+        "children": []
+      },
+      {
+        "id": 23,
+        "name": "FRUEHAUF",
+        "ancestry": "/1/",
+        "path": "/fruehauf-c23",
+        "priority": 15,
+        "image_path": null,
+        "products_count": 3,
+        "children": []
+      },
+      {
+        "id": 4,
+        "name": "MERCEDES",
+        "ancestry": "/1/",
+        "path": "/mercedes-c4",
+        "priority": 16,
+        "image_path": null,
+        "products_count": 54,
+        "children": []
+      },
+      {
+        "id": 16,
+        "name": "BPW (DORSE-TREYLER)",
+        "ancestry": "/1/",
+        "path": "/bpw-dorse-treyler-c16",
+        "priority": 17,
+        "image_path": null,
+        "products_count": 0,
+        "children": []
+      },
+      {
+        "id": 8,
+        "name": "İVECO",
+        "ancestry": "/1/",
+        "path": "/iveco-c8",
+        "priority": 18,
+        "image_path": null,
+        "products_count": 19,
+        "children": []
+      },
+      {
+        "id": 15,
+        "name": "ROR (DORSE-TREYLER)",
+        "ancestry": "/1/",
+        "path": "/ror-dorse-treyler-c15",
+        "priority": 19,
+        "image_path": null,
+        "products_count": 2,
+        "children": []
+      },
+      {
+        "id": 14,
+        "name": "SAF (DORSE-TREYLER)",
+        "ancestry": "/1/",
+        "path": "/saf-dorse-treyler-c14",
+        "priority": 20,
+        "image_path": null,
+        "products_count": 1,
+        "children": [
+          {
+            "id": 152,
+            "name": "ÖN",
+            "ancestry": "/1/14/",
+            "path": "/on-c152",
+            "priority": 1,
+            "image_path": null,
+            "products_count": 0,
+            "children": [
+              {
+                "id": 153,
+                "name": "FREZELİ",
+                "ancestry": "/1/14/152/",
+                "path": "/frezeli-c153",
+                "priority": 1,
+                "image_path": null,
+                "products_count": 1,
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 106,
+        "name": "BMC-FATİH",
+        "ancestry": "/1/",
+        "path": "/bmc-fatih-c106",
+        "priority": 21,
+        "image_path": null,
+        "products_count": 9,
+        "children": [
+          {
+            "id": 107,
+            "name": "ÖN",
+            "ancestry": "/1/106/",
+            "path": "/on-c107",
+            "priority": 1,
+            "image_path": null,
+            "products_count": 0,
+            "children": [
+              {
+                "id": 128,
+                "name": "SOL",
+                "ancestry": "/1/106/107/",
+                "path": "/sol-c128",
+                "priority": 1,
+                "image_path": null,
+                "products_count": 0,
+                "children": []
+              },
+              {
+                "id": 129,
+                "name": "SAĞ",
+                "ancestry": "/1/106/107/",
+                "path": "/sag-c129",
+                "priority": 2,
+                "image_path": null,
+                "products_count": 0,
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 94,
+            "name": "ARKA",
+            "ancestry": "/1/106/",
+            "path": "/arka-c94",
+            "priority": 2,
+            "image_path": null,
+            "products_count": 5,
+            "children": [
+              {
+                "id": 126,
+                "name": "SAĞ",
+                "ancestry": "/1/106/94/",
+                "path": "/sag-c126",
+                "priority": 1,
+                "image_path": null,
+                "products_count": 0,
+                "children": []
+              },
+              {
+                "id": 127,
+                "name": "SOL",
+                "ancestry": "/1/106/94/",
+                "path": "/sol-c127",
+                "priority": 2,
+                "image_path": null,
+                "products_count": 0,
+                "children": []
+              },
+              {
+                "id": 108,
+                "name": "FREZELİ",
+                "ancestry": "/1/106/94/",
+                "path": "/frezeli-c108",
+                "priority": 3,
+                "image_path": null,
+                "products_count": 1,
+                "children": []
+              },
+              {
+                "id": 109,
+                "name": "TAKVİYELİ",
+                "ancestry": "/1/106/94/",
+                "path": "/takviyeli-c109",
+                "priority": 4,
+                "image_path": null,
+                "products_count": 1,
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 144,
+        "name": "MARATON",
+        "ancestry": "/1/",
+        "path": "/maraton-c144",
+        "priority": 22,
+        "image_path": null,
+        "products_count": 1,
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": 86,
+    "name": "CIRCIR",
+    "ancestry": "/",
+    "path": "/circir-c86",
+    "priority": 0,
+    "image_path": null,
+    "products_count": 104,
+    "children": []
+  },
+  {
+    "id": 218,
+    "name": "ÇAMURLUK EKİPMANLARI",
+    "ancestry": "/",
+    "path": "/camurluk-ekipmanlari-c218",
+    "priority": 0,
+    "image_path": null,
+    "products_count": 0,
+    "children": [
+      {
+        "id": 222,
+        "name": "CARGO",
+        "ancestry": "/218/",
+        "path": "/cargo-c222",
+        "priority": 0,
+        "image_path": null,
+        "products_count": 7,
+        "children": []
+      },
+      {
+        "id": 219,
+        "name": "DAF",
+        "ancestry": "/218/",
+        "path": "/daf-c219",
+        "priority": 0,
+        "image_path": null,
+        "products_count": 23,
+        "children": []
+      },
+      {
+        "id": 225,
+        "name": "İVECO",
+        "ancestry": "/218/",
+        "path": "/iveco-c225",
+        "priority": 0,
+        "image_path": null,
+        "products_count": 10,
+        "children": []
+      },
+      {
+        "id": 224,
+        "name": "MAN",
+        "ancestry": "/218/",
+        "path": "/man-c224",
+        "priority": 0,
+        "image_path": null,
+        "products_count": 8,
+        "children": []
+      },
+      {
+        "id": 221,
+        "name": "MERCEDES",
+        "ancestry": "/218/",
+        "path": "/mercedes-c221",
+        "priority": 0,
+        "image_path": null,
+        "products_count": 21,
+        "children": []
+      },
+      {
+        "id": 223,
+        "name": "RENAULT",
+        "ancestry": "/218/",
+        "path": "/renault-c223",
+        "priority": 0,
+        "image_path": null,
+        "products_count": 27,
+        "children": []
+      },
+      {
+        "id": 220,
+        "name": "SCANIA",
+        "ancestry": "/218/",
+        "path": "/scania-c220",
+        "priority": 0,
+        "image_path": null,
+        "products_count": 21,
+        "children": []
+      },
+      {
+        "id": 227,
+        "name": "TREYLER",
+        "ancestry": "/218/",
+        "path": "/treyler-c227",
+        "priority": 0,
+        "image_path": null,
+        "products_count": 64,
+        "children": []
+      },
+      {
+        "id": 226,
+        "name": "VOLVO",
+        "ancestry": "/218/",
+        "path": "/volvo-c226",
+        "priority": 0,
+        "image_path": null,
+        "products_count": 26,
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "DİSK",
+    "ancestry": "/",
+    "path": "/disk-c2",
+    "priority": 0,
+    "image_path": null,
+    "products_count": 104,
+    "children": [
+      {
+        "id": 39,
+        "name": "SETRA",
+        "ancestry": "/2/",
+        "path": "/setra-c39",
+        "priority": 1,
+        "image_path": null,
+        "products_count": 0,
+        "children": []
+      },
+      {
+        "id": 29,
+        "name": "MAN",
+        "ancestry": "/2/",
+        "path": "/man-c29",
+        "priority": 2,
+        "image_path": null,
+        "products_count": 0,
+        "children": [
+          {
+            "id": 111,
+            "name": "ÖN",
+            "ancestry": "/2/29/",
+            "path": "/on-c111",
+            "priority": 1,
+            "image_path": null,
+            "products_count": 5,
+            "children": [
+              {
+                "id": 114,
+                "name": "ABS Lİ",
+                "ancestry": "/2/29/111/",
+                "path": "/abs-li-c114",
+                "priority": 1,
+                "image_path": null,
+                "products_count": 0,
+                "children": []
+              },
+              {
+                "id": 115,
+                "name": "ABS SİZ",
+                "ancestry": "/2/29/111/",
+                "path": "/abs-siz-c115",
+                "priority": 2,
+                "image_path": null,
+                "products_count": 0,
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 110,
+            "name": "ARKA",
+            "ancestry": "/2/29/",
+            "path": "/arka-c110",
+            "priority": 2,
+            "image_path": null,
+            "products_count": 2,
+            "children": [
+              {
+                "id": 113,
+                "name": "ABS SİZ",
+                "ancestry": "/2/29/110/",
+                "path": "/abs-siz-c113",
+                "priority": 1,
+                "image_path": null,
+                "products_count": 1,
+                "children": []
+              },
+              {
+                "id": 112,
+                "name": "ABS Lİ",
+                "ancestry": "/2/29/110/",
+                "path": "/abs-li-c112",
+                "priority": 2,
+                "image_path": null,
+                "products_count": 2,
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 34,
+        "name": "SCANIA",
+        "ancestry": "/2/",
+        "path": "/scania-c34",
+        "priority": 3,
+        "image_path": null,
+        "products_count": 0,
+        "children": [
+          {
+            "id": 124,
+            "name": "ARKA",
+            "ancestry": "/2/34/",
+            "path": "/arka-c124",
+            "priority": 1,
+            "image_path": null,
+            "products_count": 2,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 26,
+        "name": "FORD",
+        "ancestry": "/2/",
+        "path": "/ford-c26",
+        "priority": 4,
+        "image_path": null,
+        "products_count": 0,
+        "children": [
+          {
+            "id": 130,
+            "name": "ARKA",
+            "ancestry": "/2/26/",
+            "path": "/arka-c130",
+            "priority": 1,
+            "image_path": null,
+            "products_count": 1,
+            "children": [
+              {
+                "id": 131,
+                "name": "ABS Lİ",
+                "ancestry": "/2/26/130/",
+                "path": "/abs-li-c131",
+                "priority": 1,
+                "image_path": null,
+                "products_count": 1,
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 33,
+        "name": "RENAULT",
+        "ancestry": "/2/",
+        "path": "/renault-c33",
+        "priority": 5,
+        "image_path": null,
+        "products_count": 2,
+        "children": [
+          {
+            "id": 122,
+            "name": "ARKA",
+            "ancestry": "/2/33/",
+            "path": "/arka-c122",
+            "priority": 1,
+            "image_path": null,
+            "products_count": 2,
+            "children": []
+          },
+          {
+            "id": 140,
+            "name": "ÖN",
+            "ancestry": "/2/33/",
+            "path": "/on-c140",
+            "priority": 2,
+            "image_path": null,
+            "products_count": 7,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 24,
+        "name": "DAF",
+        "ancestry": "/2/",
+        "path": "/daf-c24",
+        "priority": 6,
+        "image_path": null,
+        "products_count": 0,
+        "children": [
+          {
+            "id": 123,
+            "name": "ARKA",
+            "ancestry": "/2/24/",
+            "path": "/arka-c123",
+            "priority": 1,
+            "image_path": null,
+            "products_count": 2,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 35,
+        "name": "ROR",
+        "ancestry": "/2/",
+        "path": "/ror-c35",
+        "priority": 7,
+        "image_path": null,
+        "products_count": 3,
+        "children": []
+      },
+      {
+        "id": 37,
+        "name": "VOLVO",
+        "ancestry": "/2/",
+        "path": "/volvo-c37",
+        "priority": 8,
+        "image_path": null,
+        "products_count": 6,
+        "children": []
+      },
+      {
+        "id": 28,
+        "name": "İVECO",
+        "ancestry": "/2/",
+        "path": "/iveco-c28",
+        "priority": 9,
+        "image_path": null,
+        "products_count": 3,
+        "children": [
+          {
+            "id": 116,
+            "name": "ARKA",
+            "ancestry": "/2/28/",
+            "path": "/arka-c116",
+            "priority": 1,
+            "image_path": null,
+            "products_count": 1,
+            "children": [
+              {
+                "id": 118,
+                "name": "ABS SİZ",
+                "ancestry": "/2/28/116/",
+                "path": "/abs-siz-c118",
+                "priority": 1,
+                "image_path": null,
+                "products_count": 1,
+                "children": []
+              },
+              {
+                "id": 117,
+                "name": "ABS Lİ",
+                "ancestry": "/2/28/116/",
+                "path": "/abs-li-c117",
+                "priority": 2,
+                "image_path": null,
+                "products_count": 3,
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 119,
+            "name": "ÖN",
+            "ancestry": "/2/28/",
+            "path": "/on-c119",
+            "priority": 2,
+            "image_path": null,
+            "products_count": 3,
+            "children": [
+              {
+                "id": 120,
+                "name": "ABS Lİ",
+                "ancestry": "/2/28/119/",
+                "path": "/abs-li-c120",
+                "priority": 1,
+                "image_path": null,
+                "products_count": 1,
+                "children": []
+              },
+              {
+                "id": 121,
+                "name": "ABS SİZ",
+                "ancestry": "/2/28/119/",
+                "path": "/abs-siz-c121",
+                "priority": 2,
+                "image_path": null,
+                "products_count": 1,
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 32,
+        "name": "OTOKAR-MAGIRUS",
+        "ancestry": "/2/",
+        "path": "/otokar-magirus-c32",
+        "priority": 10,
+        "image_path": null,
+        "products_count": 2,
+        "children": [
+          {
+            "id": 125,
+            "name": "ARKA",
+            "ancestry": "/2/32/",
+            "path": "/arka-c125",
+            "priority": 1,
+            "image_path": null,
+            "products_count": 1,
+            "children": [
+              {
+                "id": 132,
+                "name": "ABS Lİ",
+                "ancestry": "/2/32/125/",
+                "path": "/abs-li-c132",
+                "priority": 1,
+                "image_path": null,
+                "products_count": 1,
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 145,
+            "name": "ÖN",
+            "ancestry": "/2/32/",
+            "path": "/on-c145",
+            "priority": 2,
+            "image_path": null,
+            "products_count": 3,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 36,
+        "name": "SAF",
+        "ancestry": "/2/",
+        "path": "/saf-c36",
+        "priority": 11,
+        "image_path": null,
+        "products_count": 7,
+        "children": []
+      },
+      {
+        "id": 143,
+        "name": "ISUZU",
+        "ancestry": "/2/",
+        "path": "/isuzu-c143",
+        "priority": 12,
+        "image_path": null,
+        "products_count": 5,
+        "children": []
+      },
+      {
+        "id": 41,
+        "name": "BMC-FATİH",
+        "ancestry": "/2/",
+        "path": "/bmc-fatih-c41",
+        "priority": 13,
+        "image_path": null,
+        "products_count": 2,
+        "children": [
+          {
+            "id": 133,
+            "name": "ÖN/ARKA",
+            "ancestry": "/2/41/",
+            "path": "/on-arka-c133",
+            "priority": 1,
+            "image_path": null,
+            "products_count": 0,
+            "children": [
+              {
+                "id": 134,
+                "name": "ABS Lİ",
+                "ancestry": "/2/41/133/",
+                "path": "/abs-li-c134",
+                "priority": 1,
+                "image_path": null,
+                "products_count": 2,
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 31,
+        "name": "MİTSUBISHI",
+        "ancestry": "/2/",
+        "path": "/mitsubishi-c31",
+        "priority": 14,
+        "image_path": null,
+        "products_count": 1,
+        "children": [
+          {
+            "id": 135,
+            "name": "ARKA",
+            "ancestry": "/2/31/",
+            "path": "/arka-c135",
+            "priority": 1,
+            "image_path": null,
+            "products_count": 0,
+            "children": [
+              {
+                "id": 136,
+                "name": "ABS Lİ",
+                "ancestry": "/2/31/135/",
+                "path": "/abs-li-c136",
+                "priority": 1,
+                "image_path": null,
+                "products_count": 1,
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 147,
+            "name": "ÖN",
+            "ancestry": "/2/31/",
+            "path": "/on-c147",
+            "priority": 2,
+            "image_path": null,
+            "products_count": 0,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 42,
+        "name": "SCHMITZ",
+        "ancestry": "/2/",
+        "path": "/schmitz-c42",
+        "priority": 15,
+        "image_path": null,
+        "products_count": 2,
+        "children": []
+      },
+      {
+        "id": 27,
+        "name": "FRUEHAUF",
+        "ancestry": "/2/",
+        "path": "/fruehauf-c27",
+        "priority": 16,
+        "image_path": null,
+        "products_count": 1,
+        "children": []
+      },
+      {
+        "id": 30,
+        "name": "MERCEDES",
+        "ancestry": "/2/",
+        "path": "/mercedes-c30",
+        "priority": 17,
+        "image_path": null,
+        "products_count": 3,
+        "children": [
+          {
+            "id": 97,
+            "name": "YENİ",
+            "ancestry": "/2/30/",
+            "path": "/yeni-c97",
+            "priority": 1,
+            "image_path": null,
+            "products_count": 1,
+            "children": []
+          },
+          {
+            "id": 96,
+            "name": "ARKA",
+            "ancestry": "/2/30/",
+            "path": "/arka-c96",
+            "priority": 2,
+            "image_path": null,
+            "products_count": 2,
+            "children": []
+          },
+          {
+            "id": 95,
+            "name": "ÖN",
+            "ancestry": "/2/30/",
+            "path": "/on-c95",
+            "priority": 3,
+            "image_path": null,
+            "products_count": 4,
+            "children": []
+          },
+          {
+            "id": 98,
+            "name": "ESKİ",
+            "ancestry": "/2/30/",
+            "path": "/eski-c98",
+            "priority": 4,
+            "image_path": null,
+            "products_count": 2,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 40,
+        "name": "NEOPLAN",
+        "ancestry": "/2/",
+        "path": "/neoplan-c40",
+        "priority": 18,
+        "image_path": null,
+        "products_count": 1,
+        "children": []
+      },
+      {
+        "id": 43,
+        "name": "IKARUS RABA",
+        "ancestry": "/2/",
+        "path": "/ikarus-raba-c43",
+        "priority": 19,
+        "image_path": null,
+        "products_count": 1,
+        "children": []
+      },
+      {
+        "id": 38,
+        "name": "BPW",
+        "ancestry": "/2/",
+        "path": "/bpw-c38",
+        "priority": 20,
+        "image_path": null,
+        "products_count": 13,
+        "children": []
+      },
+      {
+        "id": 25,
+        "name": "DORSE",
+        "ancestry": "/2/",
+        "path": "/dorse-c25",
+        "priority": 21,
+        "image_path": null,
+        "products_count": 2,
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": 217,
+    "name": "ELEKTRİK KABLOLARI",
+    "ancestry": "/",
+    "path": "/elektrik-kablolari-c217",
+    "priority": 0,
+    "image_path": null,
+    "products_count": 11,
+    "children": []
+  },
+  {
+    "id": 176,
+    "name": "FREN KÖRÜKLERİ",
+    "ancestry": "/",
+    "path": "/fren-korukleri-c176",
+    "priority": 0,
+    "image_path": null,
+    "products_count": 6,
+    "children": [
+      {
+        "id": 197,
+        "name": "ARFESAN",
+        "ancestry": "/176/",
+        "path": "/arfesan-c197",
+        "priority": 0,
+        "image_path": null,
+        "products_count": 20,
+        "children": []
+      },
+      {
+        "id": 182,
+        "name": "BAYKAR",
+        "ancestry": "/176/",
+        "path": "/baykar-c182",
+        "priority": 0,
+        "image_path": null,
+        "products_count": 76,
+        "children": []
+      },
+      {
+        "id": 186,
+        "name": "EKERSAN FREN KÖRÜKLERİ",
+        "ancestry": "/176/",
+        "path": "/ekersan-fren-korukleri-c186",
+        "priority": 0,
+        "image_path": null,
+        "products_count": 73,
+        "children": []
+      },
+      {
+        "id": 196,
+        "name": "MONİVA-YILDIRIM",
+        "ancestry": "/176/",
+        "path": "/moniva-yildirim-c196",
+        "priority": 0,
+        "image_path": null,
+        "products_count": 64,
+        "children": []
+      },
+      {
+        "id": 198,
+        "name": "ORSAN",
+        "ancestry": "/176/",
+        "path": "/orsan-c198",
+        "priority": 0,
+        "image_path": null,
+        "products_count": 1,
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": 158,
+    "name": "FREN PABUÇLARI",
+    "ancestry": "/",
+    "path": "/fren-pabuclari-c158",
+    "priority": 0,
+    "image_path": null,
+    "products_count": 0,
+    "children": [
+      {
+        "id": 229,
+        "name": "CARGO",
+        "ancestry": "/158/",
+        "path": "/cargo-c229",
+        "priority": 0,
+        "image_path": null,
+        "products_count": 6,
+        "children": []
+      },
+      {
+        "id": 166,
+        "name": "SERTEL",
+        "ancestry": "/158/",
+        "path": "/sertel-c166",
+        "priority": 1,
+        "image_path": null,
+        "products_count": 5,
+        "children": []
+      },
+      {
+        "id": 165,
+        "name": "FRUEHAUF",
+        "ancestry": "/158/",
+        "path": "/fruehauf-c165",
+        "priority": 2,
+        "image_path": null,
+        "products_count": 4,
+        "children": []
+      },
+      {
+        "id": 164,
+        "name": "DODGE",
+        "ancestry": "/158/",
+        "path": "/dodge-c164",
+        "priority": 3,
+        "image_path": null,
+        "products_count": 2,
+        "children": []
+      },
+      {
+        "id": 163,
+        "name": "SAF",
+        "ancestry": "/158/",
+        "path": "/saf-c163",
+        "priority": 4,
+        "image_path": null,
+        "products_count": 5,
+        "children": []
+      },
+      {
+        "id": 162,
+        "name": "BPW",
+        "ancestry": "/158/",
+        "path": "/bpw-c162",
+        "priority": 5,
+        "image_path": null,
+        "products_count": 11,
+        "children": []
+      },
+      {
+        "id": 161,
+        "name": "DORSE",
+        "ancestry": "/158/",
+        "path": "/dorse-c161",
+        "priority": 6,
+        "image_path": null,
+        "products_count": 24,
+        "children": []
+      },
+      {
+        "id": 160,
+        "name": "İVECO",
+        "ancestry": "/158/",
+        "path": "/iveco-c160",
+        "priority": 7,
+        "image_path": null,
+        "products_count": 5,
+        "children": []
+      },
+      {
+        "id": 159,
+        "name": "MERCEDES",
+        "ancestry": "/158/",
+        "path": "/mercedes-c159",
+        "priority": 8,
+        "image_path": null,
+        "products_count": 22,
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": 178,
+    "name": "FREN YAYLARI",
+    "ancestry": "/",
+    "path": "/fren-yaylari-c178",
+    "priority": 0,
+    "image_path": null,
+    "products_count": 41,
+    "children": []
+  },
+  {
+    "id": 199,
+    "name": "GRES",
+    "ancestry": "/",
+    "path": "/gres-c199",
+    "priority": 0,
+    "image_path": null,
+    "products_count": 3,
+    "children": []
+  },
+  {
+    "id": 201,
+    "name": "HAVA TÜPÜ",
+    "ancestry": "/",
+    "path": "/hava-tupu-c201",
+    "priority": 0,
+    "image_path": null,
+    "products_count": 84,
+    "children": []
+  },
+  {
+    "id": 154,
+    "name": "HAVALI FREN PARÇALARI",
+    "ancestry": "/",
+    "path": "/havali-fren-parcalari-c154",
+    "priority": 0,
+    "image_path": null,
+    "products_count": 5,
+    "children": [
+      {
+        "id": 185,
+        "name": "BPW",
+        "ancestry": "/154/",
+        "path": "/bpw-c185",
+        "priority": 0,
+        "image_path": null,
+        "products_count": 74,
+        "children": []
+      },
+      {
+        "id": 190,
+        "name": "SAF",
+        "ancestry": "/154/",
+        "path": "/saf-c190",
+        "priority": 0,
+        "image_path": null,
+        "products_count": 20,
+        "children": []
+      },
+      {
+        "id": 156,
+        "name": "KNORR",
+        "ancestry": "/154/",
+        "path": "/knorr-c156",
+        "priority": 3,
+        "image_path": null,
+        "products_count": 537,
+        "children": []
+      },
+      {
+        "id": 155,
+        "name": "WABCO",
+        "ancestry": "/154/",
+        "path": "/wabco-c155",
+        "priority": 4,
+        "image_path": null,
+        "products_count": 295,
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": 228,
+    "name": "HORTUMLAR",
+    "ancestry": "/",
+    "path": "/hortumlar-c228",
+    "priority": 0,
+    "image_path": null,
+    "products_count": 12,
+    "children": []
+  },
+  {
+    "id": 206,
+    "name": "KALİPER ÜRÜNLERİ",
+    "ancestry": "/",
+    "path": "/kaliper-urunleri-c206",
+    "priority": 0,
+    "image_path": null,
+    "products_count": 0,
+    "children": [
+      {
+        "id": 209,
+        "name": "CHEEFT",
+        "ancestry": "/206/",
+        "path": "/cheeft-c209",
+        "priority": 0,
+        "image_path": null,
+        "products_count": 1784,
+        "children": []
+      },
+      {
+        "id": 210,
+        "name": "EKERSAN",
+        "ancestry": "/206/",
+        "path": "/ekersan-c210",
+        "priority": 0,
+        "image_path": null,
+        "products_count": 440,
+        "children": []
+      },
+      {
+        "id": 207,
+        "name": "FREENCO",
+        "ancestry": "/206/",
+        "path": "/freenco-c207",
+        "priority": 0,
+        "image_path": null,
+        "products_count": 802,
+        "children": []
+      },
+      {
+        "id": 215,
+        "name": "KIZAK - TAŞIYICI",
+        "ancestry": "/206/",
+        "path": "/kizak-tasiyici-c215",
+        "priority": 0,
+        "image_path": null,
+        "products_count": 52,
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "KAMPANA",
+    "ancestry": "/",
+    "path": "/kampana-c3",
+    "priority": 0,
+    "image_path": null,
+    "products_count": 465,
+    "children": [
+      {
+        "id": 49,
+        "name": "DAF",
+        "ancestry": "/3/",
+        "path": "/daf-c49",
+        "priority": 1,
+        "image_path": null,
+        "products_count": 0,
+        "children": [
+          {
+            "id": 141,
+            "name": "ÖN",
+            "ancestry": "/3/49/",
+            "path": "/on-c141",
+            "priority": 2,
+            "image_path": null,
+            "products_count": 1,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 65,
+        "name": "GÜLERYÜZ",
+        "ancestry": "/3/",
+        "path": "/guleryuz-c65",
+        "priority": 2,
+        "image_path": null,
+        "products_count": 0,
+        "children": []
+      },
+      {
+        "id": 66,
+        "name": "SETRA",
+        "ancestry": "/3/",
+        "path": "/setra-c66",
+        "priority": 3,
+        "image_path": null,
+        "products_count": 0,
+        "children": []
+      },
+      {
+        "id": 67,
+        "name": "IKARUS RABA",
+        "ancestry": "/3/",
+        "path": "/ikarus-raba-c67",
+        "priority": 4,
+        "image_path": null,
+        "products_count": 0,
+        "children": []
+      },
+      {
+        "id": 69,
+        "name": "KAMAZ",
+        "ancestry": "/3/",
+        "path": "/kamaz-c69",
+        "priority": 5,
+        "image_path": null,
+        "products_count": 0,
+        "children": []
+      },
+      {
+        "id": 73,
+        "name": "GORICA",
+        "ancestry": "/3/",
+        "path": "/gorica-c73",
+        "priority": 6,
+        "image_path": null,
+        "products_count": 0,
+        "children": []
+      },
+      {
+        "id": 75,
+        "name": "ÖZEL",
+        "ancestry": "/3/",
+        "path": "/ozel-c75",
+        "priority": 7,
+        "image_path": null,
+        "products_count": 0,
+        "children": []
+      },
+      {
+        "id": 76,
+        "name": "TATA",
+        "ancestry": "/3/",
+        "path": "/tata-c76",
+        "priority": 8,
+        "image_path": null,
+        "products_count": 0,
+        "children": []
+      },
+      {
+        "id": 77,
+        "name": "BEENALU",
+        "ancestry": "/3/",
+        "path": "/beenalu-c77",
+        "priority": 9,
+        "image_path": null,
+        "products_count": 0,
+        "children": []
+      },
+      {
+        "id": 79,
+        "name": "ADİGE VİBERTİ",
+        "ancestry": "/3/",
+        "path": "/adige-viberti-c79",
+        "priority": 10,
+        "image_path": null,
+        "products_count": 0,
+        "children": []
+      },
+      {
+        "id": 58,
+        "name": "CALABRESE",
+        "ancestry": "/3/",
+        "path": "/calabrese-c58",
+        "priority": 11,
+        "image_path": null,
+        "products_count": 0,
+        "children": [
+          {
+            "id": 150,
+            "name": "SOĞUTMALI",
+            "ancestry": "/3/58/",
+            "path": "/sogutmali-c150",
+            "priority": 1,
+            "image_path": null,
+            "products_count": 2,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 64,
+        "name": "LIAZ",
+        "ancestry": "/3/",
+        "path": "/liaz-c64",
+        "priority": 12,
+        "image_path": null,
+        "products_count": 0,
+        "children": []
+      },
+      {
+        "id": 74,
+        "name": "HYUNDAI",
+        "ancestry": "/3/",
+        "path": "/hyundai-c74",
+        "priority": 13,
+        "image_path": null,
+        "products_count": 0,
+        "children": []
+      },
+      {
+        "id": 45,
+        "name": "MAN",
+        "ancestry": "/3/",
+        "path": "/man-c45",
+        "priority": 14,
+        "image_path": null,
+        "products_count": 7,
+        "children": []
+      },
+      {
+        "id": 51,
+        "name": "SCANIA",
+        "ancestry": "/3/",
+        "path": "/scania-c51",
+        "priority": 15,
+        "image_path": null,
+        "products_count": 4,
+        "children": []
+      },
+      {
+        "id": 52,
+        "name": "VOLVO",
+        "ancestry": "/3/",
+        "path": "/volvo-c52",
+        "priority": 16,
+        "image_path": null,
+        "products_count": 4,
+        "children": []
+      },
+      {
+        "id": 71,
+        "name": "DORSE",
+        "ancestry": "/3/",
+        "path": "/dorse-c71",
+        "priority": 17,
+        "image_path": null,
+        "products_count": 4,
+        "children": []
+      },
+      {
+        "id": 50,
+        "name": "RENAULT",
+        "ancestry": "/3/",
+        "path": "/renault-c50",
+        "priority": 18,
+        "image_path": null,
+        "products_count": 6,
+        "children": []
+      },
+      {
+        "id": 56,
+        "name": "SAF (DORSE-TREYLER)",
+        "ancestry": "/3/",
+        "path": "/saf-dorse-treyler-c56",
+        "priority": 19,
+        "image_path": null,
+        "products_count": 8,
+        "children": []
+      },
+      {
+        "id": 146,
+        "name": "SERTEL",
+        "ancestry": "/3/",
+        "path": "/sertel-c146",
+        "priority": 20,
+        "image_path": null,
+        "products_count": 6,
+        "children": []
+      },
+      {
+        "id": 44,
+        "name": "MERCEDES",
+        "ancestry": "/3/",
+        "path": "/mercedes-c44",
+        "priority": 21,
+        "image_path": null,
+        "products_count": 27,
+        "children": [
+          {
+            "id": 93,
+            "name": "BALATA ENİ 16 CM",
+            "ancestry": "/3/44/",
+            "path": "/balata-eni-16-cm-c93",
+            "priority": 1,
+            "image_path": null,
+            "products_count": 0,
+            "children": []
+          },
+          {
+            "id": 101,
+            "name": "SOĞUTMALI",
+            "ancestry": "/3/44/",
+            "path": "/sogutmali-c101",
+            "priority": 2,
+            "image_path": null,
+            "products_count": 0,
+            "children": []
+          },
+          {
+            "id": 105,
+            "name": "BALATA ENİ 22 CM",
+            "ancestry": "/3/44/",
+            "path": "/balata-eni-22-cm-c105",
+            "priority": 3,
+            "image_path": null,
+            "products_count": 0,
+            "children": []
+          },
+          {
+            "id": 104,
+            "name": "BALATA ENİ 18 CM",
+            "ancestry": "/3/44/",
+            "path": "/balata-eni-18-cm-c104",
+            "priority": 4,
+            "image_path": null,
+            "products_count": 1,
+            "children": []
+          },
+          {
+            "id": 100,
+            "name": "ARKA",
+            "ancestry": "/3/44/",
+            "path": "/arka-c100",
+            "priority": 5,
+            "image_path": null,
+            "products_count": 2,
+            "children": []
+          },
+          {
+            "id": 99,
+            "name": "ÖN",
+            "ancestry": "/3/44/",
+            "path": "/on-c99",
+            "priority": 6,
+            "image_path": null,
+            "products_count": 1,
+            "children": []
+          },
+          {
+            "id": 102,
+            "name": "DÜZ",
+            "ancestry": "/3/44/",
+            "path": "/duz-c102",
+            "priority": 7,
+            "image_path": null,
+            "products_count": 1,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 72,
+        "name": "BMC-FATİH",
+        "ancestry": "/3/",
+        "path": "/bmc-fatih-c72",
+        "priority": 22,
+        "image_path": null,
+        "products_count": 19,
+        "children": []
+      },
+      {
+        "id": 46,
+        "name": "FORD",
+        "ancestry": "/3/",
+        "path": "/ford-c46",
+        "priority": 23,
+        "image_path": null,
+        "products_count": 8,
+        "children": []
+      },
+      {
+        "id": 47,
+        "name": "DODGE",
+        "ancestry": "/3/",
+        "path": "/dodge-c47",
+        "priority": 24,
+        "image_path": null,
+        "products_count": 20,
+        "children": []
+      },
+      {
+        "id": 48,
+        "name": "İVECO",
+        "ancestry": "/3/",
+        "path": "/iveco-c48",
+        "priority": 25,
+        "image_path": null,
+        "products_count": 71,
+        "children": []
+      },
+      {
+        "id": 53,
+        "name": "ISUZU",
+        "ancestry": "/3/",
+        "path": "/isuzu-c53",
+        "priority": 26,
+        "image_path": null,
+        "products_count": 23,
+        "children": []
+      },
+      {
+        "id": 54,
+        "name": "MİTSUBISHI",
+        "ancestry": "/3/",
+        "path": "/mitsubishi-c54",
+        "priority": 27,
+        "image_path": null,
+        "products_count": 15,
+        "children": []
+      },
+      {
+        "id": 148,
+        "name": "CARGO",
+        "ancestry": "/3/",
+        "path": "/cargo-c148",
+        "priority": 28,
+        "image_path": null,
+        "products_count": 9,
+        "children": []
+      },
+      {
+        "id": 78,
+        "name": "OTOKAR-MAGIRUS",
+        "ancestry": "/3/",
+        "path": "/otokar-magirus-c78",
+        "priority": 29,
+        "image_path": null,
+        "products_count": 3,
+        "children": []
+      },
+      {
+        "id": 81,
+        "name": "YORK",
+        "ancestry": "/3/",
+        "path": "/york-c81",
+        "priority": 30,
+        "image_path": null,
+        "products_count": 2,
+        "children": []
+      },
+      {
+        "id": 57,
+        "name": "BPW (DORSE-TREYLER)",
+        "ancestry": "/3/",
+        "path": "/bpw-dorse-treyler-c57",
+        "priority": 31,
+        "image_path": null,
+        "products_count": 34,
+        "children": []
+      },
+      {
+        "id": 68,
+        "name": "NEOPLAN",
+        "ancestry": "/3/",
+        "path": "/neoplan-c68",
+        "priority": 32,
+        "image_path": null,
+        "products_count": 2,
+        "children": []
+      },
+      {
+        "id": 55,
+        "name": "ROR (DORSE-TREYLER)",
+        "ancestry": "/3/",
+        "path": "/ror-dorse-treyler-c55",
+        "priority": 33,
+        "image_path": null,
+        "products_count": 7,
+        "children": []
+      },
+      {
+        "id": 80,
+        "name": "FRUEHAUF (DORSE-TREYLER)",
+        "ancestry": "/3/",
+        "path": "/fruehauf-dorse-treyler-c80",
+        "priority": 34,
+        "image_path": null,
+        "products_count": 4,
+        "children": []
+      },
+      {
+        "id": 151,
+        "name": "HOWO",
+        "ancestry": "/3/",
+        "path": "/howo-c151",
+        "priority": 35,
+        "image_path": null,
+        "products_count": 2,
+        "children": []
+      },
+      {
+        "id": 70,
+        "name": "MACK",
+        "ancestry": "/3/",
+        "path": "/mack-c70",
+        "priority": 36,
+        "image_path": null,
+        "products_count": 12,
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": 203,
+    "name": "KEÇE",
+    "ancestry": "/",
+    "path": "/kece-c203",
+    "priority": 0,
+    "image_path": null,
+    "products_count": 70,
+    "children": []
+  },
+  {
+    "id": 188,
+    "name": "KÖRÜK LASTİKLERİ",
+    "ancestry": "/",
+    "path": "/koruk-lastikleri-c188",
+    "priority": 0,
+    "image_path": null,
+    "products_count": 42,
+    "children": []
+  },
+  {
+    "id": 187,
+    "name": "PERÇİNLER",
+    "ancestry": "/",
+    "path": "/percinler-c187",
+    "priority": 0,
+    "image_path": null,
+    "products_count": 11,
+    "children": []
+  },
+  {
+    "id": 172,
+    "name": "PORYA",
+    "ancestry": "/",
+    "path": "/porya-c172",
+    "priority": 0,
+    "image_path": null,
+    "products_count": 429,
+    "children": []
+  },
+  {
+    "id": 189,
+    "name": "PORYA KAPAKLARI",
+    "ancestry": "/",
+    "path": "/porya-kapaklari-c189",
+    "priority": 0,
+    "image_path": null,
+    "products_count": 44,
+    "children": []
+  },
+  {
+    "id": 216,
+    "name": "REKOR ÜRÜNLERİ",
+    "ancestry": "/",
+    "path": "/rekor-urunleri-c216",
+    "priority": 0,
+    "image_path": null,
+    "products_count": 386,
+    "children": []
+  },
+  {
+    "id": 200,
+    "name": "SAF",
+    "ancestry": "/",
+    "path": "/saf-c200",
+    "priority": 0,
+    "image_path": null,
+    "products_count": 0,
+    "children": []
+  },
+  {
+    "id": 208,
+    "name": "SENSÖR VE UZATMALAR",
+    "ancestry": "/",
+    "path": "/sensor-ve-uzatmalar-c208",
+    "priority": 0,
+    "image_path": null,
+    "products_count": 7,
+    "children": [
+      {
+        "id": 214,
+        "name": "BPW",
+        "ancestry": "/208/",
+        "path": "/bpw-c214",
+        "priority": 0,
+        "image_path": null,
+        "products_count": 5,
+        "children": []
+      },
+      {
+        "id": 211,
+        "name": "EKERSAN",
+        "ancestry": "/208/",
+        "path": "/ekersan-c211",
+        "priority": 0,
+        "image_path": null,
+        "products_count": 25,
+        "children": []
+      },
+      {
+        "id": 212,
+        "name": "KNORR",
+        "ancestry": "/208/",
+        "path": "/knorr-c212",
+        "priority": 0,
+        "image_path": null,
+        "products_count": 12,
+        "children": []
+      },
+      {
+        "id": 213,
+        "name": "WABCO",
+        "ancestry": "/208/",
+        "path": "/wabco-c213",
+        "priority": 0,
+        "image_path": null,
+        "products_count": 22,
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": 175,
+    "name": "SOMUN",
+    "ancestry": "/",
+    "path": "/somun-c175",
+    "priority": 0,
+    "image_path": null,
+    "products_count": 31,
+    "children": []
+  },
+  {
+    "id": 167,
+    "name": "SÜSP. KÖRÜĞÜ",
+    "ancestry": "/",
+    "path": "/susp-korugu-c167",
+    "priority": 0,
+    "image_path": null,
+    "products_count": 22,
+    "children": [
+      {
+        "id": 168,
+        "name": "EKERSAN",
+        "ancestry": "/167/",
+        "path": "/ekersan-c168",
+        "priority": 1,
+        "image_path": null,
+        "products_count": 234,
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": 204,
+    "name": "TAMİR TAKIMLARI",
+    "ancestry": "/",
+    "path": "/tamir-takimlari-c204",
+    "priority": 0,
+    "image_path": null,
+    "products_count": 384,
+    "children": []
+  },
+  {
+    "id": 205,
+    "name": "VADEN ÜRÜNLERİ",
+    "ancestry": "/",
+    "path": "/vaden-urunleri-c205",
+    "priority": 0,
+    "image_path": null,
+    "products_count": 1400,
+    "children": []
+  },
+  {
+    "id": 173,
+    "name": "VOLANT",
+    "ancestry": "/",
+    "path": "/volant-c173",
+    "priority": 0,
+    "image_path": null,
+    "products_count": 53,
+    "children": []
+  },
+  {
+    "id": 169,
+    "name": "YENİ ÜRÜNLER",
+    "ancestry": "/",
+    "path": "/yeni-urunler-c169",
+    "priority": 0,
+    "image_path": null,
+    "products_count": 100,
+    "children": []
+  },
+  {
+    "id": 195,
+    "name": "Z-CAM PARÇALARI",
+    "ancestry": "/",
+    "path": "/z-cam-parcalari-c195",
+    "priority": 0,
+    "image_path": null,
+    "products_count": 129,
+    "children": []
+  },
+  {
+    "id": 170,
+    "name": "ÇOK SATANLAR",
+    "ancestry": "/",
+    "path": "/cok-satanlar-c170",
+    "priority": 1,
+    "image_path": null,
+    "products_count": 100,
+    "children": []
+  },
+  {
+    "id": 85,
+    "name": "DPS Lİ",
+    "ancestry": "/1/16/103/",
+    "path": "/dps-li-c85",
+    "priority": 1,
+    "image_path": null,
+    "products_count": 0,
+    "children": []
+  },
+  {
+    "id": 82,
+    "name": "DPS Lİ",
+    "ancestry": "/1/16/60/",
+    "path": "/dps-li-c82",
+    "priority": 1,
+    "image_path": null,
+    "products_count": 1,
+    "children": []
+  },
+  {
+    "id": 84,
+    "name": "FREZELİ",
+    "ancestry": "/1/16/61/",
+    "path": "/frezeli-c84",
+    "priority": 1,
+    "image_path": null,
+    "products_count": 1,
+    "children": []
+  },
+  {
+    "id": 83,
+    "name": "FREZELİ",
+    "ancestry": "/1/16/59/",
+    "path": "/frezeli-c83",
+    "priority": 1,
+    "image_path": null,
+    "products_count": 2,
+    "children": []
+  },
+  {
+    "id": 89,
+    "name": "SAĞ",
+    "ancestry": "/86/88/",
+    "path": "/sag-c89",
+    "priority": 1,
+    "image_path": null,
+    "products_count": 0,
+    "children": []
+  },
+  {
+    "id": 92,
+    "name": "SOL",
+    "ancestry": "/86/87/",
+    "path": "/sol-c92",
+    "priority": 1,
+    "image_path": null,
+    "products_count": 0,
+    "children": []
+  },
+  {
+    "id": 91,
+    "name": "SAĞ",
+    "ancestry": "/86/87/",
+    "path": "/sag-c91",
+    "priority": 2,
+    "image_path": null,
+    "products_count": 0,
+    "children": []
+  },
+  {
+    "id": 90,
+    "name": "SOL",
+    "ancestry": "/86/88/",
+    "path": "/sol-c90",
+    "priority": 2,
+    "image_path": null,
+    "products_count": 0,
+    "children": []
+  }
+]

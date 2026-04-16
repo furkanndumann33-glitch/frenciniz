@@ -1,0 +1,1016 @@
+[
+  {
+    "prod_id": 818,
+    "prod_name": "BALATA MERCEDES/IVECO/MAN/RENAULT (29030)",
+    "prod_sku": "PWR-5016",
+    "brands": [
+      "MAN",
+      "RENAULT",
+      "MERCEDES"
+    ],
+    "oems": [
+      "29030",
+      "29083",
+      "29113",
+      "81508205006",
+      "81508205020",
+      "81508206044"
+    ]
+  },
+  {
+    "prod_id": 818,
+    "prod_name": "BALATA MERCEDES/IVECO/MAN/RENAULT (29030)",
+    "prod_sku": "PWR-5016",
+    "brands": [
+      "MAN",
+      "RENAULT",
+      "MERCEDES"
+    ],
+    "oems": [
+      "29030",
+      "29083",
+      "29113",
+      "81508206016"
+    ]
+  },
+  {
+    "prod_id": 1170,
+    "prod_name": "Disk Balatası 29011",
+    "prod_sku": "42117/1-250",
+    "brands": [
+      "IVECO"
+    ],
+    "oems": [
+      "29011",
+      "2992479"
+    ]
+  },
+  {
+    "prod_id": 1170,
+    "prod_name": "Disk Balatası 29011",
+    "prod_sku": "42117/1-250",
+    "brands": [
+      "IVECO"
+    ],
+    "oems": [
+      "29011",
+      "1906191"
+    ]
+  },
+  {
+    "prod_id": 744,
+    "prod_name": "Disk Balatası (29087)",
+    "prod_sku": "42182/1-300",
+    "brands": [
+      "MAN",
+      "DAF",
+      "MERCEDES",
+      "SCANIA",
+      "IVECO",
+      "BPW"
+    ],
+    "oems": [
+      "29087",
+      "29108",
+      "29087",
+      "29042",
+      "29061",
+      "81508206056"
+    ]
+  },
+  {
+    "prod_id": 744,
+    "prod_name": "Disk Balatası (29087)",
+    "prod_sku": "42182/1-300",
+    "brands": [
+      "MAN",
+      "DAF",
+      "MERCEDES",
+      "SCANIA",
+      "IVECO",
+      "BPW"
+    ],
+    "oems": [
+      "29087",
+      "29108",
+      "29087",
+      "29042",
+      "29061",
+      "81508206056"
+    ]
+  },
+  {
+    "prod_id": 745,
+    "prod_name": "Disk Balatası",
+    "prod_sku": "42182/2-300",
+    "brands": [
+      "MAN",
+      "DAF",
+      "MERCEDES",
+      "SCANIA",
+      "IVECO",
+      "BPW"
+    ],
+    "oems": [
+      "29087",
+      "29108",
+      "29087",
+      "29042",
+      "29061",
+      "81508206056"
+    ]
+  },
+  {
+    "prod_id": 833,
+    "prod_name": "BALATA FRUEHAUF DORSE BPW DİNGİL (29167)",
+    "prod_sku": "PWR-5000",
+    "brands": [
+      "BPW"
+    ],
+    "oems": [
+      "29167",
+      "29216",
+      "29270",
+      "3057007700"
+    ]
+  },
+  {
+    "prod_id": 1169,
+    "prod_name": "Disk Balatası (29167)",
+    "prod_sku": "42182/6-300",
+    "brands": [
+      "BPW"
+    ],
+    "oems": [
+      "29167",
+      "29216",
+      "29270",
+      "3057007700"
+    ]
+  },
+  {
+    "prod_id": 833,
+    "prod_name": "BALATA FRUEHAUF DORSE BPW DİNGİL (29167)",
+    "prod_sku": "PWR-5000",
+    "brands": [
+      "BPW"
+    ],
+    "oems": [
+      "29167",
+      "29216",
+      "3057007700",
+      "29270"
+    ]
+  },
+  {
+    "prod_id": 1169,
+    "prod_name": "Disk Balatası (29167)",
+    "prod_sku": "42182/6-300",
+    "brands": [
+      "BPW"
+    ],
+    "oems": [
+      "29167",
+      "29216",
+      "3057007700",
+      "29270"
+    ]
+  },
+  {
+    "prod_id": 817,
+    "prod_name": "BALATA MAN-İVECO-OTOKAR (29115)",
+    "prod_sku": "PWR-5017",
+    "brands": [
+      "MAN",
+      "MERCEDES"
+    ],
+    "oems": [
+      "29115",
+      "29116",
+      "29148",
+      "29183",
+      "0034207220",
+      "0004211010"
+    ]
+  },
+  {
+    "prod_id": 817,
+    "prod_name": "BALATA MAN-İVECO-OTOKAR (29115)",
+    "prod_sku": "PWR-5017",
+    "brands": [
+      "MAN",
+      "MERCEDES"
+    ],
+    "oems": [
+      "29115",
+      "29116",
+      "29148",
+      "29183",
+      "0034207220",
+      "0004211010"
+    ]
+  },
+  {
+    "prod_id": 735,
+    "prod_name": "Disk Balatası (29088)",
+    "prod_sku": "42197/2-255",
+    "brands": [
+      "MAN",
+      "DAF",
+      "IVECO",
+      "BMC",
+      "RENAULT"
+    ],
+    "oems": [
+      "29088",
+      "29091",
+      "1906467",
+      "81508205011",
+      "81508205022",
+      "12182145"
+    ]
+  },
+  {
+    "prod_id": 735,
+    "prod_name": "Disk Balatası (29088)",
+    "prod_sku": "42197/2-255",
+    "brands": [
+      "MAN",
+      "DAF",
+      "RENAULT"
+    ],
+    "oems": [
+      "29088",
+      "29091"
+    ]
+  },
+  {
+    "prod_id": 735,
+    "prod_name": "Disk Balatası (29088)",
+    "prod_sku": "42197/2-255",
+    "brands": [
+      "MAN",
+      "DAF",
+      "RENAULT"
+    ],
+    "oems": [
+      "29088",
+      "29091"
+    ]
+  },
+  {
+    "prod_id": 768,
+    "prod_name": "Disk Balatası",
+    "prod_sku": "42200/2-290",
+    "brands": [
+      "MAN",
+      "DAF",
+      "MERCEDES",
+      "BPW",
+      "SAF",
+      "SMB"
+    ],
+    "oems": [
+      "29095",
+      "29145",
+      "29184",
+      "29197",
+      "29093",
+      "81508205017"
+    ]
+  },
+  {
+    "prod_id": 813,
+    "prod_name": "BALATA ATECO DİSK (29093)",
+    "prod_sku": "PWR-5021",
+    "brands": [
+      "MAN",
+      "DAF",
+      "MERCEDES",
+      "BPW",
+      "SAF",
+      "SMB"
+    ],
+    "oems": [
+      "29095",
+      "29145",
+      "29184",
+      "29197",
+      "29093",
+      "81508205017"
+    ]
+  },
+  {
+    "prod_id": 768,
+    "prod_name": "Disk Balatası",
+    "prod_sku": "42200/2-290",
+    "brands": [
+      "MAN",
+      "DAF",
+      "MERCEDES",
+      "BPW",
+      "SAF",
+      "SMB"
+    ],
+    "oems": [
+      "29095",
+      "29197",
+      "29145",
+      "29184",
+      "29093",
+      "3057007800"
+    ]
+  },
+  {
+    "prod_id": 832,
+    "prod_name": "BALATA BPW DİNGİL JUMBO-ATEGO (29165-29166)",
+    "prod_sku": "PWR-5001",
+    "brands": [
+      "BPW"
+    ],
+    "oems": [
+      "29165",
+      "29215"
+    ]
+  },
+  {
+    "prod_id": 1164,
+    "prod_name": "Disk Balatası",
+    "prod_sku": "42200/7-290",
+    "brands": [
+      "BPW"
+    ],
+    "oems": [
+      "29165",
+      "29215"
+    ]
+  },
+  {
+    "prod_id": 832,
+    "prod_name": "BALATA BPW DİNGİL JUMBO-ATEGO (29165-29166)",
+    "prod_sku": "PWR-5001",
+    "brands": [
+      "BPW"
+    ],
+    "oems": [
+      "29165",
+      "29215"
+    ]
+  },
+  {
+    "prod_id": 1164,
+    "prod_name": "Disk Balatası",
+    "prod_sku": "42200/7-290",
+    "brands": [
+      "BPW"
+    ],
+    "oems": [
+      "29165",
+      "29215"
+    ]
+  },
+  {
+    "prod_id": 622,
+    "prod_name": "Disk Balatası (29171-29158)",
+    "prod_sku": "42230/1-290",
+    "brands": [
+      "SAF",
+      "BPW"
+    ],
+    "oems": [
+      "29171",
+      "29158"
+    ]
+  },
+  {
+    "prod_id": 622,
+    "prod_name": "Disk Balatası (29171-29158)",
+    "prod_sku": "42230/1-290",
+    "brands": [
+      "SAF",
+      "BPW"
+    ],
+    "oems": [
+      "29171",
+      "29158"
+    ]
+  },
+  {
+    "prod_id": 831,
+    "prod_name": "BALATA KOGEL-BPW DİNGİL (29171)",
+    "prod_sku": "PWR-5002",
+    "brands": [
+      "SAF",
+      "BPW"
+    ],
+    "oems": [
+      "29171",
+      "29158"
+    ]
+  },
+  {
+    "prod_id": 825,
+    "prod_name": "BALATA SAF JUMBO DİNGİL (29159 / 29126)",
+    "prod_sku": "PWR-5009",
+    "brands": [
+      "SAF",
+      "DAF",
+      "RENAULT"
+    ],
+    "oems": [
+      "29126",
+      "29159",
+      "3057008000"
+    ]
+  },
+  {
+    "prod_id": 825,
+    "prod_name": "BALATA SAF JUMBO DİNGİL (29159 / 29126)",
+    "prod_sku": "PWR-5009",
+    "brands": [
+      "SAF",
+      "DAF",
+      "RENAULT"
+    ],
+    "oems": [
+      "29126",
+      "29159",
+      "3057008000"
+    ]
+  },
+  {
+    "prod_id": 1163,
+    "prod_name": "Disk Balatası (29159)",
+    "prod_sku": "42232/2-290",
+    "brands": [
+      "SAF",
+      "DAF",
+      "RENAULT"
+    ],
+    "oems": [
+      "29126",
+      "29159",
+      "3057008000"
+    ]
+  },
+  {
+    "prod_id": 824,
+    "prod_name": "BALATA SAF DİNGİL (29162)",
+    "prod_sku": "PWR-5010",
+    "brands": [
+      "SMB",
+      "SAF"
+    ],
+    "oems": [
+      "29162",
+      "3057008400"
+    ]
+  },
+  {
+    "prod_id": 824,
+    "prod_name": "BALATA SAF DİNGİL (29162)",
+    "prod_sku": "PWR-5010",
+    "brands": [
+      "SMB",
+      "SAF"
+    ],
+    "oems": [
+      "29162",
+      "3057008400"
+    ]
+  },
+  {
+    "prod_id": 823,
+    "prod_name": "BALATA REN.MİD.270/PRE 370/420 /MAGNUM DXI (29131-29156)",
+    "prod_sku": "PWR-5011",
+    "brands": [
+      "MAN",
+      "RENAULT",
+      "ROR"
+    ],
+    "oems": [
+      "29131",
+      "81508206031",
+      "81508206041",
+      "81508206051",
+      "5001855646",
+      "20976509"
+    ]
+  },
+  {
+    "prod_id": 826,
+    "prod_name": "BALATA VOLVO FH12 420 SERİSİ (29125)",
+    "prod_sku": "PWR-5008",
+    "brands": [
+      "VOLVO",
+      "ROR"
+    ],
+    "oems": [
+      "29125",
+      "29277",
+      "20918891",
+      "3095396",
+      "020918891"
+    ]
+  },
+  {
+    "prod_id": 1162,
+    "prod_name": "Disk Balatası (29125)",
+    "prod_sku": "42242/1-290",
+    "brands": [
+      "VOLVO",
+      "ROR"
+    ],
+    "oems": [
+      "29125",
+      "29277",
+      "20918891",
+      "3095396",
+      "020918891"
+    ]
+  },
+  {
+    "prod_id": 815,
+    "prod_name": "BALATA RENAULT 220 ÖN-ARKA (29141 / 29142)",
+    "prod_sku": "PWR-5019",
+    "brands": [
+      "DENNIS",
+      "DAF",
+      "RENAULT"
+    ],
+    "oems": [
+      "29141",
+      "29142",
+      "5001855902"
+    ]
+  },
+  {
+    "prod_id": 815,
+    "prod_name": "BALATA RENAULT 220 ÖN-ARKA (29141 / 29142)",
+    "prod_sku": "PWR-5019",
+    "brands": [
+      "DENNIS",
+      "DAF",
+      "RENAULT"
+    ],
+    "oems": [
+      "29141",
+      "29142",
+      "5001855902"
+    ]
+  },
+  {
+    "prod_id": 760,
+    "prod_name": "Disk Balatası (29174)",
+    "prod_sku": "42284/2-293",
+    "brands": [
+      "RENAULT",
+      "VOLVO"
+    ],
+    "oems": [
+      "29174",
+      "29204",
+      "29219",
+      "5001864363",
+      "5001864364",
+      "7421399929"
+    ]
+  },
+  {
+    "prod_id": 827,
+    "prod_name": "BALATA RENAULT PREMIUM 430/440/450/460 DXI (29174)",
+    "prod_sku": "PWR-5007",
+    "brands": [
+      "RENAULT",
+      "VOLVO"
+    ],
+    "oems": [
+      "29174",
+      "29204",
+      "29219",
+      "5001864363",
+      "5001864364",
+      "7421399929"
+    ]
+  },
+  {
+    "prod_id": 760,
+    "prod_name": "Disk Balatası (29174)",
+    "prod_sku": "42284/2-293",
+    "brands": [
+      "RENAULT",
+      "VOLVO"
+    ],
+    "oems": [
+      "29174",
+      "29204",
+      "29219",
+      "5001864363",
+      "5001864364",
+      "7421399929"
+    ]
+  },
+  {
+    "prod_id": 757,
+    "prod_name": "Disk Balatası (29173-29203-29272)",
+    "prod_sku": "42310/2-292",
+    "brands": [
+      "RENAULT",
+      "VOLVO"
+    ],
+    "oems": [
+      "29173",
+      "29203",
+      "29272"
+    ]
+  },
+  {
+    "prod_id": 820,
+    "prod_name": "BALATA RENAULT TRUCK /VOLVO 440 (29173)",
+    "prod_sku": "PWR-5014",
+    "brands": [
+      "RENAULT",
+      "VOLVO"
+    ],
+    "oems": [
+      "29173",
+      "29203",
+      "29272"
+    ]
+  },
+  {
+    "prod_id": 757,
+    "prod_name": "Disk Balatası (29173-29203-29272)",
+    "prod_sku": "42310/2-292",
+    "brands": [
+      "RENAULT",
+      "VOLVO"
+    ],
+    "oems": [
+      "29173",
+      "29203",
+      "29272"
+    ]
+  },
+  {
+    "prod_id": 829,
+    "prod_name": "BALATA AXOR DİSK ÖN Y.M. (29246 / 29247)",
+    "prod_sku": "PWR-5005",
+    "brands": [
+      "MERCEDES"
+    ],
+    "oems": [
+      "29246"
+    ]
+  },
+  {
+    "prod_id": 1156,
+    "prod_name": "Disk Balatası",
+    "prod_sku": "42313/2-300",
+    "brands": [
+      "MERCEDES"
+    ],
+    "oems": [
+      "29246"
+    ]
+  },
+  {
+    "prod_id": 829,
+    "prod_name": "BALATA AXOR DİSK ÖN Y.M. (29246 / 29247)",
+    "prod_sku": "PWR-5005",
+    "brands": [
+      "MERCEDES"
+    ],
+    "oems": [
+      "29246"
+    ]
+  },
+  {
+    "prod_id": 1156,
+    "prod_name": "Disk Balatası",
+    "prod_sku": "42313/2-300",
+    "brands": [
+      "MERCEDES"
+    ],
+    "oems": [
+      "29246"
+    ]
+  },
+  {
+    "prod_id": 829,
+    "prod_name": "BALATA AXOR DİSK ÖN Y.M. (29246 / 29247)",
+    "prod_sku": "PWR-5005",
+    "brands": [
+      "MERCEDES"
+    ],
+    "oems": [
+      "29246"
+    ]
+  },
+  {
+    "prod_id": 1156,
+    "prod_name": "Disk Balatası",
+    "prod_sku": "42313/2-300",
+    "brands": [
+      "MERCEDES"
+    ],
+    "oems": [
+      "29246"
+    ]
+  },
+  {
+    "prod_id": 759,
+    "prod_name": "Fren Disk Balatası (29244)",
+    "prod_sku": "42314/2-300",
+    "brands": [
+      "MERCEDES"
+    ],
+    "oems": [
+      "29244"
+    ]
+  },
+  {
+    "prod_id": 828,
+    "prod_name": "BALATA AXOR DİSK ARKA Y.M. (29244 / 29245)",
+    "prod_sku": "PWR-5006",
+    "brands": [
+      "MERCEDES"
+    ],
+    "oems": [
+      "29244"
+    ]
+  },
+  {
+    "prod_id": 759,
+    "prod_name": "Fren Disk Balatası (29244)",
+    "prod_sku": "42314/2-300",
+    "brands": [
+      "MERCEDES"
+    ],
+    "oems": [
+      "29244"
+    ]
+  },
+  {
+    "prod_id": 759,
+    "prod_name": "Fren Disk Balatası (29244)",
+    "prod_sku": "42314/2-300",
+    "brands": [
+      "MERCEDES"
+    ],
+    "oems": [
+      "29244"
+    ]
+  },
+  {
+    "prod_id": 828,
+    "prod_name": "BALATA AXOR DİSK ARKA Y.M. (29244 / 29245)",
+    "prod_sku": "PWR-5006",
+    "brands": [
+      "MERCEDES"
+    ],
+    "oems": [
+      "29244"
+    ]
+  },
+  {
+    "prod_id": 809,
+    "prod_name": "PWR DİSK BALATASI MERS.AROCS Y.M. 29315",
+    "prod_sku": "PWR-5029",
+    "brands": [
+      "MERCEDES"
+    ],
+    "oems": [
+      "29315"
+    ]
+  },
+  {
+    "prod_id": 822,
+    "prod_name": "BALATA YENİ BPW KÜÇÜK (29227)",
+    "prod_sku": "PWR-5012",
+    "brands": [
+      "BPW"
+    ],
+    "oems": [
+      "29227"
+    ]
+  },
+  {
+    "prod_id": 822,
+    "prod_name": "BALATA YENİ BPW KÜÇÜK (29227)",
+    "prod_sku": "PWR-5012",
+    "brands": [
+      "BPW"
+    ],
+    "oems": [
+      "29227"
+    ]
+  },
+  {
+    "prod_id": 743,
+    "prod_name": "Disk Balatası",
+    "prod_sku": "42317/1-300",
+    "brands": [
+      "BPW"
+    ],
+    "oems": [
+      "29228"
+    ]
+  },
+  {
+    "prod_id": 743,
+    "prod_name": "Disk Balatası",
+    "prod_sku": "42317/1-300",
+    "brands": [
+      "BPW"
+    ],
+    "oems": [
+      "29228"
+    ]
+  },
+  {
+    "prod_id": 821,
+    "prod_name": "BALATA YENİ BPW BÜYÜK (29228)",
+    "prod_sku": "PWR-5013",
+    "brands": [
+      "BPW"
+    ],
+    "oems": [
+      "29228"
+    ]
+  },
+  {
+    "prod_id": 812,
+    "prod_name": "BALATA MAN TGAX (29252 / 29253)",
+    "prod_sku": "PWR-5022",
+    "brands": [
+      "MAN"
+    ],
+    "oems": [
+      "29253"
+    ]
+  },
+  {
+    "prod_id": 812,
+    "prod_name": "BALATA MAN TGAX (29252 / 29253)",
+    "prod_sku": "PWR-5022",
+    "brands": [
+      "MAN"
+    ],
+    "oems": [
+      "29253"
+    ]
+  },
+  {
+    "prod_id": 728,
+    "prod_name": "Disk Balatası (29195)",
+    "prod_sku": "42322/1-300",
+    "brands": [
+      "SMB",
+      "SAF",
+      "RENAULT"
+    ],
+    "oems": [
+      "29195",
+      "29175",
+      "29181",
+      "29207"
+    ]
+  },
+  {
+    "prod_id": 728,
+    "prod_name": "Disk Balatası (29195)",
+    "prod_sku": "42322/1-300",
+    "brands": [
+      "MAN",
+      "SMB",
+      "SAF",
+      "RENAULT"
+    ],
+    "oems": [
+      "29175",
+      "29253",
+      "29195",
+      "29181",
+      "29207"
+    ]
+  },
+  {
+    "prod_id": 812,
+    "prod_name": "BALATA MAN TGAX (29252 / 29253)",
+    "prod_sku": "PWR-5022",
+    "brands": [
+      "MAN",
+      "SMB",
+      "SAF",
+      "RENAULT"
+    ],
+    "oems": [
+      "29175",
+      "29253",
+      "29195",
+      "29181",
+      "29207"
+    ]
+  },
+  {
+    "prod_id": 816,
+    "prod_name": "BALATA SAF DİNGİL (29195)",
+    "prod_sku": "PWR-5018",
+    "brands": [
+      "MAN",
+      "SMB",
+      "SAF",
+      "RENAULT"
+    ],
+    "oems": [
+      "29175",
+      "29253",
+      "29195",
+      "29181",
+      "29207"
+    ]
+  },
+  {
+    "prod_id": 814,
+    "prod_name": "BALATA MAN TGAX (29279)",
+    "prod_sku": "PWR-5020",
+    "brands": [
+      "MAN"
+    ],
+    "oems": [
+      "29279",
+      "81508205108",
+      "81508206065",
+      "81508206066"
+    ]
+  },
+  {
+    "prod_id": 1155,
+    "prod_name": "Disk Balatası (29279)",
+    "prod_sku": "42325/1-300",
+    "brands": [
+      "MAN"
+    ],
+    "oems": [
+      "29279",
+      "81508205108",
+      "81508206065",
+      "81508206066"
+    ]
+  },
+  {
+    "prod_id": 814,
+    "prod_name": "BALATA MAN TGAX (29279)",
+    "prod_sku": "PWR-5020",
+    "brands": [
+      "MAN"
+    ],
+    "oems": [
+      "29279",
+      "81508205108",
+      "81508206065",
+      "81508206066"
+    ]
+  },
+  {
+    "prod_id": 1155,
+    "prod_name": "Disk Balatası (29279)",
+    "prod_sku": "42325/1-300",
+    "brands": [
+      "MAN"
+    ],
+    "oems": [
+      "29279",
+      "81508205108",
+      "81508206065",
+      "81508206066"
+    ]
+  },
+  {
+    "prod_id": 819,
+    "prod_name": "BALATA RENAULT MAGNUM DORSE (29169)",
+    "prod_sku": "PWR-5015",
+    "brands": [
+      "RENAULT",
+      "VOLVO"
+    ],
+    "oems": [
+      "29169",
+      "20568713"
+    ]
+  },
+  {
+    "prod_id": 819,
+    "prod_name": "BALATA RENAULT MAGNUM DORSE (29169)",
+    "prod_sku": "PWR-5015",
+    "brands": [
+      "VOLVO",
+      "ROR"
+    ],
+    "oems": [
+      "29169",
+      "20568713"
+    ]
+  }
+]

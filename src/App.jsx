@@ -305,8 +305,14 @@ function cdnImg(url, w) {
   if (!url || url.includes("placehold")) return url;
   // Local/relative path (örn: /logo.png) → CDN'e gönderme, direkt kullan
   if (url.startsWith("/") || url.startsWith("data:") || url.startsWith("blob:")) return url;
-  // wsrv.nl: ücretsiz görsel CDN proxy, global edge cache, WebP otomatik
-  return `https://wsrv.nl/?url=${encodeURIComponent(url)}&w=${w||400}&q=75&output=webp`;
+  // wsrv.nl: CDN proxy + WebP + maxage=1y uzun cache (edge cache'i uzun tutar)
+  return `https://wsrv.nl/?url=${encodeURIComponent(url)}&w=${w||300}&q=70&output=webp&maxage=1y`;
+}
+// Direkt kaynak URL (CDN fail olursa fallback)
+function directImg(url) {
+  if (!url || url.includes("placehold")) return url;
+  if (url.startsWith("/") || url.startsWith("data:") || url.startsWith("blob:")) return url;
+  return url;
 }
 
 // Ürün görsellerini arka planda önceden indir (CDN cache'i ısıtır)
@@ -816,10 +822,11 @@ function linkifyContacts(text) {
 }
 
 // ===== OPTIMIZED IMAGE with skeleton + CDN =====
+// stage: 0=CDN (webp+resize), 1=direkt kaynak, 2=logo
 function OptImg({src, alt, w, h, style, cdnW, eager}) {
   const [loaded, setLoaded] = useState(false);
-  const [fallback, setFallback] = useState(false);
-  const finalSrc = fallback ? "/logo.png" : cdnImg(src, cdnW || 300);
+  const [stage, setStage] = useState(0);
+  const finalSrc = stage === 0 ? cdnImg(src, cdnW || 300) : stage === 1 ? directImg(src) : "/logo.png";
   return (
     <>
       {!loaded && <div style={{width:w||"100%",height:h||"100%",background:"linear-gradient(90deg,#f0f0f0 25%,#e0e0e0 50%,#f0f0f0 75%)",backgroundSize:"200% 100%",animation:"shimmer 1.5s infinite",borderRadius:4,...(style||{})}} />}
@@ -827,7 +834,7 @@ function OptImg({src, alt, w, h, style, cdnW, eager}) {
         loading={eager ? "eager" : "lazy"} decoding="async" fetchpriority={eager ? "high" : "auto"}
         style={{...style,display:loaded?"block":"none"}}
         onLoad={()=>setLoaded(true)}
-        onError={()=>{ if(!fallback){setFallback(true); setLoaded(false);} else {setLoaded(true);} }} />
+        onError={()=>{ if(stage<2){setStage(stage+1); setLoaded(false);} else {setLoaded(true);} }} />
     </>
   );
 }
