@@ -610,22 +610,24 @@ export default function App() {
               </div>
             </div>
           </div>
-          <div style={{padding:isMobile?"10px 16px":"8px 24px",display:"flex",alignItems:"center",gap:isMobile?12:20}}>
+          <div style={isMobile ? {padding:"10px 16px",display:"flex",alignItems:"center",gap:12} : {padding:"8px 24px",display:"grid",gridTemplateColumns:"1fr auto 1fr",alignItems:"center",gap:20}}>
             {/* Mobile hamburger */}
             {isMobile && <button onClick={()=>setMobileMenuOpen(!mobileMenuOpen)} style={{background:"none",border:"none",fontSize:22,color:"#333",padding:4,cursor:"pointer"}}>☰</button>}
 
-            <div style={{cursor:"pointer",flexShrink:0}} onClick={() => go("home")}>
+            <div style={{cursor:"pointer",flexShrink:0,justifySelf:"start"}} onClick={() => go("home")}>
               <img src="/logo.webp" alt="Frenciniz" width={isMobile?150:280} height={isMobile?76:140} fetchpriority="high" style={{height:isMobile?76:140,width:"auto",display:"block",imageRendering:"auto"}} onError={e=>{e.target.src="/logo.png"}}/>
             </div>
 
-            {/* Search + actions — desktop'ta sağa yaslı grup */}
-            {!isMobile && <div style={{marginLeft:"auto",display:"flex",alignItems:"center",gap:20,flexShrink:0}}>
-              <div style={{width:460,display:"flex",border:"2px solid #ff6000",borderRadius:8,overflow:"hidden"}}>
-                <input value={q} onChange={e => setQ(e.target.value)} onKeyDown={e => {if(e.key==="Enter" && q.trim()) go("products",{q})}}
-                  placeholder={t("search")}
-                  style={{flex:1,padding:"10px 14px",border:"none",fontSize:14,outline:"none"}} />
-                <button onClick={() => {if(q.trim()) go("products",{q})}} style={{padding:"10px 20px",background:"#ff6000",color:"#fff",border:"none",fontSize:14,fontWeight:600}}>{t("searchBtn")}</button>
-              </div>
+            {/* Desktop: arama tam ortada (grid center col) */}
+            {!isMobile && <div style={{width:460,display:"flex",border:"2px solid #ff6000",borderRadius:8,overflow:"hidden",justifySelf:"center"}}>
+              <input value={q} onChange={e => setQ(e.target.value)} onKeyDown={e => {if(e.key==="Enter" && q.trim()) go("products",{q})}}
+                placeholder={t("search")}
+                style={{flex:1,padding:"10px 14px",border:"none",fontSize:14,outline:"none"}} />
+              <button onClick={() => {if(q.trim()) go("products",{q})}} style={{padding:"10px 20px",background:"#ff6000",color:"#fff",border:"none",fontSize:14,fontWeight:600}}>{t("searchBtn")}</button>
+            </div>}
+
+            {/* Desktop actions — sağa yaslı */}
+            {!isMobile && <div style={{display:"flex",alignItems:"center",gap:20,flexShrink:0,justifySelf:"end"}}>
               <button onClick={() => go("favs")} style={{background:"none",border:"none",color:"#555",fontSize:13,display:"flex",flexDirection:"column",alignItems:"center",gap:2,position:"relative",cursor:"pointer"}}>
                 <span style={{fontSize:20}}>♡</span><span>{t("favs")}</span>
                 {favs.length > 0 && <span style={{position:"absolute",top:-4,right:-8,background:"#ff6000",color:"#fff",fontSize:10,fontWeight:700,width:18,height:18,borderRadius:"50%",display:"flex",alignItems:"center",justifyContent:"center"}}>{favs.length}</span>}
