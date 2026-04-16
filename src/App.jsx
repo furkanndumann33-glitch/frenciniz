@@ -610,12 +610,12 @@ export default function App() {
               </div>
             </div>
           </div>
-          <div style={{maxWidth:1200,margin:"0 auto",padding:"12px 20px",display:"flex",alignItems:"center",gap:isMobile?12:20}}>
+          <div style={{padding:isMobile?"10px 16px":"8px 24px",display:"flex",alignItems:"center",gap:isMobile?12:20}}>
             {/* Mobile hamburger */}
             {isMobile && <button onClick={()=>setMobileMenuOpen(!mobileMenuOpen)} style={{background:"none",border:"none",fontSize:22,color:"#333",padding:4,cursor:"pointer"}}>☰</button>}
-            
+
             <div style={{cursor:"pointer",flexShrink:0}} onClick={() => go("home")}>
-              <img src="/logo.webp" alt="Frenciniz" width={isMobile?108:160} height={isMobile?56:88} fetchpriority="high" style={{height:isMobile?56:88,width:"auto",display:"block",imageRendering:"auto"}} onError={e=>{e.target.src="/logo.png"}}/>
+              <img src="/logo.webp" alt="Frenciniz" width={isMobile?130:220} height={isMobile?66:110} fetchpriority="high" style={{height:isMobile?66:110,width:"auto",display:"block",imageRendering:"auto"}} onError={e=>{e.target.src="/logo.png"}}/>
             </div>
             
             {/* Search — full on desktop, compact on mobile */}
