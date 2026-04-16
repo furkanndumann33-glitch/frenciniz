@@ -579,7 +579,7 @@ export default function App() {
           <div style={{background:"#1a1a1a",padding:"6px 0"}}>
             <div style={{maxWidth:1200,margin:"0 auto",padding:"0 20px",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
               <div style={{display:"flex",gap:12,alignItems:"center"}}>
-                <span style={{color:"#ccc",fontSize:12}}>{lang==="tr"?"Türkiye geneli kargo | 500₺ üzeri ücretsiz":"Free shipping over 500₺ in Turkey"}</span>
+                <span style={{color:"#ccc",fontSize:12}}>{lang==="tr"?"Türkiye geneli kargo | 3000₺ üzeri ücretsiz":"Free shipping over 3000₺ in Turkey"}</span>
                 {!isMobile && rates.EUR>0 && <span style={{color:"#aaa",fontSize:11,borderLeft:"1px solid #444",paddingLeft:10}}>€1 = ₺{(1/rates.EUR).toFixed(2)} | $1 = ₺{(1/rates.USD).toFixed(2)}</span>}
               </div>
               <div style={{display:"flex",gap:12,alignItems:"center"}}>
