@@ -401,6 +401,15 @@ export default function App() {
       else localStorage.removeItem("frenciniz_user");
     } catch {}
   }, [user]);
+  const [addresses, setAddresses] = useState(() => {
+    try {
+      const raw = typeof window !== 'undefined' && localStorage.getItem("frenciniz_addresses");
+      return raw ? JSON.parse(raw) : [];
+    } catch { return []; }
+  });
+  useEffect(() => {
+    try { localStorage.setItem("frenciniz_addresses", JSON.stringify(addresses)); } catch {}
+  }, [addresses]);
   const [q, setQ] = useState("");
   const [toast, setToast] = useState(null);
   const [showTop, setShowTop] = useState(false);
@@ -553,7 +562,7 @@ export default function App() {
   const cartTotal = cart.reduce((s,c) => s + c.price * c.qty, 0);
   const discount = couponApplied ? Math.round(cartTotal * 0.1) : 0;
 
-  const ctx = useMemo(() => ({page, params, go, cart, addToCart, updateQty, removeItem, cartCount, cartTotal, q, setQ, favs, toggleFav, viewed, addViewed, user, setUser, coupon, setCoupon, couponApplied, setCouponApplied, discount, stockAlerts, addStockAlert, chatOpen, setChatOpen, chatMessages, setChatMessages, pastOrders, completePurchase, lang, setLang, curr, setCurr, t, isMobile, mobileMenuOpen, setMobileMenuOpen, mobileFilterOpen, setMobileFilterOpen, fp, admin, setAdmin, socialMedia, setSocialMedia, products, cats, dataLoaded}), [page, params, go, cart, addToCart, updateQty, removeItem, cartCount, cartTotal, q, favs, toggleFav, viewed, addViewed, user, coupon, couponApplied, discount, stockAlerts, addStockAlert, chatOpen, chatMessages, pastOrders, completePurchase, lang, curr, t, isMobile, mobileMenuOpen, mobileFilterOpen, fp, admin, products, cats, dataLoaded]);
+  const ctx = useMemo(() => ({page, params, go, cart, addToCart, updateQty, removeItem, cartCount, cartTotal, q, setQ, favs, toggleFav, viewed, addViewed, user, setUser, addresses, setAddresses, coupon, setCoupon, couponApplied, setCouponApplied, discount, stockAlerts, addStockAlert, chatOpen, setChatOpen, chatMessages, setChatMessages, pastOrders, completePurchase, lang, setLang, curr, setCurr, t, isMobile, mobileMenuOpen, setMobileMenuOpen, mobileFilterOpen, setMobileFilterOpen, fp, admin, setAdmin, socialMedia, setSocialMedia, products, cats, dataLoaded}), [page, params, go, cart, addToCart, updateQty, removeItem, cartCount, cartTotal, q, favs, toggleFav, viewed, addViewed, user, addresses, coupon, couponApplied, discount, stockAlerts, addStockAlert, chatOpen, chatMessages, pastOrders, completePurchase, lang, curr, t, isMobile, mobileMenuOpen, mobileFilterOpen, fp, admin, products, cats, dataLoaded]);
 
   return (
     <Ctx.Provider value={ctx}>
@@ -1328,11 +1337,40 @@ function CartPage() {
 
 // ===== CHECKOUT =====
 function CheckoutPage() {
-  const {cart, cartTotal, go, discount, completePurchase, isMobile, fp} = use$();
+  const {cart, cartTotal, go, discount, completePurchase, isMobile, fp, user, addresses} = use$();
   const [step, setStep] = useState(1);
-  const ship = cartTotal >= 500 ? 0 : 45;
-  if(!cart.length) return <div style={{textAlign:"center",padding:"60px 20px"}}><p style={{color:"#999"}}>Sepetiniz boş.</p></div>;
+  const ship = cartTotal >= 3000 ? 0 : 45;
   const IS = {width:"100%",padding:"10px 14px",border:"1px solid #ddd",borderRadius:6,fontSize:14};
+
+  // Varsayılan değerler: user profili + ilk kayıtlı adres
+  const defAddr = addresses && addresses[0];
+  const splitName = (user?.name || defAddr?.name || "").trim().split(/\s+/);
+  const defFirst = splitName[0] || "";
+  const defLast = splitName.slice(1).join(" ") || "";
+  const [ship_form, setShipForm] = useState({
+    first: defFirst,
+    last: defLast,
+    email: user?.email || "",
+    phone: user?.phone || defAddr?.phone || "",
+    address: defAddr ? `${defAddr.address||""}${defAddr.city?` — ${defAddr.city}`:""}` : "",
+  });
+  // Seçilen adres değişirse form'u güncelle
+  const [selectedAddrId, setSelectedAddrId] = useState(defAddr?.id || null);
+  useEffect(() => {
+    const addr = addresses?.find(a => a.id === selectedAddrId);
+    if (addr) {
+      const sp = (addr.name || user?.name || "").trim().split(/\s+/);
+      setShipForm(f => ({
+        ...f,
+        first: sp[0] || f.first,
+        last: sp.slice(1).join(" ") || f.last,
+        phone: addr.phone || f.phone,
+        address: `${addr.address||""}${addr.city?` — ${addr.city}`:""}`,
+      }));
+    }
+  }, [selectedAddrId]);
+
+  if(!cart.length) return <div style={{textAlign:"center",padding:"60px 20px"}}><p style={{color:"#999"}}>Sepetiniz boş.</p></div>;
 
   return (
     <div style={{maxWidth:800,margin:"0 auto",padding:"20px"}}>
@@ -1349,10 +1387,26 @@ function CheckoutPage() {
       <div style={{border:"1px solid #eee",borderRadius:8,padding:28}}>
         {step===1 && <>
           <h2 style={{fontSize:18,fontWeight:700,marginBottom:20}}>Teslimat Bilgileri</h2>
+          {addresses && addresses.length > 0 && (
+            <div style={{marginBottom:16}}>
+              <label style={{fontSize:13,color:"#666",display:"block",marginBottom:6}}>Kayıtlı Adreslerim</label>
+              <div style={{display:"flex",flexWrap:"wrap",gap:8}}>
+                {addresses.map(a => (
+                  <button key={a.id} onClick={()=>setSelectedAddrId(a.id)} style={{padding:"8px 14px",border:`2px solid ${selectedAddrId===a.id?"#ff6000":"#ddd"}`,borderRadius:6,background:selectedAddrId===a.id?"#fff5ee":"#fff",fontSize:13,fontWeight:600,color:"#333",cursor:"pointer"}}>
+                    📍 {a.title}
+                  </button>
+                ))}
+                <button onClick={()=>go("addresses")} style={{padding:"8px 14px",border:"1px dashed #999",borderRadius:6,background:"transparent",fontSize:13,color:"#666",cursor:"pointer"}}>+ Adres Yönet</button>
+              </div>
+            </div>
+          )}
           <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:14}}>
-            {[{l:"Ad",ph:"Adınız"},{l:"Soyad",ph:"Soyadınız"},{l:"E-posta",ph:"ornek@email.com"},{l:"Telefon",ph:"05xx xxx xx xx"}].map((f,i) => <div key={i}><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>{f.l}</label><input placeholder={f.ph} style={IS}/></div>)}
+            <div><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>Ad</label><input value={ship_form.first} onChange={e=>setShipForm(f=>({...f,first:e.target.value}))} placeholder="Adınız" style={IS}/></div>
+            <div><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>Soyad</label><input value={ship_form.last} onChange={e=>setShipForm(f=>({...f,last:e.target.value}))} placeholder="Soyadınız" style={IS}/></div>
+            <div><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>E-posta</label><input type="email" value={ship_form.email} onChange={e=>setShipForm(f=>({...f,email:e.target.value}))} placeholder="ornek@email.com" style={IS}/></div>
+            <div><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>Telefon</label><input value={ship_form.phone} onChange={e=>setShipForm(f=>({...f,phone:e.target.value}))} placeholder="05xx xxx xx xx" style={IS}/></div>
           </div>
-          <div style={{marginTop:14}}><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>Adres</label><textarea rows={3} placeholder="Teslimat adresi" style={{...IS,resize:"vertical"}}/></div>
+          <div style={{marginTop:14}}><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>Adres</label><textarea rows={3} value={ship_form.address} onChange={e=>setShipForm(f=>({...f,address:e.target.value}))} placeholder="Teslimat adresi" style={{...IS,resize:"vertical"}}/></div>
           <button onClick={() => setStep(2)} style={{padding:"12px 28px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:14,fontWeight:600,cursor:"pointer",marginTop:20}}>Devam Et →</button>
         </>}
         {step===2 && <>
@@ -1655,39 +1709,49 @@ function OrdersPage() {
 }
 
 function AddressesPage() {
-  const {go} = use$();
-  const [addresses, setAddresses] = useState([{id:1,title:"Ev Adresi",name:"",address:"",city:"",phone:""}]);
+  const {go, addresses, setAddresses, user} = use$();
   const [editing, setEditing] = useState(null);
   const IS = {width:"100%",padding:"10px 14px",border:"1px solid #ddd",borderRadius:6,fontSize:14};
+  const updateAddr = (id, patch) => setAddresses(p => p.map(a => a.id===id ? {...a, ...patch} : a));
+  const addNew = () => {
+    const id = Date.now();
+    setAddresses(p => [...p, {id, title:"Yeni Adres", name:user?.name||"", address:"", city:"", phone:user?.phone||""}]);
+    setEditing(id);
+  };
 
   return <div style={{maxWidth:700,margin:"0 auto",padding:"20px"}}>
     <div style={{fontSize:13,color:"#999",marginBottom:16}}><span style={{cursor:"pointer"}} onClick={()=>go("account")}>Hesabım</span> / <span style={{color:"#555"}}>Adreslerim</span></div>
     <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:20}}>
       <h1 style={{fontSize:22,fontWeight:700}}>Adreslerim</h1>
-      <button onClick={()=>setAddresses(p=>[...p,{id:Date.now(),title:"Yeni Adres",name:"",address:"",city:"",phone:""}])} style={{padding:"10px 20px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:13,fontWeight:600,cursor:"pointer"}}>+ Yeni Adres Ekle</button>
+      <button onClick={addNew} style={{padding:"10px 20px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:13,fontWeight:600,cursor:"pointer"}}>+ Yeni Adres Ekle</button>
     </div>
-    {addresses.map((addr,i) => (
+    {addresses.length === 0 && <div style={{padding:"40px 20px",textAlign:"center",color:"#999",border:"1px dashed #ddd",borderRadius:8}}>Henüz kayıtlı adresiniz yok. Yeni adres ekleyin.</div>}
+    {addresses.map((addr) => (
       <div key={addr.id} style={{border:"1px solid #eee",borderRadius:8,padding:20,marginBottom:12}}>
         <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12}}>
           <div style={{fontSize:16,fontWeight:600}}>{addr.title}</div>
           <div style={{display:"flex",gap:8}}>
             <button onClick={()=>setEditing(editing===addr.id?null:addr.id)} style={{background:"none",border:"1px solid #ddd",borderRadius:6,padding:"6px 14px",fontSize:12,color:"#555",cursor:"pointer"}}>{editing===addr.id?"Kapat":"Düzenle"}</button>
-            {addresses.length>1&&<button onClick={()=>setAddresses(p=>p.filter(a=>a.id!==addr.id))} style={{background:"none",border:"1px solid #ddd",borderRadius:6,padding:"6px 14px",fontSize:12,color:"#e53935",cursor:"pointer"}}>Sil</button>}
+            <button onClick={()=>setAddresses(p=>p.filter(a=>a.id!==addr.id))} style={{background:"none",border:"1px solid #ddd",borderRadius:6,padding:"6px 14px",fontSize:12,color:"#e53935",cursor:"pointer"}}>Sil</button>
           </div>
         </div>
         {editing===addr.id ? (
           <div style={{display:"flex",flexDirection:"column",gap:10}}>
-            <input placeholder="Adres başlığı (Ev, İş...)" defaultValue={addr.title} style={IS}/>
-            <input placeholder="Ad Soyad" defaultValue={addr.name} style={IS}/>
-            <textarea placeholder="Adres" rows={2} defaultValue={addr.address} style={{...IS,resize:"vertical"}}/>
+            <input placeholder="Adres başlığı (Ev, İş...)" value={addr.title} onChange={e=>updateAddr(addr.id,{title:e.target.value})} style={IS}/>
+            <input placeholder="Ad Soyad" value={addr.name} onChange={e=>updateAddr(addr.id,{name:e.target.value})} style={IS}/>
+            <textarea placeholder="Adres" rows={2} value={addr.address} onChange={e=>updateAddr(addr.id,{address:e.target.value})} style={{...IS,resize:"vertical"}}/>
             <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
-              <input placeholder="İl" defaultValue={addr.city} style={IS}/>
-              <input placeholder="Telefon" defaultValue={addr.phone} style={IS}/>
+              <input placeholder="İl" value={addr.city} onChange={e=>updateAddr(addr.id,{city:e.target.value})} style={IS}/>
+              <input placeholder="Telefon" value={addr.phone} onChange={e=>updateAddr(addr.id,{phone:e.target.value})} style={IS}/>
             </div>
             <button onClick={()=>setEditing(null)} style={{padding:"10px 20px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:13,fontWeight:600,cursor:"pointer",alignSelf:"flex-start"}}>Kaydet</button>
           </div>
         ) : (
-          <div style={{fontSize:13,color:"#888"}}>{addr.address || "Adres bilgisi girilmemiş"}{addr.city && ` — ${addr.city}`}</div>
+          <div style={{fontSize:13,color:"#888",lineHeight:1.6}}>
+            {addr.name && <div><strong>{addr.name}</strong></div>}
+            <div>{addr.address || "Adres bilgisi girilmemiş"}{addr.city && ` — ${addr.city}`}</div>
+            {addr.phone && <div>📞 {addr.phone}</div>}
+          </div>
         )}
       </div>
     ))}
