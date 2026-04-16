@@ -615,30 +615,36 @@ export default function App() {
             {isMobile && <button onClick={()=>setMobileMenuOpen(!mobileMenuOpen)} style={{background:"none",border:"none",fontSize:22,color:"#333",padding:4,cursor:"pointer"}}>☰</button>}
 
             <div style={{cursor:"pointer",flexShrink:0}} onClick={() => go("home")}>
-              <img src="/logo.webp" alt="Frenciniz" width={isMobile?130:220} height={isMobile?66:110} fetchpriority="high" style={{height:isMobile?66:110,width:"auto",display:"block",imageRendering:"auto"}} onError={e=>{e.target.src="/logo.png"}}/>
+              <img src="/logo.webp" alt="Frenciniz" width={isMobile?150:280} height={isMobile?76:140} fetchpriority="high" style={{height:isMobile?76:140,width:"auto",display:"block",imageRendering:"auto"}} onError={e=>{e.target.src="/logo.png"}}/>
             </div>
-            
-            {/* Search — full on desktop, compact on mobile */}
-            <div style={{flex:1,maxWidth:isMobile?999:500,display:"flex",border:"2px solid #ff6000",borderRadius:8,overflow:"hidden"}}>
-              <input value={q} onChange={e => setQ(e.target.value)} onKeyDown={e => {if(e.key==="Enter" && q.trim()) go("products",{q})}}
-                placeholder={t("search")}
-                style={{flex:1,padding:isMobile?"8px 10px":"10px 14px",border:"none",fontSize:isMobile?13:14,outline:"none"}} />
-              <button onClick={() => {if(q.trim()) go("products",{q})}} style={{padding:isMobile?"8px 14px":"10px 20px",background:"#ff6000",color:"#fff",border:"none",fontSize:14,fontWeight:600}}>{t("searchBtn")}</button>
-            </div>
-            
-            {/* Desktop actions */}
-            {!isMobile && <div style={{display:"flex",alignItems:"center",gap:16,flexShrink:0}}>
-              <button onClick={() => go("favs")} style={{background:"none",border:"none",color:"#555",fontSize:13,display:"flex",flexDirection:"column",alignItems:"center",gap:2,position:"relative"}}>
+
+            {/* Search + actions — desktop'ta sağa yaslı grup */}
+            {!isMobile && <div style={{marginLeft:"auto",display:"flex",alignItems:"center",gap:20,flexShrink:0}}>
+              <div style={{width:460,display:"flex",border:"2px solid #ff6000",borderRadius:8,overflow:"hidden"}}>
+                <input value={q} onChange={e => setQ(e.target.value)} onKeyDown={e => {if(e.key==="Enter" && q.trim()) go("products",{q})}}
+                  placeholder={t("search")}
+                  style={{flex:1,padding:"10px 14px",border:"none",fontSize:14,outline:"none"}} />
+                <button onClick={() => {if(q.trim()) go("products",{q})}} style={{padding:"10px 20px",background:"#ff6000",color:"#fff",border:"none",fontSize:14,fontWeight:600}}>{t("searchBtn")}</button>
+              </div>
+              <button onClick={() => go("favs")} style={{background:"none",border:"none",color:"#555",fontSize:13,display:"flex",flexDirection:"column",alignItems:"center",gap:2,position:"relative",cursor:"pointer"}}>
                 <span style={{fontSize:20}}>♡</span><span>{t("favs")}</span>
                 {favs.length > 0 && <span style={{position:"absolute",top:-4,right:-8,background:"#ff6000",color:"#fff",fontSize:10,fontWeight:700,width:18,height:18,borderRadius:"50%",display:"flex",alignItems:"center",justifyContent:"center"}}>{favs.length}</span>}
               </button>
-              <button onClick={() => go(user ? "account" : "auth")} style={{background:"none",border:"none",color:"#555",fontSize:13,display:"flex",flexDirection:"column",alignItems:"center",gap:2}}>
+              <button onClick={() => go(user ? "account" : "auth")} style={{background:"none",border:"none",color:"#555",fontSize:13,display:"flex",flexDirection:"column",alignItems:"center",gap:2,cursor:"pointer"}}>
                 <span style={{fontSize:20}}>👤</span><span>{user ? user.name : t("login")}</span>
               </button>
-              <button onClick={() => go("cart")} style={{background:"none",border:"none",color:"#555",fontSize:13,display:"flex",flexDirection:"column",alignItems:"center",gap:2,position:"relative"}}>
+              <button onClick={() => go("cart")} style={{background:"none",border:"none",color:"#555",fontSize:13,display:"flex",flexDirection:"column",alignItems:"center",gap:2,position:"relative",cursor:"pointer"}}>
                 <span style={{fontSize:20}}>🛒</span><span>{t("cart")}</span>
                 {cartCount > 0 && <span style={{position:"absolute",top:-4,right:-8,background:"#ff6000",color:"#fff",fontSize:10,fontWeight:700,width:18,height:18,borderRadius:"50%",display:"flex",alignItems:"center",justifyContent:"center"}}>{cartCount}</span>}
               </button>
+            </div>}
+
+            {/* Mobile search */}
+            {isMobile && <div style={{flex:1,display:"flex",border:"2px solid #ff6000",borderRadius:8,overflow:"hidden"}}>
+              <input value={q} onChange={e => setQ(e.target.value)} onKeyDown={e => {if(e.key==="Enter" && q.trim()) go("products",{q})}}
+                placeholder={t("search")}
+                style={{flex:1,padding:"8px 10px",border:"none",fontSize:13,outline:"none"}} />
+              <button onClick={() => {if(q.trim()) go("products",{q})}} style={{padding:"8px 14px",background:"#ff6000",color:"#fff",border:"none",fontSize:14,fontWeight:600}}>{t("searchBtn")}</button>
             </div>}
             
             {/* Mobile icons */}
