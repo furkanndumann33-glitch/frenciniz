@@ -795,9 +795,15 @@ export default function App() {
                 ))}
               </div>
             </div>
-            <div style={{marginTop:24,paddingTop:16,borderTop:"1px solid #333",display:"flex",flexDirection:isMobile?"column":"row",justifyContent:"space-between",gap:8,fontSize:12,color:"#666"}}>
+            <div style={{marginTop:24,paddingTop:16,borderTop:"1px solid #333",display:"flex",flexDirection:isMobile?"column":"row",justifyContent:"space-between",alignItems:isMobile?"flex-start":"center",gap:12,fontSize:12,color:"#666"}}>
               <span>© 2026 <span onClick={()=>go("admin-login")} style={{cursor:"pointer"}}>Frenciniz</span> — {t("allRightsReserved")}</span>
-              <span>Visa · Mastercard · Troy · Havale/EFT</span>
+              <div style={{display:"flex",alignItems:"center",gap:8,flexWrap:"wrap"}}>
+                <img src="/payment/tami.svg" alt="Tami Sanal POS" width={72} height={24} loading="lazy" decoding="async" style={{display:"block"}}/>
+                <img src="/payment/visa.svg" alt="Visa" width={72} height={24} loading="lazy" decoding="async" style={{display:"block"}}/>
+                <img src="/payment/mastercard.svg" alt="Mastercard" width={72} height={24} loading="lazy" decoding="async" style={{display:"block"}}/>
+                <img src="/payment/troy.svg" alt="Troy" width={72} height={24} loading="lazy" decoding="async" style={{display:"block"}}/>
+                <span style={{color:"#666",marginLeft:4}}>· Havale/EFT</span>
+              </div>
             </div>
           </div>
         </footer>
