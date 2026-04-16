@@ -1332,7 +1332,7 @@ function CheckoutPage() {
           <div style={{marginBottom:20}}>
             <label style={{fontSize:13,color:"#666",display:"block",marginBottom:8}}>Ödeme Yöntemi</label>
             <div style={{display:"grid",gridTemplateColumns:"repeat(2,1fr)",gap:8}}>
-              {[{id:"card",icon:"💳",name:"Kredi / Banka Kartı",desc:"Garanti BBVA / PayTR / Param"},{id:"havale",icon:"🏦",name:"Havale / EFT",desc:"Banka havalesi ile ödeme"},{id:"taksit",icon:"📊",name:"Taksitli Ödeme",desc:"2-12 taksit imkânı"}].map(m=>(
+              {[{id:"card",icon:"💳",name:"Kredi / Banka Kartı",desc:"Tami Sanal POS ile güvenli ödeme"},{id:"havale",icon:"🏦",name:"Havale / EFT",desc:"Banka havalesi ile ödeme"},{id:"taksit",icon:"📊",name:"Taksitli Ödeme",desc:"2-12 taksit imkânı"}].map(m=>(
                 <div key={m.id} style={{padding:"12px 14px",border:"2px solid #eee",borderRadius:8,cursor:"pointer",display:"flex",alignItems:"center",gap:10,transition:"border-color .2s"}}
                   onMouseEnter={e=>e.currentTarget.style.borderColor="#ff6000"} onMouseLeave={e=>e.currentTarget.style.borderColor="#eee"}>
                   <span style={{fontSize:22}}>{m.icon}</span>
@@ -1343,9 +1343,7 @@ function CheckoutPage() {
           </div>
           {/* Card logos */}
           <div style={{display:"flex",gap:12,marginBottom:16,alignItems:"center"}}>
-            {[{n:"Garanti BBVA",c:"#00854A"},{n:"PayTR",c:"#1a9c5b"},{n:"Param",c:"#0066cc"}].map(g=>(
-              <span key={g.n} style={{padding:"4px 12px",borderRadius:4,fontSize:11,fontWeight:600,background:g.c+"15",color:g.c}}>{g.n}</span>
-            ))}
+            <span style={{padding:"4px 12px",borderRadius:4,fontSize:11,fontWeight:600,background:"#e3061315",color:"#e30613"}}>Tami Sanal POS</span>
             <span style={{fontSize:11,color:"#999",marginLeft:4}}>ile güvenli ödeme</span>
           </div>
           <div style={{marginBottom:14}}><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>Kart Numarası</label><input placeholder="0000 0000 0000 0000" style={IS}/></div>
@@ -3302,35 +3300,20 @@ function AAdminUsers(){
 
 // ── PAYMENT GATEWAY SETTINGS ──
 function APaymentCfg(){
-  const [activeGw,setActiveGw]=useState("garanti");
+  const [activeGw,setActiveGw]=useState("tami");
   const [ok,setOk]=useState(false);
   const [gateways,setGateways]=useState({
-    garanti:{enabled:false,mode:"test",merchantId:"",terminalId:"",provUserId:"",provPass:"",storeKey:""},
-    paytr:{enabled:false,mode:"test",merchantId:"",merchantKey:"",merchantSalt:"",successUrl:"",failUrl:""},
-    param:{enabled:false,mode:"test",clientCode:"",clientUsername:"",clientPassword:"",guid:""},
+    tami:{enabled:false,mode:"test",merchantId:"",apiKey:"",secretKey:"",successUrl:"",failUrl:""},
   });
 
   const updateGw=(gw,field,val)=>setGateways(p=>({...p,[gw]:{...p[gw],[field]:val}}));
   const gwInfo={
-    garanti:{name:"Garanti BBVA",logo:"🏦",color:"#00854A",docs:"https://dev.garantibbva.com.tr",fields:[
-      {key:"merchantId",label:"Üye İşyeri No (Merchant ID)",ph:"7000XXXX"},
-      {key:"terminalId",label:"Terminal No",ph:"30691XXX"},
-      {key:"provUserId",label:"Prov. Kullanıcı Adı",ph:"PROVAUT"},
-      {key:"provPass",label:"Prov. Şifresi",ph:"••••••••",type:"password"},
-      {key:"storeKey",label:"3D Secure Store Key",ph:"••••••••",type:"password"},
-    ]},
-    paytr:{name:"PayTR",logo:"💰",color:"#1a9c5b",docs:"https://dev.paytr.com",fields:[
-      {key:"merchantId",label:"Mağaza No (Merchant ID)",ph:"XXXXXX"},
-      {key:"merchantKey",label:"Mağaza Anahtarı (Merchant Key)",ph:"••••••••",type:"password"},
-      {key:"merchantSalt",label:"Mağaza Gizli Anahtar (Salt)",ph:"••••••••",type:"password"},
+    tami:{name:"Tami Sanal POS",logo:"💳",color:"#e30613",docs:"https://tami.com.tr",fields:[
+      {key:"merchantId",label:"Üye İşyeri No (Merchant ID)",ph:"XXXXXX"},
+      {key:"apiKey",label:"API Anahtarı (API Key)",ph:"••••••••",type:"password"},
+      {key:"secretKey",label:"Gizli Anahtar (Secret Key)",ph:"••••••••",type:"password"},
       {key:"successUrl",label:"Başarılı Ödeme URL",ph:"https://frenciniz.com/odeme-basarili"},
       {key:"failUrl",label:"Başarısız Ödeme URL",ph:"https://frenciniz.com/odeme-basarisiz"},
-    ]},
-    param:{name:"Param",logo:"🔷",color:"#0066cc",docs:"https://dev.param.com.tr",fields:[
-      {key:"clientCode",label:"Client Code",ph:"1XXXX"},
-      {key:"clientUsername",label:"Client Username",ph:"Test"},
-      {key:"clientPassword",label:"Client Password",ph:"••••••••",type:"password"},
-      {key:"guid",label:"GUID",ph:"0c13d406-873b-XXXX-XXXX"},
     ]},
   };
 
@@ -3341,7 +3324,7 @@ function APaymentCfg(){
   return <><h1 style={{fontSize:22,fontWeight:700,marginBottom:20}}>Ödeme Ayarları</h1>
 
     {/* Summary cards */}
-    <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:12,marginBottom:20}}>
+    <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))",gap:12,marginBottom:20}}>
       {Object.entries(gwInfo).map(([key,info])=>(
         <div key={key} onClick={()=>setActiveGw(key)}
           style={{background:"#fff",border:`2px solid ${activeGw===key?info.color:"#e8e8e8"}`,borderRadius:8,padding:16,cursor:"pointer",transition:"border-color .2s"}}>
