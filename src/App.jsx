@@ -615,7 +615,7 @@ export default function App() {
             {isMobile && <button onClick={()=>setMobileMenuOpen(!mobileMenuOpen)} style={{background:"none",border:"none",fontSize:22,color:"#333",padding:4,cursor:"pointer"}}>☰</button>}
 
             <div style={{cursor:"pointer",flexShrink:0,justifySelf:"start"}} onClick={() => go("home")}>
-              <img src="/logo.webp" alt="Frenciniz" width={isMobile?150:280} height={isMobile?76:140} fetchpriority="high" style={{height:isMobile?76:140,width:"auto",display:"block",imageRendering:"auto"}} onError={e=>{e.target.src="/logo.png"}}/>
+              <img src="/logo.webp" alt="Frenciniz" width={isMobile?110:190} height={isMobile?56:95} fetchpriority="high" style={{height:isMobile?56:95,width:"auto",display:"block",imageRendering:"auto"}} onError={e=>{e.target.src="/logo.png"}}/>
             </div>
 
             {/* Desktop: arama tam ortada (grid center col) */}
