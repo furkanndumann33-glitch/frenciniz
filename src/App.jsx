@@ -303,13 +303,15 @@ let CATS = [{id:"all",name:"Tüm Ürünler",parent:null}];
 // CDN proxy — S3 görsellerini hızlı CDN üzerinden cache'le ve sıkıştır
 function cdnImg(url, w) {
   if (!url || url.includes("placehold")) return url;
+  // Local/relative path (örn: /logo.png) → CDN'e gönderme, direkt kullan
+  if (url.startsWith("/") || url.startsWith("data:") || url.startsWith("blob:")) return url;
   // wsrv.nl: ücretsiz görsel CDN proxy, global edge cache, WebP otomatik
-  return `https://wsrv.nl/?url=${encodeURIComponent(url)}&w=${w||400}&q=80&output=webp`;
+  return `https://wsrv.nl/?url=${encodeURIComponent(url)}&w=${w||400}&q=75&output=webp`;
 }
 
 // Ürün görsellerini arka planda önceden indir (CDN cache'i ısıtır)
 function preloadImages(prods) {
-  const imgs = prods.filter(p => p.img && !p.img.includes("placehold")).slice(0, 50).map(p => cdnImg(p.img, 400));
+  const imgs = prods.filter(p => p.img && !p.img.includes("placehold")).slice(0, 80).map(p => cdnImg(p.img, 300));
   let i = 0;
   function next() {
     if (i >= imgs.length) return;
@@ -317,8 +319,8 @@ function preloadImages(prods) {
     img.src = imgs[i++];
     img.onload = img.onerror = () => setTimeout(next, 0);
   }
-  // 8 paralel indirme başlat (CDN hızlı, paralel artırılabilir)
-  for (let j = 0; j < 8; j++) next();
+  // 12 paralel indirme (wsrv.nl paralel işlemde hızlı)
+  for (let j = 0; j < 12; j++) next();
 }
 // Yardımcı: Grup ID'ye ait tüm alt kategori id'lerini döndür
 function getSubCatIds(groupId) {
@@ -814,17 +816,18 @@ function linkifyContacts(text) {
 }
 
 // ===== OPTIMIZED IMAGE with skeleton + CDN =====
-function OptImg({src, alt, w, h, style, cdnW}) {
+function OptImg({src, alt, w, h, style, cdnW, eager}) {
   const [loaded, setLoaded] = useState(false);
-  const [err, setErr] = useState(false);
-  const cdnSrc = cdnImg(src, cdnW || 400);
-  if (err) return null;
+  const [fallback, setFallback] = useState(false);
+  const finalSrc = fallback ? "/logo.png" : cdnImg(src, cdnW || 300);
   return (
     <>
       {!loaded && <div style={{width:w||"100%",height:h||"100%",background:"linear-gradient(90deg,#f0f0f0 25%,#e0e0e0 50%,#f0f0f0 75%)",backgroundSize:"200% 100%",animation:"shimmer 1.5s infinite",borderRadius:4,...(style||{})}} />}
-      <img src={cdnSrc} alt={alt||""} width={w} height={h}
+      <img src={finalSrc} alt={alt||""} width={w} height={h}
+        loading={eager ? "eager" : "lazy"} decoding="async" fetchpriority={eager ? "high" : "auto"}
         style={{...style,display:loaded?"block":"none"}}
-        onLoad={()=>setLoaded(true)} onError={()=>{setErr(true);setLoaded(true)}} />
+        onLoad={()=>setLoaded(true)}
+        onError={()=>{ if(!fallback){setFallback(true); setLoaded(false);} else {setLoaded(true);} }} />
     </>
   );
 }
