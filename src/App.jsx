@@ -349,8 +349,18 @@ const use$ = () => useContext(Ctx);
 
 export default function App() {
   const isAdminMode = typeof window !== 'undefined' && window.__ADMIN_MODE__;
-  const [page, setPage] = useState(isAdminMode ? "admin-login" : "home");
-  const [params, setParams] = useState({});
+  const initRoute = (() => {
+    if (typeof window === 'undefined') return {page: isAdminMode ? "admin-login" : "home", params: {}};
+    const path = window.location.pathname;
+    const search = new URLSearchParams(window.location.search);
+    const params = {};
+    for (const [k, v] of search.entries()) params[k] = v;
+    if (path === "/odeme-basarili") return {page: "payment-success", params};
+    if (path === "/odeme-basarisiz") return {page: "payment-fail", params};
+    return {page: isAdminMode ? "admin-login" : "home", params: {}};
+  })();
+  const [page, setPage] = useState(initRoute.page);
+  const [params, setParams] = useState(initRoute.params);
   const [cart, setCart] = useState([]);
   const [products, setProducts] = useState(PRODUCTS);
   const [cats, setCatsState] = useState(CATS);
@@ -711,6 +721,8 @@ export default function App() {
           {page==="change-password"&&<ChangePasswordPage/>}
           {page==="admin"&&<AdminPanel/>}
           {page==="admin-login"&&<AdminLoginPage/>}
+          {page==="payment-success"&&<PaymentSuccessPage/>}
+          {page==="payment-fail"&&<PaymentFailPage/>}
         </main>
 
         {/* Cookie Consent Banner */}
@@ -1339,7 +1351,11 @@ function CartPage() {
 function CheckoutPage() {
   const {cart, cartTotal, go, discount, completePurchase, isMobile, fp, user, addresses} = use$();
   const [step, setStep] = useState(1);
+  const [payLoading, setPayLoading] = useState(false);
+  const [payError, setPayError] = useState("");
+  const [card, setCard] = useState({number:"", holder:"", exp:"", cvv:"", installment:1});
   const ship = cartTotal >= 3000 ? 0 : 45;
+  const grandTotal = Math.max(0, cartTotal - discount + ship);
   const IS = {width:"100%",padding:"10px 14px",border:"1px solid #ddd",borderRadius:6,fontSize:14};
 
   // Varsayılan değerler: user profili + ilk kayıtlı adres
@@ -1429,19 +1445,105 @@ function CheckoutPage() {
             <span style={{padding:"4px 12px",borderRadius:4,fontSize:11,fontWeight:600,background:"#e3061315",color:"#e30613"}}>Tami Sanal POS</span>
             <span style={{fontSize:11,color:"#999",marginLeft:4}}>ile güvenli ödeme</span>
           </div>
-          <div style={{marginBottom:14}}><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>Kart Numarası</label><input placeholder="0000 0000 0000 0000" style={IS}/></div>
+          <div style={{marginBottom:14}}><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>Kart Numarası</label>
+            <input value={card.number} onChange={e=>setCard(c=>({...c,number:e.target.value.replace(/\D/g,"").slice(0,19).replace(/(\d{4})/g,"$1 ").trim()}))} placeholder="0000 0000 0000 0000" inputMode="numeric" style={IS}/>
+          </div>
           <div style={{display:"grid",gridTemplateColumns:"2fr 1fr 1fr",gap:14}}>
-            <div><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>İsim</label><input placeholder="AD SOYAD" style={IS}/></div>
-            <div><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>Tarih</label><input placeholder="AA/YY" style={IS}/></div>
-            <div><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>CVV</label><input placeholder="***" type="password" style={IS}/></div>
+            <div><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>İsim</label><input value={card.holder} onChange={e=>setCard(c=>({...c,holder:e.target.value.toUpperCase()}))} placeholder="AD SOYAD" style={IS}/></div>
+            <div><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>Tarih</label><input value={card.exp} onChange={e=>{let v=e.target.value.replace(/\D/g,"").slice(0,4); if(v.length>=3)v=v.slice(0,2)+"/"+v.slice(2); setCard(c=>({...c,exp:v}))}} placeholder="AA/YY" inputMode="numeric" style={IS}/></div>
+            <div><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>CVV</label><input value={card.cvv} onChange={e=>setCard(c=>({...c,cvv:e.target.value.replace(/\D/g,"").slice(0,4)}))} placeholder="***" type="password" inputMode="numeric" style={IS}/></div>
+          </div>
+          <div style={{marginTop:14}}><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>Taksit</label>
+            <select value={card.installment} onChange={e=>setCard(c=>({...c,installment:Number(e.target.value)}))} style={IS}>
+              <option value={1}>Peşin (Tek Çekim)</option>
+              {[2,3,6,9,12].map(n=><option key={n} value={n}>{n} Taksit</option>)}
+            </select>
           </div>
           {/* 3D Secure notice */}
           <div style={{marginTop:14,padding:"10px 14px",background:"#f0fdf4",borderRadius:6,border:"1px solid #bbf7d0",fontSize:12,color:"#15803d",display:"flex",alignItems:"center",gap:8}}>
-            🔒 Ödemeniz 3D Secure ile korunmaktadır.
+            🔒 Ödemeniz Tami Sanal POS 3D Secure ile korunmaktadır. Kart bilgileriniz saklanmaz.
           </div>
+          {payError && <div style={{marginTop:10,padding:"10px 14px",background:"#fee2e2",borderRadius:6,border:"1px solid #fecaca",fontSize:13,color:"#991b1b"}}>⚠ {payError}</div>}
           <div style={{display:"flex",gap:10,marginTop:20}}>
-            <button onClick={() => setStep(1)} style={{padding:"12px 24px",background:"#f5f5f5",color:"#555",border:"none",borderRadius:6,fontSize:14,fontWeight:600,cursor:"pointer"}}>← Geri</button>
-            <button onClick={() => {completePurchase(); setStep(3)}} style={{padding:"12px 28px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:14,fontWeight:600,cursor:"pointer"}}>Siparişi Onayla</button>
+            <button onClick={() => setStep(1)} disabled={payLoading} style={{padding:"12px 24px",background:"#f5f5f5",color:"#555",border:"none",borderRadius:6,fontSize:14,fontWeight:600,cursor:payLoading?"not-allowed":"pointer"}}>← Geri</button>
+            <button disabled={payLoading} onClick={async () => {
+              setPayError("");
+              // Validasyon
+              const cardNum = card.number.replace(/\s/g,"");
+              if (cardNum.length < 15) return setPayError("Kart numarası eksik");
+              if (!card.holder.trim()) return setPayError("Kart üzerindeki isim boş olamaz");
+              const [mm, yy] = card.exp.split("/");
+              if (!mm || !yy || mm.length !== 2 || yy.length !== 2) return setPayError("Geçersiz son kullanma tarihi (AA/YY)");
+              if (card.cvv.length < 3) return setPayError("CVV eksik");
+              if (!ship_form.first || !ship_form.email || !ship_form.phone || !ship_form.address) return setPayError("Teslimat bilgileri eksik — Geri tuşu ile tamamlayın");
+
+              setPayLoading(true);
+              try {
+                const payload = {
+                  amount: Number(grandTotal.toFixed(2)),
+                  installmentCount: card.installment,
+                  card: {
+                    number: cardNum,
+                    holderName: card.holder,
+                    expireMonth: Number(mm),
+                    expireYear: 2000 + Number(yy),
+                    cvv: card.cvv,
+                  },
+                  billingAddress: {
+                    address: ship_form.address,
+                    city: "İstanbul",
+                    country: "Türkiye",
+                    zipCode: "00000",
+                    district: "-",
+                    contactName: `${ship_form.first} ${ship_form.last}`.trim(),
+                    phoneNumber: ship_form.phone,
+                    emailAddress: ship_form.email,
+                  },
+                  buyer: {
+                    buyerId: user?.id ? String(user.id) : `guest-${Date.now()}`,
+                    name: ship_form.first,
+                    surName: ship_form.last,
+                    emailAddress: ship_form.email,
+                    phoneNumber: ship_form.phone,
+                    city: "İstanbul",
+                    country: "Türkiye",
+                    zipCode: "00000",
+                    registrationAddress: ship_form.address,
+                    registrationDate: new Date().toISOString(),
+                    lastLoginDate: new Date().toISOString(),
+                  },
+                  basket: {
+                    basketId: `FRN-${Date.now()}`,
+                    basketItems: cart.slice(0, 20).map(it => ({
+                      itemId: String(it.id),
+                      name: (it.name||"Ürün").slice(0, 60),
+                      itemType: "PHYSICAL",
+                      numberOfProducts: it.qty,
+                      unitPrice: Number(it.price),
+                      totalPrice: Number((it.price * it.qty).toFixed(2)),
+                    })),
+                  },
+                };
+                const r = await fetch("/api/payment/tami-start", {
+                  method: "POST",
+                  headers: {"Content-Type":"application/json"},
+                  body: JSON.stringify(payload),
+                });
+                const data = await r.json();
+                if (!r.ok || !data.success) throw new Error(data.error || "Ödeme başlatılamadı");
+                if (!data.threeDSHtmlContent) throw new Error("3DS yanıtı boş");
+                // Base64 decode + sayfayı 3DS HTML'i ile değiştir (bankaya otomatik submit)
+                const html = atob(data.threeDSHtmlContent);
+                document.open();
+                document.write(html);
+                document.close();
+              } catch (e) {
+                setPayError(e.message || "Ödeme sırasında hata oluştu");
+                setPayLoading(false);
+              }
+            }} style={{padding:"12px 28px",background:payLoading?"#ffa06a":"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:14,fontWeight:600,cursor:payLoading?"not-allowed":"pointer"}}>
+              {payLoading ? "Yönlendiriliyor..." : `${fp(grandTotal)} Öde`}
+            </button>
           </div>
         </>}
         {step===3 && <div style={{textAlign:"center",padding:"40px 0"}}>
@@ -1755,6 +1857,43 @@ function AddressesPage() {
         )}
       </div>
     ))}
+  </div>;
+}
+
+function PaymentSuccessPage() {
+  const {go, params} = use$();
+  const orderId = params?.orderId || "—";
+  return <div style={{maxWidth:540,margin:"60px auto",padding:"40px 24px",textAlign:"center",border:"1px solid #eee",borderRadius:12}}>
+    <div style={{fontSize:64,marginBottom:12}}>✅</div>
+    <h1 style={{fontSize:24,fontWeight:800,marginBottom:8,color:"#15803d"}}>Ödemeniz Başarılı!</h1>
+    <p style={{color:"#666",marginBottom:8}}>Siparişiniz alındı ve hazırlanmaya başlanacak.</p>
+    <p style={{color:"#333",marginBottom:24,fontSize:14}}>Sipariş No: <strong>{orderId}</strong></p>
+    <div style={{display:"flex",gap:10,justifyContent:"center",flexWrap:"wrap"}}>
+      <button onClick={()=>go("orders")} style={{padding:"12px 24px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:14,fontWeight:600,cursor:"pointer"}}>Siparişlerim</button>
+      <button onClick={()=>go("home")} style={{padding:"12px 24px",background:"#f5f5f5",color:"#555",border:"none",borderRadius:6,fontSize:14,fontWeight:600,cursor:"pointer"}}>Ana Sayfa</button>
+    </div>
+  </div>;
+}
+
+function PaymentFailPage() {
+  const {go, params} = use$();
+  const reasonMap = {
+    hash: "Doğrulama hatası (güvenlik imzası eşleşmedi)",
+    "3ds": "3D Secure doğrulaması başarısız oldu",
+    complete: "Banka ödemeyi tamamlayamadı",
+    server: "Sunucu hatası",
+    "missing-order": "Sipariş bilgisi bulunamadı",
+  };
+  const reason = reasonMap[params?.reason] || "Ödeme tamamlanamadı";
+  return <div style={{maxWidth:540,margin:"60px auto",padding:"40px 24px",textAlign:"center",border:"1px solid #eee",borderRadius:12}}>
+    <div style={{fontSize:64,marginBottom:12}}>❌</div>
+    <h1 style={{fontSize:24,fontWeight:800,marginBottom:8,color:"#dc2626"}}>Ödeme Başarısız</h1>
+    <p style={{color:"#666",marginBottom:8}}>{reason}.</p>
+    {params?.orderId && <p style={{color:"#999",marginBottom:24,fontSize:13}}>Sipariş No: {params.orderId}</p>}
+    <div style={{display:"flex",gap:10,justifyContent:"center",flexWrap:"wrap"}}>
+      <button onClick={()=>go("checkout")} style={{padding:"12px 24px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:14,fontWeight:600,cursor:"pointer"}}>Tekrar Dene</button>
+      <button onClick={()=>go("home")} style={{padding:"12px 24px",background:"#f5f5f5",color:"#555",border:"none",borderRadius:6,fontSize:14,fontWeight:600,cursor:"pointer"}}>Ana Sayfa</button>
+    </div>
   </div>;
 }
 
