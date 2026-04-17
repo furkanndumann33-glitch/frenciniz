@@ -411,6 +411,21 @@ export default function App() {
       else localStorage.removeItem("frenciniz_user");
     } catch {}
   }, [user]);
+  useEffect(() => {
+    fetch("/api/auth/me", { credentials: "include" })
+      .then(r => r.ok ? r.json() : null)
+      .then(d => {
+        if (d && d.user) {
+          setUser(d.user);
+          if (d.user.role === "admin") setAdmin(true);
+        }
+        else if (d && d.user === null) {
+          const raw = typeof window !== 'undefined' && localStorage.getItem("frenciniz_user");
+          if (raw) { try { localStorage.removeItem("frenciniz_user"); setUser(null); } catch {} }
+        }
+      })
+      .catch(() => {});
+  }, []);
   const [addresses, setAddresses] = useState(() => {
     try {
       const raw = typeof window !== 'undefined' && localStorage.getItem("frenciniz_addresses");
@@ -1559,14 +1574,51 @@ function CheckoutPage() {
   );
 }
 
-// ===== AUTH — Phone Registration + SMS OTP + Forgot Password =====
+// ===== AUTH — Real backend (signup/login API + httpOnly session cookie) =====
 function AuthPage() {
   const [mode, setMode] = useState("login"); // login | register | forgot
   const [showPw, setShowPw] = useState(false);
   const [otpSent, setOtpSent] = useState(false);
   const [regData, setRegData] = useState({name:"",email:"",phone:"",password:""});
+  const [loginData, setLoginData] = useState({emailOrPhone:"",password:""});
+  const [busy, setBusy] = useState(false);
+  const [err, setErr] = useState("");
   const {go, setUser, lang} = use$();
   const en = lang === "en";
+
+  async function doSignup() {
+    setErr(""); setBusy(true);
+    try {
+      const r = await fetch("/api/auth/signup", {
+        method:"POST", credentials:"include",
+        headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({
+          name: regData.name.trim(),
+          email: regData.email.trim(),
+          phone: regData.phone,
+          password: regData.password,
+        }),
+      });
+      const d = await r.json();
+      if (!r.ok || !d.success) throw new Error(d.error || "Kayıt başarısız");
+      setUser(d.user);
+      go("account");
+    } catch (e) { setErr(e.message); } finally { setBusy(false); }
+  }
+  async function doLogin() {
+    setErr(""); setBusy(true);
+    try {
+      const r = await fetch("/api/auth/login", {
+        method:"POST", credentials:"include",
+        headers:{"Content-Type":"application/json"},
+        body: JSON.stringify(loginData),
+      });
+      const d = await r.json();
+      if (!r.ok || !d.success) throw new Error(d.error || "Giriş başarısız");
+      setUser(d.user);
+      go("account");
+    } catch (e) { setErr(e.message); } finally { setBusy(false); }
+  }
 
   const IS = {width:"100%",padding:"10px 14px",border:"1px solid #ddd",borderRadius:6,fontSize:14};
 
@@ -1598,16 +1650,17 @@ function AuthPage() {
           ))}
         </div>
 
+        {err && <div style={{marginBottom:12,padding:"10px 14px",background:"#fee2e2",border:"1px solid #fecaca",borderRadius:6,fontSize:13,color:"#991b1b"}}>⚠ {err}</div>}
         {mode === "login" ? (
           <div style={{display:"flex",flexDirection:"column",gap:12}}>
             <div>
               <label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>{en?"Email or Phone":"E-posta veya Telefon"}</label>
-              <input placeholder={en?"example@email.com or 05xx xxx xx xx":"ornek@email.com veya 05xx xxx xx xx"} style={IS}/>
+              <input value={loginData.emailOrPhone} onChange={e=>setLoginData({...loginData,emailOrPhone:e.target.value})} placeholder={en?"example@email.com or 05xx xxx xx xx":"ornek@email.com veya 05xx xxx xx xx"} style={IS}/>
             </div>
             <div>
               <label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>{en?"Password":"Şifre"}</label>
               <div style={{position:"relative"}}>
-                <input type={showPw?"text":"password"} placeholder="••••••••" style={{...IS,paddingRight:44}}/>
+                <input type={showPw?"text":"password"} value={loginData.password} onChange={e=>setLoginData({...loginData,password:e.target.value})} placeholder="••••••••" style={{...IS,paddingRight:44}}/>
                 <button onClick={() => setShowPw(!showPw)} style={{position:"absolute",right:8,top:"50%",transform:"translateY(-50%)",background:"none",border:"none",color:"#999",fontSize:13,cursor:"pointer"}}>{showPw?"🙈":"👁"}</button>
               </div>
             </div>
@@ -1617,8 +1670,8 @@ function AuthPage() {
               </label>
               <button onClick={() => {setMode("forgot"); setOtpSent(false)}} style={{background:"none",border:"none",color:"#ff6000",fontSize:13,cursor:"pointer"}}>{en?"Forgot password":"Şifremi unuttum"}</button>
             </div>
-            <button onClick={() => {setUser({name:en?"User":"Kullanıcı"}); go("account")}}
-              style={{padding:"12px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:15,fontWeight:700,cursor:"pointer",marginTop:4}}>{en?"Sign In":"Giriş Yap"}</button>
+            <button disabled={busy} onClick={doLogin}
+              style={{padding:"12px",background:busy?"#ffa06a":"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:15,fontWeight:700,cursor:busy?"not-allowed":"pointer",marginTop:4}}>{busy?"...":(en?"Sign In":"Giriş Yap")}</button>
           </div>
         ) : (
           <div style={{display:"flex",flexDirection:"column",gap:12}}>
@@ -1650,8 +1703,8 @@ function AuthPage() {
               {en ? <span>I accept the <span onClick={()=>go("terms")} style={{color:"#ff6000",cursor:"pointer"}}>Terms & Conditions</span> and <span onClick={()=>go("privacy")} style={{color:"#ff6000",cursor:"pointer"}}>Privacy Policy</span>.</span>
                   : <span><span onClick={()=>go("terms")} style={{color:"#ff6000",cursor:"pointer"}}>Kullanım koşullarını</span> ve <span onClick={()=>go("privacy")} style={{color:"#ff6000",cursor:"pointer"}}>gizlilik politikasını</span> kabul ediyorum.</span>}
             </label>
-            <button onClick={() => {setUser({name:regData.name||(en?"User":"Kullanıcı"), email:regData.email||"", phone:regData.phone||""}); go("account")}}
-              style={{padding:"12px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:15,fontWeight:700,cursor:"pointer",marginTop:4}}>{en?"Sign Up":"Kayıt Ol"}</button>
+            <button disabled={busy} onClick={doSignup}
+              style={{padding:"12px",background:busy?"#ffa06a":"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:15,fontWeight:700,cursor:busy?"not-allowed":"pointer",marginTop:4}}>{busy?"...":(en?"Sign Up":"Kayıt Ol")}</button>
           </div>
         )}
       </div>
@@ -1684,7 +1737,7 @@ function AccountPage() {
     <div style={{maxWidth:900,margin:"0 auto",padding:"20px"}}>
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:24}}>
         <h1 style={{fontSize:22,fontWeight:700}}>{en?"My Account":"Hesabım"}</h1>
-        <button onClick={() => {setUser(null); go("home")}} style={{padding:"8px 16px",background:"none",border:"1px solid #ddd",borderRadius:6,fontSize:13,color:"#999",cursor:"pointer"}}>{en?"Log Out":"Çıkış Yap"}</button>
+        <button onClick={async () => {try{await fetch("/api/auth/logout",{method:"POST",credentials:"include"})}catch{}; setUser(null); go("home")}} style={{padding:"8px 16px",background:"none",border:"1px solid #ddd",borderRadius:6,fontSize:13,color:"#999",cursor:"pointer"}}>{en?"Log Out":"Çıkış Yap"}</button>
       </div>
       <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:16,marginBottom:32}}>
         {[
@@ -2846,28 +2899,42 @@ function StockAlertInline({productId, onClose}) {
 // ═══════════════════════════════════════════════════════════
 
 function AdminLoginPage() {
-  const {go, setAdmin} = use$();
+  const {go, setAdmin, setUser} = use$();
   const [email, setEmail] = useState("");
   const [pw, setPw] = useState("");
-  const [err, setErr] = useState(false);
-  const handleLogin = () => {
-    const adminEmail = import.meta.env.VITE_ADMIN_EMAIL || "tarkanduman4@gmail.com";
-    const adminPass = import.meta.env.VITE_ADMIN_PASSWORD || "123456_xx";
-    if(email === adminEmail && pw === adminPass){setAdmin(true);go("admin")}else setErr(true);
-  };
+  const [err, setErr] = useState("");
+  const [busy, setBusy] = useState(false);
+  useEffect(()=>{
+    fetch("/api/auth/me",{credentials:"include"}).then(r=>r.json()).then(d=>{
+      if(d?.user?.role==="admin"){setAdmin(true); setUser(d.user); go("admin");}
+    }).catch(()=>{});
+  },[]);
+  async function handleLogin(){
+    setErr(""); setBusy(true);
+    try{
+      const r=await fetch("/api/auth/login",{method:"POST",credentials:"include",headers:{"Content-Type":"application/json"},body:JSON.stringify({emailOrPhone:email,password:pw})});
+      const d=await r.json();
+      if(!r.ok||!d.success) throw new Error(d.error||"Giriş başarısız");
+      if(d.user?.role!=="admin"){
+        await fetch("/api/auth/logout",{method:"POST",credentials:"include"}).catch(()=>{});
+        throw new Error("Bu hesap admin yetkisine sahip değil");
+      }
+      setUser(d.user); setAdmin(true); go("admin");
+    }catch(e){ setErr(e.message); } finally { setBusy(false); }
+  }
   return (
     <div style={{maxWidth:380,margin:"60px auto",padding:"0 20px"}}>
       <div style={{border:"1px solid #eee",borderRadius:8,padding:32,textAlign:"center"}}>
         <div style={{fontSize:28,fontWeight:800,color:"#ff6000",marginBottom:4}}>frenciniz</div>
         <div style={{fontSize:13,color:"#999",marginBottom:24}}>Yönetim Paneli Girişi</div>
-        <input value={email} onChange={e=>{setEmail(e.target.value);setErr(false)}} type="email" placeholder="E-posta"
+        <input value={email} onChange={e=>{setEmail(e.target.value);setErr("")}} type="text" placeholder="E-posta veya telefon"
           style={{width:"100%",padding:"12px 14px",border:`1px solid ${err?"#e53935":"#ddd"}`,borderRadius:6,fontSize:14,marginBottom:12,outline:"none"}}/>
-        <input value={pw} onChange={e=>{setPw(e.target.value);setErr(false)}} type="password" placeholder="Şifre"
+        <input value={pw} onChange={e=>{setPw(e.target.value);setErr("")}} type="password" placeholder="Şifre"
           onKeyDown={e=>{if(e.key==="Enter")handleLogin()}}
           style={{width:"100%",padding:"12px 14px",border:`1px solid ${err?"#e53935":"#ddd"}`,borderRadius:6,fontSize:14,marginBottom:12,outline:"none"}}/>
-        {err&&<div style={{fontSize:12,color:"#e53935",marginBottom:8}}>E-posta veya şifre yanlış.</div>}
-        <button onClick={handleLogin}
-          style={{width:"100%",padding:"12px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:15,fontWeight:700,cursor:"pointer"}}>Giriş Yap</button>
+        {err&&<div style={{fontSize:12,color:"#e53935",marginBottom:8}}>{err}</div>}
+        <button disabled={busy} onClick={handleLogin}
+          style={{width:"100%",padding:"12px",background:busy?"#ffa06a":"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:15,fontWeight:700,cursor:busy?"not-allowed":"pointer"}}>{busy?"...":"Giriş Yap"}</button>
       </div>
     </div>
   );
@@ -2948,9 +3015,36 @@ const ABtn=({children,color,...p})=><button {...p} style={{padding:"8px 18px",ba
 const AIn=p=><input {...p} style={{width:"100%",padding:"9px 12px",border:"1px solid #ddd",borderRadius:6,fontSize:13,fontFamily:"inherit",...(p.style||{})}}/>;
 
 function ADash(){
+  const [stats,setStats]=useState(null);
+  const [recent,setRecent]=useState([]);
+  const [loading,setLoading]=useState(true);
+  const [err,setErr]=useState("");
+  useEffect(()=>{
+    (async()=>{
+      try{
+        const [s,o]=await Promise.all([
+          fetch("/api/admin/dashboard",{credentials:"include"}).then(r=>r.json()),
+          fetch("/api/admin/orders",{credentials:"include"}).then(r=>r.json()),
+        ]);
+        if(s.error) throw new Error(s.error);
+        setStats(s.stats);
+        setRecent((o.orders||[]).slice(0,6));
+      }catch(e){setErr(e.message||"Yüklenemedi")}
+      finally{setLoading(false)}
+    })();
+  },[]);
+  const sc={"Hazırlanıyor":{bg:"#fef3c7",c:"#b45309"},"Kargoda":{bg:"#dbeafe",c:"#2563eb"},"Teslim Edildi":{bg:"#dcfce7",c:"#059669"},"İptal":{bg:"#fee2e2",c:"#dc2626"}};
+  if(loading) return <div style={{padding:20,color:"#999"}}>Yükleniyor…</div>;
+  if(err) return <div style={{padding:20,color:"#dc2626"}}>⚠ {err}</div>;
+  const cards=[
+    {n:`₺${(stats?.totalRevenue||0).toLocaleString("tr-TR")}`,l:"Toplam Satış",c:"#ff6000",i:"💰"},
+    {n:String(stats?.paidOrders||0),l:"Ödenmiş Sipariş",c:"#2563eb",i:"🛒"},
+    {n:String(stats?.totalCustomers||0),l:"Müşteri",c:"#059669",i:"👥"},
+    {n:String(stats?.productsCount||0),l:"Ürün",c:"#7c3aed",i:"📦"},
+  ];
   return <><h1 style={{fontSize:22,fontWeight:700,marginBottom:20}}>Dashboard</h1>
     <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:12,marginBottom:20}}>
-      {[{n:"₺48.750",l:"Toplam Satış",c:"#ff6000",i:"💰"},{n:"127",l:"Sipariş",c:"#2563eb",i:"🛒"},{n:"84",l:"Müşteri",c:"#059669",i:"👥"},{n:"12",l:"Ürün",c:"#7c3aed",i:"📦"}].map((s,i)=>(
+      {cards.map((s,i)=>(
         <div key={i} style={{background:"#fff",border:"1px solid #e8e8e8",borderRadius:8,padding:20}}>
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
             <div><div style={{fontSize:24,fontWeight:800,color:s.c}}>{s.n}</div><div style={{fontSize:12,color:"#999",marginTop:2}}>{s.l}</div></div>
@@ -2958,12 +3052,14 @@ function ADash(){
     </div>
     <div style={{display:"grid",gridTemplateColumns:"2fr 1fr",gap:16}}>
       <ACard title="Son Siparişler">
-        {[{no:"FRN-4821",c:"Ahmet Y.",t:"₺3.450",s:"Hazırlanıyor"},{no:"FRN-4820",c:"Mehmet K.",t:"₺1.250",s:"Kargoda"},{no:"FRN-4819",c:"Ali D.",t:"₺6.800",s:"Teslim Edildi"},{no:"FRN-4818",c:"Veli S.",t:"₺890",s:"İptal"}].map((o,i)=>(
-          <div key={i} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"10px 0",borderBottom:i<3?"1px solid #f0f0f0":"none"}}>
-            <div><div style={{fontSize:13,fontWeight:600}}>{o.no}</div><div style={{fontSize:11,color:"#999"}}>{o.c}</div></div>
-            <span style={{fontSize:14,fontWeight:600}}>{o.t}</span>
-            <span style={{padding:"4px 10px",borderRadius:4,fontSize:11,fontWeight:600,background:o.s==="Kargoda"?"#dbeafe":o.s==="Teslim Edildi"?"#dcfce7":o.s==="İptal"?"#fee2e2":"#fef3c7",color:o.s==="Kargoda"?"#2563eb":o.s==="Teslim Edildi"?"#059669":o.s==="İptal"?"#dc2626":"#b45309"}}>{o.s}</span>
-          </div>))}
+        {recent.length===0?<div style={{color:"#999",fontSize:13,padding:"12px 0"}}>Henüz sipariş yok.</div>:recent.map((o,i)=>{
+          const st=o.fulfillmentStatus||"Hazırlanıyor";
+          return <div key={o.orderRef||i} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"10px 0",borderBottom:i<recent.length-1?"1px solid #f0f0f0":"none"}}>
+            <div><div style={{fontSize:13,fontWeight:600,fontFamily:"monospace"}}>{o.orderRef}</div><div style={{fontSize:11,color:"#999"}}>{o.customerName||o.buyer?.name||"—"}</div></div>
+            <span style={{fontSize:14,fontWeight:600}}>₺{Number(o.amount||0).toLocaleString("tr-TR")}</span>
+            <span style={{padding:"4px 10px",borderRadius:4,fontSize:11,fontWeight:600,background:sc[st]?.bg||"#f5f5f5",color:sc[st]?.c||"#666"}}>{st}</span>
+          </div>;
+        })}
       </ACard>
       <ACard title="Popüler Ürünler">
         {[...PRODUCTS].sort((a,b)=>b.reviews-a.reviews).slice(0,5).map((p,i)=>(
@@ -3058,56 +3154,107 @@ function ACats(){
 function AOrds(){
   const statuses=["Hazırlanıyor","Kargoda","Teslim Edildi","İptal"];
   const sc={"Hazırlanıyor":{bg:"#fef3c7",c:"#b45309"},"Kargoda":{bg:"#dbeafe",c:"#2563eb"},"Teslim Edildi":{bg:"#dcfce7",c:"#059669"},"İptal":{bg:"#fee2e2",c:"#dc2626"}};
-  const [orders,setOrders]=useState([
-    {id:"FRN-4821",c:"Ahmet Yılmaz",ph:"0532 111 22",t:3450,s:"Hazırlanıyor",d:"05.04.2026"},
-    {id:"FRN-4820",c:"Mehmet Kaya",ph:"0545 222 33",t:1250,s:"Kargoda",d:"04.04.2026"},
-    {id:"FRN-4819",c:"Ali Demir",ph:"0555 333 44",t:6800,s:"Teslim Edildi",d:"03.04.2026"},
-    {id:"FRN-4818",c:"Veli Şahin",ph:"0542 444 55",t:890,s:"İptal",d:"02.04.2026"},
-  ]);
+  const [orders,setOrders]=useState([]);
+  const [loading,setLoading]=useState(true);
+  const [err,setErr]=useState("");
+  useEffect(()=>{
+    fetch("/api/admin/orders",{credentials:"include"}).then(r=>r.json()).then(d=>{
+      if(d.error) setErr(d.error); else setOrders(d.orders||[]);
+    }).catch(e=>setErr(e.message)).finally(()=>setLoading(false));
+  },[]);
+  async function updateStatus(orderRef,status){
+    setOrders(p=>p.map(x=>x.orderRef===orderRef?{...x,fulfillmentStatus:status}:x));
+    try{
+      await fetch("/api/admin/orders",{method:"PATCH",credentials:"include",headers:{"Content-Type":"application/json"},body:JSON.stringify({orderRef,status})});
+    }catch{}
+  }
+  if(loading) return <div style={{padding:20,color:"#999"}}>Yükleniyor…</div>;
+  if(err) return <div style={{padding:20,color:"#dc2626"}}>⚠ {err}</div>;
   return <ACard title={`Siparişler (${orders.length})`}>
+    {orders.length===0?<div style={{color:"#999",fontSize:13,padding:"12px 0"}}>Henüz sipariş yok.</div>:
     <table style={{width:"100%",borderCollapse:"collapse",fontSize:13}}>
       <thead><tr style={{borderBottom:"2px solid #eee"}}>{["No","Müşteri","Tutar","Tarih","Durum","İşlem"].map(h=><th key={h} style={{padding:"8px",textAlign:"left",fontSize:12,color:"#999",fontWeight:600}}>{h}</th>)}</tr></thead>
-      <tbody>{orders.map(o=><tr key={o.id} style={{borderBottom:"1px solid #f0f0f0"}}>
-        <td style={{padding:"10px",fontWeight:600,fontFamily:"monospace"}}>{o.id}</td>
-        <td style={{padding:"10px"}}><div style={{fontWeight:500}}>{o.c}</div><div style={{fontSize:11,color:"#999"}}>{o.ph}</div></td>
-        <td style={{padding:"10px",fontWeight:600}}>₺{o.t.toLocaleString("tr-TR")}</td>
-        <td style={{padding:"10px",fontSize:12,color:"#888"}}>{o.d}</td>
-        <td style={{padding:"10px"}}><span style={{padding:"4px 10px",borderRadius:4,fontSize:11,fontWeight:600,background:sc[o.s]?.bg,color:sc[o.s]?.c}}>{o.s}</span></td>
-        <td style={{padding:"10px"}}><select value={o.s} onChange={e=>setOrders(p=>p.map(x=>x.id===o.id?{...x,s:e.target.value}:x))} style={{padding:"5px 8px",border:"1px solid #ddd",borderRadius:4,fontSize:12}}>{statuses.map(s=><option key={s}>{s}</option>)}</select></td>
-      </tr>)}</tbody></table></ACard>;
+      <tbody>{orders.map(o=>{
+        const st=o.fulfillmentStatus||"Hazırlanıyor";
+        const dt=o.paidAt||o.createdAt;
+        const d=dt?new Date(dt).toLocaleDateString("tr-TR"):"—";
+        return <tr key={o.orderRef} style={{borderBottom:"1px solid #f0f0f0"}}>
+          <td style={{padding:"10px",fontWeight:600,fontFamily:"monospace"}}>{o.orderRef}</td>
+          <td style={{padding:"10px"}}><div style={{fontWeight:500}}>{o.customerName||o.buyer?.name||"—"}</div><div style={{fontSize:11,color:"#999"}}>{o.customerPhone||o.buyer?.phoneNumber||""}</div></td>
+          <td style={{padding:"10px",fontWeight:600}}>₺{Number(o.amount||0).toLocaleString("tr-TR")}</td>
+          <td style={{padding:"10px",fontSize:12,color:"#888"}}>{d}</td>
+          <td style={{padding:"10px"}}><span style={{padding:"4px 10px",borderRadius:4,fontSize:11,fontWeight:600,background:sc[st]?.bg||"#f5f5f5",color:sc[st]?.c||"#666"}}>{st}</span></td>
+          <td style={{padding:"10px"}}><select value={st} onChange={e=>updateStatus(o.orderRef,e.target.value)} style={{padding:"5px 8px",border:"1px solid #ddd",borderRadius:4,fontSize:12}}>{statuses.map(s=><option key={s}>{s}</option>)}</select></td>
+        </tr>;
+      })}</tbody></table>}</ACard>;
 }
 
 function ACusts(){
-  const cs=[{n:"Ahmet Yılmaz",e:"ahmet@mail.com",p:"0532 111 22",o:5,t:"₺12.450"},{n:"Mehmet Kaya",e:"mehmet@mail.com",p:"0545 222 33",o:3,t:"₺4.680"},{n:"Ali Demir",e:"ali@mail.com",p:"0555 333 44",o:8,t:"₺28.900"},{n:"Veli Şahin",e:"veli@mail.com",p:"0542 444 55",o:1,t:"₺890"},{n:"Hasan Çelik",e:"hasan@mail.com",p:"0537 555 66",o:12,t:"₺45.200"}];
-  return <ACard title={`Müşteriler (${cs.length})`}>
+  const [users,setUsers]=useState([]);
+  const [loading,setLoading]=useState(true);
+  const [err,setErr]=useState("");
+  useEffect(()=>{
+    fetch("/api/admin/customers",{credentials:"include"}).then(r=>r.json()).then(d=>{
+      if(d.error) setErr(d.error); else setUsers((d.users||[]).filter(u=>u.role!=="admin"));
+    }).catch(e=>setErr(e.message)).finally(()=>setLoading(false));
+  },[]);
+  if(loading) return <div style={{padding:20,color:"#999"}}>Yükleniyor…</div>;
+  if(err) return <div style={{padding:20,color:"#dc2626"}}>⚠ {err}</div>;
+  return <ACard title={`Müşteriler (${users.length})`}>
+    {users.length===0?<div style={{color:"#999",fontSize:13,padding:"12px 0"}}>Henüz üye yok.</div>:
     <table style={{width:"100%",borderCollapse:"collapse",fontSize:13}}>
-      <thead><tr style={{borderBottom:"2px solid #eee"}}>{["İsim","E-posta","Telefon","Sipariş","Toplam"].map(h=><th key={h} style={{padding:"8px",textAlign:"left",fontSize:12,color:"#999",fontWeight:600}}>{h}</th>)}</tr></thead>
-      <tbody>{cs.map((c,i)=><tr key={i} style={{borderBottom:"1px solid #f0f0f0"}}>
-        <td style={{padding:"10px",fontWeight:600}}>{c.n}</td><td style={{padding:"10px",color:"#888"}}>{c.e}</td>
-        <td style={{padding:"10px",color:"#888"}}>{c.p}</td><td style={{padding:"10px",fontWeight:600}}>{c.o}</td>
-        <td style={{padding:"10px",fontWeight:600,color:"#059669"}}>{c.t}</td></tr>)}</tbody></table></ACard>;
+      <thead><tr style={{borderBottom:"2px solid #eee"}}>{["İsim","E-posta","Telefon","Kayıt","Sipariş","Toplam"].map(h=><th key={h} style={{padding:"8px",textAlign:"left",fontSize:12,color:"#999",fontWeight:600}}>{h}</th>)}</tr></thead>
+      <tbody>{users.map(c=><tr key={c.id} style={{borderBottom:"1px solid #f0f0f0"}}>
+        <td style={{padding:"10px",fontWeight:600}}>{c.name}</td>
+        <td style={{padding:"10px",color:"#888"}}>{c.email||"—"}</td>
+        <td style={{padding:"10px",color:"#888"}}>{c.phone?`0${c.phone}`:"—"}</td>
+        <td style={{padding:"10px",color:"#888",fontSize:12}}>{c.createdAt?new Date(c.createdAt).toLocaleDateString("tr-TR"):"—"}</td>
+        <td style={{padding:"10px",fontWeight:600}}>{c.orderCount||0}</td>
+        <td style={{padding:"10px",fontWeight:600,color:"#059669"}}>₺{Number(c.totalSpent||0).toLocaleString("tr-TR")}</td></tr>)}</tbody></table>}</ACard>;
 }
 
 function ACoups(){
-  const [cs,setCs]=useState([{id:1,code:"FREN10",disc:10,type:"%",min:500,used:34,active:true},{id:2,code:"HOSGELDIN",disc:50,type:"₺",min:0,used:0,active:true},{id:3,code:"YAZ2026",disc:15,type:"%",min:1000,used:12,active:false}]);
+  const [cs,setCs]=useState([]);
+  const [loading,setLoading]=useState(true);
   const [show,setShow]=useState(false);
   const [f,setF]=useState({code:"",disc:"",type:"%",min:""});
-  return <ACard title="Kuponlar" action={<ABtn onClick={()=>setShow(!show)}>+ Yeni Kupon</ABtn>}>
+  async function load(){
+    setLoading(true);
+    try{
+      const d=await fetch("/api/admin/coupons",{credentials:"include"}).then(r=>r.json());
+      setCs(d.coupons||[]);
+    }catch{}finally{setLoading(false)}
+  }
+  useEffect(()=>{load()},[]);
+  async function create(){
+    if(!f.code||!f.disc) return;
+    await fetch("/api/admin/coupons",{method:"POST",credentials:"include",headers:{"Content-Type":"application/json"},body:JSON.stringify({code:f.code,discount:Number(f.disc),type:f.type,minOrder:Number(f.min||0),active:true})});
+    setShow(false); setF({code:"",disc:"",type:"%",min:""}); load();
+  }
+  async function toggleActive(c){
+    await fetch("/api/admin/coupons",{method:"POST",credentials:"include",headers:{"Content-Type":"application/json"},body:JSON.stringify({code:c.code,discount:c.discount,type:c.type,minOrder:c.minOrder,active:!c.active})});
+    load();
+  }
+  async function remove(code){
+    await fetch(`/api/admin/coupons?code=${encodeURIComponent(code)}`,{method:"DELETE",credentials:"include"});
+    load();
+  }
+  return <ACard title={`Kuponlar (${cs.length})`} action={<ABtn onClick={()=>setShow(!show)}>+ Yeni Kupon</ABtn>}>
     {show&&<div style={{background:"#fafafa",borderRadius:8,padding:16,marginBottom:16,border:"1px solid #eee"}}>
       <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:10}}>
         <AIn placeholder="Kupon Kodu" value={f.code} onChange={e=>setF({...f,code:e.target.value.toUpperCase()})}/>
         <div style={{display:"flex",gap:6}}><AIn placeholder="İndirim" type="number" value={f.disc} onChange={e=>setF({...f,disc:e.target.value})}/><select value={f.type} onChange={e=>setF({...f,type:e.target.value})} style={{padding:"8px",border:"1px solid #ddd",borderRadius:6}}><option>%</option><option>₺</option></select></div>
         <AIn placeholder="Min. Sipariş (₺)" type="number" value={f.min} onChange={e=>setF({...f,min:e.target.value})}/>
       </div>
-      <div style={{display:"flex",gap:8,marginTop:10}}><ABtn onClick={()=>{setCs(p=>[...p,{id:Date.now(),code:f.code,disc:Number(f.disc),type:f.type,min:Number(f.min),used:0,active:true}]);setShow(false);setF({code:"",disc:"",type:"%",min:""})}}>Oluştur</ABtn><ABtn color="#999" onClick={()=>setShow(false)}>İptal</ABtn></div>
+      <div style={{display:"flex",gap:8,marginTop:10}}><ABtn onClick={create}>Oluştur</ABtn><ABtn color="#999" onClick={()=>setShow(false)}>İptal</ABtn></div>
     </div>}
-    {cs.map((c,i)=><div key={c.id} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"12px 0",borderBottom:i<cs.length-1?"1px solid #f0f0f0":"none"}}>
+    {loading?<div style={{color:"#999",fontSize:13}}>Yükleniyor…</div>:cs.length===0?<div style={{color:"#999",fontSize:13}}>Henüz kupon yok.</div>:cs.map((c,i)=><div key={c.code} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"12px 0",borderBottom:i<cs.length-1?"1px solid #f0f0f0":"none"}}>
       <span style={{fontFamily:"monospace",fontSize:14,fontWeight:700,color:"#ff6000",background:"#fff5f0",padding:"4px 10px",borderRadius:4}}>{c.code}</span>
-      <span style={{fontSize:13,fontWeight:600}}>{c.disc}{c.type}</span>
-      <span style={{fontSize:12,color:"#888"}}>Min: ₺{c.min}</span>
-      <span style={{fontSize:12,color:"#888"}}>{c.used} kull.</span>
-      <button onClick={()=>setCs(p=>p.map(x=>x.id===c.id?{...x,active:!x.active}:x))} style={{padding:"4px 12px",borderRadius:4,border:"none",fontSize:11,fontWeight:600,cursor:"pointer",background:c.active?"#dcfce7":"#fee2e2",color:c.active?"#059669":"#dc2626"}}>{c.active?"Aktif":"Pasif"}</button>
-      <button onClick={()=>setCs(p=>p.filter(x=>x.id!==c.id))} style={{padding:"4px 10px",border:"1px solid #fcc",borderRadius:4,background:"#fff",fontSize:12,color:"#e53935",cursor:"pointer"}}>Sil</button>
+      <span style={{fontSize:13,fontWeight:600}}>{c.discount}{c.type}</span>
+      <span style={{fontSize:12,color:"#888"}}>Min: ₺{c.minOrder}</span>
+      <span style={{fontSize:12,color:"#888"}}>{c.used||0} kull.</span>
+      <button onClick={()=>toggleActive(c)} style={{padding:"4px 12px",borderRadius:4,border:"none",fontSize:11,fontWeight:600,cursor:"pointer",background:c.active?"#dcfce7":"#fee2e2",color:c.active?"#059669":"#dc2626"}}>{c.active?"Aktif":"Pasif"}</button>
+      <button onClick={()=>remove(c.code)} style={{padding:"4px 10px",border:"1px solid #fcc",borderRadius:4,background:"#fff",fontSize:12,color:"#e53935",cursor:"pointer"}}>Sil</button>
     </div>)}</ACard>;
 }
 
@@ -3253,30 +3400,35 @@ function ABackupCfg(){
 
 // ── SALES CHART ──
 function ASalesChart(){
-  const [period,setPeriod]=useState("weekly");
-  const data={daily:[12,8,15,22,18,9,14],weekly:[85,92,78,110,95,88,102,115],monthly:[2400,3100,2800,3500,4200,3900,4800,5100,4600,5200,4900,5500]};
-  const labels={daily:["Pzt","Sal","Çar","Per","Cum","Cmt","Paz"],weekly:["1.H","2.H","3.H","4.H","5.H","6.H","7.H","8.H"],monthly:["Oca","Şub","Mar","Nis","May","Haz","Tem","Ağu","Eyl","Eki","Kas","Ara"]};
-  const d=data[period];const l=labels[period];const mx=Math.max(...d);
-  return <><h1 style={{fontSize:22,fontWeight:700,marginBottom:20}}>Satış Grafikleri</h1>
-    <div style={{display:"flex",gap:8,marginBottom:20}}>
-      {[{id:"daily",l:"Günlük"},{id:"weekly",l:"Haftalık"},{id:"monthly",l:"Aylık"}].map(p=>(
-        <button key={p.id} onClick={()=>setPeriod(p.id)} style={{padding:"8px 20px",border:`2px solid ${period===p.id?"#ff6000":"#ddd"}`,borderRadius:6,background:period===p.id?"#fff5f0":"#fff",color:period===p.id?"#ff6000":"#888",fontSize:13,fontWeight:600,cursor:"pointer"}}>{p.l}</button>
-      ))}
-    </div>
-    <ACard title={`${period==="daily"?"Günlük":period==="weekly"?"Haftalık":"Aylık"} Satış`}>
-      <div style={{display:"flex",alignItems:"flex-end",gap:period==="monthly"?6:10,height:220,padding:"10px 0"}}>
-        {d.map((v,i)=>(
-          <div key={i} style={{flex:1,display:"flex",flexDirection:"column",alignItems:"center",gap:6}}>
-            <span style={{fontSize:11,fontWeight:600,color:"#555"}}>{period==="monthly"?"₺"+v.toLocaleString("tr-TR"):v}</span>
-            <div style={{width:"100%",height:`${(v/mx)*180}px`,background:"linear-gradient(180deg,#ff6000,#ff8c00)",borderRadius:"4px 4px 0 0",minHeight:4,transition:"height .3s"}}/>
-            <span style={{fontSize:10,color:"#999"}}>{l[i]}</span>
-          </div>
-        ))}
+  const [chart,setChart]=useState([]);
+  const [loading,setLoading]=useState(true);
+  useEffect(()=>{
+    fetch("/api/admin/dashboard",{credentials:"include"}).then(r=>r.json()).then(d=>{
+      setChart(d.chart||[]);
+    }).finally(()=>setLoading(false));
+  },[]);
+  if(loading) return <div style={{padding:20,color:"#999"}}>Yükleniyor…</div>;
+  const amounts = chart.map(c=>c.amount);
+  const mx = Math.max(1, ...amounts);
+  const total = amounts.reduce((a,b)=>a+b,0);
+  const avg = amounts.length? Math.round(total/amounts.length) : 0;
+  return <><h1 style={{fontSize:22,fontWeight:700,marginBottom:20}}>Satış Grafikleri — Son 30 Gün</h1>
+    <ACard title="Günlük Satış">
+      <div style={{display:"flex",alignItems:"flex-end",gap:4,height:220,padding:"10px 0"}}>
+        {chart.map((c,i)=>{
+          const d=new Date(c.date);
+          const lbl=`${d.getDate()}.${d.getMonth()+1}`;
+          return <div key={c.date} style={{flex:1,display:"flex",flexDirection:"column",alignItems:"center",gap:4}}>
+            {i%3===0 && <span style={{fontSize:10,fontWeight:600,color:"#555"}}>{c.amount>0?"₺"+c.amount.toLocaleString("tr-TR"):""}</span>}
+            <div style={{width:"100%",height:`${(c.amount/mx)*180}px`,background:"linear-gradient(180deg,#ff6000,#ff8c00)",borderRadius:"3px 3px 0 0",minHeight:2}}/>
+            {i%3===0 && <span style={{fontSize:9,color:"#999"}}>{lbl}</span>}
+          </div>;
+        })}
       </div>
       <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:12,marginTop:20,paddingTop:16,borderTop:"1px solid #f0f0f0"}}>
-        <div style={{textAlign:"center"}}><div style={{fontSize:20,fontWeight:800,color:"#ff6000"}}>₺{(d.reduce((a,b)=>a+b,0)*(period==="monthly"?1:120)).toLocaleString("tr-TR")}</div><div style={{fontSize:12,color:"#999"}}>Toplam Satış</div></div>
-        <div style={{textAlign:"center"}}><div style={{fontSize:20,fontWeight:800,color:"#2563eb"}}>{d.reduce((a,b)=>a+b,0)}</div><div style={{fontSize:12,color:"#999"}}>Toplam Sipariş</div></div>
-        <div style={{textAlign:"center"}}><div style={{fontSize:20,fontWeight:800,color:"#059669"}}>₺{Math.round(d.reduce((a,b)=>a+b,0)/d.length*(period==="monthly"?1:120)).toLocaleString("tr-TR")}</div><div style={{fontSize:12,color:"#999"}}>Ortalama</div></div>
+        <div style={{textAlign:"center"}}><div style={{fontSize:20,fontWeight:800,color:"#ff6000"}}>₺{total.toLocaleString("tr-TR")}</div><div style={{fontSize:12,color:"#999"}}>30 Gün Toplam</div></div>
+        <div style={{textAlign:"center"}}><div style={{fontSize:20,fontWeight:800,color:"#2563eb"}}>{amounts.filter(a=>a>0).length}</div><div style={{fontSize:12,color:"#999"}}>Satışlı Gün</div></div>
+        <div style={{textAlign:"center"}}><div style={{fontSize:20,fontWeight:800,color:"#059669"}}>₺{avg.toLocaleString("tr-TR")}</div><div style={{fontSize:12,color:"#999"}}>Günlük Ortalama</div></div>
       </div>
     </ACard></>;
 }
@@ -3285,31 +3437,41 @@ function ASalesChart(){
 function AReturns(){
   const statuses=["Beklemede","Onaylandı","Reddedildi","Tamamlandı"];
   const sc={"Beklemede":{bg:"#fef3c7",c:"#b45309"},"Onaylandı":{bg:"#dbeafe",c:"#2563eb"},"Reddedildi":{bg:"#fee2e2",c:"#dc2626"},"Tamamlandı":{bg:"#dcfce7",c:"#059669"}};
-  const [returns,setReturns]=useState([
-    {id:"IRT-001",order:"FRN-4815",customer:"Kemal A.",product:"Kampana Balata Seti",reason:"Yanlış ürün gönderildi",status:"Beklemede",date:"04.04.2026"},
-    {id:"IRT-002",order:"FRN-4810",customer:"Serkan B.",product:"ABS Sensörü",reason:"Ürün hasarlı geldi",status:"Onaylandı",date:"03.04.2026"},
-    {id:"IRT-003",order:"FRN-4798",customer:"Murat C.",product:"Fren Diski Ø430",reason:"Araca uymuyor",status:"Tamamlandı",date:"01.04.2026"},
-  ]);
+  const [returns,setReturns]=useState([]);
+  const [loading,setLoading]=useState(true);
+  useEffect(()=>{
+    fetch("/api/admin/returns",{credentials:"include"}).then(r=>r.json()).then(d=>{
+      setReturns(d.returns||[]);
+    }).finally(()=>setLoading(false));
+  },[]);
+  async function updateStatus(id,status){
+    setReturns(p=>p.map(x=>x.id===id?{...x,status}:x));
+    await fetch("/api/admin/returns",{method:"PATCH",credentials:"include",headers:{"Content-Type":"application/json"},body:JSON.stringify({id,status})});
+  }
+  if(loading) return <div style={{padding:20,color:"#999"}}>Yükleniyor…</div>;
   return <ACard title={`İade Talepleri (${returns.length})`}>
+    {returns.length===0?<div style={{color:"#999",fontSize:13,padding:"12px 0"}}>Henüz iade talebi yok.</div>:
     <table style={{width:"100%",borderCollapse:"collapse",fontSize:13}}>
       <thead><tr style={{borderBottom:"2px solid #eee"}}>{["İade No","Sipariş","Müşteri","Ürün","Sebep","Durum","İşlem"].map(h=><th key={h} style={{padding:"8px",textAlign:"left",fontSize:12,color:"#999",fontWeight:600}}>{h}</th>)}</tr></thead>
       <tbody>{returns.map(r=><tr key={r.id} style={{borderBottom:"1px solid #f0f0f0"}}>
         <td style={{padding:"10px",fontFamily:"monospace",fontWeight:600}}>{r.id}</td>
-        <td style={{padding:"10px",fontSize:12,color:"#888"}}>{r.order}</td>
-        <td style={{padding:"10px",fontWeight:500}}>{r.customer}</td>
-        <td style={{padding:"10px",fontSize:12}}>{r.product}</td>
-        <td style={{padding:"10px",fontSize:12,color:"#888",maxWidth:150}}>{r.reason}</td>
+        <td style={{padding:"10px",fontSize:12,color:"#888"}}>{r.orderRef||"—"}</td>
+        <td style={{padding:"10px",fontWeight:500}}>{r.customerName||"—"}</td>
+        <td style={{padding:"10px",fontSize:12}}>{r.product||"—"}</td>
+        <td style={{padding:"10px",fontSize:12,color:"#888",maxWidth:150}}>{r.reason||"—"}</td>
         <td style={{padding:"10px"}}><span style={{padding:"4px 10px",borderRadius:4,fontSize:11,fontWeight:600,background:sc[r.status]?.bg,color:sc[r.status]?.c}}>{r.status}</span></td>
-        <td style={{padding:"10px"}}><select value={r.status} onChange={e=>setReturns(p=>p.map(x=>x.id===r.id?{...x,status:e.target.value}:x))} style={{padding:"5px 8px",border:"1px solid #ddd",borderRadius:4,fontSize:12}}>{statuses.map(s=><option key={s}>{s}</option>)}</select></td>
+        <td style={{padding:"10px"}}><select value={r.status} onChange={e=>updateStatus(r.id,e.target.value)} style={{padding:"5px 8px",border:"1px solid #ddd",borderRadius:4,fontSize:12}}>{statuses.map(s=><option key={s}>{s}</option>)}</select></td>
       </tr>)}</tbody>
-    </table>
+    </table>}
   </ACard>;
 }
 
 // ── LOW STOCK ──
 function ALowStock(){
+  const {products:ctxProds} = use$();
   const [threshold,setThreshold]=useState(10);
-  const lowItems=PRODUCTS.filter(p=>p.stock<=threshold);
+  const source=(ctxProds && ctxProds.length>0)?ctxProds:PRODUCTS;
+  const lowItems=source.filter(p=>Number(p.stock||0)<=threshold);
   return <><h1 style={{fontSize:22,fontWeight:700,marginBottom:20}}>Düşük Stok Uyarıları</h1>
     <ACard title="Stok Eşiği Ayarı">
       <div style={{display:"flex",alignItems:"center",gap:12}}>
@@ -3335,33 +3497,48 @@ function ALowStock(){
 
 // ── ACTIVITY LOG ──
 function AActivityLog(){
-  const logs=[
-    {time:"05.04.2026 14:32",user:"Admin",action:"Ürün eklendi",detail:"Kampana Balata Seti — KB-BLT-4210",type:"product"},
-    {time:"05.04.2026 13:15",user:"Admin",action:"Sipariş durumu güncellendi",detail:"FRN-4821 → Hazırlanıyor",type:"order"},
-    {time:"05.04.2026 11:48",user:"Sistem",action:"Yeni üye kaydı",detail:"ahmet@mail.com — 0532 111 2233",type:"user"},
-    {time:"05.04.2026 10:22",user:"Admin",action:"Kupon oluşturuldu",detail:"FREN10 — %10 indirim",type:"coupon"},
-    {time:"04.04.2026 16:45",user:"Admin",action:"Toplu fiyat güncellendi",detail:"%5 artış — tüm ürünler",type:"price"},
-    {time:"04.04.2026 15:30",user:"Sistem",action:"Stok alarmı",detail:"Fren Kaliperi Sol — stok: 0",type:"stock"},
-    {time:"04.04.2026 14:10",user:"Admin",action:"Sayfa düzenlendi",detail:"Hakkımızda sayfası güncellendi",type:"page"},
-    {time:"04.04.2026 09:55",user:"Admin",action:"Banner eklendi",detail:"İndirim Kampanyası banner'ı",type:"banner"},
-    {time:"03.04.2026 17:20",user:"Sistem",action:"Sipariş alındı",detail:"FRN-4819 — ₺6.800",type:"order"},
-    {time:"03.04.2026 11:00",user:"Admin",action:"Ürün silindi",detail:"Eski model balata seti",type:"product"},
-  ];
+  const [logs,setLogs]=useState([]);
+  const [loading,setLoading]=useState(true);
+  useEffect(()=>{
+    fetch("/api/admin/activity",{credentials:"include"}).then(r=>r.json()).then(d=>{
+      setLogs(d.activity||[]);
+    }).finally(()=>setLoading(false));
+  },[]);
+  const eventMeta={
+    "user.signup":{type:"user",label:"Yeni üye kaydı"},
+    "user.login":{type:"user",label:"Kullanıcı girişi"},
+    "order.paid":{type:"order",label:"Sipariş alındı"},
+    "order.status":{type:"order",label:"Sipariş durumu güncellendi"},
+    "coupon.upsert":{type:"coupon",label:"Kupon oluşturuldu/güncellendi"},
+    "coupon.delete":{type:"coupon",label:"Kupon silindi"},
+    "return.status":{type:"stock",label:"İade durumu güncellendi"},
+  };
   const typeColors={product:"#7c3aed",order:"#2563eb",user:"#059669",coupon:"#d97706",price:"#dc2626",stock:"#b45309",page:"#0891b2",banner:"#be185d"};
-  return <ACard title="Aktivite Logu">
-    {logs.map((log,i)=>(
-      <div key={i} style={{display:"flex",gap:14,padding:"12px 0",borderBottom:i<logs.length-1?"1px solid #f0f0f0":"none",alignItems:"flex-start"}}>
-        <div style={{width:8,height:8,borderRadius:4,background:typeColors[log.type]||"#999",marginTop:6,flexShrink:0}}/>
+  function detailOf(l){
+    if(l.event==="user.signup") return `${l.name||""} — ${l.email||"—"}${l.role==="admin"?" (admin)":""}`;
+    if(l.event==="user.login") return l.name||"";
+    if(l.event==="order.paid") return `${l.orderRef} — ₺${Number(l.amount||0).toLocaleString("tr-TR")} (${l.customer||""})`;
+    if(l.event==="order.status") return `${l.orderRef} → ${l.status}`;
+    if(l.event==="coupon.upsert"||l.event==="coupon.delete") return l.code;
+    if(l.event==="return.status") return `${l.id} → ${l.status}`;
+    return JSON.stringify(l);
+  }
+  if(loading) return <div style={{padding:20,color:"#999"}}>Yükleniyor…</div>;
+  return <ACard title={`Aktivite Logu (${logs.length})`}>
+    {logs.length===0?<div style={{color:"#999",fontSize:13,padding:"12px 0"}}>Henüz aktivite yok.</div>:logs.map((log,i)=>{
+      const meta=eventMeta[log.event]||{type:"page",label:log.event};
+      const t=log.at?new Date(log.at).toLocaleString("tr-TR"):"";
+      return <div key={i} style={{display:"flex",gap:14,padding:"12px 0",borderBottom:i<logs.length-1?"1px solid #f0f0f0":"none",alignItems:"flex-start"}}>
+        <div style={{width:8,height:8,borderRadius:4,background:typeColors[meta.type]||"#999",marginTop:6,flexShrink:0}}/>
         <div style={{flex:1}}>
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-            <span style={{fontSize:13,fontWeight:600}}>{log.action}</span>
-            <span style={{fontSize:11,color:"#999"}}>{log.time}</span>
+            <span style={{fontSize:13,fontWeight:600}}>{meta.label}</span>
+            <span style={{fontSize:11,color:"#999"}}>{t}</span>
           </div>
-          <div style={{fontSize:12,color:"#888",marginTop:2}}>{log.detail}</div>
-          <div style={{fontSize:11,color:"#bbb",marginTop:2}}>👤 {log.user}</div>
+          <div style={{fontSize:12,color:"#888",marginTop:2}}>{detailOf(log)}</div>
         </div>
-      </div>
-    ))}
+      </div>;
+    })}
   </ACard>;
 }
 
@@ -3485,103 +3662,94 @@ function AChatHistory(){
 
 // ── REVENUE REPORT ──
 function ARevenue(){
-  const [period,setPeriod]=useState("monthly");
-  const data={
-    monthly:[
-      {month:"Ocak",revenue:24500,cost:16800,orders:32},
-      {month:"Şubat",revenue:31200,cost:21400,orders:41},
-      {month:"Mart",revenue:28800,cost:19600,orders:38},
-      {month:"Nisan",revenue:35400,cost:24200,orders:47},
-    ],
-    quarterly:[
-      {month:"Q1 2026",revenue:84500,cost:57800,orders:111},
-      {month:"Q4 2025",revenue:92300,cost:63100,orders:128},
-      {month:"Q3 2025",revenue:78600,cost:53700,orders:105},
-    ]
-  };
-  const rows=data[period]||data.monthly;
+  const [orders,setOrders]=useState([]);
+  const [loading,setLoading]=useState(true);
+  const [costRatio,setCostRatio]=useState(()=>{
+    try{ const v=localStorage.getItem("frenciniz_cost_ratio"); return v?Number(v):0.68; }catch{ return 0.68; }
+  });
+  useEffect(()=>{
+    fetch("/api/admin/orders",{credentials:"include"}).then(r=>r.json()).then(d=>{
+      setOrders((d.orders||[]).filter(o=>o.status==="paid"));
+    }).finally(()=>setLoading(false));
+  },[]);
+  useEffect(()=>{ try{localStorage.setItem("frenciniz_cost_ratio",String(costRatio))}catch{} },[costRatio]);
+
+  const byMonth = {};
+  orders.forEach(o=>{
+    const d=o.paidAt||o.createdAt;
+    if(!d) return;
+    const key = String(d).slice(0,7);
+    if(!byMonth[key]) byMonth[key]={month:key,revenue:0,orders:0};
+    byMonth[key].revenue += Number(o.amount||0);
+    byMonth[key].orders += 1;
+  });
+  const rows = Object.values(byMonth).sort((a,b)=>b.month.localeCompare(a.month)).slice(0,12)
+    .map(r=>({...r, cost: Math.round(r.revenue*costRatio)}));
   const totRev=rows.reduce((a,r)=>a+r.revenue,0);
   const totCost=rows.reduce((a,r)=>a+r.cost,0);
   const totProfit=totRev-totCost;
-  const margin=Math.round((totProfit/totRev)*100);
-
+  const margin=totRev>0?Math.round((totProfit/totRev)*100):0;
+  const monthNames=["Oca","Şub","Mar","Nis","May","Haz","Tem","Ağu","Eyl","Eki","Kas","Ara"];
+  function fmtMonth(ym){
+    const [y,m]=ym.split("-"); return `${monthNames[Number(m)-1]} ${y}`;
+  }
+  if(loading) return <div style={{padding:20,color:"#999"}}>Yükleniyor…</div>;
   return <><h1 style={{fontSize:22,fontWeight:700,marginBottom:20}}>Gelir / Gider Raporu</h1>
-    <div style={{display:"flex",gap:8,marginBottom:20}}>
-      {[{id:"monthly",l:"Aylık"},{id:"quarterly",l:"Çeyreklik"}].map(p=>(
-        <button key={p.id} onClick={()=>setPeriod(p.id)} style={{padding:"8px 20px",border:`2px solid ${period===p.id?"#ff6000":"#ddd"}`,borderRadius:6,background:period===p.id?"#fff5f0":"#fff",color:period===p.id?"#ff6000":"#888",fontSize:13,fontWeight:600,cursor:"pointer"}}>{p.l}</button>
-      ))}
-    </div>
+    <ACard title="Gider Oranı">
+      <div style={{display:"flex",alignItems:"center",gap:12}}>
+        <span style={{fontSize:13,color:"#666"}}>Tahmini maliyet oranı (ürün + kargo + komisyon):</span>
+        <AIn type="number" step="0.01" min="0" max="1" value={costRatio} onChange={e=>setCostRatio(Math.max(0,Math.min(1,Number(e.target.value)||0)))} style={{width:100}}/>
+        <span style={{fontSize:13,color:"#888"}}>({Math.round(costRatio*100)}% — gelir üzerinden)</span>
+      </div>
+    </ACard>
     <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:12,marginBottom:20}}>
       <div style={{background:"#fff",border:"1px solid #e8e8e8",borderRadius:8,padding:20}}><div style={{fontSize:22,fontWeight:800,color:"#059669"}}>₺{totRev.toLocaleString("tr-TR")}</div><div style={{fontSize:12,color:"#999",marginTop:2}}>Toplam Gelir</div></div>
-      <div style={{background:"#fff",border:"1px solid #e8e8e8",borderRadius:8,padding:20}}><div style={{fontSize:22,fontWeight:800,color:"#dc2626"}}>₺{totCost.toLocaleString("tr-TR")}</div><div style={{fontSize:12,color:"#999",marginTop:2}}>Toplam Gider</div></div>
+      <div style={{background:"#fff",border:"1px solid #e8e8e8",borderRadius:8,padding:20}}><div style={{fontSize:22,fontWeight:800,color:"#dc2626"}}>₺{totCost.toLocaleString("tr-TR")}</div><div style={{fontSize:12,color:"#999",marginTop:2}}>Tahmini Gider</div></div>
       <div style={{background:"#fff",border:"1px solid #e8e8e8",borderRadius:8,padding:20}}><div style={{fontSize:22,fontWeight:800,color:"#2563eb"}}>₺{totProfit.toLocaleString("tr-TR")}</div><div style={{fontSize:12,color:"#999",marginTop:2}}>Net Kâr</div></div>
       <div style={{background:"#fff",border:"1px solid #e8e8e8",borderRadius:8,padding:20}}><div style={{fontSize:22,fontWeight:800,color:"#7c3aed"}}>%{margin}</div><div style={{fontSize:12,color:"#999",marginTop:2}}>Kâr Marjı</div></div>
     </div>
-    <ACard title="Detaylı Tablo">
+    <ACard title="Aylık Detay">
+      {rows.length===0?<div style={{color:"#999",fontSize:13}}>Henüz ödenmiş sipariş yok.</div>:
       <table style={{width:"100%",borderCollapse:"collapse",fontSize:13}}>
         <thead><tr style={{borderBottom:"2px solid #eee"}}>{["Dönem","Gelir","Gider","Kâr","Marj","Sipariş"].map(h=><th key={h} style={{padding:"8px 10px",textAlign:"left",fontSize:12,color:"#999",fontWeight:600}}>{h}</th>)}</tr></thead>
-        <tbody>{rows.map((r,i)=>{const profit=r.revenue-r.cost;const m=Math.round((profit/r.revenue)*100);return(
-          <tr key={i} style={{borderBottom:"1px solid #f0f0f0"}}>
-            <td style={{padding:"10px",fontWeight:600}}>{r.month}</td>
+        <tbody>{rows.map(r=>{const profit=r.revenue-r.cost;const m=r.revenue>0?Math.round((profit/r.revenue)*100):0;return(
+          <tr key={r.month} style={{borderBottom:"1px solid #f0f0f0"}}>
+            <td style={{padding:"10px",fontWeight:600}}>{fmtMonth(r.month)}</td>
             <td style={{padding:"10px",color:"#059669",fontWeight:600}}>₺{r.revenue.toLocaleString("tr-TR")}</td>
             <td style={{padding:"10px",color:"#dc2626"}}>₺{r.cost.toLocaleString("tr-TR")}</td>
             <td style={{padding:"10px",color:"#2563eb",fontWeight:600}}>₺{profit.toLocaleString("tr-TR")}</td>
             <td style={{padding:"10px"}}><div style={{display:"flex",alignItems:"center",gap:6}}><div style={{width:50,height:6,background:"#eee",borderRadius:3}}><div style={{width:`${m}%`,height:6,background:m>30?"#059669":"#b45309",borderRadius:3}}/></div><span style={{fontSize:12,fontWeight:600}}>%{m}</span></div></td>
             <td style={{padding:"10px"}}>{r.orders}</td>
           </tr>)})}</tbody>
-      </table>
+      </table>}
     </ACard></>;
 }
 
 // ── ADMIN USER MANAGEMENT ──
 function AAdminUsers(){
-  const [users,setUsers]=useState([
-    {id:1,name:"Tarkan Duman",email:"tarkan@frenciniz.com",role:"Süper Admin",active:true,lastLogin:"05.04.2026 09:15"},
-    {id:2,name:"Yönetici 2",email:"yonetici@frenciniz.com",role:"Yönetici",active:true,lastLogin:"04.04.2026 14:30"},
-    {id:3,name:"Operatör",email:"operator@frenciniz.com",role:"Operatör",active:false,lastLogin:"01.04.2026 11:00"},
-  ]);
-  const [showAdd,setShowAdd]=useState(false);
-  const [form,setForm]=useState({name:"",email:"",role:"Operatör",password:""});
-  const roles=["Süper Admin","Yönetici","Operatör","Görüntüleyici"];
-  const rolePerms={"Süper Admin":"Tüm yetkiler","Yönetici":"Ürün, sipariş, müşteri yönetimi","Operatör":"Sipariş ve stok yönetimi","Görüntüleyici":"Sadece görüntüleme"};
-
-  return <><h1 style={{fontSize:22,fontWeight:700,marginBottom:20}}>Admin Kullanıcı Yönetimi</h1>
-    <ACard title={`Admin Kullanıcıları (${users.length})`} action={<ABtn onClick={()=>setShowAdd(!showAdd)}>+ Yeni Admin</ABtn>}>
-      {showAdd&&<div style={{background:"#fafafa",borderRadius:8,padding:16,marginBottom:16,border:"1px solid #eee"}}>
-        <div style={{fontSize:14,fontWeight:700,marginBottom:12}}>Yeni Admin Ekle</div>
-        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
-          <AIn placeholder="Ad Soyad" value={form.name} onChange={e=>setForm({...form,name:e.target.value})}/>
-          <AIn placeholder="E-posta" value={form.email} onChange={e=>setForm({...form,email:e.target.value})}/>
-          <AIn placeholder="Şifre" type="password" value={form.password} onChange={e=>setForm({...form,password:e.target.value})}/>
-          <select value={form.role} onChange={e=>setForm({...form,role:e.target.value})} style={{padding:"9px",border:"1px solid #ddd",borderRadius:6,fontSize:13}}>
-            {roles.map(r=><option key={r}>{r}</option>)}
-          </select>
-        </div>
-        <div style={{display:"flex",gap:8,marginTop:12}}><ABtn onClick={()=>{setUsers(p=>[...p,{id:Date.now(),name:form.name,email:form.email,role:form.role,active:true,lastLogin:"—"}]);setShowAdd(false);setForm({name:"",email:"",role:"Operatör",password:""})}}>Ekle</ABtn><ABtn color="#999" onClick={()=>setShowAdd(false)}>İptal</ABtn></div>
-      </div>}
-      {users.map((u,i)=>(
-        <div key={u.id} style={{display:"flex",alignItems:"center",gap:16,padding:"14px 0",borderBottom:i<users.length-1?"1px solid #f0f0f0":"none"}}>
-          <div style={{width:40,height:40,borderRadius:"50%",background:u.active?"#ff6000":"#ddd",display:"flex",alignItems:"center",justifyContent:"center",color:"#fff",fontSize:16,fontWeight:700}}>{u.name.charAt(0)}</div>
-          <div style={{flex:1}}>
-            <div style={{fontSize:14,fontWeight:600}}>{u.name}</div>
-            <div style={{fontSize:12,color:"#888"}}>{u.email}</div>
+  const [users,setUsers]=useState([]);
+  const [loading,setLoading]=useState(true);
+  useEffect(()=>{
+    fetch("/api/admin/customers",{credentials:"include"}).then(r=>r.json()).then(d=>{
+      setUsers((d.users||[]).filter(u=>u.role==="admin"));
+    }).finally(()=>setLoading(false));
+  },[]);
+  return <><h1 style={{fontSize:22,fontWeight:700,marginBottom:20}}>Admin Kullanıcıları</h1>
+    <ACard title={`Admin Rolündeki Kullanıcılar (${users.length})`}>
+      <div style={{padding:12,background:"#f0f9ff",borderRadius:6,border:"1px solid #bae6fd",fontSize:12,color:"#0369a1",marginBottom:16}}>💡 Admin yetkisi vermek için Vercel ortam değişkenlerinde <code>ADMIN_EMAILS</code> listesine kullanıcının e-postasını ekleyin. Sonra o kullanıcı giriş yaptığında otomatik admin rolü alır.</div>
+      {loading?<div style={{color:"#999",fontSize:13}}>Yükleniyor…</div>:users.length===0?
+        <div style={{color:"#999",fontSize:13,padding:"12px 0"}}>Henüz admin rolünde kullanıcı yok. Vercel'de ADMIN_EMAILS ayarlanmamış olabilir.</div>:
+        users.map((u,i)=>(
+          <div key={u.id} style={{display:"flex",alignItems:"center",gap:16,padding:"14px 0",borderBottom:i<users.length-1?"1px solid #f0f0f0":"none"}}>
+            <div style={{width:40,height:40,borderRadius:"50%",background:"#ff6000",display:"flex",alignItems:"center",justifyContent:"center",color:"#fff",fontSize:16,fontWeight:700}}>{(u.name||"?").charAt(0).toUpperCase()}</div>
+            <div style={{flex:1}}>
+              <div style={{fontSize:14,fontWeight:600}}>{u.name}</div>
+              <div style={{fontSize:12,color:"#888"}}>{u.email||(u.phone?`0${u.phone}`:"—")}</div>
+            </div>
+            <span style={{padding:"4px 12px",borderRadius:4,fontSize:11,fontWeight:600,background:"#fef3c7",color:"#b45309"}}>Admin</span>
+            <div style={{fontSize:11,color:"#999",textAlign:"right",minWidth:100}}>Son giriş:<br/>{u.lastLogin?new Date(u.lastLogin).toLocaleString("tr-TR"):"—"}</div>
           </div>
-          <div style={{textAlign:"center"}}>
-            <span style={{padding:"4px 12px",borderRadius:4,fontSize:11,fontWeight:600,background:u.role==="Süper Admin"?"#fef3c7":u.role==="Yönetici"?"#dbeafe":"#f0f0f0",color:u.role==="Süper Admin"?"#b45309":u.role==="Yönetici"?"#2563eb":"#666"}}>{u.role}</span>
-          </div>
-          <div style={{fontSize:11,color:"#999",textAlign:"right",minWidth:100}}>Son giriş:<br/>{u.lastLogin}</div>
-          <button onClick={()=>setUsers(p=>p.map(x=>x.id===u.id?{...x,active:!x.active}:x))} style={{padding:"4px 12px",borderRadius:4,border:"none",fontSize:11,fontWeight:600,cursor:"pointer",background:u.active?"#dcfce7":"#fee2e2",color:u.active?"#059669":"#dc2626"}}>{u.active?"Aktif":"Pasif"}</button>
-          {u.role!=="Süper Admin"&&<button onClick={()=>setUsers(p=>p.filter(x=>x.id!==u.id))} style={{padding:"4px 10px",border:"1px solid #fcc",borderRadius:4,background:"#fff",fontSize:12,color:"#e53935",cursor:"pointer"}}>Sil</button>}
-        </div>
-      ))}
-    </ACard>
-    <ACard title="Yetki Rolleri">
-      {roles.map((r,i)=>(
-        <div key={r} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"10px 0",borderBottom:i<roles.length-1?"1px solid #f0f0f0":"none"}}>
-          <span style={{fontSize:14,fontWeight:600}}>{r}</span>
-          <span style={{fontSize:13,color:"#888"}}>{rolePerms[r]}</span>
-        </div>
-      ))}
+        ))}
     </ACard></>;
 }
 

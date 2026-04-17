@@ -1,5 +1,6 @@
 import { kv } from "@vercel/kv";
 import { esnekposConfig, verifyCallbackHash } from "../_lib/esnekpos-auth.js";
+import { logActivity, readUser, writeUser } from "../_lib/auth.js";
 
 async function parseBody(req) {
   if (req.body && typeof req.body === "object") return req.body;
@@ -58,22 +59,42 @@ export default async function handler(req, res) {
       return redirect(res, `/odeme-basarisiz?orderRef=${encodeURIComponent(orderRef)}&reason=declined&msg=${msg}`);
     }
 
+    const paidAmount = Number(AMOUNT ?? 0);
     try {
       const existingRaw = await kv.get(`order:${orderRef}`);
       const existing = existingRaw ? (typeof existingRaw === "string" ? JSON.parse(existingRaw) : existingRaw) : {};
-      await kv.set(`order:${orderRef}`, JSON.stringify({
+      const merged = {
         ...existing,
+        orderRef,
         status: "paid",
+        fulfillmentStatus: existing.fulfillmentStatus || "Hazırlanıyor",
         paidAt: new Date().toISOString(),
-        amount: Number(AMOUNT ?? existing.amount ?? 0),
+        amount: paidAmount || Number(existing.amount || 0),
         installment: Number(INSTALLMENT || 1),
         bankAuthCode: BANK_AUTH_CODE || "",
         refno: REFNO || existing.refno,
         maskedCc: CUSTOMER_CC_NUMBER || "",
-        customerName: CUSTOMER_NAME || "",
-        customerMail: CUSTOMER_MAIL || "",
+        customerName: CUSTOMER_NAME || existing?.buyer?.name || "",
+        customerMail: CUSTOMER_MAIL || existing?.buyer?.emailAddress || "",
+        customerPhone: existing?.buyer?.phoneNumber || "",
         bankDate: DATE || "",
-      }), { ex: 60 * 60 * 24 * 90 });
+      };
+      await kv.set(`order:${orderRef}`, JSON.stringify(merged), { ex: 60 * 60 * 24 * 365 });
+      await kv.lpush("orders:index", orderRef);
+      await logActivity("order.paid", {
+        orderRef, amount: merged.amount, customer: merged.customerName, mail: merged.customerMail,
+      });
+
+      const userId = existing?.buyer?.userId;
+      if (userId && userId.startsWith("usr_")) {
+        const u = await readUser(userId);
+        if (u) {
+          u.orderCount = (u.orderCount || 0) + 1;
+          u.totalSpent = (u.totalSpent || 0) + merged.amount;
+          u.lastOrderAt = new Date().toISOString();
+          await writeUser(u);
+        }
+      }
     } catch {}
 
     return redirect(res, `/odeme-basarili?orderRef=${encodeURIComponent(orderRef)}`);

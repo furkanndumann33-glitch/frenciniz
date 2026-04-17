@@ -1,5 +1,6 @@
 import { kv } from "@vercel/kv";
 import { esnekposConfig, randomOrderRef, getClientIp } from "../_lib/esnekpos-auth.js";
+import { getSession } from "../_lib/auth.js";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
@@ -83,12 +84,13 @@ export default async function handler(req, res) {
       });
     }
 
+    const session = getSession(req);
     try {
       await kv.set(`order:${orderRef}`, JSON.stringify({
         orderRef,
         amount: Number(amount),
         createdAt: new Date().toISOString(),
-        buyer,
+        buyer: { ...buyer, userId: session?.userId && session.userId.startsWith("usr_") ? session.userId : null },
         billingAddress,
         basket,
         refno: data.REFNO,
