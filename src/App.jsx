@@ -2630,7 +2630,7 @@ function MobileMenu() {
       <div onClick={() => setMobileMenuOpen(false)} style={{position:"absolute",inset:0,background:"rgba(0,0,0,.5)"}} />
       <div style={{position:"absolute",top:0,left:0,bottom:0,width:280,background:"#fff",overflowY:"auto",animation:"slideLeft .25s ease",boxShadow:"4px 0 20px rgba(0,0,0,.1)"}}>
         <div style={{padding:"16px 20px",borderBottom:"1px solid #eee",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-          <div style={{fontSize:20,fontWeight:800,color:"#ff6000"}}>frenciniz</div>
+          <img src="/logo.webp" alt="Frenciniz" onClick={() => {go("home");setMobileMenuOpen(false)}} onError={e=>{e.target.src="/logo.png"}} style={{height:32,width:"auto",cursor:"pointer",display:"block"}} />
           <button onClick={() => setMobileMenuOpen(false)} style={{background:"none",border:"none",fontSize:20,color:"#999",cursor:"pointer"}}>✕</button>
         </div>
         <div style={{padding:"12px 0"}}>
