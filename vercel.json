@@ -1,5 +1,7 @@
 {
   "rewrites": [
+    { "source": "/api/auth/:action", "destination": "/api/auth?action=:action" },
+    { "source": "/api/admin/:action", "destination": "/api/admin?action=:action" },
     { "source": "/api/(.*)", "destination": "/api/$1" },
     { "source": "/admin.html", "destination": "/admin.html" },
     { "source": "/data/(.*)", "destination": "/data/$1" },
