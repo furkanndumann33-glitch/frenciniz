@@ -1530,19 +1530,15 @@ function CheckoutPage() {
                     })),
                   },
                 };
-                const r = await fetch("/api/payment/tami-start", {
+                const r = await fetch("/api/payment/esnekpos-start", {
                   method: "POST",
                   headers: {"Content-Type":"application/json"},
                   body: JSON.stringify(payload),
                 });
                 const data = await r.json();
                 if (!r.ok || !data.success) throw new Error(data.error || "Ödeme başlatılamadı");
-                if (!data.threeDSHtmlContent) throw new Error("3DS yanıtı boş");
-                // Base64 decode + sayfayı 3DS HTML'i ile değiştir (bankaya otomatik submit)
-                const html = atob(data.threeDSHtmlContent);
-                document.open();
-                document.write(html);
-                document.close();
+                if (!data.url3ds) throw new Error("3DS yönlendirme URL'i boş");
+                window.location.href = data.url3ds;
               } catch (e) {
                 setPayError(e.message || "Ödeme sırasında hata oluştu");
                 setPayLoading(false);
