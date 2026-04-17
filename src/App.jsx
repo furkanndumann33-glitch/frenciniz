@@ -348,7 +348,7 @@ const Ctx = createContext();
 const use$ = () => useContext(Ctx);
 
 export default function App() {
-  const isAdminMode = typeof window !== 'undefined' && window.__ADMIN_MODE__;
+  const isAdminMode = typeof window !== 'undefined' && (window.__ADMIN_MODE__ || new URLSearchParams(window.location.search).get("admin") === "1");
   const initRoute = (() => {
     if (typeof window === 'undefined') return {page: isAdminMode ? "admin-login" : "home", params: {}};
     const path = window.location.pathname;
