@@ -171,6 +171,196 @@ export default async function handler(req, res) {
       return res.status(200).json({ activity: items });
     }
 
+    // ── Site Ayarları ─────────────────────────────
+    if (action === "settings") {
+      if (req.method === "GET") {
+        const raw = await kv.get("settings:site");
+        const settings = raw ? (typeof raw === "string" ? JSON.parse(raw) : raw) : {
+          siteName: "Frenciniz", phone: "0850 888 7881",
+          email: "info@frenciniz.com", address: "Hızırbey Mah. 1509 Sok. No:24, Isparta",
+          freeShippingLimit: 500,
+          social: { facebook: "", instagram: "", twitter: "", youtube: "" },
+        };
+        return res.status(200).json({ settings });
+      }
+      if (req.method === "POST") {
+        const s = req.body || {};
+        await kv.set("settings:site", JSON.stringify(s));
+        await logActivity("settings.update", { by: admin.userId });
+        return res.status(200).json({ success: true, settings: s });
+      }
+    }
+
+    // ── SEO ────────────────────────────────────────
+    if (action === "seo") {
+      if (req.method === "GET") {
+        const ids = (await kv.lrange("seo:index", 0, 99)) || [];
+        const out = {};
+        for (const id of ids) {
+          const raw = await kv.get(`seo:${id}`);
+          if (raw) out[id] = typeof raw === "string" ? JSON.parse(raw) : raw;
+        }
+        return res.status(200).json({ seo: out });
+      }
+      if (req.method === "POST") {
+        const { id, title, description, keywords } = req.body || {};
+        if (!id) return res.status(400).json({ error: "id zorunlu" });
+        const existing = await kv.get(`seo:${id}`);
+        const rec = { id, title: title || "", description: description || "", keywords: keywords || "", updatedAt: new Date().toISOString() };
+        await kv.set(`seo:${id}`, JSON.stringify(rec));
+        if (!existing) await kv.lpush("seo:index", id);
+        await logActivity("seo.update", { id, by: admin.userId });
+        return res.status(200).json({ success: true });
+      }
+    }
+
+    // ── Bannerlar ─────────────────────────────────
+    if (action === "banners") {
+      if (req.method === "GET") {
+        const ids = (await kv.lrange("banners:index", 0, 49)) || [];
+        const items = [];
+        for (const id of ids) {
+          const raw = await kv.get(`banner:${id}`);
+          if (raw) items.push(typeof raw === "string" ? JSON.parse(raw) : raw);
+        }
+        return res.status(200).json({ banners: items });
+      }
+      if (req.method === "POST") {
+        const { id, title, image, link, active } = req.body || {};
+        const bid = id || `bnr_${Date.now()}`;
+        const existing = id ? await kv.get(`banner:${id}`) : null;
+        const banner = { id: bid, title: title || "", image: image || "", link: link || "", active: active !== false, createdAt: existing ? (typeof existing === "string" ? JSON.parse(existing) : existing).createdAt : new Date().toISOString() };
+        await kv.set(`banner:${bid}`, JSON.stringify(banner));
+        if (!existing) await kv.lpush("banners:index", bid);
+        await logActivity("banner.upsert", { id: bid, by: admin.userId });
+        return res.status(200).json({ success: true, banner });
+      }
+      if (req.method === "DELETE") {
+        const id = String(req.query.id || "");
+        if (!id) return res.status(400).json({ error: "id zorunlu" });
+        await kv.del(`banner:${id}`);
+        await kv.lrem("banners:index", 0, id);
+        await logActivity("banner.delete", { id, by: admin.userId });
+        return res.status(200).json({ success: true });
+      }
+    }
+
+    // ── Sayfalar (Hakkımızda vb. özel içerik) ─────
+    if (action === "pages") {
+      if (req.method === "GET") {
+        const slugs = (await kv.lrange("pages:index", 0, 99)) || [];
+        const items = [];
+        for (const s of slugs) {
+          const raw = await kv.get(`page:${s}`);
+          if (raw) items.push(typeof raw === "string" ? JSON.parse(raw) : raw);
+        }
+        return res.status(200).json({ pages: items });
+      }
+      if (req.method === "POST") {
+        const { slug, title, content } = req.body || {};
+        if (!slug) return res.status(400).json({ error: "slug zorunlu" });
+        const existing = await kv.get(`page:${slug}`);
+        const page = { slug, title: title || "", content: content || "", updatedAt: new Date().toISOString() };
+        await kv.set(`page:${slug}`, JSON.stringify(page));
+        if (!existing) await kv.lpush("pages:index", slug);
+        await logActivity("page.update", { slug, by: admin.userId });
+        return res.status(200).json({ success: true });
+      }
+      if (req.method === "DELETE") {
+        const slug = String(req.query.slug || "");
+        if (!slug) return res.status(400).json({ error: "slug zorunlu" });
+        await kv.del(`page:${slug}`);
+        await kv.lrem("pages:index", 0, slug);
+        return res.status(200).json({ success: true });
+      }
+    }
+
+    // ── E-posta ve SMS config ─────────────────────
+    if (action === "email-config" || action === "sms-config") {
+      const key = action === "email-config" ? "cfg:email" : "cfg:sms";
+      if (req.method === "GET") {
+        const raw = await kv.get(key);
+        return res.status(200).json({ config: raw ? (typeof raw === "string" ? JSON.parse(raw) : raw) : {} });
+      }
+      if (req.method === "POST") {
+        await kv.set(key, JSON.stringify(req.body || {}));
+        await logActivity(`${action}.update`, { by: admin.userId });
+        return res.status(200).json({ success: true });
+      }
+    }
+
+    // ── E-posta Şablonları ────────────────────────
+    if (action === "email-templates") {
+      if (req.method === "GET") {
+        const ids = (await kv.lrange("templates:index", 0, 49)) || [];
+        const seeded = ids.length > 0 ? ids : ["welcome", "order-confirm", "shipped", "delivered", "stock-notify"];
+        const items = [];
+        for (const id of seeded) {
+          const raw = await kv.get(`template:${id}`);
+          if (raw) items.push(typeof raw === "string" ? JSON.parse(raw) : raw);
+          else items.push({ id, subject: "", body: "", name: id });
+        }
+        return res.status(200).json({ templates: items });
+      }
+      if (req.method === "POST") {
+        const { id, subject, body, name } = req.body || {};
+        if (!id) return res.status(400).json({ error: "id zorunlu" });
+        const existing = await kv.get(`template:${id}`);
+        await kv.set(`template:${id}`, JSON.stringify({ id, name: name || id, subject: subject || "", body: body || "", updatedAt: new Date().toISOString() }));
+        if (!existing) await kv.lpush("templates:index", id);
+        await logActivity("template.update", { id, by: admin.userId });
+        return res.status(200).json({ success: true });
+      }
+    }
+
+    // ── Yedekleme (KV export) ─────────────────────
+    if (action === "backup") {
+      const dump = { exportedAt: new Date().toISOString(), by: admin.userId };
+      const [userIds, orderRefs, couponCodes, returnIds, bannerIds, pageSlugs, seoIds] = await Promise.all([
+        kv.lrange("users:index", 0, 9999), kv.lrange("orders:index", 0, 9999),
+        kv.lrange("coupons:index", 0, 999), kv.lrange("returns:index", 0, 999),
+        kv.lrange("banners:index", 0, 99), kv.lrange("pages:index", 0, 99),
+        kv.lrange("seo:index", 0, 99),
+      ]);
+      async function collect(ids, prefix) {
+        const out = [];
+        for (const id of (ids || [])) {
+          const raw = await kv.get(`${prefix}:${id}`);
+          if (raw) out.push(typeof raw === "string" ? JSON.parse(raw) : raw);
+        }
+        return out;
+      }
+      dump.users = await collect(userIds, "user");
+      dump.orders = await collect(orderRefs, "order");
+      dump.coupons = await collect(couponCodes, "coupon");
+      dump.returns = await collect(returnIds, "return");
+      dump.banners = await collect(bannerIds, "banner");
+      dump.pages = await collect(pageSlugs, "page");
+      dump.seo = await collect(seoIds, "seo");
+      dump.settings = await kv.get("settings:site");
+      res.setHeader("Content-Disposition", `attachment; filename=frenciniz-backup-${Date.now()}.json`);
+      return res.status(200).json(dump);
+    }
+
+    // ── Chat history ──────────────────────────────
+    if (action === "chat-sessions") {
+      const sessionIds = (await kv.lrange("chat:sessions", 0, 99)) || [];
+      const sessions = [];
+      for (const id of sessionIds) {
+        const s = await kv.get(`chat:session:${id}`);
+        if (s) sessions.push(typeof s === "string" ? JSON.parse(s) : s);
+      }
+      sessions.sort((a, b) => new Date(b.lastTime || 0) - new Date(a.lastTime || 0));
+      return res.status(200).json({ sessions });
+    }
+    if (action === "chat-messages") {
+      const sid = String(req.query.sid || "");
+      if (!sid) return res.status(400).json({ error: "sid zorunlu" });
+      const raw = (await kv.lrange(`chat:messages:${sid}`, 0, 499)) || [];
+      const messages = raw.map(r => { try { return typeof r === "string" ? JSON.parse(r) : r; } catch { return null; }}).filter(Boolean);
+      return res.status(200).json({ messages });
+    }
+
     return res.status(404).json({ error: "Bilinmeyen action: " + action });
   } catch (err) {
     return res.status(500).json({ error: "Sunucu hatası", detail: err.message });

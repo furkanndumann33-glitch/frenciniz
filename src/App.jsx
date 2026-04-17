@@ -3297,103 +3297,212 @@ function AImport(){
 }
 
 function ABanners(){
-  const [bs,setBs]=useState([{id:1,title:"Ana Banner",active:true},{id:2,title:"İndirim Kampanyası",active:true},{id:3,title:"Yeni Sezon",active:false}]);
-  return <ACard title="Banner Yönetimi" action={<ABtn onClick={()=>setBs(p=>[...p,{id:Date.now(),title:"Yeni Banner",active:true}])}>+ Banner Ekle</ABtn>}>
-    {bs.map((b,i)=><div key={b.id} style={{display:"flex",alignItems:"center",gap:16,padding:"12px 0",borderBottom:i<bs.length-1?"1px solid #f0f0f0":"none"}}>
-      <div style={{width:120,height:50,background:"#f0f0f0",borderRadius:6,display:"flex",alignItems:"center",justifyContent:"center",fontSize:11,color:"#999"}}>🖼 Banner</div>
-      <div style={{flex:1,fontSize:14,fontWeight:600}}>{b.title}</div>
-      <button onClick={()=>setBs(p=>p.map(x=>x.id===b.id?{...x,active:!x.active}:x))} style={{padding:"4px 12px",borderRadius:4,border:"none",fontSize:11,fontWeight:600,cursor:"pointer",background:b.active?"#dcfce7":"#fee2e2",color:b.active?"#059669":"#dc2626"}}>{b.active?"Aktif":"Pasif"}</button>
-      <button onClick={()=>setBs(p=>p.filter(x=>x.id!==b.id))} style={{padding:"4px 10px",border:"1px solid #fcc",borderRadius:4,background:"#fff",fontSize:12,color:"#e53935",cursor:"pointer"}}>Sil</button>
+  const [bs,setBs]=useState([]);
+  const [loading,setLoading]=useState(true);
+  const [show,setShow]=useState(false);
+  const [f,setF]=useState({title:"",image:"",link:""});
+  async function load(){
+    setLoading(true);
+    try{ const d=await fetch("/api/admin/banners",{credentials:"include"}).then(r=>r.json()); setBs(d.banners||[]); }catch{} finally{setLoading(false)}
+  }
+  useEffect(()=>{load()},[]);
+  async function save(patch){
+    await fetch("/api/admin/banners",{method:"POST",credentials:"include",headers:{"Content-Type":"application/json"},body:JSON.stringify(patch)});
+    load();
+  }
+  async function remove(id){
+    await fetch(`/api/admin/banners?id=${encodeURIComponent(id)}`,{method:"DELETE",credentials:"include"});
+    load();
+  }
+  return <ACard title={`Banner Yönetimi (${bs.length})`} action={<ABtn onClick={()=>setShow(!show)}>+ Banner Ekle</ABtn>}>
+    {show&&<div style={{background:"#fafafa",borderRadius:8,padding:16,marginBottom:16,border:"1px solid #eee"}}>
+      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:10}}>
+        <AIn placeholder="Başlık" value={f.title} onChange={e=>setF({...f,title:e.target.value})}/>
+        <AIn placeholder="Görsel URL" value={f.image} onChange={e=>setF({...f,image:e.target.value})}/>
+        <AIn placeholder="Bağlantı" value={f.link} onChange={e=>setF({...f,link:e.target.value})}/>
+      </div>
+      <div style={{display:"flex",gap:8,marginTop:10}}>
+        <ABtn onClick={async()=>{if(f.title){await save({...f,active:true});setShow(false);setF({title:"",image:"",link:""})}}}>Oluştur</ABtn>
+        <ABtn color="#999" onClick={()=>setShow(false)}>İptal</ABtn>
+      </div>
+    </div>}
+    {loading?<div style={{color:"#999",fontSize:13}}>Yükleniyor…</div>:bs.length===0?<div style={{color:"#999",fontSize:13,padding:"12px 0"}}>Henüz banner yok.</div>:bs.map((b,i)=><div key={b.id} style={{display:"flex",alignItems:"center",gap:16,padding:"12px 0",borderBottom:i<bs.length-1?"1px solid #f0f0f0":"none"}}>
+      <div style={{width:120,height:50,background:b.image?`url(${b.image}) center/cover`:"#f0f0f0",borderRadius:6,display:"flex",alignItems:"center",justifyContent:"center",fontSize:11,color:"#999"}}>{!b.image&&"🖼"}</div>
+      <div style={{flex:1}}><div style={{fontSize:14,fontWeight:600}}>{b.title}</div>{b.link&&<div style={{fontSize:11,color:"#888"}}>{b.link}</div>}</div>
+      <button onClick={()=>save({...b,active:!b.active})} style={{padding:"4px 12px",borderRadius:4,border:"none",fontSize:11,fontWeight:600,cursor:"pointer",background:b.active?"#dcfce7":"#fee2e2",color:b.active?"#059669":"#dc2626"}}>{b.active?"Aktif":"Pasif"}</button>
+      <button onClick={()=>remove(b.id)} style={{padding:"4px 10px",border:"1px solid #fcc",borderRadius:4,background:"#fff",fontSize:12,color:"#e53935",cursor:"pointer"}}>Sil</button>
     </div>)}</ACard>;
 }
 
 function APagesAdmin(){
-  const [sel,setSel]=useState(null);const [ok,setOk]=useState(false);
-  const pgs=[{id:"about",n:"Hakkımızda"},{id:"privacy",n:"Gizlilik Politikası"},{id:"terms",n:"Şartlar ve Koşullar"},{id:"shipping",n:"Gönderim Politikası"},{id:"return",n:"İade Politikası"},{id:"kvkk",n:"KVKK"},{id:"accessibility",n:"Erişilebilirlik"}];
+  const pgs=[{slug:"about",n:"Hakkımızda"},{slug:"privacy",n:"Gizlilik Politikası"},{slug:"terms",n:"Şartlar ve Koşullar"},{slug:"shipping-policy",n:"Gönderim Politikası"},{slug:"return-policy",n:"İade Politikası"},{slug:"kvkk",n:"KVKK"},{slug:"accessibility",n:"Erişilebilirlik"},{slug:"company",n:"Şirket Bilgileri"}];
+  const [sel,setSel]=useState(null);
+  const [ok,setOk]=useState(false);
+  const [content,setContent]=useState("");
+  const [title,setTitle]=useState("");
+  useEffect(()=>{
+    if(!sel) return;
+    fetch("/api/admin/pages",{credentials:"include"}).then(r=>r.json()).then(d=>{
+      const rec=(d.pages||[]).find(p=>p.slug===sel.slug);
+      setContent(rec?.content||""); setTitle(rec?.title||sel.n);
+    });
+  },[sel]);
+  async function save(){
+    await fetch("/api/admin/pages",{method:"POST",credentials:"include",headers:{"Content-Type":"application/json"},body:JSON.stringify({slug:sel.slug,title,content})});
+    setOk(true); setTimeout(()=>setOk(false),2000);
+  }
   return <ACard title="Sayfa İçerik Yönetimi">
-    {!sel?pgs.map((p,i)=><div key={p.id} onClick={()=>setSel(p)} style={{display:"flex",justifyContent:"space-between",padding:"12px 0",borderBottom:i<pgs.length-1?"1px solid #f0f0f0":"none",cursor:"pointer"}}>
+    {!sel?pgs.map((p,i)=><div key={p.slug} onClick={()=>setSel(p)} style={{display:"flex",justifyContent:"space-between",padding:"12px 0",borderBottom:i<pgs.length-1?"1px solid #f0f0f0":"none",cursor:"pointer"}}>
       <span style={{fontSize:14}}>📄 {p.n}</span><span style={{color:"#ff6000",fontSize:13}}>Düzenle →</span></div>)
     :<div><button onClick={()=>setSel(null)} style={{background:"none",border:"none",color:"#ff6000",fontSize:13,cursor:"pointer",marginBottom:12}}>← Geri</button>
       <div style={{fontSize:16,fontWeight:700,marginBottom:12}}>{sel.n}</div>
-      <textarea rows={12} defaultValue={`${sel.n} sayfa içeriği...`} style={{width:"100%",padding:14,border:"1px solid #ddd",borderRadius:6,fontSize:14,lineHeight:1.7,resize:"vertical"}}/>
-      <ABtn onClick={()=>{setOk(true);setTimeout(()=>setOk(false),2000)}} style={{marginTop:12}}>{ok?"✓ Kaydedildi":"Kaydet"}</ABtn>
+      <label style={{fontSize:12,color:"#666",display:"block",marginBottom:4}}>Sayfa Başlığı</label>
+      <AIn value={title} onChange={e=>setTitle(e.target.value)} style={{marginBottom:12}}/>
+      <label style={{fontSize:12,color:"#666",display:"block",marginBottom:4}}>İçerik (Markdown / HTML)</label>
+      <textarea rows={14} value={content} onChange={e=>setContent(e.target.value)} placeholder={`${sel.n} sayfa içeriği...`} style={{width:"100%",padding:14,border:"1px solid #ddd",borderRadius:6,fontSize:14,lineHeight:1.7,resize:"vertical",fontFamily:"inherit"}}/>
+      <ABtn onClick={save} style={{marginTop:12}}>{ok?"✓ Kaydedildi":"Kaydet"}</ABtn>
     </div>}</ACard>;
 }
 
 function AEmailCfg(){
+  const [cfg,setCfg]=useState({host:"",port:"587",secure:"TLS",user:"",pass:""});
   const [ok,setOk]=useState(false);
-  return <ACard title="Mail Entegrasyonu"><div style={{maxWidth:500,display:"flex",flexDirection:"column",gap:12}}>
-    <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>SMTP Sunucu</label><AIn placeholder="mail.frenciniz.com"/></div>
+  useEffect(()=>{
+    fetch("/api/admin/email-config",{credentials:"include"}).then(r=>r.json()).then(d=>{
+      if(d.config && Object.keys(d.config).length) setCfg(p=>({...p,...d.config}));
+    });
+  },[]);
+  async function save(){
+    await fetch("/api/admin/email-config",{method:"POST",credentials:"include",headers:{"Content-Type":"application/json"},body:JSON.stringify(cfg)});
+    setOk(true); setTimeout(()=>setOk(false),2000);
+  }
+  return <ACard title="Mail Entegrasyonu (SMTP)"><div style={{maxWidth:500,display:"flex",flexDirection:"column",gap:12}}>
+    <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>SMTP Sunucu</label><AIn value={cfg.host} onChange={e=>setCfg({...cfg,host:e.target.value})} placeholder="mail.frenciniz.com"/></div>
     <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
-      <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>Port</label><AIn placeholder="587"/></div>
-      <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>Güvenlik</label><select style={{width:"100%",padding:"9px",border:"1px solid #ddd",borderRadius:6,fontSize:13}}><option>TLS</option><option>SSL</option></select></div>
+      <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>Port</label><AIn value={cfg.port} onChange={e=>setCfg({...cfg,port:e.target.value})} placeholder="587"/></div>
+      <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>Güvenlik</label><select value={cfg.secure} onChange={e=>setCfg({...cfg,secure:e.target.value})} style={{width:"100%",padding:"9px",border:"1px solid #ddd",borderRadius:6,fontSize:13}}><option>TLS</option><option>SSL</option></select></div>
     </div>
-    <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>Kullanıcı</label><AIn placeholder="info@frenciniz.com"/></div>
-    <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>Şifre</label><AIn type="password" placeholder="••••••••"/></div>
-    <div style={{display:"flex",gap:8,marginTop:8}}><ABtn onClick={()=>{setOk(true);setTimeout(()=>setOk(false),2000)}}>{ok?"✓ Kaydedildi":"Kaydet"}</ABtn><ABtn color="#2563eb">Test Maili</ABtn></div>
+    <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>Kullanıcı</label><AIn value={cfg.user} onChange={e=>setCfg({...cfg,user:e.target.value})} placeholder="info@frenciniz.com"/></div>
+    <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>Şifre</label><AIn type="password" value={cfg.pass} onChange={e=>setCfg({...cfg,pass:e.target.value})} placeholder="••••••••"/></div>
+    <div style={{display:"flex",gap:8,marginTop:8}}><ABtn onClick={save}>{ok?"✓ Kaydedildi":"Kaydet"}</ABtn></div>
   </div></ACard>;
 }
 
 function ASMSCfg(){
+  const [cfg,setCfg]=useState({user:"",pass:"",header:"FRENCINIZ",notifySignup:true,notifyOrder:true,notifyShipped:true,notifyStock:true});
   const [ok,setOk]=useState(false);
+  useEffect(()=>{
+    fetch("/api/admin/sms-config",{credentials:"include"}).then(r=>r.json()).then(d=>{
+      if(d.config && Object.keys(d.config).length) setCfg(p=>({...p,...d.config}));
+    });
+  },[]);
+  async function save(){
+    await fetch("/api/admin/sms-config",{method:"POST",credentials:"include",headers:{"Content-Type":"application/json"},body:JSON.stringify(cfg)});
+    setOk(true); setTimeout(()=>setOk(false),2000);
+  }
+  const rows=[{k:"notifySignup",l:"Yeni üye kayıt"},{k:"notifyOrder",l:"Sipariş onay"},{k:"notifyShipped",l:"Kargoya verildi"},{k:"notifyStock",l:"Stok bildirimi"}];
   return <ACard title="NetGSM SMS Entegrasyonu"><div style={{maxWidth:500}}>
     <div style={{padding:12,background:"#f0f9ff",borderRadius:6,border:"1px solid #bae6fd",fontSize:12,color:"#0369a1",marginBottom:16}}>💡 NetGSM API bilgilerinizi netgsm.com.tr adresinden alabilirsiniz.</div>
     <div style={{display:"flex",flexDirection:"column",gap:12}}>
-      <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>Kullanıcı Kodu</label><AIn placeholder="850XXXXXXX"/></div>
-      <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>API Şifresi</label><AIn type="password" placeholder="API şifresi"/></div>
-      <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>Başlık</label><AIn placeholder="FRENCINIZ" defaultValue="FRENCINIZ"/></div>
+      <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>Kullanıcı Kodu</label><AIn value={cfg.user} onChange={e=>setCfg({...cfg,user:e.target.value})} placeholder="850XXXXXXX"/></div>
+      <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>API Şifresi</label><AIn type="password" value={cfg.pass} onChange={e=>setCfg({...cfg,pass:e.target.value})} placeholder="API şifresi"/></div>
+      <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>Başlık</label><AIn value={cfg.header} onChange={e=>setCfg({...cfg,header:e.target.value})} placeholder="FRENCINIZ"/></div>
       <div style={{border:"1px solid #eee",borderRadius:6,padding:14}}>
         <div style={{fontSize:13,fontWeight:600,marginBottom:8}}>Otomatik SMS Bildirimleri</div>
-        {["Yeni üye kayıt","Sipariş onay","Kargoya verildi","Stok bildirimi"].map(l=><div key={l} style={{display:"flex",justifyContent:"space-between",padding:"8px 0"}}><span style={{fontSize:13}}>{l}</span><input type="checkbox" defaultChecked style={{accentColor:"#ff6000"}}/></div>)}
+        {rows.map(r=><div key={r.k} style={{display:"flex",justifyContent:"space-between",padding:"8px 0"}}><span style={{fontSize:13}}>{r.l}</span><input type="checkbox" checked={!!cfg[r.k]} onChange={e=>setCfg({...cfg,[r.k]:e.target.checked})} style={{accentColor:"#ff6000"}}/></div>)}
       </div>
-      <div style={{display:"flex",gap:8,marginTop:8}}><ABtn onClick={()=>{setOk(true);setTimeout(()=>setOk(false),2000)}}>{ok?"✓ Kaydedildi":"Kaydet"}</ABtn><ABtn color="#2563eb">Test SMS</ABtn></div>
+      <div style={{display:"flex",gap:8,marginTop:8}}><ABtn onClick={save}>{ok?"✓ Kaydedildi":"Kaydet"}</ABtn></div>
     </div>
   </div></ACard>;
 }
 
 function ASettingsCfg(){
   const {socialMedia, setSocialMedia} = use$();
+  const [s,setS]=useState({siteName:"Frenciniz",phone:"",email:"",address:"",freeShippingLimit:500,social:{facebook:"",instagram:"",twitter:"",youtube:""}});
   const [ok,setOk]=useState(false);
+  useEffect(()=>{
+    fetch("/api/admin/settings",{credentials:"include"}).then(r=>r.json()).then(d=>{
+      if(d.settings){
+        setS(p=>({...p,...d.settings,social:{...p.social,...(d.settings.social||{})}}));
+        if(d.settings.social) setSocialMedia(d.settings.social);
+      }
+    });
+  },[]);
+  async function save(){
+    const payload={...s,social:s.social};
+    await fetch("/api/admin/settings",{method:"POST",credentials:"include",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+    setSocialMedia(s.social);
+    setOk(true); setTimeout(()=>setOk(false),2000);
+  }
   return <ACard title="Site Ayarları"><div style={{maxWidth:500,display:"flex",flexDirection:"column",gap:14}}>
-    <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>Site Adı</label><AIn defaultValue="Frenciniz"/></div>
-    <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>Telefon</label><AIn defaultValue="0850 888 7881"/></div>
-    <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>E-posta</label><AIn defaultValue="info@frenciniz.com"/></div>
-    <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>Adres</label><AIn defaultValue="Hızırbey Mah. 1509 Sok. No:24, Isparta"/></div>
+    <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>Site Adı</label><AIn value={s.siteName} onChange={e=>setS({...s,siteName:e.target.value})}/></div>
+    <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>Telefon</label><AIn value={s.phone} onChange={e=>setS({...s,phone:e.target.value})}/></div>
+    <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>E-posta</label><AIn value={s.email} onChange={e=>setS({...s,email:e.target.value})}/></div>
+    <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>Adres</label><AIn value={s.address} onChange={e=>setS({...s,address:e.target.value})}/></div>
     <div style={{borderTop:"1px solid #eee",paddingTop:14}}>
       <div style={{fontSize:13,fontWeight:700,marginBottom:10}}>Sosyal Medya</div>
       <div style={{fontSize:12,color:"#888",marginBottom:8}}>URL girildiğinde sitede otomatik görünür. Boş bırakılan gizlenir.</div>
       <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
-        <div><label style={{fontSize:11,color:"#888"}}>Facebook</label><AIn placeholder="https://facebook.com/..." value={socialMedia.facebook} onChange={e=>setSocialMedia(p=>({...p,facebook:e.target.value}))}/></div>
-        <div><label style={{fontSize:11,color:"#888"}}>Instagram</label><AIn placeholder="https://instagram.com/..." value={socialMedia.instagram} onChange={e=>setSocialMedia(p=>({...p,instagram:e.target.value}))}/></div>
-        <div><label style={{fontSize:11,color:"#888"}}>Twitter / X</label><AIn placeholder="https://x.com/..." value={socialMedia.twitter} onChange={e=>setSocialMedia(p=>({...p,twitter:e.target.value}))}/></div>
-        <div><label style={{fontSize:11,color:"#888"}}>YouTube</label><AIn placeholder="https://youtube.com/..." value={socialMedia.youtube} onChange={e=>setSocialMedia(p=>({...p,youtube:e.target.value}))}/></div>
+        <div><label style={{fontSize:11,color:"#888"}}>Facebook</label><AIn placeholder="https://facebook.com/..." value={s.social.facebook||""} onChange={e=>setS({...s,social:{...s.social,facebook:e.target.value}})}/></div>
+        <div><label style={{fontSize:11,color:"#888"}}>Instagram</label><AIn placeholder="https://instagram.com/..." value={s.social.instagram||""} onChange={e=>setS({...s,social:{...s.social,instagram:e.target.value}})}/></div>
+        <div><label style={{fontSize:11,color:"#888"}}>Twitter / X</label><AIn placeholder="https://x.com/..." value={s.social.twitter||""} onChange={e=>setS({...s,social:{...s.social,twitter:e.target.value}})}/></div>
+        <div><label style={{fontSize:11,color:"#888"}}>YouTube</label><AIn placeholder="https://youtube.com/..." value={s.social.youtube||""} onChange={e=>setS({...s,social:{...s.social,youtube:e.target.value}})}/></div>
       </div>
     </div>
     <div style={{borderTop:"1px solid #eee",paddingTop:14}}>
       <div style={{fontSize:13,fontWeight:700,marginBottom:10}}>Ücretsiz Kargo Limiti</div>
-      <AIn type="number" defaultValue="500" style={{width:150}}/><div style={{fontSize:11,color:"#999",marginTop:4}}>Bu tutarın üzerinde kargo ücretsiz.</div>
+      <AIn type="number" value={s.freeShippingLimit} onChange={e=>setS({...s,freeShippingLimit:Number(e.target.value)||0})} style={{width:150}}/><div style={{fontSize:11,color:"#999",marginTop:4}}>Bu tutarın üzerinde kargo ücretsiz.</div>
     </div>
-    <ABtn onClick={()=>{setOk(true);setTimeout(()=>setOk(false),2000)}} style={{alignSelf:"flex-start"}}>{ok?"✓ Kaydedildi":"Kaydet"}</ABtn>
+    <ABtn onClick={save} style={{alignSelf:"flex-start"}}>{ok?"✓ Kaydedildi":"Kaydet"}</ABtn>
   </div></ACard>;
 }
 
 function ABackupCfg(){
-  const [exp,setExp]=useState("");
+  const [busy,setBusy]=useState(false);
+  const [msg,setMsg]=useState("");
+  async function exportSection(section){
+    setBusy(true); setMsg("");
+    try{
+      const d=await fetch(`/api/admin/${section}`,{credentials:"include"}).then(r=>r.json());
+      const key = Object.keys(d).find(k=>Array.isArray(d[k])) || section;
+      const json = JSON.stringify(d[key]||[], null, 2);
+      const blob = new Blob([json],{type:"application/json"});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href=url; a.download=`frenciniz-${section}-${new Date().toISOString().slice(0,10)}.json`;
+      a.click(); URL.revokeObjectURL(url);
+      setMsg(`${section} indirildi`);
+    }catch(e){ setMsg(`Hata: ${e.message}`); }
+    finally{ setBusy(false); setTimeout(()=>setMsg(""),2500); }
+  }
+  async function fullBackup(){
+    setBusy(true); setMsg("");
+    try{
+      const r = await fetch("/api/admin/backup",{credentials:"include"});
+      const blob = await r.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href=url; a.download=`frenciniz-full-backup-${Date.now()}.json`;
+      a.click(); URL.revokeObjectURL(url);
+      setMsg("Tam yedek indirildi");
+    }catch(e){ setMsg(`Hata: ${e.message}`); }
+    finally{ setBusy(false); setTimeout(()=>setMsg(""),2500); }
+  }
+  const sections=[{t:"Siparişler",i:"🛒",k:"orders"},{t:"Müşteriler",i:"👥",k:"customers"},{t:"Kuponlar",i:"🎟",k:"coupons"},{t:"Bannerlar",i:"🖼",k:"banners"},{t:"İadeler",i:"↩️",k:"returns"}];
   return <ACard title="Yedekleme & Dışa Aktarım">
-    <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:12,marginBottom:20}}>
-      {[{t:"Ürünler",i:"📦"},{t:"Siparişler",i:"🛒"},{t:"Müşteriler",i:"👥"}].map((x,i)=>(
-        <div key={i} style={{border:"1px solid #eee",borderRadius:8,padding:20,textAlign:"center"}}>
-          <div style={{fontSize:28,marginBottom:8}}>{x.i}</div><div style={{fontSize:14,fontWeight:600,marginBottom:12}}>{x.t}</div>
-          <div style={{display:"flex",gap:6,justifyContent:"center"}}>
-            <button onClick={()=>{setExp(x.t);setTimeout(()=>setExp(""),2000)}} style={{padding:"6px 14px",border:"1px solid #ddd",borderRadius:4,background:"#fff",fontSize:12,cursor:"pointer"}}>Excel</button>
-            <button onClick={()=>{setExp(x.t);setTimeout(()=>setExp(""),2000)}} style={{padding:"6px 14px",border:"1px solid #ddd",borderRadius:4,background:"#fff",fontSize:12,cursor:"pointer"}}>JSON</button>
-          </div></div>))}
+    <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(180px,1fr))",gap:12,marginBottom:20}}>
+      {sections.map((x)=>(
+        <div key={x.k} style={{border:"1px solid #eee",borderRadius:8,padding:20,textAlign:"center"}}>
+          <div style={{fontSize:28,marginBottom:8}}>{x.i}</div>
+          <div style={{fontSize:14,fontWeight:600,marginBottom:12}}>{x.t}</div>
+          <button disabled={busy} onClick={()=>exportSection(x.k)} style={{padding:"6px 14px",border:"1px solid #ddd",borderRadius:4,background:"#fff",fontSize:12,cursor:busy?"not-allowed":"pointer"}}>JSON indir</button>
+        </div>))}
     </div>
-    {exp&&<div style={{padding:12,background:"#dcfce7",borderRadius:6,fontSize:13,color:"#059669",fontWeight:600,textAlign:"center"}}>✓ {exp} dışa aktarıldı!</div>}
+    {msg&&<div style={{padding:12,background:"#dcfce7",borderRadius:6,fontSize:13,color:"#059669",fontWeight:600,textAlign:"center",marginBottom:12}}>✓ {msg}</div>}
     <div style={{marginTop:16,padding:16,background:"#fafafa",borderRadius:8,border:"1px solid #eee"}}>
       <div style={{fontSize:14,fontWeight:700,marginBottom:8}}>Tam Yedekleme</div>
-      <div style={{fontSize:13,color:"#888",marginBottom:12}}>Tüm verileri tek dosyada yedekleyin.</div>
-      <ABtn>💾 Tam Yedek Al</ABtn>
+      <div style={{fontSize:13,color:"#888",marginBottom:12}}>Tüm KV verilerini (kullanıcı, sipariş, kupon, banner, sayfa, iade, SEO, ayarlar) tek JSON dosyasında yedekle.</div>
+      <ABtn onClick={fullBackup} disabled={busy}>{busy?"...":"💾 Tam Yedek Al"}</ABtn>
     </div>
   </ACard>;
 }
@@ -3544,33 +3653,45 @@ function AActivityLog(){
 
 // ── SEO ──
 function ASeo(){
-  const [sel,setSel]=useState(null);const [ok,setOk]=useState(false);
-  const pages=[{id:"home",n:"Ana Sayfa",title:"Frenciniz — Fren Aksamı Uzmanı",desc:"Otobüs, kamyon, tır ve dorse için orijinal fren aksamı ürünleri."},{id:"products",n:"Ürünler",title:"Ürünler — Frenciniz",desc:"10.000+ fren aksamı ürünü."},{id:"about",n:"Hakkımızda",title:"Hakkımızda — Frenciniz",desc:"Dumanlar Ticaret çatısı altında fren aksamı."},{id:"contact",n:"İletişim",title:"İletişim — Frenciniz",desc:"Frenciniz iletişim bilgileri."}];
+  const pageList=[{id:"home",n:"Ana Sayfa"},{id:"products",n:"Ürünler"},{id:"about",n:"Hakkımızda"},{id:"contact",n:"İletişim"},{id:"brands",n:"Markalar"},{id:"faq",n:"SSS"}];
+  const [seoMap,setSeoMap]=useState({});
+  const [sel,setSel]=useState(null);
+  const [form,setForm]=useState({title:"",description:"",keywords:""});
+  const [ok,setOk]=useState(false);
+  async function load(){
+    const d=await fetch("/api/admin/seo",{credentials:"include"}).then(r=>r.json());
+    setSeoMap(d.seo||{});
+  }
+  useEffect(()=>{load()},[]);
+  useEffect(()=>{
+    if(sel){const rec=seoMap[sel.id]||{}; setForm({title:rec.title||"",description:rec.description||"",keywords:rec.keywords||""})}
+  },[sel,seoMap]);
+  async function save(){
+    await fetch("/api/admin/seo",{method:"POST",credentials:"include",headers:{"Content-Type":"application/json"},body:JSON.stringify({id:sel.id,...form})});
+    setOk(true); setTimeout(()=>setOk(false),2000);
+    load();
+  }
   return <ACard title="SEO Ayarları">
     {!sel?<>
       <div style={{padding:12,background:"#f0f9ff",borderRadius:6,border:"1px solid #bae6fd",fontSize:12,color:"#0369a1",marginBottom:16}}>💡 Her sayfa için meta başlık ve açıklama belirleyerek arama motorlarında görünürlüğünüzü artırın.</div>
-      {pages.map((p,i)=><div key={p.id} onClick={()=>setSel(p)} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"12px 0",borderBottom:i<pages.length-1?"1px solid #f0f0f0":"none",cursor:"pointer"}}>
-        <div><div style={{fontSize:14,fontWeight:600}}>{p.n}</div><div style={{fontSize:12,color:"#059669",marginTop:2}}>{p.title}</div><div style={{fontSize:11,color:"#999"}}>{p.desc}</div></div>
+      {pageList.map((p,i)=>{const r=seoMap[p.id]||{}; return <div key={p.id} onClick={()=>setSel(p)} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"12px 0",borderBottom:i<pageList.length-1?"1px solid #f0f0f0":"none",cursor:"pointer"}}>
+        <div><div style={{fontSize:14,fontWeight:600}}>{p.n}</div><div style={{fontSize:12,color:"#059669",marginTop:2}}>{r.title||<em style={{color:"#999"}}>başlık yok</em>}</div><div style={{fontSize:11,color:"#999"}}>{r.description||"—"}</div></div>
         <span style={{color:"#ff6000",fontSize:13}}>Düzenle →</span>
-      </div>)}
-      <div style={{marginTop:20,paddingTop:16,borderTop:"1px solid #eee"}}>
-        <div style={{fontSize:14,fontWeight:700,marginBottom:12}}>Ürün SEO</div>
-        <div style={{fontSize:13,color:"#888"}}>Her ürün için SEO bilgileri ürün düzenleme ekranından ayarlanabilir. Ürün adı otomatik olarak meta başlık, açıklama ise meta description olarak kullanılır.</div>
-      </div>
+      </div>;})}
     </>:<div>
       <button onClick={()=>setSel(null)} style={{background:"none",border:"none",color:"#ff6000",fontSize:13,cursor:"pointer",marginBottom:16}}>← Geri</button>
       <div style={{fontSize:18,fontWeight:700,marginBottom:16}}>{sel.n} — SEO Ayarları</div>
       <div style={{display:"flex",flexDirection:"column",gap:14,maxWidth:500}}>
-        <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>Meta Başlık (Title)</label><AIn defaultValue={sel.title}/><div style={{fontSize:11,color:"#999",marginTop:4}}>{sel.title.length}/60 karakter</div></div>
-        <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>Meta Açıklama (Description)</label><textarea defaultValue={sel.desc} rows={3} style={{width:"100%",padding:"9px 12px",border:"1px solid #ddd",borderRadius:6,fontSize:13,resize:"vertical"}}/><div style={{fontSize:11,color:"#999",marginTop:4}}>{sel.desc.length}/160 karakter</div></div>
-        <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>Anahtar Kelimeler</label><AIn placeholder="fren, balata, disk, kamyon, tır..."/></div>
+        <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>Meta Başlık (Title)</label><AIn value={form.title} onChange={e=>setForm({...form,title:e.target.value})}/><div style={{fontSize:11,color:"#999",marginTop:4}}>{form.title.length}/60 karakter</div></div>
+        <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>Meta Açıklama (Description)</label><textarea value={form.description} onChange={e=>setForm({...form,description:e.target.value})} rows={3} style={{width:"100%",padding:"9px 12px",border:"1px solid #ddd",borderRadius:6,fontSize:13,resize:"vertical"}}/><div style={{fontSize:11,color:"#999",marginTop:4}}>{form.description.length}/160 karakter</div></div>
+        <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>Anahtar Kelimeler</label><AIn value={form.keywords} onChange={e=>setForm({...form,keywords:e.target.value})} placeholder="fren, balata, disk, kamyon, tır..."/></div>
         <div style={{padding:14,background:"#fafafa",borderRadius:8,border:"1px solid #eee"}}>
           <div style={{fontSize:12,fontWeight:600,color:"#888",marginBottom:6}}>Google Önizleme</div>
-          <div style={{fontSize:16,color:"#1a0dab",fontWeight:500}}>{sel.title}</div>
+          <div style={{fontSize:16,color:"#1a0dab",fontWeight:500}}>{form.title||sel.n}</div>
           <div style={{fontSize:13,color:"#006621"}}>frenciniz.com/{sel.id==="home"?"":sel.id}</div>
-          <div style={{fontSize:12,color:"#545454",marginTop:2}}>{sel.desc}</div>
+          <div style={{fontSize:12,color:"#545454",marginTop:2}}>{form.description}</div>
         </div>
-        <ABtn onClick={()=>{setOk(true);setTimeout(()=>setOk(false),2000)}}>{ok?"✓ Kaydedildi":"Kaydet"}</ABtn>
+        <ABtn onClick={save}>{ok?"✓ Kaydedildi":"Kaydet"}</ABtn>
       </div>
     </div>}
   </ACard>;
@@ -3578,28 +3699,43 @@ function ASeo(){
 
 // ── EMAIL TEMPLATES ──
 function AEmailTemplates(){
-  const [sel,setSel]=useState(null);const [ok,setOk]=useState(false);
-  const templates=[
-    {id:"welcome",name:"Hoş Geldin",subject:"Frenciniz'e Hoş Geldiniz!",body:"Merhaba {{isim}},\n\nFrenciniz ailesine katıldığınız için teşekkür ederiz.\n\nFren aksamı ihtiyaçlarınız için her zaman yanınızdayız.\n\nSaygılarımızla,\nFrenciniz Ekibi"},
-    {id:"order-confirm",name:"Sipariş Onayı",subject:"Siparişiniz Alındı — {{siparis_no}}",body:"Merhaba {{isim}},\n\n{{siparis_no}} numaralı siparişiniz başarıyla alınmıştır.\n\nSipariş Tutarı: {{tutar}}\nTahmini Kargo: 1-3 iş günü\n\nSiparişinizi hesabınızdan takip edebilirsiniz.\n\nSaygılarımızla,\nFrenciniz"},
-    {id:"shipped",name:"Kargoya Verildi",subject:"Siparişiniz Kargoya Verildi — {{siparis_no}}",body:"Merhaba {{isim}},\n\n{{siparis_no}} numaralı siparişiniz kargoya verilmiştir.\n\nKargo Firması: {{kargo_firma}}\nTakip No: {{takip_no}}\n\nİyi günler dileriz,\nFrenciniz"},
-    {id:"delivered",name:"Teslim Edildi",subject:"Siparişiniz Teslim Edildi — {{siparis_no}}",body:"Merhaba {{isim}},\n\n{{siparis_no}} numaralı siparişiniz teslim edilmiştir.\n\nAlışveriş deneyiminizi değerlendirmenizi rica ederiz.\n\nTeşekkürler,\nFrenciniz"},
-    {id:"stock-notify",name:"Stok Bildirimi",subject:"İstediğiniz Ürün Stoğa Girdi!",body:"Merhaba,\n\nTakip ettiğiniz {{urun_adi}} ürünü tekrar stoklara girmiştir.\n\nHemen sipariş vermek için sitemizi ziyaret edin.\n\nFrenciniz"},
-  ];
+  const defaults={
+    welcome:{name:"Hoş Geldin",subject:"Frenciniz'e Hoş Geldiniz!",body:"Merhaba {{isim}},\n\nFrenciniz ailesine katıldığınız için teşekkür ederiz."},
+    "order-confirm":{name:"Sipariş Onayı",subject:"Siparişiniz Alındı — {{siparis_no}}",body:"Merhaba {{isim}},\n\n{{siparis_no}} numaralı siparişiniz alınmıştır. Tutar: {{tutar}}"},
+    shipped:{name:"Kargoya Verildi",subject:"Siparişiniz Kargoya Verildi — {{siparis_no}}",body:"Merhaba {{isim}},\n\nSiparişiniz kargoya verildi. Kargo: {{kargo_firma}} — Takip: {{takip_no}}"},
+    delivered:{name:"Teslim Edildi",subject:"Siparişiniz Teslim Edildi — {{siparis_no}}",body:"Merhaba {{isim}},\n\nSiparişiniz teslim edildi. Yorumunuzu bekliyoruz."},
+    "stock-notify":{name:"Stok Bildirimi",subject:"İstediğiniz Ürün Stoğa Girdi!",body:"Takip ettiğiniz {{urun_adi}} ürünü tekrar stoklara girmiştir."},
+  };
+  const [items,setItems]=useState([]);
+  const [sel,setSel]=useState(null);
+  const [form,setForm]=useState({subject:"",body:"",name:""});
+  const [ok,setOk]=useState(false);
+  async function load(){
+    const d=await fetch("/api/admin/email-templates",{credentials:"include"}).then(r=>r.json());
+    const merged=(d.templates||[]).map(t=>{const def=defaults[t.id]||{}; return {...def,...t,name:t.name||def.name||t.id,subject:t.subject||def.subject||"",body:t.body||def.body||""}});
+    setItems(merged);
+  }
+  useEffect(()=>{load()},[]);
+  useEffect(()=>{if(sel) setForm({name:sel.name,subject:sel.subject,body:sel.body})},[sel]);
+  async function save(){
+    await fetch("/api/admin/email-templates",{method:"POST",credentials:"include",headers:{"Content-Type":"application/json"},body:JSON.stringify({id:sel.id,...form})});
+    setOk(true); setTimeout(()=>setOk(false),2000);
+    load();
+  }
   return <ACard title="E-posta Şablonları">
     {!sel?<>
       <div style={{padding:12,background:"#f0f9ff",borderRadius:6,border:"1px solid #bae6fd",fontSize:12,color:"#0369a1",marginBottom:16}}>💡 Şablonlarda {"{{isim}}"}, {"{{siparis_no}}"}, {"{{tutar}}"} gibi değişkenler otomatik doldurulur.</div>
-      {templates.map((t,i)=><div key={t.id} onClick={()=>setSel(t)} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"14px 0",borderBottom:i<templates.length-1?"1px solid #f0f0f0":"none",cursor:"pointer"}}>
-        <div><div style={{fontSize:14,fontWeight:600}}>📨 {t.name}</div><div style={{fontSize:12,color:"#888",marginTop:2}}>Konu: {t.subject}</div></div>
+      {items.map((t,i)=><div key={t.id} onClick={()=>setSel(t)} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"14px 0",borderBottom:i<items.length-1?"1px solid #f0f0f0":"none",cursor:"pointer"}}>
+        <div><div style={{fontSize:14,fontWeight:600}}>📨 {t.name}</div><div style={{fontSize:12,color:"#888",marginTop:2}}>Konu: {t.subject||<em>boş</em>}</div></div>
         <span style={{color:"#ff6000",fontSize:13}}>Düzenle →</span>
       </div>)}
     </>:<div>
       <button onClick={()=>setSel(null)} style={{background:"none",border:"none",color:"#ff6000",fontSize:13,cursor:"pointer",marginBottom:16}}>← Geri</button>
-      <div style={{fontSize:18,fontWeight:700,marginBottom:16}}>{sel.name} Şablonu</div>
+      <div style={{fontSize:18,fontWeight:700,marginBottom:16}}>{form.name} Şablonu</div>
       <div style={{display:"flex",flexDirection:"column",gap:14,maxWidth:600}}>
-        <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>E-posta Konusu</label><AIn defaultValue={sel.subject}/></div>
-        <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>İçerik</label><textarea defaultValue={sel.body} rows={10} style={{width:"100%",padding:12,border:"1px solid #ddd",borderRadius:6,fontSize:13,lineHeight:1.7,resize:"vertical",fontFamily:"inherit"}}/></div>
-        <div style={{display:"flex",gap:8}}><ABtn onClick={()=>{setOk(true);setTimeout(()=>setOk(false),2000)}}>{ok?"✓ Kaydedildi":"Kaydet"}</ABtn><ABtn color="#2563eb">Test Maili Gönder</ABtn></div>
+        <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>E-posta Konusu</label><AIn value={form.subject} onChange={e=>setForm({...form,subject:e.target.value})}/></div>
+        <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>İçerik</label><textarea value={form.body} onChange={e=>setForm({...form,body:e.target.value})} rows={10} style={{width:"100%",padding:12,border:"1px solid #ddd",borderRadius:6,fontSize:13,lineHeight:1.7,resize:"vertical",fontFamily:"inherit"}}/></div>
+        <div style={{display:"flex",gap:8}}><ABtn onClick={save}>{ok?"✓ Kaydedildi":"Kaydet"}</ABtn></div>
       </div>
     </div>}
   </ACard>;
@@ -3607,55 +3743,57 @@ function AEmailTemplates(){
 
 // ── CHAT HISTORY ──
 function AChatHistory(){
-  const chats=[
-    {id:1,customer:"Ziyaretçi #1042",date:"05.04.2026 14:32",messages:[
-      {from:"bot",text:"Merhaba! Size nasıl yardımcı olabilirim?",time:"14:32"},
-      {from:"user",text:"ABS sensörü arıyorum, MAN TGA'ya uyar mı?",time:"14:33"},
-      {from:"bot",text:"OEM veya parça kodunu paylaşırsanız stok ve fiyat bilgisini hemen kontrol edebiliriz.",time:"14:33"},
-      {from:"user",text:"441 032 578 0 OEM numaralı",time:"14:34"},
-      {from:"bot",text:"Bu konuda teknik ekibimiz size yardımcı olabilir. Araç bilgilerinizi paylaşır mısınız?",time:"14:35"},
-    ]},
-    {id:2,customer:"Ahmet Y.",date:"05.04.2026 11:15",messages:[
-      {from:"bot",text:"Merhaba! Size nasıl yardımcı olabilirim?",time:"11:15"},
-      {from:"user",text:"Sipariş FRN-4821 ne zaman kargoya verilecek?",time:"11:16"},
-      {from:"bot",text:"Sipariş ve kargo takibi için sipariş numaranızı paylaşabilir misiniz?",time:"11:17"},
-    ]},
-    {id:3,customer:"Ziyaretçi #1038",date:"04.04.2026 16:48",messages:[
-      {from:"bot",text:"Merhaba! Size nasıl yardımcı olabilirim?",time:"16:48"},
-      {from:"user",text:"Toplu alım için fiyat alabilir miyim?",time:"16:49"},
-      {from:"bot",text:"Toplu alım için özel fiyat teklifi hazırlayabiliriz. Miktar ve ürün detaylarını iletir misiniz?",time:"16:50"},
-      {from:"user",text:"50 adet kampana balata ve 20 adet fren diski",time:"16:51"},
-    ]},
-  ];
+  const [sessions,setSessions]=useState([]);
+  const [loading,setLoading]=useState(true);
   const [sel,setSel]=useState(null);
-  return <ACard title={`Canlı Destek Geçmişi (${chats.length} sohbet)`}>
-    {!sel?chats.map((ch,i)=>(
-      <div key={ch.id} onClick={()=>setSel(ch)} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"14px 0",borderBottom:i<chats.length-1?"1px solid #f0f0f0":"none",cursor:"pointer"}}>
+  const [messages,setMessages]=useState([]);
+  const [loadingMsgs,setLoadingMsgs]=useState(false);
+  useEffect(()=>{
+    fetch("/api/admin/chat-sessions",{credentials:"include"}).then(r=>r.json()).then(d=>{
+      setSessions(d.sessions||[]);
+    }).finally(()=>setLoading(false));
+  },[]);
+  useEffect(()=>{
+    if(!sel) return;
+    setLoadingMsgs(true);
+    fetch(`/api/admin/chat-messages?sid=${encodeURIComponent(sel.id)}`,{credentials:"include"}).then(r=>r.json()).then(d=>{
+      setMessages(d.messages||[]);
+    }).finally(()=>setLoadingMsgs(false));
+  },[sel]);
+  if(loading) return <div style={{padding:20,color:"#999"}}>Yükleniyor…</div>;
+  return <ACard title={`Canlı Destek Geçmişi (${sessions.length} sohbet)`}>
+    {!sel?(sessions.length===0?<div style={{color:"#999",fontSize:13,padding:"12px 0"}}>Henüz chat kaydı yok.</div>:sessions.map((ch,i)=>{
+      const dt=ch.lastTime?new Date(ch.lastTime).toLocaleString("tr-TR"):"";
+      const name=ch.name||ch.customer||`Ziyaretçi #${String(ch.id||"").slice(-4)}`;
+      return <div key={ch.id} onClick={()=>setSel(ch)} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"14px 0",borderBottom:i<sessions.length-1?"1px solid #f0f0f0":"none",cursor:"pointer"}}>
         <div>
-          <div style={{fontSize:14,fontWeight:600}}>{ch.customer}</div>
-          <div style={{fontSize:12,color:"#888",marginTop:2}}>{ch.messages[ch.messages.length-1]?.text?.slice(0,60)}...</div>
+          <div style={{fontSize:14,fontWeight:600}}>{name}</div>
+          <div style={{fontSize:12,color:"#888",marginTop:2}}>{(ch.lastMessage||"").slice(0,80)}</div>
         </div>
         <div style={{textAlign:"right"}}>
-          <div style={{fontSize:12,color:"#999"}}>{ch.date}</div>
-          <div style={{fontSize:11,color:"#ff6000",marginTop:2}}>{ch.messages.length} mesaj</div>
+          <div style={{fontSize:12,color:"#999"}}>{dt}</div>
+          <div style={{fontSize:11,color:"#ff6000",marginTop:2}}>{ch.messageCount||0} mesaj</div>
         </div>
-      </div>
-    )):<div>
-      <button onClick={()=>setSel(null)} style={{background:"none",border:"none",color:"#ff6000",fontSize:13,cursor:"pointer",marginBottom:16}}>← Geri</button>
+      </div>;
+    })):<div>
+      <button onClick={()=>{setSel(null);setMessages([])}} style={{background:"none",border:"none",color:"#ff6000",fontSize:13,cursor:"pointer",marginBottom:16}}>← Geri</button>
       <div style={{display:"flex",justifyContent:"space-between",marginBottom:16}}>
-        <div style={{fontSize:16,fontWeight:700}}>{sel.customer}</div>
-        <span style={{fontSize:12,color:"#999"}}>{sel.date}</span>
+        <div style={{fontSize:16,fontWeight:700}}>{sel.name||sel.customer||`Ziyaretçi #${String(sel.id||"").slice(-4)}`}</div>
+        <span style={{fontSize:12,color:"#999"}}>{sel.lastTime?new Date(sel.lastTime).toLocaleString("tr-TR"):""}</span>
       </div>
-      <div style={{background:"#f9f9f9",borderRadius:8,padding:16}}>
-        {sel.messages.map((m,i)=>(
-          <div key={i} style={{display:"flex",justifyContent:m.from==="user"?"flex-end":"flex-start",marginBottom:10}}>
-            <div style={{maxWidth:"70%",padding:"10px 14px",borderRadius:m.from==="user"?"12px 12px 2px 12px":"12px 12px 12px 2px",background:m.from==="user"?"#ff6000":"#fff",color:m.from==="user"?"#fff":"#333",fontSize:13,lineHeight:1.5}}>
-              {m.text}
-              <div style={{fontSize:10,opacity:.6,marginTop:4,textAlign:"right"}}>{m.time}</div>
-            </div>
-          </div>
-        ))}
-      </div>
+      {loadingMsgs?<div style={{color:"#999",fontSize:13}}>Mesajlar yükleniyor…</div>:
+        <div style={{background:"#f9f9f9",borderRadius:8,padding:16}}>
+          {messages.length===0?<div style={{color:"#999",fontSize:13,textAlign:"center"}}>Bu sohbette mesaj bulunmuyor.</div>:messages.map((m,i)=>{
+            const tm=m.time||(m.at?new Date(m.at).toLocaleTimeString("tr-TR",{hour:"2-digit",minute:"2-digit"}):"");
+            const isUser=m.from==="user";
+            return <div key={i} style={{display:"flex",justifyContent:isUser?"flex-end":"flex-start",marginBottom:10}}>
+              <div style={{maxWidth:"70%",padding:"10px 14px",borderRadius:isUser?"12px 12px 2px 12px":"12px 12px 12px 2px",background:isUser?"#ff6000":"#fff",color:isUser?"#fff":"#333",fontSize:13,lineHeight:1.5}}>
+                {m.text}
+                <div style={{fontSize:10,opacity:.6,marginTop:4,textAlign:"right"}}>{tm}</div>
+              </div>
+            </div>;
+          })}
+        </div>}
     </div>}
   </ACard>;
 }
@@ -3760,6 +3898,18 @@ function APaymentCfg(){
   const [gateways,setGateways]=useState({
     esnekpos:{enabled:false,mode:"test",merchantId:"",apiKey:"",secretKey:"",successUrl:"",failUrl:""},
   });
+  useEffect(()=>{
+    fetch("/api/admin/email-config",{credentials:"include"}).catch(()=>{});
+    fetch("/api/admin/settings",{credentials:"include"}).then(r=>r.json()).then(d=>{
+      if(d.settings?.gateways) setGateways(p=>({...p,...d.settings.gateways}));
+    }).catch(()=>{});
+  },[]);
+  async function savePayment(){
+    const r=await fetch("/api/admin/settings",{credentials:"include"}).then(r=>r.json()).catch(()=>({settings:{}}));
+    const merged={...(r.settings||{}),gateways};
+    await fetch("/api/admin/settings",{method:"POST",credentials:"include",headers:{"Content-Type":"application/json"},body:JSON.stringify(merged)});
+    setOk(true); setTimeout(()=>setOk(false),2000);
+  }
 
   const updateGw=(gw,field,val)=>setGateways(p=>({...p,[gw]:{...p[gw],[field]:val}}));
   const gwInfo={
@@ -3856,8 +4006,7 @@ function APaymentCfg(){
         </div>
 
         <div style={{display:"flex",gap:8,marginTop:16}}>
-          <ABtn onClick={()=>{setOk(true);setTimeout(()=>setOk(false),2000)}}>{ok?"✓ Kaydedildi":"Kaydet"}</ABtn>
-          <ABtn color="#2563eb">Bağlantıyı Test Et</ABtn>
+          <ABtn onClick={savePayment}>{ok?"✓ Kaydedildi":"Kaydet"}</ABtn>
         </div>
 
         <div style={{marginTop:16,padding:12,background:"#f0f9ff",borderRadius:6,border:"1px solid #bae6fd",fontSize:12,color:"#0369a1"}}>
