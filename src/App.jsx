@@ -1437,7 +1437,7 @@ function CheckoutPage() {
           <div style={{marginBottom:20}}>
             <label style={{fontSize:13,color:"#666",display:"block",marginBottom:8}}>Ödeme Yöntemi</label>
             <div style={{display:"grid",gridTemplateColumns:"repeat(2,1fr)",gap:8}}>
-              {[{id:"card",icon:"💳",name:"Kredi / Banka Kartı",desc:"Tami Sanal POS ile güvenli ödeme"},{id:"havale",icon:"🏦",name:"Havale / EFT",desc:"Banka havalesi ile ödeme"},{id:"taksit",icon:"📊",name:"Taksitli Ödeme",desc:"2-12 taksit imkânı"}].map(m=>(
+              {[{id:"card",icon:"💳",name:"Kredi / Banka Kartı",desc:"EsnekPOS ile güvenli ödeme"},{id:"havale",icon:"🏦",name:"Havale / EFT",desc:"Banka havalesi ile ödeme"},{id:"taksit",icon:"📊",name:"Taksitli Ödeme",desc:"2-12 taksit imkânı"}].map(m=>(
                 <div key={m.id} style={{padding:"12px 14px",border:"2px solid #eee",borderRadius:8,cursor:"pointer",display:"flex",alignItems:"center",gap:10,transition:"border-color .2s"}}
                   onMouseEnter={e=>e.currentTarget.style.borderColor="#ff6000"} onMouseLeave={e=>e.currentTarget.style.borderColor="#eee"}>
                   <span style={{fontSize:22}}>{m.icon}</span>
@@ -1448,7 +1448,7 @@ function CheckoutPage() {
           </div>
           {/* Card logos */}
           <div style={{display:"flex",gap:12,marginBottom:16,alignItems:"center"}}>
-            <img src="/payment/tami.webp" alt="Tami Sanal POS" width={84} height={28} style={{display:"block",borderRadius:4}} onError={e=>{e.target.src="/payment/tami.png"}}/>
+            <img src="/payment/esnekpos.webp" alt="EsnekPOS Elekse" width={88} height={28} style={{display:"block",borderRadius:4,background:"#fff",padding:"2px 6px"}}/>
             <span style={{fontSize:11,color:"#999",marginLeft:4}}>ile güvenli ödeme</span>
           </div>
           <div style={{marginBottom:14}}><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>Kart Numarası</label>
@@ -1467,7 +1467,7 @@ function CheckoutPage() {
           </div>
           {/* 3D Secure notice */}
           <div style={{marginTop:14,padding:"10px 14px",background:"#f0fdf4",borderRadius:6,border:"1px solid #bbf7d0",fontSize:12,color:"#15803d",display:"flex",alignItems:"center",gap:8}}>
-            🔒 Ödemeniz Tami Sanal POS 3D Secure ile korunmaktadır. Kart bilgileriniz saklanmaz.
+            🔒 Ödemeniz EsnekPOS 3D Secure ile korunmaktadır. Kart bilgileriniz saklanmaz.
           </div>
           {payError && <div style={{marginTop:10,padding:"10px 14px",background:"#fee2e2",borderRadius:6,border:"1px solid #fecaca",fontSize:13,color:"#991b1b"}}>⚠ {payError}</div>}
           <div style={{display:"flex",gap:10,marginTop:20}}>
@@ -3591,15 +3591,15 @@ function AAdminUsers(){
 
 // ── PAYMENT GATEWAY SETTINGS ──
 function APaymentCfg(){
-  const [activeGw,setActiveGw]=useState("tami");
+  const [activeGw,setActiveGw]=useState("esnekpos");
   const [ok,setOk]=useState(false);
   const [gateways,setGateways]=useState({
-    tami:{enabled:false,mode:"test",merchantId:"",apiKey:"",secretKey:"",successUrl:"",failUrl:""},
+    esnekpos:{enabled:false,mode:"test",merchantId:"",apiKey:"",secretKey:"",successUrl:"",failUrl:""},
   });
 
   const updateGw=(gw,field,val)=>setGateways(p=>({...p,[gw]:{...p[gw],[field]:val}}));
   const gwInfo={
-    tami:{name:"Tami Sanal POS",logo:"💳",color:"#e30613",docs:"https://tami.com.tr",fields:[
+    esnekpos:{name:"EsnekPOS",logo:"💳",color:"#4f46ff",docs:"https://esnekpos.com",fields:[
       {key:"merchantId",label:"Üye İşyeri No (Merchant ID)",ph:"XXXXXX"},
       {key:"apiKey",label:"API Anahtarı (API Key)",ph:"••••••••",type:"password"},
       {key:"secretKey",label:"Gizli Anahtar (Secret Key)",ph:"••••••••",type:"password"},
