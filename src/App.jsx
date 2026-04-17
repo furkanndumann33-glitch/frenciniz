@@ -1576,7 +1576,8 @@ function CheckoutPage() {
 
 // ===== AUTH — Real backend (signup/login API + httpOnly session cookie) =====
 function AuthPage() {
-  const [mode, setMode] = useState("login"); // login | register | forgot
+  const {params} = use$();
+  const [mode, setMode] = useState(params?.mode === "register" ? "register" : "login"); // login | register | forgot
   const [showPw, setShowPw] = useState(false);
   const [otpSent, setOtpSent] = useState(false);
   const [regData, setRegData] = useState({name:"",email:"",phone:"",password:""});
@@ -2622,7 +2623,8 @@ function FaqPage() {
 
 // ===== MOBILE MENU =====
 function MobileMenu() {
-  const {go, setMobileMenuOpen, t, user, favs, lang} = use$();
+  const {go, setMobileMenuOpen, setUser, t, user, favs, lang} = use$();
+  const en = lang === "en";
   return (
     <div style={{position:"fixed",inset:0,zIndex:200}}>
       <div onClick={() => setMobileMenuOpen(false)} style={{position:"absolute",inset:0,background:"rgba(0,0,0,.5)"}} />
@@ -2632,6 +2634,44 @@ function MobileMenu() {
           <button onClick={() => setMobileMenuOpen(false)} style={{background:"none",border:"none",fontSize:20,color:"#999",cursor:"pointer"}}>✕</button>
         </div>
         <div style={{padding:"12px 0"}}>
+          {/* 1. Hesap alanı — en üstte */}
+          {user ? (
+            <>
+              <button onClick={() => {go("account");setMobileMenuOpen(false)}} style={{display:"flex",alignItems:"center",gap:12,width:"100%",padding:"14px 20px",background:"#fff5f0",border:"none",fontSize:15,fontWeight:600,color:"#ff6000",cursor:"pointer",textAlign:"left"}}>
+                👤 {user.name}
+              </button>
+              <button onClick={async () => { try{await fetch("/api/auth/logout",{method:"POST",credentials:"include"})}catch{}; setUser(null); setMobileMenuOpen(false); go("home"); }} style={{display:"flex",alignItems:"center",gap:12,width:"100%",padding:"12px 20px",background:"none",border:"none",fontSize:14,color:"#888",cursor:"pointer",textAlign:"left"}}>
+                ↩ {en?"Sign Out":"Çıkış Yap"}
+              </button>
+            </>
+          ) : (
+            <>
+              <button onClick={() => {go("auth",{mode:"login"});setMobileMenuOpen(false)}} style={{display:"flex",alignItems:"center",gap:12,width:"100%",padding:"14px 20px",background:"#ff6000",border:"none",fontSize:15,fontWeight:700,color:"#fff",cursor:"pointer",textAlign:"left"}}>
+                🔑 {en?"Sign In":"Giriş Yap"}
+              </button>
+              <button onClick={() => {go("auth",{mode:"register"});setMobileMenuOpen(false)}} style={{display:"flex",alignItems:"center",gap:12,width:"100%",padding:"12px 20px",background:"none",border:"1px solid #ff6000",borderRadius:0,fontSize:14,fontWeight:600,color:"#ff6000",cursor:"pointer",textAlign:"left",margin:"8px 20px",width:"calc(100% - 40px)"}}>
+                ✏️ {en?"Sign Up":"Kayıt Ol"}
+              </button>
+            </>
+          )}
+          <button onClick={() => {go("favs");setMobileMenuOpen(false)}} style={{display:"flex",alignItems:"center",gap:12,width:"100%",padding:"12px 20px",background:"none",border:"none",fontSize:14,color:"#555",cursor:"pointer",textAlign:"left"}}>
+            ♡ {t("favs")} {favs.length>0&&`(${favs.length})`}
+          </button>
+
+          <div style={{height:1,background:"#eee",margin:"8px 20px"}} />
+
+          {/* 2. Kategoriler — ortada */}
+          <div style={{padding:"8px 20px",fontSize:12,fontWeight:700,color:"#999",textTransform:"uppercase"}}>{t("category")}</div>
+          {CATS.filter(c=>c.isGroup).map(c => (
+            <button key={c.id} onClick={() => {go("products",{cat:c.id});setMobileMenuOpen(false)}}
+              style={{display:"block",width:"100%",padding:"10px 20px 10px 32px",background:"none",border:"none",fontSize:14,color:"#555",cursor:"pointer",textAlign:"left"}}>
+              {translateCat(c,lang)}
+            </button>
+          ))}
+
+          <div style={{height:1,background:"#eee",margin:"8px 20px"}} />
+
+          {/* 3. Ana navigasyon — en altta */}
           {[
             {l:t("home"),p:"home",icon:"🏠"},
             {l:t("products"),p:"products",icon:"📦"},
@@ -2645,21 +2685,6 @@ function MobileMenu() {
               <span>{n.icon}</span>{n.l}
             </button>
           ))}
-          <div style={{height:1,background:"#eee",margin:"8px 20px"}} />
-          <div style={{padding:"8px 20px",fontSize:12,fontWeight:700,color:"#999",textTransform:"uppercase"}}>{t("category")}</div>
-          {CATS.filter(c=>c.isGroup).map(c => (
-            <button key={c.id} onClick={() => {go("products",{cat:c.id});setMobileMenuOpen(false)}}
-              style={{display:"block",width:"100%",padding:"10px 20px 10px 32px",background:"none",border:"none",fontSize:14,color:"#555",cursor:"pointer",textAlign:"left"}}>
-              {translateCat(c,lang)}
-            </button>
-          ))}
-          <div style={{height:1,background:"#eee",margin:"8px 20px"}} />
-          <button onClick={() => {go("favs");setMobileMenuOpen(false)}} style={{display:"flex",alignItems:"center",gap:12,width:"100%",padding:"12px 20px",background:"none",border:"none",fontSize:15,color:"#333",cursor:"pointer"}}>
-            ♡ {t("favs")} {favs.length>0&&`(${favs.length})`}
-          </button>
-          <button onClick={() => {go(user?"account":"auth");setMobileMenuOpen(false)}} style={{display:"flex",alignItems:"center",gap:12,width:"100%",padding:"12px 20px",background:"none",border:"none",fontSize:15,color:"#333",cursor:"pointer"}}>
-            👤 {user?user.name:t("login")}
-          </button>
         </div>
       </div>
       <style>{`@keyframes slideLeft{from{transform:translateX(-100%)}to{transform:translateX(0)}}`}</style>
