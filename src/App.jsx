@@ -843,9 +843,22 @@ export default function App() {
 // ===== CATEGORY SIDEBAR (Hiyerarşik) =====
 function CategorySidebar({go, activeCat, onSelect, isFixed}) {
   const [openGroup, setOpenGroup] = useState(null);
+  const [headerH, setHeaderH] = useState(190);
   const {t, lang} = use$();
   const groups = getGroups();
-  const fixedStyle = isFixed ? {position:"fixed",left:0,top:120,width:220,height:"calc(100vh - 120px)",overflowY:"auto",borderRight:"1px solid #eee",background:"#fff",padding:"12px 0",zIndex:50} : {};
+  useEffect(() => {
+    if (!isFixed) return;
+    const measure = () => {
+      const h = document.querySelector("header");
+      if (h) setHeaderH(h.getBoundingClientRect().height);
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    const ro = window.ResizeObserver ? new ResizeObserver(measure) : null;
+    if (ro && document.querySelector("header")) ro.observe(document.querySelector("header"));
+    return () => { window.removeEventListener("resize", measure); if (ro) ro.disconnect(); };
+  }, [isFixed]);
+  const fixedStyle = isFixed ? {position:"fixed",left:0,top:headerH,width:220,height:`calc(100vh - ${headerH}px)`,overflowY:"auto",borderRight:"1px solid #eee",background:"#fff",padding:"12px 0",zIndex:50} : {};
   return (
     <aside style={fixedStyle}>
       {isFixed && <div style={{padding:"4px 16px 10px",fontSize:13,fontWeight:700,color:"#1a1a1a",borderBottom:"1px solid #f0f0f0",marginBottom:6}}>{t("categories")}</div>}
