@@ -667,12 +667,12 @@ export default function App() {
               </div>
             </div>
           </div>
-          <div style={isMobile ? {padding:"10px 16px",display:"flex",alignItems:"center",gap:12} : {padding:"8px 24px",display:"grid",gridTemplateColumns:"1fr auto 1fr",alignItems:"center",gap:20}}>
+          <div style={isMobile ? {padding:"10px 16px",display:"flex",alignItems:"center",gap:12} : {padding:"8px 24px",display:"grid",gridTemplateColumns:"minmax(0,1fr) auto minmax(0,1fr)",alignItems:"center",gap:16}}>
             {/* Mobile hamburger */}
             {isMobile && <button onClick={()=>setMobileMenuOpen(!mobileMenuOpen)} style={{background:"none",border:"none",fontSize:22,color:"#333",padding:4,cursor:"pointer"}}>☰</button>}
 
             <div style={{cursor:"pointer",flexShrink:0,justifySelf:"start"}} onClick={() => go("home")}>
-              <img src="/logo.webp?v=2" alt="Frenciniz" width={isMobile?110:190} height={isMobile?56:95} fetchpriority="high" style={{height:isMobile?56:95,width:"auto",display:"block",imageRendering:"auto"}} onError={e=>{e.target.src="/logo.png?v=2"}}/>
+              <img src="/logo.webp?v=3" alt="Frenciniz" width={isMobile?130:400} height={isMobile?46:140} fetchpriority="high" style={{height:isMobile?46:140,width:"auto",display:"block",imageRendering:"auto"}} onError={e=>{e.target.src="/logo.png?v=3"}}/>
             </div>
 
             {/* Desktop: arama tam ortada (grid center col) */}
@@ -787,7 +787,7 @@ export default function App() {
             <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr 1fr":"2fr 1fr 1fr 1fr",gap:isMobile?20:32}}>
               <div style={isMobile?{gridColumn:"1 / -1"}:{}}>
                 <div style={{cursor:"pointer",marginBottom:12}} onClick={()=>go("home")}>
-                  <img src="/logo.webp?v=2" alt="Frenciniz" width={120} height={80} loading="lazy" decoding="async" style={{height:80,width:"auto",display:"block"}} onError={e=>{e.target.src="/logo.png?v=2"}}/>
+                  <img src="/logo.webp?v=3" alt="Frenciniz" width={120} height={80} loading="lazy" decoding="async" style={{height:80,width:"auto",display:"block"}} onError={e=>{e.target.src="/logo.png?v=3"}}/>
                 </div>
                 <p style={{fontSize:13,color:"#888",lineHeight:1.7}}>{lang==="en"?"Brake parts for buses, trucks, tractors and trailers.":"Otobüs, kamyon, tır ve dorse için fren aksamı ürünleri."}</p>
                 <div style={{display:"flex",gap:10,marginTop:14}}>
@@ -2644,7 +2644,7 @@ function MobileMenu() {
       <div onClick={() => setMobileMenuOpen(false)} style={{position:"absolute",inset:0,background:"rgba(0,0,0,.5)"}} />
       <div style={{position:"absolute",top:0,left:0,bottom:0,width:280,background:"#fff",overflowY:"auto",animation:"slideLeft .25s ease",boxShadow:"4px 0 20px rgba(0,0,0,.1)"}}>
         <div style={{padding:"12px 16px",borderBottom:"1px solid #eee",display:"flex",justifyContent:"space-between",alignItems:"center",gap:8}}>
-          <img src="/logo.webp?v=2" alt="Frenciniz" onClick={() => {go("home");setMobileMenuOpen(false)}} onError={e=>{e.target.src="/logo.png?v=2"}} style={{flex:1,width:"100%",maxHeight:90,objectFit:"contain",cursor:"pointer",display:"block"}} />
+          <img src="/logo.webp?v=3" alt="Frenciniz" onClick={() => {go("home");setMobileMenuOpen(false)}} onError={e=>{e.target.src="/logo.png?v=3"}} style={{flex:1,width:"100%",maxHeight:90,objectFit:"contain",cursor:"pointer",display:"block"}} />
           <button onClick={() => setMobileMenuOpen(false)} style={{background:"none",border:"none",fontSize:22,color:"#999",cursor:"pointer",flexShrink:0,padding:"4px 8px"}}>✕</button>
         </div>
         <div style={{padding:"12px 0"}}>
