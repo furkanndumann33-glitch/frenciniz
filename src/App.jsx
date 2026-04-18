@@ -2643,9 +2643,9 @@ function MobileMenu() {
     <div style={{position:"fixed",inset:0,zIndex:200}}>
       <div onClick={() => setMobileMenuOpen(false)} style={{position:"absolute",inset:0,background:"rgba(0,0,0,.5)"}} />
       <div style={{position:"absolute",top:0,left:0,bottom:0,width:280,background:"#fff",overflowY:"auto",animation:"slideLeft .25s ease",boxShadow:"4px 0 20px rgba(0,0,0,.1)"}}>
-        <div style={{padding:"16px 20px",borderBottom:"1px solid #eee",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-          <img src="/logo.webp" alt="Frenciniz" onClick={() => {go("home");setMobileMenuOpen(false)}} onError={e=>{e.target.src="/logo.png"}} style={{height:32,width:"auto",cursor:"pointer",display:"block"}} />
-          <button onClick={() => setMobileMenuOpen(false)} style={{background:"none",border:"none",fontSize:20,color:"#999",cursor:"pointer"}}>✕</button>
+        <div style={{padding:"12px 16px",borderBottom:"1px solid #eee",display:"flex",justifyContent:"space-between",alignItems:"center",gap:8}}>
+          <img src="/logo.webp" alt="Frenciniz" onClick={() => {go("home");setMobileMenuOpen(false)}} onError={e=>{e.target.src="/logo.png"}} style={{flex:1,width:"100%",maxHeight:90,objectFit:"contain",cursor:"pointer",display:"block"}} />
+          <button onClick={() => setMobileMenuOpen(false)} style={{background:"none",border:"none",fontSize:22,color:"#999",cursor:"pointer",flexShrink:0,padding:"4px 8px"}}>✕</button>
         </div>
         <div style={{padding:"12px 0"}}>
           {/* 1. Hesap alanı — en üstte */}
