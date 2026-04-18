@@ -300,13 +300,21 @@ function useIsMobile(breakpoint = 768) {
 let PRODUCTS = [];
 let CATS = [{id:"all",name:"Tüm Ürünler",parent:null}];
 
-// CDN proxy — S3 görsellerini hızlı CDN üzerinden cache'le ve sıkıştır
+// CDN proxy — S3 görsellerini hızlı CDN üzerinden cache'le ve sıkıştır.
+// output=avif + fallback webp yerine wsrv'nin "auto format" parametresi `af=1` ile
+// tarayıcının Accept header'ına göre AVIF (desteklerse) veya WebP servis edilir.
+// q=55: liste/thumbnail görseller için uygun (algısal fark yok, boyut %25 daha küçük).
 function cdnImg(url, w) {
   if (!url || url.includes("placehold")) return url;
-  // Local/relative path (örn: /logo.png) → CDN'e gönderme, direkt kullan
   if (url.startsWith("/") || url.startsWith("data:") || url.startsWith("blob:")) return url;
-  // wsrv.nl: CDN proxy + WebP + maxage=1y uzun cache (edge cache'i uzun tutar)
-  return `https://wsrv.nl/?url=${encodeURIComponent(url)}&w=${w||300}&q=70&output=webp&maxage=1y`;
+  return `https://wsrv.nl/?url=${encodeURIComponent(url)}&w=${w||300}&q=55&af=1&maxage=1y`;
+}
+// Responsive srcset — tarayıcı dpr/viewport'a göre en uygun boyutu seçer.
+function cdnSrcSet(url, w) {
+  if (!url || url.includes("placehold") || url.startsWith("/") || url.startsWith("data:") || url.startsWith("blob:")) return undefined;
+  const w1 = Math.round(w * 1);
+  const w2 = Math.round(w * 2);
+  return `${cdnImg(url, w1)} ${w1}w, ${cdnImg(url, w2)} ${w2}w`;
 }
 // Direkt kaynak URL (CDN fail olursa fallback)
 function directImg(url) {
@@ -315,9 +323,12 @@ function directImg(url) {
   return url;
 }
 
-// Ürün görsellerini arka planda önceden indir (CDN cache'i ısıtır)
+// Ürün görsellerini arka planda önceden indir (CDN cache'i ısıtır).
+// Mobilde data tasarrufu: 20 görsel yeterli; desktop'ta 60.
 function preloadImages(prods) {
-  const imgs = prods.filter(p => p.img && !p.img.includes("placehold")).slice(0, 80).map(p => cdnImg(p.img, 300));
+  const isMob = typeof window !== 'undefined' && window.innerWidth < 768;
+  const limit = isMob ? 20 : 60;
+  const imgs = prods.filter(p => p.img && !p.img.includes("placehold")).slice(0, limit).map(p => cdnImg(p.img, isMob ? 200 : 300));
   let i = 0;
   function next() {
     if (i >= imgs.length) return;
@@ -325,8 +336,9 @@ function preloadImages(prods) {
     img.src = imgs[i++];
     img.onload = img.onerror = () => setTimeout(next, 0);
   }
-  // 12 paralel indirme (wsrv.nl paralel işlemde hızlı)
-  for (let j = 0; j < 12; j++) next();
+  // 8 paralel indirme — çok paralel CDN'i boğar, fayda yerine zarar
+  const parallel = isMob ? 4 : 8;
+  for (let j = 0; j < parallel; j++) next();
 }
 // Yardımcı: Grup ID'ye ait tüm alt kategori id'lerini döndür
 function getSubCatIds(groupId) {
@@ -887,21 +899,23 @@ function linkifyContacts(text) {
 }
 
 // ===== OPTIMIZED IMAGE with skeleton + CDN =====
-// stage: 0=CDN (webp+resize), 1=direkt kaynak, 2=logo
+// stage: 0=CDN (avif/webp + resize + srcset), 1=direkt kaynak, 2=logo
 function OptImg({src, alt, w, h, style, cdnW, eager}) {
   const [loaded, setLoaded] = useState(false);
   const [stage, setStage] = useState(0);
-  // CDN 3sn'de yüklenmezse direkt S3'e atla
+  // CDN 6sn'de yüklenmezse direkt S3'e atla (3sn çok agresif, yavaş 3G/4G'de CDN'e haksızlık ediyordu)
   useEffect(() => {
     if (stage !== 0 || loaded) return;
-    const timer = setTimeout(() => { if (!loaded) { setStage(1); } }, 3000);
+    const timer = setTimeout(() => { if (!loaded) { setStage(1); } }, 6000);
     return () => clearTimeout(timer);
   }, [stage, loaded, src]);
-  const finalSrc = stage === 0 ? cdnImg(src, cdnW || 300) : stage === 1 ? directImg(src) : "/logo-small.webp";
+  const baseW = cdnW || 300;
+  const finalSrc = stage === 0 ? cdnImg(src, baseW) : stage === 1 ? directImg(src) : "/logo-small.webp";
+  const srcSet = stage === 0 ? cdnSrcSet(src, baseW) : undefined;
   return (
     <>
       {!loaded && <div style={{width:w||"100%",height:h||"100%",background:"linear-gradient(90deg,#f0f0f0 25%,#e0e0e0 50%,#f0f0f0 75%)",backgroundSize:"200% 100%",animation:"shimmer 1.5s infinite",borderRadius:4,...(style||{})}} />}
-      <img src={finalSrc} alt={alt||""} width={w} height={h}
+      <img src={finalSrc} srcSet={srcSet} sizes={w ? `${w}px` : undefined} alt={alt||""} width={w} height={h}
         loading={eager ? "eager" : "lazy"} decoding="async" fetchpriority={eager ? "high" : "auto"}
         style={{...style,display:loaded?"block":"none"}}
         onLoad={()=>setLoaded(true)}
@@ -2710,18 +2724,18 @@ function ImageGallery({images, discount}) {
       {/* Main image */}
       <div onClick={() => setZoomed(true)}
         style={{background:"#f9f9f9",borderRadius:8,height:400,display:"flex",alignItems:"center",justifyContent:"center",border:"1px solid #eee",position:"relative",cursor:"zoom-in",overflow:"hidden"}}>
-        <img src={cdnImg(images[active],600)} alt="" style={{maxWidth:"80%",maxHeight:"80%",objectFit:"contain",transition:"transform .3s"}} onError={e=>{e.target.style.display="none"}}/>
+        <img src={cdnImg(images[active],600)} srcSet={cdnSrcSet(images[active],600)} sizes="(max-width: 768px) 90vw, 600px" alt="" fetchpriority="high" decoding="async" style={{maxWidth:"80%",maxHeight:"80%",objectFit:"contain",transition:"transform .3s"}} onError={e=>{e.target.style.display="none"}}/>
         {discount > 0 && <span style={{position:"absolute",top:16,left:16,background:"#ff6000",color:"#fff",fontSize:14,fontWeight:700,padding:"6px 14px",borderRadius:6}}>%{discount}</span>}
         <div style={{position:"absolute",bottom:12,right:12,background:"rgba(0,0,0,.5)",color:"#fff",padding:"4px 10px",borderRadius:4,fontSize:11}}>🔍 Büyütmek için tıklayın</div>
       </div>
-      
+
       {/* Thumbnails */}
       {images.length > 1 && (
         <div style={{display:"flex",gap:8,marginTop:10,overflowX:"auto",paddingBottom:4}}>
           {images.map((img, i) => (
             <div key={i} onClick={() => setActive(i)}
               style={{width:72,height:72,borderRadius:6,border:`2px solid ${active===i?"#ff6000":"#eee"}`,background:"#f9f9f9",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",flexShrink:0,transition:"border-color .2s"}}>
-              <img src={cdnImg(img,100)} alt="" loading="eager" width={72} height={72} style={{maxWidth:"85%",maxHeight:"85%",objectFit:"contain"}} onError={e=>{e.target.style.display="none"}}/>
+              <img src={cdnImg(img,100)} alt="" loading="lazy" decoding="async" width={72} height={72} style={{maxWidth:"85%",maxHeight:"85%",objectFit:"contain"}} onError={e=>{e.target.style.display="none"}}/>
             </div>
           ))}
         </div>
