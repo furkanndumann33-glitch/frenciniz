@@ -825,7 +825,6 @@ export default function App() {
             <div style={{marginTop:24,paddingTop:16,borderTop:"1px solid #333",display:"flex",flexDirection:isMobile?"column":"row",justifyContent:"space-between",alignItems:isMobile?"flex-start":"center",gap:12,fontSize:12,color:"#666"}}>
               <span>© 2026 <span onClick={()=>go("admin-login")} style={{cursor:"pointer"}}>Frenciniz</span> — {t("allRightsReserved")}</span>
               <div style={{display:"flex",alignItems:"center",gap:8,flexWrap:"wrap"}}>
-                <img src="/payment/esnekpos.webp" alt="EsnekPOS Elekse" width={75} height={24} loading="lazy" decoding="async" style={{display:"block",borderRadius:4,background:"#fff",padding:"2px 4px"}}/>
                 <img src="/payment/visa.svg" alt="Visa" width={72} height={24} loading="lazy" decoding="async" style={{display:"block"}}/>
                 <img src="/payment/mastercard.svg" alt="Mastercard" width={72} height={24} loading="lazy" decoding="async" style={{display:"block"}}/>
                 <img src="/payment/troy.svg" alt="Troy" width={72} height={24} loading="lazy" decoding="async" style={{display:"block"}}/>
