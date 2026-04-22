@@ -323,22 +323,90 @@ function directImg(url) {
   return url;
 }
 
+// ===== SEO HELPERS =====
+const SITE_URL = "https://frenciniz.com";
+
+function setMeta(name, content, attr = "name") {
+  if (typeof document === 'undefined' || !content) return;
+  let el = document.head.querySelector(`meta[${attr}="${name}"]`);
+  if (!el) {
+    el = document.createElement("meta");
+    el.setAttribute(attr, name);
+    document.head.appendChild(el);
+  }
+  el.setAttribute("content", content);
+}
+
+function setLink(rel, href) {
+  if (typeof document === 'undefined' || !href) return;
+  let el = document.head.querySelector(`link[rel="${rel}"]`);
+  if (!el) {
+    el = document.createElement("link");
+    el.setAttribute("rel", rel);
+    document.head.appendChild(el);
+  }
+  el.setAttribute("href", href);
+}
+
+function setJsonLd(id, data) {
+  if (typeof document === 'undefined') return;
+  let el = document.head.querySelector(`script[data-jsonld="${id}"]`);
+  if (data == null) {
+    if (el) el.remove();
+    return;
+  }
+  if (!el) {
+    el = document.createElement("script");
+    el.type = "application/ld+json";
+    el.setAttribute("data-jsonld", id);
+    document.head.appendChild(el);
+  }
+  el.textContent = JSON.stringify(data);
+}
+
+function applySEO({title, description, canonical, ogImage, robots}) {
+  if (typeof document === 'undefined') return;
+  if (title) document.title = title;
+  if (description) {
+    setMeta("description", description);
+    setMeta("og:description", description, "property");
+    setMeta("twitter:description", description);
+  }
+  if (title) {
+    setMeta("og:title", title, "property");
+    setMeta("twitter:title", title);
+  }
+  setLink("canonical", canonical || (typeof window !== 'undefined' ? window.location.origin + window.location.pathname : SITE_URL));
+  setMeta("og:url", canonical || (typeof window !== 'undefined' ? window.location.href : SITE_URL), "property");
+  if (ogImage) {
+    setMeta("og:image", ogImage, "property");
+    setMeta("twitter:image", ogImage);
+  }
+  setMeta("robots", robots || "index, follow, max-image-preview:large, max-snippet:-1");
+}
+
 // Ürün görsellerini arka planda önceden indir (CDN cache'i ısıtır).
-// Mobilde data tasarrufu: 20 görsel yeterli; desktop'ta 60.
+// Idle time'da çalışır — first paint'i bloklamaz.
 function preloadImages(prods) {
-  const isMob = typeof window !== 'undefined' && window.innerWidth < 768;
-  const limit = isMob ? 20 : 60;
+  if (typeof window === 'undefined') return;
+  const isMob = window.innerWidth < 768;
+  const limit = isMob ? 12 : 24;
   const imgs = prods.filter(p => p.img && !p.img.includes("placehold")).slice(0, limit).map(p => cdnImg(p.img, isMob ? 200 : 300));
   let i = 0;
   function next() {
     if (i >= imgs.length) return;
     const img = new Image();
+    img.decoding = "async";
     img.src = imgs[i++];
-    img.onload = img.onerror = () => setTimeout(next, 0);
+    img.onload = img.onerror = () => {
+      if ('requestIdleCallback' in window) requestIdleCallback(next, {timeout: 1000});
+      else setTimeout(next, 16);
+    };
   }
-  // 8 paralel indirme — çok paralel CDN'i boğar, fayda yerine zarar
-  const parallel = isMob ? 4 : 8;
-  for (let j = 0; j < parallel; j++) next();
+  const parallel = isMob ? 2 : 4;
+  const start = () => { for (let j = 0; j < parallel; j++) next(); };
+  if ('requestIdleCallback' in window) requestIdleCallback(start, {timeout: 2000});
+  else setTimeout(start, 300);
 }
 // Yardımcı: Grup ID'ye ait tüm alt kategori id'lerini döndür
 function getSubCatIds(groupId) {
@@ -598,6 +666,121 @@ export default function App() {
   const cartCount = cart.reduce((s,c) => s + c.qty, 0);
   const cartTotal = cart.reduce((s,c) => s + c.price * c.qty, 0);
   const discount = couponApplied ? Math.round(cartTotal * 0.1) : 0;
+
+  // ===== SEO: sayfa değiştiğinde meta + JSON-LD güncelle =====
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const baseTitle = "Frenciniz - Ağır Vasıta Fren Aksamı ve Yedek Parça";
+    const baseDesc = "Kamyon, tır, otobüs ve dorse için ECE R-90 sertifikalı fren diski, balata, kampana, kaliper, EBS modülatör ve ABS sensörü. Aynı gün kargo, 12 taksit.";
+    const baseImg = `${SITE_URL}/logo.png`;
+
+    // Önceki sayfa-spesifik JSON-LD'yi temizle
+    setJsonLd("page-product", null);
+    setJsonLd("page-itemlist", null);
+    setJsonLd("page-breadcrumb", null);
+
+    let title = baseTitle, desc = baseDesc, canonical = `${SITE_URL}${window.location.pathname}`, img = baseImg, robots;
+
+    if (page === "home") {
+      title = baseTitle;
+      desc = baseDesc;
+      canonical = `${SITE_URL}/`;
+    } else if (page === "products") {
+      const cat = params?.cat ? cats.find(c => c.id === params.cat) : null;
+      const catName = cat ? (cat.name || params.cat) : null;
+      if (catName) {
+        title = `${catName} - Frenciniz`;
+        desc = `${catName} kategorisindeki tüm ürünler. ECE R-90 sertifikalı, orijinal ve eşdeğer parça. Aynı gün kargo, 12 taksit, 14 gün iade.`;
+        canonical = `${SITE_URL}/${cat.id}`;
+      } else if (params?.q) {
+        title = `"${params.q}" arama sonuçları - Frenciniz`;
+        desc = `"${params.q}" için Frenciniz fren aksamı ürün sonuçları.`;
+        robots = "noindex, follow";
+      } else if (params?.brand) {
+        title = `${params.brand} fren aksamı ürünleri - Frenciniz`;
+        desc = `${params.brand} marka uyumlu fren diski, balata, kampana, kaliper. ECE R-90 sertifikalı.`;
+        canonical = `${SITE_URL}/?brand=${encodeURIComponent(params.brand)}`;
+      } else if (params?.veh) {
+        const vname = ({kamyon:"Kamyon",tir:"Tır",otobus:"Otobüs",dorse:"Dorse"})[params.veh] || params.veh;
+        title = `${vname} fren aksamı - Frenciniz`;
+        desc = `${vname} için fren diski, balata, kampana ve diğer fren parçaları.`;
+        canonical = `${SITE_URL}/?veh=${encodeURIComponent(params.veh)}`;
+      } else {
+        title = "Tüm ürünler - Frenciniz";
+        desc = "Frenciniz'deki tüm fren aksamı ve ağır vasıta yedek parça ürünleri.";
+        canonical = `${SITE_URL}/urunler`;
+      }
+    } else if (page === "product") {
+      const p = products.find(x => x.id === params?.id);
+      if (p) {
+        title = `${p.name} - ${p.brand || "Frenciniz"}`;
+        const compatStr = (p.compat || []).slice(0, 4).join(", ");
+        desc = `${p.name}. ${p.sku ? "SKU: " + p.sku + ". " : ""}${p.oem ? "OEM: " + p.oem + ". " : ""}${compatStr ? "Uyumlu: " + compatStr + ". " : ""}Frenciniz'den orijinal kalitede satın alın.`.slice(0, 300);
+        canonical = `${SITE_URL}/urun/${p.id}`;
+        const productImg = p.img && !p.img.includes("placehold") ? cdnImg(p.img, 600) : baseImg;
+        img = productImg;
+
+        // Product JSON-LD
+        const sub = cats.find(c => c.id === p.cat);
+        setJsonLd("page-product", {
+          "@context": "https://schema.org",
+          "@type": "Product",
+          "name": p.name,
+          "image": [productImg],
+          "description": (p.desc || p.name),
+          "sku": p.sku,
+          "mpn": p.oem,
+          "brand": { "@type": "Brand", "name": p.brand || "Ekersan" },
+          "category": sub ? sub.name : undefined,
+          "aggregateRating": p.rating ? {
+            "@type": "AggregateRating",
+            "ratingValue": p.rating,
+            "reviewCount": Math.max(1, p.reviews || 1)
+          } : undefined,
+          "offers": {
+            "@type": "Offer",
+            "url": canonical,
+            "priceCurrency": "TRY",
+            "price": p.price,
+            "itemCondition": "https://schema.org/NewCondition",
+            "availability": p.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+            "seller": { "@type": "Organization", "name": "Frenciniz" }
+          }
+        });
+
+        // Breadcrumb JSON-LD
+        const grp = sub?.parent ? cats.find(c => c.id === sub.parent) : null;
+        const crumbs = [{ name: "Ana Sayfa", url: `${SITE_URL}/` }];
+        if (grp) crumbs.push({ name: grp.name, url: `${SITE_URL}/${grp.id}` });
+        if (sub) crumbs.push({ name: sub.name, url: `${SITE_URL}/${sub.id}` });
+        crumbs.push({ name: p.name, url: canonical });
+        setJsonLd("page-breadcrumb", {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": crumbs.map((c, i) => ({
+            "@type": "ListItem",
+            "position": i + 1,
+            "name": c.name,
+            "item": c.url
+          }))
+        });
+      }
+    } else if (page === "contact") { title = "İletişim - Frenciniz"; desc = "Frenciniz iletişim: 0545 608 7008, WhatsApp 0850 888 7881, info@frenciniz.com. Isparta merkez."; canonical = `${SITE_URL}/contact`; }
+    else if (page === "about") { title = "Hakkımızda - Frenciniz"; desc = "Frenciniz, ağır vasıta fren aksamı uzmanı. Ekersan üretici garantisi, ECE R-90 sertifikalı."; canonical = `${SITE_URL}/about`; }
+    else if (page === "faq") { title = "Sıkça Sorulan Sorular - Frenciniz"; desc = "Kargo, ödeme, iade, garanti ve ürünler hakkında sıkça sorulan sorular."; canonical = `${SITE_URL}/faq`; }
+    else if (page === "brands") { title = "Markalar - Frenciniz"; desc = "Frenciniz'in çalıştığı marka ve uyumlu araçlar."; canonical = `${SITE_URL}/brands`; }
+    else if (page === "shipping") { title = "Kargo ve Teslimat - Frenciniz"; desc = "Aras Kargo ile aynı gün gönderim. 500₺ üzeri ücretsiz kargo."; canonical = `${SITE_URL}/shipping`; }
+    else if (page === "return-policy") { title = "İade Politikası - Frenciniz"; desc = "14 gün koşulsuz iade hakkı. Hasarlı/yanlış üründe kargo ücreti bize ait."; canonical = `${SITE_URL}/return-policy`; }
+    else if (page === "terms") { title = "Şartlar ve Koşullar - Frenciniz"; canonical = `${SITE_URL}/terms`; }
+    else if (page === "privacy") { title = "Gizlilik Politikası - Frenciniz"; canonical = `${SITE_URL}/privacy`; }
+    else if (page === "kvkk") { title = "KVKK Aydınlatma Metni - Frenciniz"; canonical = `${SITE_URL}/kvkk`; }
+    else if (page === "cart" || page === "checkout" || page === "account" || page === "auth" || page === "favs" || page === "orders" || page === "admin" || page === "admin-login" || page === "admin-panel" || page === "payment-success" || page === "payment-fail") {
+      robots = "noindex, nofollow";
+      title = `${page} - Frenciniz`;
+    }
+
+    applySEO({ title, description: desc, canonical, ogImage: img, robots });
+  }, [page, params, products, cats]);
 
   const ctx = useMemo(() => ({page, params, go, cart, addToCart, updateQty, removeItem, cartCount, cartTotal, q, setQ, favs, toggleFav, viewed, addViewed, user, setUser, addresses, setAddresses, coupon, setCoupon, couponApplied, setCouponApplied, discount, stockAlerts, addStockAlert, chatOpen, setChatOpen, chatMessages, setChatMessages, pastOrders, completePurchase, lang, setLang, curr, setCurr, t, isMobile, mobileMenuOpen, setMobileMenuOpen, mobileFilterOpen, setMobileFilterOpen, fp, admin, setAdmin, socialMedia, setSocialMedia, products, cats, dataLoaded}), [page, params, go, cart, addToCart, updateQty, removeItem, cartCount, cartTotal, q, favs, toggleFav, viewed, addViewed, user, addresses, coupon, couponApplied, discount, stockAlerts, addStockAlert, chatOpen, chatMessages, pastOrders, completePurchase, lang, curr, t, isMobile, mobileMenuOpen, mobileFilterOpen, fp, admin, products, cats, dataLoaded]);
 
@@ -910,15 +1093,34 @@ function linkifyContacts(text) {
   });
 }
 
+// ===== Chat mesajlarındaki URL/telefon/mail'leri tıklanabilir yapar =====
+function formatChatText(text) {
+  if (!text) return null;
+  const URL_RE = /(https?:\/\/[^\s)]+|0850\s?888\s?7881|0545\s?608\s?7008|info@frenciniz\.com)/g;
+  const parts = text.split(URL_RE);
+  return parts.map((part, i) => {
+    if (!part) return null;
+    const trimmed = part.trim();
+    if (trimmed.startsWith("http")) {
+      return <a key={i} href={trimmed} target="_blank" rel="noopener noreferrer" style={{color:"inherit",textDecoration:"underline",wordBreak:"break-all"}}>{trimmed}</a>;
+    }
+    const clean = trimmed.replace(/\s+/g, " ");
+    if (clean === "0850 888 7881") return <a key={i} href="https://wa.me/908508887881" target="_blank" rel="noopener noreferrer" style={{color:"inherit",textDecoration:"underline",fontWeight:600}}>{part}</a>;
+    if (clean === "0545 608 7008") return <a key={i} href="tel:+905456087008" style={{color:"inherit",textDecoration:"underline",fontWeight:600}}>{part}</a>;
+    if (clean === "info@frenciniz.com") return <a key={i} href="mailto:info@frenciniz.com" style={{color:"inherit",textDecoration:"underline"}}>{part}</a>;
+    return part;
+  });
+}
+
 // ===== OPTIMIZED IMAGE with skeleton + CDN =====
 // stage: 0=CDN (avif/webp + resize + srcset), 1=direkt kaynak, 2=logo
 function OptImg({src, alt, w, h, style, cdnW, eager}) {
   const [loaded, setLoaded] = useState(false);
   const [stage, setStage] = useState(0);
-  // CDN 6sn'de yüklenmezse direkt S3'e atla (3sn çok agresif, yavaş 3G/4G'de CDN'e haksızlık ediyordu)
+  // CDN 3.5sn'de yüklenmezse direkt S3'e atla
   useEffect(() => {
     if (stage !== 0 || loaded) return;
-    const timer = setTimeout(() => { if (!loaded) { setStage(1); } }, 6000);
+    const timer = setTimeout(() => { if (!loaded) { setStage(1); } }, 3500);
     return () => clearTimeout(timer);
   }, [stage, loaded, src]);
   const baseW = cdnW || 300;
@@ -2872,8 +3074,8 @@ function ChatWidget() {
         <div style={{flex:1,overflowY:"auto",padding:"14px 16px",display:"flex",flexDirection:"column",gap:10,background:"#f9f9f9"}}>
           {chatMessages.map((msg, i) => (
             <div key={i} style={{display:"flex",justifyContent:msg.from==="user"?"flex-end":"flex-start"}}>
-              <div style={{maxWidth:"80%",padding:"10px 14px",borderRadius:msg.from==="user"?"12px 12px 2px 12px":"12px 12px 12px 2px",background:msg.from==="user"?"#ff6000":msg.from==="admin"?"#1a73e8":"#fff",color:msg.from==="user"||msg.from==="admin"?"#fff":"#333",fontSize:13,lineHeight:1.5,boxShadow:msg.from==="bot"?"0 1px 3px rgba(0,0,0,.06)":"none",whiteSpace:"pre-line"}}>
-                {msg.text}
+              <div style={{maxWidth:"80%",padding:"10px 14px",borderRadius:msg.from==="user"?"12px 12px 2px 12px":"12px 12px 12px 2px",background:msg.from==="user"?"#ff6000":msg.from==="admin"?"#1a73e8":"#fff",color:msg.from==="user"||msg.from==="admin"?"#fff":"#333",fontSize:13,lineHeight:1.5,boxShadow:msg.from==="bot"?"0 1px 3px rgba(0,0,0,.06)":"none",whiteSpace:"pre-line",wordBreak:"break-word"}}>
+                {formatChatText(msg.text)}
                 <div style={{fontSize:10,opacity:.6,marginTop:4,textAlign:"right"}}>{formatTime(msg.time)}</div>
               </div>
             </div>

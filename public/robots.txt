@@ -1,0 +1,26 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /admin-login
+Disallow: /admin-panel
+Disallow: /admin.html
+Disallow: /api/
+Disallow: /odeme-basarili
+Disallow: /odeme-basarisiz
+Disallow: /checkout
+Disallow: /account
+Disallow: /cart
+
+# Önemli botlar için aynı kurallar
+User-agent: Googlebot
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+# Crawl yavaşlatma yok — küçük site
+Sitemap: https://frenciniz.com/sitemap.xml
