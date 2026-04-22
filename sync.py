@@ -531,13 +531,29 @@ def main():
         f.write(json.dumps(cats_list, ensure_ascii=False).encode("utf-8"))
     log("JSON dosyaları güncellendi")
 
+    # ───── Görsel cache ─────
+    # cache_images.py products.json'u okur, S3 URL'lerini /img/*.webp'ye
+    # dönüştürür ve products.json'u tekrar yazar. Yeni eklenen ürünlerin
+    # görselleri indirilir, mevcut olanlar atlanır.
+    cache_script = os.path.join(BASE_DIR, "cache_images.py")
+    if os.path.exists(cache_script):
+        log("Görseller indiriliyor (cache_images.py)...")
+        try:
+            subprocess.run([sys.executable, cache_script], check=True)
+            log("Görsel cache tamamlandı")
+        except subprocess.CalledProcessError as e:
+            log(f"UYARI: Görsel cache hatası, devam ediliyor: {e}")
+
     # Push (DRY_RUN env ile atla)
     if os.environ.get("DRY_RUN"):
         log(f"DRY_RUN: push atlandı. {len(final)} ürün hazır.")
         return
     log("GitHub'a push ediliyor...")
     os.chdir(BASE_DIR)
-    subprocess.run(["git", "add", "public/data/products.json", "public/data/categories.json"], check=True)
+    subprocess.run(["git", "add",
+        "public/data/products.json",
+        "public/data/categories.json",
+        "public/img"], check=True)
     now = datetime.now().strftime("%d.%m.%Y %H:%M")
     sub_count = len([c for c in cats_list if c.get("parent") and not c.get("isGroup")])
     grp_count = len([c for c in cats_list if c.get("isGroup")])

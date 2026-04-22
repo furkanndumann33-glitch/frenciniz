@@ -300,40 +300,33 @@ function useIsMobile(breakpoint = 768) {
 let PRODUCTS = [];
 let CATS = [{id:"all",name:"Tüm Ürünler",parent:null}];
 
-// CDN proxy — kendi /api/img Edge endpoint'imiz üzerinden Vercel CDN cache.
-// İlk istek wsrv'a gider, sonraki istekler Vercel Edge'den ms cinsinden döner.
-// Boyutları standartlaştırıyoruz (256/512/1024) → cache hit oranı yüksek.
-function snapW(w) {
-  const v = w || 300;
-  if (v <= 192) return 192;
-  if (v <= 320) return 320;
-  if (v <= 512) return 512;
-  if (v <= 768) return 768;
-  if (v <= 1024) return 1024;
-  return 1600;
-}
+// Görseller artık /public/img altında lokal webp olarak cache'leniyor.
+// Vercel statik CDN'den anında servis edilir — sıfır cold start, sıfır proxy.
+// Eski S3 URL'leri için fallback olarak wsrv.nl kalır.
 function cdnImg(url, w) {
   if (!url || url.includes("placehold")) return url;
-  if (url.startsWith("/") || url.startsWith("data:") || url.startsWith("blob:")) return url;
-  const sw = snapW(w);
-  return `/api/img?url=${encodeURIComponent(url)}&w=${sw}&q=50`;
+  // Lokal /img/* veya /logo* zaten optimize ve cache'li
+  if (url.startsWith("/")) return url;
+  if (url.startsWith("data:") || url.startsWith("blob:")) return url;
+  // Sync henüz çalışmamışsa S3 URL kalır → wsrv.nl ile resize
+  const sw = (w && w <= 320) ? 320 : (w && w <= 800) ? 800 : 1200;
+  return `https://wsrv.nl/?url=${encodeURIComponent(url)}&w=${sw}&q=55&af=1&maxage=1y`;
 }
-// wsrv.nl direkt fallback (kendi API çökerse)
 function cdnImgFallback(url, w) {
   if (!url || url.includes("placehold")) return url;
   if (url.startsWith("/") || url.startsWith("data:") || url.startsWith("blob:")) return url;
-  const sw = snapW(w);
-  return `https://wsrv.nl/?url=${encodeURIComponent(url)}&w=${sw}&q=50&af=1&maxage=1y`;
+  const sw = (w && w <= 320) ? 320 : (w && w <= 800) ? 800 : 1200;
+  return `https://wsrv.nl/?url=${encodeURIComponent(url)}&w=${sw}&q=55&af=1&maxage=1y`;
 }
-// Responsive srcset — tarayıcı dpr/viewport'a göre en uygun boyutu seçer.
+// Lokal görsel için srcset gereksiz (browser doğal boyutta servis eder).
+// Wsrv.nl URL'leri için 1x/2x srcset üret.
 function cdnSrcSet(url, w) {
-  if (!url || url.includes("placehold") || url.startsWith("/") || url.startsWith("data:") || url.startsWith("blob:")) return undefined;
-  const w1 = snapW(w);
-  const w2 = snapW(w * 2);
-  if (w1 === w2) return `${cdnImg(url, w1)} ${w1}w`;
+  if (!url || url.includes("placehold")) return undefined;
+  if (url.startsWith("/") || url.startsWith("data:") || url.startsWith("blob:")) return undefined;
+  const w1 = (w && w <= 320) ? 320 : 800;
+  const w2 = w1 === 320 ? 800 : 1200;
   return `${cdnImg(url, w1)} ${w1}w, ${cdnImg(url, w2)} ${w2}w`;
 }
-// Direkt kaynak URL (CDN fail olursa son çare)
 function directImg(url) {
   if (!url || url.includes("placehold")) return url;
   if (url.startsWith("/") || url.startsWith("data:") || url.startsWith("blob:")) return url;
@@ -494,34 +487,19 @@ export default function App() {
   const [dataLoaded, setDataLoaded] = useState(false);
 
   useEffect(() => {
-    // Önce KV API'den dene, yoksa static JSON'dan yükle
+    // Tek source of truth: statik JSON (Vercel CDN cache, anında).
+    // sync.py lokalden git push ile günceller, görseller /img/* lokal webp.
     Promise.all([
-      fetch("/api/products").then(r => r.ok ? r.json() : null).catch(() => null),
-      fetch("/api/products?type=categories").then(r => r.ok ? r.json() : null).catch(() => null),
-    ]).then(([prods, categories]) => {
-      if (prods && Array.isArray(prods) && prods.length > 0) {
-        PRODUCTS = prods;
-        CATS = categories || CATS;
-        BRANDS = deriveBrands(prods);
-        setProducts(prods);
-        if (categories) setCatsState(categories);
-        setDataLoaded(true);
-        preloadImages(prods);
-      } else {
-        // Fallback: static JSON
-        return Promise.all([
-          fetch("/data/products.json").then(r => r.json()),
-          fetch("/data/categories.json").then(r => r.json()),
-        ]).then(([p, c]) => {
-          PRODUCTS = p;
-          CATS = c;
-          BRANDS = deriveBrands(p);
-          setProducts(p);
-          setCatsState(c);
-          setDataLoaded(true);
-          preloadImages(p);
-        });
-      }
+      fetch("/data/products.json").then(r => r.json()),
+      fetch("/data/categories.json").then(r => r.json()),
+    ]).then(([p, c]) => {
+      PRODUCTS = p;
+      CATS = c;
+      BRANDS = deriveBrands(p);
+      setProducts(p);
+      setCatsState(c);
+      setDataLoaded(true);
+      preloadImages(p);
     }).catch(() => setDataLoaded(true));
   }, []);
   const [favs, setFavs] = useState([]);
@@ -1385,7 +1363,7 @@ function ProductsPage() {
     });
     if(sort==="price-asc") r=[...r].sort((a,b)=>a.price-b.price);
     else if(sort==="price-desc") r=[...r].sort((a,b)=>b.price-a.price);
-    else r=[...r].sort((a,b)=>b.reviews-a.reviews);
+    else r=[...r].sort((a,b)=>(b.reviews||0)-(a.reviews||0));
     return r;
   }, [cat,catMatch,veh,brand,sort,term]);
   // Kritik görsel preload — listenin ilk 6'sı için browser'a önceden indir
@@ -1490,13 +1468,13 @@ function ProductDetailPage() {
       </div>
       <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr",gap:isMobile?20:32,marginBottom:40}}>
         {/* Image Gallery */}
-        <ImageGallery images={hasRealImg(p) ? (p.images && p.images.length ? p.images : [p.img]) : ["/logo-small.webp"]} discount={disc} />
+        <ImageGallery images={hasRealImg(p) ? (p.images && p.images.length ? p.images : [p.img_lg || p.img]) : ["/logo-small.webp"]} discount={disc} />
         <div>
           <div style={{fontSize:13,color:"#ff6000",fontWeight:600,marginBottom:6}}>{p.brand}</div>
           <h1 style={{fontSize:24,fontWeight:700,marginBottom:8}}>{translateName(p.name,lang)}</h1>
           <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
-            <span style={{color:"#f5a623"}}>★ {p.rating}</span>
-            <span style={{color:"#999",fontSize:13}}>{p.reviews} değerlendirme</span>
+            <span style={{color:"#f5a623"}}>★ {p.rating || 4.5}</span>
+            <span style={{color:"#999",fontSize:13}}>{p.reviews || 0} değerlendirme</span>
           </div>
           <div style={{fontSize:13,color:"#999",marginBottom:16}}>SKU: {p.sku} | OEM: {p.oem}</div>
           <div style={{fontSize:14,color:"#666",lineHeight:1.7,marginBottom:16,whiteSpace:"pre-line"}}>{linkifyContacts(translateName(prodDesc(p,lang),lang))}</div>
@@ -3375,9 +3353,9 @@ function ADash(){
         })}
       </ACard>
       <ACard title="Popüler Ürünler">
-        {[...PRODUCTS].sort((a,b)=>b.reviews-a.reviews).slice(0,5).map((p,i)=>(
+        {[...PRODUCTS].sort((a,b)=>(b.reviews||0)-(a.reviews||0)).slice(0,5).map((p,i)=>(
           <div key={p.id} style={{display:"flex",justifyContent:"space-between",padding:"8px 0",borderBottom:i<4?"1px solid #f0f0f0":"none"}}>
-            <span style={{fontSize:13}}>{p.name}</span><span style={{fontSize:12,color:"#999"}}>{p.reviews}</span></div>))}
+            <span style={{fontSize:13}}>{p.name}</span><span style={{fontSize:12,color:"#999"}}>{p.reviews||0}</span></div>))}
       </ACard>
     </div></>;
 }

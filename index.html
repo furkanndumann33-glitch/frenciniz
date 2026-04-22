@@ -45,7 +45,9 @@
 
   <!-- Kritik kaynaklar: logo + ürün verisi paralel -->
   <link rel="preload" as="image" href="/logo.webp?v=3" fetchpriority="high" />
-  <link rel="preload" as="fetch" href="/data/products.json" crossorigin="anonymous" />
+  <!-- Same-origin fetch — crossorigin yok, preload eşleşir -->
+  <link rel="preload" as="fetch" href="/data/products.json" />
+  <link rel="preload" as="fetch" href="/data/categories.json" />
 
   <!-- Sitemap -->
   <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
