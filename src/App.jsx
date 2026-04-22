@@ -300,23 +300,40 @@ function useIsMobile(breakpoint = 768) {
 let PRODUCTS = [];
 let CATS = [{id:"all",name:"Tüm Ürünler",parent:null}];
 
-// CDN proxy — S3 görsellerini hızlı CDN üzerinden cache'le ve sıkıştır.
-// output=avif + fallback webp yerine wsrv'nin "auto format" parametresi `af=1` ile
-// tarayıcının Accept header'ına göre AVIF (desteklerse) veya WebP servis edilir.
-// q=55: liste/thumbnail görseller için uygun (algısal fark yok, boyut %25 daha küçük).
+// CDN proxy — kendi /api/img Edge endpoint'imiz üzerinden Vercel CDN cache.
+// İlk istek wsrv'a gider, sonraki istekler Vercel Edge'den ms cinsinden döner.
+// Boyutları standartlaştırıyoruz (256/512/1024) → cache hit oranı yüksek.
+function snapW(w) {
+  const v = w || 300;
+  if (v <= 192) return 192;
+  if (v <= 320) return 320;
+  if (v <= 512) return 512;
+  if (v <= 768) return 768;
+  if (v <= 1024) return 1024;
+  return 1600;
+}
 function cdnImg(url, w) {
   if (!url || url.includes("placehold")) return url;
   if (url.startsWith("/") || url.startsWith("data:") || url.startsWith("blob:")) return url;
-  return `https://wsrv.nl/?url=${encodeURIComponent(url)}&w=${w||300}&q=55&af=1&maxage=1y`;
+  const sw = snapW(w);
+  return `/api/img?url=${encodeURIComponent(url)}&w=${sw}&q=50`;
+}
+// wsrv.nl direkt fallback (kendi API çökerse)
+function cdnImgFallback(url, w) {
+  if (!url || url.includes("placehold")) return url;
+  if (url.startsWith("/") || url.startsWith("data:") || url.startsWith("blob:")) return url;
+  const sw = snapW(w);
+  return `https://wsrv.nl/?url=${encodeURIComponent(url)}&w=${sw}&q=50&af=1&maxage=1y`;
 }
 // Responsive srcset — tarayıcı dpr/viewport'a göre en uygun boyutu seçer.
 function cdnSrcSet(url, w) {
   if (!url || url.includes("placehold") || url.startsWith("/") || url.startsWith("data:") || url.startsWith("blob:")) return undefined;
-  const w1 = Math.round(w * 1);
-  const w2 = Math.round(w * 2);
+  const w1 = snapW(w);
+  const w2 = snapW(w * 2);
+  if (w1 === w2) return `${cdnImg(url, w1)} ${w1}w`;
   return `${cdnImg(url, w1)} ${w1}w, ${cdnImg(url, w2)} ${w2}w`;
 }
-// Direkt kaynak URL (CDN fail olursa fallback)
+// Direkt kaynak URL (CDN fail olursa son çare)
 function directImg(url) {
   if (!url || url.includes("placehold")) return url;
   if (url.startsWith("/") || url.startsWith("data:") || url.startsWith("blob:")) return url;
@@ -390,8 +407,8 @@ function applySEO({title, description, canonical, ogImage, robots}) {
 function preloadImages(prods) {
   if (typeof window === 'undefined') return;
   const isMob = window.innerWidth < 768;
-  const limit = isMob ? 12 : 24;
-  const imgs = prods.filter(p => p.img && !p.img.includes("placehold")).slice(0, limit).map(p => cdnImg(p.img, isMob ? 200 : 300));
+  const limit = isMob ? 16 : 36;
+  const imgs = prods.filter(p => p.img && !p.img.includes("placehold")).slice(0, limit).map(p => cdnImg(p.img, isMob ? 320 : 320));
   let i = 0;
   function next() {
     if (i >= imgs.length) return;
@@ -403,10 +420,40 @@ function preloadImages(prods) {
       else setTimeout(next, 16);
     };
   }
-  const parallel = isMob ? 2 : 4;
+  const parallel = isMob ? 3 : 6;
   const start = () => { for (let j = 0; j < parallel; j++) next(); };
   if ('requestIdleCallback' in window) requestIdleCallback(start, {timeout: 2000});
   else setTimeout(start, 300);
+}
+
+// Kritik görseller için <link rel=preload> runtime inject — ilk N ürünün
+// görseli sayfa parse aşamasından hemen sonra browser tarafından öncelikli
+// indirilir. Sayfa değişince temizlenir.
+function useCriticalImagePreload(items, count = 6, w = 320) {
+  useEffect(() => {
+    if (typeof document === 'undefined' || !Array.isArray(items)) return;
+    const links = [];
+    const slice = items.slice(0, count);
+    for (const it of slice) {
+      const src = it && it.img;
+      if (!src || String(src).includes("placehold")) continue;
+      const href = cdnImg(src, w);
+      const srcset = cdnSrcSet(src, w);
+      const link = document.createElement("link");
+      link.rel = "preload";
+      link.as = "image";
+      link.href = href;
+      if (srcset) {
+        link.setAttribute("imagesrcset", srcset);
+        link.setAttribute("imagesizes", `${w}px`);
+      }
+      link.setAttribute("fetchpriority", "high");
+      link.setAttribute("data-critical-img", "1");
+      document.head.appendChild(link);
+      links.push(link);
+    }
+    return () => { links.forEach(l => { try { l.remove(); } catch {} }); };
+  }, [items, count, w]);
 }
 // Yardımcı: Grup ID'ye ait tüm alt kategori id'lerini döndür
 function getSubCatIds(groupId) {
@@ -1113,27 +1160,36 @@ function formatChatText(text) {
 }
 
 // ===== OPTIMIZED IMAGE with skeleton + CDN =====
-// stage: 0=CDN (avif/webp + resize + srcset), 1=direkt kaynak, 2=logo
+// stage: 0=Vercel proxy (resize + Edge cache), 1=wsrv.nl direct, 2=S3 direct, 3=logo
 function OptImg({src, alt, w, h, style, cdnW, eager}) {
   const [loaded, setLoaded] = useState(false);
   const [stage, setStage] = useState(0);
-  // CDN 3.5sn'de yüklenmezse direkt S3'e atla
+  // Stage 0: 2.5sn'de yüklenmezse wsrv.nl'e atla; 1: 3sn → S3
   useEffect(() => {
-    if (stage !== 0 || loaded) return;
-    const timer = setTimeout(() => { if (!loaded) { setStage(1); } }, 3500);
+    if (loaded) return;
+    const timeouts = { 0: 2500, 1: 3000 };
+    const ms = timeouts[stage];
+    if (!ms) return;
+    const timer = setTimeout(() => { if (!loaded) setStage(s => s + 1); }, ms);
     return () => clearTimeout(timer);
-  }, [stage, loaded, src]);
+  }, [stage, loaded]);
   const baseW = cdnW || 300;
-  const finalSrc = stage === 0 ? cdnImg(src, baseW) : stage === 1 ? directImg(src) : "/logo-small.webp";
-  const srcSet = stage === 0 ? cdnSrcSet(src, baseW) : undefined;
+  const finalSrc =
+    stage === 0 ? cdnImg(src, baseW) :
+    stage === 1 ? cdnImgFallback(src, baseW) :
+    stage === 2 ? directImg(src) :
+    "/logo-small.webp";
+  const srcSet =
+    stage === 0 ? cdnSrcSet(src, baseW) :
+    stage === 1 ? cdnSrcSet(src, baseW) : undefined;
   return (
     <>
-      {!loaded && <div style={{width:w||"100%",height:h||"100%",background:"linear-gradient(90deg,#f0f0f0 25%,#e0e0e0 50%,#f0f0f0 75%)",backgroundSize:"200% 100%",animation:"shimmer 1.5s infinite",borderRadius:4,...(style||{})}} />}
+      {!loaded && <div aria-hidden="true" style={{position:"absolute",inset:"10%",background:"linear-gradient(90deg,#f0f0f0 25%,#e4e4e4 50%,#f0f0f0 75%)",backgroundSize:"200% 100%",animation:"shimmer 1.5s infinite",borderRadius:6,pointerEvents:"none"}} />}
       <img src={finalSrc} srcSet={srcSet} sizes={w ? `${w}px` : undefined} alt={alt||""} width={w} height={h}
         loading={eager ? "eager" : "lazy"} decoding="async" fetchpriority={eager ? "high" : "auto"}
-        style={{...style,display:loaded?"block":"none"}}
+        style={{...style, opacity: loaded ? 1 : 0, transition: "opacity .2s ease-out"}}
         onLoad={()=>setLoaded(true)}
-        onError={()=>{ if(stage<2){setStage(stage+1); setLoaded(false);} else {setLoaded(true);} }} />
+        onError={()=>{ if(stage<3){setStage(s=>s+1); setLoaded(false);} else {setLoaded(true);} }} />
     </>
   );
 }
@@ -1224,6 +1280,8 @@ function HomePage() {
     return balanced.slice(0, 8);
   }, []);
   const discounted = PRODUCTS.filter(p => p.old);
+  // Kritik görsel preload — ilk 6 popüler ürünün görselini browser'a önceden indirt
+  useCriticalImagePreload(popular, 6, 320);
 
   return <>
     {/* Sol kenar kategori çubuğu (sadece geniş ekran) - hiyerarşik */}
@@ -1330,6 +1388,8 @@ function ProductsPage() {
     else r=[...r].sort((a,b)=>b.reviews-a.reviews);
     return r;
   }, [cat,catMatch,veh,brand,sort,term]);
+  // Kritik görsel preload — listenin ilk 6'sı için browser'a önceden indir
+  useCriticalImagePreload(items, 6, 320);
 
   const activeFilters = (cat!=="all"?1:0)+(veh!=="all"?1:0)+(brand!=="all"?1:0);
 
