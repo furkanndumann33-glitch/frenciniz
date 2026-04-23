@@ -477,10 +477,20 @@ def main():
 
     # Hiyerarşik kategori listesi oluştur
     cats_list = [{"id": "all", "name": "Tüm Ürünler", "parent": None}]
-    # Grup sırasını koru, her grubun alt kategorilerini topla
-    group_order = []
-    group_children = {}  # group_id -> [(cat_id, cat_name)]
-    ungrouped = []  # CATEGORY_HIERARCHY'de olmayan kategoriler
+    # Üst sırada gösterilecek öncelikli gruplar (ana satış kategorileri).
+    # Bu listede olmayan gruplar bu liste bittikten sonra alfabetik gelir.
+    GROUP_PRIORITY = [
+        "disk",            # DİSK
+        "kampana",         # KAMPANA
+        "balata",          # BALATA
+        "circir",          # CIRCIR
+        "bijon-grup",      # BİJON
+        "porya-grup",      # PORYA
+        "kaliper-urunleri",# KALİPER ÜRÜNLERİ
+    ]
+    group_children = {}  # group_id -> [{cat_id, cat_name, parent}]
+    group_names = {}     # group_id -> group_name
+    ungrouped = []
     for cid in sorted(cats_set.keys(), key=lambda k: cats_set[k].lower()):
         cat_name = cats_set[cid]
         hier = CATEGORY_HIERARCHY.get(cat_name)
@@ -488,14 +498,26 @@ def main():
             gid = hier["group_id"]
             gname = hier["group_name"]
             if gid not in group_children:
-                group_order.append((gid, gname))
                 group_children[gid] = []
+                group_names[gid] = gname
             group_children[gid].append({"id": cid, "name": cat_name, "parent": gid})
         else:
             ungrouped.append({"id": cid, "name": cat_name, "parent": "diger-parcalar"})
-    # Grup başlıkları + alt kategoriler
-    for gid, gname in group_order:
-        cats_list.append({"id": gid, "name": gname, "parent": None, "isGroup": True})
+    # Önce öncelikli gruplar (PRIORITY sırasında), sonra kalanlar alfabetik,
+    # "Diğer Parçalar" her zaman en sonda
+    seen = set()
+    final_group_order = []
+    for gid in GROUP_PRIORITY:
+        if gid in group_children:
+            final_group_order.append(gid)
+            seen.add(gid)
+    middle = [gid for gid in sorted(group_children.keys(), key=lambda g: group_names[g].lower())
+              if gid not in seen and gid != "diger-parcalar"]
+    final_group_order.extend(middle)
+    if "diger-parcalar" in group_children:
+        final_group_order.append("diger-parcalar")
+    for gid in final_group_order:
+        cats_list.append({"id": gid, "name": group_names[gid], "parent": None, "isGroup": True})
         cats_list.extend(group_children[gid])
     # Diğer Parçalar grubu
     if ungrouped:
