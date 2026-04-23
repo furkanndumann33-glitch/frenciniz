@@ -22,6 +22,10 @@ from http.cookiejar import CookieJar
 EKERSAN_API = "https://bayi.ekersan.com/api/tr/v1"
 EKERSAN_USER = "DUMANLAR"
 EKERSAN_PASS = "320043"
+
+# Tüm B2B fiyatlarına uygulanacak satış çarpanı (kâr marjı).
+# Örn: 1.20 → B2B alış fiyatının %20 üstüne sat. Sync her çalıştığında uygulanır.
+PRICE_MULTIPLIER = 1.20
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PRODUCTS_PATH = os.path.join(BASE_DIR, "public", "data", "products.json")
 CATEGORIES_PATH = os.path.join(BASE_DIR, "public", "data", "categories.json")
@@ -453,7 +457,7 @@ def main():
             "id": pid,
             "name": a.get("name", ""),
             "sku": a.get("sku", ""),
-            "price": round(price, 2),
+            "price": round(price * PRICE_MULTIPLIER, 2),
             "old": None,
             "vat_rate": a.get("vat_rate", 0),
             "stock": int(a.get("b2b_stock_qty", 0)),
