@@ -66,13 +66,13 @@ CATEGORY_PATTERNS = [
     (r"FREN\s*AYNAS|\bAYNA\b", "Fren Aynası"),
     # Silindir
     (r"FREN\s*S[İI]L[İI]ND[İI]R|FREN-S[İI]L[İI]ND[İI]R", "Fren Silindiri"),
-    # Kaliper alt parçaları
-    (r"KAL[İI]PER\s*PERNO|PERNO\s*TAM[İI]R|PERNO\s*TM\s*TK", "Kaliper Perno Tamir Takımı"),
-    (r"KAL[İI]PER\s*KAPAK|KAL[İI]PER.*CONTA|SENS[ÖO]RLÜ\s*KAPAK|SENS[ÖO]RSÜZ\s*KAPAK", "Kaliper Kapak/Conta"),
-    (r"KAL[İI]PER.*MEKAN[İI]ZMA|KAL[İI]PER.*AYAR|AYAR\s*MEKAN[İI]ZMA|AYAR\s*D[İI]ŞL[İI]|AYAR\s*TAŞIYIC", "Kaliper Ayar Mekanizması"),
-    (r"KAL[İI]PER.*TOZ\s*LAST[İI]|TOZ\s*LAST[İI]G[İI]", "Kaliper Toz Lastiği"),
-    (r"KAL[İI]PER.*DURBUN|DÜRBÜN\s*TAKIM", "Kaliper Dürbün Takımı"),
-    (r"\bKAL[İI]PER", "Kaliper"),
+    # Kaliper alt parçaları (KL[İI]PER yazım hatasını da yakala)
+    (r"K[AL]?L[İI]PER\s*PERNO|PERNO\s*TAM[İI]R|PERNO\s*TM\s*TK", "Kaliper Perno Tamir Takımı"),
+    (r"K[AL]?L[İI]PER\s*KAPA[KĞG]|K[AL]?L[İI]PER.*CONTA|SENS[ÖO]RLÜ\s*KAPA[KĞG]|SENS[ÖO]RSÜZ\s*KAPA[KĞG]", "Kaliper Kapak/Conta"),
+    (r"K[AL]?L[İI]PER.*MEKAN[İI]ZMA|K[AL]?L[İI]PER.*AYAR|AYAR\s*MEKAN[İI]ZMA|AYAR\s*D[İI]ŞL[İI]|AYAR\s*TAŞIYIC", "Kaliper Ayar Mekanizması"),
+    (r"K[AL]?L[İI]PER.*TOZ\s*LAST[İI]|TOZ\s*LAST[İI][GĞ][İI]", "Kaliper Toz Lastiği"),
+    (r"K[AL]?L[İI]PER.*DURBUN|DÜRBÜN\s*TAKIM", "Kaliper Dürbün Takımı"),
+    (r"\bK[AL]?L[İI]PER", "Kaliper"),
     # Kaliper modelleri (Knorr/Wabco)
     (r"\bELSA\b.*\d|\bELSA[\d-]+|ELSA-?2|ELSA195|ELSA225", "Kaliper Tamir Takımı (Elsa)"),
     (r"\bSB\d|\bSB-\d|\bSB[5-7]|\bSN[6-7]|\bSK[6-7]|\bNA[6-7]|\bST[6-7]|\bSL[5-7]|\bSM[5-7]", "Kaliper Tamir Takımı (Wabco)"),
@@ -122,14 +122,14 @@ CATEGORY_PATTERNS = [
     (r"REDÜKS[İI]YON|YÜKSELT[İI]C[İI]|D[ÜU]Ş[ÜU]R[ÜU]C[ÜU]|ŞAS[İI]\s*GE[ÇC][İI]Ş|K[ÖO]R\s*TAPA|TEST\s*APARAT|T[ÜU]P\s*TAHL[İI]YE|ARA\s*D[İI]RSEK|\bD[İI]RSEK\b", "Bağlantı Elemanları"),
     # Süspansiyon ekleri
     (r"DORSE\s*Y[ÜU]KSEKL[İI]K|RAMPA\s*KOLU", "Süspansiyon"),
-    # Fren Ayar Parçaları (kama, piston, somun, pim, pinyon, mandal, kilit, çapraz, vida, civata)
-    (r"FREN\s*AYAR\s*(KAMA|P[İI]STON|SOMUN|P[İI]M|P[İI]NYON|MANDAL|K[İI]L[İI]T|ÇAPRAZ|V[İI]DA|C[İI]VATA|KAPAK|TOZ|C\s*YAY|MEKAN|TAM)", "Fren Ayar Parçaları"),
-    (r"AYAR\s*KAMA|AYAR\s*P[İI]NYON|AYAR\s*SOMUN|AYAR\s*P[İI]STON|AYAR\s*K[İI]L[İI]T|AYAR\s*MANDAL", "Fren Ayar Parçaları"),
+    # Fren Ayar Parçaları (KAPAK + KAPAĞI varyasyonu)
+    (r"FREN\s*AYAR\s*(KAMA|P[İI]STON|SOMUN|P[İI]M|P[İI]NYON|MANDAL|K[İI]L[İI]T|ÇAPRAZ|V[İI]DA|C[İI]VATA|KAPA[KĞG]|TOZ|C\s*YAY|MEKAN|TAM)", "Fren Ayar Parçaları"),
+    (r"AYAR\s*KAMA|AYAR\s*P[İI]NYON|AYAR\s*SOMUN|AYAR\s*P[İI]STON|AYAR\s*K[İI]L[İI]T|AYAR\s*MANDAL|AYAR\s*KAPA[KĞG]", "Fren Ayar Parçaları"),
     # Fren yayı / dorse yayı / kol yayı / askı yayı
     (r"FREN\s*YAY|DORSE\s*YAY|KOL\s*YAY|ASKI\s*YAY|^YAY|\bYAY[IİL]?\b", "Yay"),
     (r"\bMAKAS\b", "Makas"),
-    # Somun (jant, döner pullu, ispit)
-    (r"D[ÖO]NER\s*PULLU\s*SOMUN|JANT\s*SOMUN|[İI]SP[İI]T\s*SOMUN|\bSOMUN\b", "Somun / Cıvata"),
+    # Somun (jant, döner pullu, ispit) — SOMUN, SOMUNU, SOMUNLU varyasyonları
+    (r"D[ÖO]NER\s*PULLU\s*SOMUN|JANT\s*SOMUN|[İI]SP[İI]T\s*SOMUN|\bSOMUN", "Somun / Cıvata"),
     # Perno
     (r"\bPERNO\b|PERNO\s*KL[İI]PS|PERNO\s*P[İI]ML|PERNO\s*TAPAS|PERNO\s*STANDART", "Perno"),
     # Perçin
@@ -148,8 +148,8 @@ CATEGORY_PATTERNS = [
     (r"\bVOLAN|DEBR[İI]YAJ", "Volan / Debriyaj"),
     # Rulman
     (r"RULMAN", "Rulman"),
-    # Kızak
-    (r"TAŞIYICI\s*KIZAK|\bKIZAK\b|^KIZAK", "Kızak"),
+    # Kızak (KIZAK, KIZAĞI varyasyonları)
+    (r"TAŞIYICI\s*KIZA[KĞG]|\bKIZA[KĞG]|^KIZA[KĞG]", "Kızak"),
     # Cam Set (Z-CAM, S-CAM)
     (r"Z-?CAM\s*SET|S-?CAM\s*SET", "Cam Set"),
     # Çamurluk
@@ -294,12 +294,40 @@ def slug(name):
     s = re.sub(r"[^a-z0-9]+", "-", s).strip("-")
     return s or "diger"
 
-def detect_category(name, path):
-    """name + path'i birlikte tara, ilk eşleşen pattern → kategori."""
+# field10 fallback: SADECE pattern eşleşmediğinde devreye girer.
+# field10 genelde varyant/model adı tutuyor (memory'de güvenilmez işaretli) ama
+# bazı ürünlerde net kategori adı var. Whitelist ile kısıtlı kullanım güvenli.
+FIELD10_FALLBACK = [
+    ("OTOMATIK", "Otomatik Fren Cırcırı"),
+    ("MEKANIK", "Mekanik Fren Cırcırı"),
+    ("CIRCIR", "Fren Cırcırı"),
+    ("KAMPANA", "Fren Kampanası"),
+    ("BALATA", "Fren Balatası"),
+    ("DISKI", "Fren Diski"),
+    ("KÖRÜK", "Fren Körüğü"),
+    ("KORUK", "Fren Körüğü"),
+    ("DPS", "Bijon DPS"),
+    ("BIJON", "Bijon"),
+    ("PORYA", "Porya"),
+    ("KALIPER", "Kaliper"),
+    ("KALİPER", "Kaliper"),
+    ("VOLANT", "Volan / Debriyaj"),
+    ("PABUC", "Fren Pabucu"),
+    ("PABUÇ", "Fren Pabucu"),
+]
+
+def detect_category(name, path, field10=None):
+    """name + path'i birlikte tara, ilk eşleşen pattern → kategori.
+    Pattern eşleşmezse field10 whitelist ile son şans."""
     haystack = ((name or "") + " " + (path or "").replace("-", " ")).upper()
     for pat, cat in CATEGORY_PATTERNS:
         if re.search(pat, haystack, re.IGNORECASE):
             return cat
+    if field10:
+        f10 = field10.upper().strip()
+        for key, cat in FIELD10_FALLBACK:
+            if key in f10:
+                return cat
     return "Diğer"
 
 def log(msg):
@@ -446,8 +474,8 @@ def main():
             (a.get("sku", "URUN") or "URUN").replace(" ", "+")
         )
 
-        # Kategori (name + path birlikte)
-        cat_name = detect_category(a.get("name", ""), a.get("path", ""))
+        # Kategori (name + path birlikte; pattern eşleşmezse field10 fallback)
+        cat_name = detect_category(a.get("name", ""), a.get("path", ""), a.get("field10"))
         cat_id = slug(cat_name)
         cats_set[cat_id] = cat_name
 
