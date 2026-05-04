@@ -32,9 +32,9 @@ export default async function handler(req, res) {
     }
     const userBasket = encodeBasket(items);
 
-    const inst = Number(installmentCount || 0);
-    const noInstallment = inst <= 1 ? "1" : "0";
-    const maxInstallment = inst > 1 ? String(Math.min(inst, 12)) : "0";
+    const inst = Number(installmentCount);
+    const noInstallment = inst === 1 ? "1" : "0";
+    const maxInstallment = inst >= 2 && inst <= 12 ? String(inst) : "0";
 
     const fullName = `${buyer.name || ""} ${buyer.surName || ""}`.trim() || "Frenciniz Müşteri";
     const userPhone = String(buyer.phoneNumber || "").replace(/\D/g, "").slice(0, 20) || "0000000000";
