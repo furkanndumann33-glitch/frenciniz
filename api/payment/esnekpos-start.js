@@ -16,9 +16,8 @@ export default async function handler(req, res) {
 
     const orderRef = randomOrderRef();
 
-    const proto = req.headers["x-forwarded-proto"] || "https";
-    const host = req.headers["x-forwarded-host"] || req.headers.host;
-    const backUrl = `${proto}://${host}/api/payment/esnekpos-callback`;
+    const baseUrl = (process.env.PUBLIC_BASE_URL || "https://frenciniz.com").replace(/\/+$/, "");
+    const backUrl = `${baseUrl}/api/payment/esnekpos-callback`;
 
     const mm = String(card.expireMonth).padStart(2, "0");
     const yyyy = String(card.expireYear).length === 2 ? `20${card.expireYear}` : String(card.expireYear);
