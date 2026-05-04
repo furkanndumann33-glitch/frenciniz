@@ -41,30 +41,33 @@ export default async function handler(req, res) {
     }
 
     const esnekBody = {
-      MERCHANT: cfg.merchant,
-      MERCHANT_KEY: cfg.merchantKey,
-      BACK_URL: backUrl,
-      ORDER_REF_NUMBER: orderRef,
-      ORDER_AMOUNT: Number(amount).toFixed(2),
-      PRICES_CURRENCY: "TRY",
-      INSTALLMENT_NUMBER: String(Number(installmentCount || 1)),
-
-      CC_NUMBER: String(card.number).replace(/\s/g, ""),
-      EXP_MONTH: mm,
-      EXP_YEAR: yyyy,
-      CC_CVV: String(card.cvv),
-      CC_OWNER: card.holderName,
-
-      FIRST_NAME: buyer.name || "",
-      LAST_NAME: buyer.surName || "",
-      MAIL: buyer.emailAddress || "",
-      PHONE: buyer.phoneNumber || "",
-      CITY: (billingAddress?.city) || buyer.city || "İstanbul",
-      STATE: (billingAddress?.district) || "-",
-      ADDRESS: (billingAddress?.address) || buyer.registrationAddress || "",
-      CLIENT_IP: getClientIp(req),
-
-      PRODUCTS: products,
+      Config: {
+        MERCHANT: cfg.merchant,
+        MERCHANT_KEY: cfg.merchantKey,
+        BACK_URL: backUrl,
+        PRICES_CURRENCY: "TRY",
+        ORDER_REF_NUMBER: orderRef,
+        ORDER_AMOUNT: Number(amount).toFixed(2),
+      },
+      CreditCard: {
+        CC_NUMBER: String(card.number).replace(/\s/g, ""),
+        EXP_MONTH: mm,
+        EXP_YEAR: yyyy,
+        CC_CVV: String(card.cvv),
+        CC_OWNER: card.holderName,
+        INSTALLMENT_NUMBER: String(Number(installmentCount || 1)),
+      },
+      Customer: {
+        FIRST_NAME: buyer.name || "",
+        LAST_NAME: buyer.surName || "",
+        MAIL: buyer.emailAddress || "",
+        PHONE: buyer.phoneNumber || "",
+        CITY: (billingAddress?.city) || buyer.city || "İstanbul",
+        STATE: (billingAddress?.district) || "-",
+        ADDRESS: (billingAddress?.address) || buyer.registrationAddress || "",
+        CLIENT_IP: getClientIp(req),
+      },
+      Product: products,
     };
 
     const esnekRes = await fetch(cfg.payUrl, {
@@ -76,9 +79,16 @@ export default async function handler(req, res) {
 
     const ok = String(data.STATUS).toUpperCase() === "SUCCESS" && String(data.RETURN_CODE) === "0";
     if (!esnekRes.ok || !ok || !data.URL_3DS) {
+      const debugSent = {
+        Config: { ...esnekBody.Config, MERCHANT_KEY: "***" },
+        CreditCard: { ...esnekBody.CreditCard, CC_NUMBER: "***", CC_CVV: "***" },
+        Customer: esnekBody.Customer,
+        Product: esnekBody.Product,
+      };
       return res.status(400).json({
         error: data.RETURN_MESSAGE || data.ERROR_MESSAGE || "Ödeme başlatılamadı",
         code: data.ERROR_CODE || data.RETURN_CODE,
+        debug: process.env.ESNEKPOS_DEBUG === "1" ? { sent: debugSent, got: data, status: esnekRes.status, url: cfg.payUrl } : undefined,
         raw: cfg.mode === "test" ? data : undefined,
       });
     }
