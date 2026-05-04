@@ -19,6 +19,8 @@ const CATEGORY_PATTERNS = [
   [/FREN\s*D[İI]SK[İI]|\bFREN-D[İI]SK[İI]|D[İI]SK[İI]?\s*ISUZU|D[İI]SK[İI]?\s*KRONE|GOBEKL[İI]\s*D[İI]SK/i, "Fren Diski"],
   [/\bD[İI]SK\b|\bDISK\b/i, "Fren Diski"],
   [/FREN\s*KAMPANAS|^KAMPANA|\bKAMPANA\b/i, "Fren Kampanası"],
+  // KIZAK pattern BALATA'dan önce — "TAŞIYICI KIZAK ... BALATA" karma ürünleri yakala
+  [/TAŞIYICI\s*KIZA[KĞG]|\bKIZA[KĞG]\b|^KIZA[KĞG]/i, "Kızak"],
   [/D[İI]SK\s*BALATA/i, "Disk Balatası"],
   [/FREN\s*BALATA|^BALATA|\bBALATA\b/i, "Fren Balatası"],
   [/OTOMAT[İI]K\s*FREN\s*C[İI]RC[İI]R|OTOMOT[İI]K\s*FREN\s*C[İI]RC[İI]R|OTOMAT[İI]K-FREN-C[İI]RC[İI]R/i, "Otomatik Fren Cırcırı"],
@@ -27,15 +29,22 @@ const CATEGORY_PATTERNS = [
   [/D[İI]NG[İI]L\s*KALDIRMA\s*KÖR[ÜU]K|HAVA\s*YASTI[GĞ]|SÜSPANS[İI]YON\s*KÖR[ÜU]K/i, "Süspansiyon Körüğü"],
   [/FREN\s*KÖR[ÜU]K|[İI]MD.*FREN\s*KÖR|SERV[İI]S\s*FREN\s*KÖR/i, "Fren Körüğü"],
   [/DORSE\s*KÖR[ÜU]K|^KÖR[ÜU]K|\bKÖR[ÜU]K\b|KÖRUGU|KORUGU|KOMPLE\s*KÖR|P[İI]STONSUZ\s*KÖR|KATLI\s*KÖR/i, "Fren Körüğü"],
+  // SKU bazlı: 42xxxx.S/.C/.CP/.KP/.S## suffix'li ürünler → fren körüğü çeşitleri
+  [/\b42\d{4}\.(S|C|CP|KP|S\d+)\b/i, "Fren Körüğü"],
   [/FREN\s*PABUC|\bPABUC/i, "Fren Pabucu"],
   [/FREN\s*AYNAS|\bAYNA\b/i, "Fren Aynası"],
   [/FREN\s*S[İI]L[İI]ND[İI]R|FREN-S[İI]L[İI]ND[İI]R/i, "Fren Silindiri"],
   [/KAL[İI]PER\s*PERNO|PERNO\s*TAM[İI]R|PERNO\s*TM\s*TK/i, "Kaliper Perno Tamir Takımı"],
-  [/KAL[İI]PER\s*KAPAK|KAL[İI]PER.*CONTA|SENS[ÖO]RLÜ\s*KAPAK|SENS[ÖO]RSÜZ\s*KAPAK/i, "Kaliper Kapak/Conta"],
+  // Kaliper kapak — greedy ile "ÜST KAPAĞI" gibi araya kelime giren formatları yakala
+  [/KAL[İI]PER.*KAPA[KĞG]|KAL[İI]PER.*CONTA|SENS[ÖO]RLÜ\s*KAPA[KĞG]|SENS[ÖO]RSÜZ\s*KAPA[KĞG]/i, "Kaliper Kapak/Conta"],
   [/KAL[İI]PER.*MEKAN[İI]ZMA|KAL[İI]PER.*AYAR|AYAR\s*MEKAN[İI]ZMA|AYAR\s*D[İI]ŞL[İI]|AYAR\s*TAŞIYIC/i, "Kaliper Ayar Mekanizması"],
   [/KAL[İI]PER.*TOZ\s*LAST[İI]|TOZ\s*LAST[İI]G[İI]/i, "Kaliper Toz Lastiği"],
   [/KAL[İI]PER.*DURBUN|DÜRBÜN\s*TAKIM/i, "Kaliper Dürbün Takımı"],
-  [/\bKAL[İI]PER/i, "Kaliper"],
+  // Kaliper Tamir Takımı: TM.TK., MASURA, BİLYA YATAĞI, RULMAN YATAĞI, ESKOL, ARCS SET
+  [/KAL[İI]PER.*TM\.?\s*TK|KAL[İI]PER.*MASURA|MASURA\s*B[İI]LYA|B[İI]LYA\s*YATA[ĞG]|RULMAN\s*YATA[ĞG]|KAL[İI]PER.*P[İI]STON\s*KAPA|MEK\.?\s*KOMPLE\s*SET|\bESKOL\b|\bARCS\s*SET|BPW.*TM\.?\s*TK|AXOR\s*SET\s*Y/i, "Kaliper Tamir Takımı"],
+  // Kaliper Taşıyıcı → Kaliper Ayar Mekanizması altına
+  [/KAL[İI]PER\s*TAŞIYIC|TAŞIYIC.*KAL[İI]PER|CAL[İI]PER\s*TAŞIYIC/i, "Kaliper Ayar Mekanizması"],
+  [/\bKAL[İI]PER|\bCAL[İI]PER/i, "Kaliper"],
   [/\bELSA\b.*\d|\bELSA[\d-]+|ELSA-?2|ELSA195|ELSA225/i, "Kaliper Tamir Takımı (Elsa)"],
   [/\bSB\d|\bSB-\d|\bSB[5-7]|\bSN[6-7]|\bSK[6-7]|\bNA[6-7]|\bST[6-7]|\bSL[5-7]|\bSM[5-7]/i, "Kaliper Tamir Takımı (Wabco)"],
   [/MAXX\s*22|MAXX22/i, "Kaliper Tamir Takımı (Maxx22)"],
@@ -73,7 +82,14 @@ const CATEGORY_PATTERNS = [
   [/REDÜKS[İI]YON|YÜKSELT[İI]C[İI]|D[ÜU]Ş[ÜU]R[ÜU]C[ÜU]|ŞAS[İI]\s*GE[ÇC][İI]Ş|K[ÖO]R\s*TAPA|TEST\s*APARAT|T[ÜU]P\s*TAHL[İI]YE|ARA\s*D[İI]RSEK|\bD[İI]RSEK\b/i, "Bağlantı Elemanları"],
   [/DORSE\s*Y[ÜU]KSEKL[İI]K|RAMPA\s*KOLU/i, "Süspansiyon"],
   [/FREN\s*AYAR\s*(KAMA|P[İI]STON|SOMUN|P[İI]M|P[İI]NYON|MANDAL|K[İI]L[İI]T|ÇAPRAZ|V[İI]DA|C[İI]VATA|KAPAK|TOZ|C\s*YAY|MEKAN|TAM)/i, "Fren Ayar Parçaları"],
-  [/AYAR\s*KAMA|AYAR\s*P[İI]NYON|AYAR\s*SOMUN|AYAR\s*P[İI]STON|AYAR\s*K[İI]L[İI]T|AYAR\s*MANDAL/i, "Fren Ayar Parçaları"],
+  [/AYAR\s*KAMA|AYAR\s*P[İI]NYON|AYAR\s*SOMUN|AYAR\s*P[İI]STON|AYAR\s*K[İI]L[İI]T|AYAR\s*MANDAL|AYAR\s*KAPA[KĞG]/i, "Fren Ayar Parçaları"],
+  [/\d+\s*AYAR\s*C[İI]VATA|\bPRO\s*\d+\s*KAMA\b|KROM\s*D[İI]ŞL[İI]|PARK\s*BUTONU/i, "Fren Ayar Parçaları"],
+  // Porya ek pattern: JANT FLANŞ
+  [/JANT\s*FLAN[ŞS]/i, "Porya"],
+  // Kompresör segman ek pattern
+  [/REKOR\s*SEGMAN|PLS\s*REKOR/i, "Kompresör Piston/Segman"],
+  // Keçe ek pattern: NBR + ARKA/ÖN DIŞ
+  [/NBR\s*ARKA\s*DI[ŞS]|NBR\s*ÖN\s*DI[ŞS]|\d+\*\d+\*+\d+\/\d+\s*NBR/i, "Keçe"],
   [/FREN\s*YAY|DORSE\s*YAY|KOL\s*YAY|ASKI\s*YAY|^YAY|\bYAY[IİL]?\b/i, "Yay"],
   [/\bMAKAS\b/i, "Makas"],
   [/D[ÖO]NER\s*PULLU\s*SOMUN|JANT\s*SOMUN|[İI]SP[İI]T\s*SOMUN|\bSOMUN\b/i, "Somun / Cıvata"],
@@ -88,7 +104,7 @@ const CATEGORY_PATTERNS = [
   [/\bKEÇE/i, "Keçe"],
   [/\bVOLAN|DEBR[İI]YAJ/i, "Volan / Debriyaj"],
   [/RULMAN/i, "Rulman"],
-  [/TAŞIYICI\s*KIZAK|\bKIZAK\b|^KIZAK/i, "Kızak"],
+  // KIZAK pattern artık yukarıda BALATA'dan önce
   [/Z-?CAM\s*SET|S-?CAM\s*SET/i, "Cam Set"],
   [/ÇAMURLUK|CAMURLUK/i, "Çamurluk"],
   [/\bMAKARA/i, "Makara"],
@@ -107,8 +123,8 @@ function slug(name) {
   return s || "diger";
 }
 
-function detectCategory(name, path) {
-  const haystack = ((name || "") + " " + (path || "").replace(/-/g, " ")).toUpperCase();
+function detectCategory(name, path, sku) {
+  const haystack = ((name || "") + " " + (path || "").replace(/-/g, " ") + " " + (sku || "")).toUpperCase();
   for (const [pat, cat] of CATEGORY_PATTERNS) {
     if (pat.test(haystack)) return cat;
   }
@@ -202,7 +218,7 @@ function processProducts(raw) {
     const images = imgIds.map(iid => imageUrlMap[iid]).filter(Boolean);
     const mainImg = images[0] || ("https://placehold.co/600x600/1c1c1c/b0b0b0?text=" + encodeURIComponent(a.sku || "URUN"));
 
-    const catName = detectCategory(a.name || "", a.path || "");
+    const catName = detectCategory(a.name || "", a.path || "", a.sku || "");
     const catId = slug(catName);
     catsMap[catId] = catName;
 
