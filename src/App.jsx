@@ -1713,69 +1713,44 @@ function CheckoutPage() {
           <button onClick={() => setStep(2)} style={{padding:"12px 28px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:14,fontWeight:600,cursor:"pointer",marginTop:20}}>Devam Et →</button>
         </>}
         {step===2 && <>
-          <h2 style={{fontSize:18,fontWeight:700,marginBottom:20}}>Ödeme Bilgileri</h2>
-          {/* Payment method selection */}
-          <div style={{marginBottom:20}}>
-            <label style={{fontSize:13,color:"#666",display:"block",marginBottom:8}}>Ödeme Yöntemi</label>
-            <div style={{display:"grid",gridTemplateColumns:"repeat(2,1fr)",gap:8}}>
-              {[{id:"card",icon:"💳",name:"Kredi / Banka Kartı",desc:"EsnekPOS ile güvenli ödeme"},{id:"havale",icon:"🏦",name:"Havale / EFT",desc:"Banka havalesi ile ödeme"},{id:"taksit",icon:"📊",name:"Taksitli Ödeme",desc:"2-12 taksit imkânı"}].map(m=>(
-                <div key={m.id} style={{padding:"12px 14px",border:"2px solid #eee",borderRadius:8,cursor:"pointer",display:"flex",alignItems:"center",gap:10,transition:"border-color .2s"}}
-                  onMouseEnter={e=>e.currentTarget.style.borderColor="#ff6000"} onMouseLeave={e=>e.currentTarget.style.borderColor="#eee"}>
-                  <span style={{fontSize:22}}>{m.icon}</span>
-                  <div><div style={{fontSize:13,fontWeight:600}}>{m.name}</div><div style={{fontSize:11,color:"#999"}}>{m.desc}</div></div>
-                </div>
-              ))}
-            </div>
+          <h2 style={{fontSize:18,fontWeight:700,marginBottom:20}}>Ödeme</h2>
+          <div style={{marginBottom:20,padding:"14px 18px",background:"#f8fafc",border:"1px solid #e2e8f0",borderRadius:8,fontSize:13,color:"#475569",lineHeight:1.6}}>
+            🔒 Ödemeniz <strong>PayTR</strong> güvenli ödeme altyapısı üzerinden alınacak. Devam ettiğinizde PayTR'nin güvenli ödeme sayfasına yönlendirileceksiniz. <strong>Kart bilgileriniz Frenciniz tarafından saklanmaz</strong>; doğrudan PayTR'nin PCI-DSS sertifikalı altyapısında işlenir.
           </div>
-          {/* Card logos */}
-          <div style={{display:"flex",gap:12,marginBottom:16,alignItems:"center"}}>
-            <img src="/payment/esnekpos.webp" alt="EsnekPOS Elekse" width={88} height={28} style={{display:"block",borderRadius:4,background:"#fff",padding:"2px 6px"}}/>
-            <span style={{fontSize:11,color:"#999",marginLeft:4}}>ile güvenli ödeme</span>
+          <div style={{display:"flex",gap:12,marginBottom:20,alignItems:"center",flexWrap:"wrap"}}>
+            <img src="/payment/visa.svg" alt="Visa" width={56} height={20} style={{display:"block"}}/>
+            <img src="/payment/mastercard.svg" alt="Mastercard" width={56} height={20} style={{display:"block"}}/>
+            <img src="/payment/troy.svg" alt="Troy" width={56} height={20} style={{display:"block"}}/>
+            <span style={{fontSize:11,color:"#94a3b8"}}>3D Secure ile korunur</span>
           </div>
-          <div style={{marginBottom:14}}><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>Kart Numarası</label>
-            <input value={card.number} onChange={e=>setCard(c=>({...c,number:e.target.value.replace(/\D/g,"").slice(0,19).replace(/(\d{4})/g,"$1 ").trim()}))} placeholder="0000 0000 0000 0000" inputMode="numeric" style={IS}/>
-          </div>
-          <div style={{display:"grid",gridTemplateColumns:"2fr 1fr 1fr",gap:14}}>
-            <div><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>İsim</label><input value={card.holder} onChange={e=>setCard(c=>({...c,holder:e.target.value.toUpperCase()}))} placeholder="AD SOYAD" style={IS}/></div>
-            <div><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>Tarih</label><input value={card.exp} onChange={e=>{let v=e.target.value.replace(/\D/g,"").slice(0,4); if(v.length>=3)v=v.slice(0,2)+"/"+v.slice(2); setCard(c=>({...c,exp:v}))}} placeholder="AA/YY" inputMode="numeric" style={IS}/></div>
-            <div><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>CVV</label><input value={card.cvv} onChange={e=>setCard(c=>({...c,cvv:e.target.value.replace(/\D/g,"").slice(0,4)}))} placeholder="***" type="password" inputMode="numeric" style={IS}/></div>
-          </div>
-          <div style={{marginTop:14}}><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>Taksit</label>
+          <div style={{marginBottom:18}}>
+            <label style={{fontSize:13,color:"#666",display:"block",marginBottom:6}}>Taksit Tercihi</label>
             <select value={card.installment} onChange={e=>setCard(c=>({...c,installment:Number(e.target.value)}))} style={IS}>
               <option value={1}>Peşin (Tek Çekim)</option>
-              {[2,3,6,9,12].map(n=><option key={n} value={n}>{n} Taksit</option>)}
+              <option value={0}>PayTR sayfasında seç (2-12 taksit)</option>
             </select>
+            <div style={{fontSize:11,color:"#94a3b8",marginTop:6}}>Banka kartı ile sadece tek çekim yapılabilir. Kredi kartında taksit seçeneği PayTR sayfasında görünür.</div>
           </div>
-          {/* 3D Secure notice */}
-          <div style={{marginTop:14,padding:"10px 14px",background:"#f0fdf4",borderRadius:6,border:"1px solid #bbf7d0",fontSize:12,color:"#15803d",display:"flex",alignItems:"center",gap:8}}>
-            🔒 Ödemeniz EsnekPOS 3D Secure ile korunmaktadır. Kart bilgileriniz saklanmaz.
+          <div style={{marginBottom:14,padding:"12px 14px",background:"#f9fafb",border:"1px solid #e5e7eb",borderRadius:6,fontSize:13}}>
+            <div style={{color:"#6b7280",marginBottom:6}}>Sipariş Özeti</div>
+            <div style={{display:"flex",justifyContent:"space-between",fontWeight:600,fontSize:15}}>
+              <span>Toplam</span>
+              <span style={{color:"#ff6000"}}>{fp(grandTotal)}</span>
+            </div>
           </div>
           {payError && <div style={{marginTop:10,padding:"10px 14px",background:"#fee2e2",borderRadius:6,border:"1px solid #fecaca",fontSize:13,color:"#991b1b"}}>⚠ {payError}</div>}
           <div style={{display:"flex",gap:10,marginTop:20}}>
             <button onClick={() => setStep(1)} disabled={payLoading} style={{padding:"12px 24px",background:"#f5f5f5",color:"#555",border:"none",borderRadius:6,fontSize:14,fontWeight:600,cursor:payLoading?"not-allowed":"pointer"}}>← Geri</button>
             <button disabled={payLoading} onClick={async () => {
               setPayError("");
-              // Validasyon
-              const cardNum = card.number.replace(/\s/g,"");
-              if (cardNum.length < 15) return setPayError("Kart numarası eksik");
-              if (!card.holder.trim()) return setPayError("Kart üzerindeki isim boş olamaz");
-              const [mm, yy] = card.exp.split("/");
-              if (!mm || !yy || mm.length !== 2 || yy.length !== 2) return setPayError("Geçersiz son kullanma tarihi (AA/YY)");
-              if (card.cvv.length < 3) return setPayError("CVV eksik");
-              if (!ship_form.first || !ship_form.email || !ship_form.phone || !ship_form.address) return setPayError("Teslimat bilgileri eksik — Geri tuşu ile tamamlayın");
-
+              if (!ship_form.first || !ship_form.email || !ship_form.phone || !ship_form.address) {
+                return setPayError("Teslimat bilgileri eksik — Geri tuşu ile tamamlayın");
+              }
               setPayLoading(true);
               try {
                 const payload = {
                   amount: Number(grandTotal.toFixed(2)),
                   installmentCount: card.installment,
-                  card: {
-                    number: cardNum,
-                    holderName: card.holder,
-                    expireMonth: Number(mm),
-                    expireYear: 2000 + Number(yy),
-                    cvv: card.cvv,
-                  },
                   billingAddress: {
                     address: ship_form.address,
                     city: "İstanbul",
@@ -1801,7 +1776,7 @@ function CheckoutPage() {
                   },
                   basket: {
                     basketId: `FRN-${Date.now()}`,
-                    basketItems: cart.slice(0, 20).map(it => ({
+                    basketItems: cart.slice(0, 50).map(it => ({
                       itemId: String(it.id),
                       name: (it.name||"Ürün").slice(0, 60),
                       itemType: "PHYSICAL",
@@ -1811,21 +1786,21 @@ function CheckoutPage() {
                     })),
                   },
                 };
-                const r = await fetch("/api/payment/esnekpos-start", {
+                const r = await fetch("/api/payment/paytr-start", {
                   method: "POST",
                   headers: {"Content-Type":"application/json"},
                   body: JSON.stringify(payload),
                 });
                 const data = await r.json();
                 if (!r.ok || !data.success) throw new Error(data.error || "Ödeme başlatılamadı");
-                if (!data.url3ds) throw new Error("3DS yönlendirme URL'i boş");
-                window.location.href = data.url3ds;
+                if (!data.iframeUrl) throw new Error("PayTR yönlendirme URL'i boş");
+                window.location.href = data.iframeUrl;
               } catch (e) {
                 setPayError(e.message || "Ödeme sırasında hata oluştu");
                 setPayLoading(false);
               }
             }} style={{padding:"12px 28px",background:payLoading?"#ffa06a":"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:14,fontWeight:600,cursor:payLoading?"not-allowed":"pointer"}}>
-              {payLoading ? "Yönlendiriliyor..." : `${fp(grandTotal)} Öde`}
+              {payLoading ? "Yönlendiriliyor..." : `${fp(grandTotal)} Öde →`}
             </button>
           </div>
         </>}
