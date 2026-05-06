@@ -3706,8 +3706,10 @@ function APagesAdmin(){
 }
 
 function AEmailCfg(){
-  const [cfg,setCfg]=useState({host:"",port:"587",secure:"TLS",user:"",pass:""});
+  const [cfg,setCfg]=useState({apiKey:"",fromAddress:"Frenciniz <noreply@frenciniz.com>",notifySignup:true,notifyOrder:true,notifyShipped:true});
   const [ok,setOk]=useState(false);
+  const [testTo,setTestTo]=useState("");
+  const [testStatus,setTestStatus]=useState("");
   useEffect(()=>{
     fetch("/api/admin/email-config",{credentials:"include"}).then(r=>r.json()).then(d=>{
       if(d.config && Object.keys(d.config).length) setCfg(p=>({...p,...d.config}));
@@ -3717,21 +3719,41 @@ function AEmailCfg(){
     await fetch("/api/admin/email-config",{method:"POST",credentials:"include",headers:{"Content-Type":"application/json"},body:JSON.stringify(cfg)});
     setOk(true); setTimeout(()=>setOk(false),2000);
   }
-  return <ACard title="Mail Entegrasyonu (SMTP)"><div style={{maxWidth:500,display:"flex",flexDirection:"column",gap:12}}>
-    <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>SMTP Sunucu</label><AIn value={cfg.host} onChange={e=>setCfg({...cfg,host:e.target.value})} placeholder="mail.frenciniz.com"/></div>
-    <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
-      <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>Port</label><AIn value={cfg.port} onChange={e=>setCfg({...cfg,port:e.target.value})} placeholder="587"/></div>
-      <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>Güvenlik</label><select value={cfg.secure} onChange={e=>setCfg({...cfg,secure:e.target.value})} style={{width:"100%",padding:"9px",border:"1px solid #ddd",borderRadius:6,fontSize:13}}><option>TLS</option><option>SSL</option></select></div>
+  async function testSend(){
+    if(!testTo) return setTestStatus("⚠ E-posta adresi girin");
+    setTestStatus("Gönderiliyor...");
+    try{
+      const r=await fetch("/api/admin/test-notify",{method:"POST",credentials:"include",headers:{"Content-Type":"application/json"},body:JSON.stringify({channel:"email",to:testTo,subject:"Frenciniz test",message:"Bu bir test e-postasıdır."})});
+      const d=await r.json();
+      setTestStatus(r.ok?`✓ Gönderildi (id: ${d.id||"-"})`:`✗ ${d.error||"Hata"}`);
+    }catch(e){ setTestStatus(`✗ ${e.message}`); }
+  }
+  const rows=[{k:"notifySignup",l:"Yeni üye kayıt"},{k:"notifyOrder",l:"Sipariş onay"},{k:"notifyShipped",l:"Kargoya verildi"}];
+  return <ACard title="Mail Entegrasyonu (Resend)"><div style={{maxWidth:500,display:"flex",flexDirection:"column",gap:12}}>
+    <div style={{padding:12,background:"#f0f9ff",borderRadius:6,border:"1px solid #bae6fd",fontSize:12,color:"#0369a1"}}>💡 Resend API anahtarınızı resend.com adresinden alabilirsiniz. Domain (frenciniz.com) Resend'de doğrulanmış olmalıdır.</div>
+    <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>Resend API Anahtarı</label><AIn type="password" value={cfg.apiKey||""} onChange={e=>setCfg({...cfg,apiKey:e.target.value})} placeholder="re_xxxxxxxxxxxx"/></div>
+    <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>Gönderici (From)</label><AIn value={cfg.fromAddress||""} onChange={e=>setCfg({...cfg,fromAddress:e.target.value})} placeholder="Frenciniz <noreply@frenciniz.com>"/></div>
+    <div style={{border:"1px solid #eee",borderRadius:6,padding:14}}>
+      <div style={{fontSize:13,fontWeight:600,marginBottom:8}}>Otomatik Mail Bildirimleri</div>
+      {rows.map(r=><div key={r.k} style={{display:"flex",justifyContent:"space-between",padding:"8px 0"}}><span style={{fontSize:13}}>{r.l}</span><input type="checkbox" checked={cfg[r.k]!==false} onChange={e=>setCfg({...cfg,[r.k]:e.target.checked})} style={{accentColor:"#ff6000"}}/></div>)}
     </div>
-    <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>Kullanıcı</label><AIn value={cfg.user} onChange={e=>setCfg({...cfg,user:e.target.value})} placeholder="info@frenciniz.com"/></div>
-    <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>Şifre</label><AIn type="password" value={cfg.pass} onChange={e=>setCfg({...cfg,pass:e.target.value})} placeholder="••••••••"/></div>
-    <div style={{display:"flex",gap:8,marginTop:8}}><ABtn onClick={save}>{ok?"✓ Kaydedildi":"Kaydet"}</ABtn></div>
+    <div style={{display:"flex",gap:8,marginTop:4}}><ABtn onClick={save}>{ok?"✓ Kaydedildi":"Kaydet"}</ABtn></div>
+    <div style={{borderTop:"1px solid #eee",paddingTop:12,marginTop:4}}>
+      <div style={{fontSize:12,fontWeight:600,color:"#666",marginBottom:6}}>Test Gönder</div>
+      <div style={{display:"flex",gap:6}}>
+        <AIn value={testTo} onChange={e=>setTestTo(e.target.value)} placeholder="ornek@adres.com" style={{flex:1}}/>
+        <ABtn onClick={testSend}>Test</ABtn>
+      </div>
+      {testStatus && <div style={{fontSize:12,marginTop:6,color:testStatus.startsWith("✓")?"#15803d":"#dc2626"}}>{testStatus}</div>}
+    </div>
   </div></ACard>;
 }
 
 function ASMSCfg(){
   const [cfg,setCfg]=useState({user:"",pass:"",header:"FRENCINIZ",notifySignup:true,notifyOrder:true,notifyShipped:true,notifyStock:true});
   const [ok,setOk]=useState(false);
+  const [testTo,setTestTo]=useState("");
+  const [testStatus,setTestStatus]=useState("");
   useEffect(()=>{
     fetch("/api/admin/sms-config",{credentials:"include"}).then(r=>r.json()).then(d=>{
       if(d.config && Object.keys(d.config).length) setCfg(p=>({...p,...d.config}));
@@ -3741,18 +3763,35 @@ function ASMSCfg(){
     await fetch("/api/admin/sms-config",{method:"POST",credentials:"include",headers:{"Content-Type":"application/json"},body:JSON.stringify(cfg)});
     setOk(true); setTimeout(()=>setOk(false),2000);
   }
+  async function testSend(){
+    if(!testTo) return setTestStatus("⚠ Telefon numarası girin (5XX...)");
+    setTestStatus("Gönderiliyor...");
+    try{
+      const r=await fetch("/api/admin/test-notify",{method:"POST",credentials:"include",headers:{"Content-Type":"application/json"},body:JSON.stringify({channel:"sms",to:testTo,message:"Frenciniz test SMS — entegrasyon calisiyor."})});
+      const d=await r.json();
+      setTestStatus(r.ok?`✓ Gönderildi (jobid: ${d.jobid||"-"})`:`✗ kod ${d.code||"?"}: ${d.description||d.error||"Hata"}`);
+    }catch(e){ setTestStatus(`✗ ${e.message}`); }
+  }
   const rows=[{k:"notifySignup",l:"Yeni üye kayıt"},{k:"notifyOrder",l:"Sipariş onay"},{k:"notifyShipped",l:"Kargoya verildi"},{k:"notifyStock",l:"Stok bildirimi"}];
   return <ACard title="NetGSM SMS Entegrasyonu"><div style={{maxWidth:500}}>
-    <div style={{padding:12,background:"#f0f9ff",borderRadius:6,border:"1px solid #bae6fd",fontSize:12,color:"#0369a1",marginBottom:16}}>💡 NetGSM API bilgilerinizi netgsm.com.tr adresinden alabilirsiniz.</div>
+    <div style={{padding:12,background:"#f0f9ff",borderRadius:6,border:"1px solid #bae6fd",fontSize:12,color:"#0369a1",marginBottom:16}}>💡 NetGSM API bilgilerinizi netgsm.com.tr adresinden alabilirsiniz. Başlığın (msgheader) NetGSM panelinden onaylı olması gerekir.</div>
     <div style={{display:"flex",flexDirection:"column",gap:12}}>
       <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>Kullanıcı Kodu</label><AIn value={cfg.user} onChange={e=>setCfg({...cfg,user:e.target.value})} placeholder="850XXXXXXX"/></div>
       <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>API Şifresi</label><AIn type="password" value={cfg.pass} onChange={e=>setCfg({...cfg,pass:e.target.value})} placeholder="API şifresi"/></div>
       <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>Başlık</label><AIn value={cfg.header} onChange={e=>setCfg({...cfg,header:e.target.value})} placeholder="FRENCINIZ"/></div>
       <div style={{border:"1px solid #eee",borderRadius:6,padding:14}}>
         <div style={{fontSize:13,fontWeight:600,marginBottom:8}}>Otomatik SMS Bildirimleri</div>
-        {rows.map(r=><div key={r.k} style={{display:"flex",justifyContent:"space-between",padding:"8px 0"}}><span style={{fontSize:13}}>{r.l}</span><input type="checkbox" checked={!!cfg[r.k]} onChange={e=>setCfg({...cfg,[r.k]:e.target.checked})} style={{accentColor:"#ff6000"}}/></div>)}
+        {rows.map(r=><div key={r.k} style={{display:"flex",justifyContent:"space-between",padding:"8px 0"}}><span style={{fontSize:13}}>{r.l}</span><input type="checkbox" checked={cfg[r.k]!==false} onChange={e=>setCfg({...cfg,[r.k]:e.target.checked})} style={{accentColor:"#ff6000"}}/></div>)}
       </div>
-      <div style={{display:"flex",gap:8,marginTop:8}}><ABtn onClick={save}>{ok?"✓ Kaydedildi":"Kaydet"}</ABtn></div>
+      <div style={{display:"flex",gap:8,marginTop:4}}><ABtn onClick={save}>{ok?"✓ Kaydedildi":"Kaydet"}</ABtn></div>
+      <div style={{borderTop:"1px solid #eee",paddingTop:12,marginTop:4}}>
+        <div style={{fontSize:12,fontWeight:600,color:"#666",marginBottom:6}}>Test Gönder</div>
+        <div style={{display:"flex",gap:6}}>
+          <AIn value={testTo} onChange={e=>setTestTo(e.target.value)} placeholder="5XXXXXXXXX" style={{flex:1}}/>
+          <ABtn onClick={testSend}>Test</ABtn>
+        </div>
+        {testStatus && <div style={{fontSize:12,marginTop:6,color:testStatus.startsWith("✓")?"#15803d":"#dc2626"}}>{testStatus}</div>}
+      </div>
     </div>
   </div></ACard>;
 }

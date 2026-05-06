@@ -1,7 +1,7 @@
 import { kv } from "@vercel/kv";
 import { requireAdmin, readUser, publicUser, logActivity } from "./_lib/auth.js";
-import { sendSms } from "./_lib/netgsm.js";
-import { sendEmail, emailLayout } from "./_lib/email.js";
+import { sendSms, clearSmsCache } from "./_lib/netgsm.js";
+import { sendEmail, emailLayout, clearEmailCache } from "./_lib/email.js";
 
 async function readOrder(ref) {
   const raw = await kv.get(`order:${ref}`);
@@ -307,6 +307,8 @@ export default async function handler(req, res) {
       }
       if (req.method === "POST") {
         await kv.set(key, JSON.stringify(req.body || {}));
+        // Cache temizle ki yeni config sıradaki gönderimde kullanılsın
+        if (action === "email-config") clearEmailCache(); else clearSmsCache();
         await logActivity(`${action}.update`, { by: admin.userId });
         return res.status(200).json({ success: true });
       }

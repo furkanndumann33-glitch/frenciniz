@@ -1,10 +1,39 @@
 // NetGSM REST v2 SMS API
 // https://api.netgsm.com.tr/sms/rest/v2/send
-// Auth: HTTP Basic with username:password (NETGSM_USERCODE / NETGSM_PASSWORD)
-// msgheader: NetGSM panel'inden onaylı gönderici adı (NETGSM_MSGHEADER)
-// IYS: ticari mesajlar için "iysfilter" kullanılır; bilgilendirme/işlem mesajları için boş bırakılır.
+// Config kaynak öncelik sırası:
+//   1) KV: cfg:sms  ({user, pass, header, notifySignup, ...})
+//   2) Env: NETGSM_USERCODE / NETGSM_PASSWORD / NETGSM_MSGHEADER
+// IYS: ticari mesajlar için "iysfilter"; bilgilendirme/işlem mesajları için boş.
+
+import { kv } from "@vercel/kv";
 
 const ENDPOINT = "https://api.netgsm.com.tr/sms/rest/v2/send";
+
+let _cfgCache = null;
+let _cfgCacheAt = 0;
+async function loadCfg() {
+  // 30 sn cache (admin panel kaydedince yansır)
+  if (_cfgCache && (Date.now() - _cfgCacheAt) < 30000) return _cfgCache;
+  let kvCfg = {};
+  try {
+    const raw = await kv.get("cfg:sms");
+    if (raw) kvCfg = typeof raw === "string" ? JSON.parse(raw) : raw;
+  } catch {}
+  _cfgCache = {
+    user: kvCfg.user || process.env.NETGSM_USERCODE || "",
+    pass: kvCfg.pass || process.env.NETGSM_PASSWORD || "",
+    header: kvCfg.header || process.env.NETGSM_MSGHEADER || "",
+    notifySignup: kvCfg.notifySignup !== false,
+    notifyOrder: kvCfg.notifyOrder !== false,
+    notifyShipped: kvCfg.notifyShipped !== false,
+    notifyStock: kvCfg.notifyStock !== false,
+  };
+  _cfgCacheAt = Date.now();
+  return _cfgCache;
+}
+
+export async function getSmsConfig() { return loadCfg(); }
+export function clearSmsCache() { _cfgCache = null; _cfgCacheAt = 0; }
 
 const RESPONSE_CODES = {
   "00": "Başarılı",
@@ -33,11 +62,9 @@ export function normalizePhone(raw) {
   return s;
 }
 
-function basicAuth() {
-  const u = process.env.NETGSM_USERCODE || "";
-  const p = process.env.NETGSM_PASSWORD || "";
-  if (!u || !p) return null;
-  return "Basic " + Buffer.from(`${u}:${p}`).toString("base64");
+function basicAuth(user, pass) {
+  if (!user || !pass) return null;
+  return "Basic " + Buffer.from(`${user}:${pass}`).toString("base64");
 }
 
 /**
@@ -51,10 +78,11 @@ function basicAuth() {
  * @returns {Promise<{ok:boolean, code:string, description:string, jobid?:string, raw?:string}>}
  */
 export async function sendSms(phone, message, opts = {}) {
-  const auth = basicAuth();
-  if (!auth) return { ok: false, code: "NO_CREDS", description: "NETGSM_USERCODE/NETGSM_PASSWORD env değişkenleri tanımlı değil" };
+  const cfg = await loadCfg();
+  const auth = basicAuth(cfg.user, cfg.pass);
+  if (!auth) return { ok: false, code: "NO_CREDS", description: "NetGSM kullanıcı kodu/şifresi tanımlı değil — admin panel veya env'den ekleyin" };
 
-  const msgheader = opts.msgheader || process.env.NETGSM_MSGHEADER || "";
+  const msgheader = opts.msgheader || cfg.header || "";
   if (!msgheader) return { ok: false, code: "NO_HEADER", description: "msgheader (gönderici adı) tanımlı değil" };
 
   const no = normalizePhone(phone);

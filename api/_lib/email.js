@@ -1,7 +1,35 @@
 // Resend Email API — https://resend.com/docs/api-reference/emails/send-email
-// Env: RESEND_API_KEY, EMAIL_FROM (default: noreply@frenciniz.com — domain doğrulanmış olmalı)
+// Config öncelik:
+//   1) KV: cfg:email ({apiKey, fromAddress, notifySignup, ...})
+//   2) Env: RESEND_API_KEY, EMAIL_FROM
+// EMAIL_FROM örn: 'Frenciniz <noreply@frenciniz.com>' (Resend'de domain doğrulanmış olmalı)
+
+import { kv } from "@vercel/kv";
 
 const ENDPOINT = "https://api.resend.com/emails";
+
+let _cfgCache = null;
+let _cfgCacheAt = 0;
+async function loadCfg() {
+  if (_cfgCache && (Date.now() - _cfgCacheAt) < 30000) return _cfgCache;
+  let kvCfg = {};
+  try {
+    const raw = await kv.get("cfg:email");
+    if (raw) kvCfg = typeof raw === "string" ? JSON.parse(raw) : raw;
+  } catch {}
+  _cfgCache = {
+    apiKey: kvCfg.apiKey || process.env.RESEND_API_KEY || "",
+    fromAddress: kvCfg.fromAddress || process.env.EMAIL_FROM || "Frenciniz <noreply@frenciniz.com>",
+    notifySignup: kvCfg.notifySignup !== false,
+    notifyOrder: kvCfg.notifyOrder !== false,
+    notifyShipped: kvCfg.notifyShipped !== false,
+  };
+  _cfgCacheAt = Date.now();
+  return _cfgCache;
+}
+
+export async function getEmailConfig() { return loadCfg(); }
+export function clearEmailCache() { _cfgCache = null; _cfgCacheAt = 0; }
 
 /**
  * E-posta gönderir.
@@ -15,10 +43,10 @@ const ENDPOINT = "https://api.resend.com/emails";
  * @returns {Promise<{ok:boolean, id?:string, error?:string}>}
  */
 export async function sendEmail({ to, subject, html, text, from, replyTo }) {
-  const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) return { ok: false, error: "RESEND_API_KEY tanımlı değil" };
+  const cfg = await loadCfg();
+  if (!cfg.apiKey) return { ok: false, error: "Resend API anahtarı tanımlı değil — admin panel veya env'den ekleyin" };
 
-  const fromAddr = from || process.env.EMAIL_FROM || "Frenciniz <noreply@frenciniz.com>";
+  const fromAddr = from || cfg.fromAddress;
   const toList = Array.isArray(to) ? to : [to];
   if (toList.length === 0 || !toList[0]) return { ok: false, error: "Alıcı yok" };
 
@@ -36,7 +64,7 @@ export async function sendEmail({ to, subject, html, text, from, replyTo }) {
     const r = await fetch(ENDPOINT, {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${apiKey}`,
+        "Authorization": `Bearer ${cfg.apiKey}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(body),
