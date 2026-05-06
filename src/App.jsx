@@ -1274,18 +1274,18 @@ function RecentlyViewed() {
 
 // ===== HOME =====
 function HomePage() {
-  const {go, isMobile, t, lang} = use$();
+  const {go, isMobile, t, lang, products} = use$();
   const popular = useMemo(() => {
     const targetCats = ["fren-diski","fren-diski-abs-li","fren-kampanasi","fren-balatasi"];
-    const pool = PRODUCTS.filter(p => targetCats.includes(p.cat) && hasRealImg(p) && p.stock > 0);
+    const pool = (products||[]).filter(p => targetCats.includes(p.cat) && hasRealImg(p) && p.stock > 0);
     const perCat = {};
     targetCats.forEach(c => { perCat[c] = pool.filter(p => p.cat === c).slice(0, 2); });
     const balanced = [...(perCat["fren-diski"]||[]), ...(perCat["fren-kampanasi"]||[]), ...(perCat["fren-balatasi"]||[]), ...(perCat["fren-diski-abs-li"]||[])];
     return balanced.slice(0, 8);
-  }, []);
+  }, [products]);
   // Öne Çıkanlar — farklı kategorilerden 25 karışık ürün (oturum başına stabil)
   const featured = useMemo(() => {
-    const pool = PRODUCTS.filter(p => hasRealImg(p) && p.stock > 0);
+    const pool = (products||[]).filter(p => hasRealImg(p) && p.stock > 0);
     const byCat = {};
     pool.forEach(p => { (byCat[p.cat] ||= []).push(p); });
     const sample = [];
@@ -1295,8 +1295,8 @@ function HomePage() {
     const rnd = () => { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; };
     const shuffled = [...sample].sort(() => rnd() - 0.5);
     return shuffled.slice(0, 25);
-  }, []);
-  const discounted = PRODUCTS.filter(p => p.old);
+  }, [products]);
+  const discounted = (products||[]).filter(p => p.old);
   // Kritik görsel preload — ilk 6 öne çıkan ürünün görselini browser'a önceden indirt
   useCriticalImagePreload(featured, 6, 320);
 
