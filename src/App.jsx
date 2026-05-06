@@ -631,13 +631,25 @@ export default function App() {
     return { page: "products", params: { cat: path } };
   }, []);
 
+  const pageStateRef = useRef({page, params});
+  useEffect(() => { pageStateRef.current = {page, params}; }, [page, params]);
+
   const go = useCallback((p, pr={}) => {
+    const oldUrl = buildUrl(pageStateRef.current.page, pageStateRef.current.params);
+    try { sessionStorage.setItem(`scroll:${oldUrl}`, String(window.scrollY||0)); } catch {}
+
     setPage(p); setParams(pr);
-    window.scrollTo?.({top:0});
     const url = buildUrl(p, pr);
     if (window.location.pathname + window.location.search !== url) {
       window.history.pushState({page:p, params:pr}, "", url);
     }
+
+    // Restore scroll if previously saved for new URL, else scroll to top
+    setTimeout(() => {
+      let saved = null;
+      try { saved = sessionStorage.getItem(`scroll:${url}`); } catch {}
+      window.scrollTo?.({top: saved !== null ? Number(saved) : 0});
+    }, 0);
   }, [buildUrl]);
 
   // İlk yüklemede URL'i oku
@@ -649,16 +661,36 @@ export default function App() {
     }
   }, []);
 
-  // Geri/ileri butonu
+  // Geri/ileri butonu — scroll pozisyonunu da geri yükle
   useEffect(() => {
     const onPop = () => {
       const parsed = parseUrl();
       setPage(parsed.page);
       setParams(parsed.params);
+      setTimeout(() => {
+        const url = buildUrl(parsed.page, parsed.params);
+        let saved = null;
+        try { saved = sessionStorage.getItem(`scroll:${url}`); } catch {}
+        window.scrollTo?.({top: saved !== null ? Number(saved) : 0});
+      }, 0);
     };
     window.addEventListener("popstate", onPop);
     return () => window.removeEventListener("popstate", onPop);
-  }, [parseUrl]);
+  }, [parseUrl, buildUrl]);
+
+  // Scroll pozisyonunu sürekli kaydet (sessionStorage, URL bazlı)
+  useEffect(() => {
+    let timer;
+    const onScroll = () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        const url = buildUrl(pageStateRef.current.page, pageStateRef.current.params);
+        try { sessionStorage.setItem(`scroll:${url}`, String(window.scrollY||0)); } catch {}
+      }, 100);
+    };
+    window.addEventListener("scroll", onScroll, {passive:true});
+    return () => { window.removeEventListener("scroll", onScroll); clearTimeout(timer); };
+  }, [buildUrl]);
 
   const addToCart = useCallback((product, qty=1) => {
     if(!product.stock) return;
@@ -822,19 +854,16 @@ export default function App() {
         {/* Toast */}
         {toast && <div style={{position:"fixed",top:80,right:20,zIndex:9999,background:"#4caf50",color:"#fff",padding:"12px 20px",borderRadius:8,fontSize:14,fontWeight:500,boxShadow:"0 4px 12px rgba(0,0,0,.15)",animation:"slideUp .3s"}}>✓ {toast} — {t("addedToCart")}</div>}
 
-        {/* Live Chat Widget */}
-        <ChatWidget />
-
-        {/* WhatsApp Button — moved up when chat is present */}
+        {/* WhatsApp Button */}
         <a href="https://wa.me/908508887881" target="_blank" rel="noopener noreferrer"
-          style={{position:"fixed",bottom:chatOpen?420:90,right:24,zIndex:998,width:44,height:44,borderRadius:"50%",background:"#25D366",display:"flex",alignItems:"center",justifyContent:"center",boxShadow:"0 2px 10px rgba(37,211,102,.3)",textDecoration:"none",fontSize:20,transition:"bottom .3s"}}
+          style={{position:"fixed",bottom:24,right:24,zIndex:998,width:64,height:64,borderRadius:"50%",background:"#25D366",display:"flex",alignItems:"center",justifyContent:"center",boxShadow:"0 4px 16px rgba(37,211,102,.4)",textDecoration:"none"}}
           title="WhatsApp ile yazın">
-          <svg viewBox="0 0 32 32" width="26" height="26" fill="#fff"><path d="M16.01 2.93A13.07 13.07 0 0 0 2.93 16a12.94 12.94 0 0 0 1.75 6.53L2.93 29.07l6.72-1.76A13.07 13.07 0 1 0 16.01 2.93Zm0 23.9a10.8 10.8 0 0 1-5.52-1.51l-.4-.23-3.98 1.04 1.06-3.88-.26-.41a10.83 10.83 0 1 1 9.1 5Z"/><path d="M22.36 18.76c-.35-.17-2.05-1.01-2.37-1.13-.32-.11-.55-.17-.78.17-.23.35-.9 1.13-1.1 1.36-.2.23-.41.26-.76.09-.35-.18-1.47-.54-2.8-1.73-1.04-.92-1.73-2.06-1.94-2.41-.2-.35-.02-.54.15-.71.16-.16.35-.41.53-.61.17-.21.23-.35.35-.59.12-.23.06-.44-.03-.61-.09-.17-.78-1.88-1.07-2.57-.28-.68-.57-.59-.78-.6h-.67a1.28 1.28 0 0 0-.93.44 3.93 3.93 0 0 0-1.22 2.92c0 1.72 1.25 3.38 1.43 3.61.17.24 2.47 3.77 5.98 5.28.84.36 1.49.58 2 .74.84.27 1.6.23 2.2.14.67-.1 2.05-.84 2.34-1.65.29-.81.29-1.5.2-1.65-.08-.14-.32-.23-.67-.4Z"/></svg>
+          <svg viewBox="0 0 32 32" width="36" height="36" fill="#fff"><path d="M16.01 2.93A13.07 13.07 0 0 0 2.93 16a12.94 12.94 0 0 0 1.75 6.53L2.93 29.07l6.72-1.76A13.07 13.07 0 1 0 16.01 2.93Zm0 23.9a10.8 10.8 0 0 1-5.52-1.51l-.4-.23-3.98 1.04 1.06-3.88-.26-.41a10.83 10.83 0 1 1 9.1 5Z"/><path d="M22.36 18.76c-.35-.17-2.05-1.01-2.37-1.13-.32-.11-.55-.17-.78.17-.23.35-.9 1.13-1.1 1.36-.2.23-.41.26-.76.09-.35-.18-1.47-.54-2.8-1.73-1.04-.92-1.73-2.06-1.94-2.41-.2-.35-.02-.54.15-.71.16-.16.35-.41.53-.61.17-.21.23-.35.35-.59.12-.23.06-.44-.03-.61-.09-.17-.78-1.88-1.07-2.57-.28-.68-.57-.59-.78-.6h-.67a1.28 1.28 0 0 0-.93.44 3.93 3.93 0 0 0-1.22 2.92c0 1.72 1.25 3.38 1.43 3.61.17.24 2.47 3.77 5.98 5.28.84.36 1.49.58 2 .74.84.27 1.6.23 2.2.14.67-.1 2.05-.84 2.34-1.65.29-.81.29-1.5.2-1.65-.08-.14-.32-.23-.67-.4Z"/></svg>
         </a>
 
         {/* Scroll to Top */}
         {showTop && <button onClick={() => window.scrollTo({top:0,behavior:"smooth"})}
-          style={{position:"fixed",bottom:24,right:92,zIndex:999,width:44,height:44,borderRadius:"50%",background:"#fff",border:"1px solid #ddd",boxShadow:"0 2px 8px rgba(0,0,0,.1)",fontSize:18,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",animation:"fadeIn .3s"}}>↑</button>}
+          style={{position:"fixed",bottom:100,right:24,zIndex:999,width:44,height:44,borderRadius:"50%",background:"#fff",border:"1px solid #ddd",boxShadow:"0 2px 8px rgba(0,0,0,.1)",fontSize:18,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",animation:"fadeIn .3s"}}>↑</button>}
 
         {/* HEADER */}
         <header style={{background:"#fff",borderBottom:"1px solid #e0e0e0",position:"sticky",top:0,zIndex:100}}>
@@ -1397,9 +1426,9 @@ function ProductsPage() {
     <div style={{maxWidth:1200,margin:"0 auto",padding:"20px"}}>
       <div style={{fontSize:13,color:"#999",marginBottom:16}}><span style={{cursor:"pointer"}} onClick={() => go("home")}>{t("home")}</span> / <span style={{color:"#555"}}>{term ? `"${term}"` : catName}</span></div>
       
-      <div style={{display:"flex",gap:20}}>
+      <div style={{display:"flex",gap:20,alignItems:"flex-start"}}>
         {/* Desktop sidebar */}
-        {!isMobile && <div style={{width:220,flexShrink:0}}><FilterPanel /></div>}
+        {!isMobile && <div style={{width:220,flexShrink:0,position:"sticky",top:80,maxHeight:"calc(100vh - 100px)",overflowY:"auto"}}><FilterPanel /></div>}
 
         <div style={{flex:1}}>
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:16,gap:10,flexWrap:"wrap"}}>
