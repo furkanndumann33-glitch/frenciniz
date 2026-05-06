@@ -14,7 +14,9 @@ const BRAND_MAP = { 1: "Ekersan" };
 
 // (regex, kategori) — daha spesifik önce
 const CATEGORY_PATTERNS = [
-  [/D[İI]SK\s*B[İI]JON|B[İI]JON\s*D[İI]SK|D[İI]SK\s*C[İI]VATA/i, "Disk Bijonu/Civatası"],
+  [/D[İI]SK\s*B[İI]JON|B[İI]JON\s*D[İI]SK\b|D[İI]SK\s*C[İI]VATA/i, "Disk Bijonu/Civatası"],
+  // "BİJON ..." ile başlayanlar (DİSK geçse bile) bijon
+  [/^B[İI]JON\s/i, "Bijon"],
   [/FREN\s*D[İI]SK[İI]\s*ABS/i, "Fren Diski ABS'li"],
   [/FREN\s*D[İI]SK[İI]|\bFREN-D[İI]SK[İI]|D[İI]SK[İI]?\s*ISUZU|D[İI]SK[İI]?\s*KRONE|GOBEKL[İI]\s*D[İI]SK/i, "Fren Diski"],
   [/\bD[İI]SK\b|\bDISK\b/i, "Fren Diski"],

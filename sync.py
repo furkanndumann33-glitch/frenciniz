@@ -40,8 +40,10 @@ BRAND_MAP = {
 # (regex, kategori_adı). Daha spesifik önce.
 # i regex flag kullanılıyor — büyük/küçük harf duyarsız.
 CATEGORY_PATTERNS = [
-    # Disk Bijonu özel
-    (r"D[İI]SK\s*B[İI]JON|B[İI]JON\s*D[İI]SK|D[İI]SK\s*C[İI]VATA", "Disk Bijonu/Civatası"),
+    # Disk Bijonu özel (peş peşe yazılan format: "DISK BIJON", "BIJON DISK", "DISK CIVATA")
+    (r"D[İI]SK\s*B[İI]JON|B[İI]JON\s*D[İI]SK\b|D[İI]SK\s*C[İI]VATA", "Disk Bijonu/Civatası"),
+    # "BİJON ..." ile başlayanlar DİSK kelimesi geçse bile bijon (örn: "BİJON RENAULT 440 ÖN DİSK")
+    (r"^B[İI]JON\s", "Bijon"),
     # Fren Diski
     (r"FREN\s*D[İI]SK[İI]\s*ABS", "Fren Diski ABS'li"),
     (r"FREN\s*D[İI]SK[İI]|\bFREN-D[İI]SK[İI]|D[İI]SK[İI]?\s*ISUZU|D[İI]SK[İI]?\s*KRONE|GOBEKL[İI]\s*D[İI]SK", "Fren Diski"),
