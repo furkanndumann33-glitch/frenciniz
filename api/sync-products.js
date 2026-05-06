@@ -60,7 +60,7 @@ const CATEGORY_PATTERNS = [
   [/DX\s*195|DX195|D3\b/i, "Kaliper Tamir Takımı"],
   [/\bB\.V\b|^B\.V|MARK\s*[IV]+/i, "Kaliper Tamir Takımı"],
   [/\bB[İI]JON\s*DPS\b/i, "Bijon DPS"],
-  [/\bB[İI]JON|D[İI]NG[İI]L\s*SOMUN/i, "Bijon"],
+  [/\bB[İI]JON|D[İI]NG[İI]L\s*SOMUN|\bESB\s*\d/i, "Bijon"],
   [/\bPORYA|PORYA\s*KAPAK|PORYA\s*FLANŞ|D[İI]SKL[İI]\s*PORYA|EUROCARGO.*PORYA/i, "Porya"],
   [/\bD[İI]NG[İI]L\b/i, "Dingil"],
   [/AYAR\s*KOLU|EL\s*FREN\s*KOLU/i, "Ayar Kolu / El Fren"],

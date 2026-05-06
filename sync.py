@@ -98,7 +98,7 @@ CATEGORY_PATTERNS = [
     (r"\bB\.V\b|^B\.V|MARK\s*[IV]+", "Kaliper Tamir Takımı"),
     # Bijon / Disk Bijonu
     (r"\bB[İI]JON\s*DPS\b", "Bijon DPS"),
-    (r"\bB[İI]JON|D[İI]NG[İI]L\s*SOMUN", "Bijon"),
+    (r"\bB[İI]JON|D[İI]NG[İI]L\s*SOMUN|\bESB\s*\d", "Bijon"),
     # Porya
     (r"\bPORYA|PORYA\s*KAPAK|PORYA\s*FLANŞ|D[İI]SKL[İI]\s*PORYA|EUROCARGO.*PORYA", "Porya"),
     (r"\bD[İI]NG[İI]L\b", "Dingil"),
