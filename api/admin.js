@@ -312,6 +312,39 @@ export default async function handler(req, res) {
       }
     }
 
+    // ── Kampanya SMS gönderimi (toplu) ─────────────
+    if (action === "campaign-send" && req.method === "POST") {
+      const { message, target = "with-phone", limit = 500 } = req.body || {};
+      if (!message || String(message).trim().length < 10) return res.status(400).json({ error: "Mesaj en az 10 karakter olmalı" });
+      const ids = (await kv.lrange("users:index", 0, Number(limit) - 1)) || [];
+      const recipients = [];
+      for (const id of ids) {
+        const u = await readUser(id);
+        if (!u) continue;
+        if (u.smsOptOut === true) continue; // İYS opt-out
+        if (target === "with-phone" && !u.phone) continue;
+        if (target === "with-email" && !u.email) continue;
+        recipients.push(u);
+      }
+
+      let sent = 0, failed = 0;
+      const errors = [];
+      // 5'er paralel batch
+      for (let i = 0; i < recipients.length; i += 5) {
+        const batch = recipients.slice(i, i + 5);
+        await Promise.all(batch.map(async u => {
+          try {
+            if (u.phone) {
+              const r = await sendSms(u.phone, String(message));
+              if (r.ok) sent++; else { failed++; if (errors.length < 10) errors.push({ phone: u.phone, code: r.code, desc: r.description }); }
+            }
+          } catch (e) { failed++; }
+        }));
+      }
+      await logActivity("campaign.sms", { sent, failed, total: recipients.length, by: admin.userId, msg: String(message).slice(0, 80) });
+      return res.status(200).json({ success: true, sent, failed, total: recipients.length, errors });
+    }
+
     // ── Test bildirim gönderimi (admin panelinden test) ──
     if (action === "test-notify" && req.method === "POST") {
       const { channel, to, message, subject } = req.body || {};

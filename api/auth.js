@@ -8,6 +8,17 @@ import {
 import { sendEmail, emailLayout } from "./_lib/email.js";
 import { sendSms } from "./_lib/netgsm.js";
 
+function maskContact(s) {
+  if (!s) return "";
+  if (s.includes("@")) {
+    const [u, d] = s.split("@");
+    return (u.slice(0, 2) + "***@" + d);
+  }
+  const t = String(s).replace(/\D/g, "");
+  if (t.length < 4) return "***";
+  return t.slice(0, 3) + "****" + t.slice(-2);
+}
+
 export default async function handler(req, res) {
   const action = String(req.query.action || "").toLowerCase();
 
@@ -115,6 +126,84 @@ export default async function handler(req, res) {
     if (action === "logout") {
       clearSessionCookie(res);
       return res.status(200).json({ success: true });
+    }
+
+    // ── Şifre sıfırlama: OTP gönder ─────────────────
+    if (action === "forgot-password" && req.method === "POST") {
+      const { emailOrPhone } = req.body || {};
+      if (!emailOrPhone) return res.status(400).json({ error: "E-posta veya telefon gerekli" });
+
+      const looksEmail = String(emailOrPhone).includes("@");
+      let user = looksEmail ? await findUserByEmail(emailOrPhone) : await findUserByPhone(emailOrPhone);
+      if (!user) user = looksEmail ? await findUserByPhone(emailOrPhone) : await findUserByEmail(emailOrPhone);
+      // Güvenlik: kullanıcı bulunmasa bile aynı yanıt — enumeration önleme
+      if (!user) {
+        return res.status(200).json({ success: true, channel: looksEmail ? "email" : "sms", masked: maskContact(emailOrPhone) });
+      }
+
+      const code = String(Math.floor(100000 + Math.random() * 900000));
+      const otpKey = `otp:reset:${user.id}`;
+      await kv.set(otpKey, JSON.stringify({ code, attempts: 0, createdAt: Date.now() }), { ex: 600 }); // 10 dk
+
+      // Önce SMS, telefon yoksa mail
+      let channel = "none";
+      if (user.phone) {
+        await sendSms(user.phone, `Frenciniz sifre sifirlama kodunuz: ${code}. 10 dakika gecerli. Bu kodu kimseyle paylasmayin.`);
+        channel = "sms";
+      } else if (user.email) {
+        await sendEmail({
+          to: user.email,
+          subject: "Şifre sıfırlama kodu — Frenciniz",
+          html: emailLayout({
+            heading: "Şifre Sıfırlama Kodunuz",
+            lines: [
+              `Şifre sıfırlama kodunuz: <strong style="font-size:24px;letter-spacing:4px;color:#ff6000">${code}</strong>`,
+              "Bu kod 10 dakika boyunca geçerlidir.",
+              "Eğer bu talebi siz oluşturmadıysanız bu mesajı yok sayın.",
+            ],
+          }),
+          text: `Sifre sifirlama kodunuz: ${code} (10 dakika gecerli)`,
+        });
+        channel = "email";
+      } else {
+        return res.status(400).json({ error: "Hesabınızda iletişim bilgisi yok" });
+      }
+      await logActivity("user.forgot", { userId: user.id, channel });
+      return res.status(200).json({ success: true, channel, masked: maskContact(channel === "sms" ? user.phone : user.email) });
+    }
+
+    // ── Şifre sıfırlama: OTP doğrula + yeni şifre ──
+    if (action === "reset-password" && req.method === "POST") {
+      const { emailOrPhone, otp, newPassword } = req.body || {};
+      if (!emailOrPhone || !otp || !newPassword) return res.status(400).json({ error: "Eksik alan" });
+      if (String(newPassword).length < 6) return res.status(400).json({ error: "Şifre en az 6 karakter olmalı" });
+
+      const looksEmail = String(emailOrPhone).includes("@");
+      let user = looksEmail ? await findUserByEmail(emailOrPhone) : await findUserByPhone(emailOrPhone);
+      if (!user) user = looksEmail ? await findUserByPhone(emailOrPhone) : await findUserByEmail(emailOrPhone);
+      if (!user) return res.status(400).json({ error: "Kod geçersiz veya süresi doldu" });
+
+      const otpKey = `otp:reset:${user.id}`;
+      const raw = await kv.get(otpKey);
+      if (!raw) return res.status(400).json({ error: "Kod geçersiz veya süresi doldu" });
+      const data = typeof raw === "string" ? JSON.parse(raw) : raw;
+
+      if ((data.attempts || 0) >= 5) {
+        await kv.del(otpKey);
+        return res.status(429).json({ error: "Çok fazla yanlış deneme — yeni kod isteyin" });
+      }
+      if (String(otp).trim() !== String(data.code)) {
+        data.attempts = (data.attempts || 0) + 1;
+        await kv.set(otpKey, JSON.stringify(data), { ex: 600 });
+        return res.status(400).json({ error: "Kod yanlış" });
+      }
+
+      user.passwordHash = hashPassword(newPassword);
+      await writeUser(user);
+      await kv.del(otpKey);
+      await logActivity("user.reset", { userId: user.id });
+      setSessionCookie(res, signJWT({ userId: user.id, role: user.role, email: user.email }));
+      return res.status(200).json({ success: true, user: publicUser(user) });
     }
 
     if (action === "me") {

@@ -1845,6 +1845,62 @@ function CheckoutPage() {
 }
 
 // ===== AUTH — Real backend (signup/login API + httpOnly session cookie) =====
+function ForgotForm({en, IS, setMode, setUser, go}){
+  const [step,setStep]=useState(1);
+  const [emailOrPhone,setEOP]=useState("");
+  const [otp,setOtp]=useState("");
+  const [pw,setPw]=useState("");
+  const [busy,setBusy]=useState(false);
+  const [err,setErr]=useState("");
+  const [info,setInfo]=useState("");
+
+  async function sendCode(){
+    setErr(""); setInfo(""); setBusy(true);
+    try{
+      const r=await fetch("/api/auth/forgot-password",{method:"POST",headers:{"Content-Type":"application/json"},credentials:"include",body:JSON.stringify({emailOrPhone})});
+      const d=await r.json();
+      if(!r.ok) throw new Error(d.error||"Hata");
+      setInfo(en?`Code sent (${d.channel}: ${d.masked})`:`Kod gönderildi (${d.channel==="sms"?"SMS":"e-posta"}: ${d.masked})`);
+      setStep(2);
+    }catch(e){ setErr(e.message); } finally{ setBusy(false); }
+  }
+  async function verify(){
+    setErr(""); setBusy(true);
+    try{
+      const r=await fetch("/api/auth/reset-password",{method:"POST",headers:{"Content-Type":"application/json"},credentials:"include",body:JSON.stringify({emailOrPhone,otp,newPassword:pw})});
+      const d=await r.json();
+      if(!r.ok) throw new Error(d.error||"Hata");
+      setUser?.(d.user);
+      go?.("account");
+    }catch(e){ setErr(e.message); } finally{ setBusy(false); }
+  }
+
+  return <div style={{maxWidth:400,margin:"40px auto",padding:"0 20px"}}>
+    <div style={{border:"1px solid #eee",borderRadius:8,padding:28}}>
+      <h2 style={{fontSize:20,fontWeight:700,marginBottom:8}}>{en?"Forgot Password":"Şifremi Unuttum"}</h2>
+      {step===1 && <>
+        <p style={{fontSize:14,color:"#888",marginBottom:20}}>{en?"Enter your registered email or phone number.":"Kayıtlı e-posta adresinizi veya telefon numaranızı girin."}</p>
+        <input value={emailOrPhone} onChange={e=>setEOP(e.target.value)} placeholder={en?"Email or phone":"E-posta veya telefon"} style={{...IS,marginBottom:14}}/>
+        <button onClick={sendCode} disabled={busy||!emailOrPhone} style={{width:"100%",padding:"12px",background:busy?"#ffa06a":"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:15,fontWeight:700,cursor:busy?"not-allowed":"pointer",marginBottom:12}}>
+          {busy?(en?"Sending...":"Gönderiliyor..."):(en?"Send Reset Code":"Sıfırlama Kodu Gönder")}
+        </button>
+      </>}
+      {step===2 && <>
+        {info && <div style={{padding:"10px",background:"#e8f5e9",borderRadius:6,fontSize:13,color:"#2e7d32",marginBottom:14}}>✓ {info}</div>}
+        <p style={{fontSize:13,color:"#666",marginBottom:14}}>{en?"Enter the 6-digit code and your new password.":"Aldığınız 6 haneli kodu ve yeni şifrenizi girin."}</p>
+        <input value={otp} onChange={e=>setOtp(e.target.value.replace(/\D/g,"").slice(0,6))} placeholder={en?"6-digit code":"6 haneli kod"} style={{...IS,marginBottom:10,letterSpacing:6,textAlign:"center",fontWeight:700,fontSize:18}}/>
+        <input type="password" value={pw} onChange={e=>setPw(e.target.value)} placeholder={en?"New password (min 6 chars)":"Yeni şifre (en az 6 karakter)"} style={{...IS,marginBottom:14}}/>
+        <button onClick={verify} disabled={busy||otp.length!==6||pw.length<6} style={{width:"100%",padding:"12px",background:(busy||otp.length!==6||pw.length<6)?"#ddd":"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:15,fontWeight:700,cursor:(busy||otp.length!==6||pw.length<6)?"not-allowed":"pointer",marginBottom:8}}>
+          {busy?(en?"Verifying...":"Doğrulanıyor..."):(en?"Reset Password":"Şifreyi Yenile")}
+        </button>
+        <button onClick={()=>setStep(1)} style={{background:"none",border:"none",color:"#888",fontSize:12,cursor:"pointer",display:"block",margin:"6px auto"}}>{en?"← Resend code":"← Yeni kod iste"}</button>
+      </>}
+      {err && <div style={{padding:"10px",background:"#fee2e2",borderRadius:6,fontSize:13,color:"#dc2626",marginBottom:12}}>⚠ {err}</div>}
+      <button onClick={()=>setMode("login")} style={{background:"none",border:"none",color:"#ff6000",fontSize:13,cursor:"pointer",display:"block",margin:"0 auto"}}>{en?"← Back to login":"← Giriş ekranına dön"}</button>
+    </div>
+  </div>;
+}
+
 function AuthPage() {
   const {params} = use$();
   const [mode, setMode] = useState(params?.mode === "register" ? "register" : "login"); // login | register | forgot
@@ -1893,21 +1949,7 @@ function AuthPage() {
 
   const IS = {width:"100%",padding:"10px 14px",border:"1px solid #ddd",borderRadius:6,fontSize:14};
 
-  if(mode === "forgot") return (
-    <div style={{maxWidth:400,margin:"40px auto",padding:"0 20px"}}>
-      <div style={{border:"1px solid #eee",borderRadius:8,padding:28}}>
-        <h2 style={{fontSize:20,fontWeight:700,marginBottom:8}}>{en?"Forgot Password":"Şifremi Unuttum"}</h2>
-        <p style={{fontSize:14,color:"#888",marginBottom:20}}>{en?"Enter your registered email or phone number.":"Kayıtlı e-posta adresinizi veya telefon numaranızı girin."}</p>
-        <input placeholder={en?"Email or phone number":"E-posta veya telefon numarası"} style={{...IS, marginBottom:14}}/>
-        <button onClick={() => {setOtpSent(true)}}
-          style={{width:"100%",padding:"12px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:15,fontWeight:700,cursor:"pointer",marginBottom:12}}>
-          {otpSent ? (en?"✓ Sent":"✓ Gönderildi") : (en?"Send Reset Code":"Sıfırlama Kodu Gönder")}
-        </button>
-        {otpSent && <div style={{padding:"12px",background:"#e8f5e9",borderRadius:6,fontSize:13,color:"#2e7d32",textAlign:"center",marginBottom:12}}>{en?"Password reset link sent.":"Şifre sıfırlama bağlantısı gönderildi."}</div>}
-        <button onClick={() => setMode("login")} style={{background:"none",border:"none",color:"#ff6000",fontSize:13,cursor:"pointer",display:"block",margin:"0 auto"}}>{en?"← Back to login":"← Giriş ekranına dön"}</button>
-      </div>
-    </div>
-  );
+  if(mode === "forgot") return <ForgotForm en={en} IS={IS} setMode={setMode} setUser={setUser} go={go}/>;
 
   return (
     <div style={{maxWidth:400,margin:"40px auto",padding:"0 20px"}}>
@@ -3296,7 +3338,7 @@ function AdminPanel() {
     {id:"banners",label:"Bannerlar",icon:"🖼"},{id:"pages",label:"Sayfalar",icon:"📄"},
     {id:"seo",label:"SEO Ayarları",icon:"🔍"},{id:"payment",label:"Ödeme Ayarları",icon:"💳"},
     {id:"email",label:"Mail Ayarları",icon:"✉️"},
-    {id:"sms",label:"NetGSM",icon:"📱"},{id:"email-templates",label:"Mail Şablonları",icon:"📨"},
+    {id:"sms",label:"NetGSM",icon:"📱"},{id:"campaign",label:"Kampanya SMS",icon:"📢"},{id:"email-templates",label:"Mail Şablonları",icon:"📨"},
     {id:"chat-history",label:"Chat Geçmişi",icon:"💬"},{id:"revenue",label:"Gelir/Gider",icon:"📉"},
     {id:"admin-users",label:"Admin Yönetimi",icon:"🔐"},{id:"settings",label:"Site Ayarları",icon:"⚙️"},
     {id:"activity",label:"Aktivite Logu",icon:"📋"},{id:"backup",label:"Yedekleme",icon:"💾"},
@@ -3339,6 +3381,7 @@ function AdminPanel() {
         {tab==="payment"&&<APaymentCfg/>}
         {tab==="email"&&<AEmailCfg/>}
         {tab==="sms"&&<ASMSCfg/>}
+        {tab==="campaign"&&<ACampaign/>}
         {tab==="email-templates"&&<AEmailTemplates/>}
         {tab==="chat-history"&&<AChatHistory/>}
         {tab==="revenue"&&<ARevenue/>}
@@ -3802,6 +3845,61 @@ function ASMSCfg(){
         {testStatus && <div style={{fontSize:12,marginTop:6,color:testStatus.startsWith("✓")?"#15803d":"#dc2626"}}>{testStatus}</div>}
       </div>
     </div>
+  </div></ACard>;
+}
+
+function ACampaign(){
+  const [msg,setMsg]=useState("");
+  const [target,setTarget]=useState("with-phone");
+  const [busy,setBusy]=useState(false);
+  const [result,setResult]=useState(null);
+  const [confirm,setConfirm]=useState(false);
+  const len=msg.length;
+  const segments=Math.ceil(len/155)||1;
+  async function send(){
+    setBusy(true); setResult(null);
+    try{
+      const r=await fetch("/api/admin/campaign-send",{method:"POST",credentials:"include",headers:{"Content-Type":"application/json"},body:JSON.stringify({message:msg,target})});
+      const d=await r.json();
+      setResult(d);
+    }catch(e){ setResult({error:e.message}); } finally{ setBusy(false); setConfirm(false); }
+  }
+  return <ACard title="Kampanya / İndirim SMS"><div style={{maxWidth:600,display:"flex",flexDirection:"column",gap:14}}>
+    <div style={{padding:14,background:"#fff8e1",border:"1px solid #fde68a",borderRadius:8,fontSize:13,color:"#92400e",lineHeight:1.6}}>
+      ⚠ <strong>İYS Uyarısı:</strong> Reklam/kampanya SMS göndermek için müşterilerden açık ticari ileti izni almanız gerekir. Onaysız ticari SMS, İYS yönetmeliğine göre cezaya tabidir. Bilgilendirme/işlem mesajları için izin gerekmez.
+    </div>
+    <div>
+      <label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>Hedef Kitle</label>
+      <select value={target} onChange={e=>setTarget(e.target.value)} style={{width:"100%",padding:9,border:"1px solid #ddd",borderRadius:6,fontSize:13}}>
+        <option value="with-phone">Telefon numarası olan tüm müşteriler</option>
+      </select>
+    </div>
+    <div>
+      <label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>Mesaj İçeriği</label>
+      <textarea value={msg} onChange={e=>setMsg(e.target.value)} rows={5} placeholder="Frenciniz: Tum disk balata urunlerinde %15 indirim! Kupon: BAHAR15. frenciniz.com" style={{width:"100%",padding:12,border:"1px solid #ddd",borderRadius:6,fontSize:14,fontFamily:"inherit",resize:"vertical"}}/>
+      <div style={{fontSize:11,color:"#888",marginTop:4,display:"flex",justifyContent:"space-between"}}>
+        <span>{len} karakter — {segments} SMS segmenti</span>
+        <span>Türkçe karakter kullanmamanız önerilir (maliyet)</span>
+      </div>
+    </div>
+    {!confirm ? (
+      <ABtn onClick={()=>setConfirm(true)} style={{background:msg.length>=10?"#ff6000":"#ddd",cursor:msg.length>=10?"pointer":"not-allowed"}} disabled={msg.length<10}>📢 Gönder</ABtn>
+    ) : (
+      <div style={{padding:14,background:"#fee2e2",border:"1px solid #fca5a5",borderRadius:8}}>
+        <div style={{fontSize:13,fontWeight:600,marginBottom:10,color:"#991b1b"}}>Bu mesaj telefonu olan TÜM müşterilere gönderilecek. Onaylıyor musun?</div>
+        <div style={{display:"flex",gap:8}}>
+          <ABtn onClick={send} disabled={busy} style={{background:busy?"#999":"#dc2626"}}>{busy?"Gönderiliyor...":"Evet, Gönder"}</ABtn>
+          <ABtn onClick={()=>setConfirm(false)} style={{background:"#666"}}>İptal</ABtn>
+        </div>
+      </div>
+    )}
+    {result && (result.error
+      ? <div style={{padding:12,background:"#fee2e2",borderRadius:6,fontSize:13,color:"#dc2626"}}>⚠ {result.error}</div>
+      : <div style={{padding:14,background:"#dcfce7",borderRadius:8,fontSize:13,color:"#166534"}}>
+          ✓ {result.sent}/{result.total} müşteriye SMS gönderildi.
+          {result.failed>0 && <div style={{marginTop:6,color:"#92400e"}}>{result.failed} adet hata.</div>}
+        </div>
+    )}
   </div></ACard>;
 }
 
