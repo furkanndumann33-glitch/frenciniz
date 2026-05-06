@@ -1809,6 +1809,9 @@ function CheckoutPage() {
                       numberOfProducts: it.qty,
                       unitPrice: Number(it.price),
                       totalPrice: Number((it.price * it.qty).toFixed(2)),
+                      sku: it.sku || "",
+                      brand: it.brand || "",
+                      img: it.img || null,
                     })),
                   },
                 };
@@ -2104,28 +2107,72 @@ function AboutPage() {
 
 // ===== ACCOUNT SUB-PAGES =====
 function OrdersPage() {
-  const {go, pastOrders, lang} = use$();
+  const {go, lang, user} = use$();
   const en = lang === "en";
-  return <div style={{maxWidth:800,margin:"0 auto",padding:"20px"}}>
+  const [orders, setOrders] = useState(null);
+  const [err, setErr] = useState(null);
+  useEffect(() => {
+    if (!user) { setOrders([]); return; }
+    fetch("/api/orders", {credentials:"include"})
+      .then(r => r.json())
+      .then(d => setOrders(Array.isArray(d.orders) ? d.orders : []))
+      .catch(() => { setErr("load"); setOrders([]); });
+  }, [user]);
+
+  return <div style={{maxWidth:900,margin:"0 auto",padding:"20px"}}>
     <div style={{fontSize:13,color:"#999",marginBottom:16}}><span style={{cursor:"pointer"}} onClick={()=>go("account")}>{en?"My Account":"Hesabım"}</span> / <span style={{color:"#555"}}>{en?"My Orders":"Siparişlerim"}</span></div>
     <h1 style={{fontSize:22,fontWeight:700,marginBottom:20}}>{en?"My Orders":"Siparişlerim"}</h1>
-    {pastOrders.length === 0 ? (
+    {!user ? (
+      <div style={{textAlign:"center",padding:"48px 0"}}>
+        <p style={{color:"#999",marginBottom:16}}>{en?"Please sign in to view your orders.":"Siparişlerinizi görmek için giriş yapın."}</p>
+        <button onClick={()=>go("auth")} style={{padding:"12px 28px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:14,fontWeight:600,cursor:"pointer"}}>{en?"Sign In":"Giriş Yap"}</button>
+      </div>
+    ) : orders === null ? (
+      <div style={{textAlign:"center",padding:"48px 0",color:"#999"}}>{en?"Loading…":"Yükleniyor…"}</div>
+    ) : orders.length === 0 ? (
       <div style={{textAlign:"center",padding:"48px 0"}}>
         <div style={{fontSize:48,marginBottom:12}}>📦</div>
         <p style={{color:"#999",marginBottom:16}}>{en?"You have no orders yet.":"Henüz siparişiniz bulunmuyor."}</p>
         <button onClick={()=>go("products")} style={{padding:"12px 28px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:14,fontWeight:600,cursor:"pointer"}}>{en?"Start Shopping":"Alışverişe Başla"}</button>
       </div>
     ) : (
-      <div style={{border:"1px solid #eee",borderRadius:8,overflow:"hidden"}}>
-        <div style={{display:"grid",gridTemplateColumns:"2fr 1fr 1fr 1fr",gap:8,padding:"10px 16px",background:"#fafafa",borderBottom:"1px solid #eee"}}>
-          {(en?["Product","Qty","Total","Date"]:["Ürün","Adet","Tutar","Tarih"]).map((h,i) => <span key={i} style={{fontSize:12,fontWeight:700,color:"#999"}}>{h}</span>)}
-        </div>
-        {pastOrders.map((order,i) => (
-          <div key={i} style={{display:"grid",gridTemplateColumns:"2fr 1fr 1fr 1fr",gap:8,padding:"12px 16px",borderBottom:i<pastOrders.length-1?"1px solid #f0f0f0":"none",alignItems:"center"}}>
-            <div><div style={{fontSize:14,fontWeight:500}}>{translateName(order.name,lang)}</div><div style={{fontSize:12,color:"#999"}}>{order.brand} · {order.sku}</div></div>
-            <span style={{fontSize:13}}>{order.qty} {en?"pcs":"adet"}</span>
-            <span style={{fontSize:14,fontWeight:600}}>₺{(order.price * order.qty).toLocaleString("tr-TR")}</span>
-            <span style={{fontSize:12,color:"#999"}}>{new Date(order.date).toLocaleDateString("tr-TR")}</span>
+      <div style={{display:"flex",flexDirection:"column",gap:14}}>
+        {orders.map((o) => (
+          <div key={o.orderRef} style={{border:"1px solid #eee",borderRadius:10,overflow:"hidden",background:"#fff"}}>
+            <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"12px 16px",background:"#fafafa",borderBottom:"1px solid #eee",flexWrap:"wrap",gap:8}}>
+              <div>
+                <div style={{fontSize:13,color:"#999"}}>{en?"Order No":"Sipariş No"}</div>
+                <div style={{fontSize:14,fontWeight:600}}>{o.orderRef}</div>
+              </div>
+              <div>
+                <div style={{fontSize:13,color:"#999"}}>{en?"Date":"Tarih"}</div>
+                <div style={{fontSize:13}}>{new Date(o.paidAt||o.createdAt).toLocaleString("tr-TR")}</div>
+              </div>
+              <div>
+                <div style={{fontSize:13,color:"#999"}}>{en?"Status":"Durum"}</div>
+                <div style={{fontSize:13,fontWeight:600,color:"#15803d"}}>✓ {o.fulfillmentStatus || (en?"Preparing":"Hazırlanıyor")}</div>
+              </div>
+              <div style={{textAlign:"right"}}>
+                <div style={{fontSize:13,color:"#999"}}>{en?"Total":"Tutar"}</div>
+                <div style={{fontSize:18,fontWeight:800,color:"#ff6000"}}>₺{Number(o.amount||0).toLocaleString("tr-TR",{minimumFractionDigits:2,maximumFractionDigits:2})}</div>
+              </div>
+            </div>
+            {o.items && o.items.length > 0 && (
+              <div style={{padding:"4px 16px"}}>
+                {o.items.map((it,j) => (
+                  <div key={j} style={{display:"flex",justifyContent:"space-between",padding:"10px 0",borderBottom:j<o.items.length-1?"1px solid #f5f5f5":"none",fontSize:13}}>
+                    <div>
+                      <div style={{fontWeight:500}}>{translateName(it.name,lang)}</div>
+                      {(it.sku||it.brand) && <div style={{fontSize:12,color:"#999"}}>{[it.brand,it.sku].filter(Boolean).join(" · ")}</div>}
+                    </div>
+                    <div style={{textAlign:"right",whiteSpace:"nowrap"}}>
+                      <div>{it.qty} {en?"pcs":"adet"} × ₺{Number(it.price).toLocaleString("tr-TR")}</div>
+                      <div style={{fontWeight:600}}>₺{(it.price*it.qty).toLocaleString("tr-TR",{minimumFractionDigits:2,maximumFractionDigits:2})}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         ))}
       </div>

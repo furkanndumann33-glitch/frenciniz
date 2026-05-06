@@ -57,6 +57,8 @@ export default async function handler(req, res) {
 
         const userId = existing?.buyer?.userId;
         if (userId && userId.startsWith("usr_")) {
+          // Per-user sipariş listesi — hesabımdaki "Siparişlerim" sayfası buradan okur
+          try { await kv.lpush(`user:${userId}:orders`, merchant_oid); } catch {}
           const u = await readUser(userId);
           if (u) {
             u.orderCount = (u.orderCount || 0) + 1;
