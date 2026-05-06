@@ -487,8 +487,8 @@ export default function App() {
     // Tek source of truth: statik JSON (Vercel CDN cache, anında).
     // sync.py lokalden git push ile günceller, görseller /img/* lokal webp.
     Promise.all([
-      fetch("/data/products.json").then(r => r.json()),
-      fetch("/data/categories.json").then(r => r.json()),
+      fetch("/data/products.json", { cache: "no-store" }).then(r => r.json()),
+      fetch("/data/categories.json", { cache: "no-store" }).then(r => r.json()),
     ]).then(([p, c]) => {
       PRODUCTS = p;
       CATS = c;
