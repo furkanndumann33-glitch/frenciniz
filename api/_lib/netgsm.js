@@ -23,10 +23,12 @@ async function loadCfg() {
     user: kvCfg.user || process.env.NETGSM_USERCODE || "",
     pass: kvCfg.pass || process.env.NETGSM_PASSWORD || "",
     header: kvCfg.header || process.env.NETGSM_MSGHEADER || "",
+    adminPhone: kvCfg.adminPhone || process.env.NETGSM_ADMIN_PHONE || "",
     notifySignup: kvCfg.notifySignup !== false,
     notifyOrder: kvCfg.notifyOrder !== false,
     notifyShipped: kvCfg.notifyShipped !== false,
     notifyStock: kvCfg.notifyStock !== false,
+    notifyAdminOrder: kvCfg.notifyAdminOrder !== false,
   };
   _cfgCacheAt = Date.now();
   return _cfgCache;

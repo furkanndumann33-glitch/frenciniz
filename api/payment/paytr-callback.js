@@ -2,7 +2,7 @@ import { kv } from "@vercel/kv";
 import { paytrConfig, verifyCallbackHash } from "../_lib/paytr.js";
 import { logActivity, readUser, writeUser } from "../_lib/auth.js";
 import { sendEmail, emailLayout } from "../_lib/email.js";
-import { sendSms } from "../_lib/netgsm.js";
+import { sendSms, getSmsConfig } from "../_lib/netgsm.js";
 
 export const config = { api: { bodyParser: false } };
 
@@ -100,6 +100,17 @@ export default async function handler(req, res) {
         if (buyerPhone) {
           sendSms(buyerPhone, `Frenciniz: Siparisiniz alindi. No: ${merchant_oid} Tutar: ${Number(merged.amount).toFixed(2)} TL. Hazirlandiginda bilgi verilecektir.`).catch(()=>{});
         }
+
+        // Yöneticiye yeni sipariş bildirimi
+        try {
+          const smsCfg = await getSmsConfig();
+          if (smsCfg.notifyAdminOrder !== false && smsCfg.adminPhone) {
+            const itemCount = items.reduce((s, it) => s + Number(it.numberOfProducts || 0), 0);
+            const customerLabel = (buyerName || buyerEmail || "Musteri").slice(0, 30);
+            const adminMsg = `Frenciniz YENI SIPARIS! No:${merchant_oid} Musteri:${customerLabel} Adet:${itemCount} Tutar:${Number(merged.amount).toFixed(2)}TL`;
+            sendSms(smsCfg.adminPhone, adminMsg.slice(0, 155)).catch(()=>{});
+          }
+        } catch {}
       } catch {}
     } else {
       try {

@@ -3750,7 +3750,7 @@ function AEmailCfg(){
 }
 
 function ASMSCfg(){
-  const [cfg,setCfg]=useState({user:"",pass:"",header:"FRENCINIZ",notifySignup:true,notifyOrder:true,notifyShipped:true,notifyStock:true});
+  const [cfg,setCfg]=useState({user:"",pass:"",header:"FRENCINIZ",adminPhone:"",notifySignup:true,notifyOrder:true,notifyShipped:true,notifyStock:true,notifyAdminOrder:true});
   const [ok,setOk]=useState(false);
   const [testTo,setTestTo]=useState("");
   const [testStatus,setTestStatus]=useState("");
@@ -3779,8 +3779,17 @@ function ASMSCfg(){
       <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>Kullanıcı Kodu</label><AIn value={cfg.user} onChange={e=>setCfg({...cfg,user:e.target.value})} placeholder="850XXXXXXX"/></div>
       <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>API Şifresi</label><AIn type="password" value={cfg.pass} onChange={e=>setCfg({...cfg,pass:e.target.value})} placeholder="API şifresi"/></div>
       <div><label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>Başlık</label><AIn value={cfg.header} onChange={e=>setCfg({...cfg,header:e.target.value})} placeholder="FRENCINIZ"/></div>
+      <div style={{borderTop:"1px solid #eee",paddingTop:14,marginTop:4}}>
+        <label style={{fontSize:12,fontWeight:600,color:"#666",display:"block",marginBottom:4}}>Yönetici Telefonu (yeni sipariş bildirimi için)</label>
+        <AIn value={cfg.adminPhone||""} onChange={e=>setCfg({...cfg,adminPhone:e.target.value})} placeholder="5456087008"/>
+        <div style={{fontSize:11,color:"#888",marginTop:4}}>Yeni sipariş geldiğinde bu numaraya SMS gider — admin paneli kontrol etmene gerek kalmaz.</div>
+      </div>
       <div style={{border:"1px solid #eee",borderRadius:6,padding:14}}>
         <div style={{fontSize:13,fontWeight:600,marginBottom:8}}>Otomatik SMS Bildirimleri</div>
+        <div style={{display:"flex",justifyContent:"space-between",padding:"8px 0",borderBottom:"1px dashed #f0f0f0",marginBottom:6}}>
+          <span style={{fontSize:13,fontWeight:600,color:"#ff6000"}}>📢 Yeni sipariş → yöneticiye</span>
+          <input type="checkbox" checked={cfg.notifyAdminOrder!==false} onChange={e=>setCfg({...cfg,notifyAdminOrder:e.target.checked})} style={{accentColor:"#ff6000"}}/>
+        </div>
         {rows.map(r=><div key={r.k} style={{display:"flex",justifyContent:"space-between",padding:"8px 0"}}><span style={{fontSize:13}}>{r.l}</span><input type="checkbox" checked={cfg[r.k]!==false} onChange={e=>setCfg({...cfg,[r.k]:e.target.checked})} style={{accentColor:"#ff6000"}}/></div>)}
       </div>
       <div style={{display:"flex",gap:8,marginTop:4}}><ABtn onClick={save}>{ok?"✓ Kaydedildi":"Kaydet"}</ABtn></div>
