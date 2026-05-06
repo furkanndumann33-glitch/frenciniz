@@ -6,7 +6,7 @@ const TR = {
   home:"Ana Sayfa",products:"Ürünler",brands:"Markalar",contact:"İletişim",about:"Hakkımızda",faq:"SSS",
   addToCart:"Sepete Ekle",outOfStock:"Tükendi",notifyMe:"🔔 Haber Ver",buyAgain:"Tekrar Al",
   heroTitle:"Fren Aksamı Uzmanı",heroDesc:"10.000+ orijinal ve eşdeğer parça. Aynı gün kargo, 12 taksit.",browseProducts:"Ürünleri İncele",
-  byVehicle:"Araç Tipine Göre Alışveriş",bestSellers:"Çok Satanlar",seeAll:"Tümünü Gör →",discounted:"🔥 İndirimli Ürünler",
+  byVehicle:"Araç Tipine Göre Alışveriş",bestSellers:"Çok Satanlar",featured:"Öne Çıkanlar",seeAll:"Tümünü Gör →",discounted:"🔥 İndirimli Ürünler",
   sameDay:"Aynı Gün Kargo",sameDayDesc:"14:00'a kadar sipariş",origGuarantee:"Orijinal Garanti",origDesc:"ECE R-90 sertifikalı",
   installment:"12 Taksit",installmentDesc:"Tüm kredi kartlarına",returnPolicy:"14 Gün İade",returnDesc:"Koşulsuz iade hakkı",
   emptyCart:"Sepetiniz boş",startShopping:"Alışverişe Başla",orderSummary:"Sipariş Özeti",subtotal:"Ara Toplam",shipping:"Kargo",
@@ -57,7 +57,7 @@ const EN = {
   home:"Home",products:"Products",brands:"Brands",contact:"Contact",about:"About Us",faq:"FAQ",
   addToCart:"Add to Cart",outOfStock:"Sold Out",notifyMe:"🔔 Notify Me",buyAgain:"Reorder",
   heroTitle:"Brake Parts Expert",heroDesc:"10,000+ original and equivalent parts. Same day shipping, 12 installments.",browseProducts:"Browse Products",
-  byVehicle:"Shop by Vehicle Type",bestSellers:"Best Sellers",seeAll:"See All →",discounted:"🔥 Discounted Products",
+  byVehicle:"Shop by Vehicle Type",bestSellers:"Best Sellers",featured:"Featured",seeAll:"See All →",discounted:"🔥 Discounted Products",
   sameDay:"Same Day Shipping",sameDayDesc:"Order before 2 PM",origGuarantee:"Original Guarantee",origDesc:"ECE R-90 certified",
   installment:"12 Installments",installmentDesc:"All credit cards",returnPolicy:"14 Day Return",returnDesc:"Unconditional return",
   emptyCart:"Your cart is empty",startShopping:"Start Shopping",orderSummary:"Order Summary",subtotal:"Subtotal",shipping:"Shipping",
@@ -1283,9 +1283,22 @@ function HomePage() {
     const balanced = [...(perCat["fren-diski"]||[]), ...(perCat["fren-kampanasi"]||[]), ...(perCat["fren-balatasi"]||[]), ...(perCat["fren-diski-abs-li"]||[])];
     return balanced.slice(0, 8);
   }, []);
+  // Öne Çıkanlar — farklı kategorilerden 25 karışık ürün (oturum başına stabil)
+  const featured = useMemo(() => {
+    const pool = PRODUCTS.filter(p => hasRealImg(p) && p.stock > 0);
+    const byCat = {};
+    pool.forEach(p => { (byCat[p.cat] ||= []).push(p); });
+    const sample = [];
+    Object.values(byCat).forEach(arr => { sample.push(...arr.slice(0, 2)); });
+    // Deterministik karıştırma (her oturumda aynı sıra)
+    let seed = 42;
+    const rnd = () => { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; };
+    const shuffled = [...sample].sort(() => rnd() - 0.5);
+    return shuffled.slice(0, 25);
+  }, []);
   const discounted = PRODUCTS.filter(p => p.old);
-  // Kritik görsel preload — ilk 6 popüler ürünün görselini browser'a önceden indirt
-  useCriticalImagePreload(popular, 6, 320);
+  // Kritik görsel preload — ilk 6 öne çıkan ürünün görselini browser'a önceden indirt
+  useCriticalImagePreload(featured, 6, 320);
 
   return <>
     {/* Sol kenar kategori çubuğu (sadece geniş ekran) - hiyerarşik */}
@@ -1322,13 +1335,13 @@ function HomePage() {
       </div>
     </div>
 
-    {/* Popular */}
+    {/* Featured — Öne Çıkanlar (25 karışık ürün, üstte) */}
     <div style={{maxWidth:1200,margin:"0 auto",padding:"16px 20px 32px"}}>
       <div style={{display:"flex",justifyContent:"space-between",marginBottom:16}}>
-        <h2 style={{fontSize:20,fontWeight:700}}>{t("bestSellers")}</h2>
+        <h2 style={{fontSize:20,fontWeight:700}}>{t("featured")}</h2>
         <button onClick={() => go("products")} style={{background:"none",border:"none",color:"#ff6000",fontSize:13,fontWeight:600,cursor:"pointer"}}>{t("seeAll")}</button>
       </div>
-      <div style={{display:"grid",gridTemplateColumns:isMobile?"repeat(2,1fr)":"repeat(4,1fr)",gap:isMobile?10:16}}>{popular.slice(0,4).map((p,i) => <ProductCard key={p.id} p={p} eager={i<4} />)}</div>
+      <div style={{display:"grid",gridTemplateColumns:isMobile?"repeat(2,1fr)":"repeat(4,1fr)",gap:isMobile?10:16}}>{featured.map((p,i) => <ProductCard key={p.id} p={p} eager={i<6} />)}</div>
     </div>
 
     {/* Discounted */}
@@ -1338,6 +1351,15 @@ function HomePage() {
         <div style={{display:"grid",gridTemplateColumns:isMobile?"repeat(2,1fr)":"repeat(4,1fr)",gap:isMobile?10:16}}>{discounted.slice(0,4).map((p,i) => <ProductCard key={p.id} p={p} eager={i<2} />)}</div>
       </div>
     </div>}
+
+    {/* Best Sellers — Çok Satanlar (altta) */}
+    <div style={{maxWidth:1200,margin:"0 auto",padding:"16px 20px 32px"}}>
+      <div style={{display:"flex",justifyContent:"space-between",marginBottom:16}}>
+        <h2 style={{fontSize:20,fontWeight:700}}>{t("bestSellers")}</h2>
+        <button onClick={() => go("products")} style={{background:"none",border:"none",color:"#ff6000",fontSize:13,fontWeight:600,cursor:"pointer"}}>{t("seeAll")}</button>
+      </div>
+      <div style={{display:"grid",gridTemplateColumns:isMobile?"repeat(2,1fr)":"repeat(4,1fr)",gap:isMobile?10:16}}>{popular.slice(0,8).map((p,i) => <ProductCard key={p.id} p={p} eager={false} />)}</div>
+    </div>
 
     {/* Info */}
     <div style={{maxWidth:1200,margin:"0 auto",padding:"16px 20px 40px"}}>
