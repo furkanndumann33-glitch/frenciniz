@@ -48,6 +48,8 @@ CATEGORY_PATTERNS = [
     # KÖRÜK / KÖRÜĞÜ / KORUGU varyasyonlarını + SÜSPANSİYON/SÜSPANSYON yazım hatalarını yakala
     (r"D[İI]NG[İI]L\s*KALDIRMA\s*K[ÖO]R|HAVA\s*YASTI[GĞ]|S[ÜU]SPANS[İIY]+ON\s*K[ÖO]R", "Süspansiyon Körüğü"),
     (r"FREN\s*KÖR[ÜU]K|FREN\s*KÖR[ÜU][GĞ]|[İI]MD.*FREN\s*KÖR|SERV[İI]S\s*FREN\s*KÖR|D[İI]SK\s*[İI]MDAT\s*FREN\s*KÖR|D[İI]SK\s*FREN\s*KÖR|D[İI]SK\s*T[İI]P[İI].*KÖR|D[İI]SK.*KÖR[ÜU][GĞ]|D[İI]SK\s*KÖR[ÜU]K", "Fren Körüğü"),
+    # SKU override: ARF/EYD/81xx kodları fren körüğü (kullanıcı listesi, 2026-05-06)
+    (r"\bARF\s*\d+\s*/\s*\d+|\bEYD\s*100\b|\b8108\b|\b811[2-5]\b", "Fren Körüğü"),
     # FREN kelimesi geçmeyen tüm körükler süspansiyon — kullanıcı kuralı (2026-05-06)
     (r"DORSE\s*KÖR[ÜU]K|^KÖR[ÜU]K|\bKÖR[ÜU]K\b|\bKÖR[ÜU][GĞ]|KÖRUGU|KORUGU|KOMPLE\s*KÖR|P[İI]STONSUZ\s*KÖR|KATLI\s*KÖR|KAMPANA.*KÖR[ÜU][KGĞ]", "Süspansiyon Körüğü"),
     # SKU bazlı: 42xxxx.S/.C/.CP/.KP/.S## suffix'li ürünler (S=set/pistonsuz, C=ceker, CP=ceker plastik, KP=kalın plastik) — fren körüğü çeşitleri
