@@ -3029,7 +3029,7 @@ function MobileMenu() {
               <button onClick={() => {go("auth",{mode:"login"});setMobileMenuOpen(false)}} style={{display:"flex",alignItems:"center",gap:12,width:"100%",padding:"14px 20px",background:"#ff6000",border:"none",fontSize:15,fontWeight:700,color:"#fff",cursor:"pointer",textAlign:"left"}}>
                 🔑 {en?"Sign In":"Giriş Yap"}
               </button>
-              <button onClick={() => {go("auth",{mode:"register"});setMobileMenuOpen(false)}} style={{display:"flex",alignItems:"center",gap:12,width:"100%",padding:"12px 20px",background:"none",border:"1px solid #ff6000",borderRadius:0,fontSize:14,fontWeight:600,color:"#ff6000",cursor:"pointer",textAlign:"left",margin:"8px 20px",width:"calc(100% - 40px)"}}>
+              <button onClick={() => {go("auth",{mode:"register"});setMobileMenuOpen(false)}} style={{display:"flex",alignItems:"center",gap:12,padding:"12px 20px",background:"none",border:"1px solid #ff6000",borderRadius:0,fontSize:14,fontWeight:600,color:"#ff6000",cursor:"pointer",textAlign:"left",margin:"8px 20px",width:"calc(100% - 40px)"}}>
                 ✏️ {en?"Sign Up":"Kayıt Ol"}
               </button>
             </>
