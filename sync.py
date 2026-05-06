@@ -51,17 +51,16 @@ CATEGORY_PATTERNS = [
     (r"DORSE\s*KÖR[ÜU]K|^KÖR[ÜU]K|\bKÖR[ÜU]K\b|KÖRUGU|KORUGU|KOMPLE\s*KÖR|P[İI]STONSUZ\s*KÖR|KATLI\s*KÖR", "Fren Körüğü"),
     # SKU bazlı: 42xxxx.S/.C/.CP/.KP/.S## suffix'li ürünler (S=set/pistonsuz, C=ceker, CP=ceker plastik, KP=kalın plastik) — fren körüğü çeşitleri
     (r"\b42\d{4}\.(S|C|CP|KP|S\d+)\b", "Fren Körüğü"),
+    # Kızak (BALATA pattern'inden önce — "TAŞIYICI KIZAK ... BALATA" gibi karma isimleri yakala)
+    (r"TAŞIYICI\s*KIZA[KĞG]|\bKIZA[KĞG]|^KIZA[KĞG]", "Kızak"),
+    # Balata (DISK fallback'inden ÖNCE — "DİSK BALATASI" isimleri DISK'e düşmesin)
+    (r"D[İI]SK\s*BALATA|FREN\s*D[İI]SK\s*BALATA|BALATA\s*.*D[İI]SK|D[İI]SK\s*.*BALATA|FREN\s*BALATA|^BALATA|\bBALATA\b", "Fren Balatası"),
     # Fren Diski
     (r"FREN\s*D[İI]SK[İI]\s*ABS", "Fren Diski ABS'li"),
     (r"FREN\s*D[İI]SK[İI]|\bFREN-D[İI]SK[İI]|D[İI]SK[İI]?\s*ISUZU|D[İI]SK[İI]?\s*KRONE|GOBEKL[İI]\s*D[İI]SK", "Fren Diski"),
     (r"\bD[İI]SK\b|\bDISK\b", "Fren Diski"),
     # Kampana
     (r"FREN\s*KAMPANAS|^KAMPANA|\bKAMPANA\b", "Fren Kampanası"),
-    # Kızak (BALATA pattern'inden önce — "TAŞIYICI KIZAK ... BALATA" gibi karma isimleri yakala)
-    (r"TAŞIYICI\s*KIZA[KĞG]|\bKIZA[KĞG]|^KIZA[KĞG]", "Kızak"),
-    # Balata
-    (r"FREN\s*BALATA|^BALATA|\bBALATA\b", "Fren Balatası"),
-    (r"D[İI]SK\s*BALATA", "Disk Balatası"),
     # Cırcır
     (r"OTOMAT[İI]K\s*FREN\s*C[İI]RC[İI]R|OTOMOT[İI]K\s*FREN\s*C[İI]RC[İI]R|OTOMAT[İI]K-FREN-C[İI]RC[İI]R", "Otomatik Fren Cırcırı"),
     (r"MEKAN[İI]K\s*FREN\s*C[İI]RC[İI]R|MEKAN[İI]K-FREN-C[İI]RC[İI]R", "Mekanik Fren Cırcırı"),

@@ -23,14 +23,14 @@ const CATEGORY_PATTERNS = [
   [/DORSE\s*KÖR[ÜU]K|^KÖR[ÜU]K|\bKÖR[ÜU]K\b|KÖRUGU|KORUGU|KOMPLE\s*KÖR|P[İI]STONSUZ\s*KÖR|KATLI\s*KÖR/i, "Fren Körüğü"],
   // SKU bazlı: 42xxxx.S/.C/.CP/.KP/.S## suffix'li ürünler → fren körüğü çeşitleri
   [/\b42\d{4}\.(S|C|CP|KP|S\d+)\b/i, "Fren Körüğü"],
+  // KIZAK pattern BALATA'dan önce — "TAŞIYICI KIZAK ... BALATA" karma ürünleri yakala
+  [/TAŞIYICI\s*KIZA[KĞG]|\bKIZA[KĞG]\b|^KIZA[KĞG]/i, "Kızak"],
+  // Balata (DISK fallback'inden ÖNCE — "DİSK BALATASI" isimleri DISK'e düşmesin)
+  [/D[İI]SK\s*BALATA|FREN\s*D[İI]SK\s*BALATA|BALATA\s*.*D[İI]SK|D[İI]SK\s*.*BALATA|FREN\s*BALATA|^BALATA|\bBALATA\b/i, "Fren Balatası"],
   [/FREN\s*D[İI]SK[İI]\s*ABS/i, "Fren Diski ABS'li"],
   [/FREN\s*D[İI]SK[İI]|\bFREN-D[İI]SK[İI]|D[İI]SK[İI]?\s*ISUZU|D[İI]SK[İI]?\s*KRONE|GOBEKL[İI]\s*D[İI]SK/i, "Fren Diski"],
   [/\bD[İI]SK\b|\bDISK\b/i, "Fren Diski"],
   [/FREN\s*KAMPANAS|^KAMPANA|\bKAMPANA\b/i, "Fren Kampanası"],
-  // KIZAK pattern BALATA'dan önce — "TAŞIYICI KIZAK ... BALATA" karma ürünleri yakala
-  [/TAŞIYICI\s*KIZA[KĞG]|\bKIZA[KĞG]\b|^KIZA[KĞG]/i, "Kızak"],
-  [/D[İI]SK\s*BALATA/i, "Disk Balatası"],
-  [/FREN\s*BALATA|^BALATA|\bBALATA\b/i, "Fren Balatası"],
   [/OTOMAT[İI]K\s*FREN\s*C[İI]RC[İI]R|OTOMOT[İI]K\s*FREN\s*C[İI]RC[İI]R|OTOMAT[İI]K-FREN-C[İI]RC[İI]R/i, "Otomatik Fren Cırcırı"],
   [/MEKAN[İI]K\s*FREN\s*C[İI]RC[İI]R|MEKAN[İI]K-FREN-C[İI]RC[İI]R/i, "Mekanik Fren Cırcırı"],
   [/FREN\s*C[İI]RC[İI]R|\bCIRCIR\b|FREN-C[İI]RC[İI]R|AKILLI\s*C[İI]RC[İI]R|\bC[İI]RC[İI]R\b/i, "Fren Cırcırı"],
