@@ -823,7 +823,7 @@ export default function App() {
     else if (page === "about") { title = "Hakkımızda - Frenciniz"; desc = "Frenciniz, ağır vasıta fren aksamı uzmanı. Ekersan üretici garantisi, ECE R-90 sertifikalı."; canonical = `${SITE_URL}/about`; }
     else if (page === "faq") { title = "Sıkça Sorulan Sorular - Frenciniz"; desc = "Kargo, ödeme, iade, garanti ve ürünler hakkında sıkça sorulan sorular."; canonical = `${SITE_URL}/faq`; }
     else if (page === "brands") { title = "Markalar - Frenciniz"; desc = "Frenciniz'in çalıştığı marka ve uyumlu araçlar."; canonical = `${SITE_URL}/brands`; }
-    else if (page === "shipping") { title = "Kargo ve Teslimat - Frenciniz"; desc = "Aras Kargo ile aynı gün gönderim. 500₺ üzeri ücretsiz kargo."; canonical = `${SITE_URL}/shipping`; }
+    else if (page === "shipping") { title = "Kargo ve Teslimat - Frenciniz"; desc = "Aras Kargo ile aynı gün gönderim. 3000₺ üzeri ücretsiz kargo, altı 150₺."; canonical = `${SITE_URL}/shipping`; }
     else if (page === "return-policy") { title = "İade Politikası - Frenciniz"; desc = "14 gün koşulsuz iade hakkı. Hasarlı/yanlış üründe kargo ücreti bize ait."; canonical = `${SITE_URL}/return-policy`; }
     else if (page === "terms") { title = "Şartlar ve Koşullar - Frenciniz"; canonical = `${SITE_URL}/terms`; }
     else if (page === "privacy") { title = "Gizlilik Politikası - Frenciniz"; canonical = `${SITE_URL}/privacy`; }
@@ -1585,9 +1585,9 @@ function ProductDetailPage() {
 // ===== CART with Coupon + Shipping Progress =====
 function CartPage() {
   const {cart, updateQty, removeItem, cartTotal, go, coupon, setCoupon, couponApplied, setCouponApplied, discount, isMobile, t, fp, lang} = use$();
-  const ship = cartTotal >= 500 ? 0 : 45;
-  const shippingProgress = Math.min((cartTotal / 500) * 100, 100);
-  const remaining = Math.max(500 - cartTotal, 0);
+  const ship = cartTotal >= 3000 ? 0 : 150;
+  const shippingProgress = Math.min((cartTotal / 3000) * 100, 100);
+  const remaining = Math.max(3000 - cartTotal, 0);
 
   return (
     <div style={{maxWidth:1200,margin:"0 auto",padding:"20px"}}>
@@ -1599,8 +1599,8 @@ function CartPage() {
         <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 320px",gap:24,alignItems:"start"}}>
           <div>
             {/* Free shipping progress */}
-            <div style={{padding:"14px 16px",background:cartTotal >= 500 ? "#e8f5e9" : "#fff8e1",borderRadius:8,marginBottom:16,border:`1px solid ${cartTotal >= 500 ? "#c8e6c9" : "#fff3c4"}`}}>
-              {cartTotal >= 500 ? (
+            <div style={{padding:"14px 16px",background:cartTotal >= 3000 ? "#e8f5e9" : "#fff8e1",borderRadius:8,marginBottom:16,border:`1px solid ${cartTotal >= 3000 ? "#c8e6c9" : "#fff3c4"}`}}>
+              {cartTotal >= 3000 ? (
                 <div style={{fontSize:13,fontWeight:600,color:"#2e7d32"}}>✓ Ücretsiz kargo hakkı kazandınız!</div>
               ) : (
                 <>
@@ -1667,7 +1667,7 @@ function CheckoutPage() {
   const [payLoading, setPayLoading] = useState(false);
   const [payError, setPayError] = useState("");
   const [card, setCard] = useState({number:"", holder:"", exp:"", cvv:"", installment:1});
-  const ship = cartTotal >= 3000 ? 0 : 45;
+  const ship = cartTotal >= 3000 ? 0 : 150;
   const grandTotal = Math.max(0, cartTotal - discount + ship);
   const IS = {width:"100%",padding:"10px 14px",border:"1px solid #ddd",borderRadius:6,fontSize:14};
 
@@ -2724,8 +2724,9 @@ function ShippingPolicyPage() {
 
       <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>3. Shipping Fees</h2>
       <ul style={{marginBottom:16,paddingLeft:20}}>
-        <li style={{marginBottom:6}}>Shipping fees may vary based on order amount and delivery address.</li>
-        <li>Free shipping may be offered during certain promotional periods.</li>
+        <li style={{marginBottom:6}}>Orders under 3000 TL: 150 TL shipping fee.</li>
+        <li style={{marginBottom:6}}>Orders 3000 TL and over: free shipping.</li>
+        <li>Free shipping may also be offered during certain promotional periods.</li>
       </ul>
 
       <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>4. Responsibility and Returns</h2>
@@ -2755,7 +2756,8 @@ function ShippingPolicyPage() {
 
       <h2 style={{fontSize:16,fontWeight:700,color:"#1a1a1a",marginBottom:8}}>3. Gönderim Ücretleri</h2>
       <ul style={{marginBottom:16,paddingLeft:20}}>
-        <li style={{marginBottom:6}}>Kargo ücretleri, sipariş tutarına ve teslimat adresine göre değişiklik gösterebilir.</li>
+        <li style={{marginBottom:6}}>3000 TL altı siparişlerde kargo ücreti 150 TL'dir.</li>
+        <li style={{marginBottom:6}}>3000 TL ve üzeri siparişlerde kargo ücretsizdir.</li>
         <li>Belirli kampanya dönemlerinde ücretsiz kargo imkânı sunulabilir.</li>
       </ul>
 
