@@ -622,7 +622,7 @@ export default function App() {
       return { page: "home", params: {} };
     }
     // Statik sayfalar
-    const STATIC = ["urunler","contact","about","faq","brands","cart","account","auth","favs","orders","checkout","return-policy","terms","shipping","privacy","kvkk","accessibility","company","admin-login","admin-panel"];
+    const STATIC = ["urunler","contact","about","faq","brands","cart","account","auth","favs","orders","checkout","return-policy","terms","shipping","privacy","kvkk","accessibility","company","admin","admin-login","admin-panel"];
     if (STATIC.includes(path)) {
       return { page: path === "urunler" ? "products" : path, params: {} };
     }
