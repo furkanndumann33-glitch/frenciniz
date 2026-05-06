@@ -47,14 +47,16 @@ CATEGORY_PATTERNS = [
     # Körük (DISK fallback'inden ÖNCE — "DİSK TİPİ İMDAT FREN KÖRÜK" gibi isimler DISK'e düşmesin)
     # KÖRÜK / KÖRÜĞÜ / KORUGU varyasyonlarını + SÜSPANSİYON/SÜSPANSYON yazım hatalarını yakala
     (r"D[İI]NG[İI]L\s*KALDIRMA\s*K[ÖO]R|HAVA\s*YASTI[GĞ]|S[ÜU]SPANS[İIY]+ON\s*K[ÖO]R", "Süspansiyon Körüğü"),
-    (r"FREN\s*KÖR[ÜU]K|FREN\s*KÖR[ÜU][GĞ]|[İI]MD.*FREN\s*KÖR|SERV[İI]S\s*FREN\s*KÖR|D[İI]SK\s*[İI]MDAT\s*FREN\s*KÖR|D[İI]SK\s*FREN\s*KÖR|D[İI]SK\s*T[İI]P[İI].*KÖR|D[İI]SK.*KÖR[ÜU][GĞ]|D[İI]SK\s*KÖR[ÜU]K", "Fren Körüğü"),
-    (r"DORSE\s*KÖR[ÜU]K|^KÖR[ÜU]K|\bKÖR[ÜU]K\b|KÖRUGU|KORUGU|KOMPLE\s*KÖR|P[İI]STONSUZ\s*KÖR|KATLI\s*KÖR", "Fren Körüğü"),
+    (r"FREN\s*KÖR[ÜU]K|FREN\s*KÖR[ÜU][GĞ]|[İI]MD.*FREN\s*KÖR|SERV[İI]S\s*FREN\s*KÖR|D[İI]SK\s*[İI]MDAT\s*FREN\s*KÖR|D[İI]SK\s*FREN\s*KÖR|D[İI]SK\s*T[İI]P[İI].*KÖR|D[İI]SK.*KÖR[ÜU][GĞ]|D[İI]SK\s*KÖR[ÜU]K|KAMPANA.*KÖR[ÜU][KGĞ]", "Fren Körüğü"),
+    (r"DORSE\s*KÖR[ÜU]K|^KÖR[ÜU]K|\bKÖR[ÜU]K\b|\bKÖR[ÜU][GĞ]|KÖRUGU|KORUGU|KOMPLE\s*KÖR|P[İI]STONSUZ\s*KÖR|KATLI\s*KÖR", "Fren Körüğü"),
     # SKU bazlı: 42xxxx.S/.C/.CP/.KP/.S## suffix'li ürünler (S=set/pistonsuz, C=ceker, CP=ceker plastik, KP=kalın plastik) — fren körüğü çeşitleri
     (r"\b42\d{4}\.(S|C|CP|KP|S\d+)\b", "Fren Körüğü"),
     # Kızak (BALATA pattern'inden önce — "TAŞIYICI KIZAK ... BALATA" gibi karma isimleri yakala)
     (r"TAŞIYICI\s*KIZA[KĞG]|\bKIZA[KĞG]|^KIZA[KĞG]", "Kızak"),
     # Balata (DISK fallback'inden ÖNCE — "DİSK BALATASI" isimleri DISK'e düşmesin)
-    (r"D[İI]SK\s*BALATA|FREN\s*D[İI]SK\s*BALATA|BALATA\s*.*D[İI]SK|D[İI]SK\s*.*BALATA|FREN\s*BALATA|^BALATA|\bBALATA\b", "Fren Balatası"),
+    (r"D[İI]SK\s*BALATA|FREN\s*D[İI]SK\s*BALATA|BALATA\s*.*D[İI]SK|D[İI]SK\s*.*BALATA|FREN\s*BALATA|^BALATA|\bBALATAS?I?\b|KAMPANA\s*BALATAS?|BALATAS?I?\s*KAMPANA", "Fren Balatası"),
+    # PORYA prefix öncelikli (DİSK fallback'inden ÖNCE — "PORYA ... DİSK PORYA" gibi isimler DISK'e düşmesin)
+    (r"^PORYA\s|^PORYA\b", "Porya"),
     # Fren Diski
     (r"FREN\s*D[İI]SK[İI]\s*ABS", "Fren Diski ABS'li"),
     (r"FREN\s*D[İI]SK[İI]|\bFREN-D[İI]SK[İI]|D[İI]SK[İI]?\s*ISUZU|D[İI]SK[İI]?\s*KRONE|GOBEKL[İI]\s*D[İI]SK", "Fren Diski"),
