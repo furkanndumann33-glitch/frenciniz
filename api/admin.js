@@ -43,14 +43,49 @@ export default async function handler(req, res) {
         return res.status(200).json({ orders, total: orders.length });
       }
       if (req.method === "PATCH") {
-        const { orderRef, status } = req.body || {};
+        const { orderRef, status, trackingNo, cargoFirma } = req.body || {};
         if (!orderRef || !status) return res.status(400).json({ error: "orderRef ve status zorunlu" });
         const o = await readOrder(orderRef);
         if (!o) return res.status(404).json({ error: "Sipariş bulunamadı" });
+        const oldStatus = o.fulfillmentStatus;
         o.fulfillmentStatus = status;
+        if (trackingNo) o.trackingNo = trackingNo;
+        if (cargoFirma) o.cargoFirma = cargoFirma;
         o.updatedAt = new Date().toISOString();
         await kv.set(`order:${orderRef}`, JSON.stringify(o));
         await logActivity("order.status", { orderRef, status, by: admin.userId });
+
+        // Kargoya verildi bildirimleri (failsafe — başarısız olsa flow'u bozmaz)
+        const statusNorm = String(status).toLowerCase();
+        const isShipped = oldStatus !== status && (statusNorm.includes("kargo") || statusNorm.includes("shipped") || statusNorm.includes("yola"));
+        if (isShipped) {
+          const buyerEmail = o?.buyer?.emailAddress;
+          const buyerPhone = o?.buyer?.phoneNumber;
+          const buyerName = o?.buyer?.name || "değerli müşterimiz";
+          const trackInfo = (o.cargoFirma || o.trackingNo) ? `Kargo: ${o.cargoFirma || ""}${o.trackingNo ? ` — Takip: ${o.trackingNo}` : ""}` : "";
+
+          if (buyerEmail) {
+            sendEmail({
+              to: buyerEmail,
+              subject: `Siparişiniz kargoya verildi — ${orderRef}`,
+              html: emailLayout({
+                heading: `Siparişiniz kargoya verildi, ${buyerName}!`,
+                lines: [
+                  `Sipariş No: <strong>${orderRef}</strong>`,
+                  trackInfo ? `${trackInfo}` : "Kargo takip bilgisi en kısa sürede iletilecektir.",
+                  "Yolda iyi haberler!",
+                ],
+                cta: { url: "https://frenciniz.com/orders", label: "Siparişlerimi Gör" },
+              }),
+              text: `Siparisiniz kargoya verildi. No: ${orderRef}. ${trackInfo}`,
+            }).catch(()=>{});
+          }
+          if (buyerPhone) {
+            const smsMsg = `Frenciniz: Siparisiniz kargoya verildi. No: ${orderRef}.${trackInfo ? " " + trackInfo.replace("—","-") : ""}`;
+            sendSms(buyerPhone, smsMsg.slice(0, 155)).catch(()=>{});
+          }
+        }
+
         return res.status(200).json({ success: true, order: o });
       }
     }
