@@ -486,9 +486,11 @@ export default function App() {
   useEffect(() => {
     // Tek source of truth: statik JSON (Vercel CDN cache, anında).
     // sync.py lokalden git push ile günceller, görseller /img/* lokal webp.
+    // Cache-bust: her saatlik bucket farklı URL → CDN edge taze çeker
+    const cacheBust = Math.floor(Date.now() / 3600000);
     Promise.all([
-      fetch("/data/products.json", { cache: "no-store" }).then(r => r.json()),
-      fetch("/data/categories.json", { cache: "no-store" }).then(r => r.json()),
+      fetch(`/data/products.json?v=${cacheBust}`, { cache: "no-store" }).then(r => r.json()),
+      fetch(`/data/categories.json?v=${cacheBust}`, { cache: "no-store" }).then(r => r.json()),
     ]).then(([p, c]) => {
       PRODUCTS = p;
       CATS = c;
