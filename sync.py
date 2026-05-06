@@ -266,6 +266,8 @@ REJECTED_CATEGORIES = {
     "Bağlantı Elemanları", "Nipel", "Hortum", "Hortum Adaptörü",
     # FREN AYAR PARÇALARI grubu
     "Fren Ayar Parçaları", "Ayar Kolu / El Fren", "Cam Set",
+    # DİĞER PARÇALAR grubu (kullanıcı kaldırdı, 2026-05-06)
+    "Diğer", "Volan / Debriyaj", "Tamir Takımı", "Makara", "Çamurluk",
 }
 
 # Araç marka tespiti (ürün adı + OEM'den)

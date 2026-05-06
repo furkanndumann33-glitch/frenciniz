@@ -235,24 +235,6 @@
     "parent": "fren-yaylari"
   },
   {
-    "id": "havali-fren",
-    "name": "HAVALI FREN PARÇALARI",
-    "parent": null,
-    "isGroup": true
-  },
-  {
-    "id": "kompresor-grup",
-    "name": "KOMPRESÖR",
-    "parent": null,
-    "isGroup": true
-  },
-  {
-    "id": "rekor-hortum",
-    "name": "REKOR / HORTUM",
-    "parent": null,
-    "isGroup": true
-  },
-  {
     "id": "sensor-uzatma",
     "name": "SENSÖR VE UZATMALAR",
     "parent": null,
@@ -298,36 +280,5 @@
     "id": "suspansiyon-korugu",
     "name": "Süspansiyon Körüğü",
     "parent": "susp-korugu"
-  },
-  {
-    "id": "diger-parcalar",
-    "name": "Diğer Parçalar",
-    "parent": null,
-    "isGroup": true
-  },
-  {
-    "id": "diger",
-    "name": "Diğer",
-    "parent": "diger-parcalar"
-  },
-  {
-    "id": "makara",
-    "name": "Makara",
-    "parent": "diger-parcalar"
-  },
-  {
-    "id": "tamir-takimi",
-    "name": "Tamir Takımı",
-    "parent": "diger-parcalar"
-  },
-  {
-    "id": "volan-debriyaj",
-    "name": "Volan / Debriyaj",
-    "parent": "diger-parcalar"
-  },
-  {
-    "id": "camurluk",
-    "name": "Çamurluk",
-    "parent": "diger-parcalar"
   }
 ]

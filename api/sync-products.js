@@ -144,6 +144,8 @@ const REJECTED_CATEGORIES = new Set([
   "Bağlantı Elemanları", "Nipel", "Hortum", "Hortum Adaptörü",
   // FREN AYAR PARÇALARI
   "Fren Ayar Parçaları", "Ayar Kolu / El Fren", "Cam Set",
+  // DİĞER PARÇALAR (kullanıcı kaldırdı, 2026-05-06)
+  "Diğer", "Volan / Debriyaj", "Tamir Takımı", "Makara", "Çamurluk",
 ]);
 
 function detectCategory(name, path, sku) {
