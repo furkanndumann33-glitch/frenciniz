@@ -526,7 +526,8 @@ export default function App() {
           if (raw) { try { localStorage.removeItem("frenciniz_user"); setUser(null); } catch {} }
         }
       })
-      .catch(() => {});
+      .catch(() => {})
+      .finally(() => setAuthChecked(true));
   }, []);
   const [addresses, setAddresses] = useState(() => {
     try {
@@ -552,6 +553,7 @@ export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
   const [admin, setAdmin] = useState(false);
+  const [authChecked, setAuthChecked] = useState(false);
   const [cookieOk, setCookieOk] = useState(false);
   const [socialMedia, setSocialMedia] = useState({facebook:"",instagram:"",twitter:"",youtube:""});
   const isMobile = useIsMobile();
@@ -851,7 +853,7 @@ export default function App() {
     applySEO({ title, description: desc, canonical, ogImage: img, robots });
   }, [page, params, products, cats]);
 
-  const ctx = useMemo(() => ({page, params, go, cart, addToCart, updateQty, removeItem, cartCount, cartTotal, q, setQ, favs, toggleFav, viewed, addViewed, user, setUser, addresses, setAddresses, coupon, setCoupon, couponApplied, setCouponApplied, discount, stockAlerts, addStockAlert, chatOpen, setChatOpen, chatMessages, setChatMessages, pastOrders, completePurchase, lang, setLang, curr, setCurr, t, isMobile, mobileMenuOpen, setMobileMenuOpen, mobileFilterOpen, setMobileFilterOpen, fp, admin, setAdmin, socialMedia, setSocialMedia, products, cats, dataLoaded}), [page, params, go, cart, addToCart, updateQty, removeItem, cartCount, cartTotal, q, favs, toggleFav, viewed, addViewed, user, addresses, coupon, couponApplied, discount, stockAlerts, addStockAlert, chatOpen, chatMessages, pastOrders, completePurchase, lang, curr, t, isMobile, mobileMenuOpen, mobileFilterOpen, fp, admin, products, cats, dataLoaded]);
+  const ctx = useMemo(() => ({page, params, go, cart, addToCart, updateQty, removeItem, cartCount, cartTotal, q, setQ, favs, toggleFav, viewed, addViewed, user, setUser, addresses, setAddresses, coupon, setCoupon, couponApplied, setCouponApplied, discount, stockAlerts, addStockAlert, chatOpen, setChatOpen, chatMessages, setChatMessages, pastOrders, completePurchase, lang, setLang, curr, setCurr, t, isMobile, mobileMenuOpen, setMobileMenuOpen, mobileFilterOpen, setMobileFilterOpen, fp, admin, setAdmin, authChecked, socialMedia, setSocialMedia, products, cats, dataLoaded}), [page, params, go, cart, addToCart, updateQty, removeItem, cartCount, cartTotal, q, favs, toggleFav, viewed, addViewed, user, addresses, coupon, couponApplied, discount, stockAlerts, addStockAlert, chatOpen, chatMessages, pastOrders, completePurchase, lang, curr, t, isMobile, mobileMenuOpen, mobileFilterOpen, fp, admin, authChecked, products, cats, dataLoaded]);
 
   return (
     <Ctx.Provider value={ctx}>
@@ -3361,8 +3363,10 @@ function AdminLoginPage() {
 }
 
 function AdminPanel() {
-  const {go, admin, setAdmin, stockAlerts} = use$();
+  const {go, admin, setAdmin, stockAlerts, authChecked} = use$();
   const [tab, setTab] = useState("dashboard");
+  // Auth check tamamlanmadan yönlendirme yapma — refresh sırasında session yüklenirken bekle
+  if (!authChecked) return <div style={{padding:60,textAlign:"center",color:"#888"}}>Yetkilendirme kontrol ediliyor…</div>;
   if(!admin) { go("admin-login"); return null; }
 
   const menu = [
