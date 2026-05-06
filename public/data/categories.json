@@ -192,27 +192,6 @@
     "parent": "kaliper-urunleri"
   },
   {
-    "id": "fren-ayar",
-    "name": "FREN AYAR PARÇALARI",
-    "parent": null,
-    "isGroup": true
-  },
-  {
-    "id": "ayar-kolu-el-fren",
-    "name": "Ayar Kolu / El Fren",
-    "parent": "fren-ayar"
-  },
-  {
-    "id": "cam-set",
-    "name": "Cam Set",
-    "parent": "fren-ayar"
-  },
-  {
-    "id": "fren-ayar-parcalari",
-    "name": "Fren Ayar Parçaları",
-    "parent": "fren-ayar"
-  },
-  {
     "id": "fren-korukleri",
     "name": "FREN KÖRÜKLERİ",
     "parent": null,

@@ -139,6 +139,8 @@ const REJECTED_CATEGORIES = new Set([
   "Kompresör Tamir Takımı", "Kompresör Kapak", "Kompresör",
   // REKOR / HORTUM
   "Bağlantı Elemanları", "Nipel", "Hortum", "Hortum Adaptörü",
+  // FREN AYAR PARÇALARI
+  "Fren Ayar Parçaları", "Ayar Kolu / El Fren", "Cam Set",
 ]);
 
 function detectCategory(name, path, sku) {

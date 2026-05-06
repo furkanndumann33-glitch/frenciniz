@@ -261,6 +261,8 @@ REJECTED_CATEGORIES = {
     "Kompresör Tamir Takımı", "Kompresör Kapak", "Kompresör",
     # REKOR / HORTUM grubu
     "Bağlantı Elemanları", "Nipel", "Hortum", "Hortum Adaptörü",
+    # FREN AYAR PARÇALARI grubu
+    "Fren Ayar Parçaları", "Ayar Kolu / El Fren", "Cam Set",
 }
 
 # Araç marka tespiti (ürün adı + OEM'den)
