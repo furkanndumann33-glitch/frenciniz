@@ -123,6 +123,19 @@ function slug(name) {
   return s || "diger";
 }
 
+// Sitede satılmayan kategoriler — bu kategoriye düşen ürünler products.json'a yazılmaz
+const REJECTED_CATEGORIES = new Set([
+  // HAVALI FREN PARÇALARI
+  "Valf / Ventil", "Dağıtıcı Ventil", "Röle Ventili",
+  "Süspansiyon/Basınç Ventili", "Şanzıman Ventili",
+  "Hava Kurutucu", "Filtre / Kartuş", "Hava Tüpü",
+  // KOMPRESÖR
+  "Kompresör Piston/Segman", "Kompresör Silindiri",
+  "Kompresör Tamir Takımı", "Kompresör Kapak", "Kompresör",
+  // REKOR / HORTUM
+  "Bağlantı Elemanları", "Nipel", "Hortum", "Hortum Adaptörü",
+]);
+
 function detectCategory(name, path, sku) {
   const haystack = ((name || "") + " " + (path || "").replace(/-/g, " ") + " " + (sku || "")).toUpperCase();
   for (const [pat, cat] of CATEGORY_PATTERNS) {
@@ -219,6 +232,8 @@ function processProducts(raw) {
     const mainImg = images[0] || ("https://placehold.co/600x600/1c1c1c/b0b0b0?text=" + encodeURIComponent(a.sku || "URUN"));
 
     const catName = detectCategory(a.name || "", a.path || "", a.sku || "");
+    // Sitede satılmayan kategoriler — havalı fren / kompresör / rekor-hortum grupları kaldırıldı
+    if (REJECTED_CATEGORIES.has(catName)) continue;
     const catId = slug(catName);
     catsMap[catId] = catName;
 

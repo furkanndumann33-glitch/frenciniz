@@ -119,11 +119,8 @@ const CAT_EN = {
   "bijon-grup":"WHEEL STUDS","bijon":"Wheel Stud","bijon-dps":"Wheel Stud DPS","disk-bijonu-civatasi":"Disc Stud/Bolt","somun-civata":"Nut / Bolt",
   "porya-grup":"HUB","porya":"Hub","rulman":"Bearing","kece":"Seal",
   "sensor-uzatma":"SENSORS & EXTENSIONS","abs-sensoru-modulu-kablo":"ABS Sensor/Module/Cable","ebs-modulator":"EBS Modulator","sensor":"Sensor","elektrik-kablosu":"Electrical Cable",
-  "havali-fren":"AIR BRAKE PARTS","valf-ventil":"Valve","dagitici-ventil":"Distribution Valve","role-ventili":"Relay Valve","suspansiyon-basinc-ventili":"Suspension/Pressure Valve","sanziman-ventili":"Transmission Valve","hava-kurutucu":"Air Dryer","filtre-kartus":"Filter / Cartridge","hava-tupu":"Air Tank",
   "fren-yaylari":"BRAKE SPRINGS","yay":"Spring",
   "susp-korugu":"SUSP. BELLOWS","suspansiyon-korugu":"Suspension Bellows","dingil":"Axle","burc-muylu":"Bushing / Trunnion",
-  "kompresor-grup":"COMPRESSOR","kompresor-piston-segman":"Compressor Piston/Ring","kompresor-silindiri":"Compressor Cylinder","kompresor-tamir-takimi":"Compressor Repair Kit",
-  "rekor-hortum":"FITTINGS / HOSES","baglanti-elemanlari":"Connectors","nipel":"Nipple","hortum":"Hose","hortum-adaptoru":"Hose Adapter",
   "diger-parcalar":"OTHER","tamir-takimi":"Repair Kit","volan-debriyaj":"Flywheel / Clutch","camurluk":"Fender","makara":"Pulley","diger":"Other",
 };
 

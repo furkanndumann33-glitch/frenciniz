@@ -238,32 +238,27 @@ CATEGORY_HIERARCHY = {
     "EBS Modülatör":            {"group_id": "sensor-uzatma", "group_name": "SENSÖR VE UZATMALAR"},
     "Sensör":                   {"group_id": "sensor-uzatma", "group_name": "SENSÖR VE UZATMALAR"},
     "Elektrik Kablosu":         {"group_id": "sensor-uzatma", "group_name": "SENSÖR VE UZATMALAR"},
-    # HAVALI FREN PARÇALARI
-    "Valf / Ventil":            {"group_id": "havali-fren", "group_name": "HAVALI FREN PARÇALARI"},
-    "Dağıtıcı Ventil":         {"group_id": "havali-fren", "group_name": "HAVALI FREN PARÇALARI"},
-    "Röle Ventili":             {"group_id": "havali-fren", "group_name": "HAVALI FREN PARÇALARI"},
-    "Süspansiyon/Basınç Ventili": {"group_id": "havali-fren", "group_name": "HAVALI FREN PARÇALARI"},
-    "Şanzıman Ventili":         {"group_id": "havali-fren", "group_name": "HAVALI FREN PARÇALARI"},
-    "Hava Kurutucu":            {"group_id": "havali-fren", "group_name": "HAVALI FREN PARÇALARI"},
-    "Filtre / Kartuş":          {"group_id": "havali-fren", "group_name": "HAVALI FREN PARÇALARI"},
-    "Hava Tüpü":                {"group_id": "havali-fren", "group_name": "HAVALI FREN PARÇALARI"},
     # FREN YAYLARI
     "Yay":                      {"group_id": "fren-yaylari", "group_name": "FREN YAYLARI"},
     # SÜSP. KÖRÜĞÜ
     "Süspansiyon Körüğü":       {"group_id": "susp-korugu", "group_name": "SÜSP. KÖRÜĞÜ"},
     "Dingil":                   {"group_id": "susp-korugu", "group_name": "SÜSP. KÖRÜĞÜ"},
     "Burç / Muylu":             {"group_id": "susp-korugu", "group_name": "SÜSP. KÖRÜĞÜ"},
-    # KOMPRESÖR
-    "Kompresör Piston/Segman":  {"group_id": "kompresor-grup", "group_name": "KOMPRESÖR"},
-    "Kompresör Silindiri":      {"group_id": "kompresor-grup", "group_name": "KOMPRESÖR"},
-    "Kompresör Tamir Takımı":   {"group_id": "kompresor-grup", "group_name": "KOMPRESÖR"},
-    # REKOR / HORTUM
-    "Bağlantı Elemanları":      {"group_id": "rekor-hortum", "group_name": "REKOR / HORTUM"},
-    "Nipel":                    {"group_id": "rekor-hortum", "group_name": "REKOR / HORTUM"},
-    "Hortum":                   {"group_id": "rekor-hortum", "group_name": "REKOR / HORTUM"},
-    "Hortum Adaptörü":          {"group_id": "rekor-hortum", "group_name": "REKOR / HORTUM"},
 }
 # CATEGORY_HIERARCHY'de olmayanlar otomatik olarak "DİĞER" grubuna düşer.
+
+# Sitede satılmayan kategoriler — bu kategorilere düşen ürünler products.json'a yazılmaz
+REJECTED_CATEGORIES = {
+    # HAVALI FREN PARÇALARI grubu
+    "Valf / Ventil", "Dağıtıcı Ventil", "Röle Ventili",
+    "Süspansiyon/Basınç Ventili", "Şanzıman Ventili",
+    "Hava Kurutucu", "Filtre / Kartuş", "Hava Tüpü",
+    # KOMPRESÖR grubu
+    "Kompresör Piston/Segman", "Kompresör Silindiri",
+    "Kompresör Tamir Takımı", "Kompresör Kapak", "Kompresör",
+    # REKOR / HORTUM grubu
+    "Bağlantı Elemanları", "Nipel", "Hortum", "Hortum Adaptörü",
+}
 
 # Araç marka tespiti (ürün adı + OEM'den)
 VEHICLE_PATTERNS = {
@@ -494,6 +489,9 @@ def main():
 
         # Kategori (name + path birlikte; pattern eşleşmezse field10 fallback)
         cat_name = detect_category(a.get("name", ""), a.get("path", ""), a.get("sku"), a.get("field10"))
+        # Sitede satılmayan kategoriler — havalı fren, kompresör, rekor/hortum grupları kaldırıldı
+        if cat_name in REJECTED_CATEGORIES:
+            continue
         cat_id = slug(cat_name)
         cats_set[cat_id] = cat_name
 
