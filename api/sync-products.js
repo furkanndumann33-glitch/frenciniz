@@ -17,6 +17,12 @@ const CATEGORY_PATTERNS = [
   [/D[İI]SK\s*B[İI]JON|B[İI]JON\s*D[İI]SK\b|D[İI]SK\s*C[İI]VATA/i, "Disk Bijonu/Civatası"],
   // "BİJON ..." ile başlayanlar (DİSK geçse bile) bijon
   [/^B[İI]JON\s/i, "Bijon"],
+  // Körük (DISK fallback'inden ÖNCE — "DİSK TİPİ İMDAT FREN KÖRÜK" isimleri DISK'e düşmesin)
+  [/D[İI]NG[İI]L\s*KALDIRMA\s*KÖR[ÜU]K|HAVA\s*YASTI[GĞ]|SÜSPANS[İI]YON\s*KÖR[ÜU]K/i, "Süspansiyon Körüğü"],
+  [/FREN\s*KÖR[ÜU]K|FREN\s*KÖR[ÜU][GĞ]|[İI]MD.*FREN\s*KÖR|SERV[İI]S\s*FREN\s*KÖR|D[İI]SK\s*[İI]MDAT\s*FREN\s*KÖR|D[İI]SK\s*FREN\s*KÖR|D[İI]SK\s*T[İI]P[İI].*KÖR|D[İI]SK.*KÖR[ÜU][GĞ]|D[İI]SK\s*KÖR[ÜU]K/i, "Fren Körüğü"],
+  [/DORSE\s*KÖR[ÜU]K|^KÖR[ÜU]K|\bKÖR[ÜU]K\b|KÖRUGU|KORUGU|KOMPLE\s*KÖR|P[İI]STONSUZ\s*KÖR|KATLI\s*KÖR/i, "Fren Körüğü"],
+  // SKU bazlı: 42xxxx.S/.C/.CP/.KP/.S## suffix'li ürünler → fren körüğü çeşitleri
+  [/\b42\d{4}\.(S|C|CP|KP|S\d+)\b/i, "Fren Körüğü"],
   [/FREN\s*D[İI]SK[İI]\s*ABS/i, "Fren Diski ABS'li"],
   [/FREN\s*D[İI]SK[İI]|\bFREN-D[İI]SK[İI]|D[İI]SK[İI]?\s*ISUZU|D[İI]SK[İI]?\s*KRONE|GOBEKL[İI]\s*D[İI]SK/i, "Fren Diski"],
   [/\bD[İI]SK\b|\bDISK\b/i, "Fren Diski"],
@@ -28,11 +34,6 @@ const CATEGORY_PATTERNS = [
   [/OTOMAT[İI]K\s*FREN\s*C[İI]RC[İI]R|OTOMOT[İI]K\s*FREN\s*C[İI]RC[İI]R|OTOMAT[İI]K-FREN-C[İI]RC[İI]R/i, "Otomatik Fren Cırcırı"],
   [/MEKAN[İI]K\s*FREN\s*C[İI]RC[İI]R|MEKAN[İI]K-FREN-C[İI]RC[İI]R/i, "Mekanik Fren Cırcırı"],
   [/FREN\s*C[İI]RC[İI]R|\bCIRCIR\b|FREN-C[İI]RC[İI]R|AKILLI\s*C[İI]RC[İI]R|\bC[İI]RC[İI]R\b/i, "Fren Cırcırı"],
-  [/D[İI]NG[İI]L\s*KALDIRMA\s*KÖR[ÜU]K|HAVA\s*YASTI[GĞ]|SÜSPANS[İI]YON\s*KÖR[ÜU]K/i, "Süspansiyon Körüğü"],
-  [/FREN\s*KÖR[ÜU]K|[İI]MD.*FREN\s*KÖR|SERV[İI]S\s*FREN\s*KÖR/i, "Fren Körüğü"],
-  [/DORSE\s*KÖR[ÜU]K|^KÖR[ÜU]K|\bKÖR[ÜU]K\b|KÖRUGU|KORUGU|KOMPLE\s*KÖR|P[İI]STONSUZ\s*KÖR|KATLI\s*KÖR/i, "Fren Körüğü"],
-  // SKU bazlı: 42xxxx.S/.C/.CP/.KP/.S## suffix'li ürünler → fren körüğü çeşitleri
-  [/\b42\d{4}\.(S|C|CP|KP|S\d+)\b/i, "Fren Körüğü"],
   [/FREN\s*PABUC|\bPABUC/i, "Fren Pabucu"],
   [/FREN\s*AYNAS|\bAYNA\b/i, "Fren Aynası"],
   [/FREN\s*S[İI]L[İI]ND[İI]R|FREN-S[İI]L[İI]ND[İI]R/i, "Fren Silindiri"],

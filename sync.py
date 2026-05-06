@@ -44,6 +44,13 @@ CATEGORY_PATTERNS = [
     (r"D[İI]SK\s*B[İI]JON|B[İI]JON\s*D[İI]SK\b|D[İI]SK\s*C[İI]VATA", "Disk Bijonu/Civatası"),
     # "BİJON ..." ile başlayanlar DİSK kelimesi geçse bile bijon (örn: "BİJON RENAULT 440 ÖN DİSK")
     (r"^B[İI]JON\s", "Bijon"),
+    # Körük (DISK fallback'inden ÖNCE — "DİSK TİPİ İMDAT FREN KÖRÜK" gibi isimler DISK'e düşmesin)
+    # KÖRÜK / KÖRÜĞÜ / KORUGU varyasyonlarını + SÜSPANSİYON/SÜSPANSYON yazım hatalarını yakala
+    (r"D[İI]NG[İI]L\s*KALDIRMA\s*K[ÖO]R|HAVA\s*YASTI[GĞ]|S[ÜU]SPANS[İIY]+ON\s*K[ÖO]R", "Süspansiyon Körüğü"),
+    (r"FREN\s*KÖR[ÜU]K|FREN\s*KÖR[ÜU][GĞ]|[İI]MD.*FREN\s*KÖR|SERV[İI]S\s*FREN\s*KÖR|D[İI]SK\s*[İI]MDAT\s*FREN\s*KÖR|D[İI]SK\s*FREN\s*KÖR|D[İI]SK\s*T[İI]P[İI].*KÖR|D[İI]SK.*KÖR[ÜU][GĞ]|D[İI]SK\s*KÖR[ÜU]K", "Fren Körüğü"),
+    (r"DORSE\s*KÖR[ÜU]K|^KÖR[ÜU]K|\bKÖR[ÜU]K\b|KÖRUGU|KORUGU|KOMPLE\s*KÖR|P[İI]STONSUZ\s*KÖR|KATLI\s*KÖR", "Fren Körüğü"),
+    # SKU bazlı: 42xxxx.S/.C/.CP/.KP/.S## suffix'li ürünler (S=set/pistonsuz, C=ceker, CP=ceker plastik, KP=kalın plastik) — fren körüğü çeşitleri
+    (r"\b42\d{4}\.(S|C|CP|KP|S\d+)\b", "Fren Körüğü"),
     # Fren Diski
     (r"FREN\s*D[İI]SK[İI]\s*ABS", "Fren Diski ABS'li"),
     (r"FREN\s*D[İI]SK[İI]|\bFREN-D[İI]SK[İI]|D[İI]SK[İI]?\s*ISUZU|D[İI]SK[İI]?\s*KRONE|GOBEKL[İI]\s*D[İI]SK", "Fren Diski"),
@@ -59,13 +66,6 @@ CATEGORY_PATTERNS = [
     (r"OTOMAT[İI]K\s*FREN\s*C[İI]RC[İI]R|OTOMOT[İI]K\s*FREN\s*C[İI]RC[İI]R|OTOMAT[İI]K-FREN-C[İI]RC[İI]R", "Otomatik Fren Cırcırı"),
     (r"MEKAN[İI]K\s*FREN\s*C[İI]RC[İI]R|MEKAN[İI]K-FREN-C[İI]RC[İI]R", "Mekanik Fren Cırcırı"),
     (r"FREN\s*C[İI]RC[İI]R|\bCIRCIR\b|FREN-C[İI]RC[İI]R|AKILLI\s*C[İI]RC[İI]R|\bC[İI]RC[İI]R\b", "Fren Cırcırı"),
-    # Körük (fren / dingil / süspansiyon ayır)
-    # KÖRÜK / KÖRÜĞÜ / KORUGU varyasyonlarını + SÜSPANSİYON/SÜSPANSYON yazım hatalarını yakala
-    (r"D[İI]NG[İI]L\s*KALDIRMA\s*K[ÖO]R|HAVA\s*YASTI[GĞ]|S[ÜU]SPANS[İIY]+ON\s*K[ÖO]R", "Süspansiyon Körüğü"),
-    (r"FREN\s*KÖR[ÜU]K|[İI]MD.*FREN\s*KÖR|SERV[İI]S\s*FREN\s*KÖR", "Fren Körüğü"),
-    (r"DORSE\s*KÖR[ÜU]K|^KÖR[ÜU]K|\bKÖR[ÜU]K\b|KÖRUGU|KORUGU|KOMPLE\s*KÖR|P[İI]STONSUZ\s*KÖR|KATLI\s*KÖR", "Fren Körüğü"),
-    # SKU bazlı: 42xxxx.S/.C/.CP/.KP/.S## suffix'li ürünler (S=set/pistonsuz, C=ceker, CP=ceker plastik, KP=kalın plastik) — fren körüğü çeşitleri
-    (r"\b42\d{4}\.(S|C|CP|KP|S\d+)\b", "Fren Körüğü"),
     # Pabuç
     (r"FREN\s*PABUC|\bPABUC", "Fren Pabucu"),
     # Ayna
