@@ -1,5 +1,7 @@
 import { kv } from "@vercel/kv";
 import { requireAdmin, readUser, publicUser, logActivity } from "./_lib/auth.js";
+import { sendSms } from "./_lib/netgsm.js";
+import { sendEmail, emailLayout } from "./_lib/email.js";
 
 async function readOrder(ref) {
   const raw = await kv.get(`order:${ref}`);
@@ -273,6 +275,27 @@ export default async function handler(req, res) {
         await kv.lrem("pages:index", 0, slug);
         return res.status(200).json({ success: true });
       }
+    }
+
+    // ── Test bildirim gönderimi (admin panelinden test) ──
+    if (action === "test-notify" && req.method === "POST") {
+      const { channel, to, message, subject } = req.body || {};
+      if (!channel || !to) return res.status(400).json({ error: "channel ve to zorunlu" });
+      if (channel === "sms") {
+        const r = await sendSms(to, message || "Frenciniz test SMS — sistem entegrasyonu calisiyor.");
+        await logActivity("notify.test.sms", { to, code: r.code, by: admin.userId });
+        return res.status(r.ok ? 200 : 400).json(r);
+      }
+      if (channel === "email") {
+        const r = await sendEmail({
+          to,
+          subject: subject || "Frenciniz test e-posta",
+          html: emailLayout({ heading: "Test E-posta", lines: [message || "Bu, e-posta entegrasyonunun test mesajıdır."] }),
+        });
+        await logActivity("notify.test.email", { to, ok: r.ok, by: admin.userId });
+        return res.status(r.ok ? 200 : 400).json(r);
+      }
+      return res.status(400).json({ error: "channel 'sms' veya 'email' olmalı" });
     }
 
     // ── E-posta ve SMS config ─────────────────────

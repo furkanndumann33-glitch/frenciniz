@@ -1,6 +1,8 @@
 import { kv } from "@vercel/kv";
 import { paytrConfig, verifyCallbackHash } from "../_lib/paytr.js";
 import { logActivity, readUser, writeUser } from "../_lib/auth.js";
+import { sendEmail, emailLayout } from "../_lib/email.js";
+import { sendSms } from "../_lib/netgsm.js";
 
 export const config = { api: { bodyParser: false } };
 
@@ -66,6 +68,37 @@ export default async function handler(req, res) {
             u.lastOrderAt = new Date().toISOString();
             await writeUser(u);
           }
+        }
+
+        // Sipariş onay bildirimleri (failsafe)
+        const buyerEmail = existing?.buyer?.emailAddress;
+        const buyerPhone = existing?.buyer?.phoneNumber;
+        const buyerName = existing?.buyer?.name || existing?.buyer?.fullName || "";
+        const items = (existing?.basket?.basketItems || []).slice(0, 20);
+        const itemsHtml = items.map(it =>
+          `<tr><td style="padding:6px 0;color:#444">${(it.name||"").slice(0,60)}</td>` +
+          `<td style="padding:6px 0;color:#666;text-align:right;white-space:nowrap">${it.numberOfProducts}× ₺${Number(it.unitPrice||0).toLocaleString("tr-TR")}</td></tr>`
+        ).join("");
+
+        if (buyerEmail) {
+          sendEmail({
+            to: buyerEmail,
+            subject: `Siparişiniz alındı — ${merchant_oid}`,
+            html: emailLayout({
+              heading: `Siparişiniz alındı, ${buyerName || "değerli müşterimiz"}!`,
+              lines: [
+                `Sipariş No: <strong>${merchant_oid}</strong>`,
+                `Toplam: <strong>₺${Number(merged.amount).toLocaleString("tr-TR",{minimumFractionDigits:2,maximumFractionDigits:2})}</strong>`,
+                items.length ? `<table style="width:100%;border-top:1px solid #eee;border-bottom:1px solid #eee;margin:12px 0">${itemsHtml}</table>` : "",
+                "Siparişiniz hazırlanmaya başlandı. Kargoya verildiğinde tarafınıza ayrıca bildirim göndereceğiz.",
+              ].filter(Boolean),
+              cta: { url: "https://frenciniz.com/orders", label: "Siparişlerimi Gör" },
+            }),
+            text: `Siparişiniz alındı. Sipariş No: ${merchant_oid}. Toplam: ${merged.amount} TL.`,
+          }).catch(()=>{});
+        }
+        if (buyerPhone) {
+          sendSms(buyerPhone, `Frenciniz: Siparisiniz alindi. No: ${merchant_oid} Tutar: ${Number(merged.amount).toFixed(2)} TL. Hazirlandiginda bilgi verilecektir.`).catch(()=>{});
         }
       } catch {}
     } else {

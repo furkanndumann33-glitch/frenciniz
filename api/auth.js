@@ -5,6 +5,8 @@ import {
   normalizeEmail, normalizePhone, findUserByEmail, findUserByPhone,
   isAdminEmail, logActivity,
 } from "./_lib/auth.js";
+import { sendEmail, emailLayout } from "./_lib/email.js";
+import { sendSms } from "./_lib/netgsm.js";
 
 export default async function handler(req, res) {
   const action = String(req.query.action || "").toLowerCase();
@@ -36,6 +38,26 @@ export default async function handler(req, res) {
       await kv.lpush("users:index", id);
       await logActivity("user.signup", { userId: id, name: user.name, email: user.email, role: "customer" });
       setSessionCookie(res, signJWT({ userId: id, role: "customer", email: user.email }));
+
+      // Hoşgeldin bildirimleri (failsafe — başarısız olsa da signup'ı bozmaz)
+      if (user.email) {
+        sendEmail({
+          to: user.email,
+          subject: "Hoşgeldiniz — Frenciniz",
+          html: emailLayout({
+            heading: `Hoşgeldiniz, ${user.name}!`,
+            lines: [
+              "Frenciniz ailesine katıldığınız için teşekkür ederiz.",
+              "Hesabınız başarıyla oluşturuldu. Artık siparişlerinizi takip edebilir, favori ürünlerinizi kaydedebilir ve özel kampanyalardan faydalanabilirsiniz.",
+            ],
+            cta: { url: "https://frenciniz.com/", label: "Alışverişe Başla" },
+          }),
+          text: `Hoşgeldiniz ${user.name}, Frenciniz hesabınız oluşturuldu.`,
+        }).catch(()=>{});
+      }
+      if (user.phone) {
+        sendSms(user.phone, `Frenciniz: Hosgeldiniz ${user.name}! Hesabiniz olusturuldu. Iyi alisverisler.`).catch(()=>{});
+      }
       return res.status(200).json({ success: true, user: publicUser(user) });
     }
 
