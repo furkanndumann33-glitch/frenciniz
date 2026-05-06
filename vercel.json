@@ -38,7 +38,5 @@
       ]
     }
   ],
-  "crons": [
-    { "path": "/api/cron/cart-reminder", "schedule": "0 11 * * *" }
-  ]
+  "crons": []
 }
