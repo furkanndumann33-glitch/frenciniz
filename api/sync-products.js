@@ -19,8 +19,9 @@ const CATEGORY_PATTERNS = [
   [/^B[İI]JON\s/i, "Bijon"],
   // Körük (DISK fallback'inden ÖNCE — "DİSK TİPİ İMDAT FREN KÖRÜK" isimleri DISK'e düşmesin)
   [/D[İI]NG[İI]L\s*KALDIRMA\s*KÖR[ÜU]K|HAVA\s*YASTI[GĞ]|SÜSPANS[İI]YON\s*KÖR[ÜU]K/i, "Süspansiyon Körüğü"],
-  [/FREN\s*KÖR[ÜU]K|FREN\s*KÖR[ÜU][GĞ]|[İI]MD.*FREN\s*KÖR|SERV[İI]S\s*FREN\s*KÖR|D[İI]SK\s*[İI]MDAT\s*FREN\s*KÖR|D[İI]SK\s*FREN\s*KÖR|D[İI]SK\s*T[İI]P[İI].*KÖR|D[İI]SK.*KÖR[ÜU][GĞ]|D[İI]SK\s*KÖR[ÜU]K|KAMPANA.*KÖR[ÜU][KGĞ]/i, "Fren Körüğü"],
-  [/DORSE\s*KÖR[ÜU]K|^KÖR[ÜU]K|\bKÖR[ÜU]K\b|\bKÖR[ÜU][GĞ]|KÖRUGU|KORUGU|KOMPLE\s*KÖR|P[İI]STONSUZ\s*KÖR|KATLI\s*KÖR/i, "Fren Körüğü"],
+  [/FREN\s*KÖR[ÜU]K|FREN\s*KÖR[ÜU][GĞ]|[İI]MD.*FREN\s*KÖR|SERV[İI]S\s*FREN\s*KÖR|D[İI]SK\s*[İI]MDAT\s*FREN\s*KÖR|D[İI]SK\s*FREN\s*KÖR|D[İI]SK\s*T[İI]P[İI].*KÖR|D[İI]SK.*KÖR[ÜU][GĞ]|D[İI]SK\s*KÖR[ÜU]K/i, "Fren Körüğü"],
+  // FREN kelimesi geçmeyen tüm körükler süspansiyon — kullanıcı kuralı (2026-05-06)
+  [/DORSE\s*KÖR[ÜU]K|^KÖR[ÜU]K|\bKÖR[ÜU]K\b|\bKÖR[ÜU][GĞ]|KÖRUGU|KORUGU|KOMPLE\s*KÖR|P[İI]STONSUZ\s*KÖR|KATLI\s*KÖR|KAMPANA.*KÖR[ÜU][KGĞ]/i, "Süspansiyon Körüğü"],
   // SKU bazlı: 42xxxx.S/.C/.CP/.KP/.S## suffix'li ürünler → fren körüğü çeşitleri
   [/\b42\d{4}\.(S|C|CP|KP|S\d+)\b/i, "Fren Körüğü"],
   // KIZAK pattern BALATA'dan önce — "TAŞIYICI KIZAK ... BALATA" karma ürünleri yakala
