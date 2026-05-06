@@ -25,7 +25,7 @@ EKERSAN_PASS = "320043"
 
 # Tüm B2B fiyatlarına uygulanacak satış çarpanı (kâr marjı).
 # Örn: 1.20 → B2B alış fiyatının %20 üstüne sat. Sync her çalıştığında uygulanır.
-PRICE_MULTIPLIER = 1.20
+PRICE_MULTIPLIER = 1.32  # Ekersan B2B fiyatına %32 markup (1.20 base + 1.10 ek zam, 2026-05-06)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PRODUCTS_PATH = os.path.join(BASE_DIR, "public", "data", "products.json")
 CATEGORIES_PATH = os.path.join(BASE_DIR, "public", "data", "categories.json")

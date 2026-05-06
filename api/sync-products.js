@@ -12,6 +12,9 @@ const EKERSAN_PASS = process.env.EKERSAN_PASSWORD || "320043";
 
 const BRAND_MAP = { 1: "Ekersan" };
 
+// Fiyat çarpanı — Ekersan B2B fiyatı üzerine markup (sync.py ile senkron tutulmalı)
+const PRICE_MULTIPLIER = 1.32;
+
 // (regex, kategori) — daha spesifik önce
 const CATEGORY_PATTERNS = [
   [/D[İI]SK\s*B[İI]JON|B[İI]JON\s*D[İI]SK\b|D[İI]SK\s*C[İI]VATA/i, "Disk Bijonu/Civatası"],
@@ -255,7 +258,7 @@ function processProducts(raw) {
       id: pid++,
       name: a.name || "",
       sku: a.sku || "",
-      price: Math.round(price * 100) / 100,
+      price: Math.round(price * PRICE_MULTIPLIER * 100) / 100,
       old: null,
       vat_rate: a.vat_rate || 0,
       stock: Math.floor(a.b2b_stock_qty || 0),
