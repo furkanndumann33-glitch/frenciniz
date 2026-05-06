@@ -101,14 +101,28 @@ export default async function handler(req, res) {
           sendSms(buyerPhone, `Frenciniz: Siparisiniz alindi. No: ${merchant_oid} Tutar: ${Number(merged.amount).toFixed(2)} TL. Hazirlandiginda bilgi verilecektir.`).catch(()=>{});
         }
 
-        // Yöneticiye yeni sipariş bildirimi
+        // Yöneticiye yeni sipariş bildirimi (detaylı)
         try {
           const smsCfg = await getSmsConfig();
           if (smsCfg.notifyAdminOrder !== false && smsCfg.adminPhone) {
-            const itemCount = items.reduce((s, it) => s + Number(it.numberOfProducts || 0), 0);
-            const customerLabel = (buyerName || buyerEmail || "Musteri").slice(0, 30);
-            const adminMsg = `Frenciniz YENI SIPARIS! No:${merchant_oid} Musteri:${customerLabel} Adet:${itemCount} Tutar:${Number(merged.amount).toFixed(2)}TL`;
-            sendSms(smsCfg.adminPhone, adminMsg.slice(0, 155)).catch(()=>{});
+            const fullName = [existing?.buyer?.name, existing?.buyer?.surName].filter(Boolean).join(" ").trim() || buyerEmail || "Musteri";
+            const phone = existing?.buyer?.phoneNumber || "-";
+            const addrParts = [
+              existing?.billingAddress?.address || existing?.buyer?.registrationAddress || "",
+              existing?.billingAddress?.city || existing?.buyer?.city || "",
+            ].filter(Boolean);
+            const address = addrParts.join(", ").replace(/\s+/g, " ").trim() || "-";
+            const itemLines = items.slice(0, 8).map(it => `- ${Number(it.numberOfProducts||1)}x ${(it.name||"").slice(0,40)}`).join("\n");
+            const more = items.length > 8 ? `\n(+${items.length - 8} urun daha)` : "";
+            const adminMsg =
+              `FRENCINIZ YENI SIPARIS\n` +
+              `No: ${merchant_oid}\n` +
+              `Musteri: ${fullName}\n` +
+              `Tel: ${phone}\n` +
+              `Tutar: ${Number(merged.amount).toFixed(2)} TL\n` +
+              `Adres: ${address}\n` +
+              `Urunler:\n${itemLines}${more}`;
+            sendSms(smsCfg.adminPhone, adminMsg).catch(()=>{});
           }
         } catch {}
       } catch {}
