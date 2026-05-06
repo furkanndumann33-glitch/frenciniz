@@ -312,6 +312,40 @@ export default async function handler(req, res) {
       }
     }
 
+    // ── Sepet hatırlatma cron (Vercel cron veya manuel admin tetikleme) ──
+    if (action === "cron-cart-reminder" && req.method === "POST") {
+      const refs = (await kv.lrange("orders:index", 0, 199)) || [];
+      const now = Date.now();
+      const minAge = 24 * 60 * 60 * 1000;
+      const maxAge = 72 * 60 * 60 * 1000;
+      let sent = 0, skipped = 0, errors = 0;
+      for (const ref of refs) {
+        try {
+          const raw = await kv.get(`order:${ref}`);
+          if (!raw) continue;
+          const o = typeof raw === "string" ? JSON.parse(raw) : raw;
+          if (o.status === "paid") continue;
+          if (o.reminderSent) { skipped++; continue; }
+          const created = o.createdAt ? new Date(o.createdAt).getTime() : 0;
+          const age = now - created;
+          if (age < minAge || age > maxAge) { skipped++; continue; }
+          const phone = o?.buyer?.phoneNumber;
+          if (!phone) { skipped++; continue; }
+          const name = o?.buyer?.name || "değerli müşterimiz";
+          const itemCount = (o?.basket?.basketItems || []).reduce((s, it) => s + Number(it.numberOfProducts || 0), 0);
+          const amount = Number(o.amount || 0);
+          const msg = `Frenciniz: Merhaba ${name}, sepetinizde ${itemCount} urun ve ${amount.toFixed(2)}TL'lik siparis tamamlanmadi. Tamamlayin: frenciniz.com`;
+          const r = await sendSms(phone, msg.slice(0, 155));
+          o.reminderSent = true;
+          o.reminderAt = new Date().toISOString();
+          await kv.set(`order:${ref}`, JSON.stringify(o), { ex: 60 * 60 * 24 * 30 });
+          if (r.ok) sent++; else errors++;
+        } catch { errors++; }
+      }
+      await logActivity("cron.cart-reminder", { sent, skipped, errors, by: admin.userId });
+      return res.status(200).json({ success: true, sent, skipped, errors, total: refs.length });
+    }
+
     // ── Kampanya SMS gönderimi (toplu) ─────────────
     if (action === "campaign-send" && req.method === "POST") {
       const { message, target = "with-phone", limit = 500 } = req.body || {};

@@ -2177,7 +2177,7 @@ function OrdersPage() {
   const [err, setErr] = useState(null);
   useEffect(() => {
     if (!user) { setOrders([]); return; }
-    fetch("/api/orders", {credentials:"include"})
+    fetch("/api/auth/my-orders", {credentials:"include"})
       .then(r => r.json())
       .then(d => setOrders(Array.isArray(d.orders) ? d.orders : []))
       .catch(() => { setErr("load"); setOrders([]); });

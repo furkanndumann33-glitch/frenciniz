@@ -3,7 +3,7 @@ import {
   hashPassword, verifyPassword, signJWT, setSessionCookie, clearSessionCookie,
   getSession, readUser, publicUser, newUserId, writeUser,
   normalizeEmail, normalizePhone, findUserByEmail, findUserByPhone,
-  isAdminEmail, logActivity,
+  isAdminEmail, logActivity, requireUser,
 } from "./_lib/auth.js";
 import { sendEmail, emailLayout } from "./_lib/email.js";
 import { sendSms } from "./_lib/netgsm.js";
@@ -204,6 +204,31 @@ export default async function handler(req, res) {
       await logActivity("user.reset", { userId: user.id });
       setSessionCookie(res, signJWT({ userId: user.id, role: user.role, email: user.email }));
       return res.status(200).json({ success: true, user: publicUser(user) });
+    }
+
+    // ── Kullanıcının siparişleri ─────────────────
+    if (action === "my-orders" && req.method === "GET") {
+      const session = await requireUser(req, res);
+      if (!session) return;
+      const refs = (await kv.lrange(`user:${session.userId}:orders`, 0, 49)) || [];
+      const orders = [];
+      for (const ref of refs) {
+        const raw = await kv.get(`order:${ref}`);
+        if (!raw) continue;
+        const o = typeof raw === "string" ? JSON.parse(raw) : raw;
+        if (o.status !== "paid") continue;
+        const items = (o.basket?.basketItems || []).map((it) => ({
+          name: it.name, sku: it.sku || "", brand: it.brand || "",
+          price: Number(it.unitPrice || 0), qty: Number(it.numberOfProducts || 1), img: it.img || null,
+        }));
+        orders.push({
+          orderRef: o.orderRef, status: o.status,
+          fulfillmentStatus: o.fulfillmentStatus || "Hazırlanıyor",
+          amount: o.amount, installment: o.installment || 1,
+          paidAt: o.paidAt, createdAt: o.createdAt, items,
+        });
+      }
+      return res.status(200).json({ ok: true, orders });
     }
 
     if (action === "me") {
