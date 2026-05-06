@@ -634,6 +634,21 @@ export default function App() {
   const pageStateRef = useRef({page, params});
   useEffect(() => { pageStateRef.current = {page, params}; }, [page, params]);
 
+  // Sayfa değiştiğinde trafik takibi (admin/auth sayfalarını izleme)
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (page === "admin" || page === "admin-login" || page === "admin-panel") return;
+    const path = window.location.pathname;
+    const ref = document.referrer || "";
+    fetch("/api/auth/track", {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ path, ref }),
+      keepalive: true,
+    }).catch(() => {});
+  }, [page, params]);
+
   const go = useCallback((p, pr={}) => {
     const oldUrl = buildUrl(pageStateRef.current.page, pageStateRef.current.params);
     try { sessionStorage.setItem(`scroll:${oldUrl}`, String(window.scrollY||0)); } catch {}
@@ -3353,6 +3368,7 @@ function AdminPanel() {
   const menu = [
     {id:"dashboard",label:"Dashboard",icon:"📊"},{id:"sales-chart",label:"Satış Grafikleri",icon:"📈"},
     {id:"products",label:"Ürünler",icon:"📦"},{id:"categories",label:"Kategoriler",icon:"🗂"},
+    {id:"traffic",label:"Site Trafiği",icon:"📈"},
     {id:"orders",label:"Siparişler",icon:"🛒"},{id:"returns",label:"İade Talepleri",icon:"↩️"},
     {id:"customers",label:"Müşteriler",icon:"👥"},{id:"coupons",label:"Kuponlar",icon:"🎟"},
     {id:"stock-alerts",label:"Stok Alarmları",icon:"🔔"},{id:"low-stock",label:"Düşük Stok",icon:"⚠️"},
@@ -3404,6 +3420,7 @@ function AdminPanel() {
         {tab==="email"&&<AEmailCfg/>}
         {tab==="sms"&&<ASMSCfg/>}
         {tab==="campaign"&&<ACampaign/>}
+        {tab==="traffic"&&<ATraffic/>}
         {tab==="email-templates"&&<AEmailTemplates/>}
         {tab==="chat-history"&&<AChatHistory/>}
         {tab==="revenue"&&<ARevenue/>}
@@ -3868,6 +3885,80 @@ function ASMSCfg(){
       </div>
     </div>
   </div></ACard>;
+}
+
+function ATraffic(){
+  const [data,setData]=useState(null);
+  const [err,setErr]=useState("");
+  useEffect(()=>{
+    fetch("/api/admin/traffic",{credentials:"include"}).then(r=>r.json()).then(d=>{
+      if(d.error) setErr(d.error); else setData(d);
+    }).catch(e=>setErr(e.message));
+  },[]);
+  if(err) return <div style={{padding:20,color:"#dc2626"}}>⚠ {err}</div>;
+  if(!data) return <div style={{padding:20,color:"#999"}}>Yükleniyor…</div>;
+
+  const last7Views = data.chart.slice(-7).reduce((s,c)=>s+c.views,0);
+  const last7Unique = data.chart.slice(-7).reduce((s,c)=>s+c.unique,0);
+  const max = Math.max(...data.chart.map(c=>c.views), 1);
+
+  return <div style={{display:"flex",flexDirection:"column",gap:16}}>
+    {/* Stats cards */}
+    <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:12}}>
+      {[
+        {label:"Toplam Sayfa Görüntüleme (30g)",val:data.totalViews,icon:"👁"},
+        {label:"Toplam Tekil Ziyaretçi (30g)",val:data.totalUnique,icon:"👤"},
+        {label:"Görüntüleme (7g)",val:last7Views,icon:"📊"},
+        {label:"Tekil Ziyaretçi (7g)",val:last7Unique,icon:"📈"},
+      ].map((s,i)=>(
+        <div key={i} style={{padding:16,background:"#fff",border:"1px solid #eee",borderRadius:10}}>
+          <div style={{fontSize:12,color:"#888",marginBottom:6}}>{s.label}</div>
+          <div style={{fontSize:24,fontWeight:800,color:"#1a1a1a"}}>{s.icon} {Number(s.val).toLocaleString("tr-TR")}</div>
+        </div>
+      ))}
+    </div>
+
+    {/* Daily chart */}
+    <ACard title="Son 30 Gün — Günlük Trafik">
+      <div style={{display:"flex",alignItems:"flex-end",gap:3,height:180,padding:"8px 0",borderBottom:"1px solid #eee"}}>
+        {data.chart.map(c=>{
+          const h = max > 0 ? (c.views/max)*160 : 0;
+          const uh = max > 0 ? (c.unique/max)*160 : 0;
+          return <div key={c.date} style={{flex:1,display:"flex",flexDirection:"column-reverse",alignItems:"center",position:"relative"}} title={`${c.date}\n${c.views} görüntüleme\n${c.unique} tekil`}>
+            <div style={{width:"70%",height:h,background:"linear-gradient(to top,#ff6000,#ff8c00)",borderRadius:"2px 2px 0 0",position:"relative"}}>
+              <div style={{position:"absolute",bottom:0,left:0,right:0,height:uh,background:"#ffd699",borderRadius:"2px 2px 0 0"}}/>
+            </div>
+          </div>;
+        })}
+      </div>
+      <div style={{display:"flex",justifyContent:"space-between",fontSize:10,color:"#888",marginTop:6}}>
+        <span>{data.chart[0]?.date}</span>
+        <span>{data.chart[Math.floor(data.chart.length/2)]?.date}</span>
+        <span>{data.chart[data.chart.length-1]?.date}</span>
+      </div>
+      <div style={{display:"flex",gap:14,marginTop:10,fontSize:12,color:"#666"}}>
+        <span><span style={{display:"inline-block",width:10,height:10,background:"#ff6000",marginRight:4,borderRadius:2,verticalAlign:"middle"}}/>Görüntüleme</span>
+        <span><span style={{display:"inline-block",width:10,height:10,background:"#ffd699",marginRight:4,borderRadius:2,verticalAlign:"middle"}}/>Tekil ziyaretçi</span>
+      </div>
+    </ACard>
+
+    {/* Top paths */}
+    <ACard title="En Çok Ziyaret Edilen Sayfalar (son 7 gün)">
+      {data.topPaths.length===0?<div style={{color:"#999",fontSize:13}}>Henüz veri yok.</div>:
+      <table style={{width:"100%",borderCollapse:"collapse",fontSize:13}}>
+        <thead><tr style={{borderBottom:"2px solid #eee"}}>
+          <th style={{padding:"8px",textAlign:"left",fontSize:12,color:"#999"}}>Sayfa</th>
+          <th style={{padding:"8px",textAlign:"right",fontSize:12,color:"#999"}}>Görüntüleme</th>
+        </tr></thead>
+        <tbody>{data.topPaths.map((p,i)=>(
+          <tr key={i} style={{borderBottom:"1px solid #f0f0f0"}}>
+            <td style={{padding:"8px",fontFamily:"monospace",fontSize:12}}>{p.path}</td>
+            <td style={{padding:"8px",textAlign:"right",fontWeight:600}}>{p.count.toLocaleString("tr-TR")}</td>
+          </tr>
+        ))}</tbody>
+      </table>}
+    </ACard>
+  </div>;
 }
 
 function ACampaign(){

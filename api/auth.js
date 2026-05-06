@@ -1,4 +1,5 @@
 import { kv } from "@vercel/kv";
+import crypto from "crypto";
 import {
   hashPassword, verifyPassword, signJWT, setSessionCookie, clearSessionCookie,
   getSession, readUser, publicUser, newUserId, writeUser,
@@ -229,6 +230,50 @@ export default async function handler(req, res) {
         });
       }
       return res.status(200).json({ ok: true, orders });
+    }
+
+    // ── Trafik takibi (public, auth gerekmez) ──────
+    if (action === "track" && req.method === "POST") {
+      try {
+        const { path = "/", ref = "" } = req.body || {};
+        const ip = (req.headers["x-forwarded-for"] || "").split(",")[0].trim() || req.headers["x-real-ip"] || "unknown";
+        const ua = String(req.headers["user-agent"] || "").slice(0, 200);
+        const day = new Date().toISOString().slice(0, 10);
+        const visitorKey = crypto.createHash("sha256").update(`${ip}|${ua}|${day}`).digest("hex").slice(0, 16);
+        const pathClean = String(path).slice(0, 100).replace(/[?#].*$/, "");
+
+        // Page view counters
+        await Promise.all([
+          kv.incr(`traffic:views:${day}`),
+          kv.incr(`traffic:path:${day}:${pathClean}`),
+        ]);
+        await kv.expire(`traffic:views:${day}`, 60 * 60 * 24 * 90);
+        await kv.expire(`traffic:path:${day}:${pathClean}`, 60 * 60 * 24 * 90);
+
+        // Unique visitor (sadece bu cihaz/IP bugün ilk kez geldiyse counter artır)
+        const seenKey = `traffic:seen:${day}:${visitorKey}`;
+        const isNew = await kv.set(seenKey, "1", { nx: true, ex: 60 * 60 * 24 * 2 });
+        if (isNew) {
+          await kv.incr(`traffic:unique:${day}`);
+          await kv.expire(`traffic:unique:${day}`, 60 * 60 * 24 * 90);
+        }
+
+        // Referrer (only domain part)
+        if (ref) {
+          try {
+            const refDomain = new URL(ref).hostname.replace(/^www\./, "").slice(0, 50);
+            if (refDomain && refDomain !== "frenciniz.com") {
+              await kv.incr(`traffic:ref:${day}:${refDomain}`);
+              await kv.expire(`traffic:ref:${day}:${refDomain}`, 60 * 60 * 24 * 90);
+            }
+          } catch {}
+        }
+
+        // Tracked paths/refs index for daily aggregation
+        await kv.sadd(`traffic:paths:${day}`, pathClean);
+        await kv.expire(`traffic:paths:${day}`, 60 * 60 * 24 * 90);
+      } catch {}
+      return res.status(200).json({ ok: true });
     }
 
     if (action === "me") {

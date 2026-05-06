@@ -90,6 +90,62 @@ export default async function handler(req, res) {
       }
     }
 
+    // ── Trafik istatistikleri (son 30 gün) ────────
+    if (action === "traffic") {
+      const today = new Date();
+      const days = [];
+      for (let i = 29; i >= 0; i--) {
+        const d = new Date(today); d.setDate(d.getDate() - i);
+        days.push(d.toISOString().slice(0, 10));
+      }
+      const dailyViews = {};
+      const dailyUnique = {};
+      let totalViews = 0;
+      let totalUnique = 0;
+
+      // Daily counters
+      for (const day of days) {
+        const [v, u] = await Promise.all([
+          kv.get(`traffic:views:${day}`),
+          kv.get(`traffic:unique:${day}`),
+        ]);
+        dailyViews[day] = Number(v) || 0;
+        dailyUnique[day] = Number(u) || 0;
+        totalViews += dailyViews[day];
+        totalUnique += dailyUnique[day];
+      }
+
+      // Top paths (son 7 gün)
+      const last7 = days.slice(-7);
+      const pathCounts = {};
+      for (const day of last7) {
+        const paths = (await kv.smembers(`traffic:paths:${day}`)) || [];
+        for (const p of paths) {
+          const c = await kv.get(`traffic:path:${day}:${p}`);
+          pathCounts[p] = (pathCounts[p] || 0) + (Number(c) || 0);
+        }
+      }
+      const topPaths = Object.entries(pathCounts)
+        .sort((a, b) => b[1] - a[1]).slice(0, 10)
+        .map(([path, count]) => ({ path, count }));
+
+      // Top referrers (son 7 gün) — SCAN gerekli ama hobby plan'da KV scan kısıtlı, basit yaklaşım: tahmini domain'leri tara
+      // Şu an boş döndürüyoruz; ileride detaylı agregasyon eklenir
+      const topReferrers = [];
+
+      const chart = days.map(d => ({
+        date: d,
+        views: dailyViews[d],
+        unique: dailyUnique[d],
+      }));
+
+      return res.status(200).json({
+        success: true,
+        totalViews, totalUnique,
+        chart, topPaths, topReferrers,
+      });
+    }
+
     if (action === "dashboard") {
       const userIds = (await kv.lrange("users:index", 0, 9999)) || [];
       const orderRefs = (await kv.lrange("orders:index", 0, 9999)) || [];
