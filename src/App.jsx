@@ -762,9 +762,57 @@ export default function App() {
       const cat = params?.cat ? cats.find(c => c.id === params.cat) : null;
       const catName = cat ? (cat.name || params.cat) : null;
       if (catName) {
-        title = `${catName} - Frenciniz`;
-        desc = `${catName} kategorisindeki tüm ürünler. ECE R-90 sertifikalı, orijinal ve eşdeğer parça. Aynı gün kargo, 12 taksit, 14 gün iade.`;
+        // Kategorideki ürünleri filtrele
+        const subCatIds = cat.isGroup ? cats.filter(c => c.parent === cat.id).map(c => c.id) : [cat.id];
+        const inCat = (products || []).filter(p => subCatIds.includes(p.cat));
+        const count = inCat.length;
+        const brandsInCat = [...new Set(inCat.map(p => p.brand).filter(Boolean))].slice(0, 5);
+
+        title = `${catName} | ${count > 0 ? `${count} Ürün` : "Tüm Ürünler"} - Frenciniz`;
+        desc = `${catName}: ${count} adet orijinal ve eşdeğer ürün. ${brandsInCat.length ? brandsInCat.join(", ") + ". " : ""}ECE R-90 sertifikalı, kamyon/tır/otobüs/dorse uyumlu. 3000₺ üzeri ücretsiz kargo, 12 taksit, 14 gün iade.`.slice(0, 300);
         canonical = `${SITE_URL}/${cat.id}`;
+
+        // ItemList JSON-LD (ilk 20 ürün)
+        const sample = inCat.slice(0, 20);
+        if (sample.length) {
+          setJsonLd("page-itemlist", {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "name": catName,
+            "numberOfItems": count,
+            "itemListElement": sample.map((p, i) => ({
+              "@type": "ListItem",
+              "position": i + 1,
+              "url": `${SITE_URL}/urun/${p.id}`,
+              "item": {
+                "@type": "Product",
+                "name": p.name,
+                "image": p.img && !p.img.includes("placehold") ? cdnImg(p.img, 400) : baseImg,
+                "sku": p.sku || undefined,
+                "brand": { "@type": "Brand", "name": p.brand || "Ekersan" },
+                "offers": {
+                  "@type": "Offer",
+                  "priceCurrency": "TRY",
+                  "price": p.price,
+                  "availability": p.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+                },
+              },
+            })),
+          });
+        }
+
+        // BreadcrumbList: Ana Sayfa > [Üst grup] > Kategori
+        const grp = cat.parent ? cats.find(c => c.id === cat.parent) : null;
+        const crumbs = [{ name: "Ana Sayfa", url: `${SITE_URL}/` }];
+        if (grp) crumbs.push({ name: grp.name, url: `${SITE_URL}/${grp.id}` });
+        crumbs.push({ name: cat.name, url: canonical });
+        setJsonLd("page-breadcrumb", {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": crumbs.map((c, i) => ({
+            "@type": "ListItem", "position": i + 1, "name": c.name, "item": c.url,
+          })),
+        });
       } else if (params?.q) {
         title = `"${params.q}" arama sonuçları - Frenciniz`;
         desc = `"${params.q}" için Frenciniz fren aksamı ürün sonuçları.`;
@@ -839,7 +887,32 @@ export default function App() {
         });
       }
     } else if (page === "contact") { title = "İletişim - Frenciniz"; desc = "Frenciniz iletişim: 0545 608 7008, WhatsApp 0850 888 7881, info@frenciniz.com. Isparta merkez."; canonical = `${SITE_URL}/contact`; }
-    else if (page === "about") { title = "Hakkımızda - Frenciniz"; desc = "Frenciniz, ağır vasıta fren aksamı uzmanı. Ekersan üretici garantisi, ECE R-90 sertifikalı."; canonical = `${SITE_URL}/about`; }
+    else if (page === "about") {
+      title = "Hakkımızda — Frenciniz Dumanlar Ticaret | Isparta Fren Aksamı";
+      desc = "Frenciniz (Dumanlar Ticaret) — Isparta merkezli ağır vasıta fren aksamı uzmanı. Ekersan üretici garantili, ECE R-90 sertifikalı 1000+ ürün. Aynı gün kargo, 12 taksit, 14 gün iade.";
+      canonical = `${SITE_URL}/about`;
+      setJsonLd("page-organization", {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Frenciniz",
+        "alternateName": "Dumanlar Ticaret",
+        "url": SITE_URL,
+        "logo": `${SITE_URL}/logo.png`,
+        "description": "Kamyon, tır, otobüs ve dorse için ECE R-90 sertifikalı fren aksamı satışı. 1000+ orijinal ve eşdeğer parça.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Hızırbey Mah. 1509 Sok. No:24",
+          "addressLocality": "Isparta",
+          "addressRegion": "Isparta",
+          "addressCountry": "TR",
+        },
+        "contactPoint": [
+          {"@type": "ContactPoint", "telephone": "+90-545-608-7008", "contactType": "customer service", "areaServed": "TR", "availableLanguage": ["Turkish"]},
+          {"@type": "ContactPoint", "telephone": "+90-850-888-7881", "contactType": "sales", "areaServed": "TR"},
+        ],
+        "sameAs": [],
+      });
+    }
     else if (page === "faq") { title = "Sıkça Sorulan Sorular - Frenciniz"; desc = "Kargo, ödeme, iade, garanti ve ürünler hakkında sıkça sorulan sorular."; canonical = `${SITE_URL}/faq`; }
     else if (page === "brands") { title = "Markalar - Frenciniz"; desc = "Frenciniz'in çalıştığı marka ve uyumlu araçlar."; canonical = `${SITE_URL}/brands`; }
     else if (page === "shipping") { title = "Kargo ve Teslimat - Frenciniz"; desc = "Aras Kargo ile aynı gün gönderim. 3000₺ üzeri ücretsiz kargo, altı 150₺."; canonical = `${SITE_URL}/shipping`; }

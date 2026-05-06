@@ -63,10 +63,24 @@ export default async function handler(req, res) {
       urls.push(`<url><loc>${SITE}${p.loc}</loc><lastmod>${today}</lastmod><changefreq>${p.changefreq}</changefreq><priority>${p.priority}</priority></url>`);
     }
 
-    // Kategoriler (sadece grup-altı, alışveriş yapılabilen kategoriler)
+    // Kategoriler (hem alt-kategori hem grup ana sayfası — grup sayfaları da listeleme yapıyor)
     for (const c of categories) {
-      if (!c.id || c.id === "all" || c.isGroup) continue;
-      urls.push(`<url><loc>${SITE}/${xmlEscape(c.id)}</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>`);
+      if (!c.id || c.id === "all") continue;
+      const priority = c.isGroup ? "0.85" : "0.8";
+      urls.push(`<url><loc>${SITE}/${xmlEscape(c.id)}</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>${priority}</priority></url>`);
+    }
+
+    // Marka filtreli sayfalar (en çok görülen 10 marka)
+    const brandCounts = {};
+    for (const p of products) { if (p.brand) brandCounts[p.brand] = (brandCounts[p.brand] || 0) + 1; }
+    const topBrands = Object.entries(brandCounts).sort((a, b) => b[1] - a[1]).slice(0, 10).map(([b]) => b);
+    for (const b of topBrands) {
+      urls.push(`<url><loc>${SITE}/?brand=${encodeURIComponent(b)}</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>`);
+    }
+
+    // Araç tipi filtreli sayfalar
+    for (const v of ["kamyon", "tir", "otobus", "dorse"]) {
+      urls.push(`<url><loc>${SITE}/?veh=${v}</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>`);
     }
 
     // Ürünler
