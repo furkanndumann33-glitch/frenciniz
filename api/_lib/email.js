@@ -86,7 +86,7 @@ export function emailLayout({ heading, lines = [], cta, footer }) {
     <p style="margin:24px 0 0;color:#888;font-size:12px;line-height:1.6">
       Frenciniz · Dumanlar Ticaret<br/>
       Hızırbey Mah. 1509 Sok. No:24, Isparta Merkez<br/>
-      <a href="tel:+905456087008" style="color:#ff6000;text-decoration:none">0545 608 7008</a> · <a href="https://wa.me/908508887881" style="color:#25D366;text-decoration:none">0850 888 7881</a>
+      <a href="tel:+905456087008" style="color:#ff6000;text-decoration:none">0545 608 7008</a> · <a href="https://wa.me/905456087008" style="color:#25D366;text-decoration:none">💬 WhatsApp</a>
     </p>`;
   return `<!doctype html><html lang="tr"><body style="margin:0;padding:24px;background:#f6f6f6;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif">
   <div style="max-width:560px;margin:0 auto;background:#fff;border-radius:12px;padding:32px;border:1px solid #eee">

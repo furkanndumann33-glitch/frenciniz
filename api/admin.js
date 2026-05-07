@@ -269,7 +269,7 @@ export default async function handler(req, res) {
       if (req.method === "GET") {
         const raw = await kv.get("settings:site");
         const settings = raw ? (typeof raw === "string" ? JSON.parse(raw) : raw) : {
-          siteName: "Frenciniz", phone: "0850 888 7881",
+          siteName: "Frenciniz", phone: "0545 608 7008",
           email: "info@frenciniz.com", address: "Hızırbey Mah. 1509 Sok. No:24, Isparta",
           freeShippingLimit: 500,
           social: { facebook: "", instagram: "", twitter: "", youtube: "" },

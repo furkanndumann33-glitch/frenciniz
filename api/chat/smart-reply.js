@@ -199,7 +199,7 @@ const INTENT_RULES = [
   {
     id: "bye",
     test: (n) => /^(gorusur|bye|hosca|gule gule|bb|bay bay|iyi gunler$|iyi aksamlar$|kapat)/.test(n),
-    reply: () => "İyi günler! 👋 Tekrar bekleriz.\nDestek: 0545 608 7008  |  WhatsApp: 0850 888 7881"
+    reply: () => "İyi günler! 👋 Tekrar bekleriz.\nDestek: 0545 608 7008  |  WhatsApp: 0545 608 7008"
   },
   {
     id: "order_track",
@@ -211,7 +211,7 @@ const INTENT_RULES = [
       if (ord) r += `Sipariş numaranız: *${ord}* — bunu kayda alıyorum, müşteri temsilcimiz birazdan dönecek.\n\n`;
       r += "1) Hesabım > Siparişlerim sayfasından canlı durumu görebilirsiniz\n";
       r += "2) Aras Kargo: https://kargotakip.araskargo.com.tr\n";
-      r += "3) Hızlı destek: 0545 608 7008  |  WhatsApp: 0850 888 7881\n\n";
+      r += "3) Hızlı destek: 0545 608 7008  |  WhatsApp: 0545 608 7008\n\n";
       r += "Sipariş numaranızı (FRN-XXXX) paylaşırsanız hemen kontrol edelim.";
       return r;
     }
@@ -267,7 +267,7 @@ const INTENT_RULES = [
     test: (n) => /(iletisim|telefon|numara|adres|nerede|mail|e-posta|eposta|whatsapp|wp|aramak|sizi|muhattap)/.test(n),
     reply: () => "📍 İletişim bilgilerimiz:\n\n" +
       "Telefon: 0545 608 7008\n" +
-      "WhatsApp: 0850 888 7881\n" +
+      "WhatsApp: 0545 608 7008\n" +
       "E-posta: info@frenciniz.com\n\n" +
       "Adres: Hızırbey Mah. 1509 Sok. No:24, Isparta\n\n" +
       "Çalışma saatleri:\n" +
@@ -390,5 +390,5 @@ export function getSmartReply(message) {
     "• SKU veya OEM numarası (örn: ESD 130 09)\n" +
     "• Kategori adı (balata, disk, kampana, kaliper, EBS, ABS sensörü...)\n" +
     "• \"Kargo\", \"Ödeme\", \"İade\", \"Garanti\" gibi konular\n\n" +
-    "Veya direkt arayın: 0545 608 7008  |  WhatsApp: 0850 888 7881  |  info@frenciniz.com";
+    "Veya direkt arayın: 0545 608 7008  |  WhatsApp: 0545 608 7008  |  info@frenciniz.com";
 }
