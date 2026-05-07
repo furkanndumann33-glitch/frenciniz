@@ -74,7 +74,9 @@ function buildMerchantFeed(products, categories) {
     const brand = p.brand || "Ekersan";
     const mpn = p.oem || p.sku || p.id;
     const gtin = p.gtin || "";
-    const desc = (p.desc || `${p.name} - ${catName} kategorisinde ${brand} marka. Stok: ${p.sku || "-"}. ECE R-90 sertifikalı, kamyon/tır/otobüs/dorse uyumlu fren aksamı. Aynı gün kargo, 12 taksit, 14 gün iade hakkı. Tel: 0545 608 7008.`).slice(0, 5000);
+    const richDesc = `${p.name} - ${catName} kategorisinde ${brand} marka orijinal/eşdeğer parça. ${p.sku ? "Stok kodu: " + p.sku + ". " : ""}${p.oem ? "OEM: " + p.oem + ". " : ""}ECE R-90 sertifikalı, kamyon, tır, otobüs ve dorse için uyumlu fren aksamı. 3000₺ üzeri ücretsiz kargo, 12 taksit, 14 gün koşulsuz iade. Tel/WhatsApp: 0545 608 7008.`;
+    const baseDesc = p.desc && p.desc.length > p.name.length + 10 ? p.desc : richDesc;
+    const desc = baseDesc.slice(0, 5000);
 
     items.push(
       `<item>` +
@@ -84,15 +86,16 @@ function buildMerchantFeed(products, categories) {
       `<g:link>${SITE}/urun/${xmlEscape(p.id)}</g:link>` +
       `<g:image_link>${xmlEscape(imgUrl)}</g:image_link>` +
       `<g:availability>${availability}</g:availability>` +
-      `<g:price>${p.price}.00 TRY</g:price>` +
+      `<g:price>${Number(p.price).toFixed(2)} TRY</g:price>` +
       `<g:brand>${xmlEscape(brand)}</g:brand>` +
       `<g:condition>${condition}</g:condition>` +
       (mpn ? `<g:mpn>${xmlEscape(mpn)}</g:mpn>` : "") +
       (gtin ? `<g:gtin>${xmlEscape(gtin)}</g:gtin>` : "") +
-      (p.sku ? `<g:identifier_exists>${gtin ? "yes" : "no"}</g:identifier_exists>` : "<g:identifier_exists>no</g:identifier_exists>") +
+      // Fren parçaları için brand+mpn yeterli identifier — gtin yoksa identifier_exists=no
+      `<g:identifier_exists>${gtin ? "yes" : "no"}</g:identifier_exists>` +
       `<g:product_type>${xmlEscape(fullCat)}</g:product_type>` +
       `<g:google_product_category>Vehicles &amp; Parts &gt; Vehicle Parts &amp; Accessories &gt; Motor Vehicle Parts &gt; Motor Vehicle Brake Parts</g:google_product_category>` +
-      `<g:shipping><g:country>TR</g:country><g:service>Standard</g:service><g:price>${p.price >= 3000 ? "0.00" : "150.00"} TRY</g:price></g:shipping>` +
+      `<g:shipping><g:country>TR</g:country><g:service>Standard</g:service><g:price>${Number(p.price) >= 3000 ? "0.00" : "150.00"} TRY</g:price></g:shipping>` +
       `<g:tax><g:country>TR</g:country><g:rate>20</g:rate><g:tax_ship>yes</g:tax_ship></g:tax>` +
       `</item>`
     );
