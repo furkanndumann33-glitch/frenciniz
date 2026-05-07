@@ -27,8 +27,8 @@ const CATEGORY_PATTERNS = [
   [/\bARF\s*\d+\s*\/\s*\d+|\bEYD\s*100\b|\b8108\b|\b811[2-5]\b/i, "Fren Körüğü"],
   // FREN kelimesi geçmeyen tüm körükler süspansiyon — kullanıcı kuralı (2026-05-06)
   [/DORSE\s*KÖR[ÜU]K|^KÖR[ÜU]K|\bKÖR[ÜU]K\b|\bKÖR[ÜU][GĞ]|KÖRUGU|KORUGU|KOMPLE\s*KÖR|P[İI]STONSUZ\s*KÖR|KATLI\s*KÖR|KAMPANA.*KÖR[ÜU][KGĞ]/i, "Süspansiyon Körüğü"],
-  // SKU bazlı: 42xxxx.S/.C/.CP/.KP/.S## suffix'li ürünler → fren körüğü çeşitleri
-  [/\b42\d{4}\.(S|C|CP|KP|S\d+)\b/i, "Fren Körüğü"],
+  // SKU bazlı: 42xxxx.S/.C/.CP/.KP/.S## suffix'li ürünler — süspansiyon körüğü (kullanıcı kuralı, 2026-05-07)
+  [/\b42\d{4}\.(S|C|CP|KP|S\d+)\b|\b42836\.C1\b/i, "Süspansiyon Körüğü"],
   // KIZAK pattern BALATA'dan önce — "TAŞIYICI KIZAK ... BALATA" karma ürünleri yakala
   [/TAŞIYICI\s*KIZA[KĞG]|\bKIZA[KĞG]\b|^KIZA[KĞG]/i, "Kızak"],
   // Balata (DISK fallback'inden ÖNCE — "DİSK BALATASI" isimleri DISK'e düşmesin)
