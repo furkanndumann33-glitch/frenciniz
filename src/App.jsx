@@ -743,14 +743,16 @@ export default function App() {
   // ===== SEO: sayfa değiştiğinde meta + JSON-LD güncelle =====
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    const baseTitle = "Frenciniz - Ağır Vasıta Fren Aksamı ve Yedek Parça";
-    const baseDesc = "Kamyon, tır, otobüs ve dorse için ECE R-90 sertifikalı fren diski, balata, kampana, kaliper, EBS modülatör ve ABS sensörü. Aynı gün kargo, 12 taksit.";
+    const baseTitle = "Frenciniz - Ağır Vasıta Fren Aksamı | 0545 608 7008";
+    const baseDesc = "Kamyon, tır, otobüs ve dorse için ECE R-90 sertifikalı fren diski, balata, kampana, kaliper, EBS modülatör ve ABS sensörü. 1000+ ürün, aynı gün kargo, 12 taksit, 14 gün iade. Tel/WhatsApp: 0545 608 7008.";
     const baseImg = `${SITE_URL}/logo.png`;
 
     // Önceki sayfa-spesifik JSON-LD'yi temizle
     setJsonLd("page-product", null);
     setJsonLd("page-itemlist", null);
     setJsonLd("page-breadcrumb", null);
+    setJsonLd("page-faq", null);
+    setJsonLd("page-organization", null);
 
     let title = baseTitle, desc = baseDesc, canonical = `${SITE_URL}${window.location.pathname}`, img = baseImg, robots;
 
@@ -913,7 +915,29 @@ export default function App() {
         "sameAs": [],
       });
     }
-    else if (page === "faq") { title = "Sıkça Sorulan Sorular - Frenciniz"; desc = "Kargo, ödeme, iade, garanti ve ürünler hakkında sıkça sorulan sorular."; canonical = `${SITE_URL}/faq`; }
+    else if (page === "faq") {
+      title = "Sıkça Sorulan Sorular - Frenciniz | Tel: 0545 608 7008";
+      desc = "Kargo süresi, ödeme, iade, garanti, taksit ve ürün uyumluluğu hakkında sıkça sorulan sorular. Tel/WhatsApp: 0545 608 7008.";
+      canonical = `${SITE_URL}/faq`;
+      const faqList = [
+        {q:"Kargo süresi nedir?",a:"14:00'a kadar verilen siparişler aynı gün kargoya verilir. Aras Kargo ile gönderim yapılır."},
+        {q:"Ürünler orijinal mi?",a:"ECE R-90 sertifikalı orijinal ve eşdeğer parçalar sunuyoruz. Her ürün üretici garantilidir."},
+        {q:"İade yapabilir miyim?",a:"Kullanılmamış ürünler 14 gün içinde koşulsuz iade edilebilir. Hasarlı/yanlış üründe kargo ücreti tarafımıza aittir."},
+        {q:"Toplu alım indirimi var mı?",a:"5.000₺ üzeri siparişlerde indirim mevcuttur. B2B teklif için 0545 608 7008 numaralı telefondan ulaşabilirsiniz."},
+        {q:"Taksit yapılıyor mu?",a:"Tüm kredi kartlarına 12 taksit imkânı mevcuttur. PayTR güvenli ödeme altyapısı kullanılır."},
+        {q:"Ürün aracıma uyar mı?",a:"Ürün sayfasında uyumlu araç listesi ve OEM referansları yer alır. Emin değilseniz 0545 608 7008'den uyumluluk teyidi alabilirsiniz."},
+        {q:"Kargo ücreti ne kadar?",a:"3000₺ altı siparişlerde 150₺, 3000₺ üzeri siparişlerde ücretsiz kargo."},
+      ];
+      setJsonLd("page-faq", {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": faqList.map(f => ({
+          "@type": "Question",
+          "name": f.q,
+          "acceptedAnswer": { "@type": "Answer", "text": f.a }
+        }))
+      });
+    }
     else if (page === "brands") { title = "Markalar - Frenciniz"; desc = "Frenciniz'in çalıştığı marka ve uyumlu araçlar."; canonical = `${SITE_URL}/brands`; }
     else if (page === "shipping") { title = "Kargo ve Teslimat - Frenciniz"; desc = "Aras Kargo ile aynı gün gönderim. 3000₺ üzeri ücretsiz kargo, altı 150₺."; canonical = `${SITE_URL}/shipping`; }
     else if (page === "return-policy") { title = "İade Politikası - Frenciniz"; desc = "14 gün koşulsuz iade hakkı. Hasarlı/yanlış üründe kargo ücreti bize ait."; canonical = `${SITE_URL}/return-policy`; }
