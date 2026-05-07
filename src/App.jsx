@@ -1673,12 +1673,16 @@ function HomePage() {
 
 // ===== PRODUCTS =====
 function ProductsPage() {
-  const {params, q, go, isMobile, t, lang} = use$();
+  const {params, q, go, isMobile, t, lang, products, cats} = use$();
   const [cat, setCat] = useState(params?.cat || "all");
   const [veh, setVeh] = useState(params?.veh || "all");
   const [brand, setBrand] = useState(params?.brand || "all");
   const [sort, setSort] = useState("popular");
   const [showFilters, setShowFilters] = useState(false);
+
+  // Context'ten gelen veri yoksa global'a fallback (ilk render'da)
+  const productList = (products && products.length) ? products : PRODUCTS;
+  const catList = (cats && cats.length) ? cats : CATS;
 
   useEffect(() => {
     // Arama yapılınca filtreleri sıfırla (global arama)
@@ -1690,13 +1694,13 @@ function ProductsPage() {
   // Kategori filtresi: grup seçilmişse altındaki tüm alt kategorileri dahil et
   const catMatch = useMemo(() => {
     if (cat === "all") return null;
-    const group = CATS.find(c => c.id === cat && c.isGroup);
-    if (group) return getSubCatIds(cat);
+    const group = catList.find(c => c.id === cat && c.isGroup);
+    if (group) return catList.filter(c => c.parent === cat).map(c => c.id);
     return [cat];
-  }, [cat]);
+  }, [cat, catList]);
 
   const items = useMemo(() => {
-    let r = PRODUCTS.filter(p => {
+    let r = productList.filter(p => {
       if(catMatch && !catMatch.includes(p.cat)) return false;
       if(veh!=="all" && !p.veh.includes(veh)) return false;
       if(brand!=="all" && p.brand!==brand) return false;
@@ -1707,7 +1711,7 @@ function ProductsPage() {
     else if(sort==="price-desc") r=[...r].sort((a,b)=>b.price-a.price);
     else r=[...r].sort((a,b)=>(b.reviews||0)-(a.reviews||0));
     return r;
-  }, [cat,catMatch,veh,brand,sort,term]);
+  }, [cat,catMatch,veh,brand,sort,term,productList]);
   // Kritik görsel preload — listenin ilk 6'sı için browser'a önceden indir
   useCriticalImagePreload(items, 6, 320);
 
@@ -1716,9 +1720,9 @@ function ProductsPage() {
   // Aktif kategori adı (breadcrumb ve başlık için)
   const catName = useMemo(() => {
     if (cat === "all") return t("allProducts");
-    const found = CATS.find(c => c.id === cat);
+    const found = catList.find(c => c.id === cat);
     return found ? translateCat(found,lang) : t("allProducts");
-  }, [cat, t, lang]);
+  }, [cat, t, lang, catList]);
 
   const FilterPanel = () => (
     <>
@@ -1789,8 +1793,9 @@ function ProductsPage() {
 
 // ===== PRODUCT DETAIL =====
 function ProductDetailPage() {
-  const {params, go, addToCart, addViewed, favs, toggleFav, addStockAlert, isMobile, t, fp, lang} = use$();
-  const p = PRODUCTS.find(x => x.id === params?.id);
+  const {params, go, addToCart, addViewed, favs, toggleFav, addStockAlert, isMobile, t, fp, lang, products, dataLoaded} = use$();
+  const productList = (products && products.length) ? products : PRODUCTS;
+  const p = productList.find(x => x.id === params?.id);
   const [qty, setQty] = useState(1);
   const [tab, setTab] = useState("desc");
   const [alertEmail, setAlertEmail] = useState("");
@@ -1798,9 +1803,11 @@ function ProductDetailPage() {
 
   useEffect(() => { if(p) addViewed(p.id); }, [p?.id]);
 
+  // Products henüz yükleniyor — direct link gelince "bulunamadı" göstermek yerine bekle
+  if(!dataLoaded && !p) return <div style={{padding:"60px 20px",textAlign:"center",color:"#999"}}>Yükleniyor...</div>;
   if(!p) return <div style={{padding:"60px 20px",textAlign:"center",color:"#999"}}>Ürün bulunamadı.</div>;
   const disc = p.old ? Math.round((1-p.price/p.old)*100) : 0;
-  const related = PRODUCTS.filter(x => x.cat === p.cat && x.id !== p.id).slice(0,4);
+  const related = productList.filter(x => x.cat === p.cat && x.id !== p.id).slice(0,4);
   const isFav = favs.includes(p.id);
 
   return (
