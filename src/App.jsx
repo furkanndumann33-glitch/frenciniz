@@ -824,6 +824,35 @@ export default function App() {
       title = baseTitle;
       desc = baseDesc;
       canonical = `${SITE_URL}/`;
+      // Homepage ItemList — popüler/öne çıkan ürünler — Google'a "bu site bu ürünleri öne çıkarıyor" sinyali
+      const featuredProds = (products || []).filter(p => p.stock > 0 && p.img && !p.img.includes("placehold")).slice(0, 12);
+      if (featuredProds.length) {
+        setJsonLd("page-itemlist", {
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          "name": "Frenciniz Öne Çıkan Ürünler",
+          "numberOfItems": featuredProds.length,
+          "itemListElement": featuredProds.map((p, i) => ({
+            "@type": "ListItem",
+            "position": i + 1,
+            "url": `${SITE_URL}/urun/${p.id}`,
+            "item": {
+              "@type": "Product",
+              "name": p.name,
+              "image": cdnImg(p.img, 400),
+              "sku": p.sku || undefined,
+              "brand": { "@type": "Brand", "name": p.brand || "Ekersan" },
+              "offers": {
+                "@type": "Offer",
+                "priceCurrency": "TRY",
+                "price": p.price,
+                "availability": "https://schema.org/InStock",
+                "url": `${SITE_URL}/urun/${p.id}`,
+              },
+            },
+          })),
+        });
+      }
     } else if (page === "products") {
       const cat = params?.cat ? cats.find(c => c.id === params.cat) : null;
       const catName = cat ? (cat.name || params.cat) : null;
