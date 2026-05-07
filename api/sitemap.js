@@ -87,7 +87,12 @@ export default async function handler(req, res) {
     for (const p of products) {
       if (!p.id) continue;
       const hasImg = p.img && !String(p.img).includes("placehold");
-      const imgUrl = hasImg ? p.img : null;
+      // Image URL absolute olmalı (sitemap protokolü gereği) — relative ise SITE prefix ekle
+      let imgUrl = null;
+      if (hasImg) {
+        const raw = String(p.img);
+        imgUrl = raw.startsWith("http") ? raw : `${SITE}${raw.startsWith("/") ? "" : "/"}${raw}`;
+      }
       urls.push(
         `<url>` +
         `<loc>${SITE}/urun/${xmlEscape(p.id)}</loc>` +
