@@ -1,6 +1,7 @@
 {
   "rewrites": [
     { "source": "/sitemap.xml", "destination": "/api/sitemap" },
+    { "source": "/google-merchant-feed.xml", "destination": "/api/sitemap?type=merchant" },
     { "source": "/api/auth/:action", "destination": "/api/auth?action=:action" },
     { "source": "/api/admin/:action", "destination": "/api/admin?action=:action" },
     { "source": "/api/(.*)", "destination": "/api/$1" },

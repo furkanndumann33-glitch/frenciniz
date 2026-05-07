@@ -51,9 +51,79 @@ async function loadProducts() {
   }
 }
 
+// ===== GOOGLE MERCHANT CENTER XML FEED =====
+// Format: https://support.google.com/merchants/answer/7052112
+// Bu feed Google Shopping'de ÜCRETSİZ ürün listelemeleri sağlar (organic placements).
+function buildMerchantFeed(products, categories) {
+  const today = new Date().toISOString();
+  const items = [];
+
+  for (const p of products) {
+    if (!p.id || !p.name || p.price == null) continue;
+    const sub = categories.find(c => c.id === p.cat);
+    const catName = sub ? sub.name : "Fren Aksamı";
+    const grp = sub?.parent ? categories.find(c => c.id === sub.parent) : null;
+    const fullCat = grp ? `${grp.name} > ${catName}` : catName;
+
+    const hasImg = p.img && !String(p.img).includes("placehold");
+    const rawImg = hasImg ? String(p.img) : "/logo.png";
+    const imgUrl = rawImg.startsWith("http") ? rawImg : `${SITE}${rawImg.startsWith("/") ? "" : "/"}${rawImg}`;
+
+    const availability = p.stock > 0 ? "in_stock" : "out_of_stock";
+    const condition = "new";
+    const brand = p.brand || "Ekersan";
+    const mpn = p.oem || p.sku || p.id;
+    const gtin = p.gtin || "";
+    const desc = (p.desc || `${p.name} - ${catName} kategorisinde ${brand} marka. Stok: ${p.sku || "-"}. ECE R-90 sertifikalı, kamyon/tır/otobüs/dorse uyumlu fren aksamı. Aynı gün kargo, 12 taksit, 14 gün iade hakkı. Tel: 0545 608 7008.`).slice(0, 5000);
+
+    items.push(
+      `<item>` +
+      `<g:id>${xmlEscape(p.id)}</g:id>` +
+      `<g:title>${xmlEscape(p.name).slice(0, 150)}</g:title>` +
+      `<g:description>${xmlEscape(desc)}</g:description>` +
+      `<g:link>${SITE}/urun/${xmlEscape(p.id)}</g:link>` +
+      `<g:image_link>${xmlEscape(imgUrl)}</g:image_link>` +
+      `<g:availability>${availability}</g:availability>` +
+      `<g:price>${p.price}.00 TRY</g:price>` +
+      `<g:brand>${xmlEscape(brand)}</g:brand>` +
+      `<g:condition>${condition}</g:condition>` +
+      (mpn ? `<g:mpn>${xmlEscape(mpn)}</g:mpn>` : "") +
+      (gtin ? `<g:gtin>${xmlEscape(gtin)}</g:gtin>` : "") +
+      (p.sku ? `<g:identifier_exists>${gtin ? "yes" : "no"}</g:identifier_exists>` : "<g:identifier_exists>no</g:identifier_exists>") +
+      `<g:product_type>${xmlEscape(fullCat)}</g:product_type>` +
+      `<g:google_product_category>Vehicles &amp; Parts &gt; Vehicle Parts &amp; Accessories &gt; Motor Vehicle Parts &gt; Motor Vehicle Brake Parts</g:google_product_category>` +
+      `<g:shipping><g:country>TR</g:country><g:service>Standard</g:service><g:price>${p.price >= 3000 ? "0.00" : "150.00"} TRY</g:price></g:shipping>` +
+      `<g:tax><g:country>TR</g:country><g:rate>20</g:rate><g:tax_ship>yes</g:tax_ship></g:tax>` +
+      `</item>`
+    );
+  }
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
+<channel>
+<title>Frenciniz - Ağır Vasıta Fren Aksamı</title>
+<link>${SITE}</link>
+<description>Kamyon, tır, otobüs ve dorse için ECE R-90 sertifikalı fren aksamı ve yedek parça. ${products.length} ürün.</description>
+<lastBuildDate>${today}</lastBuildDate>
+${items.join("\n")}
+</channel>
+</rss>`;
+}
+
 export default async function handler(req, res) {
   try {
     const { products, categories } = await loadProducts();
+
+    // Merchant Center feed mi yoksa standart sitemap mi?
+    const url = req.url || "";
+    const isMerchantFeed = url.includes("type=merchant") || url.includes("merchant-feed");
+    if (isMerchantFeed) {
+      const xml = buildMerchantFeed(products, categories);
+      res.setHeader("Content-Type", "application/xml; charset=utf-8");
+      res.setHeader("Cache-Control", "public, max-age=600, s-maxage=86400, stale-while-revalidate=604800");
+      return res.status(200).send(xml);
+    }
+
     const today = new Date().toISOString().slice(0, 10);
 
     const urls = [];

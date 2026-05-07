@@ -24,3 +24,6 @@ Disallow: /api/
 
 # Crawl yavaşlatma yok — küçük site
 Sitemap: https://frenciniz.com/sitemap.xml
+# Google Merchant Center XML feed
+# Submit URL: https://merchants.google.com/mc/products/feeds
+# Feed URL: https://frenciniz.com/google-merchant-feed.xml

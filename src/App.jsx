@@ -371,7 +371,7 @@ function setJsonLd(id, data) {
   el.textContent = JSON.stringify(data);
 }
 
-function applySEO({title, description, canonical, ogImage, robots}) {
+function applySEO({title, description, canonical, ogImage, robots, ogType, productData, keywords}) {
   if (typeof document === 'undefined') return;
   if (title) document.title = title;
   if (description) {
@@ -383,6 +383,8 @@ function applySEO({title, description, canonical, ogImage, robots}) {
     setMeta("og:title", title, "property");
     setMeta("twitter:title", title);
   }
+  if (keywords) setMeta("keywords", keywords);
+  setMeta("og:type", ogType || "website", "property");
   setLink("canonical", canonical || (typeof window !== 'undefined' ? window.location.origin + window.location.pathname : SITE_URL));
   setMeta("og:url", canonical || (typeof window !== 'undefined' ? window.location.href : SITE_URL), "property");
   if (ogImage) {
@@ -390,6 +392,21 @@ function applySEO({title, description, canonical, ogImage, robots}) {
     setMeta("twitter:image", ogImage);
   }
   setMeta("robots", robots || "index, follow, max-image-preview:large, max-snippet:-1");
+  // Product-specific Open Graph (Facebook, WhatsApp, Pinterest önizlemelerinde fiyat/availability gözükür)
+  if (productData) {
+    setMeta("product:price:amount", String(productData.price), "property");
+    setMeta("product:price:currency", "TRY", "property");
+    setMeta("product:availability", productData.availability || "in stock", "property");
+    if (productData.brand) setMeta("product:brand", productData.brand, "property");
+    if (productData.condition) setMeta("product:condition", productData.condition, "property");
+    if (productData.retailer_item_id) setMeta("product:retailer_item_id", productData.retailer_item_id, "property");
+  } else {
+    // Product değilse stale tag'leri temizle
+    ["product:price:amount","product:price:currency","product:availability","product:brand","product:condition","product:retailer_item_id"].forEach(n => {
+      const el = document.head.querySelector(`meta[property="${n}"]`);
+      if (el) el.remove();
+    });
+  }
 }
 
 // Ürün görsellerini arka planda önceden indir (CDN cache'i ısıtır).
@@ -755,6 +772,7 @@ export default function App() {
     setJsonLd("page-organization", null);
 
     let title = baseTitle, desc = baseDesc, canonical = `${SITE_URL}${window.location.pathname}`, img = baseImg, robots;
+    let ogType = "website", productData = null, keywords = null;
 
     if (page === "home") {
       title = baseTitle;
@@ -770,9 +788,10 @@ export default function App() {
         const count = inCat.length;
         const brandsInCat = [...new Set(inCat.map(p => p.brand).filter(Boolean))].slice(0, 5);
 
-        title = `${catName} | ${count > 0 ? `${count} Ürün` : "Tüm Ürünler"} - Frenciniz`;
-        desc = `${catName}: ${count} adet orijinal ve eşdeğer ürün. ${brandsInCat.length ? brandsInCat.join(", ") + ". " : ""}ECE R-90 sertifikalı, kamyon/tır/otobüs/dorse uyumlu. 3000₺ üzeri ücretsiz kargo, 12 taksit, 14 gün iade.`.slice(0, 300);
+        title = `${catName} | ${count > 0 ? `${count} Ürün` : "Tüm Ürünler"} - Ağır Vasıta Fren Aksamı | Frenciniz`;
+        desc = `${catName}: ${count} adet orijinal ve eşdeğer ürün. ${brandsInCat.length ? brandsInCat.join(", ") + ". " : ""}ECE R-90 sertifikalı, kamyon/tır/otobüs/dorse uyumlu. 3000₺ üzeri ücretsiz kargo, 12 taksit, 14 gün iade. Tel: 0545 608 7008.`.slice(0, 300);
         canonical = `${SITE_URL}/${cat.id}`;
+        keywords = [catName, ...brandsInCat, "fren aksamı", "ağır vasıta yedek parça", "kamyon", "tır", "otobüs", "dorse", "ECE R-90", "Mercedes Actros", "MAN TGA", "Volvo FH", "Scania", "DAF", "BPW", "SAF", "Ekersan", "Frenciniz"].join(", ");
 
         // ItemList JSON-LD (ilk 20 ürün)
         const sample = inCat.slice(0, 20);
@@ -836,15 +855,36 @@ export default function App() {
     } else if (page === "product") {
       const p = products.find(x => x.id === params?.id);
       if (p) {
-        title = `${p.name} - ${p.brand || "Frenciniz"}`;
+        const sub = cats.find(c => c.id === p.cat);
+        title = `${p.name} ${p.sku ? "(" + p.sku + ")" : ""} - ${p.brand || "Frenciniz"} | Fren Aksamı`;
         const compatStr = (p.compat || []).slice(0, 4).join(", ");
-        desc = `${p.name}. ${p.sku ? "SKU: " + p.sku + ". " : ""}${p.oem ? "OEM: " + p.oem + ". " : ""}${compatStr ? "Uyumlu: " + compatStr + ". " : ""}Frenciniz'den orijinal kalitede satın alın.`.slice(0, 300);
+        const catName = sub ? sub.name : "fren aksamı";
+        desc = `${p.name} - ${catName} kategorisinde ${p.brand || "Ekersan"} marka. ${p.sku ? "Stok: " + p.sku + ". " : ""}${p.oem ? "OEM: " + p.oem + ". " : ""}${compatStr ? "Uyumlu: " + compatStr + ". " : ""}ECE R-90 sertifikalı, aynı gün kargo, 12 taksit. ${p.price}₺. Tel: 0545 608 7008.`.slice(0, 300);
         canonical = `${SITE_URL}/urun/${p.id}`;
         const productImg = p.img && !p.img.includes("placehold") ? cdnImg(p.img, 600) : baseImg;
         img = productImg;
 
-        // Product JSON-LD
-        const sub = cats.find(c => c.id === p.cat);
+        // Per-product keyword genişletmesi (long-tail için)
+        const kwParts = [
+          p.name, p.brand, p.sku, p.oem, catName,
+          ...(p.compat || []).slice(0, 6),
+          "fren aksamı", "ağır vasıta yedek parça", "kamyon", "tır", "otobüs", "dorse",
+          "ECE R-90", "Frenciniz", "orijinal", "eşdeğer"
+        ].filter(Boolean);
+        keywords = [...new Set(kwParts)].join(", ");
+        ogType = "product";
+        productData = {
+          price: p.price,
+          availability: p.stock > 0 ? "in stock" : "out of stock",
+          brand: p.brand || "Ekersan",
+          condition: "new",
+          retailer_item_id: p.sku || p.id
+        };
+
+        // Bir sonraki yıla kadar geçerli fiyat (Google rich result REQ)
+        const priceValidUntil = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
+
+        // Product JSON-LD — 2026 Google Merchant rich result spec'i ile uyumlu
         setJsonLd("page-product", {
           "@context": "https://schema.org",
           "@type": "Product",
@@ -852,22 +892,49 @@ export default function App() {
           "image": [productImg],
           "description": (p.desc || p.name),
           "sku": p.sku,
-          "mpn": p.oem,
+          "mpn": p.oem || p.sku,
+          "gtin": p.gtin || undefined,
+          "productID": p.id,
           "brand": { "@type": "Brand", "name": p.brand || "Ekersan" },
           "category": sub ? sub.name : undefined,
           "aggregateRating": p.rating ? {
             "@type": "AggregateRating",
             "ratingValue": p.rating,
-            "reviewCount": Math.max(1, p.reviews || 1)
+            "reviewCount": Math.max(1, p.reviews || 1),
+            "bestRating": "5",
+            "worstRating": "1"
           } : undefined,
           "offers": {
             "@type": "Offer",
             "url": canonical,
             "priceCurrency": "TRY",
             "price": p.price,
+            "priceValidUntil": priceValidUntil,
             "itemCondition": "https://schema.org/NewCondition",
             "availability": p.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
-            "seller": { "@type": "Organization", "name": "Frenciniz" }
+            "seller": { "@type": "Organization", "name": "Frenciniz", "url": SITE_URL },
+            "hasMerchantReturnPolicy": {
+              "@type": "MerchantReturnPolicy",
+              "applicableCountry": "TR",
+              "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+              "merchantReturnDays": 14,
+              "returnMethod": "https://schema.org/ReturnByMail",
+              "returnFees": "https://schema.org/FreeReturn"
+            },
+            "shippingDetails": {
+              "@type": "OfferShippingDetails",
+              "shippingRate": {
+                "@type": "MonetaryAmount",
+                "value": p.price >= 3000 ? "0" : "150",
+                "currency": "TRY"
+              },
+              "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "TR" },
+              "deliveryTime": {
+                "@type": "ShippingDeliveryTime",
+                "handlingTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 1, "unitCode": "DAY" },
+                "transitTime": { "@type": "QuantitativeValue", "minValue": 1, "maxValue": 3, "unitCode": "DAY" }
+              }
+            }
           }
         });
 
@@ -949,7 +1016,7 @@ export default function App() {
       title = `${page} - Frenciniz`;
     }
 
-    applySEO({ title, description: desc, canonical, ogImage: img, robots });
+    applySEO({ title, description: desc, canonical, ogImage: img, robots, ogType, productData, keywords });
   }, [page, params, products, cats]);
 
   const ctx = useMemo(() => ({page, params, go, cart, addToCart, updateQty, removeItem, cartCount, cartTotal, q, setQ, favs, toggleFav, viewed, addViewed, user, setUser, addresses, setAddresses, coupon, setCoupon, couponApplied, setCouponApplied, discount, stockAlerts, addStockAlert, chatOpen, setChatOpen, chatMessages, setChatMessages, pastOrders, completePurchase, lang, setLang, curr, setCurr, t, isMobile, mobileMenuOpen, setMobileMenuOpen, mobileFilterOpen, setMobileFilterOpen, fp, admin, setAdmin, authChecked, socialMedia, setSocialMedia, products, cats, dataLoaded}), [page, params, go, cart, addToCart, updateQty, removeItem, cartCount, cartTotal, q, favs, toggleFav, viewed, addViewed, user, addresses, coupon, couponApplied, discount, stockAlerts, addStockAlert, chatOpen, chatMessages, pastOrders, completePurchase, lang, curr, t, isMobile, mobileMenuOpen, mobileFilterOpen, fp, admin, authChecked, products, cats, dataLoaded]);
@@ -1378,7 +1445,7 @@ function RecentlyViewed() {
         {items.slice(0,6).map(p => (
           <div key={p.id} onClick={() => go("product",{id:p.id})}
             style={{minWidth:160,border:"1px solid #eee",borderRadius:8,padding:12,cursor:"pointer",background:"#fff",flexShrink:0}}>
-            <img src={hasRealImg(p)?cdnImg(p.img,200):"/logo-small.webp"} alt="" loading="lazy" decoding="async" width={120} height={100} style={{width:"100%",height:100,objectFit:"contain",marginBottom:8}} onError={e=>{e.target.src="/logo-small.png"}}/>
+            <img src={hasRealImg(p)?cdnImg(p.img,200):"/logo-small.webp"} alt={translateName(p.name,lang)} loading="lazy" decoding="async" width={120} height={100} style={{width:"100%",height:100,objectFit:"contain",marginBottom:8}} onError={e=>{e.target.src="/logo-small.png"}}/>
             <div style={{fontSize:12,fontWeight:500,color:"#333",lineHeight:1.3,marginBottom:4}}>{translateName(p.name,lang)}</div>
             <div style={{fontSize:14,fontWeight:700,color:"#1a1a1a"}}>{fp(p.price)}</div>
           </div>
@@ -1754,7 +1821,7 @@ function CartPage() {
             <div style={{border:"1px solid #eee",borderRadius:8}}>
               {cart.map((item,i) => (
                 <div key={item.id} style={{display:"flex",gap:16,padding:"16px",borderBottom:i<cart.length-1?"1px solid #f0f0f0":"none",alignItems:"center"}}>
-                  <img src={item.img && !item.img.includes("placehold") ? cdnImg(item.img,100) : "/logo-small.webp"} alt="" loading="lazy" decoding="async" width={72} height={72} style={{width:72,height:72,objectFit:"contain",borderRadius:6,background:"#f9f9f9"}} onError={e=>{e.target.src="/logo-small.png"}}/>
+                  <img src={item.img && !item.img.includes("placehold") ? cdnImg(item.img,100) : "/logo-small.webp"} alt={item.name||""} loading="lazy" decoding="async" width={72} height={72} style={{width:72,height:72,objectFit:"contain",borderRadius:6,background:"#f9f9f9"}} onError={e=>{e.target.src="/logo-small.png"}}/>
                   <div style={{flex:1}}><div style={{fontSize:14,fontWeight:600}}>{translateName(item.name,lang)}</div><div style={{fontSize:12,color:"#999"}}>{item.brand} · {item.sku}</div></div>
                   <div style={{display:"flex",alignItems:"center",border:"1px solid #ddd",borderRadius:6,overflow:"hidden"}}>
                     <button onClick={() => updateQty(item.id, item.qty-1)} style={{width:32,height:32,background:"#f9f9f9",border:"none",fontSize:16,color:"#555",cursor:"pointer"}}>−</button>
@@ -2215,7 +2282,7 @@ function AccountPage() {
           <div style={{border:"1px solid #eee",borderRadius:8,overflow:"hidden"}}>
             {frequentItems.map((item, i) => (
               <div key={item.id} style={{display:"flex",gap:14,padding:"14px 16px",borderBottom:i<frequentItems.length-1?"1px solid #f0f0f0":"none",alignItems:"center"}}>
-                <img src={item.img && !item.img.includes("placehold") ? cdnImg(item.img,80) : "/logo-small.webp"} alt="" loading="lazy" decoding="async" width={52} height={52} style={{width:52,height:52,objectFit:"contain",borderRadius:6,background:"#f9f9f9"}} onError={e=>{e.target.src="/logo-small.png"}}/>
+                <img src={item.img && !item.img.includes("placehold") ? cdnImg(item.img,80) : "/logo-small.webp"} alt={item.name||""} loading="lazy" decoding="async" width={52} height={52} style={{width:52,height:52,objectFit:"contain",borderRadius:6,background:"#f9f9f9"}} onError={e=>{e.target.src="/logo-small.png"}}/>
                 <div style={{flex:1}}>
                   <div style={{fontSize:14,fontWeight:600}}>{translateName(item.name,lang)}</div>
                   <div style={{fontSize:12,color:"#999"}}>{item.brand} · {item.sku}</div>
