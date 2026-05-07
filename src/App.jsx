@@ -737,6 +737,23 @@ export default function App() {
     });
     setToast(product.name);
     setTimeout(() => setToast(null), 2000);
+    // Google Ads / GA4 ecommerce event
+    try {
+      if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+        window.gtag('event', 'add_to_cart', {
+          currency: 'TRY',
+          value: (product.price || 0) * qty,
+          items: [{
+            item_id: product.sku || product.id,
+            item_name: product.name,
+            item_brand: product.brand || 'Ekersan',
+            item_category: product.cat,
+            price: product.price,
+            quantity: qty
+          }]
+        });
+      }
+    } catch(e) {}
   }, []);
 
   const updateQty = useCallback((id, qty) => setCart(prev => qty < 1 ? prev.filter(c => c.id !== id) : prev.map(c => c.id === id ? {...c, qty} : c)), []);
@@ -751,6 +768,35 @@ export default function App() {
       const newItems = cart.map(c => ({id:c.id, name:c.name, brand:c.brand, sku:c.sku, price:c.price, img:c.img, qty:c.qty, date:new Date()}));
       return [...newItems, ...prev].slice(0, 20);
     });
+    // Google Ads / GA4 purchase conversion event
+    try {
+      if (typeof window !== 'undefined' && typeof window.gtag === 'function' && cart.length > 0) {
+        const total = cart.reduce((s,c) => s + (c.price||0)*(c.qty||1), 0);
+        const txnId = 'order_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8);
+        window.gtag('event', 'purchase', {
+          transaction_id: txnId,
+          value: total,
+          currency: 'TRY',
+          shipping: total >= 3000 ? 0 : 150,
+          tax: 0,
+          items: cart.map(c => ({
+            item_id: c.sku || c.id,
+            item_name: c.name,
+            item_brand: c.brand || 'Ekersan',
+            item_category: c.cat,
+            price: c.price,
+            quantity: c.qty
+          }))
+        });
+        // Google Ads enhanced conversion için ayrı event (Conversion Action eklendiğinde label set edilecek)
+        window.gtag('event', 'conversion', {
+          send_to: 'AW-18146656139',
+          value: total,
+          currency: 'TRY',
+          transaction_id: txnId
+        });
+      }
+    } catch(e) {}
   }, [cart]);
 
   const cartCount = cart.reduce((s,c) => s + c.qty, 0);
@@ -880,6 +926,22 @@ export default function App() {
           condition: "new",
           retailer_item_id: p.sku || p.id
         };
+        // GA4 / Google Ads view_item event
+        try {
+          if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+            window.gtag('event', 'view_item', {
+              currency: 'TRY',
+              value: p.price,
+              items: [{
+                item_id: p.sku || p.id,
+                item_name: p.name,
+                item_brand: p.brand || 'Ekersan',
+                item_category: catName,
+                price: p.price
+              }]
+            });
+          }
+        } catch(e) {}
 
         // Bir sonraki yıla kadar geçerli fiyat (Google rich result REQ)
         const priceValidUntil = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
@@ -1014,6 +1076,26 @@ export default function App() {
     else if (page === "cart" || page === "checkout" || page === "account" || page === "auth" || page === "favs" || page === "orders" || page === "admin" || page === "admin-login" || page === "admin-panel" || page === "payment-success" || page === "payment-fail") {
       robots = "noindex, nofollow";
       title = `${page} - Frenciniz`;
+      // Begin checkout / view cart events
+      try {
+        if (typeof window !== 'undefined' && typeof window.gtag === 'function' && cart.length > 0) {
+          const evt = page === "checkout" ? "begin_checkout" : (page === "cart" ? "view_cart" : null);
+          if (evt) {
+            window.gtag('event', evt, {
+              currency: 'TRY',
+              value: cart.reduce((s,c) => s + (c.price||0)*(c.qty||1), 0),
+              items: cart.map(c => ({
+                item_id: c.sku || c.id,
+                item_name: c.name,
+                item_brand: c.brand || 'Ekersan',
+                item_category: c.cat,
+                price: c.price,
+                quantity: c.qty
+              }))
+            });
+          }
+        }
+      } catch(e) {}
     }
 
     applySEO({ title, description: desc, canonical, ogImage: img, robots, ogType, productData, keywords });
