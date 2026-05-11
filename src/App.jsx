@@ -1984,8 +1984,8 @@ function CartPage() {
             <div style={{border:"1px solid #eee",borderRadius:8}}>
               {cart.map((item,i) => (
                 <div key={item.id} style={{display:"flex",gap:16,padding:"16px",borderBottom:i<cart.length-1?"1px solid #f0f0f0":"none",alignItems:"center"}}>
-                  <img src={item.img && !item.img.includes("placehold") ? cdnImg(item.img,100) : "/logo-small.webp"} alt={item.name||""} loading="lazy" decoding="async" width={72} height={72} style={{width:72,height:72,objectFit:"contain",borderRadius:6,background:"#f9f9f9"}} onError={e=>{e.target.src="/logo-small.png"}}/>
-                  <div style={{flex:1}}><div style={{fontSize:14,fontWeight:600}}>{translateName(item.name,lang)}</div><div style={{fontSize:12,color:"#999"}}>{item.brand} · {item.sku}</div></div>
+                  <img src={item.img && !item.img.includes("placehold") ? cdnImg(item.img,100) : "/logo-small.webp"} alt={item.name||""} loading="lazy" decoding="async" width={72} height={72} onClick={()=>go("product",{id:item.id})} style={{width:72,height:72,objectFit:"contain",borderRadius:6,background:"#f9f9f9",cursor:"pointer"}} onError={e=>{e.target.src="/logo-small.png"}}/>
+                  <div style={{flex:1,cursor:"pointer"}} onClick={()=>go("product",{id:item.id})}><div style={{fontSize:14,fontWeight:600}}>{translateName(item.name,lang)}</div><div style={{fontSize:12,color:"#999"}}>{item.brand} · {item.sku}</div></div>
                   <div style={{display:"flex",alignItems:"center",border:"1px solid #ddd",borderRadius:6,overflow:"hidden"}}>
                     <button onClick={() => updateQty(item.id, item.qty-1)} style={{width:32,height:32,background:"#f9f9f9",border:"none",fontSize:16,color:"#555",cursor:"pointer"}}>−</button>
                     <span style={{width:36,textAlign:"center",fontSize:13,fontWeight:600}}>{item.qty}</span>
