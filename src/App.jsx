@@ -562,6 +562,8 @@ export default function App() {
   const [showTop, setShowTop] = useState(false);
   const [coupon, setCoupon] = useState("");
   const [couponApplied, setCouponApplied] = useState(false);
+  const [couponData, setCouponData] = useState(null); // {code, discount, type, minOrder}
+  const [couponError, setCouponError] = useState("");
   const [stockAlerts, setStockAlerts] = useState([]);
   const [chatOpen, setChatOpen] = useState(false);
   const [chatMessages, setChatMessages] = useState([]);
@@ -801,7 +803,12 @@ export default function App() {
 
   const cartCount = cart.reduce((s,c) => s + c.qty, 0);
   const cartTotal = cart.reduce((s,c) => s + c.price * c.qty, 0);
-  const discount = couponApplied ? Math.round(cartTotal * 0.1) : 0;
+  const discount = (() => {
+    if (!couponApplied || !couponData) return 0;
+    if (couponData.minOrder && cartTotal < couponData.minOrder) return 0;
+    if (couponData.type === "₺") return Math.min(Math.round(couponData.discount), cartTotal);
+    return Math.round(cartTotal * (Number(couponData.discount) || 0) / 100);
+  })();
 
   // ===== SEO: sayfa değiştiğinde meta + JSON-LD güncelle =====
   useEffect(() => {
@@ -1130,7 +1137,7 @@ export default function App() {
     applySEO({ title, description: desc, canonical, ogImage: img, robots, ogType, productData, keywords });
   }, [page, params, products, cats]);
 
-  const ctx = useMemo(() => ({page, params, go, cart, addToCart, updateQty, removeItem, cartCount, cartTotal, q, setQ, favs, toggleFav, viewed, addViewed, user, setUser, addresses, setAddresses, coupon, setCoupon, couponApplied, setCouponApplied, discount, stockAlerts, addStockAlert, chatOpen, setChatOpen, chatMessages, setChatMessages, pastOrders, completePurchase, lang, setLang, curr, setCurr, t, isMobile, mobileMenuOpen, setMobileMenuOpen, mobileFilterOpen, setMobileFilterOpen, fp, admin, setAdmin, authChecked, socialMedia, setSocialMedia, products, cats, dataLoaded}), [page, params, go, cart, addToCart, updateQty, removeItem, cartCount, cartTotal, q, favs, toggleFav, viewed, addViewed, user, addresses, coupon, couponApplied, discount, stockAlerts, addStockAlert, chatOpen, chatMessages, pastOrders, completePurchase, lang, curr, t, isMobile, mobileMenuOpen, mobileFilterOpen, fp, admin, authChecked, products, cats, dataLoaded]);
+  const ctx = useMemo(() => ({page, params, go, cart, addToCart, updateQty, removeItem, cartCount, cartTotal, q, setQ, favs, toggleFav, viewed, addViewed, user, setUser, addresses, setAddresses, coupon, setCoupon, couponApplied, setCouponApplied, couponData, setCouponData, couponError, setCouponError, discount, stockAlerts, addStockAlert, chatOpen, setChatOpen, chatMessages, setChatMessages, pastOrders, completePurchase, lang, setLang, curr, setCurr, t, isMobile, mobileMenuOpen, setMobileMenuOpen, mobileFilterOpen, setMobileFilterOpen, fp, admin, setAdmin, authChecked, socialMedia, setSocialMedia, products, cats, dataLoaded}), [page, params, go, cart, addToCart, updateQty, removeItem, cartCount, cartTotal, q, favs, toggleFav, viewed, addViewed, user, addresses, coupon, couponApplied, couponData, couponError, discount, stockAlerts, addStockAlert, chatOpen, chatMessages, pastOrders, completePurchase, lang, curr, t, isMobile, mobileMenuOpen, mobileFilterOpen, fp, admin, authChecked, products, cats, dataLoaded]);
 
   return (
     <Ctx.Provider value={ctx}>
@@ -1907,10 +1914,48 @@ function ProductDetailPage() {
 
 // ===== CART with Coupon + Shipping Progress =====
 function CartPage() {
-  const {cart, updateQty, removeItem, cartTotal, go, coupon, setCoupon, couponApplied, setCouponApplied, discount, isMobile, t, fp, lang} = use$();
+  const {cart, updateQty, removeItem, cartTotal, go, coupon, setCoupon, couponApplied, setCouponApplied, couponData, setCouponData, couponError, setCouponError, discount, isMobile, t, fp, lang} = use$();
   const ship = cartTotal >= 3000 ? 0 : 150;
   const shippingProgress = Math.min((cartTotal / 3000) * 100, 100);
   const remaining = Math.max(3000 - cartTotal, 0);
+  const [couponLoading, setCouponLoading] = useState(false);
+
+  const applyCoupon = async () => {
+    const code = coupon.trim().toUpperCase();
+    if (!code || couponApplied || couponLoading) return;
+    setCouponError("");
+    setCouponLoading(true);
+    try {
+      const r = await fetch(`/api/coupon-validate?code=${encodeURIComponent(code)}`);
+      const d = await r.json();
+      if (!r.ok || !d.valid) {
+        setCouponError(d.error || "Kupon geçersiz");
+        return;
+      }
+      if (d.minOrder && cartTotal < d.minOrder) {
+        setCouponError(`Bu kupon için min. sepet tutarı ${fp(d.minOrder)}`);
+        return;
+      }
+      setCouponData({code: d.code, discount: d.discount, type: d.type, minOrder: d.minOrder});
+      setCouponApplied(true);
+    } catch (e) {
+      setCouponError("Kupon doğrulanamadı, tekrar deneyin");
+    } finally {
+      setCouponLoading(false);
+    }
+  };
+
+  const removeCoupon = () => {
+    setCouponApplied(false);
+    setCouponData(null);
+    setCoupon("");
+    setCouponError("");
+  };
+
+  const minNotMet = couponApplied && couponData?.minOrder && cartTotal < couponData.minOrder;
+  const couponLabel = couponData
+    ? (couponData.type === "₺" ? `Kupon (${couponData.code} · ${fp(couponData.discount)})` : `Kupon (${couponData.code} · %${couponData.discount})`)
+    : "Kupon";
 
   return (
     <div style={{maxWidth:1200,margin:"0 auto",padding:"20px"}}>
@@ -1957,19 +2002,21 @@ function CartPage() {
             <h3 style={{fontSize:16,fontWeight:700,marginBottom:16}}>Sipariş Özeti</h3>
             <div style={{display:"flex",justifyContent:"space-between",marginBottom:8,fontSize:14}}><span style={{color:"#666"}}>{t("subtotal")}</span><span style={{fontWeight:600}}>{fp(cartTotal)}</span></div>
             <div style={{display:"flex",justifyContent:"space-between",marginBottom:8,fontSize:14}}><span style={{color:"#666"}}>{t("shipping")}</span><span style={{fontWeight:600,color:ship===0?"#4caf50":"inherit"}}>{ship===0?t("free"):`${fp(ship)}`}</span></div>
-            {couponApplied && <div style={{display:"flex",justifyContent:"space-between",marginBottom:8,fontSize:14}}><span style={{color:"#4caf50"}}>Kupon (%10)</span><span style={{fontWeight:600,color:"#4caf50"}}>-{fp(discount)}</span></div>}
+            {couponApplied && !minNotMet && <div style={{display:"flex",justifyContent:"space-between",marginBottom:8,fontSize:14}}><span style={{color:"#4caf50"}}>{couponLabel}</span><span style={{fontWeight:600,color:"#4caf50"}}>-{fp(discount)}</span></div>}
+            {minNotMet && <div style={{marginBottom:8,fontSize:12,color:"#d32f2f",background:"#ffebee",padding:"6px 10px",borderRadius:4}}>Kupon için min. {fp(couponData.minOrder)} sepet gerekli — şu an indirim uygulanmıyor.</div>}
 
             {/* Coupon code */}
             <div style={{marginBottom:12}}>
               <div style={{display:"flex",gap:0,marginTop:8}}>
-                <input value={coupon} onChange={e => setCoupon(e.target.value)} placeholder="Kupon kodu"
-                  style={{flex:1,padding:"8px 12px",border:"1px solid #ddd",borderRight:"none",borderRadius:"6px 0 0 6px",fontSize:13,outline:"none"}} disabled={couponApplied}/>
-                <button onClick={() => {if(coupon.trim() && !couponApplied) setCouponApplied(true)}}
-                  style={{padding:"8px 14px",background:couponApplied?"#4caf50":"#333",color:"#fff",border:"none",borderRadius:"0 6px 6px 0",fontSize:13,fontWeight:600,cursor:"pointer"}}>
-                  {couponApplied ? "✓ Uygulandı" : "Uygula"}
+                <input value={coupon} onChange={e => {setCoupon(e.target.value); setCouponError("");}} placeholder="Kupon kodu"
+                  onKeyDown={e => {if(e.key==="Enter") applyCoupon();}}
+                  style={{flex:1,padding:"8px 12px",border:"1px solid #ddd",borderRight:"none",borderRadius:"6px 0 0 6px",fontSize:13,outline:"none",textTransform:"uppercase"}} disabled={couponApplied||couponLoading}/>
+                <button onClick={couponApplied ? removeCoupon : applyCoupon} disabled={couponLoading}
+                  style={{padding:"8px 14px",background:couponApplied?"#4caf50":"#333",color:"#fff",border:"none",borderRadius:"0 6px 6px 0",fontSize:13,fontWeight:600,cursor:couponLoading?"wait":"pointer",opacity:couponLoading?0.6:1}}>
+                  {couponLoading ? "..." : couponApplied ? "✓ Kaldır" : "Uygula"}
                 </button>
               </div>
-              {!couponApplied && <div style={{fontSize:11,color:"#999",marginTop:4}}>Deneme için herhangi bir kod girin</div>}
+              {couponError && <div style={{fontSize:11,color:"#d32f2f",marginTop:4}}>{couponError}</div>}
             </div>
 
             <div style={{borderTop:"1px solid #eee",padding:"12px 0 0"}}>
