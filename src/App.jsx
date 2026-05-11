@@ -2689,6 +2689,8 @@ function ProfilePage() {
   const MISSING = <span style={{color:"#bbb",fontStyle:"italic"}}>Belirtilmemiş</span>;
 
   const [saved, setSaved] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [saveErr, setSaveErr] = useState("");
   const [form, setForm] = useState({
     name: user?.name || "",
     email: user?.email || "",
@@ -2706,13 +2708,33 @@ function ProfilePage() {
   }, [user]);
   const [edit, setEdit] = useState({name:false, email:false, phone:false, birth:false});
   const toggleEdit = (k) => setEdit(p => ({...p, [k]: !p[k]}));
-  const update = (k, v) => setForm(p => ({...p, [k]: v}));
+  const update = (k, v) => { setForm(p => ({...p, [k]: v})); setSaveErr(""); };
   const fmtBirth = form.birth ? new Date(form.birth).toLocaleDateString("tr-TR") : null;
-  const saveAll = () => {
-    setUser({...(user||{}), ...form});
-    setEdit({name:false,email:false,phone:false,birth:false});
-    setSaved(true);
-    setTimeout(()=>setSaved(false), 2000);
+  const saveAll = async () => {
+    if (saving) return;
+    setSaving(true);
+    setSaveErr("");
+    try {
+      const r = await fetch("/api/auth/update-profile", {
+        method: "POST",
+        credentials: "include",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(form),
+      });
+      const d = await r.json();
+      if (!r.ok || !d.success) {
+        setSaveErr(d.error || "Kaydedilemedi");
+        return;
+      }
+      setUser(d.user);
+      setEdit({name:false,email:false,phone:false,birth:false});
+      setSaved(true);
+      setTimeout(()=>setSaved(false), 2000);
+    } catch (e) {
+      setSaveErr("Sunucuya ulaşılamadı");
+    } finally {
+      setSaving(false);
+    }
   };
 
   return <div style={{maxWidth:500,margin:"0 auto",padding:"20px"}}>
@@ -2751,8 +2773,9 @@ function ProfilePage() {
             ? <input type="date" value={form.birth} onChange={e=>update("birth",e.target.value)} style={IS} autoFocus/>
             : <div style={RO}>{fmtBirth || MISSING}</div>}
         </div>
-        <button onClick={saveAll} style={{padding:"12px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:15,fontWeight:700,cursor:"pointer",marginTop:4}}>
-          {saved ? "✓ Kaydedildi" : "Bilgileri Kaydet"}
+        {saveErr && <div style={{fontSize:13,color:"#d32f2f",background:"#ffebee",padding:"8px 12px",borderRadius:6}}>{saveErr}</div>}
+        <button onClick={saveAll} disabled={saving} style={{padding:"12px",background:saving?"#ffa06a":"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:15,fontWeight:700,cursor:saving?"wait":"pointer",marginTop:4,opacity:saving?0.7:1}}>
+          {saving ? "Kaydediliyor..." : saved ? "✓ Kaydedildi" : "Bilgileri Kaydet"}
         </button>
       </div>
     </div>

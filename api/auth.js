@@ -284,6 +284,59 @@ export default async function handler(req, res) {
       return res.status(200).json({ user: publicUser(u) });
     }
 
+    // ── Profil güncelleme: name, email, phone, birth ────────────────────
+    if (action === "update-profile" && req.method === "POST") {
+      const session = await requireUser(req, res);
+      if (!session) return;
+      const u = await readUser(session.userId);
+      if (!u) return res.status(404).json({ error: "Kullanıcı bulunamadı" });
+
+      const { name, email, phone, birth } = req.body || {};
+      const updates = {};
+
+      if (typeof name === "string") {
+        const n = name.trim();
+        if (!n) return res.status(400).json({ error: "Ad boş olamaz" });
+        updates.name = n;
+      }
+
+      if (typeof email === "string") {
+        const e = normalizeEmail(email);
+        if (e && e !== u.email) {
+          const existing = await findUserByEmail(e);
+          if (existing && existing.id !== u.id) return res.status(409).json({ error: "Bu e-posta zaten kayıtlı" });
+          if (u.email) await kv.del(`user:email:${u.email}`);
+          updates.email = e;
+        } else if (!e && u.email) {
+          // boş gönderildiyse mevcut e-postayı silme — login'i kırmamak için yoksay
+        }
+      }
+
+      if (typeof phone === "string") {
+        const p = normalizePhone(phone);
+        if (p && p !== u.phone) {
+          const existing = await findUserByPhone(p);
+          if (existing && existing.id !== u.id) return res.status(409).json({ error: "Bu telefon zaten kayıtlı" });
+          if (u.phone) await kv.del(`user:phone:${u.phone}`);
+          updates.phone = p;
+        } else if (!p && u.phone) {
+          await kv.del(`user:phone:${u.phone}`);
+          updates.phone = "";
+        }
+      }
+
+      if (typeof birth === "string") {
+        const b = birth.trim();
+        if (b && !/^\d{4}-\d{2}-\d{2}$/.test(b)) return res.status(400).json({ error: "Doğum tarihi YYYY-MM-DD formatında olmalı" });
+        updates.birth = b;
+      }
+
+      const updated = { ...u, ...updates, updatedAt: new Date().toISOString() };
+      await writeUser(updated);
+      await logActivity("user.update", { userId: u.id, fields: Object.keys(updates) });
+      return res.status(200).json({ success: true, user: publicUser(updated) });
+    }
+
     return res.status(404).json({ error: "Bilinmeyen action: " + action });
   } catch (err) {
     return res.status(500).json({ error: "Sunucu hatası", detail: err.message });
