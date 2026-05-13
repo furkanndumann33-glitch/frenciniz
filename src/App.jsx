@@ -4248,10 +4248,19 @@ function ASMSCfg(){
 function ATraffic(){
   const [data,setData]=useState(null);
   const [err,setErr]=useState("");
+  const [visitors,setVisitors]=useState([]);
+  const [vLoading,setVLoading]=useState(true);
+  const refreshVisitors=()=>{
+    setVLoading(true);
+    fetch("/api/admin/traffic-visitors?limit=200",{credentials:"include"}).then(r=>r.json()).then(d=>{
+      setVisitors(d.visitors||[]);
+    }).catch(()=>{}).finally(()=>setVLoading(false));
+  };
   useEffect(()=>{
     fetch("/api/admin/traffic",{credentials:"include"}).then(r=>r.json()).then(d=>{
       if(d.error) setErr(d.error); else setData(d);
     }).catch(e=>setErr(e.message));
+    refreshVisitors();
   },[]);
   if(err) return <div style={{padding:20,color:"#dc2626"}}>⚠ {err}</div>;
   if(!data) return <div style={{padding:20,color:"#999"}}>Yükleniyor…</div>;
@@ -4315,6 +4324,36 @@ function ATraffic(){
           </tr>
         ))}</tbody>
       </table>}
+    </ACard>
+
+    {/* Son ziyaretçiler */}
+    <ACard title={`Son Ziyaretçiler (${visitors.length})`} action={<ABtn onClick={refreshVisitors}>{vLoading?"...":"↻ Yenile"}</ABtn>}>
+      {vLoading && visitors.length===0 ? <div style={{color:"#999",fontSize:13}}>Yükleniyor…</div> :
+       visitors.length===0 ? <div style={{color:"#999",fontSize:13}}>Henüz ziyaret kaydı yok.</div> :
+      <div style={{overflowX:"auto"}}>
+        <table style={{width:"100%",borderCollapse:"collapse",fontSize:12}}>
+          <thead><tr style={{borderBottom:"2px solid #eee"}}>
+            <th style={{padding:"8px",textAlign:"left",color:"#999",fontWeight:600,whiteSpace:"nowrap"}}>Zaman</th>
+            <th style={{padding:"8px",textAlign:"left",color:"#999",fontWeight:600}}>IP</th>
+            <th style={{padding:"8px",textAlign:"left",color:"#999",fontWeight:600}}>Şehir / Bölge</th>
+            <th style={{padding:"8px",textAlign:"left",color:"#999",fontWeight:600}}>Ülke</th>
+            <th style={{padding:"8px",textAlign:"left",color:"#999",fontWeight:600}}>Sayfa</th>
+            <th style={{padding:"8px",textAlign:"left",color:"#999",fontWeight:600}}>Yönlendiren</th>
+          </tr></thead>
+          <tbody>{visitors.map((v,i)=>{
+            const d = v.at ? new Date(v.at) : null;
+            const when = d ? d.toLocaleString("tr-TR",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}) : "—";
+            return <tr key={i} style={{borderBottom:"1px solid #f0f0f0"}}>
+              <td style={{padding:"8px",whiteSpace:"nowrap",color:"#666"}}>{when}</td>
+              <td style={{padding:"8px",fontFamily:"monospace",fontSize:11}}>{v.ip||"—"}</td>
+              <td style={{padding:"8px"}}>{v.city ? `${v.city}${v.region?` / ${v.region}`:""}` : "—"}</td>
+              <td style={{padding:"8px"}}>{v.country||"—"}</td>
+              <td style={{padding:"8px",fontFamily:"monospace",fontSize:11,maxWidth:280,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}} title={v.path}>{v.path||"/"}</td>
+              <td style={{padding:"8px",color:"#888",fontSize:11}}>{v.ref||"—"}</td>
+            </tr>;
+          })}</tbody>
+        </table>
+      </div>}
     </ACard>
   </div>;
 }

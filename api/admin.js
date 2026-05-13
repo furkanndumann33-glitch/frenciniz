@@ -146,6 +146,16 @@ export default async function handler(req, res) {
       });
     }
 
+    // ── Son ziyaretçiler (IP + şehir/ülke + path) ──
+    if (action === "traffic-visitors") {
+      const limit = Math.min(Math.max(Number(req.query.limit) || 100, 1), 500);
+      const raw = (await kv.lrange("traffic:visitors:log", 0, limit - 1)) || [];
+      const visitors = raw.map(r => {
+        try { return typeof r === "string" ? JSON.parse(r) : r; } catch { return null; }
+      }).filter(Boolean);
+      return res.status(200).json({ visitors, total: visitors.length });
+    }
+
     if (action === "dashboard") {
       const userIds = (await kv.lrange("users:index", 0, 9999)) || [];
       const orderRefs = (await kv.lrange("orders:index", 0, 9999)) || [];

@@ -242,6 +242,11 @@ export default async function handler(req, res) {
         const visitorKey = crypto.createHash("sha256").update(`${ip}|${ua}|${day}`).digest("hex").slice(0, 16);
         const pathClean = String(path).slice(0, 100).replace(/[?#].*$/, "");
 
+        // Vercel geo headers (her runtime'da otomatik gelir)
+        const city = decodeURIComponent(String(req.headers["x-vercel-ip-city"] || "")).replace(/\+/g, " ");
+        const country = String(req.headers["x-vercel-ip-country"] || "");
+        const region = String(req.headers["x-vercel-ip-country-region"] || "");
+
         // Page view counters
         await Promise.all([
           kv.incr(`traffic:views:${day}`),
@@ -259,9 +264,10 @@ export default async function handler(req, res) {
         }
 
         // Referrer (only domain part)
+        let refDomain = "";
         if (ref) {
           try {
-            const refDomain = new URL(ref).hostname.replace(/^www\./, "").slice(0, 50);
+            refDomain = new URL(ref).hostname.replace(/^www\./, "").slice(0, 50);
             if (refDomain && refDomain !== "frenciniz.com") {
               await kv.incr(`traffic:ref:${day}:${refDomain}`);
               await kv.expire(`traffic:ref:${day}:${refDomain}`, 60 * 60 * 24 * 90);
@@ -272,6 +278,17 @@ export default async function handler(req, res) {
         // Tracked paths/refs index for daily aggregation
         await kv.sadd(`traffic:paths:${day}`, pathClean);
         await kv.expire(`traffic:paths:${day}`, 60 * 60 * 24 * 90);
+
+        // Son ziyaretçiler log (ring buffer, son 500 kayıt) — admin panel için
+        const logEntry = {
+          ip, city, country, region,
+          path: pathClean,
+          ref: refDomain || "",
+          ua: ua.slice(0, 100),
+          at: new Date().toISOString(),
+        };
+        await kv.lpush("traffic:visitors:log", JSON.stringify(logEntry));
+        await kv.ltrim("traffic:visitors:log", 0, 499);
       } catch {}
       return res.status(200).json({ ok: true });
     }
