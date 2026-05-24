@@ -74,7 +74,7 @@ function buildMerchantFeed(products, categories) {
     const brand = p.brand || "Ekersan";
     const mpn = p.oem || p.sku || p.id;
     const gtin = p.gtin || "";
-    const richDesc = `${p.name} - ${catName} kategorisinde ${brand} marka orijinal/eşdeğer parça. ${p.sku ? "Stok kodu: " + p.sku + ". " : ""}${p.oem ? "OEM: " + p.oem + ". " : ""}ECE R-90 sertifikalı, kamyon, tır, otobüs ve dorse için uyumlu fren aksamı. 3000₺ üzeri ücretsiz kargo, 12 taksit, 14 gün koşulsuz iade. Tel/WhatsApp: 0545 608 7008.`;
+    const richDesc = `${p.name} - ${catName} kategorisinde ${brand} marka orijinal/eşdeğer parça. ${p.sku ? "Stok kodu: " + p.sku + ". " : ""}${p.oem ? "OEM: " + p.oem + ". " : ""}ECE R-90 sertifikalı, kamyon, tır, otobüs ve dorse için uyumlu fren aksamı. 3000₺ üzeri ücretsiz kargo, 12 taksit, 14 gün koşulsuz iade. Tel: 0545 608 7008 · WhatsApp: 0850 888 7881.`;
     const baseDesc = p.desc && p.desc.length > p.name.length + 10 ? p.desc : richDesc;
     const desc = baseDesc.slice(0, 5000);
 
