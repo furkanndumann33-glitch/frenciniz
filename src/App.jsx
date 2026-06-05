@@ -496,6 +496,21 @@ function getSubCatIds(groupId) {
 function getGroups() {
   return CATS.filter(c => c.isGroup);
 }
+function categoryVisual(cat) {
+  const id = String(cat?.id || cat || "").toLowerCase();
+  if (id.includes("disk")) return {icon:"◎", color:"#ff6000", bg:"rgba(255,96,0,.18)"};
+  if (id.includes("kampana")) return {icon:"●", color:"#f97316", bg:"rgba(249,115,22,.18)"};
+  if (id.includes("balata") || id.includes("pabuc") || id.includes("percin")) return {icon:"▰", color:"#ef4444", bg:"rgba(239,68,68,.18)"};
+  if (id.includes("circir") || id.includes("ayar")) return {icon:"↻", color:"#facc15", bg:"rgba(250,204,21,.2)"};
+  if (id.includes("kaliper") || id.includes("perno") || id.includes("kizak")) return {icon:"⚙", color:"#8b5cf6", bg:"rgba(139,92,246,.2)"};
+  if (id.includes("koruk") || id.includes("lastik")) return {icon:"◌", color:"#06b6d4", bg:"rgba(6,182,212,.18)"};
+  if (id.includes("bijon") || id.includes("somun") || id.includes("civata")) return {icon:"✦", color:"#fbbf24", bg:"rgba(251,191,36,.2)"};
+  if (id.includes("porya") || id.includes("rulman") || id.includes("kece")) return {icon:"◉", color:"#14b8a6", bg:"rgba(20,184,166,.18)"};
+  if (id.includes("sensor") || id.includes("ebs") || id.includes("abs") || id.includes("kablo")) return {icon:"◆", color:"#38bdf8", bg:"rgba(56,189,248,.18)"};
+  if (id.includes("yay")) return {icon:"⌁", color:"#22c55e", bg:"rgba(34,197,94,.18)"};
+  if (id.includes("susp") || id.includes("dingil")) return {icon:"▣", color:"#a3e635", bg:"rgba(163,230,53,.18)"};
+  return {icon:"▸", color:"#ff6000", bg:"rgba(255,96,0,.16)"};
+}
 const VEHS = [{id:"all",name:"Tüm Araçlar"},{id:"kamyon",name:"Kamyon"},{id:"tir",name:"Tır"},{id:"otobus",name:"Otobüs"},{id:"dorse",name:"Dorse"}];
 let BRANDS = ["Ekersan"];
 function deriveBrands(prods) {
@@ -1497,6 +1512,102 @@ function CategorySidebar({go, activeCat, onSelect, isFixed}) {
   );
 }
 
+// ===== CATEGORY SIDEBAR V2 =====
+function CategorySidebarV2({go, activeCat, onSelect, isFixed}) {
+  const [openGroup, setOpenGroup] = useState(null);
+  const [headerH, setHeaderH] = useState(190);
+  const {t, lang} = use$();
+  const groups = getGroups();
+  useEffect(() => {
+    if (!isFixed) return;
+    const measure = () => {
+      const h = document.querySelector("header");
+      if (h) setHeaderH(h.getBoundingClientRect().height);
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    const ro = window.ResizeObserver ? new ResizeObserver(measure) : null;
+    if (ro && document.querySelector("header")) ro.observe(document.querySelector("header"));
+    return () => { window.removeEventListener("resize", measure); if (ro) ro.disconnect(); };
+  }, [isFixed]);
+
+  const shellStyle = isFixed
+    ? {position:"fixed",left:0,top:headerH,width:220,height:`calc(100vh - ${headerH}px)`,overflowY:"auto",borderRight:"1px solid rgba(255,255,255,.1)",background:"radial-gradient(circle at 16% 8%, rgba(255,96,0,.22), transparent 34%), linear-gradient(180deg,#0b1020,#111827 58%,#1b1110)",padding:"12px 10px",zIndex:50,boxShadow:"16px 0 38px rgba(0,0,0,.28)",color:"#fff"}
+    : {borderRadius:8,background:"radial-gradient(circle at 10% 0%, rgba(255,96,0,.22), transparent 38%), linear-gradient(180deg,#0b1020,#111827)",padding:10,color:"#fff",border:"1px solid rgba(255,255,255,.1)"};
+  const allVisual = {icon:"★", color:"#ff6000", bg:"rgba(255,96,0,.18)"};
+  const rowBase = {display:"flex",alignItems:"center",gap:9,borderRadius:8,cursor:"pointer",transition:"background .15s,border-color .15s,color .15s,transform .15s"};
+  const iconStyle = (visual, small=false) => ({
+    width:small?18:24,
+    height:small?18:24,
+    borderRadius:small?6:8,
+    display:"inline-flex",
+    alignItems:"center",
+    justifyContent:"center",
+    background:`linear-gradient(135deg,${visual.color},rgba(255,255,255,.88))`,
+    color:"#08111f",
+    fontSize:small?10:13,
+    fontWeight:950,
+    flex:"0 0 auto",
+    boxShadow:`0 8px 18px ${visual.bg}`,
+  });
+
+  return (
+    <aside style={shellStyle}>
+      {isFixed && <div style={{padding:"6px 8px 12px",fontSize:13,fontWeight:950,color:"#fff",borderBottom:"1px solid rgba(255,255,255,.1)",marginBottom:8,display:"flex",alignItems:"center",gap:8}}>
+        <span style={iconStyle(allVisual)}>▦</span>
+        <span>{t("categories")}</span>
+      </div>}
+      {onSelect && <div onClick={() => onSelect("all")} style={{...rowBase,padding:"8px 8px",margin:"3px 0 6px",fontSize:12,color:activeCat==="all"?"#fff":"#cbd5e1",fontWeight:activeCat==="all"?900:700,background:activeCat==="all"?"rgba(255,96,0,.2)":"rgba(255,255,255,.04)",border:"1px solid rgba(255,255,255,.08)"}}>
+        <span style={iconStyle(allVisual,true)}>★</span>
+        <span>{t("allProducts")}</span>
+      </div>}
+      {groups.map(g => {
+        const subs = CATS.filter(c => c.parent === g.id);
+        const isOpen = openGroup === g.id;
+        const isActive = activeCat === g.id || subs.some(s => s.id === activeCat);
+        const visual = categoryVisual(g);
+        return (
+          <div key={g.id} style={{margin:"4px 0"}}>
+            <div
+              onClick={() => {
+                setOpenGroup(isOpen ? null : g.id);
+                if (onSelect) onSelect(g.id);
+                else go("products",{cat:g.id});
+              }}
+              style={{...rowBase,padding:"8px 8px",fontSize:12,fontWeight:900,color:isActive?"#fff":"#e5e7eb",background:isActive?`linear-gradient(135deg,${visual.bg},rgba(255,255,255,.08))`:"rgba(255,255,255,.035)",border:`1px solid ${isActive?visual.color:"rgba(255,255,255,.07)"}`}}
+              onMouseEnter={e=>{e.currentTarget.style.background=`linear-gradient(135deg,${visual.bg},rgba(255,255,255,.09))`;e.currentTarget.style.transform="translateX(2px)"}}
+              onMouseLeave={e=>{e.currentTarget.style.background=isActive?`linear-gradient(135deg,${visual.bg},rgba(255,255,255,.08))`:"rgba(255,255,255,.035)";e.currentTarget.style.transform="translateX(0)"}}
+            >
+              <span style={iconStyle(visual)}>{visual.icon}</span>
+              <span style={{flex:1,lineHeight:1.25}}>{translateCat(g,lang)}</span>
+              <span style={{fontSize:14,color:visual.color,transition:"transform .2s",transform:isOpen?"rotate(90deg)":"rotate(0deg)"}}>▶</span>
+            </div>
+            {isOpen && subs.map(s => {
+              const subVisual = categoryVisual(s);
+              return (
+                <div
+                  key={s.id}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (onSelect) onSelect(s.id);
+                    else go("products",{cat:s.id});
+                  }}
+                  style={{...rowBase,margin:"4px 0 4px 18px",padding:"6px 8px",fontSize:11,color:activeCat===s.id?"#fff":"#aeb8c7",fontWeight:activeCat===s.id?900:700,background:activeCat===s.id?subVisual.bg:"transparent",border:"1px solid transparent"}}
+                  onMouseEnter={e=>{e.currentTarget.style.background=subVisual.bg;e.currentTarget.style.color="#fff"}}
+                  onMouseLeave={e=>{e.currentTarget.style.background=activeCat===s.id?subVisual.bg:"transparent";e.currentTarget.style.color=activeCat===s.id?"#fff":"#aeb8c7"}}
+                >
+                  <span style={iconStyle(subVisual,true)}>{subVisual.icon}</span>
+                  <span style={{lineHeight:1.25}}>{translateCat(s,lang)}</span>
+                </div>
+              );
+            })}
+          </div>
+        );
+      })}
+    </aside>
+  );
+}
+
 // ===== Text içindeki telefon/mail'leri tıklanabilir link yapar =====
 function linkifyContacts(text) {
   if (!text) return null;
@@ -1737,7 +1848,7 @@ function HomePage() {
   ];
 
   return <>
-    {!isMobile && <CategorySidebar go={go} isFixed={true} />}
+    {!isMobile && <CategorySidebarV2 go={go} isFixed={true} />}
 
     <section className="fr-hero">
       <div style={{position:"relative",zIndex:1,maxWidth:1220,margin:"0 auto",padding:isMobile?"42px 18px 34px":"66px 28px 44px",display:"grid",gridTemplateColumns:isMobile?"1fr":"minmax(0,1.05fr) minmax(310px,.65fr)",gap:isMobile?28:36,alignItems:"center"}}>
@@ -1746,7 +1857,7 @@ function HomePage() {
             {lang==="en"?"Heavy duty brake warehouse":"Agir vasita fren deposu"}
           </div>
           <h1 style={{fontSize:isMobile?32:62,lineHeight:isMobile?1.1:1.02,fontWeight:950,letterSpacing:0,margin:"0 0 16px",maxWidth:isMobile?350:760,wordBreak:"normal"}}>
-            {lang==="en"?"The brake parts counter drivers remember.":"Tırcı, kamyoncu, otobüscü girince vay be desin."}
+            {lang==="en"?"Welcome to Frenciniz.":"Frenciniz'e Hoş Geldiniz."}
           </h1>
           <p style={{fontSize:isMobile?15:19,lineHeight:1.7,color:"rgba(255,255,255,.86)",maxWidth:isMobile?320:650,margin:"0 0 24px"}}>
             {lang==="en"?"Ekersan heavy-duty brake discs, drums, chambers, calipers, pads and trailer parts with fast compatibility check and Turkey-wide shipping.":"Ekersan fren diski, kampana, koruk, kaliper, balata ve dorse fren parcalarinda stoklu urun, hizli uyumluluk teyidi ve Turkiye geneli kargo."}
@@ -1875,7 +1986,7 @@ function HomePageLegacy() {
 
   return <>
     {/* Sol kenar kategori çubuğu (sadece geniş ekran) - hiyerarşik */}
-    {!isMobile && <CategorySidebar go={go} isFixed={true} />}
+    {!isMobile && <CategorySidebarV2 go={go} isFixed={true} />}
 
     {/* Banner */}
     <div style={{background:"linear-gradient(90deg, #ff6000, #ff8c00)",padding:"40px 0"}}>
@@ -2005,9 +2116,9 @@ function ProductsPage() {
 
   const FilterPanel = () => (
     <>
-      <div style={{border:"1px solid #eee",borderRadius:8,padding:16,marginBottom:16}}>
-        <div style={{fontSize:14,fontWeight:700,marginBottom:12}}>{t("category")}</div>
-        <CategorySidebar activeCat={cat} onSelect={(id) => go("products", id === "all" ? {} : {cat: id})} go={go} />
+      <div style={{border:"1px solid rgba(255,96,0,.22)",borderRadius:8,padding:10,marginBottom:16,background:"#0b1020",boxShadow:"0 14px 32px rgba(15,23,42,.12)"}}>
+        <div style={{fontSize:14,fontWeight:950,margin:"2px 4px 10px",color:"#fff"}}>{t("category")}</div>
+        <CategorySidebarV2 activeCat={cat} onSelect={(id) => go("products", id === "all" ? {} : {cat: id})} go={go} />
       </div>
       <div style={{border:"1px solid #eee",borderRadius:8,padding:16,marginBottom:16}}>
         <div style={{fontSize:14,fontWeight:700,marginBottom:12}}>{t("vehicleType")}</div>
