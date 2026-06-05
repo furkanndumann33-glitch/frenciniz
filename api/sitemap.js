@@ -1,7 +1,8 @@
 // Dinamik sitemap.xml — KV'den ürünler, fallback static JSON
 import fs from "fs";
 import path from "path";
-import { LANDING_PAGES } from "./_lib/seo-landing.js";
+import { LANDING_PAGES, getLandingBySlug } from "./_lib/seo-landing.js";
+import { renderLanding, renderLandingIndex } from "./_lib/landing-render.js";
 
 const SITE = "https://frenciniz.com";
 
@@ -141,9 +142,28 @@ ${items.join("\n")}
 export default async function handler(req, res) {
   try {
     const { products, categories } = await loadProducts();
+    const url = req.url || "";
+    const parsedUrl = new URL(url || "/", SITE);
+    const type = String(req.query?.type || parsedUrl.searchParams.get("type") || "");
+
+    if (type === "landing") {
+      const slug = String(req.query?.slug || parsedUrl.searchParams.get("slug") || "").replace(/^\/+|\/+$/g, "");
+
+      if (!slug) {
+        res.setHeader("Content-Type", "text/html; charset=utf-8");
+        return res.status(200).send(renderLandingIndex());
+      }
+
+      const page = getLandingBySlug(slug);
+      if (!page) return res.status(404).send("Landing page not found");
+
+      const html = renderLanding(page, products, categories);
+      res.setHeader("Content-Type", "text/html; charset=utf-8");
+      res.setHeader("Cache-Control", "public, max-age=600, s-maxage=86400, stale-while-revalidate=604800");
+      return res.status(200).send(html);
+    }
 
     // Merchant Center feed mi yoksa standart sitemap mi?
-    const url = req.url || "";
     const isMerchantFeed = url.includes("type=merchant") || url.includes("merchant-feed");
     if (isMerchantFeed) {
       const xml = buildMerchantFeed(products, categories);

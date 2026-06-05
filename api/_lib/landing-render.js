@@ -1,34 +1,12 @@
-import fs from "fs";
-import path from "path";
 import {
   SITE,
   LANDING_PAGES,
   absoluteImage,
   categoryName,
   filterProductsForLanding,
-  getLandingBySlug,
   htmlEscape,
   landingWhatsappUrl,
-} from "./_lib/seo-landing.js";
-
-async function loadProducts() {
-  try {
-    const { kv } = await import("@vercel/kv");
-    const products = await kv.get("products");
-    const categories = await kv.get("categories");
-    if (Array.isArray(products) && products.length > 0) {
-      return { products, categories: Array.isArray(categories) ? categories : [] };
-    }
-  } catch {}
-
-  try {
-    const products = JSON.parse(fs.readFileSync(path.join(process.cwd(), "public/data/products.json"), "utf8"));
-    const categories = JSON.parse(fs.readFileSync(path.join(process.cwd(), "public/data/categories.json"), "utf8"));
-    return { products, categories };
-  } catch {
-    return { products: [], categories: [] };
-  }
-}
+} from "./seo-landing.js";
 
 function productUrl(product) {
   return `${SITE}/urun/${encodeURIComponent(product.id)}`;
@@ -62,7 +40,7 @@ function renderProductCard(product, categories) {
     </article>`;
 }
 
-function renderLanding(page, products, categories) {
+export function renderLanding(page, products, categories) {
   const matched = filterProductsForLanding(products, page, 24);
   const canonical = `${SITE}/${page.slug}`;
   const firstImage = matched[0] ? absoluteImage(matched[0]) : `${SITE}/logo.png`;
@@ -238,25 +216,7 @@ function renderLanding(page, products, categories) {
 </html>`;
 }
 
-function renderIndex() {
+export function renderLandingIndex() {
   const links = LANDING_PAGES.map(page => `<li><a href="${SITE}/${page.slug}">${htmlEscape(page.heading)}</a></li>`).join("");
   return `<!doctype html><html lang="tr"><head><meta charset="utf-8"><title>Frenciniz SEO Sayfaları</title><meta name="robots" content="noindex"></head><body><h1>Frenciniz SEO Sayfaları</h1><ul>${links}</ul></body></html>`;
-}
-
-export default async function handler(req, res) {
-  const slug = String(req.query?.slug || "").replace(/^\/+|\/+$/g, "");
-  const page = getLandingBySlug(slug);
-
-  if (!slug) {
-    res.setHeader("Content-Type", "text/html; charset=utf-8");
-    return res.status(200).send(renderIndex());
-  }
-
-  if (!page) return res.status(404).send("Landing page not found");
-
-  const { products, categories } = await loadProducts();
-  const html = renderLanding(page, products, categories);
-  res.setHeader("Content-Type", "text/html; charset=utf-8");
-  res.setHeader("Cache-Control", "public, max-age=600, s-maxage=86400, stale-while-revalidate=604800");
-  return res.status(200).send(html);
 }
