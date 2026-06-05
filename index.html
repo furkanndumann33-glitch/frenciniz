@@ -32,6 +32,42 @@
   </script>
   <!-- End Meta Pixel Code -->
 
+  <!-- Lead click tracking: WhatsApp, phone and email -->
+  <script>
+    (function () {
+      function trackLead(kind, href) {
+        if (window.gtag) {
+          window.gtag('event', 'generate_lead', {
+            event_category: 'lead',
+            event_label: kind,
+            transport_type: 'beacon'
+          });
+          window.gtag('event', kind + '_click', {
+            event_category: 'contact',
+            event_label: href || window.location.pathname,
+            transport_type: 'beacon'
+          });
+        }
+        if (window.fbq) {
+          window.fbq('track', 'Contact', {
+            content_name: kind,
+            content_category: 'lead'
+          });
+        }
+      }
+
+      document.addEventListener('click', function (event) {
+        var link = event.target && event.target.closest ? event.target.closest('a[href]') : null;
+        if (!link) return;
+        var href = link.getAttribute('href') || '';
+        var normalized = href.toLowerCase();
+        if (normalized.indexOf('wa.me') !== -1 || normalized.indexOf('whatsapp') !== -1) trackLead('whatsapp', href);
+        else if (normalized.indexOf('tel:') === 0) trackLead('phone', href);
+        else if (normalized.indexOf('mailto:') === 0) trackLead('email', href);
+      }, true);
+    })();
+  </script>
+
   <!-- LocalBusiness JSON-LD — Google Haritalar / yerel arama için -->
   <script type="application/ld+json">
   {

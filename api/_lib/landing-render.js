@@ -111,6 +111,59 @@ export function renderLanding(page, products, categories) {
   <meta property="og:image" content="${htmlEscape(firstImage)}">
   <meta property="og:url" content="${canonical}">
   <meta name="twitter:card" content="summary_large_image">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18146656139"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18146656139');
+  </script>
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1732623911519380');
+    fbq('track', 'PageView');
+  </script>
+  <script>
+    (function () {
+      function trackLead(kind, href) {
+        if (window.gtag) {
+          window.gtag('event', 'generate_lead', {
+            event_category: 'lead',
+            event_label: kind,
+            transport_type: 'beacon'
+          });
+          window.gtag('event', kind + '_click', {
+            event_category: 'contact',
+            event_label: href || window.location.pathname,
+            transport_type: 'beacon'
+          });
+        }
+        if (window.fbq) {
+          window.fbq('track', 'Contact', {
+            content_name: kind,
+            content_category: 'lead'
+          });
+        }
+      }
+
+      document.addEventListener('click', function (event) {
+        var link = event.target && event.target.closest ? event.target.closest('a[href]') : null;
+        if (!link) return;
+        var href = link.getAttribute('href') || '';
+        var normalized = href.toLowerCase();
+        if (normalized.indexOf('wa.me') !== -1 || normalized.indexOf('whatsapp') !== -1) trackLead('whatsapp', href);
+        else if (normalized.indexOf('tel:') === 0) trackLead('phone', href);
+        else if (normalized.indexOf('mailto:') === 0) trackLead('email', href);
+      }, true);
+    })();
+  </script>
   <script type="application/ld+json">${JSON.stringify(schema)}</script>
   <style>
     :root{--orange:#ff6000;--dark:#171717;--muted:#666;--line:#e8e8e8;--soft:#f7f7f7}
@@ -157,6 +210,7 @@ export function renderLanding(page, products, categories) {
   </style>
 </head>
 <body>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1732623911519380&ev=PageView&noscript=1"></noscript>
   <header class="top">
     <div class="bar">
       <a class="brand" href="${SITE}"><img src="${SITE}/logo.webp?v=3" alt="Frenciniz"> <span>Ağır Vasıta Fren Aksamı</span></a>
