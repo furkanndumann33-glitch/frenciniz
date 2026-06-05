@@ -251,11 +251,36 @@ function translateCat(c, lang){
   if (lang !== "en") return c.name;
   return CAT_EN[c.id] || translateName(c.name, lang);
 }
+const SITE_IMAGES = {
+  hero: "/img/site/hero-workshop.webp",
+  missingProduct: "/img/site/missing-product.webp",
+};
+const CATEGORY_ACCENTS = {
+  "fren-diski": ["#ff6000", "#0ea5e9"],
+  "fren-diski-abs-li": ["#ff6000", "#0ea5e9"],
+  "fren-kampanasi": ["#f97316", "#facc15"],
+  "fren-balatasi": ["#ef4444", "#fb7185"],
+  "fren-korugu": ["#06b6d4", "#22c55e"],
+  "suspansiyon-korugu": ["#06b6d4", "#a3e635"],
+  "kaliper": ["#8b5cf6", "#f97316"],
+  "kaliper-tamir-takimi": ["#8b5cf6", "#f97316"],
+  "bijon": ["#facc15", "#fb923c"],
+  "somun-civata": ["#facc15", "#fb923c"],
+  "porya": ["#14b8a6", "#38bdf8"],
+};
+function productAccent(p) {
+  return CATEGORY_ACCENTS[p?.cat] || ["#ff6000", "#0ea5e9"];
+}
+function productCategoryName(p, lang) {
+  const cat = CATS.find(c => c.id === p?.cat);
+  return cat ? translateCat(cat, lang) : (p?.cat || "Fren Aksami");
+}
 function hasRealImg(p){
-  return !!(p && p.img && !p.img.includes("placehold"));
+  const img = String(p?.img || "").toLowerCase();
+  return !!(p && img && !img.includes("placehold") && !img.includes("/logo") && !img.includes("logo."));
 }
 function prodImg(p){
-  return hasRealImg(p) ? p.img : "/logo-small.webp";
+  return hasRealImg(p) ? p.img : SITE_IMAGES.missingProduct;
 }
 function prodDesc(p, lang){
   const base = p?.desc || "";
@@ -1141,15 +1166,53 @@ export default function App() {
 
   return (
     <Ctx.Provider value={ctx}>
-      <div style={{fontFamily:"-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", background:"#fff", color:"#333", minHeight:"100vh"}}>
+      <div style={{fontFamily:"-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", background:"#f4f7fb", color:"#202226", minHeight:"100vh"}}>
         <style>{`
           * { box-sizing: border-box; margin: 0; padding: 0; }
+          html, body, #root { overflow-x: hidden; }
           button { font-family: inherit; cursor: pointer; }
           input, select, textarea { font-family: inherit; }
           input:focus, textarea:focus, select:focus { outline: none; border-color: #ff6000 !important; }
           @keyframes fadeIn { from { opacity:0 } to { opacity:1 } }
           @keyframes slideUp { from { transform:translateY(20px);opacity:0 } to { transform:translateY(0);opacity:1 } }
           @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+          @keyframes heroSweep { 0%{transform:translateX(-18%);opacity:.15} 50%{opacity:.55} 100%{transform:translateX(18%);opacity:.15} }
+          @keyframes glowPulse { 0%,100%{box-shadow:0 18px 45px rgba(255,96,0,.26)} 50%{box-shadow:0 24px 70px rgba(14,165,233,.28)} }
+          .fr-hero {
+            position: relative;
+            min-height: 540px;
+            overflow: hidden;
+            color: #fff;
+            background-image:
+              radial-gradient(circle at 16% 76%, rgba(255,96,0,.45), transparent 30%),
+              linear-gradient(90deg, rgba(4,7,14,.96) 0%, rgba(8,13,25,.88) 36%, rgba(8,13,25,.38) 66%, rgba(8,13,25,.18) 100%),
+              url('/img/site/hero-workshop.webp');
+            background-size: cover;
+            background-position: center;
+          }
+          .fr-hero * { min-width: 0; }
+          .fr-hero::before {
+            content: "";
+            position: absolute;
+            inset: -25% 35% -20% -20%;
+            background: linear-gradient(105deg, transparent 0%, rgba(255,255,255,.16) 47%, transparent 56%);
+            transform: translateX(-18%);
+            animation: heroSweep 7s ease-in-out infinite;
+            pointer-events: none;
+          }
+          .fr-glass {
+            background: rgba(255,255,255,.1);
+            border: 1px solid rgba(255,255,255,.22);
+            box-shadow: 0 16px 50px rgba(0,0,0,.24);
+            backdrop-filter: blur(12px);
+          }
+          .fr-card-hover:hover { transform: translateY(-5px); }
+          .fr-product-card:hover img { transform: scale(1.045); }
+          .fr-product-card:hover .fr-card-action { background: linear-gradient(135deg,#ff6000,#facc15); color:#111; }
+          .fr-vehicle-card:hover { transform: translateY(-4px); border-color: rgba(255,96,0,.7) !important; }
+          @media (max-width: 760px) {
+            .fr-hero { min-height: 620px; background-position: 67% center; }
+          }
         `}</style>
 
         {/* Toast */}
@@ -1167,8 +1230,8 @@ export default function App() {
           style={{position:"fixed",bottom:100,right:24,zIndex:999,width:44,height:44,borderRadius:"50%",background:"#fff",border:"1px solid #ddd",boxShadow:"0 2px 8px rgba(0,0,0,.1)",fontSize:18,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",animation:"fadeIn .3s"}}>↑</button>}
 
         {/* HEADER */}
-        <header style={{background:"#fff",borderBottom:"1px solid #e0e0e0",position:"sticky",top:0,zIndex:100}}>
-          <div style={{background:"#1a1a1a",padding:"6px 0"}}>
+        <header style={{background:"rgba(255,255,255,.96)",borderBottom:"1px solid rgba(15,23,42,.08)",position:"sticky",top:0,zIndex:100,boxShadow:"0 8px 28px rgba(15,23,42,.08)",backdropFilter:"blur(12px)"}}>
+          <div style={{background:"linear-gradient(90deg,#090d16,#151821 48%,#ff6000)",padding:"6px 0"}}>
             <div style={{maxWidth:1200,margin:"0 auto",padding:"0 20px",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
               <div style={{display:"flex",gap:12,alignItems:"center"}}>
                 <span style={{color:"#ccc",fontSize:12}}>{lang==="tr"?"Türkiye geneli kargo | 3000₺ üzeri ücretsiz":"Free shipping over 3000₺ in Turkey"}</span>
@@ -1202,20 +1265,20 @@ export default function App() {
               </div>
             </div>
           </div>
-          <div style={isMobile ? {padding:"10px 16px",display:"flex",alignItems:"center",gap:12} : {padding:"8px 24px",display:"grid",gridTemplateColumns:"minmax(0,1fr) auto minmax(0,1fr)",alignItems:"center",gap:16}}>
+          <div style={isMobile ? {padding:"9px 14px 11px",display:"flex",alignItems:"center",gap:10,flexWrap:"wrap"} : {padding:"8px 24px",display:"grid",gridTemplateColumns:"minmax(0,1fr) auto minmax(0,1fr)",alignItems:"center",gap:16}}>
             {/* Mobile hamburger */}
             {isMobile && <button onClick={()=>setMobileMenuOpen(!mobileMenuOpen)} style={{background:"none",border:"none",fontSize:22,color:"#333",padding:4,cursor:"pointer"}}>☰</button>}
 
-            <div style={{cursor:"pointer",flexShrink:0,justifySelf:"start"}} onClick={() => go("home")}>
-              <img src="/logo.webp?v=3" alt="Frenciniz" width={isMobile?130:400} height={isMobile?46:140} fetchpriority="high" style={{height:isMobile?46:140,width:"auto",display:"block",imageRendering:"auto"}} onError={e=>{e.target.src="/logo.png?v=3"}}/>
+            <div style={{cursor:"pointer",flexShrink:0,justifySelf:"start",order:isMobile?2:"initial"}} onClick={() => go("home")}>
+              <img src="/logo.webp?v=3" alt="Frenciniz" width={isMobile?108:400} height={isMobile?38:140} fetchpriority="high" style={{height:isMobile?38:140,width:"auto",display:"block",imageRendering:"auto"}} onError={e=>{e.target.src="/logo.png?v=3"}}/>
             </div>
 
             {/* Desktop: arama tam ortada (grid center col) */}
-            {!isMobile && <div style={{width:460,display:"flex",border:"2px solid #ff6000",borderRadius:8,overflow:"hidden",justifySelf:"center"}}>
+            {!isMobile && <div style={{width:500,display:"flex",border:"2px solid #ff6000",borderRadius:8,overflow:"hidden",justifySelf:"center",background:"#fff",boxShadow:"0 12px 28px rgba(255,96,0,.12)"}}>
               <input value={q} onChange={e => setQ(e.target.value)} onKeyDown={e => {if(e.key==="Enter" && q.trim()) go("products",{q})}}
                 placeholder={t("search")}
                 style={{flex:1,padding:"10px 14px",border:"none",fontSize:14,outline:"none"}} />
-              <button onClick={() => {if(q.trim()) go("products",{q})}} style={{padding:"10px 20px",background:"#ff6000",color:"#fff",border:"none",fontSize:14,fontWeight:600}}>{t("searchBtn")}</button>
+              <button onClick={() => {if(q.trim()) go("products",{q})}} style={{padding:"10px 20px",background:"linear-gradient(135deg,#ff6000,#facc15)",color:"#171717",border:"none",fontSize:14,fontWeight:800}}>{t("searchBtn")}</button>
             </div>}
 
             {/* Desktop actions — sağa yaslı */}
@@ -1234,7 +1297,7 @@ export default function App() {
             </div>}
 
             {/* Mobile search */}
-            {isMobile && <div style={{flex:1,display:"flex",border:"2px solid #ff6000",borderRadius:8,overflow:"hidden"}}>
+            {isMobile && <div style={{order:4,flex:"1 0 100%",width:"100%",display:"flex",border:"2px solid #ff6000",borderRadius:8,overflow:"hidden",background:"#fff"}}>
               <input value={q} onChange={e => setQ(e.target.value)} onKeyDown={e => {if(e.key==="Enter" && q.trim()) go("products",{q})}}
                 placeholder={t("search")}
                 style={{flex:1,padding:"8px 10px",border:"none",fontSize:13,outline:"none"}} />
@@ -1242,12 +1305,12 @@ export default function App() {
             </div>}
             
             {/* Mobile icons */}
-            {isMobile && <>
+            {isMobile && <div style={{display:"flex",gap:8,alignItems:"center",marginLeft:"auto",order:3}}>
               <button onClick={() => go(user ? "account" : "auth")} style={{background:"none",border:"none",fontSize:22,color:"#333",padding:4,cursor:"pointer",flexShrink:0}}>👤</button>
               <button onClick={() => go("cart")} style={{background:"none",border:"none",fontSize:22,color:"#333",position:"relative",padding:4,cursor:"pointer",flexShrink:0}}>
                 🛒{cartCount>0&&<span style={{position:"absolute",top:-2,right:-6,background:"#ff6000",color:"#fff",fontSize:9,fontWeight:700,width:16,height:16,borderRadius:"50%",display:"flex",alignItems:"center",justifyContent:"center"}}>{cartCount}</span>}
               </button>
-            </>}
+            </div>}
           </div>
           
         </header>
@@ -1483,7 +1546,7 @@ function OptImg({src, alt, w, h, style, cdnW, eager}) {
     stage === 0 ? cdnImg(src, baseW) :
     stage === 1 ? cdnImgFallback(src, baseW) :
     stage === 2 ? directImg(src) :
-    "/logo-small.webp";
+    SITE_IMAGES.missingProduct;
   const srcSet =
     stage === 0 ? cdnSrcSet(src, baseW) :
     stage === 1 ? cdnSrcSet(src, baseW) : undefined;
@@ -1501,6 +1564,69 @@ function OptImg({src, alt, w, h, style, cdnW, eager}) {
 
 // ===== PRODUCT CARD with Favorite =====
 function ProductCard({p, eager}) {
+  const {go, addToCart, favs, toggleFav, fp, t, lang} = use$();
+  const [showAlert, setShowAlert] = useState(false);
+  const disc = p.old ? Math.round((1 - p.price/p.old) * 100) : 0;
+  const isFav = favs.includes(p.id);
+  const [accentA, accentB] = productAccent(p);
+  const realImage = hasRealImg(p);
+  const catName = productCategoryName(p, lang);
+
+  return (
+    <div onClick={() => go("product",{id:p.id})}
+      className="fr-product-card fr-card-hover"
+      style={{border:"1px solid rgba(15,23,42,.08)",borderRadius:8,overflow:"hidden",cursor:"pointer",background:"#fff",transition:"transform .22s ease, box-shadow .22s ease, border-color .22s ease",boxShadow:"0 12px 34px rgba(15,23,42,.08)",minHeight:"100%",display:"flex",flexDirection:"column"}}
+      onMouseEnter={e => {e.currentTarget.style.boxShadow=`0 20px 55px ${accentA}33`;e.currentTarget.style.borderColor=`${accentA}66`;}}
+      onMouseLeave={e => {e.currentTarget.style.boxShadow="0 12px 34px rgba(15,23,42,.08)";e.currentTarget.style.borderColor="rgba(15,23,42,.08)";}}>
+      <div style={{height:212,background:`radial-gradient(circle at 78% 18%, ${accentB}33, transparent 32%), linear-gradient(145deg,#0b1020,#161b29 58%,#222835)`,display:"flex",alignItems:"center",justifyContent:"center",position:"relative",overflow:"hidden"}}>
+        <div style={{position:"absolute",inset:0,background:"linear-gradient(135deg,rgba(255,255,255,.14),transparent 35%,rgba(255,96,0,.16))",pointerEvents:"none"}} />
+        <OptImg src={prodImg(p)} alt={translateName(p.name,lang)} eager={eager} style={{maxWidth:realImage?"82%":"94%",maxHeight:realImage?"82%":"94%",objectFit:"contain",filter:"drop-shadow(0 18px 24px rgba(0,0,0,.38))",transition:"transform .25s ease"}} />
+        {!realImage && <span style={{position:"absolute",left:10,bottom:10,background:"rgba(255,255,255,.92)",color:"#111",fontSize:10,fontWeight:800,padding:"4px 8px",borderRadius:4,letterSpacing:0}}>{lang==="en"?"Visual coming":"Gorsel hazirlaniyor"}</span>}
+        {disc > 0 && <span style={{position:"absolute",top:10,left:10,background:"linear-gradient(135deg,#ff6000,#facc15)",color:"#111",fontSize:12,fontWeight:900,padding:"4px 9px",borderRadius:4}}>%{disc}</span>}
+        {p.stock > 0 && <span style={{position:"absolute",top:10,right:48,background:"rgba(34,197,94,.95)",color:"#fff",fontSize:11,fontWeight:800,padding:"4px 8px",borderRadius:4}}>{lang==="en"?"In stock":"Stokta"}</span>}
+        <button onClick={e => {e.stopPropagation(); toggleFav(p.id)}}
+          aria-label="Favori"
+          style={{position:"absolute",top:8,right:8,width:32,height:32,borderRadius:"50%",background:"rgba(255,255,255,.96)",border:"1px solid rgba(255,255,255,.7)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:16,color:isFav?"#ff6000":"#9ca3af",cursor:"pointer",boxShadow:"0 8px 18px rgba(0,0,0,.2)"}}>
+          {isFav ? "♥" : "♡"}
+        </button>
+        {!p.stock && <div style={{position:"absolute",inset:0,background:"rgba(7,10,18,.68)",display:"flex",alignItems:"center",justifyContent:"center"}}><span style={{background:"#fff",padding:"7px 16px",borderRadius:4,fontSize:12,fontWeight:800,color:"#d9480f"}}>{t("outOfStock")}</span></div>}
+      </div>
+      <div style={{padding:"13px 14px 16px",display:"flex",flexDirection:"column",gap:7,flex:1}}>
+        <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:8}}>
+          <div style={{fontSize:11,color:accentA,fontWeight:900,textTransform:"uppercase",letterSpacing:.2}}>{p.brand || "Ekersan"}</div>
+          <div style={{fontSize:10,color:"#64748b",fontWeight:700,background:"#f1f5f9",padding:"3px 7px",borderRadius:4,whiteSpace:"nowrap"}}>{catName}</div>
+        </div>
+        <div style={{fontSize:14,fontWeight:800,color:"#111827",lineHeight:1.32,minHeight:38}}>{translateName(p.name,lang)}</div>
+        <div style={{display:"flex",alignItems:"center",gap:6,fontSize:11,color:"#64748b"}}>
+          <span style={{fontWeight:800,color:"#334155"}}>{p.sku}</span>
+          {p.oem && <span style={{overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>OEM {String(p.oem).slice(0,30)}</span>}
+        </div>
+        {p.compat && p.compat.length > 0 && <div style={{display:"flex",flexWrap:"wrap",gap:4}}>
+          {p.compat.slice(0,4).map((c,i) => {
+            const isUniv = c==="Ağır Vasıta";
+            const label = isUniv && t("heavyDuty") ? t("heavyDuty") : c;
+            return <span key={i} style={{fontSize:9,padding:"3px 7px",background:isUniv?`${accentA}15`:"#eef6ff",color:isUniv?accentA:"#1d4ed8",borderRadius:4,fontWeight:800}}>{label}</span>;
+          })}
+          {p.compat.length > 4 && <span style={{fontSize:9,padding:"2px 6px",color:"#999"}}>+{p.compat.length-4}</span>}
+        </div>}
+        <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:10,marginTop:"auto",paddingTop:4}}>
+          <div>
+            <span style={{fontSize:21,fontWeight:900,color:"#0f172a"}}>{fp(p.price)}</span>
+            {p.old && <span style={{fontSize:13,color:"#bbb",textDecoration:"line-through",marginLeft:6}}>{fp(p.old)}</span>}
+          </div>
+          <button onClick={e => {e.stopPropagation(); p.stock ? addToCart(p) : setShowAlert(true)}}
+            className="fr-card-action"
+            style={{padding:"9px 13px",background:p.stock?"#111827":"#fff",color:p.stock?"#fff":"#ff6000",border:p.stock?"none":"1px solid #ff6000",borderRadius:6,fontSize:p.stock?12:11,fontWeight:900,whiteSpace:"nowrap",transition:"background .2s ease,color .2s ease"}}>
+            {p.stock ? t("addToCart") : t("notifyMe")}
+          </button>
+        </div>
+        {showAlert && <StockAlertInline productId={p.id} onClose={() => setShowAlert(false)} />}
+      </div>
+    </div>
+  );
+}
+
+function ProductCardLegacy({p, eager}) {
   const {go, addToCart, favs, toggleFav, fp, t, lang} = use$();
   const [showAlert, setShowAlert] = useState(false);
   const disc = p.old ? Math.round((1 - p.price/p.old) * 100) : 0;
@@ -1563,7 +1689,7 @@ function RecentlyViewed() {
         {items.slice(0,6).map(p => (
           <div key={p.id} onClick={() => go("product",{id:p.id})}
             style={{minWidth:160,border:"1px solid #eee",borderRadius:8,padding:12,cursor:"pointer",background:"#fff",flexShrink:0}}>
-            <img src={hasRealImg(p)?cdnImg(p.img,200):"/logo-small.webp"} alt={translateName(p.name,lang)} loading="lazy" decoding="async" width={120} height={100} style={{width:"100%",height:100,objectFit:"contain",marginBottom:8}} onError={e=>{e.target.src="/logo-small.png"}}/>
+            <img src={cdnImg(prodImg(p),200)} alt={translateName(p.name,lang)} loading="lazy" decoding="async" width={120} height={100} style={{width:"100%",height:100,objectFit:"contain",marginBottom:8,borderRadius:6,background:"#101624"}} onError={e=>{e.target.src=SITE_IMAGES.missingProduct}}/>
             <div style={{fontSize:12,fontWeight:500,color:"#333",lineHeight:1.3,marginBottom:4}}>{translateName(p.name,lang)}</div>
             <div style={{fontSize:14,fontWeight:700,color:"#1a1a1a"}}>{fp(p.price)}</div>
           </div>
@@ -1575,6 +1701,151 @@ function RecentlyViewed() {
 
 // ===== HOME =====
 function HomePage() {
+  const {go, isMobile, t, lang, products} = use$();
+  const productList = products || [];
+  const popular = useMemo(() => {
+    const targetCats = ["fren-diski","fren-diski-abs-li","fren-kampanasi","fren-balatasi"];
+    const pool = productList.filter(p => targetCats.includes(p.cat) && p.stock > 0);
+    const perCat = {};
+    targetCats.forEach(c => { perCat[c] = pool.filter(p => p.cat === c).slice(0, 3); });
+    return [...(perCat["fren-diski"]||[]), ...(perCat["fren-kampanasi"]||[]), ...(perCat["fren-balatasi"]||[]), ...(perCat["fren-diski-abs-li"]||[])].slice(0, 8);
+  }, [productList]);
+  const featured = useMemo(() => {
+    const pool = productList.filter(p => p.stock > 0);
+    const priority = ["fren-diski","fren-kampanasi","fren-korugu","suspansiyon-korugu","kaliper-tamir-takimi","bijon","porya","fren-balatasi"];
+    const picks = [];
+    priority.forEach(cat => picks.push(...pool.filter(p => p.cat === cat).slice(0, 2)));
+    return picks.slice(0, 16);
+  }, [productList]);
+  const discounted = productList.filter(p => p.old).slice(0, 4);
+  const totalCount = productList.length || 1055;
+  const stockCount = productList.filter(p => p.stock > 0).length || totalCount;
+  useCriticalImagePreload(featured, 6, 320);
+
+  const vehicleCards = [
+    {id:"kamyon", name:t("truck"), desc:lang==="en"?"city and long-haul trucks":"sehir ici ve uzun yol kamyonlari", gradient:"linear-gradient(135deg,#ff6000,#facc15)"},
+    {id:"tir", name:t("trailer"), desc:lang==="en"?"tractor units and road fleets":"cekici ve yol filolari", gradient:"linear-gradient(135deg,#0ea5e9,#2563eb)"},
+    {id:"otobus", name:t("bus"), desc:lang==="en"?"bus brake safety parts":"otobus fren guvenligi", gradient:"linear-gradient(135deg,#22c55e,#14b8a6)"},
+    {id:"dorse", name:t("semitrailer"), desc:lang==="en"?"BPW, SAF and trailer parts":"BPW, SAF ve dorse grubu", gradient:"linear-gradient(135deg,#8b5cf6,#f97316)"},
+  ];
+  const categoryTiles = [
+    {cat:"fren-diski", title:lang==="en"?"Brake Discs":"Fren Diskleri", text:lang==="en"?"Actros, MAN, Volvo, Scania":"Actros, MAN, Volvo, Scania", color:"#ff6000"},
+    {cat:"fren-kampanasi", title:lang==="en"?"Brake Drums":"Fren Kampanalari", text:lang==="en"?"Ford Cargo, BPW, SAF":"Ford Cargo, BPW, SAF", color:"#f97316"},
+    {cat:"fren-korugu", title:lang==="en"?"Brake Chambers":"Fren Korukleri", text:lang==="en"?"24/30, 30/30, disc chambers":"24/30, 30/30, disk korugu", color:"#06b6d4"},
+    {cat:"kaliper-tamir-takimi", title:lang==="en"?"Caliper Repair":"Kaliper Tamir", text:lang==="en"?"Knorr, Wabco, ELSA, PAN":"Knorr, Wabco, ELSA, PAN", color:"#8b5cf6"},
+  ];
+
+  return <>
+    {!isMobile && <CategorySidebar go={go} isFixed={true} />}
+
+    <section className="fr-hero">
+      <div style={{position:"relative",zIndex:1,maxWidth:1220,margin:"0 auto",padding:isMobile?"42px 18px 34px":"66px 28px 44px",display:"grid",gridTemplateColumns:isMobile?"1fr":"minmax(0,1.05fr) minmax(310px,.65fr)",gap:isMobile?28:36,alignItems:"center"}}>
+        <div style={{maxWidth:720}}>
+          <div style={{display:"inline-flex",alignItems:"center",gap:8,padding:"8px 12px",borderRadius:999,background:"rgba(255,96,0,.16)",border:"1px solid rgba(255,96,0,.45)",color:"#ffd8bf",fontSize:12,fontWeight:900,letterSpacing:.4,textTransform:"uppercase",marginBottom:16}}>
+            {lang==="en"?"Heavy duty brake warehouse":"Agir vasita fren deposu"}
+          </div>
+          <h1 style={{fontSize:isMobile?32:62,lineHeight:isMobile?1.1:1.02,fontWeight:950,letterSpacing:0,margin:"0 0 16px",maxWidth:isMobile?350:760,wordBreak:"normal"}}>
+            {lang==="en"?"The brake parts counter drivers remember.":"Tırcı, kamyoncu, otobüscü girince vay be desin."}
+          </h1>
+          <p style={{fontSize:isMobile?15:19,lineHeight:1.7,color:"rgba(255,255,255,.86)",maxWidth:isMobile?320:650,margin:"0 0 24px"}}>
+            {lang==="en"?"Ekersan heavy-duty brake discs, drums, chambers, calipers, pads and trailer parts with fast compatibility check and Turkey-wide shipping.":"Ekersan fren diski, kampana, koruk, kaliper, balata ve dorse fren parcalarinda stoklu urun, hizli uyumluluk teyidi ve Turkiye geneli kargo."}
+          </p>
+          <div style={{display:"flex",flexDirection:isMobile?"column":"row",flexWrap:isMobile?"nowrap":"wrap",gap:12,alignItems:isMobile?"stretch":"center",maxWidth:isMobile?310:"none"}}>
+            <button onClick={() => go("products")} style={{minHeight:48,padding:"14px 22px",borderRadius:8,border:"none",background:"linear-gradient(135deg,#ff6000,#facc15)",color:"#111",fontWeight:950,fontSize:15,boxShadow:"0 18px 45px rgba(255,96,0,.28)",animation:"glowPulse 4s ease-in-out infinite"}}>{t("browseProducts")}</button>
+            <a href="https://wa.me/908508887881" target="_blank" rel="noopener noreferrer" style={{minHeight:48,padding:"13px 18px",borderRadius:8,border:"1px solid rgba(255,255,255,.28)",background:"rgba(255,255,255,.1)",color:"#fff",fontWeight:850,fontSize:14,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center",textAlign:"center"}}>{lang==="en"?"Ask compatibility":"Parca kodu gonder, teklif al"}</a>
+          </div>
+        </div>
+
+        <div className="fr-glass" style={{borderRadius:8,padding:isMobile?16:20}}>
+          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:12}}>
+            {[{n:`${totalCount}+`,l:lang==="en"?"products":"urun"},{n:`${stockCount}+`,l:lang==="en"?"in stock":"stoklu"},{n:"14:00",l:lang==="en"?"same-day cargo":"ayni gun kargo"},{n:"ECE R-90",l:lang==="en"?"certified parts":"sertifikali parca"}].map((s,i)=>(
+              <div key={i} style={{padding:14,borderRadius:8,background:"rgba(5,8,15,.72)",border:"1px solid rgba(255,255,255,.12)"}}>
+                <div style={{fontSize:isMobile?22:28,fontWeight:950,color:i===0?"#facc15":i===1?"#22c55e":"#fff",lineHeight:1}}>{s.n}</div>
+                <div style={{fontSize:12,color:"rgba(255,255,255,.72)",fontWeight:700,marginTop:6}}>{s.l}</div>
+              </div>
+            ))}
+          </div>
+          <div style={{marginTop:14,padding:14,borderRadius:8,background:"linear-gradient(135deg,rgba(255,96,0,.24),rgba(14,165,233,.18))",border:"1px solid rgba(255,255,255,.16)"}}>
+            <div style={{fontSize:13,fontWeight:900,color:"#fff",marginBottom:5}}>{lang==="en"?"OEM code, chassis or old part photo is enough.":"OEM kodu, sase veya eski parca fotografi yeterli."}</div>
+            <div style={{fontSize:12,color:"rgba(255,255,255,.75)",lineHeight:1.6}}>{lang==="en"?"The right part is confirmed before shipment.":"Kargodan once dogru parca teyidi alinir."}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style={{background:"#0b1020",padding:isMobile?"18px 0":"24px 0",borderTop:"1px solid rgba(255,255,255,.08)",borderBottom:"1px solid rgba(255,255,255,.08)"}}>
+      <div style={{maxWidth:1220,margin:"0 auto",padding:"0 20px",display:"grid",gridTemplateColumns:isMobile?"repeat(2,1fr)":"repeat(4,1fr)",gap:12}}>
+        {vehicleCards.map(v => (
+          <button key={v.id} onClick={() => go("products",{veh:v.id})} className="fr-vehicle-card" style={{textAlign:"left",padding:isMobile?14:18,borderRadius:8,border:"1px solid rgba(255,255,255,.12)",background:"rgba(255,255,255,.06)",color:"#fff",transition:"transform .2s ease,border-color .2s ease",overflow:"hidden",position:"relative"}}>
+            <div style={{position:"absolute",right:-24,top:-26,width:90,height:90,borderRadius:"50%",background:v.gradient,opacity:.28}} />
+            <div style={{fontSize:11,color:"#cbd5e1",fontWeight:900,textTransform:"uppercase",letterSpacing:.5}}>{lang==="en"?"Shop by vehicle":"Araca gore"}</div>
+            <div style={{fontSize:isMobile?18:22,fontWeight:950,marginTop:5}}>{v.name}</div>
+            <div style={{fontSize:12,color:"rgba(255,255,255,.68)",lineHeight:1.45,marginTop:4}}>{v.desc}</div>
+          </button>
+        ))}
+      </div>
+    </section>
+
+    <section style={{maxWidth:1220,margin:"0 auto",padding:isMobile?"28px 18px 12px":"36px 24px 16px"}}>
+      <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"repeat(4,1fr)",gap:14}}>
+        {categoryTiles.map(tile => (
+          <button key={tile.cat} onClick={() => go("products",{cat:tile.cat})} style={{textAlign:"left",border:"1px solid rgba(15,23,42,.08)",borderRadius:8,background:"#fff",padding:18,boxShadow:"0 12px 34px rgba(15,23,42,.07)",position:"relative",overflow:"hidden"}}>
+            <div style={{position:"absolute",right:-30,bottom:-30,width:110,height:110,borderRadius:"50%",background:tile.color,opacity:.14}} />
+            <div style={{fontSize:13,color:tile.color,fontWeight:950,textTransform:"uppercase",letterSpacing:.4}}>{lang==="en"?"Fast category":"Hizli kategori"}</div>
+            <div style={{fontSize:21,fontWeight:950,color:"#111827",marginTop:7}}>{tile.title}</div>
+            <div style={{fontSize:13,color:"#64748b",lineHeight:1.5,marginTop:6}}>{tile.text}</div>
+          </button>
+        ))}
+      </div>
+    </section>
+
+    <section style={{maxWidth:1220,margin:"0 auto",padding:isMobile?"22px 18px":"26px 24px 36px"}}>
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"end",gap:16,marginBottom:16}}>
+        <div>
+          <div style={{fontSize:12,color:"#ff6000",fontWeight:950,textTransform:"uppercase",letterSpacing:.5}}>{lang==="en"?"Showcase":"Vitrin"}</div>
+          <h2 style={{fontSize:isMobile?24:30,fontWeight:950,color:"#111827",letterSpacing:0}}>{t("featured")}</h2>
+        </div>
+        <button onClick={() => go("products")} style={{background:"#111827",border:"none",color:"#fff",fontSize:13,fontWeight:900,cursor:"pointer",borderRadius:8,padding:"10px 14px"}}>{t("seeAll")}</button>
+      </div>
+      <div style={{display:"grid",gridTemplateColumns:isMobile?"repeat(2,minmax(0,1fr))":"repeat(4,minmax(0,1fr))",gap:isMobile?10:16}}>{featured.map((p,i) => <ProductCard key={p.id} p={p} eager={i<6} />)}</div>
+    </section>
+
+    {discounted.length > 0 && <section style={{background:"linear-gradient(135deg,#fff7ed,#eef6ff)",padding:isMobile?"28px 0":"34px 0",borderTop:"1px solid rgba(255,96,0,.12)",borderBottom:"1px solid rgba(14,165,233,.12)"}}>
+      <div style={{maxWidth:1220,margin:"0 auto",padding:"0 24px"}}>
+        <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:16}}>
+          <h2 style={{fontSize:isMobile?22:28,fontWeight:950,color:"#111827"}}>{t("discounted")}</h2>
+          <span style={{fontSize:12,color:"#9a3412",fontWeight:900,background:"#ffedd5",padding:"6px 10px",borderRadius:999}}>{lang==="en"?"Limited stock":"Stokla sinirli"}</span>
+        </div>
+        <div style={{display:"grid",gridTemplateColumns:isMobile?"repeat(2,minmax(0,1fr))":"repeat(4,minmax(0,1fr))",gap:isMobile?10:16}}>{discounted.map((p,i) => <ProductCard key={p.id} p={p} eager={i<2} />)}</div>
+      </div>
+    </section>}
+
+    <section style={{maxWidth:1220,margin:"0 auto",padding:isMobile?"28px 18px 42px":"34px 24px 54px"}}>
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"end",gap:16,marginBottom:16}}>
+        <div>
+          <div style={{fontSize:12,color:"#0ea5e9",fontWeight:950,textTransform:"uppercase",letterSpacing:.5}}>{lang==="en"?"Most searched":"En cok aranan"}</div>
+          <h2 style={{fontSize:isMobile?24:30,fontWeight:950,color:"#111827"}}>{t("bestSellers")}</h2>
+        </div>
+        <button onClick={() => go("products")} style={{background:"transparent",border:"1px solid #cbd5e1",color:"#111827",fontSize:13,fontWeight:900,cursor:"pointer",borderRadius:8,padding:"10px 14px"}}>{t("seeAll")}</button>
+      </div>
+      <div style={{display:"grid",gridTemplateColumns:isMobile?"repeat(2,minmax(0,1fr))":"repeat(4,minmax(0,1fr))",gap:isMobile?10:16}}>{popular.slice(0,8).map((p,i) => <ProductCard key={p.id} p={p} eager={false} />)}</div>
+    </section>
+
+    <section style={{background:"#111827",color:"#fff",padding:isMobile?"26px 18px":"32px 24px"}}>
+      <div style={{maxWidth:1220,margin:"0 auto",display:"grid",gridTemplateColumns:isMobile?"repeat(2,1fr)":"repeat(4,1fr)",gap:12}}>
+        {[{title:t("sameDay"),desc:t("sameDayDesc"),color:"#ff6000"},{title:t("origGuarantee"),desc:t("origDesc"),color:"#22c55e"},{title:t("installment"),desc:t("installmentDesc"),color:"#0ea5e9"},{title:t("returnPolicy"),desc:t("returnDesc"),color:"#facc15"}].map((f,i) => (
+          <div key={i} style={{padding:18,border:"1px solid rgba(255,255,255,.1)",borderRadius:8,background:"rgba(255,255,255,.05)"}}>
+            <div style={{width:34,height:4,borderRadius:99,background:f.color,marginBottom:12}} />
+            <div style={{fontSize:15,fontWeight:950}}>{f.title}</div>
+            <div style={{fontSize:12,color:"rgba(255,255,255,.68)",marginTop:4,lineHeight:1.5}}>{f.desc}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+  </>;
+}
+
+function HomePageLegacy() {
   const {go, isMobile, t, lang, products} = use$();
   const popular = useMemo(() => {
     const targetCats = ["fren-diski","fren-diski-abs-li","fren-kampanasi","fren-balatasi"];
@@ -1824,7 +2095,7 @@ function ProductDetailPage() {
       </div>
       <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr",gap:isMobile?20:32,marginBottom:40}}>
         {/* Image Gallery */}
-        <ImageGallery images={hasRealImg(p) ? (p.images && p.images.length ? p.images : [p.img_lg || p.img]) : ["/logo-small.webp"]} discount={disc} />
+        <ImageGallery images={hasRealImg(p) ? (p.images && p.images.length ? p.images : [p.img_lg || p.img]) : [SITE_IMAGES.missingProduct]} discount={disc} />
         <div>
           <div style={{fontSize:13,color:"#ff6000",fontWeight:600,marginBottom:6}}>{p.brand}</div>
           <h1 style={{fontSize:24,fontWeight:700,marginBottom:8}}>{translateName(p.name,lang)}</h1>
@@ -1984,7 +2255,7 @@ function CartPage() {
             <div style={{border:"1px solid #eee",borderRadius:8}}>
               {cart.map((item,i) => (
                 <div key={item.id} style={{display:"flex",gap:16,padding:"16px",borderBottom:i<cart.length-1?"1px solid #f0f0f0":"none",alignItems:"center"}}>
-                  <img src={item.img && !item.img.includes("placehold") ? cdnImg(item.img,100) : "/logo-small.webp"} alt={item.name||""} loading="lazy" decoding="async" width={72} height={72} onClick={()=>go("product",{id:item.id})} style={{width:72,height:72,objectFit:"contain",borderRadius:6,background:"#f9f9f9",cursor:"pointer"}} onError={e=>{e.target.src="/logo-small.png"}}/>
+                  <img src={item.img && !String(item.img).toLowerCase().includes("placehold") && !String(item.img).toLowerCase().includes("logo") ? cdnImg(item.img,100) : SITE_IMAGES.missingProduct} alt={item.name||""} loading="lazy" decoding="async" width={72} height={72} onClick={()=>go("product",{id:item.id})} style={{width:72,height:72,objectFit:"contain",borderRadius:6,background:"#101624",cursor:"pointer"}} onError={e=>{e.target.src=SITE_IMAGES.missingProduct}}/>
                   <div style={{flex:1,cursor:"pointer"}} onClick={()=>go("product",{id:item.id})}><div style={{fontSize:14,fontWeight:600}}>{translateName(item.name,lang)}</div><div style={{fontSize:12,color:"#999"}}>{item.brand} · {item.sku}</div></div>
                   <div style={{display:"flex",alignItems:"center",border:"1px solid #ddd",borderRadius:6,overflow:"hidden"}}>
                     <button onClick={() => updateQty(item.id, item.qty-1)} style={{width:32,height:32,background:"#f9f9f9",border:"none",fontSize:16,color:"#555",cursor:"pointer"}}>−</button>
@@ -2447,7 +2718,7 @@ function AccountPage() {
           <div style={{border:"1px solid #eee",borderRadius:8,overflow:"hidden"}}>
             {frequentItems.map((item, i) => (
               <div key={item.id} style={{display:"flex",gap:14,padding:"14px 16px",borderBottom:i<frequentItems.length-1?"1px solid #f0f0f0":"none",alignItems:"center"}}>
-                <img src={item.img && !item.img.includes("placehold") ? cdnImg(item.img,80) : "/logo-small.webp"} alt={item.name||""} loading="lazy" decoding="async" width={52} height={52} style={{width:52,height:52,objectFit:"contain",borderRadius:6,background:"#f9f9f9"}} onError={e=>{e.target.src="/logo-small.png"}}/>
+                <img src={item.img && !String(item.img).toLowerCase().includes("placehold") && !String(item.img).toLowerCase().includes("logo") ? cdnImg(item.img,80) : SITE_IMAGES.missingProduct} alt={item.name||""} loading="lazy" decoding="async" width={52} height={52} style={{width:52,height:52,objectFit:"contain",borderRadius:6,background:"#101624"}} onError={e=>{e.target.src=SITE_IMAGES.missingProduct}}/>
                 <div style={{flex:1}}>
                   <div style={{fontSize:14,fontWeight:600}}>{translateName(item.name,lang)}</div>
                   <div style={{fontSize:12,color:"#999"}}>{item.brand} · {item.sku}</div>
@@ -3454,6 +3725,48 @@ function MobileFilterDrawer() {
 
 // ===== IMAGE GALLERY =====
 function ImageGallery({images, discount}) {
+  const [active, setActive] = useState(0);
+  const [zoomed, setZoomed] = useState(false);
+  const current = images[active] || SITE_IMAGES.missingProduct;
+
+  return (
+    <div>
+      <div onClick={() => setZoomed(true)}
+        style={{background:"radial-gradient(circle at 70% 12%, rgba(255,96,0,.24), transparent 31%), linear-gradient(145deg,#0b1020,#171d2c 62%,#222835)",borderRadius:8,height:400,display:"flex",alignItems:"center",justifyContent:"center",border:"1px solid rgba(15,23,42,.1)",position:"relative",cursor:"zoom-in",overflow:"hidden",boxShadow:"0 18px 50px rgba(15,23,42,.12)"}}>
+        <div style={{position:"absolute",inset:0,background:"linear-gradient(135deg,rgba(255,255,255,.12),transparent 35%,rgba(14,165,233,.14))",pointerEvents:"none"}} />
+        <img src={cdnImg(current,600)} srcSet={cdnSrcSet(current,600)} sizes="(max-width: 768px) 90vw, 600px" alt="" fetchpriority="high" decoding="async" style={{maxWidth:"86%",maxHeight:"86%",objectFit:"contain",transition:"transform .3s",filter:"drop-shadow(0 22px 26px rgba(0,0,0,.38))"}} onError={e=>{e.target.src=SITE_IMAGES.missingProduct}}/>
+        {discount > 0 && <span style={{position:"absolute",top:16,left:16,background:"linear-gradient(135deg,#ff6000,#facc15)",color:"#111",fontSize:14,fontWeight:900,padding:"6px 14px",borderRadius:6}}>%{discount}</span>}
+        <div style={{position:"absolute",bottom:12,right:12,background:"rgba(255,255,255,.12)",border:"1px solid rgba(255,255,255,.18)",color:"#fff",padding:"6px 10px",borderRadius:6,fontSize:11,fontWeight:800}}>Buyutmek icin tiklayin</div>
+      </div>
+
+      {images.length > 1 && (
+        <div style={{display:"flex",gap:8,marginTop:10,overflowX:"auto",paddingBottom:4}}>
+          {images.map((img, i) => (
+            <div key={i} onClick={() => setActive(i)}
+              style={{width:72,height:72,borderRadius:6,border:`2px solid ${active===i?"#ff6000":"#e2e8f0"}`,background:"#101624",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",flexShrink:0,transition:"border-color .2s",overflow:"hidden"}}>
+              <img src={cdnImg(img,100)} alt="" loading="lazy" decoding="async" width={72} height={72} style={{maxWidth:"88%",maxHeight:"88%",objectFit:"contain"}} onError={e=>{e.target.src=SITE_IMAGES.missingProduct}}/>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {zoomed && (
+        <div onClick={() => setZoomed(false)} style={{position:"fixed",inset:0,zIndex:9999,background:"rgba(0,0,0,.88)",display:"flex",alignItems:"center",justifyContent:"center",cursor:"zoom-out",animation:"fadeIn .2s"}}>
+          <button onClick={() => setZoomed(false)} style={{position:"absolute",top:20,right:20,background:"rgba(255,255,255,.2)",border:"none",color:"#fff",fontSize:24,width:40,height:40,borderRadius:"50%",cursor:"pointer"}}>x</button>
+          {images.length > 1 && <>
+            <button onClick={e => {e.stopPropagation();setActive((active-1+images.length)%images.length)}}
+              style={{position:"absolute",left:20,background:"rgba(255,255,255,.15)",border:"none",color:"#fff",fontSize:28,width:48,height:48,borderRadius:"50%",cursor:"pointer"}}>{"<"}</button>
+            <button onClick={e => {e.stopPropagation();setActive((active+1)%images.length)}}
+              style={{position:"absolute",right:20,background:"rgba(255,255,255,.15)",border:"none",color:"#fff",fontSize:28,width:48,height:48,borderRadius:"50%",cursor:"pointer"}}>{">"}</button>
+          </>}
+          <img src={cdnImg(current,1200)} alt="" style={{maxWidth:"90vw",maxHeight:"90vh",objectFit:"contain",filter:"drop-shadow(0 24px 42px rgba(0,0,0,.5))"}} onError={e=>{e.target.src=SITE_IMAGES.missingProduct}}/>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function ImageGalleryLegacy({images, discount}) {
   const [active, setActive] = useState(0);
   const [zoomed, setZoomed] = useState(false);
 
