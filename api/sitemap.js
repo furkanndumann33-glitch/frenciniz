@@ -68,7 +68,7 @@ function buildMerchantFeed(products, categories) {
     const fullCat = grp ? `${grp.name} > ${catName}` : catName;
 
     const hasImg = p.img && !String(p.img).includes("placehold");
-    const rawImg = hasImg ? String(p.img) : "/logo.png";
+    const rawImg = hasImg ? String(p.img) : "/img/site/missing-product.webp";
     const imgUrl = rawImg.startsWith("http") ? rawImg : `${SITE}${rawImg.startsWith("/") ? "" : "/"}${rawImg}`;
 
     const availability = p.stock > 0 ? "in_stock" : "out_of_stock";

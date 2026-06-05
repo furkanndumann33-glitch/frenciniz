@@ -303,7 +303,7 @@ function hasRealImage(product) {
 }
 
 export function absoluteImage(product) {
-  const fallback = `${SITE}/logo.png`;
+  const fallback = `${SITE}/img/site/frenciniz-logo-real-og.jpg`;
   const raw = hasRealImage(product) ? String(product.img) : fallback;
   if (raw.startsWith("http")) return raw;
   return `${SITE}${raw.startsWith("/") ? "" : "/"}${raw}`;

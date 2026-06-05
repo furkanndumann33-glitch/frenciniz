@@ -43,7 +43,7 @@ function renderProductCard(product, categories) {
 export function renderLanding(page, products, categories) {
   const matched = filterProductsForLanding(products, page, 24);
   const canonical = `${SITE}/${page.slug}`;
-  const firstImage = matched[0] ? absoluteImage(matched[0]) : `${SITE}/logo.png`;
+  const firstImage = matched[0] ? absoluteImage(matched[0]) : `${SITE}/img/site/frenciniz-logo-real-og.jpg`;
   const categoryLinks = [...new Set(page.cats || [])]
     .map(cat => `<a href="${SITE}/${cat}">${htmlEscape(categoryName(categories, cat))}</a>`)
     .join("");
@@ -173,7 +173,7 @@ export function renderLanding(page, products, categories) {
     .top{background:#111;color:#fff}
     .bar{max-width:1180px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:18px}
     .brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:800}
-    .brand img{width:132px;height:auto;display:block}
+    .brand img{width:210px;height:auto;display:block}
     .bar-actions{display:flex;gap:10px;align-items:center;font-size:14px}
     .bar-actions a{color:#fff;text-decoration:none}
     .hero{background:#fafafa;border-bottom:1px solid var(--line)}
@@ -213,7 +213,7 @@ export function renderLanding(page, products, categories) {
   <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1732623911519380&ev=PageView&noscript=1"></noscript>
   <header class="top">
     <div class="bar">
-      <a class="brand" href="${SITE}"><img src="${SITE}/logo.webp?v=3" alt="Frenciniz"> <span>Ağır Vasıta Fren Aksamı</span></a>
+      <a class="brand" href="${SITE}"><img src="${SITE}/img/site/frenciniz-logo-real.webp?v=1" alt="Frenciniz"></a>
       <div class="bar-actions">
         <a href="tel:+905456087008">0545 608 7008</a>
         <a href="https://wa.me/908508887881">WhatsApp</a>
