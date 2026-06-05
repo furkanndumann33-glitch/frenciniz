@@ -1,6 +1,7 @@
 // Dinamik sitemap.xml — KV'den ürünler, fallback static JSON
 import fs from "fs";
 import path from "path";
+import { LANDING_PAGES } from "./_lib/seo-landing.js";
 
 const SITE = "https://frenciniz.com";
 
@@ -74,19 +75,38 @@ function buildMerchantFeed(products, categories) {
     const brand = p.brand || "Ekersan";
     const mpn = p.oem || p.sku || p.id;
     const gtin = p.gtin || "";
+    const price = Number(p.price || 0);
+    const stock = Number(p.stock || 0);
+    const titleParts = [p.name, p.sku, brand, catName]
+      .filter(Boolean)
+      .filter((value, index, arr) => arr.findIndex(v => String(v).toLowerCase() === String(value).toLowerCase()) === index);
+    const merchantTitle = titleParts.join(" - ").slice(0, 150);
+    const priceTier = price >= 5000 ? "5000tl-ustu" : price >= 3000 ? "3000-5000tl" : price >= 1000 ? "1000-3000tl" : "1000tl-alti";
+    const stockTier = stock >= 100 ? "yuksek-stok" : stock >= 20 ? "orta-stok" : stock > 0 ? "dusuk-stok" : "stok-yok";
+    const imageTier = hasImg ? "gorselli-urun" : "gorsel-hazirlaniyor";
+    const vehicleLabel = Array.isArray(p.veh) && p.veh.length ? p.veh.slice(0, 2).join("-") : "agir-vasita";
+    const categoryLabel = grp?.id || p.cat || "fren-aksami";
     const richDesc = `${p.name} - ${catName} kategorisinde ${brand} marka orijinal/eşdeğer parça. ${p.sku ? "Stok kodu: " + p.sku + ". " : ""}${p.oem ? "OEM: " + p.oem + ". " : ""}ECE R-90 sertifikalı, kamyon, tır, otobüs ve dorse için uyumlu fren aksamı. 3000₺ üzeri ücretsiz kargo, 12 taksit, 14 gün koşulsuz iade. Tel: 0545 608 7008 · WhatsApp: 0850 888 7881.`;
     const baseDesc = p.desc && p.desc.length > p.name.length + 10 ? p.desc : richDesc;
     const desc = baseDesc.slice(0, 5000);
+    const additionalImages = Array.isArray(p.images)
+      ? p.images
+          .filter(Boolean)
+          .slice(0, 5)
+          .map(img => String(img).startsWith("http") ? String(img) : `${SITE}${String(img).startsWith("/") ? "" : "/"}${img}`)
+      : [];
 
     items.push(
       `<item>` +
       `<g:id>${xmlEscape(p.id)}</g:id>` +
-      `<g:title>${xmlEscape(p.name).slice(0, 150)}</g:title>` +
+      `<g:title>${xmlEscape(merchantTitle)}</g:title>` +
       `<g:description>${xmlEscape(desc)}</g:description>` +
       `<g:link>${SITE}/urun/${xmlEscape(p.id)}</g:link>` +
+      `<g:canonical_link>${SITE}/urun/${xmlEscape(p.id)}</g:canonical_link>` +
       `<g:image_link>${xmlEscape(imgUrl)}</g:image_link>` +
+      additionalImages.map(img => `<g:additional_image_link>${xmlEscape(img)}</g:additional_image_link>`).join("") +
       `<g:availability>${availability}</g:availability>` +
-      `<g:price>${Number(p.price).toFixed(2)} TRY</g:price>` +
+      `<g:price>${price.toFixed(2)} TRY</g:price>` +
       `<g:brand>${xmlEscape(brand)}</g:brand>` +
       `<g:condition>${condition}</g:condition>` +
       (mpn ? `<g:mpn>${xmlEscape(mpn)}</g:mpn>` : "") +
@@ -95,7 +115,12 @@ function buildMerchantFeed(products, categories) {
       `<g:identifier_exists>${gtin ? "yes" : "no"}</g:identifier_exists>` +
       `<g:product_type>${xmlEscape(fullCat)}</g:product_type>` +
       `<g:google_product_category>Vehicles &amp; Parts &gt; Vehicle Parts &amp; Accessories &gt; Motor Vehicle Parts &gt; Motor Vehicle Brake Parts</g:google_product_category>` +
-      `<g:shipping><g:country>TR</g:country><g:service>Standard</g:service><g:price>${Number(p.price) >= 3000 ? "0.00" : "150.00"} TRY</g:price></g:shipping>` +
+      `<g:custom_label_0>${xmlEscape(categoryLabel)}</g:custom_label_0>` +
+      `<g:custom_label_1>${xmlEscape(stockTier)}</g:custom_label_1>` +
+      `<g:custom_label_2>${xmlEscape(priceTier)}</g:custom_label_2>` +
+      `<g:custom_label_3>${xmlEscape(imageTier)}</g:custom_label_3>` +
+      `<g:custom_label_4>${xmlEscape(vehicleLabel)}</g:custom_label_4>` +
+      `<g:shipping><g:country>TR</g:country><g:service>Standard</g:service><g:price>${price >= 3000 ? "0.00" : "150.00"} TRY</g:price></g:shipping>` +
       `<g:tax><g:country>TR</g:country><g:rate>20</g:rate><g:tax_ship>yes</g:tax_ship></g:tax>` +
       `</item>`
     );
@@ -134,6 +159,11 @@ export default async function handler(req, res) {
     // Statik sayfalar
     for (const p of STATIC_PAGES) {
       urls.push(`<url><loc>${SITE}${p.loc}</loc><lastmod>${today}</lastmod><changefreq>${p.changefreq}</changefreq><priority>${p.priority}</priority></url>`);
+    }
+
+    // Satış niyetli SEO landing sayfaları (araç + parça + OEM aramaları)
+    for (const page of LANDING_PAGES) {
+      urls.push(`<url><loc>${SITE}/${xmlEscape(page.slug)}</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>${page.priority || "0.8"}</priority></url>`);
     }
 
     // Kategoriler (hem alt-kategori hem grup ana sayfası — grup sayfaları da listeleme yapıyor)
