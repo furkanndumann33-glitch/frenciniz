@@ -1230,7 +1230,7 @@ export default function App() {
           style={{position:"fixed",bottom:100,right:24,zIndex:999,width:44,height:44,borderRadius:"50%",background:"#fff",border:"1px solid #ddd",boxShadow:"0 2px 8px rgba(0,0,0,.1)",fontSize:18,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",animation:"fadeIn .3s"}}>↑</button>}
 
         {/* HEADER */}
-        <header style={{background:"rgba(255,255,255,.96)",borderBottom:"1px solid rgba(15,23,42,.08)",position:"sticky",top:0,zIndex:100,boxShadow:"0 8px 28px rgba(15,23,42,.08)",backdropFilter:"blur(12px)"}}>
+        <header style={{background:"#080d17",borderBottom:"1px solid rgba(255,255,255,.08)",position:"sticky",top:0,zIndex:100,boxShadow:"0 12px 34px rgba(0,0,0,.28)",backdropFilter:"blur(12px)"}}>
           <div style={{background:"linear-gradient(90deg,#090d16,#151821 48%,#ff6000)",padding:"6px 0"}}>
             <div style={{maxWidth:1200,margin:"0 auto",padding:"0 20px",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
               <div style={{display:"flex",gap:12,alignItems:"center"}}>
@@ -1265,16 +1265,16 @@ export default function App() {
               </div>
             </div>
           </div>
-          <div style={isMobile ? {padding:"9px 14px 11px",display:"flex",alignItems:"center",gap:10,flexWrap:"wrap"} : {padding:"8px 24px",display:"grid",gridTemplateColumns:"minmax(0,1fr) auto minmax(0,1fr)",alignItems:"center",gap:16}}>
+          <div style={isMobile ? {padding:"9px 14px 11px",display:"flex",alignItems:"center",gap:10,flexWrap:"wrap",background:"radial-gradient(circle at 88% 18%, rgba(255,96,0,.36), transparent 28%), linear-gradient(135deg,#0b1020,#151b2b 62%,#24150c)",color:"#fff"} : {padding:"10px 24px",display:"grid",gridTemplateColumns:"minmax(0,1fr) auto minmax(0,1fr)",alignItems:"center",gap:16,background:"radial-gradient(circle at 6% 45%, rgba(14,165,233,.24), transparent 24%), radial-gradient(circle at 91% 18%, rgba(255,96,0,.34), transparent 30%), linear-gradient(135deg,#090d16,#121a2a 58%,#24150c)",color:"#fff"}}>
             {/* Mobile hamburger */}
-            {isMobile && <button onClick={()=>setMobileMenuOpen(!mobileMenuOpen)} style={{background:"none",border:"none",fontSize:22,color:"#333",padding:4,cursor:"pointer"}}>☰</button>}
+            {isMobile && <button onClick={()=>setMobileMenuOpen(!mobileMenuOpen)} style={{background:"none",border:"none",fontSize:22,color:"#fff",padding:4,cursor:"pointer"}}>☰</button>}
 
             <div style={{cursor:"pointer",flexShrink:0,justifySelf:"start",order:isMobile?2:"initial"}} onClick={() => go("home")}>
-              <img src="/logo.webp?v=3" alt="Frenciniz" width={isMobile?108:400} height={isMobile?38:140} fetchpriority="high" style={{height:isMobile?38:140,width:"auto",display:"block",imageRendering:"auto"}} onError={e=>{e.target.src="/logo.png?v=3"}}/>
+              <img src="/logo.webp?v=3" alt="Frenciniz" width={isMobile?108:400} height={isMobile?38:140} fetchpriority="high" style={{height:isMobile?38:140,width:"auto",display:"block",imageRendering:"auto",filter:"drop-shadow(0 12px 22px rgba(0,0,0,.35))"}} onError={e=>{e.target.src="/logo.png?v=3"}}/>
             </div>
 
             {/* Desktop: arama tam ortada (grid center col) */}
-            {!isMobile && <div style={{width:500,display:"flex",border:"2px solid #ff6000",borderRadius:8,overflow:"hidden",justifySelf:"center",background:"#fff",boxShadow:"0 12px 28px rgba(255,96,0,.12)"}}>
+            {!isMobile && <div style={{width:500,display:"flex",border:"2px solid rgba(255,96,0,.9)",borderRadius:8,overflow:"hidden",justifySelf:"center",background:"#fff",boxShadow:"0 16px 34px rgba(255,96,0,.22)"}}>
               <input value={q} onChange={e => setQ(e.target.value)} onKeyDown={e => {if(e.key==="Enter" && q.trim()) go("products",{q})}}
                 placeholder={t("search")}
                 style={{flex:1,padding:"10px 14px",border:"none",fontSize:14,outline:"none"}} />
@@ -1283,14 +1283,14 @@ export default function App() {
 
             {/* Desktop actions — sağa yaslı */}
             {!isMobile && <div style={{display:"flex",alignItems:"center",gap:20,flexShrink:0,justifySelf:"end"}}>
-              <button onClick={() => go("favs")} style={{background:"none",border:"none",color:"#555",fontSize:13,display:"flex",flexDirection:"column",alignItems:"center",gap:2,position:"relative",cursor:"pointer"}}>
+              <button onClick={() => go("favs")} style={{background:"none",border:"none",color:"#e5e7eb",fontSize:13,display:"flex",flexDirection:"column",alignItems:"center",gap:2,position:"relative",cursor:"pointer"}}>
                 <span style={{fontSize:20}}>♡</span><span>{t("favs")}</span>
                 {favs.length > 0 && <span style={{position:"absolute",top:-4,right:-8,background:"#ff6000",color:"#fff",fontSize:10,fontWeight:700,width:18,height:18,borderRadius:"50%",display:"flex",alignItems:"center",justifyContent:"center"}}>{favs.length}</span>}
               </button>
-              <button onClick={() => go(user ? "account" : "auth")} style={{background:"none",border:"none",color:"#555",fontSize:13,display:"flex",flexDirection:"column",alignItems:"center",gap:2,cursor:"pointer"}}>
+              <button onClick={() => go(user ? "account" : "auth")} style={{background:"none",border:"none",color:"#e5e7eb",fontSize:13,display:"flex",flexDirection:"column",alignItems:"center",gap:2,cursor:"pointer"}}>
                 <span style={{fontSize:20}}>👤</span><span>{user ? user.name : t("login")}</span>
               </button>
-              <button onClick={() => go("cart")} style={{background:"none",border:"none",color:"#555",fontSize:13,display:"flex",flexDirection:"column",alignItems:"center",gap:2,position:"relative",cursor:"pointer"}}>
+              <button onClick={() => go("cart")} style={{background:"none",border:"none",color:"#e5e7eb",fontSize:13,display:"flex",flexDirection:"column",alignItems:"center",gap:2,position:"relative",cursor:"pointer"}}>
                 <span style={{fontSize:20}}>🛒</span><span>{t("cart")}</span>
                 {cartCount > 0 && <span style={{position:"absolute",top:-4,right:-8,background:"#ff6000",color:"#fff",fontSize:10,fontWeight:700,width:18,height:18,borderRadius:"50%",display:"flex",alignItems:"center",justifyContent:"center"}}>{cartCount}</span>}
               </button>
@@ -1306,8 +1306,8 @@ export default function App() {
             
             {/* Mobile icons */}
             {isMobile && <div style={{display:"flex",gap:8,alignItems:"center",marginLeft:"auto",order:3}}>
-              <button onClick={() => go(user ? "account" : "auth")} style={{background:"none",border:"none",fontSize:22,color:"#333",padding:4,cursor:"pointer",flexShrink:0}}>👤</button>
-              <button onClick={() => go("cart")} style={{background:"none",border:"none",fontSize:22,color:"#333",position:"relative",padding:4,cursor:"pointer",flexShrink:0}}>
+              <button onClick={() => go(user ? "account" : "auth")} style={{background:"none",border:"none",fontSize:22,color:"#fff",padding:4,cursor:"pointer",flexShrink:0}}>👤</button>
+              <button onClick={() => go("cart")} style={{background:"none",border:"none",fontSize:22,color:"#fff",position:"relative",padding:4,cursor:"pointer",flexShrink:0}}>
                 🛒{cartCount>0&&<span style={{position:"absolute",top:-2,right:-6,background:"#ff6000",color:"#fff",fontSize:9,fontWeight:700,width:16,height:16,borderRadius:"50%",display:"flex",alignItems:"center",justifyContent:"center"}}>{cartCount}</span>}
               </button>
             </div>}
