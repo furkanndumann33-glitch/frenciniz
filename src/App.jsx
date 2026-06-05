@@ -1334,7 +1334,7 @@ export default function App() {
         {/* CONTENT */}
         {mobileMenuOpen && <MobileMenu />}
         {mobileFilterOpen && <MobileFilterDrawer />}
-        <div style={{marginLeft: (page==="home" && !isMobile) ? 220 : 0}}>
+        <div style={{marginLeft: ((page==="home" || page==="products") && !isMobile) ? 220 : 0}}>
         <main style={{minHeight:"60vh"}}>
           {page==="home"&&<HomePage/>}
           {page==="products"&&<ProductsPage/>}
@@ -1532,7 +1532,7 @@ function CategorySidebarV2({go, activeCat, onSelect, isFixed}) {
   }, [isFixed]);
 
   const shellStyle = isFixed
-    ? {position:"fixed",left:0,top:headerH,width:220,height:`calc(100vh - ${headerH}px)`,overflowY:"auto",borderRight:"1px solid rgba(255,255,255,.1)",background:"radial-gradient(circle at 16% 8%, rgba(255,96,0,.22), transparent 34%), linear-gradient(180deg,#0b1020,#111827 58%,#1b1110)",padding:"12px 10px",zIndex:50,boxShadow:"16px 0 38px rgba(0,0,0,.28)",color:"#fff"}
+    ? {position:"fixed",left:0,top:0,width:220,height:"100vh",overflowY:"auto",borderRight:"1px solid rgba(255,255,255,.1)",background:"radial-gradient(circle at 16% 8%, rgba(255,96,0,.22), transparent 34%), linear-gradient(180deg,#0b1020,#111827 58%,#1b1110)",padding:`${headerH + 12}px 10px 12px`,zIndex:50,boxShadow:"16px 0 38px rgba(0,0,0,.28)",color:"#fff"}
     : {borderRadius:8,background:"radial-gradient(circle at 10% 0%, rgba(255,96,0,.22), transparent 38%), linear-gradient(180deg,#0b1020,#111827)",padding:10,color:"#fff",border:"1px solid rgba(255,255,255,.1)"};
   const allVisual = {icon:"★", color:"#ff6000", bg:"rgba(255,96,0,.18)"};
   const rowBase = {display:"flex",alignItems:"center",gap:9,borderRadius:8,cursor:"pointer",transition:"background .15s,border-color .15s,color .15s,transform .15s"};
@@ -2114,12 +2114,12 @@ function ProductsPage() {
     return found ? translateCat(found,lang) : t("allProducts");
   }, [cat, t, lang, catList]);
 
-  const FilterPanel = () => (
+  const FilterPanel = ({includeCategory=true}={}) => (
     <>
-      <div style={{border:"1px solid rgba(255,96,0,.22)",borderRadius:8,padding:10,marginBottom:16,background:"#0b1020",boxShadow:"0 14px 32px rgba(15,23,42,.12)"}}>
+      {includeCategory && <div style={{border:"1px solid rgba(255,96,0,.22)",borderRadius:8,padding:10,marginBottom:16,background:"#0b1020",boxShadow:"0 14px 32px rgba(15,23,42,.12)"}}>
         <div style={{fontSize:14,fontWeight:950,margin:"2px 4px 10px",color:"#fff"}}>{t("category")}</div>
         <CategorySidebarV2 activeCat={cat} onSelect={(id) => go("products", id === "all" ? {} : {cat: id})} go={go} />
-      </div>
+      </div>}
       <div style={{border:"1px solid #eee",borderRadius:8,padding:16,marginBottom:16}}>
         <div style={{fontSize:14,fontWeight:700,marginBottom:12}}>{t("vehicleType")}</div>
         {VEHS.map(item => <div key={item.id} onClick={() => setVeh(item.id)} style={{padding:"7px 0",fontSize:13,color:veh===item.id?"#ff6000":"#555",fontWeight:veh===item.id?600:400,cursor:"pointer"}}>{item.name}</div>)}
@@ -2133,12 +2133,14 @@ function ProductsPage() {
   );
 
   return (
+    <>
+    {!isMobile && <CategorySidebarV2 activeCat={cat} onSelect={(id) => go("products", id === "all" ? {} : {cat: id})} go={go} isFixed={true} />}
     <div style={{maxWidth:1200,margin:"0 auto",padding:"20px"}}>
       <div style={{fontSize:13,color:"#999",marginBottom:16}}><span style={{cursor:"pointer"}} onClick={() => go("home")}>{t("home")}</span> / <span style={{color:"#555"}}>{term ? `"${term}"` : catName}</span></div>
       
       <div style={{display:"flex",gap:20,alignItems:"flex-start"}}>
         {/* Desktop sidebar */}
-        {!isMobile && <div style={{width:220,flexShrink:0,position:"sticky",top:80,maxHeight:"calc(100vh - 100px)",overflowY:"auto"}}><FilterPanel /></div>}
+        {!isMobile && <div style={{width:220,flexShrink:0,position:"sticky",top:150,maxHeight:"calc(100vh - 170px)",overflowY:"auto"}}><FilterPanel includeCategory={false} /></div>}
 
         <div style={{flex:1}}>
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:16,gap:10,flexWrap:"wrap"}}>
@@ -2178,6 +2180,7 @@ function ProductsPage() {
         </div>
       )}
     </div>
+    </>
   );
 }
 
@@ -3796,13 +3799,23 @@ function MobileMenu() {
           <div style={{height:1,background:"#eee",margin:"8px 20px"}} />
 
           {/* 2. Kategoriler — ortada */}
-          <div style={{padding:"8px 20px",fontSize:12,fontWeight:700,color:"#999",textTransform:"uppercase"}}>{t("category")}</div>
-          {CATS.filter(c=>c.isGroup).map(c => (
-            <button key={c.id} onClick={() => {go("products",{cat:c.id});setMobileMenuOpen(false)}}
-              style={{display:"block",width:"100%",padding:"10px 20px 10px 32px",background:"none",border:"none",fontSize:14,color:"#555",cursor:"pointer",textAlign:"left"}}>
-              {translateCat(c,lang)}
-            </button>
-          ))}
+          <div style={{margin:"10px 14px",padding:10,borderRadius:8,background:"radial-gradient(circle at 12% 0%, rgba(255,96,0,.24), transparent 42%), linear-gradient(180deg,#0b1020,#111827)",border:"1px solid rgba(255,255,255,.1)"}}>
+            <div style={{display:"flex",alignItems:"center",gap:8,padding:"4px 4px 10px",fontSize:12,fontWeight:950,color:"#fff",textTransform:"uppercase",borderBottom:"1px solid rgba(255,255,255,.1)",marginBottom:8}}>
+              <span style={{width:22,height:22,borderRadius:7,display:"inline-flex",alignItems:"center",justifyContent:"center",background:"linear-gradient(135deg,#ff6000,#facc15)",color:"#08111f",fontSize:12,fontWeight:950}}>▦</span>
+              <span>{t("category")}</span>
+            </div>
+            {CATS.filter(c=>c.isGroup).map(c => {
+              const visual = categoryVisual(c);
+              return (
+                <button key={c.id} onClick={() => {go("products",{cat:c.id});setMobileMenuOpen(false)}}
+                  style={{display:"flex",alignItems:"center",gap:9,width:"100%",padding:"8px",margin:"4px 0",background:"rgba(255,255,255,.04)",border:"1px solid rgba(255,255,255,.08)",borderRadius:8,fontSize:13,color:"#e5e7eb",fontWeight:850,cursor:"pointer",textAlign:"left"}}>
+                  <span style={{width:22,height:22,borderRadius:7,display:"inline-flex",alignItems:"center",justifyContent:"center",background:`linear-gradient(135deg,${visual.color},rgba(255,255,255,.88))`,color:"#08111f",fontSize:11,fontWeight:950,flex:"0 0 auto"}}>{visual.icon}</span>
+                  <span style={{flex:1,lineHeight:1.25}}>{translateCat(c,lang)}</span>
+                  <span style={{fontSize:12,color:visual.color}}>▶</span>
+                </button>
+              );
+            })}
+          </div>
 
           <div style={{height:1,background:"#eee",margin:"8px 20px"}} />
 
