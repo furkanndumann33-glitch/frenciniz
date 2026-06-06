@@ -1263,19 +1263,19 @@ export default function App() {
 
         {/* HEADER */}
         <header style={{background:"#080d17",borderBottom:"1px solid rgba(255,255,255,.08)",position:"sticky",top:0,zIndex:100,boxShadow:"0 12px 34px rgba(0,0,0,.28)",backdropFilter:"blur(12px)"}}>
-          <div style={{background:"linear-gradient(90deg,#090d16,#151821 48%,#ff6000)",padding:"6px 0"}}>
-            <div style={{maxWidth:1200,margin:"0 auto",padding:"0 20px",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+          <div style={{background:"linear-gradient(90deg,#090d16,#151821 48%,#ff6000)",padding:isMobile?"5px 0":"6px 0"}}>
+            <div style={{maxWidth:1200,margin:"0 auto",padding:isMobile?"0 14px":"0 20px",display:"flex",justifyContent:isMobile?"center":"space-between",alignItems:"center"}}>
               <div style={{display:"flex",gap:12,alignItems:"center"}}>
-                <span style={{color:"#ccc",fontSize:12}}>{lang==="tr"?"Türkiye geneli kargo | 3000₺ üzeri ücretsiz":"Free shipping over 3000₺ in Turkey"}</span>
+                <span style={{color:"#f8fafc",fontSize:isMobile?11:12,fontWeight:isMobile?800:400,whiteSpace:"nowrap",letterSpacing:isMobile?.2:0}}>{lang==="tr"?(isMobile?"3000₺ üzeri ücretsiz kargo":"Türkiye geneli kargo | 3000₺ üzeri ücretsiz"):(isMobile?"Free shipping over 3000₺":"Free shipping over 3000₺ in Turkey")}</span>
                 {!isMobile && rates.EUR>0 && <span style={{color:"#aaa",fontSize:11,borderLeft:"1px solid #444",paddingLeft:10}}>€1 = ₺{(1/rates.EUR).toFixed(2)} | $1 = ₺{(1/rates.USD).toFixed(2)}</span>}
               </div>
-              <div style={{display:"flex",gap:12,alignItems:"center"}}>
-                {!isMobile && <>
+              {!isMobile && <div style={{display:"flex",gap:12,alignItems:"center"}}>
+                <>
                   <a href="tel:+905456087008" style={{color:"#ccc",fontSize:12,textDecoration:"none"}} onMouseEnter={e=>e.currentTarget.style.color="#ff6000"} onMouseLeave={e=>e.currentTarget.style.color="#ccc"}>📞 0545 608 7008</a>
                   <a href="https://wa.me/908508887881" target="_blank" rel="noopener noreferrer" style={{color:"#25D366",fontSize:12,textDecoration:"none",fontWeight:600}} onMouseEnter={e=>e.currentTarget.style.color="#4ade80"} onMouseLeave={e=>e.currentTarget.style.color="#25D366"}>💬 WhatsApp</a>
-                </>}
+                </>
                 {/* Social media in header */}
-                {!isMobile && (socialMedia.facebook||socialMedia.instagram) && <div style={{display:"flex",gap:6,marginLeft:4}}>
+                {(socialMedia.facebook||socialMedia.instagram) && <div style={{display:"flex",gap:6,marginLeft:4}}>
                   {socialMedia.facebook&&<a href={socialMedia.facebook} target="_blank" rel="noopener noreferrer" style={{color:"#888",fontSize:12,textDecoration:"none"}} onMouseEnter={e=>e.currentTarget.style.color="#fff"} onMouseLeave={e=>e.currentTarget.style.color="#888"}>f</a>}
                   {socialMedia.instagram&&<a href={socialMedia.instagram} target="_blank" rel="noopener noreferrer" style={{color:"#888",fontSize:12,textDecoration:"none"}} onMouseEnter={e=>e.currentTarget.style.color="#fff"} onMouseLeave={e=>e.currentTarget.style.color="#888"}>📷</a>}
                 </div>}
@@ -1294,12 +1294,12 @@ export default function App() {
                     <button key={c} onClick={()=>setCurr(c)} style={{padding:"2px 7px",background:curr===c?"#ff6000":"transparent",color:curr===c?"#fff":"#999",border:"none",fontSize:11,fontWeight:600,cursor:"pointer"}}>{c==="TRY"?"₺":c==="EUR"?"€":"$"}</button>
                   ))}
                 </div>
-              </div>
+              </div>}
             </div>
           </div>
           <div style={isMobile ? {padding:"9px 14px 11px",display:"flex",alignItems:"center",gap:10,flexWrap:"wrap",background:"radial-gradient(circle at 88% 18%, rgba(255,96,0,.36), transparent 28%), linear-gradient(135deg,#0b1020,#151b2b 62%,#24150c)",color:"#fff"} : {padding:"10px 24px",display:"grid",gridTemplateColumns:"minmax(0,1fr) auto minmax(0,1fr)",alignItems:"center",gap:16,background:"radial-gradient(circle at 6% 45%, rgba(14,165,233,.24), transparent 24%), radial-gradient(circle at 91% 18%, rgba(255,96,0,.34), transparent 30%), linear-gradient(135deg,#090d16,#121a2a 58%,#24150c)",color:"#fff"}}>
             {/* Mobile hamburger */}
-            {isMobile && <button onClick={()=>setMobileMenuOpen(!mobileMenuOpen)} style={{background:"none",border:"none",fontSize:22,color:"#fff",padding:4,cursor:"pointer"}}>☰</button>}
+            {isMobile && <button onClick={()=>setMobileMenuOpen(!mobileMenuOpen)} style={{width:40,height:40,display:"flex",alignItems:"center",justifyContent:"center",background:"none",border:"none",fontSize:22,color:"#fff",padding:0,cursor:"pointer",flex:"0 0 auto"}}>☰</button>}
 
             <div style={{cursor:"pointer",flexShrink:0,justifySelf:"start",order:isMobile?2:"initial"}} onClick={() => go("home")}>
               <img src={BRAND_LOGO} alt="Frenciniz" width={isMobile?236:348} height={isMobile?53:78} fetchpriority="high" style={{height:isMobile?53:78,width:isMobile?"min(236px, calc(100vw - 160px))":"auto",objectFit:"contain",display:"block",imageRendering:"auto",filter:"drop-shadow(0 12px 22px rgba(0,0,0,.35))"}} onError={e=>{e.currentTarget.src="/logo.webp?v=3"}}/>
@@ -1384,16 +1384,16 @@ export default function App() {
 
         {/* Cookie Consent Banner */}
         {!cookieOk && (
-          <div style={{position:"fixed",bottom:0,left:0,right:0,zIndex:9998,background:"#1a1a1a",borderTop:"1px solid #333",padding:isMobile?"16px":"16px 0",animation:"slideUp .4s ease"}}>
-            <div style={{maxWidth:1200,margin:"0 auto",padding:"0 20px",display:"flex",alignItems:isMobile?"flex-start":"center",gap:isMobile?12:20,flexDirection:isMobile?"column":"row"}}>
+          <div style={{position:"fixed",bottom:0,left:0,right:0,zIndex:9998,background:"#1a1a1a",borderTop:"1px solid #333",padding:isMobile?"10px 0":"16px 0",animation:"slideUp .4s ease"}}>
+            <div style={{maxWidth:1200,margin:"0 auto",padding:isMobile?"0 14px":"0 20px",display:"flex",alignItems:isMobile?"stretch":"center",gap:isMobile?10:20,flexDirection:isMobile?"column":"row"}}>
               <div style={{flex:1}}>
-                <div style={{fontSize:13,color:"#ccc",lineHeight:1.7}}>
-                  🍪 {lang==="en"?<>This website uses cookies to improve your experience and provide our services. By using our site you accept our <span onClick={()=>go("privacy")} style={{color:"#ff6000",cursor:"pointer",textDecoration:"underline"}}>Privacy Policy</span> and <span onClick={()=>go("kvkk")} style={{color:"#ff6000",cursor:"pointer",textDecoration:"underline"}}>GDPR Disclosure</span>.</>:<>Bu web sitesi, deneyiminizi iyileştirmek ve hizmetlerimizi sunmak için çerezler kullanmaktadır. Sitemizi kullanarak <span onClick={()=>go("privacy")} style={{color:"#ff6000",cursor:"pointer",textDecoration:"underline"}}>Gizlilik Politikamızı</span> ve <span onClick={()=>go("kvkk")} style={{color:"#ff6000",cursor:"pointer",textDecoration:"underline"}}>KVKK Aydınlatma Metnimizi</span> kabul etmiş sayılırsınız.</>}
+                <div style={{fontSize:isMobile?12:13,color:"#ccc",lineHeight:isMobile?1.45:1.7}}>
+                  🍪 {lang==="en"?(isMobile?<>Cookies are used for site experience. See <span onClick={()=>go("privacy")} style={{color:"#ff6000",cursor:"pointer",textDecoration:"underline"}}>Privacy</span>.</>:<>This website uses cookies to improve your experience and provide our services. By using our site you accept our <span onClick={()=>go("privacy")} style={{color:"#ff6000",cursor:"pointer",textDecoration:"underline"}}>Privacy Policy</span> and <span onClick={()=>go("kvkk")} style={{color:"#ff6000",cursor:"pointer",textDecoration:"underline"}}>GDPR Disclosure</span>.</>):(isMobile?<>Deneyimi iyileştirmek için çerez kullanıyoruz. <span onClick={()=>go("privacy")} style={{color:"#ff6000",cursor:"pointer",textDecoration:"underline"}}>Gizlilik</span></>:<>Bu web sitesi, deneyiminizi iyileştirmek ve hizmetlerimizi sunmak için çerezler kullanmaktadır. Sitemizi kullanarak <span onClick={()=>go("privacy")} style={{color:"#ff6000",cursor:"pointer",textDecoration:"underline"}}>Gizlilik Politikamızı</span> ve <span onClick={()=>go("kvkk")} style={{color:"#ff6000",cursor:"pointer",textDecoration:"underline"}}>KVKK Aydınlatma Metnimizi</span> kabul etmiş sayılırsınız.</>)}
                 </div>
               </div>
-              <div style={{display:"flex",gap:8,flexShrink:0}}>
-                <button onClick={()=>setCookieOk(true)} style={{padding:"10px 24px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:13,fontWeight:600,cursor:"pointer"}}>{lang==="en"?"Accept":"Kabul Et"}</button>
-                <button onClick={()=>setCookieOk(true)} style={{padding:"10px 24px",background:"transparent",color:"#999",border:"1px solid #555",borderRadius:6,fontSize:13,fontWeight:500,cursor:"pointer"}}>{lang==="en"?"Essential Only":"Sadece Gerekli"}</button>
+              <div style={{display:"flex",gap:8,flexShrink:0,width:isMobile?"100%":"auto"}}>
+                <button onClick={()=>setCookieOk(true)} style={{flex:isMobile?1:"0 0 auto",padding:isMobile?"9px 12px":"10px 24px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:13,fontWeight:600,cursor:"pointer"}}>{lang==="en"?"Accept":"Kabul Et"}</button>
+                <button onClick={()=>setCookieOk(true)} style={{flex:isMobile?1:"0 0 auto",padding:isMobile?"9px 12px":"10px 24px",background:"transparent",color:"#999",border:"1px solid #555",borderRadius:6,fontSize:13,fontWeight:500,cursor:"pointer"}}>{lang==="en"?"Essential Only":"Sadece Gerekli"}</button>
               </div>
             </div>
           </div>
