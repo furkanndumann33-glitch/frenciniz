@@ -686,6 +686,8 @@ export default function App() {
   const parseUrl = useCallback(() => {
     const path = window.location.pathname.replace(/^\/+|\/+$/g, "");
     const search = new URLSearchParams(window.location.search);
+    if (path === "odeme-basarili") return { page: "payment-success", params: {} };
+    if (path === "odeme-basarisiz") return { page: "payment-fail", params: {} };
     if (!path) {
       // Ana sayfa, query ile arama varsa products'a yönlendir
       if (search.get("q") || search.get("brand") || search.get("veh")) {
@@ -698,7 +700,7 @@ export default function App() {
       return { page: "home", params: {} };
     }
     // Statik sayfalar
-    const STATIC = ["urunler","contact","about","faq","brands","cart","account","auth","favs","orders","checkout","return-policy","terms","shipping","privacy","kvkk","accessibility","company","admin","admin-login","admin-panel"];
+    const STATIC = ["urunler","contact","about","faq","brands","cart","account","auth","favs","orders","addresses","profile","notifications","change-password","checkout","return-policy","terms","shipping","shipping-policy","privacy","kvkk","accessibility","company","admin","admin-login","admin-panel"];
     if (STATIC.includes(path)) {
       return { page: path === "urunler" ? "products" : path, params: {} };
     }
@@ -1159,7 +1161,7 @@ export default function App() {
       });
     }
     else if (page === "brands") { title = "Markalar - Frenciniz"; desc = "Frenciniz'in çalıştığı marka ve uyumlu araçlar."; canonical = `${SITE_URL}/brands`; }
-    else if (page === "shipping") { title = "Kargo ve Teslimat - Frenciniz"; desc = "Aras Kargo ile aynı gün gönderim. 3000₺ üzeri ücretsiz kargo, altı 150₺."; canonical = `${SITE_URL}/shipping`; }
+    else if (page === "shipping" || page === "shipping-policy") { title = "Kargo ve Teslimat - Frenciniz"; desc = "Aras Kargo ile aynı gün gönderim. 3000₺ üzeri ücretsiz kargo, altı 150₺."; canonical = `${SITE_URL}/shipping`; }
     else if (page === "return-policy") { title = "İade Politikası - Frenciniz"; desc = "14 gün koşulsuz iade hakkı. Hasarlı/yanlış üründe kargo ücreti bize ait."; canonical = `${SITE_URL}/return-policy`; }
     else if (page === "terms") { title = "Şartlar ve Koşullar - Frenciniz"; canonical = `${SITE_URL}/terms`; }
     else if (page === "privacy") { title = "Gizlilik Politikası - Frenciniz"; canonical = `${SITE_URL}/privacy`; }
@@ -1363,7 +1365,7 @@ export default function App() {
           {page==="contact"&&<ContactPage/>}
           {page==="faq"&&<FaqPage/>}
           {page==="privacy"&&<PrivacyPage/>}
-          {page==="shipping-policy"&&<ShippingPolicyPage/>}
+          {(page==="shipping" || page==="shipping-policy")&&<ShippingPolicyPage/>}
           {page==="terms"&&<TermsPage/>}
           {page==="return-policy"&&<ReturnPolicyPage/>}
           {page==="kvkk"&&<KvkkPage/>}
@@ -1712,7 +1714,7 @@ function OptImg({src, alt, w, h, style, cdnW, eager}) {
 
 // ===== PRODUCT CARD with Favorite =====
 function ProductCard({p, eager}) {
-  const {go, addToCart, favs, toggleFav, fp, t, lang} = use$();
+  const {go, addToCart, favs, toggleFav, fp, t, lang, isMobile} = use$();
   const [showAlert, setShowAlert] = useState(false);
   const disc = p.old ? Math.round((1 - p.price/p.old) * 100) : 0;
   const isFav = favs.includes(p.id);
@@ -1726,7 +1728,7 @@ function ProductCard({p, eager}) {
       style={{border:"1px solid rgba(15,23,42,.08)",borderRadius:8,overflow:"hidden",cursor:"pointer",background:"#fff",transition:"transform .22s ease, box-shadow .22s ease, border-color .22s ease",boxShadow:"0 12px 34px rgba(15,23,42,.08)",minHeight:"100%",display:"flex",flexDirection:"column"}}
       onMouseEnter={e => {e.currentTarget.style.boxShadow=`0 20px 55px ${accentA}33`;e.currentTarget.style.borderColor=`${accentA}66`;}}
       onMouseLeave={e => {e.currentTarget.style.boxShadow="0 12px 34px rgba(15,23,42,.08)";e.currentTarget.style.borderColor="rgba(15,23,42,.08)";}}>
-      <div style={{height:212,background:`radial-gradient(circle at 78% 18%, ${accentB}33, transparent 32%), linear-gradient(145deg,#0b1020,#161b29 58%,#222835)`,display:"flex",alignItems:"center",justifyContent:"center",position:"relative",overflow:"hidden"}}>
+      <div style={{height:isMobile?176:212,background:`radial-gradient(circle at 78% 18%, ${accentB}33, transparent 32%), linear-gradient(145deg,#0b1020,#161b29 58%,#222835)`,display:"flex",alignItems:"center",justifyContent:"center",position:"relative",overflow:"hidden"}}>
         <div style={{position:"absolute",inset:0,background:"linear-gradient(135deg,rgba(255,255,255,.14),transparent 35%,rgba(255,96,0,.16))",pointerEvents:"none"}} />
         <OptImg src={prodImg(p)} alt={translateName(p.name,lang)} eager={eager} style={{maxWidth:realImage?"82%":"94%",maxHeight:realImage?"82%":"94%",objectFit:"contain",filter:"drop-shadow(0 18px 24px rgba(0,0,0,.38))",transition:"transform .25s ease"}} />
         {!realImage && <span style={{position:"absolute",left:10,bottom:10,background:"rgba(255,255,255,.92)",color:"#111",fontSize:10,fontWeight:800,padding:"4px 8px",borderRadius:4,letterSpacing:0}}>{lang==="en"?"Visual coming":"Gorsel hazirlaniyor"}</span>}
@@ -1739,12 +1741,12 @@ function ProductCard({p, eager}) {
         </button>
         {!p.stock && <div style={{position:"absolute",inset:0,background:"rgba(7,10,18,.68)",display:"flex",alignItems:"center",justifyContent:"center"}}><span style={{background:"#fff",padding:"7px 16px",borderRadius:4,fontSize:12,fontWeight:800,color:"#d9480f"}}>{t("outOfStock")}</span></div>}
       </div>
-      <div style={{padding:"13px 14px 16px",display:"flex",flexDirection:"column",gap:7,flex:1}}>
+      <div style={{padding:isMobile?"11px 10px 12px":"13px 14px 16px",display:"flex",flexDirection:"column",gap:7,flex:1,minWidth:0}}>
         <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:8}}>
           <div style={{fontSize:11,color:accentA,fontWeight:900,textTransform:"uppercase",letterSpacing:.2}}>{p.brand || "Ekersan"}</div>
-          <div style={{fontSize:10,color:"#64748b",fontWeight:700,background:"#f1f5f9",padding:"3px 7px",borderRadius:4,whiteSpace:"nowrap"}}>{catName}</div>
+          <div style={{fontSize:10,color:"#64748b",fontWeight:700,background:"#f1f5f9",padding:"3px 7px",borderRadius:4,whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis",maxWidth:isMobile?72:120}}>{catName}</div>
         </div>
-        <div style={{fontSize:14,fontWeight:800,color:"#111827",lineHeight:1.32,minHeight:38}}>{translateName(p.name,lang)}</div>
+        <div style={{fontSize:isMobile?13:14,fontWeight:800,color:"#111827",lineHeight:1.32,minHeight:isMobile?34:38,overflowWrap:"anywhere"}}>{translateName(p.name,lang)}</div>
         <div style={{display:"flex",alignItems:"center",gap:6,fontSize:11,color:"#64748b"}}>
           <span style={{fontWeight:800,color:"#334155"}}>{p.sku}</span>
           {p.oem && <span style={{overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>OEM {String(p.oem).slice(0,30)}</span>}
@@ -1757,14 +1759,14 @@ function ProductCard({p, eager}) {
           })}
           {p.compat.length > 4 && <span style={{fontSize:9,padding:"2px 6px",color:"#999"}}>+{p.compat.length-4}</span>}
         </div>}
-        <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:10,marginTop:"auto",paddingTop:4}}>
-          <div>
-            <span style={{fontSize:21,fontWeight:900,color:"#0f172a"}}>{fp(p.price)}</span>
+        <div style={{display:"flex",alignItems:isMobile?"stretch":"center",justifyContent:"space-between",gap:isMobile?7:10,marginTop:"auto",paddingTop:4,flexDirection:isMobile?"column":"row",minWidth:0}}>
+          <div style={{minWidth:0}}>
+            <span style={{fontSize:isMobile?18:21,fontWeight:900,color:"#0f172a"}}>{fp(p.price)}</span>
             {p.old && <span style={{fontSize:13,color:"#bbb",textDecoration:"line-through",marginLeft:6}}>{fp(p.old)}</span>}
           </div>
           <button onClick={e => {e.stopPropagation(); p.stock ? addToCart(p) : setShowAlert(true)}}
             className="fr-card-action"
-            style={{padding:"9px 13px",background:p.stock?"#111827":"#fff",color:p.stock?"#fff":"#ff6000",border:p.stock?"none":"1px solid #ff6000",borderRadius:6,fontSize:p.stock?12:11,fontWeight:900,whiteSpace:"nowrap",transition:"background .2s ease,color .2s ease"}}>
+            style={{width:isMobile?"100%":"auto",padding:isMobile?"9px 8px":"9px 13px",background:p.stock?"#111827":"#fff",color:p.stock?"#fff":"#ff6000",border:p.stock?"none":"1px solid #ff6000",borderRadius:6,fontSize:isMobile?11:(p.stock?12:11),fontWeight:900,whiteSpace:"nowrap",transition:"background .2s ease,color .2s ease",textAlign:"center",boxSizing:"border-box"}}>
             {p.stock ? t("addToCart") : t("notifyMe")}
           </button>
         </div>
@@ -2498,18 +2500,18 @@ function CheckoutPage() {
   if(!cart.length) return <div style={{textAlign:"center",padding:"60px 20px"}}><p style={{color:"#999"}}>Sepetiniz boş.</p></div>;
 
   return (
-    <div style={{maxWidth:800,margin:"0 auto",padding:"20px"}}>
-      <h1 style={{fontSize:22,fontWeight:700,marginBottom:20}}>Sipariş</h1>
-      <div style={{display:"flex",gap:16,marginBottom:28}}>
+    <div style={{maxWidth:800,margin:"0 auto",padding:isMobile?"16px 12px 24px":"20px",overflow:"hidden"}}>
+      <h1 style={{fontSize:isMobile?20:22,fontWeight:700,marginBottom:isMobile?14:20}}>Sipariş</h1>
+      <div style={{display:"flex",gap:isMobile?6:16,marginBottom:isMobile?18:28,alignItems:"center",justifyContent:isMobile?"space-between":"flex-start",minWidth:0}}>
         {[{n:1,l:"Teslimat"},{n:2,l:"Ödeme"},{n:3,l:"Onay"}].map((s,i) => (
-          <div key={s.n} style={{display:"flex",alignItems:"center",gap:8}}>
-            <div style={{width:28,height:28,borderRadius:"50%",display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,fontWeight:700,background:step>=s.n?"#ff6000":"#eee",color:step>=s.n?"#fff":"#999"}}>{s.n}</div>
-            <span style={{fontSize:14,fontWeight:step===s.n?700:400,color:step===s.n?"#1a1a1a":"#999"}}>{s.l}</span>
-            {i<2 && <span style={{color:"#ddd",margin:"0 4px"}}>—</span>}
+          <div key={s.n} style={{display:"flex",alignItems:"center",gap:isMobile?5:8,minWidth:0,flex:isMobile?"1 1 0":"0 0 auto",justifyContent:isMobile?"center":"flex-start"}}>
+            <div style={{width:isMobile?24:28,height:isMobile?24:28,borderRadius:"50%",display:"flex",alignItems:"center",justifyContent:"center",fontSize:isMobile?12:13,fontWeight:700,background:step>=s.n?"#ff6000":"#eee",color:step>=s.n?"#fff":"#999",flex:"0 0 auto"}}>{s.n}</div>
+            <span style={{fontSize:isMobile?12:14,fontWeight:step===s.n?700:400,color:step===s.n?"#1a1a1a":"#999",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}>{s.l}</span>
+            {!isMobile && i<2 && <span style={{color:"#ddd",margin:"0 4px"}}>—</span>}
           </div>
         ))}
       </div>
-      <div style={{border:"1px solid #eee",borderRadius:8,padding:28}}>
+      <div style={{border:"1px solid #eee",borderRadius:8,padding:isMobile?16:28,minWidth:0,overflow:"hidden"}}>
         {step===1 && <>
           <h2 style={{fontSize:18,fontWeight:700,marginBottom:20}}>Teslimat Bilgileri</h2>
           {addresses && addresses.length > 0 && (
@@ -2525,7 +2527,7 @@ function CheckoutPage() {
               </div>
             </div>
           )}
-          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:14}}>
+          <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr",gap:isMobile?12:14}}>
             <div><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>Ad</label><input value={ship_form.first} onChange={e=>setShipForm(f=>({...f,first:e.target.value}))} placeholder="Adınız" style={IS}/></div>
             <div><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>Soyad</label><input value={ship_form.last} onChange={e=>setShipForm(f=>({...f,last:e.target.value}))} placeholder="Soyadınız" style={IS}/></div>
             <div><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>E-posta</label><input type="email" value={ship_form.email} onChange={e=>setShipForm(f=>({...f,email:e.target.value}))} placeholder="ornek@email.com" style={IS}/></div>
@@ -3745,14 +3747,24 @@ function ContactPage() {
   const {lang, isMobile} = use$();
   const en = lang==="en";
   const IS = {width:"100%",padding:"10px 14px",border:"1px solid #ddd",borderRadius:6,fontSize:14};
+  const handleContactSubmit = (e) => {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    const name = String(data.get("name") || "").trim();
+    const email = String(data.get("email") || "").trim();
+    const phone = String(data.get("phone") || "").trim();
+    const message = String(data.get("message") || "").trim();
+    const body = [`Ad Soyad: ${name}`, `E-posta: ${email}`, `Telefon: ${phone}`, "", message].join("\n");
+    window.location.href = `mailto:info@frenciniz.com?subject=${encodeURIComponent("Frenciniz iletişim formu")}&body=${encodeURIComponent(body)}`;
+  };
   return <div style={{maxWidth:1200,margin:"0 auto",padding:"20px"}}><h1 style={{fontSize:22,fontWeight:700,marginBottom:20}}>{en?"Contact":"İletişim"}</h1>
     <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr",gap:24}}>
       <div style={{border:"1px solid #eee",borderRadius:8,padding:24}}>
-        <div style={{display:"flex",flexDirection:"column",gap:12}}>
-          <input placeholder={en?"Full Name":"Ad Soyad"} style={IS}/><input placeholder={en?"Email":"E-posta"} style={IS}/><input placeholder={en?"Phone":"Telefon"} style={IS}/>
-          <textarea rows={4} placeholder={en?"Your message...":"Mesajınız..."} style={{...IS,resize:"vertical"}}/>
-          <button style={{padding:"12px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:14,fontWeight:600,cursor:"pointer",alignSelf:"flex-start"}}>{en?"Send":"Gönder"}</button>
-        </div>
+        <form onSubmit={handleContactSubmit} style={{display:"flex",flexDirection:"column",gap:12}}>
+          <input name="name" required placeholder={en?"Full Name":"Ad Soyad"} style={IS}/><input name="email" type="email" required placeholder={en?"Email":"E-posta"} style={IS}/><input name="phone" placeholder={en?"Phone":"Telefon"} style={IS}/>
+          <textarea name="message" required rows={4} placeholder={en?"Your message...":"Mesajınız..."} style={{...IS,resize:"vertical"}}/>
+          <button type="submit" style={{padding:"12px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:14,fontWeight:600,cursor:"pointer",alignSelf:"flex-start"}}>{en?"Send":"Gönder"}</button>
+        </form>
       </div>
       <div>
         {[
