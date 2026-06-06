@@ -1,93 +1,93 @@
 {
   "total": 1055,
-  "changed": 0,
+  "changed": 227,
   "withDescription": 1055,
   "withCompatibility": 1055,
-  "specificCompatibility": 460,
+  "specificCompatibility": 886,
   "byGroup": {
     "circir": {
       "total": 52,
-      "changed": 0,
+      "changed": 11,
       "withDescription": 52,
       "withCompatibility": 52,
-      "specificCompatibility": 52
+      "specificCompatibility": 41
     },
     "bijon-grup": {
       "total": 187,
-      "changed": 0,
+      "changed": 39,
       "withDescription": 187,
       "withCompatibility": 187,
-      "specificCompatibility": 77
+      "specificCompatibility": 145
     },
     "disk": {
       "total": 97,
-      "changed": 0,
+      "changed": 11,
       "withDescription": 97,
       "withCompatibility": 97,
-      "specificCompatibility": 48
+      "specificCompatibility": 95
     },
     "kampana": {
       "total": 118,
-      "changed": 0,
+      "changed": 6,
       "withDescription": 118,
       "withCompatibility": 118,
-      "specificCompatibility": 44
+      "specificCompatibility": 86
     },
     "porya-grup": {
       "total": 79,
-      "changed": 0,
+      "changed": 7,
       "withDescription": 79,
       "withCompatibility": 79,
-      "specificCompatibility": 45
+      "specificCompatibility": 78
     },
     "susp-korugu": {
       "total": 105,
-      "changed": 0,
+      "changed": 5,
       "withDescription": 105,
       "withCompatibility": 105,
-      "specificCompatibility": 41
+      "specificCompatibility": 66
     },
     "kaliper-urunleri": {
       "total": 169,
-      "changed": 0,
+      "changed": 106,
       "withDescription": 169,
       "withCompatibility": 169,
-      "specificCompatibility": 28
+      "specificCompatibility": 157
     },
     "fren-yaylari": {
       "total": 32,
-      "changed": 0,
+      "changed": 1,
       "withDescription": 32,
       "withCompatibility": 32,
       "specificCompatibility": 22
     },
     "sensor-uzatma": {
       "total": 41,
-      "changed": 0,
+      "changed": 2,
       "withDescription": 41,
       "withCompatibility": 41,
-      "specificCompatibility": 27
+      "specificCompatibility": 37
     },
     "fren-korukleri": {
       "total": 77,
-      "changed": 0,
+      "changed": 14,
       "withDescription": 77,
       "withCompatibility": 77,
-      "specificCompatibility": 12
+      "specificCompatibility": 67
     },
     "fren-pabuclari": {
       "total": 40,
-      "changed": 0,
+      "changed": 4,
       "withDescription": 40,
       "withCompatibility": 40,
-      "specificCompatibility": 30
+      "specificCompatibility": 35
     },
     "balata": {
       "total": 58,
-      "changed": 0,
+      "changed": 21,
       "withDescription": 58,
       "withCompatibility": 58,
-      "specificCompatibility": 34
+      "specificCompatibility": 57
     }
   },
   "referenceSources": [
@@ -127,10 +127,60 @@
       "usedFor": "BPW WVA 29165 / 29215 / 29306 brake pad reference"
     },
     {
+      "title": "Freenco K000472 caliper guides and seals repair kit",
+      "url": "https://www.freenco.com/en/product/caliper-guides-seals-repair-kit-20",
+      "usedFor": "Knorr SN6/SN7/SK7 and Mercedes/MAN/Scania caliper repair kit reference"
+    },
+    {
+      "title": "TTT-Caliper K000472 caliper pin repair kit",
+      "url": "https://www.ttt-caliper.com/caliper-pin-repair-kit-264",
+      "usedFor": "Knorr SN/SK/SL/SM caliper and multi-brand vehicle references"
+    },
+    {
+      "title": "Alcan K000132 caliper repair kit",
+      "url": "https://alcanotomotiv.com/index.php/product/knorr/3002-k000132",
+      "usedFor": "Knorr SB6/SB7 and Mercedes Atego caliper repair kit reference"
+    },
+    {
+      "title": "Strans WABCO PAN19/PAN22 adjustment mechanism kit",
+      "url": "https://strans-shop.com.ua/en/shop/product/517516",
+      "usedFor": "WABCO PAN19-1 / PAN22-1 caliper mechanism reference"
+    },
+    {
+      "title": "Partstock Meritor DUCO MCK1116 guide pin kit",
+      "url": "https://partstock.eu/products/gk88002-meritor-b-duco-c-duco-d-duco-caliper-guide-pin-and-seal-kit-1489197-cmsk-3-1-5021202776-85102094-mck1116",
+      "usedFor": "Meritor DUCO / MCK1116 caliper repair kit reference"
+    },
+    {
       "title": "Victor Truck brake drum catalogue",
       "url": "https://www.victortruck.com/upload/2018100909170679.pdf",
       "usedFor": "SAF 1064010801 brake drum reference"
+    },
+    {
+      "title": "REATON 3092710 / 8551042 Volvo brake disc",
+      "url": "https://www.reatonbrake.com/product/3092710/",
+      "usedFor": "Volvo 3092710 / 8551042 brake disc reference"
+    },
+    {
+      "title": "Aurora Meritor trailer brake disc 21227349 / MBR9018",
+      "url": "https://www.auroraproparts.com/products/meritor-trailer-brake-disc-21225115-21227349-22227349/",
+      "usedFor": "ROR / Meritor trailer brake disc reference"
+    },
+    {
+      "title": "Uz-Par Gigant ROR 6604261 / 9267086 brake disc",
+      "url": "https://www.uz-par.com/urun/gigant-ror-dingil-fren-diski-kogel-krone-ed22002-6604261-9267086",
+      "usedFor": "Gigant / ROR / Kögel / Krone trailer brake disc reference"
+    },
+    {
+      "title": "Zohama WVA 29087 brake pad",
+      "url": "https://zohama.com/brake-pad-wva-29087/",
+      "usedFor": "WVA 29087 multi-brand heavy vehicle brake pad reference"
+    },
+    {
+      "title": "CEI WVA 29244 brake pad",
+      "url": "https://www.cei.it/parts/products-details/brake-pads/wva/29244.html",
+      "usedFor": "Mercedes Axor / Actros / Econic WVA 29244 brake pad reference"
     }
   ],
-  "generatedAt": "2026-06-06T22:09:42.664Z"
+  "generatedAt": "2026-06-06T22:30:02.498Z"
 }

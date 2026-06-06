@@ -5,6 +5,7 @@ const ROOT = path.resolve(import.meta.dirname, "..");
 const PRODUCTS_PATH = path.join(ROOT, "public", "data", "products.json");
 const CATEGORIES_PATH = path.join(ROOT, "public", "data", "categories.json");
 const REPORT_PATH = path.join(ROOT, "pricing-research", "compatibility-enrichment-report.json");
+const RULE_SOURCE = "name_oem_rules_v2";
 
 const products = JSON.parse(fs.readFileSync(PRODUCTS_PATH, "utf8"));
 const categories = JSON.parse(fs.readFileSync(CATEGORIES_PATH, "utf8"));
@@ -48,9 +49,59 @@ const REFERENCE_SOURCES = [
     usedFor: "BPW WVA 29165 / 29215 / 29306 brake pad reference",
   },
   {
+    title: "Freenco K000472 caliper guides and seals repair kit",
+    url: "https://www.freenco.com/en/product/caliper-guides-seals-repair-kit-20",
+    usedFor: "Knorr SN6/SN7/SK7 and Mercedes/MAN/Scania caliper repair kit reference",
+  },
+  {
+    title: "TTT-Caliper K000472 caliper pin repair kit",
+    url: "https://www.ttt-caliper.com/caliper-pin-repair-kit-264",
+    usedFor: "Knorr SN/SK/SL/SM caliper and multi-brand vehicle references",
+  },
+  {
+    title: "Alcan K000132 caliper repair kit",
+    url: "https://alcanotomotiv.com/index.php/product/knorr/3002-k000132",
+    usedFor: "Knorr SB6/SB7 and Mercedes Atego caliper repair kit reference",
+  },
+  {
+    title: "Strans WABCO PAN19/PAN22 adjustment mechanism kit",
+    url: "https://strans-shop.com.ua/en/shop/product/517516",
+    usedFor: "WABCO PAN19-1 / PAN22-1 caliper mechanism reference",
+  },
+  {
+    title: "Partstock Meritor DUCO MCK1116 guide pin kit",
+    url: "https://partstock.eu/products/gk88002-meritor-b-duco-c-duco-d-duco-caliper-guide-pin-and-seal-kit-1489197-cmsk-3-1-5021202776-85102094-mck1116",
+    usedFor: "Meritor DUCO / MCK1116 caliper repair kit reference",
+  },
+  {
     title: "Victor Truck brake drum catalogue",
     url: "https://www.victortruck.com/upload/2018100909170679.pdf",
     usedFor: "SAF 1064010801 brake drum reference",
+  },
+  {
+    title: "REATON 3092710 / 8551042 Volvo brake disc",
+    url: "https://www.reatonbrake.com/product/3092710/",
+    usedFor: "Volvo 3092710 / 8551042 brake disc reference",
+  },
+  {
+    title: "Aurora Meritor trailer brake disc 21227349 / MBR9018",
+    url: "https://www.auroraproparts.com/products/meritor-trailer-brake-disc-21225115-21227349-22227349/",
+    usedFor: "ROR / Meritor trailer brake disc reference",
+  },
+  {
+    title: "Uz-Par Gigant ROR 6604261 / 9267086 brake disc",
+    url: "https://www.uz-par.com/urun/gigant-ror-dingil-fren-diski-kogel-krone-ed22002-6604261-9267086",
+    usedFor: "Gigant / ROR / Kögel / Krone trailer brake disc reference",
+  },
+  {
+    title: "Zohama WVA 29087 brake pad",
+    url: "https://zohama.com/brake-pad-wva-29087/",
+    usedFor: "WVA 29087 multi-brand heavy vehicle brake pad reference",
+  },
+  {
+    title: "CEI WVA 29244 brake pad",
+    url: "https://www.cei.it/parts/products-details/brake-pads/wva/29244.html",
+    usedFor: "Mercedes Axor / Actros / Econic WVA 29244 brake pad reference",
   },
 ];
 
@@ -105,13 +156,18 @@ const MODEL_RULES = [
     compat: ["Mercedes-Benz O302/O303/O304/O305/O307/O309 otobüs", "Mercedes-Benz V6/V8 otobüs"],
   },
   {
+    key: "mercedes-general",
+    regex: /\bMERCEDES\b|\bMB\b|\bARCS\b|A0{3}421|640915|624\.?420|620\.?420|393\.?420/i,
+    compat: ["Mercedes-Benz Actros", "Mercedes-Benz Axor", "Mercedes-Benz Atego", "Mercedes-Benz Arocs"],
+  },
+  {
     key: "man-tg",
-    regex: /\bMAN\b|\bTGA\b|\bTGS\b|\bTGX\b|\bTGM\b|815080|8150\.?803/i,
+    regex: /\bMAN\b|\bTGA\b|\bTGS\b|\bTGX\b|\bTGM\b|815080|8150\.?803|8150\.?11|8143|8135|814550|819980|835700/i,
     compat: ["MAN TGA", "MAN TGS", "MAN TGX", "MAN TGM", "MAN TGS/TGX 40.360", "MAN TGS/TGX 40.460"],
   },
   {
     key: "scania",
-    regex: /\bSCANIA\b|\bSCAN\b|\bG420\b|\bR420\b|\bR440\b/i,
+    regex: /\bSCANIA\b|\bSCANI\b|\bSCAN\b|\bG420\b|\bR420\b|\bR440\b/i,
     compat: ["Scania P/G/R serisi", "Scania G420", "Scania R420/R440"],
   },
   {
@@ -121,12 +177,12 @@ const MODEL_RULES = [
   },
   {
     key: "renault",
-    regex: /\bRENAULT\b|\bPREMIUM\b|\bMAGNUM\b|\bKERAX\b|\bMIDLUM\b/i,
+    regex: /\bRENAULT\b|\bRENO\b|\bRVI\b|\bPREMIUM\b|\bMAGNUM\b|\bKERAX\b|\bMIDLUM\b/i,
     compat: ["Renault Trucks Premium", "Renault Trucks Magnum", "Renault Trucks Kerax", "Renault Trucks Midlum"],
   },
   {
     key: "ford-cargo",
-    regex: /\bFORD\b|\bCARGO\b|9C46|DC46/i,
+    regex: /\bFORD\b|\bCARGO\b|9C46|DC46|7C46|85DB|13C33|FC46|A333K/i,
     compat: ["Ford Cargo", "Ford Cargo 1833", "Ford Cargo 1846", "Ford Cargo 2532", "Ford Cargo 3232"],
   },
   {
@@ -146,8 +202,8 @@ const MODEL_RULES = [
   },
   {
     key: "bmc",
-    regex: /\bBMC\b|57RS/i,
-    compat: ["BMC Probus", "BMC Profesyonel", "BMC kamyon / otobüs"],
+    regex: /\bBMC\b|57RS|\bFAT[İI]H\b|\bPROF(?:ESYONEL)?\b|\bPRO\s?(?:522|940)\b|\b822\b|\b827\b|\bAS\s?(?:26|32|900|950)\b|\bDODGE\b|\bMARATON\b|7K|5K|K8C|K5C/i,
+    compat: ["BMC Probus", "BMC Profesyonel", "BMC Fatih", "BMC Pro 522/827", "Askam / Dodge ağır vasıta"],
   },
   {
     key: "mitsubishi",
@@ -166,17 +222,17 @@ const MODEL_RULES = [
   },
   {
     key: "bpw",
-    regex: /\bBPW\b/i,
-    compat: ["BPW dorse dingili", "BPW treyler"],
+    regex: /\bBPW\b|\bBP\b|BPV|03\.272|0327|030883|3109(?:46|67|77)|05\.091/i,
+    compat: ["BPW dorse dingili", "BPW ECOPlus dingil", "BPW treyler"],
   },
   {
     key: "saf",
-    regex: /\bSAF\b/i,
+    regex: /\bSAF\b|10640|407900|054294|3434381200|SFAX|SF AXLE|SF HDX|\bSFK\b/i,
     compat: ["SAF dorse dingili", "SAF Holland treyler"],
   },
   {
     key: "ror",
-    regex: /\bROR\b|\bMERITOR\b/i,
+    regex: /\bROR\b|\bMERITOR\b|\bGIGANT\b|\bK[ÖO]GEL\b|MBR|M069018|M200135/i,
     compat: ["ROR dorse dingili", "Meritor/ROR treyler"],
   },
   {
@@ -198,6 +254,56 @@ const MODEL_RULES = [
     key: "trailer-general",
     regex: /\bDORSE\b|\bTREYLER\b|\bVALX\b|\bYTE\b|\bÖZTREYLER\b|\bOZTREYLER\b|\bFRUEHAUF\b|\bSMB\b|\bSERTEL\b|\bJUMBO\b/i,
     compat: ["Dorse / treyler", "Ağır vasıta dorse dingili"],
+  },
+  {
+    key: "wabco-pan-maxx",
+    regex: /\bPAN ?(?:17|19|22)|PAN19|PAN22|MAXX ?22T|MAXX22|WABCO/i,
+    compat: ["WABCO PAN17/PAN19/PAN22 kaliper sistemi", "WABCO MAXX22T kaliper sistemi", "Dorse disk fren sistemi"],
+  },
+  {
+    key: "knorr-sb-sn-sk",
+    regex: /\bKNORR?\b|\bSIMITS\b|\b(?:SB5|SB6|SB7|SN6|SN7|SK7|NA7|ST7|SL7|SM7)\b|K000132|K000472|K017707|K105599|K000129|K000133|CKSK|CH10(?:19|25|39|42|70|71|78)/i,
+    compat: ["Knorr-Bremse SB/SN/SK kaliper sistemi", "MAN TGA/TGS/TGX", "Mercedes-Benz Actros/Atego", "Scania 4/P/G/R serisi", "DAF CF/XF", "Iveco Eurocargo/Stralis"],
+  },
+  {
+    key: "meritor-elsa-duco",
+    regex: /ELSA|DUCO|MCK1116|MCK1139|MCK1289|MCK1298|8510209|85107913|1489197|1487339|5021202776|CMSK/i,
+    compat: ["Meritor ELSA/DUCO kaliper sistemi", "Volvo FH/FM", "Renault Trucks Premium/Magnum", "DAF CF/XF"],
+  },
+  {
+    key: "haldex-modulx",
+    regex: /MODULX|HALDEX/i,
+    compat: ["Haldex ModulX kaliper sistemi", "Dorse disk fren sistemi"],
+  },
+  {
+    key: "wabco-ebs-abs",
+    regex: /\bEBS\b|\bABS\b|441032|4497|463084|971002|027832|W449/i,
+    compat: ["WABCO ABS/EBS sistemi", "Dorse EBS sistemi", "Kamyon / treyler ABS sensör hattı"],
+  },
+  {
+    key: "local-trailer-axles",
+    regex: /SERTEL|SER[İI]N|OSMAN\s?KO[ÇC]|MUSTAFA\s?CEYLAN|ÖZKO[ÇC]|OZKO[ÇC]|AYDIN|AXL|AK-?KAR|YEKSAN|PIRLANTA|NURMEK|SEMI|SEM[İI]|TDS|COS|SE[ÇC]K[İI]NSAN|ALTINORDU|EFE\s?DORSE|PILOT\s?DORSE|P[İI]LOT\s?DORSE|EF\s?42/i,
+    compat: ["Yerel dorse dingil grubu", "Dorse / treyler", "Ağır vasıta dorse dingili"],
+  },
+  {
+    key: "fruehauf-smb",
+    regex: /FRUEHAUF|FRUHAUF|\bSMB\b/i,
+    compat: ["Fruehauf dorse dingili", "SMB dorse dingili", "Dorse / treyler"],
+  },
+  {
+    key: "york-valx-yte",
+    regex: /\bYORK\b|\bVALX\b|\bYTE\b|ÖZTREYLER|OZTREYLER/i,
+    compat: ["York / Valx dorse dingili", "YTE / Öztreyler dorse dingili", "Dorse / treyler"],
+  },
+  {
+    key: "brake-chamber-systems",
+    regex: /ARFESAN|BAYKAR|FREN K[ÖO]R[ÜU][ĞG][ÜU]|SERV[İI]S.*K[ÖO]R[ÜU][ĞG][ÜU]|K[ÖO]R[ÜU]KSAN|KAPL[İI]N|KALDIRMA LAST[İI][ĞG][İI]|[İI]MDAT|IMDAT|D\/P|D\/D|KAMPANA T[İI]P[İI]|D[İI]SK T[İI]P[İI]/i,
+    compat: ["Disk fren imdatlı fren körüğü", "Kampana fren imdatlı fren körüğü", "Dorse fren körüğü"],
+  },
+  {
+    key: "caliper-generic-system",
+    regex: /KAL[İI]PER|BALATA TUTUCU|[İI]T[İI]C[İI]\s?PLEYT|PLEYT|D[İI]SK MONTAJ SET[İI]|MASURA|RULMAN YATA[ĞG]I/i,
+    compat: ["Ağır vasıta kaliper sistemi", "Knorr / WABCO / Meritor kaliper uygulamaları", "Disk fren montaj sistemi"],
   },
 ];
 
@@ -282,6 +388,116 @@ const OEM_RULES = [
     compat: ["York dorse dingili", "Otoyol / York treyler"],
     note: "OEM 786450 / 786115 York dorse fren kampanası referansı olarak listelenir.",
   },
+  {
+    regex: /5010525326|5010598305|5010525362|5010525015|5010422593|5010216437|5010422363|5006172150|504134958|5010260218|5010488071|5010557355|5010294307|5001832067/i,
+    compat: ["Renault Trucks Midlum", "Renault Trucks Premium", "Renault Trucks Magnum"],
+    note: "5010 / 5001 Renault Trucks OEM referansları Midlum, Premium ve Magnum ağır vasıta fren/süspansiyon kataloglarında sık kullanılır.",
+  },
+  {
+    regex: /85103803|85103804|85110495|85110496|20515093|20582213|20582214|20582209|20582206|20531986|21961448|21961374|21961456|21222442|2229000300|2229210300|20757541|1379392|1379393|1440294|7421575117|7422025556/i,
+    compat: ["Volvo FH", "Volvo FM", "Volvo FL", "Volvo otobüs / ağır vasıta"],
+    note: "8510 / 2058 / 2196 / 7422 Volvo-Renault referansları Volvo FH/FM/FL ve ilgili ağır vasıta fren-süspansiyon kataloglarında kullanılır.",
+  },
+  {
+    regex: /1386686|1402272|1852817|1726138|1387439|1640561|1723416|1528655|1528712|1368690|1368692|1368693|1411980|337559/i,
+    compat: ["Scania 4 serisi", "Scania P/G/R serisi", "Scania G420", "Scania R420/R440"],
+    note: "Scania 13/14/17/18 ile başlayan OEM referansları Scania 4 ve P/G/R serisi fren parça kataloglarında geçer.",
+  },
+  {
+    regex: /7189476|7185503|7182682|7182772|7182305|7179778|7192305|7173317|7172079|7172329|7168333|7168838|7168580|7168257|7168346|7161201|2995812|2996328|2992470|2996329|2991979|1906461|1906438|1907631|1908614|1908729|421174|420648|42541412|42562856|5006028005/i,
+    compat: ["Iveco Eurocargo", "Iveco Eurotech", "Iveco Stralis", "Otoyol / Iveco otobüs"],
+    note: "716/717/718/299/190 ve 421174 referansları Iveco-Otoyol ağır vasıta fren ve bijon kataloglarında kullanılır.",
+  },
+  {
+    regex: /942421|943421|946356|960421|970421|970423|975423|942990|000\s?420|305421|301423|346423|360423|617423|624421|623420|619420|658420|658421|381401|381402|371401|371402|327401|327402|346401|355401|393420/i,
+    compat: ["Mercedes-Benz Actros", "Mercedes-Benz Axor", "Mercedes-Benz Atego", "Mercedes-Benz SK/NG", "Mercedes-Benz 2517/2521/2524/2622"],
+    note: "Mercedes-Benz 000420 / 3xx401 / 3xx421 / 9xx421 OEM referansları Actros, Axor, Atego ve SK/NG ağır vasıta gruplarında kullanılır.",
+  },
+  {
+    regex: /815011|815061|815082|814360|814430|814550|813570|819980|81\.50822|81\.50820|81\.50803/i,
+    compat: ["MAN TGA", "MAN TGS", "MAN TGX", "MAN TGM", "MAN TGL"],
+    note: "MAN 81.x / 814 / 815 OEM referansları MAN TGA, TGS, TGX, TGM ve TGL ağır vasıta fren parça kataloglarında geçer.",
+  },
+  {
+    regex: /7C46|85DB|13C33|FC46|A333K4561/i,
+    compat: ["Ford Cargo", "Ford Cargo 2520/2524/3227/3230", "Ford Cargo çekici"],
+    note: "7C46 / 85DB / 13C33 / A333K referansları Ford Cargo ağır vasıta fren ve porya parçalarında kullanılır.",
+  },
+  {
+    regex: /MC\s?828|MK\s?321|MC808846|MB\s?060500|894121376107/i,
+    compat: ["Mitsubishi Canter", "Mitsubishi Fuso", "Isuzu NPR/NQR"],
+    note: "MC/MK/MB060 ve 894121 referansları Mitsubishi Fuso/Canter ve Isuzu NPR-NQR hafif/ağır ticari fren parçalarında kullanılır.",
+  },
+  {
+    regex: /K000472|K017707|K000132|000\s?420\s?3482|81\.?50822\.?6019|1723416|09\.801\.06\.33\.0/i,
+    compat: ["Knorr-Bremse SN6/SN7/SK7 kaliper", "MAN TGA/TGS/TGX", "Mercedes-Benz Actros", "Scania 4/P/G/R serisi", "BPW dorse dingili"],
+    note: "K000472 / K017707 / K000132 referansları Knorr SB/SN/SK kaliper tamir setlerinde Mercedes, MAN, Scania ve BPW uygulamalarıyla listelenir.",
+  },
+  {
+    regex: /MCK1116|MCK1139|MCK1289|MCK1298|85102094|85107913|1489197|1487339|5021202776/i,
+    compat: ["Meritor ELSA/DUCO kaliper sistemi", "Volvo FH/FM", "Renault Trucks Premium/Magnum", "DAF CF/XF"],
+    note: "MCK1116 / MCK1139 / MCK1289 referansları Meritor ELSA-DUCO kaliper tamir setlerinde geçer.",
+  },
+  {
+    regex: /\b29158\b|\b29171\b|\b29175\b|\b29195\b|\b29228\b|\b29403\b|\b29256\b|\b29246\b|\b29159\b|\b29126\b|\b29167\b|\b29216\b|\b29270\b|\b29011\b/i,
+    compat: ["Ağır vasıta disk fren balata sistemi", "Knorr / WABCO / Meritor kaliper uygulamaları", "Kamyon / tır / otobüs"],
+    note: "WVA 29xxx referansları ağır vasıta disk fren balatalarında kaliper sistemi ve ölçüye göre eşleştirilir.",
+  },
+  {
+    regex: /8551042|3092710/i,
+    compat: ["Volvo FH", "Volvo FM", "Volvo FL"],
+    note: "OEM 3092710 / 8551042 Volvo ağır vasıta fren diski referansı olarak kataloglarda geçer.",
+  },
+  {
+    regex: /9267086|6604261/i,
+    compat: ["Gigant dorse dingili", "ROR dorse dingili", "Kögel dorse", "Krone dorse"],
+    note: "OEM 9267086 / 6604261 Gigant-ROR dorse fren diski referansı olarak listelenir.",
+  },
+  {
+    regex: /21227349|MBR9018|68323825|MBR5124|MBR9004|M069018|M200135|MBR9007|1176816|17870|MBR5143|1088133/i,
+    compat: ["ROR dorse dingili", "Meritor/ROR treyler", "Dorse disk fren sistemi"],
+    note: "MBR / ROR / Meritor referansları treyler ve dorse disk fren uygulamalarında kullanılır.",
+  },
+  {
+    regex: /82135830|501315228|501316953|4200172|1415147|234110|II371910061/i,
+    compat: ["Neoplan otobüs", "Scania otobüs", "Volvo otobüs / ağır vasıta"],
+    note: "82135830 / 501315228 / 1415147 referansları otobüs ve ağır vasıta fren diski kataloglarında geçer.",
+  },
+  {
+    regex: /5010098949|5010098861|5010098860|5010098832|5010098831|5010439317|5010439406|5010260028|5010260117|5000791212|5021172204|5021172197/i,
+    compat: ["Renault Trucks Midlum", "Renault Trucks Premium", "Renault Trucks Magnum", "Renault Trucks Kerax"],
+    note: "5010 / 5000 Renault Trucks referansları Midlum, Premium, Magnum ve Kerax fren parçalarında sık kullanılır.",
+  },
+  {
+    regex: /\b29087\b|\b29108\b|\b29106\b|\b29109\b|\b29163\b|\b29179\b|\b29201\b|\b29202\b|\b29061\b/i,
+    compat: ["Mercedes-Benz Actros/Axor", "BPW dorse dingili", "Scania P/G/R serisi", "DAF CF/XF", "Iveco Stralis", "MAN TGA/TGS/TGX"],
+    note: "WVA 29087 ailesi çok markalı ağır vasıta disk fren balatası olarak Mercedes, BPW, Scania, DAF, Iveco ve MAN uygulamalarında listelenir.",
+  },
+  {
+    regex: /\b29173\b|\b29203\b|\b29272\b|\b29174\b|\b29244\b|\b29094\b|\b29095\b|\b29197\b/i,
+    compat: ["Mercedes-Benz Actros/Axor", "Renault Trucks Premium/Magnum", "Volvo FH/FM", "Ağır vasıta disk fren balata sistemi"],
+    note: "WVA 29173 / 29203 / 29244 / 29174 referansları ağır vasıta disk fren balatası kataloglarında Mercedes, Renault ve Volvo uygulamalarıyla geçer.",
+  },
+  {
+    regex: /942401|943401|970401|960401|942328|942320|624\.?420|620\.?420|393\.?420|A0{3}421|640915/i,
+    compat: ["Mercedes-Benz Actros", "Mercedes-Benz Axor", "Mercedes-Benz Atego", "Mercedes-Benz Arocs"],
+    note: "Mercedes-Benz 942/943/970/960 ve A000421 referansları Mercedes ağır vasıta fren, porya ve kaliper parçalarında kullanılır.",
+  },
+  {
+    regex: /2285275|1868665|20515519|20515515|1391617|1388906|1818003|2019853|2120485/i,
+    compat: ["Scania P/G/R serisi", "Volvo FH/FM", "Ağır vasıta porya / bijon grubu"],
+    note: "2285275 / 20515519 / 1391617 benzeri referanslar Scania-Volvo ağır vasıta bijon ve porya gruplarında karşılık olarak kullanılır.",
+  },
+  {
+    regex: /330730|130730|330211|130311|330210|130310/i,
+    compat: ["SAF dorse dingili", "SAF Holland treyler", "Dorse porya / bijon grubu"],
+    note: "330/130 ile başlayan dorse porya-bijon referansları SAF Holland treyler dingil gruplarında sık görülür.",
+  },
+  {
+    regex: /AJA|AJB|M003176|M006891|M003133|A1561800|1561800|489001|489002|465002/i,
+    compat: ["Dorse dingil grubu", "Treyler fren kampanası", "Yerel dorse dingil uygulamaları"],
+    note: "AJA/AJB/M kodlu referanslar dorse ve treyler dingil fren kampanası-bijon gruplarında karşılık olarak kullanılır.",
+  },
 ];
 
 const GENERIC_BY_GROUP = {
@@ -298,6 +514,9 @@ const GENERIC_BY_GROUP = {
   "porya-grup": ["Dorse", "Treyler", "Kamyon"],
 };
 const GENERIC_LABELS = new Set(Object.values(GENERIC_BY_GROUP).flat());
+for (const label of ["Ağır vasıta", "Dorse / treyler", "Ağır vasıta dorse dingili"]) {
+  GENERIC_LABELS.add(label);
+}
 
 function normalize(value) {
   return String(value || "")
@@ -345,7 +564,7 @@ function detectCompatibility(product) {
     }
   }
 
-  if (product.compat_source !== "name_oem_rules_v1") {
+  if (!String(product.compat_source || "").startsWith("name_oem_rules_")) {
     compat.push(...(product.compat || []));
   }
 
@@ -402,7 +621,7 @@ for (const product of products) {
   const before = JSON.stringify({ desc: product.desc, compat: product.compat });
   product.desc = desc;
   product.compat = compat;
-  product.compat_source = "name_oem_rules_v1";
+  product.compat_source = RULE_SOURCE;
   product.compat_updated_at = summary.generatedAt;
   if (notes.length) product.compat_notes = notes;
   else delete product.compat_notes;
