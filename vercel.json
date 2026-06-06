@@ -33,6 +33,7 @@
     { "source": "/admin.html", "destination": "/admin.html" },
     { "source": "/data/(.*)", "destination": "/data/$1" },
     { "source": "/img/(.*)", "destination": "/img/$1" },
+    { "source": "/social/(.*)", "destination": "/social/$1" },
     { "source": "/raporlar/(.*)", "destination": "/raporlar/$1" },
     { "source": "/assets/(.*)", "destination": "/assets/$1" },
     { "source": "/favicon.svg", "destination": "/favicon.svg" },
