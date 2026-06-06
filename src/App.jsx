@@ -2380,16 +2380,16 @@ function CartPage() {
     : "Kupon";
 
   return (
-    <div style={{maxWidth:1200,margin:"0 auto",padding:"20px"}}>
-      <h1 style={{fontSize:22,fontWeight:700,marginBottom:20}}>Sepetim</h1>
+    <div style={{maxWidth:1200,margin:"0 auto",padding:isMobile?"16px 12px 24px":"20px",overflow:"hidden"}}>
+      <h1 style={{fontSize:isMobile?20:22,fontWeight:700,marginBottom:isMobile?14:20}}>Sepetim</h1>
       {cart.length === 0 ? (
         <div style={{textAlign:"center",padding:"60px 0"}}><div style={{fontSize:48,marginBottom:12}}>🛒</div><p style={{color:"#999",marginBottom:16}}>Sepetiniz boş</p>
           <button onClick={() => go("products")} style={{padding:"12px 28px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:14,fontWeight:600,cursor:"pointer"}}>Alışverişe Başla</button></div>
       ) : (
-        <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 320px",gap:24,alignItems:"start"}}>
-          <div>
+        <div style={{display:"grid",gridTemplateColumns:isMobile?"minmax(0,1fr)":"minmax(0,1fr) 320px",gap:isMobile?16:24,alignItems:"start",minWidth:0}}>
+          <div style={{minWidth:0}}>
             {/* Free shipping progress */}
-            <div style={{padding:"14px 16px",background:cartTotal >= 3000 ? "#e8f5e9" : "#fff8e1",borderRadius:8,marginBottom:16,border:`1px solid ${cartTotal >= 3000 ? "#c8e6c9" : "#fff3c4"}`}}>
+            <div style={{padding:isMobile?"12px":"14px 16px",background:cartTotal >= 3000 ? "#e8f5e9" : "#fff8e1",borderRadius:8,marginBottom:16,border:`1px solid ${cartTotal >= 3000 ? "#c8e6c9" : "#fff3c4"}`,minWidth:0}}>
               {cartTotal >= 3000 ? (
                 <div style={{fontSize:13,fontWeight:600,color:"#2e7d32"}}>✓ Ücretsiz kargo hakkı kazandınız!</div>
               ) : (
@@ -2403,24 +2403,28 @@ function CartPage() {
             </div>
 
             {/* Cart items */}
-            <div style={{border:"1px solid #eee",borderRadius:8}}>
+            <div style={{border:"1px solid #eee",borderRadius:8,overflow:"hidden",minWidth:0}}>
               {cart.map((item,i) => (
-                <div key={item.id} style={{display:"flex",gap:16,padding:"16px",borderBottom:i<cart.length-1?"1px solid #f0f0f0":"none",alignItems:"center"}}>
-                  <img src={item.img && !String(item.img).toLowerCase().includes("placehold") && !String(item.img).toLowerCase().includes("logo") ? cdnImg(item.img,100) : SITE_IMAGES.missingProduct} alt={item.name||""} loading="lazy" decoding="async" width={72} height={72} onClick={()=>go("product",{id:item.id})} style={{width:72,height:72,objectFit:"contain",borderRadius:6,background:"#101624",cursor:"pointer"}} onError={e=>{e.target.src=SITE_IMAGES.missingProduct}}/>
-                  <div style={{flex:1,cursor:"pointer"}} onClick={()=>go("product",{id:item.id})}><div style={{fontSize:14,fontWeight:600}}>{translateName(item.name,lang)}</div><div style={{fontSize:12,color:"#999"}}>{item.brand} · {item.sku}</div></div>
-                  <div style={{display:"flex",alignItems:"center",border:"1px solid #ddd",borderRadius:6,overflow:"hidden"}}>
+                <div key={item.id} style={{display:"flex",gap:isMobile?10:16,padding:isMobile?"12px":"16px",borderBottom:i<cart.length-1?"1px solid #f0f0f0":"none",alignItems:isMobile?"flex-start":"center",flexWrap:isMobile?"wrap":"nowrap",minWidth:0}}>
+                  <img src={item.img && !String(item.img).toLowerCase().includes("placehold") && !String(item.img).toLowerCase().includes("logo") ? cdnImg(item.img,100) : SITE_IMAGES.missingProduct} alt={item.name||""} loading="lazy" decoding="async" width={isMobile?62:72} height={isMobile?62:72} onClick={()=>go("product",{id:item.id})} style={{width:isMobile?62:72,height:isMobile?62:72,objectFit:"contain",borderRadius:6,background:"#101624",cursor:"pointer",flex:"0 0 auto"}} onError={e=>{e.target.src=SITE_IMAGES.missingProduct}}/>
+                  <div style={{flex:"1 1 0",minWidth:0,cursor:"pointer",paddingRight:isMobile?4:0}} onClick={()=>go("product",{id:item.id})}>
+                    <div style={{fontSize:isMobile?13:14,fontWeight:700,lineHeight:1.35,color:"#111827",overflowWrap:"anywhere"}}>{translateName(item.name,lang)}</div>
+                    <div style={{fontSize:12,color:"#999",marginTop:3,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{item.brand} · {item.sku}</div>
+                  </div>
+                  {isMobile && <span aria-hidden="true" style={{flexBasis:"100%",height:0}} />}
+                  <div style={{display:"flex",alignItems:"center",border:"1px solid #ddd",borderRadius:6,overflow:"hidden",flex:"0 0 auto"}}>
                     <button onClick={() => updateQty(item.id, item.qty-1)} style={{width:32,height:32,background:"#f9f9f9",border:"none",fontSize:16,color:"#555",cursor:"pointer"}}>−</button>
                     <span style={{width:36,textAlign:"center",fontSize:13,fontWeight:600}}>{item.qty}</span>
                     <button onClick={() => updateQty(item.id, item.qty+1)} style={{width:32,height:32,background:"#f9f9f9",border:"none",fontSize:16,color:"#555",cursor:"pointer"}}>+</button>
                   </div>
-                  <div style={{width:100,textAlign:"right",fontSize:16,fontWeight:700}}>{fp(item.price*item.qty)}</div>
-                  <button onClick={() => removeItem(item.id)} style={{background:"none",border:"none",color:"#ccc",fontSize:18,cursor:"pointer"}}>✕</button>
+                  <div style={{width:isMobile?"auto":100,minWidth:isMobile?0:100,flex:isMobile?"1 1 auto":"0 0 100px",textAlign:isMobile?"left":"right",fontSize:isMobile?15:16,fontWeight:800,color:"#111827"}}>{fp(item.price*item.qty)}</div>
+                  <button onClick={() => removeItem(item.id)} aria-label="Sepetten kaldır" style={{background:isMobile?"#fff5f5":"none",border:isMobile?"1px solid #fecaca":"none",borderRadius:isMobile?6:0,color:isMobile?"#dc2626":"#ccc",fontSize:isMobile?14:18,fontWeight:800,cursor:"pointer",width:isMobile?34:"auto",height:isMobile?32:"auto",flex:"0 0 auto"}}>✕</button>
                 </div>
               ))}
             </div>
           </div>
 
-          <div style={{border:"1px solid #eee",borderRadius:8,padding:20,position:"sticky",top:120}}>
+          <div style={{border:"1px solid #eee",borderRadius:8,padding:isMobile?16:20,position:isMobile?"static":"sticky",top:isMobile?"auto":120,minWidth:0,overflow:"hidden"}}>
             <h3 style={{fontSize:16,fontWeight:700,marginBottom:16}}>Sipariş Özeti</h3>
             <div style={{display:"flex",justifyContent:"space-between",marginBottom:8,fontSize:14}}><span style={{color:"#666"}}>{t("subtotal")}</span><span style={{fontWeight:600}}>{fp(cartTotal)}</span></div>
             <div style={{display:"flex",justifyContent:"space-between",marginBottom:8,fontSize:14}}><span style={{color:"#666"}}>{t("shipping")}</span><span style={{fontWeight:600,color:ship===0?"#4caf50":"inherit"}}>{ship===0?t("free"):`${fp(ship)}`}</span></div>
@@ -2429,12 +2433,12 @@ function CartPage() {
 
             {/* Coupon code */}
             <div style={{marginBottom:12}}>
-              <div style={{display:"flex",gap:0,marginTop:8}}>
+              <div style={{display:"flex",gap:0,marginTop:8,minWidth:0}}>
                 <input value={coupon} onChange={e => {setCoupon(e.target.value); setCouponError("");}} placeholder="Kupon kodu"
                   onKeyDown={e => {if(e.key==="Enter") applyCoupon();}}
-                  style={{flex:1,padding:"8px 12px",border:"1px solid #ddd",borderRight:"none",borderRadius:"6px 0 0 6px",fontSize:13,outline:"none",textTransform:"uppercase"}} disabled={couponApplied||couponLoading}/>
+                  style={{flex:"1 1 auto",minWidth:0,padding:"8px 12px",border:"1px solid #ddd",borderRight:"none",borderRadius:"6px 0 0 6px",fontSize:13,outline:"none",textTransform:"uppercase"}} disabled={couponApplied||couponLoading}/>
                 <button onClick={couponApplied ? removeCoupon : applyCoupon} disabled={couponLoading}
-                  style={{padding:"8px 14px",background:couponApplied?"#4caf50":"#333",color:"#fff",border:"none",borderRadius:"0 6px 6px 0",fontSize:13,fontWeight:600,cursor:couponLoading?"wait":"pointer",opacity:couponLoading?0.6:1}}>
+                  style={{padding:isMobile?"8px 10px":"8px 14px",background:couponApplied?"#4caf50":"#333",color:"#fff",border:"none",borderRadius:"0 6px 6px 0",fontSize:13,fontWeight:600,cursor:couponLoading?"wait":"pointer",opacity:couponLoading?0.6:1,flex:"0 0 auto"}}>
                   {couponLoading ? "..." : couponApplied ? "✓ Kaldır" : "Uygula"}
                 </button>
               </div>
@@ -2442,7 +2446,7 @@ function CartPage() {
             </div>
 
             <div style={{borderTop:"1px solid #eee",padding:"12px 0 0"}}>
-              <div style={{display:"flex",justifyContent:"space-between"}}><span style={{fontSize:16,fontWeight:700}}>{t("total")}</span><span style={{fontSize:22,fontWeight:800,color:"#ff6000"}}>{fp(cartTotal + ship - discount)}</span></div>
+              <div style={{display:"flex",justifyContent:"space-between",alignItems:"baseline",gap:12}}><span style={{fontSize:16,fontWeight:700}}>{t("total")}</span><span style={{fontSize:isMobile?20:22,fontWeight:800,color:"#ff6000",textAlign:"right"}}>{fp(cartTotal + ship - discount)}</span></div>
             </div>
             <button onClick={() => go("checkout")} style={{width:"100%",padding:"14px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:16,fontWeight:700,cursor:"pointer",marginTop:16}}>Siparişi Tamamla</button>
           </div>
