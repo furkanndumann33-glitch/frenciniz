@@ -135,7 +135,6 @@ function buildMerchantFeed(products, categories) {
       `<g:custom_label_3>${xmlEscape(imageTier)}</g:custom_label_3>` +
       `<g:custom_label_4>${xmlEscape(vehicleLabel)}</g:custom_label_4>` +
       `<g:shipping><g:country>TR</g:country><g:service>Standard</g:service><g:price>${price >= 3000 ? "0.00" : "150.00"} TRY</g:price></g:shipping>` +
-      `<g:tax><g:country>TR</g:country><g:rate>20</g:rate><g:tax_ship>yes</g:tax_ship></g:tax>` +
       `</item>`
     );
   }
