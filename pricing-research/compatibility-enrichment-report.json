@@ -1,0 +1,136 @@
+{
+  "total": 1055,
+  "changed": 0,
+  "withDescription": 1055,
+  "withCompatibility": 1055,
+  "specificCompatibility": 460,
+  "byGroup": {
+    "circir": {
+      "total": 52,
+      "changed": 0,
+      "withDescription": 52,
+      "withCompatibility": 52,
+      "specificCompatibility": 52
+    },
+    "bijon-grup": {
+      "total": 187,
+      "changed": 0,
+      "withDescription": 187,
+      "withCompatibility": 187,
+      "specificCompatibility": 77
+    },
+    "disk": {
+      "total": 97,
+      "changed": 0,
+      "withDescription": 97,
+      "withCompatibility": 97,
+      "specificCompatibility": 48
+    },
+    "kampana": {
+      "total": 118,
+      "changed": 0,
+      "withDescription": 118,
+      "withCompatibility": 118,
+      "specificCompatibility": 44
+    },
+    "porya-grup": {
+      "total": 79,
+      "changed": 0,
+      "withDescription": 79,
+      "withCompatibility": 79,
+      "specificCompatibility": 45
+    },
+    "susp-korugu": {
+      "total": 105,
+      "changed": 0,
+      "withDescription": 105,
+      "withCompatibility": 105,
+      "specificCompatibility": 41
+    },
+    "kaliper-urunleri": {
+      "total": 169,
+      "changed": 0,
+      "withDescription": 169,
+      "withCompatibility": 169,
+      "specificCompatibility": 28
+    },
+    "fren-yaylari": {
+      "total": 32,
+      "changed": 0,
+      "withDescription": 32,
+      "withCompatibility": 32,
+      "specificCompatibility": 22
+    },
+    "sensor-uzatma": {
+      "total": 41,
+      "changed": 0,
+      "withDescription": 41,
+      "withCompatibility": 41,
+      "specificCompatibility": 27
+    },
+    "fren-korukleri": {
+      "total": 77,
+      "changed": 0,
+      "withDescription": 77,
+      "withCompatibility": 77,
+      "specificCompatibility": 12
+    },
+    "fren-pabuclari": {
+      "total": 40,
+      "changed": 0,
+      "withDescription": 40,
+      "withCompatibility": 40,
+      "specificCompatibility": 30
+    },
+    "balata": {
+      "total": 58,
+      "changed": 0,
+      "withDescription": 58,
+      "withCompatibility": 58,
+      "specificCompatibility": 34
+    }
+  },
+  "referenceSources": [
+    {
+      "title": "CEI 5010598308 brake disc",
+      "url": "https://www.cei.it/parts/products-details/brake-discs/renault/5010598308.html",
+      "usedFor": "Renault Midlum / Volvo FL brake disc cross reference"
+    },
+    {
+      "title": "BAS Parts 5010598308 brake disc",
+      "url": "https://www.basparts.com/en/new/dt-spare-parts-brake-disc-BP0741947",
+      "usedFor": "Renault Midlum and Volvo FL application check"
+    },
+    {
+      "title": "DFT 81436010163 air bellow",
+      "url": "https://dftautoparts.com/product/air-bellow/",
+      "usedFor": "MAN TGA/TGS/TGX air spring reference"
+    },
+    {
+      "title": "Can Brake 81436010162 air spring",
+      "url": "https://www.canbrake.com/en/products-5/air-spring-1861",
+      "usedFor": "MAN air spring reference"
+    },
+    {
+      "title": "Autokseft 0003270101 OE cross reference",
+      "url": "https://www.autokseft.cz/OE-cislo/0003270101/SETRA-2488",
+      "usedFor": "Mercedes-Benz, Setra and cross reference air spring OE numbers"
+    },
+    {
+      "title": "Tirshop WVA29279 brake pads",
+      "url": "https://www.tirshop.ro/en/product/24277/front-and-rear-brake-pads-man-tga-tgs-tgx-wva29279-pd-214.html",
+      "usedFor": "MAN TGA/TGS/TGX WVA 29279 brake pad reference"
+    },
+    {
+      "title": "AIB Original WVA 29165 brake pad",
+      "url": "https://www.aiboriginal.com/02-031-21-50-0-05-092-90-10-0-wva-29165-brake-pad/",
+      "usedFor": "BPW WVA 29165 / 29215 / 29306 brake pad reference"
+    },
+    {
+      "title": "Victor Truck brake drum catalogue",
+      "url": "https://www.victortruck.com/upload/2018100909170679.pdf",
+      "usedFor": "SAF 1064010801 brake drum reference"
+    }
+  ],
+  "generatedAt": "2026-06-06T22:09:42.664Z"
+}
