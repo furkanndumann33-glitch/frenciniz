@@ -2,6 +2,8 @@
   "rewrites": [
     { "source": "/sitemap.xml", "destination": "/api/sitemap" },
     { "source": "/google-merchant-feed.xml", "destination": "/api/sitemap?type=merchant" },
+    { "source": "/meta-catalog-feed.csv", "destination": "/api/sitemap?type=meta" },
+    { "source": "/facebook-catalog-feed.csv", "destination": "/api/sitemap?type=meta" },
     { "source": "/mercedes-actros-fren-diski", "destination": "/api/sitemap?type=landing&slug=mercedes-actros-fren-diski" },
     { "source": "/mercedes-axor-fren-diski", "destination": "/api/sitemap?type=landing&slug=mercedes-axor-fren-diski" },
     { "source": "/mercedes-atego-fren-diski", "destination": "/api/sitemap?type=landing&slug=mercedes-atego-fren-diski" },

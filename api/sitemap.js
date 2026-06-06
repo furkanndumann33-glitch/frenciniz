@@ -29,6 +29,11 @@ function xmlEscape(s) {
     .replace(/'/g, "&apos;");
 }
 
+function csvEscape(value) {
+  const text = String(value ?? "").replace(/\r?\n/g, " ").trim();
+  return `"${text.replace(/"/g, '""')}"`;
+}
+
 function merchantSafeProductText(value) {
   return String(value || "")
     .replace(/Kaliper\s+D(?:\u00fc|u)rb(?:\u00fc|u)n\s+Tak(?:\u0131|i)m(?:\u0131|i)/gi, "Kaliper Kilavuz Pim Takimi")
@@ -147,6 +152,77 @@ ${items.join("\n")}
 </rss>`;
 }
 
+function buildMetaCatalogFeed(products, categories) {
+  const headers = [
+    "id",
+    "title",
+    "description",
+    "availability",
+    "condition",
+    "price",
+    "link",
+    "image_link",
+    "brand",
+    "mpn",
+    "inventory",
+    "google_product_category",
+    "product_type",
+    "custom_label_0",
+    "custom_label_1",
+    "custom_label_2",
+    "custom_label_3",
+    "custom_label_4",
+  ];
+  const rows = [headers.map(csvEscape).join(",")];
+
+  for (const p of products) {
+    if (!p.id || !p.name || p.price == null) continue;
+    const sub = categories.find(c => c.id === p.cat);
+    const catName = merchantSafeProductText(sub ? sub.name : "Fren Aksami");
+    const grp = sub?.parent ? categories.find(c => c.id === sub.parent) : null;
+    const fullCat = grp ? `${grp.name} > ${catName}` : catName;
+    const productName = merchantSafeProductText(p.name);
+    const price = Number(p.price || 0);
+    const stock = Number(p.stock || 0);
+    const hasImg = p.img && !String(p.img).includes("placehold");
+    const rawImg = hasImg ? String(p.img) : "/img/site/missing-product.webp";
+    const imgUrl = rawImg.startsWith("http") ? rawImg : `${SITE}${rawImg.startsWith("/") ? "" : "/"}${rawImg}`;
+    const brand = p.brand || "Ekersan";
+    const mpn = p.oem || p.sku || p.id;
+    const priceTier = price >= 5000 ? "5000tl-ustu" : price >= 3000 ? "3000-5000tl" : price >= 1000 ? "1000-3000tl" : "1000tl-alti";
+    const stockTier = stock >= 100 ? "yuksek-stok" : stock >= 20 ? "orta-stok" : stock > 0 ? "dusuk-stok" : "stok-yok";
+    const imageTier = hasImg ? "gorselli-urun" : "gorsel-hazirlaniyor";
+    const vehicleLabel = Array.isArray(p.veh) && p.veh.length ? p.veh.slice(0, 2).join("-") : "agir-vasita";
+    const categoryLabel = grp?.id || p.cat || "fren-aksami";
+    const title = [productName, p.sku, brand].filter(Boolean).join(" - ").slice(0, 200);
+    const richDesc = `${productName} - ${catName} kategorisinde ${brand} marka orijinal/esdeger agir vasita fren parcasi. ${p.sku ? "Stok kodu: " + p.sku + ". " : ""}${p.oem ? "OEM: " + p.oem + ". " : ""}Kamyon, tir, otobus ve dorse icin uyumlu fren aksami. Ayni gun kargo, 12 taksit, 14 gun iade.`;
+    const desc = merchantSafeProductText(p.desc || richDesc).slice(0, 5000);
+
+    rows.push([
+      p.id,
+      title,
+      desc,
+      stock > 0 ? "in stock" : "out of stock",
+      "new",
+      `${price.toFixed(2)} TRY`,
+      `${SITE}/urun/${p.id}`,
+      imgUrl,
+      brand,
+      mpn,
+      Math.max(0, Math.floor(stock)),
+      "Vehicles & Parts > Vehicle Parts & Accessories > Motor Vehicle Parts > Motor Vehicle Brake Parts",
+      fullCat,
+      categoryLabel,
+      stockTier,
+      priceTier,
+      imageTier,
+      vehicleLabel,
+    ].map(csvEscape).join(","));
+  }
+
+  return rows.join("\n");
+}
+
 export default async function handler(req, res) {
   try {
     const { products, categories } = await loadProducts();
@@ -169,6 +245,14 @@ export default async function handler(req, res) {
       res.setHeader("Content-Type", "text/html; charset=utf-8");
       res.setHeader("Cache-Control", "public, max-age=600, s-maxage=86400, stale-while-revalidate=604800");
       return res.status(200).send(html);
+    }
+
+    const isMetaCatalogFeed = url.includes("type=meta") || url.includes("meta-catalog-feed") || url.includes("facebook-catalog-feed");
+    if (isMetaCatalogFeed) {
+      const csv = buildMetaCatalogFeed(products, categories);
+      res.setHeader("Content-Type", "text/csv; charset=utf-8");
+      res.setHeader("Cache-Control", "public, max-age=600, s-maxage=86400, stale-while-revalidate=604800");
+      return res.status(200).send(csv);
     }
 
     // Merchant Center feed mi yoksa standart sitemap mi?

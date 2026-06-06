@@ -105,6 +105,52 @@ const EN = {
 };
 const LANGS = {tr:TR, en:EN};
 
+function metaTrack(eventName, payload = {}, options) {
+  try {
+    if (typeof window !== "undefined" && typeof window.fbq === "function") {
+      window.fbq("track", eventName, payload, options);
+    }
+  } catch(e) {}
+}
+
+function metaTrackCustom(eventName, payload = {}) {
+  try {
+    if (typeof window !== "undefined" && typeof window.fbq === "function") {
+      window.fbq("trackCustom", eventName, payload);
+    }
+  } catch(e) {}
+}
+
+function metaProductPayload(product, qty = 1, category) {
+  const id = String(product?.id || product?.sku || "");
+  const price = Number(product?.price || 0);
+  return {
+    content_ids: [id],
+    content_type: "product",
+    content_name: product?.name || "",
+    content_category: category || product?.cat || "agir-vasita-fren",
+    currency: "TRY",
+    value: price * qty,
+    contents: [{ id, quantity: qty, item_price: price }],
+  };
+}
+
+function metaCartPayload(cartItems) {
+  const items = Array.isArray(cartItems) ? cartItems : [];
+  return {
+    content_ids: items.map(c => String(c.id || c.sku || "")),
+    content_type: "product",
+    currency: "TRY",
+    value: items.reduce((s,c) => s + Number(c.price || 0) * Number(c.qty || 1), 0),
+    num_items: items.reduce((s,c) => s + Number(c.qty || 1), 0),
+    contents: items.map(c => ({
+      id: String(c.id || c.sku || ""),
+      quantity: Number(c.qty || 1),
+      item_price: Number(c.price || 0),
+    })),
+  };
+}
+
 // ===== CATEGORY EN MAP (by id) =====
 const CAT_EN = {
   "all":"All Products",
@@ -814,6 +860,7 @@ export default function App() {
         });
       }
     } catch(e) {}
+    metaTrack('AddToCart', metaProductPayload(product, qty));
   }, []);
 
   const updateQty = useCallback((id, qty) => setCart(prev => qty < 1 ? prev.filter(c => c.id !== id) : prev.map(c => c.id === id ? {...c, qty} : c)), []);
@@ -824,6 +871,8 @@ export default function App() {
     setStockAlerts(prev => [...prev, {productId, contact, date: new Date()}]);
   }, []);
   const completePurchase = useCallback(() => {
+    const total = cart.reduce((s,c) => s + (c.price||0)*(c.qty||1), 0);
+    const txnId = 'order_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8);
     setPastOrders(prev => {
       const newItems = cart.map(c => ({id:c.id, name:c.name, brand:c.brand, sku:c.sku, price:c.price, img:c.img, qty:c.qty, date:new Date()}));
       return [...newItems, ...prev].slice(0, 20);
@@ -831,8 +880,6 @@ export default function App() {
     // Google Ads / GA4 purchase conversion event
     try {
       if (typeof window !== 'undefined' && typeof window.gtag === 'function' && cart.length > 0) {
-        const total = cart.reduce((s,c) => s + (c.price||0)*(c.qty||1), 0);
-        const txnId = 'order_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8);
         window.gtag('event', 'purchase', {
           transaction_id: txnId,
           value: total,
@@ -857,6 +904,9 @@ export default function App() {
         });
       }
     } catch(e) {}
+    if (cart.length > 0) {
+      metaTrack('Purchase', metaCartPayload(cart), { eventID: txnId });
+    }
   }, [cart]);
 
   const cartCount = cart.reduce((s,c) => s + c.qty, 0);
@@ -1038,6 +1088,7 @@ export default function App() {
         } catch(e) {}
 
         // Bir sonraki yıla kadar geçerli fiyat (Google rich result REQ)
+        metaTrack('ViewContent', metaProductPayload(p, 1, catName));
         const priceValidUntil = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
 
         // Product JSON-LD — 2026 Google Merchant rich result spec'i ile uyumlu
@@ -1190,6 +1241,11 @@ export default function App() {
           }
         }
       } catch(e) {}
+      if (cart.length > 0) {
+        const metaPayload = metaCartPayload(cart);
+        if (page === "checkout") metaTrack('InitiateCheckout', metaPayload);
+        else if (page === "cart") metaTrackCustom('ViewCart', metaPayload);
+      }
     }
 
     applySEO({ title, description: desc, canonical, ogImage: img, robots, ogType, productData, keywords });
