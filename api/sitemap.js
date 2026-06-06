@@ -29,6 +29,12 @@ function xmlEscape(s) {
     .replace(/'/g, "&apos;");
 }
 
+function merchantSafeProductText(value) {
+  return String(value || "")
+    .replace(/Kaliper\s+D(?:\u00fc|u)rb(?:\u00fc|u)n\s+Tak(?:\u0131|i)m(?:\u0131|i)/gi, "Kaliper Kilavuz Pim Takimi")
+    .replace(/D(?:\u00fc|u)rb(?:\u00fc|u)n\s+Tak(?:\u0131|i)m(?:\u0131|i)/gi, "Kilavuz Pim Takimi");
+}
+
 async function loadProducts() {
   // 1) KV
   try {
@@ -63,9 +69,11 @@ function buildMerchantFeed(products, categories) {
   for (const p of products) {
     if (!p.id || !p.name || p.price == null) continue;
     const sub = categories.find(c => c.id === p.cat);
-    const catName = sub ? sub.name : "Fren Aksamı";
+    const catName = merchantSafeProductText(sub ? sub.name : "Fren Aksamı");
     const grp = sub?.parent ? categories.find(c => c.id === sub.parent) : null;
     const fullCat = grp ? `${grp.name} > ${catName}` : catName;
+    const productName = merchantSafeProductText(p.name);
+    const productDesc = merchantSafeProductText(p.desc || "");
 
     const hasImg = p.img && !String(p.img).includes("placehold");
     const rawImg = hasImg ? String(p.img) : "/img/site/missing-product.webp";
@@ -78,7 +86,7 @@ function buildMerchantFeed(products, categories) {
     const gtin = p.gtin || "";
     const price = Number(p.price || 0);
     const stock = Number(p.stock || 0);
-    const titleParts = [p.name, p.sku, brand, catName]
+    const titleParts = [productName, p.sku, brand, catName]
       .filter(Boolean)
       .filter((value, index, arr) => arr.findIndex(v => String(v).toLowerCase() === String(value).toLowerCase()) === index);
     const merchantTitle = titleParts.join(" - ").slice(0, 150);
@@ -87,8 +95,8 @@ function buildMerchantFeed(products, categories) {
     const imageTier = hasImg ? "gorselli-urun" : "gorsel-hazirlaniyor";
     const vehicleLabel = Array.isArray(p.veh) && p.veh.length ? p.veh.slice(0, 2).join("-") : "agir-vasita";
     const categoryLabel = grp?.id || p.cat || "fren-aksami";
-    const richDesc = `${p.name} - ${catName} kategorisinde ${brand} marka orijinal/eşdeğer parça. ${p.sku ? "Stok kodu: " + p.sku + ". " : ""}${p.oem ? "OEM: " + p.oem + ". " : ""}ECE R-90 sertifikalı, kamyon, tır, otobüs ve dorse için uyumlu fren aksamı. 3000₺ üzeri ücretsiz kargo, 12 taksit, 14 gün koşulsuz iade. Tel: 0545 608 7008 · WhatsApp: 0850 888 7881.`;
-    const baseDesc = p.desc && p.desc.length > p.name.length + 10 ? p.desc : richDesc;
+    const richDesc = `${productName} - ${catName} kategorisinde ${brand} marka orijinal/eşdeğer parça. ${p.sku ? "Stok kodu: " + p.sku + ". " : ""}${p.oem ? "OEM: " + p.oem + ". " : ""}ECE R-90 sertifikalı, kamyon, tır, otobüs ve dorse için uyumlu fren aksamı. 3000₺ üzeri ücretsiz kargo, 12 taksit, 14 gün koşulsuz iade. Tel: 0545 608 7008 · WhatsApp: 0850 888 7881.`;
+    const baseDesc = productDesc && productDesc.length > productName.length + 10 ? productDesc : richDesc;
     const desc = baseDesc.slice(0, 5000);
     const additionalImages = Array.isArray(p.images)
       ? p.images

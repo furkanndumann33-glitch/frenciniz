@@ -82,7 +82,7 @@ CATEGORY_PATTERNS = [
     (r"K[AL]?L[İI]PER.*KAPA[KĞG]|K[AL]?L[İI]PER.*CONTA|SENS[ÖO]RLÜ\s*KAPA[KĞG]|SENS[ÖO]RSÜZ\s*KAPA[KĞG]", "Kaliper Kapak/Conta"),
     (r"K[AL]?L[İI]PER.*MEKAN[İI]ZMA|K[AL]?L[İI]PER.*AYAR|AYAR\s*MEKAN[İI]ZMA|AYAR\s*D[İI]ŞL[İI]|AYAR\s*TAŞIYIC", "Kaliper Ayar Mekanizması"),
     (r"K[AL]?L[İI]PER.*TOZ\s*LAST[İI]|TOZ\s*LAST[İI][GĞ][İI]", "Kaliper Toz Lastiği"),
-    (r"K[AL]?L[İI]PER.*DURBUN|DÜRBÜN\s*TAKIM", "Kaliper Dürbün Takımı"),
+    (r"K[AL]?L[İI]PER.*DURBUN|DÜRBÜN\s*TAKIM", "Kaliper Kilavuz Pim Takimi"),
     # Kaliper Tamir Takımı: TM.TK., MASURA, BİLYA YATAĞI, P[İI]ST(ON)? KAPAĞI
     (r"K[AL]?L[İI]PER.*TM\.?\s*TK|K[AL]?L[İI]PER.*MASURA|MASURA\s*B[İI]LYA|B[İI]LYA\s*YATA[ĞG]|K[AL]?L[İI]PER.*P[İI]STON\s*KAPA|RULMAN\s*YATA[ĞG]|MEK\.?\s*KOMPLE\s*SET", "Kaliper Tamir Takımı"),
     # Kaliper Taşıyıcı (kapak pattern'inden sonra geliyor ama spesifik bir alt kategori değil — Kaliper Ayar Mek altına alalım)
@@ -212,7 +212,7 @@ CATEGORY_HIERARCHY = {
     # KALİPER ÜRÜNLERİ
     "Kaliper":                       {"group_id": "kaliper-urunleri", "group_name": "KALİPER ÜRÜNLERİ"},
     "Kaliper Ayar Mekanizması":      {"group_id": "kaliper-urunleri", "group_name": "KALİPER ÜRÜNLERİ"},
-    "Kaliper Dürbün Takımı":         {"group_id": "kaliper-urunleri", "group_name": "KALİPER ÜRÜNLERİ"},
+    "Kaliper Kilavuz Pim Takimi":    {"group_id": "kaliper-urunleri", "group_name": "KALİPER ÜRÜNLERİ"},
     "Kaliper Kapak/Conta":           {"group_id": "kaliper-urunleri", "group_name": "KALİPER ÜRÜNLERİ"},
     "Kaliper Perno Tamir Takımı":    {"group_id": "kaliper-urunleri", "group_name": "KALİPER ÜRÜNLERİ"},
     "Kaliper Tamir Seti":            {"group_id": "kaliper-urunleri", "group_name": "KALİPER ÜRÜNLERİ"},
@@ -352,6 +352,16 @@ def detect_category(name, path, sku=None, field10=None):
             if key in f10:
                 return cat
     return "Diğer"
+
+
+def clean_product_name_for_google(name, cat_name):
+    raw = str(name or "")
+    folded = raw.upper().replace("Ü", "U").replace("İ", "I").replace("ı", "I")
+    if "KALIPER" in folded and "DURBUN" in folded:
+        return "Kaliper Kilavuz Pim Takimi"
+    if cat_name == "Kaliper Kilavuz Pim Takimi":
+        return re.sub(r"DURBUN", "Kilavuz Pim", folded, flags=re.IGNORECASE)
+    return raw
 
 def log(msg):
     print(f"[{datetime.now().strftime('%H:%M:%S')}] {msg}", flush=True)
@@ -507,10 +517,11 @@ def main():
 
         # Brand
         brand = BRAND_MAP.get(a.get("brand_id"), "Ekersan")
+        display_name = clean_product_name_for_google(a.get("name", ""), cat_name)
 
         final.append({
             "id": pid,
-            "name": a.get("name", ""),
+            "name": display_name,
             "sku": a.get("sku", ""),
             "price": round(price * PRICE_MULTIPLIER, 2),
             "old": None,
@@ -523,7 +534,7 @@ def main():
             "reviews": 0,
             "img": main_img,
             "images": images,  # YENİ: galeri için
-            "desc": a.get("name", ""),
+            "desc": display_name,
             "specs": {},
             "compat": detect_compat(a.get("name", ""), a.get("field1", "")),
             "veh": ["kamyon", "tir"],

@@ -50,7 +50,7 @@ const CATEGORY_PATTERNS = [
   [/KAL[İI]PER.*KAPA[KĞG]|KAL[İI]PER.*CONTA|SENS[ÖO]RLÜ\s*KAPA[KĞG]|SENS[ÖO]RSÜZ\s*KAPA[KĞG]/i, "Kaliper Kapak/Conta"],
   [/KAL[İI]PER.*MEKAN[İI]ZMA|KAL[İI]PER.*AYAR|AYAR\s*MEKAN[İI]ZMA|AYAR\s*D[İI]ŞL[İI]|AYAR\s*TAŞIYIC/i, "Kaliper Ayar Mekanizması"],
   [/KAL[İI]PER.*TOZ\s*LAST[İI]|TOZ\s*LAST[İI]G[İI]/i, "Kaliper Toz Lastiği"],
-  [/KAL[İI]PER.*DURBUN|DÜRBÜN\s*TAKIM/i, "Kaliper Dürbün Takımı"],
+  [/KAL[İI]PER.*DURBUN|DÜRBÜN\s*TAKIM/i, "Kaliper Kilavuz Pim Takimi"],
   // Kaliper Tamir Takımı: TM.TK., MASURA, BİLYA YATAĞI, RULMAN YATAĞI, ESKOL, ARCS SET
   [/KAL[İI]PER.*TM\.?\s*TK|KAL[İI]PER.*MASURA|MASURA\s*B[İI]LYA|B[İI]LYA\s*YATA[ĞG]|RULMAN\s*YATA[ĞG]|KAL[İI]PER.*P[İI]STON\s*KAPA|MEK\.?\s*KOMPLE\s*SET|\bESKOL\b|\bARCS\s*SET|BPW.*TM\.?\s*TK|AXOR\s*SET\s*Y/i, "Kaliper Tamir Takımı"],
   // Kaliper Taşıyıcı → Kaliper Ayar Mekanizması altına
@@ -159,6 +159,17 @@ function detectCategory(name, path, sku) {
   return "Diğer";
 }
 
+function cleanProductNameForGoogle(name, catName) {
+  const raw = String(name || "");
+  if (/KAL[İI]PER/i.test(raw) && /DURBUN|DÜRBÜN/i.test(raw)) {
+    return "Kaliper Kilavuz Pim Takimi";
+  }
+  if (catName === "Kaliper Kilavuz Pim Takimi") {
+    return raw.replace(/DÜRBÜN|DURBUN/gi, "Kilavuz Pim");
+  }
+  return raw;
+}
+
 async function ekersanLogin() {
   const res = await fetch(`${EKERSAN_API}/data/b2b_signin.json`, {
     method: "POST",
@@ -253,10 +264,11 @@ function processProducts(raw) {
     catsMap[catId] = catName;
 
     const brand = BRAND_MAP[a.brand_id] || "Ekersan";
+    const displayName = cleanProductNameForGoogle(a.name || "", catName);
 
     final.push({
       id: pid++,
-      name: a.name || "",
+      name: displayName,
       sku: a.sku || "",
       price: Math.round(price * PRICE_MULTIPLIER * 100) / 100,
       old: null,
@@ -269,7 +281,7 @@ function processProducts(raw) {
       reviews: 0,
       img: mainImg,
       images,
-      desc: a.name || "",
+      desc: displayName,
       specs: {},
       compat: [],
       veh: ["kamyon", "tir"],
@@ -284,7 +296,7 @@ function processProducts(raw) {
     "Fren Pabucu":"fren-pabuclari","Perçin":"fren-pabuclari",
     "Fren Cırcırı":"circir","Mekanik Fren Cırcırı":"circir","Otomatik Fren Cırcırı":"circir",
     "Fren Ayar Parçaları":"fren-ayar","Ayar Kolu / El Fren":"fren-ayar","Cam Set":"fren-ayar",
-    "Kaliper":"kaliper-urunleri","Kaliper Ayar Mekanizması":"kaliper-urunleri","Kaliper Dürbün Takımı":"kaliper-urunleri","Kaliper Kapak/Conta":"kaliper-urunleri","Kaliper Perno Tamir Takımı":"kaliper-urunleri","Kaliper Tamir Seti":"kaliper-urunleri","Kaliper Tamir Takımı":"kaliper-urunleri","Kaliper Tamir Takımı (Duco)":"kaliper-urunleri","Kaliper Tamir Takımı (Elsa)":"kaliper-urunleri","Kaliper Tamir Takımı (Frenco)":"kaliper-urunleri","Kaliper Tamir Takımı (Maxx22)":"kaliper-urunleri","Kaliper Tamir Takımı (Modulx)":"kaliper-urunleri","Kaliper Tamir Takımı (PAN)":"kaliper-urunleri","Kaliper Tamir Takımı (Wabco)":"kaliper-urunleri","Kaliper Toz Lastiği":"kaliper-urunleri","Kızak":"kaliper-urunleri","Perno":"kaliper-urunleri",
+    "Kaliper":"kaliper-urunleri","Kaliper Ayar Mekanizması":"kaliper-urunleri","Kaliper Kilavuz Pim Takimi":"kaliper-urunleri","Kaliper Kapak/Conta":"kaliper-urunleri","Kaliper Perno Tamir Takımı":"kaliper-urunleri","Kaliper Tamir Seti":"kaliper-urunleri","Kaliper Tamir Takımı":"kaliper-urunleri","Kaliper Tamir Takımı (Duco)":"kaliper-urunleri","Kaliper Tamir Takımı (Elsa)":"kaliper-urunleri","Kaliper Tamir Takımı (Frenco)":"kaliper-urunleri","Kaliper Tamir Takımı (Maxx22)":"kaliper-urunleri","Kaliper Tamir Takımı (Modulx)":"kaliper-urunleri","Kaliper Tamir Takımı (PAN)":"kaliper-urunleri","Kaliper Tamir Takımı (Wabco)":"kaliper-urunleri","Kaliper Toz Lastiği":"kaliper-urunleri","Kızak":"kaliper-urunleri","Perno":"kaliper-urunleri",
     "Fren Körüğü":"fren-korukleri","Lastik":"fren-korukleri",
     "Bijon":"bijon-grup","Bijon DPS":"bijon-grup","Disk Bijonu/Civatası":"bijon-grup","Somun / Cıvata":"bijon-grup",
     "Porya":"porya-grup","Rulman":"porya-grup","Keçe":"porya-grup",
