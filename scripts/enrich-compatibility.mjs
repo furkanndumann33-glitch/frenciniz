@@ -374,14 +374,14 @@ const OEM_RULES = [
     note: "WVA 29165 / 29215 / 29268 referansları BPW dorse ve treyler fren balatası kataloglarında geçer.",
   },
   {
-    regex: /310977340/i,
+    regex: /310977340|3106775|310946|310967|032963|329623|329633/i,
     compat: ["BPW dorse dingili", "BPW treyler"],
-    note: "OEM 310977340 BPW fren kampanası referansı olarak listelenir.",
+    note: "OEM 310977 / 310677 / 310946 / 032963 / 3296xx referansları BPW dorse fren kampanası ve bijon gruplarında listelenir.",
   },
   {
-    regex: /1064010801|1064012801/i,
+    regex: /1064010801|1064012801|106402600/i,
     compat: ["SAF dorse dingili", "SAF Holland treyler"],
-    note: "OEM 1064010801 / 1064012801 SAF fren kampanası referansı olarak listelenir.",
+    note: "OEM 106401 / 106402 referansları SAF Holland dorse fren kampanası gruplarında listelenir.",
   },
   {
     regex: /786450|786115/i,
@@ -394,9 +394,9 @@ const OEM_RULES = [
     note: "5010 / 5001 Renault Trucks OEM referansları Midlum, Premium ve Magnum ağır vasıta fren/süspansiyon kataloglarında sık kullanılır.",
   },
   {
-    regex: /85103803|85103804|85110495|85110496|20515093|20582213|20582214|20582209|20582206|20531986|21961448|21961374|21961456|21222442|2229000300|2229210300|20757541|1379392|1379393|1440294|7421575117|7422025556/i,
+    regex: /85103803|85103804|85110495|85110496|20515093|20582213|20582214|20582209|20582206|20531986|21961448|21961374|21961456|21222442|2229000300|2229210300|20757541|1379392|1379393|1440294|7421575117|7422025556|20524942|3963997|1573081|1573082/i,
     compat: ["Volvo FH", "Volvo FM", "Volvo FL", "Volvo otobüs / ağır vasıta"],
-    note: "8510 / 2058 / 2196 / 7422 Volvo-Renault referansları Volvo FH/FM/FL ve ilgili ağır vasıta fren-süspansiyon kataloglarında kullanılır.",
+    note: "8510 / 2058 / 2196 / 7422 / 3963997 / 157308x Volvo-Renault referansları Volvo FH/FM/FL ve ilgili ağır vasıta fren, bijon ve süspansiyon kataloglarında kullanılır.",
   },
   {
     regex: /1386686|1402272|1852817|1726138|1387439|1640561|1723416|1528655|1528712|1368690|1368692|1368693|1411980|337559/i,
@@ -404,14 +404,14 @@ const OEM_RULES = [
     note: "Scania 13/14/17/18 ile başlayan OEM referansları Scania 4 ve P/G/R serisi fren parça kataloglarında geçer.",
   },
   {
-    regex: /7189476|7185503|7182682|7182772|7182305|7179778|7192305|7173317|7172079|7172329|7168333|7168838|7168580|7168257|7168346|7161201|2995812|2996328|2992470|2996329|2991979|1906461|1906438|1907631|1908614|1908729|421174|420648|42541412|42562856|5006028005/i,
+    regex: /7189476|7185503|7183050|7182682|7182772|7182305|7179778|7192305|7173317|7172079|7172329|7168333|7168838|7168580|7168257|7168346|7161201|2995812|2996328|2992470|2996329|2991979|1906461|1906438|1907631|1908614|1908729|421174|421184|420648|42541412|42562856|5006028005/i,
     compat: ["Iveco Eurocargo", "Iveco Eurotech", "Iveco Stralis", "Otoyol / Iveco otobüs"],
-    note: "716/717/718/299/190 ve 421174 referansları Iveco-Otoyol ağır vasıta fren ve bijon kataloglarında kullanılır.",
+    note: "716/717/718/299/190 ve 421174 / 421184 referansları Iveco-Otoyol ağır vasıta fren, kampana ve bijon kataloglarında kullanılır.",
   },
   {
-    regex: /942421|943421|946356|960421|970421|970423|975423|942990|000\s?420|305421|301423|346423|360423|617423|624421|623420|619420|658420|658421|381401|381402|371401|371402|327401|327402|346401|355401|393420/i,
+    regex: /942421|943421|946356|960421|970421|970423|975423|942990|000\s?420|305421|305423|301421|301423|346420|348420|346423|355423|360423|617423|624421|623420|619420|658420|658421|381401|381402|371401|371402|327401|327402|346401|355401|393420/i,
     compat: ["Mercedes-Benz Actros", "Mercedes-Benz Axor", "Mercedes-Benz Atego", "Mercedes-Benz SK/NG", "Mercedes-Benz 2517/2521/2524/2622"],
-    note: "Mercedes-Benz 000420 / 3xx401 / 3xx421 / 9xx421 OEM referansları Actros, Axor, Atego ve SK/NG ağır vasıta gruplarında kullanılır.",
+    note: "Mercedes-Benz 000420 / 3xx401 / 3xx421 / 3xx423 / 9xx421 OEM referansları Actros, Axor, Atego ve SK/NG ağır vasıta gruplarında kullanılır.",
   },
   {
     regex: /815011|815061|815082|814360|814430|814550|813570|819980|81\.50822|81\.50820|81\.50803/i,
@@ -457,6 +457,16 @@ const OEM_RULES = [
     regex: /21227349|MBR9018|68323825|MBR5124|MBR9004|M069018|M200135|MBR9007|1176816|17870|MBR5143|1088133/i,
     compat: ["ROR dorse dingili", "Meritor/ROR treyler", "Dorse disk fren sistemi"],
     note: "MBR / ROR / Meritor referansları treyler ve dorse disk fren uygulamalarında kullanılır.",
+  },
+  {
+    regex: /21020977|21020997|21022167|21023036|21018963|21209701|21209723|21211030|21021114|21021164|22222978|22224179/i,
+    compat: ["ROR dorse dingili", "Meritor/ROR treyler", "Dorse / treyler"],
+    note: "2102 / 2120 / 2222 ROR-Meritor referansları dorse kampana ve bijon gruplarında kullanılır.",
+  },
+  {
+    regex: /99717|99720|99730|99731|1308038|1309190|1309191|1373007|1337020|1356736|620646|620648|620649/i,
+    compat: ["DAF CF/XF", "DAF ağır vasıta bijon grubu"],
+    note: "997xx / 6206xx / 1308-1309 referansları DAF ağır vasıta bijon ve somun gruplarında karşılık olarak kullanılır.",
   },
   {
     regex: /82135830|501315228|501316953|4200172|1415147|234110|II371910061/i,
@@ -527,12 +537,44 @@ const GENERIC_PRODUCT_TITLES = new Map([
   ["DISK BALATASI", "Disk Balatası"],
   ["FREN DISK BALATASI", "Fren Disk Balatası"],
   ["FREN BALATASI", "Fren Balatası"],
+  ["BIJON DPS", "Bijon"],
+  ["BIJON", "Bijon"],
+  ["DISK BIJONU", "Disk Bijonu"],
+  ["DISK BIJONU CIVATASI", "Disk Bijonu"],
+  ["BIJON SOMUNU", "Bijon Somunu"],
+  ["DONER PULLU SOMUN", "Döner Pullu Somun"],
+  ["BUYUK DONER PULLU SOMUN", "Büyük Döner Pullu Somun"],
+  ["FREN CIRCIRI", "Fren Cırcırı"],
+  ["OTOMATIK FREN CIRCIRI", "Otomatik Fren Cırcırı"],
+  ["MEKANIK FREN CIRCIRI", "Mekanik Fren Cırcırı"],
+  ["CIRCIR TAMIR TAKIM", "Fren Cırcırı Tamir Takımı"],
+  ["PORYA", "Porya"],
+  ["FREN KORUGU", "Fren Körüğü"],
+  ["SUSPANSIYON KORUGU", "Süspansiyon Körüğü"],
+  ["PISTONSUZ KORUK", "Pistonsuz Körük"],
+  ["ROLL KORUK", "Roll Körük"],
+  ["KOMPLE KORUK METAL PISTON", "Komple Körük Metal Piston"],
+  ["KOMPLE KORUK PLASTIK PISTON", "Komple Körük Plastik Piston"],
+  ["KALIPER PERNO TAMIR TAKIMI", "Kaliper Perno Tamir Takımı"],
+  ["KALIPER KILAVUZ PIM TAKIMI", "Kaliper Kılavuz Pim Takımı"],
+  ["KALIPER MASURA BILYA YATAGI", "Kaliper Masura Bilya Yatağı"],
+  ["KALIPER MASURA BILYA TAKIMI", "Kaliper Masura Bilya Takımı"],
 ]);
 
 const TITLE_RULES = [
   { regex: /9267086|6604261/i, suffix: "Kögel Krone" },
   { regex: /8551042|3092710/i, suffix: "Volvo FH FM FL" },
   { regex: /21227349|MBR9018|68323825|MBR5124|MBR9004|M069018|M200135|MBR9007|1176816|17870|MBR5143|1088133/i, suffix: "ROR Meritor" },
+  { regex: /421174|421184|4211 ?74|4212 ?72|7168|7189|718305|7179|7192|42117459|42117447|42117463/i, suffix: "Iveco Eurocargo Stralis" },
+  { regex: /942401|943401|970401|960401|381401|327401|305401|305423|346420|348420|000 ?420|301421|A0{3}421/i, suffix: "Mercedes Actros Axor Atego" },
+  { regex: /815061|815080|815082|814550|814360/i, suffix: "MAN TGA TGS TGX" },
+  { regex: /136869|1411980|1528655|1528712|2285275|2051551|20524942|1391617|3963997|1573081|1573082/i, suffix: "Scania Volvo" },
+  { regex: /7C46|85DB|13C33|FC46|A333K/i, suffix: "Ford Cargo" },
+  { regex: /10640|330730|330211|330210|130310|130311/i, suffix: "SAF Holland" },
+  { regex: /03\.?27|0327|032963|329623|329633|310677|310977|3109(?:46|67|77)/i, suffix: "BPW ECOPlus" },
+  { regex: /21020977|21020997|21022167|21023036|21018963|21209701|21209723|21211030|21021114|21021164|22222978|22224179/i, suffix: "ROR Meritor" },
+  { regex: /99717|99720|99730|99731|1308038|1309190|1309191|1373007|1337020|1356736|620646|620648|620649/i, suffix: "DAF CF XF" },
+  { regex: /501009|501026|501052|501059|500079|500183/i, suffix: "Renault Midlum Premium Magnum" },
 ];
 
 function normalize(value) {
@@ -558,32 +600,115 @@ function titleCaseBase(productName) {
   return GENERIC_PRODUCT_TITLES.get(normalize(productName).replace(/\s+/g, " ").trim());
 }
 
+function looksLikeGeneratedSuffix(tail) {
+  if (!tail || /[:()]/.test(tail)) return false;
+  if (/\b(?:SOL|SAĞ|SAG|ÖN|ON|ARKA|DELİK|DELIK|KANAL|ÇIKIŞ|CIKIS|SAPLAMALI|LASTİK|LASTIK)\b/i.test(tail)) return false;
+  return /\b(?:BPW|ECOPlus|SAF|Holland|Mercedes|Actros|Axor|Atego|Arocs|SK|NG|MAN|TGA|TGS|TGX|Renault|Midlum|Premium|Magnum|Kerax|Volvo|FH|FM|FL|ROR|Meritor|DAF|CF|XF|Iveco|Eurocargo|Eurotech|Stralis|Mitsubishi|Canter|Fuso|Isuzu|NPR|NQR|Ford|Cargo|Scania|Kögel|Krone|Knorr|WABCO|Haldex|otobüs|dingil|dorse|treyler|Yerel|uygulamaları|fren|kampanası|grubu)\b/i.test(tail);
+}
+
+function generatedBaseFromCurrentName(currentName, genericBases, suffix) {
+  if (!suffix) return "";
+
+  const exact = genericBases.find((baseName) => currentName === `${baseName} ${suffix}`);
+  if (exact) return exact;
+
+  return genericBases.find((baseName) => {
+    if (!currentName.startsWith(`${baseName} `)) return false;
+    const tail = currentName.slice(baseName.length).trim();
+    return looksLikeGeneratedSuffix(tail);
+  }) || "";
+}
+
+function stripGeneratedProductName(productName) {
+  const currentName = String(productName || "").trim();
+  const genericBases = [...new Set(GENERIC_PRODUCT_TITLES.values())];
+  const base = genericBases.find((baseName) => {
+    if (!currentName.startsWith(`${baseName} `)) return false;
+    return looksLikeGeneratedSuffix(currentName.slice(baseName.length).trim());
+  });
+  return base || currentName;
+}
+
 function cleanTitlePart(value) {
   return String(value || "")
-    .replace(/\b(?:dorse dingili|dorse|treyler|disk fren sistemi|kaliper sistemi|ağır vasıta|araç grubu|serisi)\b/gi, "")
+    .replace(/\b(?:dorse dingili|dorse|treyler|dingil grubu|dingili|dingil|disk fren sistemi|kaliper sistemi|ağır vasıta|araç grubu|serisi|uygulamaları)\b/gi, "")
     .replace(/Mercedes-Benz/g, "Mercedes")
     .replace(/Renault Trucks/g, "Renault")
     .replace(/Meritor\/ROR/g, "Meritor ROR")
+    .replace(/\b(?:porya|bijon|fren|kampanası|grubu|sistemi|hattı)\b/gi, "")
     .replace(/[()/]/g, " ")
     .replace(/\s+/g, " ")
     .trim();
 }
 
+const TITLE_BRAND_GROUPS = [
+  { label: "Mercedes", regex: /^Mercedes\b/i },
+  { label: "Renault", regex: /^Renault\b/i },
+  { label: "Iveco", regex: /^Iveco\b/i },
+  { label: "MAN", regex: /^MAN\b/i },
+  { label: "Scania", regex: /^Scania\b/i },
+  { label: "Volvo", regex: /^Volvo\b/i },
+  { label: "Ford Cargo", regex: /^Ford Cargo\b/i },
+  { label: "DAF", regex: /^DAF\b/i },
+  { label: "BMC", regex: /^BMC\b/i },
+  { label: "Mitsubishi", regex: /^Mitsubishi\b/i },
+  { label: "Isuzu", regex: /^Isuzu\b/i },
+  { label: "Otokar", regex: /^Otokar\b/i },
+  { label: "BPW", regex: /^BPW\b/i },
+  { label: "SAF", regex: /^SAF\b/i },
+  { label: "Knorr", regex: /^Knorr/i },
+  { label: "WABCO", regex: /^WABCO\b/i },
+  { label: "Meritor", regex: /^Meritor\b/i },
+  { label: "Haldex", regex: /^Haldex\b/i },
+];
+
+function compactBrandGroup(label, values) {
+  const details = uniq(
+    values
+      .map((value) => value.replace(new RegExp(`^${label}\\s*`, "i"), ""))
+      .flatMap((value) => value.split(/\s+/))
+      .map((value) => value.replace(/^[-/]+|[-/]+$/g, ""))
+      .filter((value) => value && !/^(ve|and|otobüs|kamyon)$/i.test(value))
+  );
+  return `${label} ${details.slice(0, 4).join(" ")}`.trim();
+}
+
 function compactTitleSuffix(parts) {
   const cleaned = uniq(parts.filter((part) => !GENERIC_LABELS.has(part)).map(cleanTitlePart)).filter((part) => {
     if (!part || GENERIC_LABELS.has(part)) return false;
-    return !/^(Kamyon|T[ıi]r|Çekici|Otobüs|Dorse|Treyler)$/i.test(part);
+    return !/^(Kamyon|T[ıi]r|Çekici|Otobüs|Dorse|Treyler|Yerel|grubu|sistemi)$/i.test(part);
   });
   if (!cleaned.length) return "";
 
-  const volvo = cleaned.filter((part) => /^Volvo\s/i.test(part));
-  if (volvo.length >= 2) {
-    return `Volvo ${uniq(volvo.map((part) => part.replace(/^Volvo\s+/i, ""))).slice(0, 4).join(" ")}`;
+  const trailerSignals = parts.filter((part) => /dorse|treyler|trailer|fruehauf|smb|york|valx|yte|öztreyler|oztreyler/i.test(part));
+  const trailerBrands = [
+    trailerSignals.some((part) => /K[öo]gel/i.test(part)) ? "Kögel" : "",
+    trailerSignals.some((part) => /Krone/i.test(part)) ? "Krone" : "",
+    trailerSignals.some((part) => /Fruehauf|SMB/i.test(part)) ? "Fruehauf SMB" : "",
+    trailerSignals.some((part) => /York|Valx|YTE|Öztreyler|Otreyler|Oztreyler/i.test(part)) ? "York Valx" : "",
+  ].filter(Boolean);
+  if (trailerBrands.length) {
+    return trailerBrands.slice(0, 2).join(" ");
+  }
+  if (trailerSignals.some((part) => /yerel dorse dingil|dorse dingil grubu|treyler fren kampanası/i.test(part))) {
+    return "Dorse Treyler";
   }
 
-  const mercedes = cleaned.filter((part) => /^Mercedes\s/i.test(part));
-  if (mercedes.length >= 2) {
-    return `Mercedes ${uniq(mercedes.map((part) => part.replace(/^Mercedes\s+/i, ""))).slice(0, 4).join(" ")}`;
+  const brandMatches = TITLE_BRAND_GROUPS.map((group) => ({
+    label: group.label,
+    values: cleaned.filter((part) => group.regex.test(part)),
+  })).filter((group) => group.values.length);
+
+  if (cleaned.some((part) => /Knorr.*WABCO.*Meritor|WABCO.*Knorr|Meritor.*DUCO|Meritor.*ELSA/i.test(part))) {
+    return "Knorr WABCO Meritor";
+  }
+
+  if (brandMatches.length === 1) {
+    return compactBrandGroup(brandMatches[0].label, brandMatches[0].values);
+  }
+
+  if (brandMatches.length > 1) {
+    return brandMatches.slice(0, 3).map((group) => compactBrandGroup(group.label, group.values).replace(/\s+$/g, "")).join(" ");
   }
 
   return cleaned.slice(0, 3).join(" ");
@@ -594,15 +719,14 @@ function makeProductName(product, compat) {
   const text = `${currentName} ${product.sku || ""} ${product.oem || ""}`;
   const titleRule = TITLE_RULES.find((rule) => rule.regex.test(text));
   const suffix = titleRule?.suffix || compactTitleSuffix(compat);
-  const generatedGeneric = currentName.match(/^(Fren Diski|Fren Kampanası|Disk Balatası|Fren Balatası|Fren Disk Balatası) (?:Kamyon|T[ıi]r çekici|Otobüs|Dorse|Treyler)$/i);
+  const genericBases = [...new Set(GENERIC_PRODUCT_TITLES.values())];
+  const generatedGeneric = currentName.match(new RegExp(`^(${genericBases.map((base) => base.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")}) (?:Kamyon|T[ıi]r çekici|Otobüs|Dorse|Treyler)$`, "i"));
   if (!suffix && generatedGeneric) return generatedGeneric[1];
 
-  const generatedBase = suffix
-    ? [...new Set(GENERIC_PRODUCT_TITLES.values())].find((baseName) => currentName === `${baseName} ${suffix}`)
-    : "";
+  const generatedBase = generatedBaseFromCurrentName(currentName, genericBases, suffix);
   const base = titleCaseBase(currentName) || generatedBase;
   if (!base) return currentName;
-  if (!suffix) return currentName;
+  if (!suffix) return base;
 
   const nextName = `${base} ${suffix}`.replace(/\s+/g, " ").trim();
   return nextName.length > 90 ? nextName.slice(0, 90).trim() : nextName;
@@ -617,7 +741,7 @@ function categoryLabel(product) {
 }
 
 function detectCompatibility(product) {
-  const text = `${product.name || ""} ${product.sku || ""} ${product.oem || ""}`;
+  const text = `${stripGeneratedProductName(product.name) || ""} ${product.sku || ""} ${product.oem || ""}`;
   const normalized = normalize(text);
   const compat = [];
   const notes = [];
