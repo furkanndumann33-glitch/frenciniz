@@ -1301,7 +1301,10 @@ export default function App() {
           {"@type": "ContactPoint", "telephone": "+90-545-608-7008", "contactType": "customer service", "areaServed": "TR", "availableLanguage": ["Turkish"]},
           {"@type": "ContactPoint", "telephone": "+90-850-888-7881", "contactType": "sales", "areaServed": "TR"},
         ],
-        "sameAs": [],
+        "sameAs": [
+          "https://www.facebook.com/profile.php?id=61573354240573",
+          "https://www.instagram.com/frenciniz.co"
+        ],
       });
     }
     else if (page === "faq") {

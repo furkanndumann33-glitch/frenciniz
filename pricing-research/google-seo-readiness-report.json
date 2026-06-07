@@ -1,0 +1,435 @@
+{
+  "generatedAt": "2026-06-07T19:01:59.620Z",
+  "site": "https://frenciniz.com",
+  "totals": {
+    "products": 1055,
+    "categories": 53,
+    "categoryPages": 52,
+    "landingPages": 156,
+    "sitemapUrlEstimate": 1279
+  },
+  "productReadiness": {
+    "productsWithImage": 953,
+    "productsWithOem": 704,
+    "productsWithDescription": 1055,
+    "stockProducts": 1055,
+    "imageCoveragePercent": 90.33,
+    "oemCoveragePercent": 66.73,
+    "descriptionCoveragePercent": 100
+  },
+  "seoAssets": {
+    "sitemap": "https://frenciniz.com/sitemap.xml",
+    "merchantFeed": "https://frenciniz.com/google-merchant-feed.xml",
+    "metaCatalogFeed": "https://frenciniz.com/meta-catalog-feed.csv",
+    "robots": "https://frenciniz.com/robots.txt"
+  },
+  "highIntentLandingPages": [
+    {
+      "slug": "mercedes-actros-fren-diski",
+      "heading": "Mercedes Actros Fren Diski",
+      "title": "Mercedes Actros Fren Diski Fiyatları ve Stok | Frenciniz",
+      "description": "Mercedes Actros uyumlu Ekersan fren diski, bijon ve fren grubu parçaları. OEM/parça kodu ile stok teyidi, aynı gün kargo ve WhatsApp hızlı teklif.",
+      "priority": "0.86",
+      "matchedProducts": 24,
+      "categories": "fren-diski|fren-diski-abs-li",
+      "topProducts": "231:Fren Diski Mercedes Actros Axor Atego SK | 234:Fren Diski Mercedes Actros Axor Atego SK | 227:Fren Diski Mercedes Actros Axor Atego SK | 233:Fren Diski Mercedes Actros Axor Atego SK | 235:Fren Diski Mercedes Actros Axor Atego SK"
+    },
+    {
+      "slug": "mercedes-axor-fren-diski",
+      "heading": "Mercedes Axor Fren Diski",
+      "title": "Mercedes Axor Fren Diski ve Fren Parçaları | Frenciniz",
+      "description": "Mercedes Axor ağır vasıta fren diski ve uyumlu fren aksamı ürünleri. Parça kodu ile hızlı stok ve fiyat teyidi.",
+      "priority": "0.84",
+      "matchedProducts": 24,
+      "categories": "fren-diski|fren-diski-abs-li",
+      "topProducts": "231:Fren Diski Mercedes Actros Axor Atego SK | 234:Fren Diski Mercedes Actros Axor Atego SK | 227:Fren Diski Mercedes Actros Axor Atego SK | 233:Fren Diski Mercedes Actros Axor Atego SK | 235:Fren Diski Mercedes Actros Axor Atego SK"
+    },
+    {
+      "slug": "mercedes-atego-fren-diski",
+      "heading": "Mercedes Atego Fren Diski",
+      "title": "Mercedes Atego Fren Diski ve Fren Aksamı | Frenciniz",
+      "description": "Mercedes Atego için fren diski, bijon ve fren grubu parçalarında stoklu ürünler. OEM sorgulama ve Türkiye geneli kargo.",
+      "priority": "0.82",
+      "matchedProducts": 24,
+      "categories": "fren-diski|fren-diski-abs-li",
+      "topProducts": "231:Fren Diski Mercedes Actros Axor Atego SK | 234:Fren Diski Mercedes Actros Axor Atego SK | 227:Fren Diski Mercedes Actros Axor Atego SK | 233:Fren Diski Mercedes Actros Axor Atego SK | 235:Fren Diski Mercedes Actros Axor Atego SK"
+    },
+    {
+      "slug": "man-tga-fren-diski",
+      "heading": "MAN TGA Fren Diski",
+      "title": "MAN TGA Fren Diski Fiyat ve Stok | Frenciniz",
+      "description": "MAN TGA uyumlu fren diski ve fren grubu ürünleri. Ekersan stokları, aynı gün kargo ve WhatsApp teklif hattı.",
+      "priority": "0.86",
+      "matchedProducts": 24,
+      "categories": "fren-diski|fren-diski-abs-li",
+      "topProducts": "224:Fren Diski MAN TGA TGS TGX | 223:Fren Diski MAN TGA TGS TGX | 226:Fren Diski MAN TGA TGS TGX | 225:Fren Diski MAN TGA TGS TGX | 72:Fren Diski MAN TGA TGS TGX"
+    },
+    {
+      "slug": "man-tgs-tgx-fren-diski",
+      "heading": "MAN TGS TGX Fren Diski",
+      "title": "MAN TGS TGX Fren Diski ve Fren Parçaları | Frenciniz",
+      "description": "MAN TGS ve TGX için fren diski, bijon, kaliper ve fren aksamı ürünleri. Parça kodu ile hızlı stok teyidi.",
+      "priority": "0.82",
+      "matchedProducts": 24,
+      "categories": "fren-diski|fren-diski-abs-li|disk-bijonu-civatasi|kaliper",
+      "topProducts": "224:Fren Diski MAN TGA TGS TGX | 223:Fren Diski MAN TGA TGS TGX | 226:Fren Diski MAN TGA TGS TGX | 11:TGS Man Ön Disk Bijonu | 225:Fren Diski MAN TGA TGS TGX"
+    },
+    {
+      "slug": "volvo-fh-fren-diski",
+      "heading": "Volvo FH Fren Diski",
+      "title": "Volvo FH Fren Diski ve Ağır Vasıta Fren Aksamı | Frenciniz",
+      "description": "Volvo FH/FM uyumlu fren diski ve fren grubu ürünleri. OEM kodu ile kontrol, stoklu ürün ve hızlı kargo.",
+      "priority": "0.84",
+      "matchedProducts": 24,
+      "categories": "fren-diski|fren-diski-abs-li",
+      "topProducts": "175:Fren Diski Volvo FH FM FL | 280:Fren Diski Volvo FH FM FL | 279:Fren Diski Volvo FH FM FL | 84:Fren Diski Volvo FH FM FL | 41:VOLVO KÜÇÜK  FH 12 (410 ÇAP) MAÇASIZ DOLU FREN DİSKİ"
+    },
+    {
+      "slug": "scania-bijon",
+      "heading": "Scania Bijon",
+      "title": "Scania Bijon ve Disk Bijonu Fiyatları | Frenciniz",
+      "description": "Scania ağır vasıta bijon, somun ve disk bijonu ürünleri. Stoklu Ekersan ürünleri ve WhatsApp hızlı teklif.",
+      "priority": "0.84",
+      "matchedProducts": 24,
+      "categories": "bijon|disk-bijonu-civatasi|somun-civata",
+      "topProducts": "384:Bijon Scania Volvo | 288:Bijon Scania Volvo | 286:Bijon Scania Volvo | 287:Bijon Scania Volvo | 54:Bijon Scania Volvo"
+    },
+    {
+      "slug": "ford-cargo-fren-kampanasi",
+      "heading": "Ford Cargo Fren Kampanası",
+      "title": "Ford Cargo Fren Kampanası ve Fren Parçaları | Frenciniz",
+      "description": "Ford Cargo uyumlu fren kampanası, bijon ve fren aksamı ürünleri. Parça kodu ile stok ve fiyat teyidi.",
+      "priority": "0.82",
+      "matchedProducts": 24,
+      "categories": "fren-kampanasi|bijon|fren-diski",
+      "topProducts": "322:Bijon Ford Cargo | 133:Fren Kampanası Ford Cargo 1833 1846 2532 3232 | 352:BİJON RENAULT 370-420-440 ARKA DİSK -114 MM CARGO 3238 | 31:Cargo 115 mm Frezeli | 135:KAMPANA 2524-3227-3230 ÖN-ARKA"
+    },
+    {
+      "slug": "renault-premium-fren-parcalari",
+      "heading": "Renault Premium Fren Parçaları",
+      "title": "Renault Premium Fren Diski, Kampana ve Cırcır | Frenciniz",
+      "description": "Renault Premium ve Kerax uyumlu fren diski, fren kampanası, otomatik fren cırcırı ve fren aksamı ürünleri.",
+      "priority": "0.8",
+      "matchedProducts": 24,
+      "categories": "fren-diski|fren-kampanasi|otomatik-fren-circiri|fren-circiri",
+      "topProducts": "108:Fren Kampanası Renault Midlum Premium Magnum | 37:KAMPANA RENAULT KERAX | 64:RENAULT OTOMATİK CIRCIR 3718 GÖVDE | 63:RENAULT OTOMATİK CIRCIR 3717 GÖVDE | 207:DİSK RENAULT MİDLUM 220 ÖN (10 DELİK KISA GÖBEK)"
+    },
+    {
+      "slug": "bpw-dorse-fren-kampanasi",
+      "heading": "BPW Dorse Fren Kampanası",
+      "title": "BPW Dorse Fren Kampanası Fiyat ve Stok | Frenciniz",
+      "description": "BPW dorse uyumlu fren kampanası, porya kapağı, bijon ve fren aksamı ürünleri. Stoklu ürünler, aynı gün kargo.",
+      "priority": "0.88",
+      "matchedProducts": 24,
+      "categories": "fren-kampanasi|porya|bijon",
+      "topProducts": "377:Bijon BPW ECOPlus | 375:Bijon BPW ECOPlus | 379:Bijon BPW ECOPlus | 376:Bijon BPW ECOPlus | 378:Bijon BPW ECOPlus"
+    },
+    {
+      "slug": "saf-dorse-porya-kapagi",
+      "heading": "SAF Dorse Porya Kapağı",
+      "title": "SAF Dorse Porya Kapağı ve Fren Parçaları | Frenciniz",
+      "description": "SAF dorse porya kapağı, fren diski, kampana ve bijon ürünleri. OEM kodu ile hızlı stok kontrolü.",
+      "priority": "0.86",
+      "matchedProducts": 24,
+      "categories": "porya|fren-diski|fren-kampanasi|bijon",
+      "topProducts": "373:BİJON SAF DORSE İVECO FREZELİ-73 MM DİSK | 371:Bijon SAF Holland | 372:Bijon SAF Holland | 374:BiJON SAF DORSE 83 MM SAFİR YM | 369:Bijon SAF Holland"
+    },
+    {
+      "slug": "krone-dorse-fren-parcalari",
+      "heading": "Krone Dorse Fren Parçaları",
+      "title": "Krone Dorse Fren Diski, Kampana ve Bijon | Frenciniz",
+      "description": "Krone dorse uyumlu fren diski, kampana, bijon ve porya grubu ürünleri. Stok ve fiyat için WhatsApp hızlı teklif.",
+      "priority": "0.78",
+      "matchedProducts": 24,
+      "categories": "fren-diski|fren-kampanasi|bijon|porya",
+      "topProducts": "161:Fren Diski Kögel Krone | 7:KRONE 430 GÖBEKLİ DİSK | 56:Bijon Mercedes Actros Axor Atego | 373:BİJON SAF DORSE İVECO FREZELİ-73 MM DİSK | 351:BİJON DPS RENAULT 440 ARKA DİSK"
+    },
+    {
+      "slug": "agir-vasita-otomatik-fren-circiri",
+      "heading": "Otomatik Fren Cırcırı",
+      "title": "Otomatik Fren Cırcırı Fiyatları | Frenciniz",
+      "description": "Kamyon, tır ve dorse için otomatik fren cırcırı çeşitleri. Ekersan stokları, OEM kodu ile uyumluluk kontrolü.",
+      "priority": "0.86",
+      "matchedProducts": 24,
+      "categories": "otomatik-fren-circiri",
+      "topProducts": "51:Otomatik Fren Cırcırı Mercedes Actros Axor Atego SK | 52:Otomatik Fren Cırcırı Mercedes Actros Axor Atego SK | 62:Otomatik Fren Cırcırı MAN TGA TGS TGX | 55:Otomatik Fren Cırcırı MAN TGA TGS TGX | 66:Otomatik Fren Cırcırı MAN TGA TGS TGX"
+    },
+    {
+      "slug": "agir-vasita-mekanik-fren-circiri",
+      "heading": "Mekanik Fren Cırcırı",
+      "title": "Mekanik Fren Cırcırı ve Fren Ayar Parçaları | Frenciniz",
+      "description": "Ağır vasıta mekanik fren cırcırı ve fren ayar parçaları. Parça kodu ile stok teyidi ve hızlı kargo.",
+      "priority": "0.8",
+      "matchedProducts": 24,
+      "categories": "mekanik-fren-circiri|fren-circiri",
+      "topProducts": "1:Mekanik Fren Cırcırı 7 Delik 10 Kanal (EUR) | 420:Mekanik Fren Cırcırı 7 Delik 10 Kanal | 283:Mekanik Fren Cırcırı 3 Delik 10 Kanal | 418:Mekanik Fren Cırcırı Mercedes Actros Axor Atego | 417:Mekanik Fren Cırcırı Mercedes Actros Axor Atego"
+    },
+    {
+      "slug": "agir-vasita-kaliper-tamir-takimi",
+      "heading": "Kaliper Tamir Takımı",
+      "title": "Kaliper Tamir Takımı, Perno ve Toz Lastiği | Frenciniz",
+      "description": "Knorr, Wabco, ELSA, DUCO, MAXX22 ve PAN tipi kaliper tamir takımı, perno, kapak ve toz lastiği ürünleri.",
+      "priority": "0.88",
+      "matchedProducts": 24,
+      "categories": "kaliper-tamir-takimi|kaliper-perno-tamir-takimi|kaliper-toz-lastigi|kaliper-kapak-conta|kaliper-ayar-mekanizmasi",
+      "topProducts": "1007:Kaliper Ayar Civatası | 1016:Kaliper Toz Lastiği Tamir Takımı (Ø 69 mm) | 992:KLİPER AYAR CİVATASI (AXOR YM 3 YİVLİ CİVATA) | 1012:Kaliper Ayar Mekanizması (Yaylı) | 975:Kaliper Perno Tamir Takımı Knorr WABCO Meritor"
+    },
+    {
+      "slug": "knorr-wabco-kaliper-tamir-takimi",
+      "heading": "Knorr Wabco Kaliper Tamir Takımı",
+      "title": "Knorr Wabco Kaliper Tamir Takımı | Frenciniz",
+      "description": "Knorr-Bremse ve Wabco tipi kaliper tamir takımı, kapak, perno ve ayar mekanizması ürünleri.",
+      "priority": "0.82",
+      "matchedProducts": 24,
+      "categories": "kaliper-tamir-takimi|kaliper-tamir-takimi-wabco|kaliper-kapak-conta|kaliper-ayar-mekanizmasi",
+      "topProducts": "1005:Kaliper Masura Bilya Takımı Knorr WABCO Meritor | 994:Kaliper Masura Bilya Yatağı Knorr WABCO Meritor | 991:Kaliper Masura Bilya Yatağı Knorr WABCO Meritor | 1004:Kaliper Masura Bilya Takımı Knorr WABCO Meritor | 1040:Kaliper Masura Bilya Yatağı Knorr WABCO Meritor"
+    },
+    {
+      "slug": "abs-sensoru-ebs-modulator",
+      "heading": "ABS Sensörü ve EBS Modülatör",
+      "title": "ABS Sensörü, EBS Modülatör ve Kablo | Frenciniz",
+      "description": "Kamyon, tır ve dorse için ABS sensörü, EBS modülatör ve elektrik kablosu ürünleri. Stok ve fiyat teyidi.",
+      "priority": "0.86",
+      "matchedProducts": 24,
+      "categories": "abs-sensoru-modulu-kablo|ebs-modulator|sensor|elektrik-kablosu",
+      "topProducts": "600:EBS UZATMA SENSÖRÜ KNORR  4 MT | 677:EBS UZATMA KABLOSU WABCO 3 MT | 645:EBS ANA HAT KABLOSU 12 MT. | 537:24V 15'Lİ EBS KABLOSU | 574:EBS PARK BUTONU REKORLU 9710029120"
+    },
+    {
+      "slug": "agir-vasita-fren-korugu",
+      "heading": "Fren Körüğü",
+      "title": "Fren Körüğü Fiyatları ve Ağır Vasıta Körükleri | Frenciniz",
+      "description": "Ağır vasıta fren körüğü çeşitleri. Kamyon, tır, otobüs ve dorse için stoklu fren körüğü ürünleri.",
+      "priority": "0.86",
+      "matchedProducts": 24,
+      "categories": "fren-korugu",
+      "topProducts": "960:24/30 D/P KISA MİL KÖRÜK DİSK KÖRÜĞÜ | 665:24/16 D/P DİSK KÖRÜK SCANIA | 449:ARFESAN 16/24 D/D DİSK TİPİ DORSE İMDATLI KÖRÜK SOL | 450:ARFESAN 16/24 D/D DİSK TİPİ DORSE İMDATLI KÖRÜK SAĞ | 553:ARFESAN 16/24 D/D DİSK TİPİ DORSE İMDATLI KÖRÜK"
+    },
+    {
+      "slug": "agir-vasita-suspansiyon-korugu",
+      "heading": "Süspansiyon Körüğü",
+      "title": "Süspansiyon Körüğü ve Hava Körüğü | Frenciniz",
+      "description": "Kamyon, tır, otobüs ve dorse için süspansiyon körüğü ve hava körüğü ürünleri. Stoklu ürün, hızlı kargo.",
+      "priority": "0.84",
+      "matchedProducts": 24,
+      "categories": "suspansiyon-korugu",
+      "topProducts": "887:Pistonsuz Körük | 879:Komple Körük Metal Piston SAF Holland | 661:Pistonsuz Körük | 925:Katlı Körük Civatasız Düz | 924:SÜSP.KÖRÜK KOMPLE SCANIA Y.M."
+    },
+    {
+      "slug": "agir-vasita-fren-balatasi",
+      "heading": "Ağır Vasıta Fren Balatası",
+      "title": "Ağır Vasıta Fren Balatası ve Disk Balatası | Frenciniz",
+      "description": "Kamyon, tır, otobüs ve dorse için fren balatası, disk balatası ve fren pabucu ürünleri. ECE R-90 sertifikalı ürünler.",
+      "priority": "0.88",
+      "matchedProducts": 24,
+      "categories": "fren-balatasi|fren-pabucu|percin",
+      "topProducts": "799:BPW 18 CM PABUÇ BALATALI | 798:BPW 20 CM BALATALI PABUÇ | 801:Fren Pabucu Bpw 20 cm. | 657:Disk Balatası (29087) | 481:MAN - MERCEDES 22 LİK BALATA (K6268)"
+    },
+    {
+      "slug": "dorse-bijon-somun",
+      "heading": "Dorse Bijon ve Somun",
+      "title": "Dorse Bijon, Somun ve Disk Civatası | Frenciniz",
+      "description": "BPW, SAF, ROR, Krone ve dorse grubu için bijon, somun ve disk civatası ürünleri. Stok ve fiyat teyidi.",
+      "priority": "0.84",
+      "matchedProducts": 24,
+      "categories": "bijon|somun-civata|disk-bijonu-civatasi",
+      "topProducts": "373:BİJON SAF DORSE İVECO FREZELİ-73 MM DİSK | 377:Bijon BPW ECOPlus | 329:AXOR ANAHTAR BAŞLI DİSK CİVATASI | 371:Bijon SAF Holland | 375:Bijon BPW ECOPlus"
+    },
+    {
+      "slug": "ekersan-fren-diski",
+      "heading": "Ekersan Fren Diski",
+      "title": "Ekersan Fren Diski ve Ağır Vasıta Diskleri | Frenciniz",
+      "description": "Ekersan marka ağır vasıta fren diski çeşitleri. Mercedes, MAN, Volvo, Scania, DAF, BPW ve SAF uyumlu stoklu ürünler.",
+      "priority": "0.88",
+      "matchedProducts": 24,
+      "categories": "fren-diski|fren-diski-abs-li",
+      "topProducts": "231:Fren Diski Mercedes Actros Axor Atego SK | 234:Fren Diski Mercedes Actros Axor Atego SK | 186:Fren Diski BPW ECOPlus | 843:Disk Montaj Seti | 216:Fren Diski Iveco Eurocargo Stralis"
+    },
+    {
+      "slug": "porya-kapagi",
+      "heading": "Porya Kapağı",
+      "title": "Porya Kapağı, Rulman ve Keçe | Frenciniz",
+      "description": "SAF, BPW ve ağır vasıta porya kapağı, rulman ve keçe ürünleri. OEM kodu ile stok teyidi.",
+      "priority": "0.82",
+      "matchedProducts": 24,
+      "categories": "porya|kece",
+      "topProducts": "1053:SAF DORSE PORYA KAPAK (PLASTİK BÜYÜK) | 1054:SAF DORSE PORYA KAPAK (PLASTİK KÜÇÜK) | 655:Porya BPW ECOPlus | 743:Porya SAF Holland | 744:SAF DİSKLİ PORYA (82'LİK)"
+    },
+    {
+      "slug": "mercedes-actros-fren-kampanasi",
+      "heading": "Mercedes Actros Fren Kampanası",
+      "title": "Mercedes Actros Fren Kampanası | Fiyat ve Stok | Frenciniz",
+      "description": "Mercedes Actros uyumlu fren kampanası ürünleri. OEM/parça kodu ile uyumluluk teyidi, stok ve fiyat kontrolü, aynı gün kargo ve WhatsApp hızlı teklif.",
+      "priority": "0.88",
+      "matchedProducts": 24,
+      "categories": "fren-kampanasi",
+      "topProducts": "276:KAMPANA MERC.ACTROS ATECO AXOR | 153:Fren Kampanası Mercedes Actros Axor Atego SK | 18:Fren Kampanası Mercedes Actros Axor Atego | 82:Fren Kampanası Mercedes Actros Axor Atego | 159:Fren Kampanası Mercedes Actros Axor Atego SK"
+    },
+    {
+      "slug": "mercedes-actros-fren-balatasi",
+      "heading": "Mercedes Actros Fren Balatası",
+      "title": "Mercedes Actros Fren Balatası | Fiyat ve Stok | Frenciniz",
+      "description": "Mercedes Actros uyumlu fren balatası ürünleri. OEM/parça kodu ile uyumluluk teyidi, stok ve fiyat kontrolü, aynı gün kargo ve WhatsApp hızlı teklif.",
+      "priority": "0.88",
+      "matchedProducts": 24,
+      "categories": "fren-balatasi|fren-pabucu|percin",
+      "topProducts": "734:BALATA AXOR DİSK ARKA Y.M. (29244 / 29245) | 736:BALATA AXOR DİSK  E.M. (29087) | 644:Fren Pabucu - MERCEDES 22CM | 851:Fren Pabucu - MERCEDES 18CM | 735:BALATA AXOR DİSK ÖN Y.M. (29246 / 29247)"
+    },
+    {
+      "slug": "mercedes-actros-fren-korugu",
+      "heading": "Mercedes Actros Fren Körüğü",
+      "title": "Mercedes Actros Fren Körüğü | Fiyat ve Stok | Frenciniz",
+      "description": "Mercedes Actros uyumlu fren körüğü ürünleri. OEM/parça kodu ile uyumluluk teyidi, stok ve fiyat kontrolü, aynı gün kargo ve WhatsApp hızlı teklif.",
+      "priority": "0.87",
+      "matchedProducts": 24,
+      "categories": "fren-korugu",
+      "topProducts": "960:24/30 D/P KISA MİL KÖRÜK DİSK KÖRÜĞÜ | 665:24/16 D/P DİSK KÖRÜK SCANIA | 449:ARFESAN 16/24 D/D DİSK TİPİ DORSE İMDATLI KÖRÜK SOL | 450:ARFESAN 16/24 D/D DİSK TİPİ DORSE İMDATLI KÖRÜK SAĞ | 553:ARFESAN 16/24 D/D DİSK TİPİ DORSE İMDATLI KÖRÜK"
+    },
+    {
+      "slug": "mercedes-actros-suspansiyon-korugu",
+      "heading": "Mercedes Actros Süspansiyon Körüğü",
+      "title": "Mercedes Actros Süspansiyon Körüğü | Fiyat ve Stok | Frenciniz",
+      "description": "Mercedes Actros uyumlu süspansiyon körüğü ürünleri. OEM/parça kodu ile uyumluluk teyidi, stok ve fiyat kontrolü, aynı gün kargo ve WhatsApp hızlı teklif.",
+      "priority": "0.87",
+      "matchedProducts": 24,
+      "categories": "suspansiyon-korugu",
+      "topProducts": "637:Pistonsuz Körük Mercedes Actros Axor Atego Arocs | 913:Komple Körük Metal Piston Mercedes Actros Axor Atego Arocs | 660:Komple Körük Metal Piston Mercedes Actros Axor Atego Arocs | 896:Roll Körük MAN TGA TGS TGX | 430:Roll Körük MAN TGA TGS TGX"
+    },
+    {
+      "slug": "mercedes-actros-bijon-somun",
+      "heading": "Mercedes Actros Bijon Somun",
+      "title": "Mercedes Actros Bijon Somun | Fiyat ve Stok | Frenciniz",
+      "description": "Mercedes Actros uyumlu bijon ve somun ürünleri. OEM/parça kodu ile uyumluluk teyidi, stok ve fiyat kontrolü, aynı gün kargo ve WhatsApp hızlı teklif.",
+      "priority": "0.87",
+      "matchedProducts": 24,
+      "categories": "bijon|disk-bijonu-civatasi|somun-civata",
+      "topProducts": "239:Axor-Actros Yeni Model Arka 92 mm | 241:Axor-Actros Yeni Model Arka 86 mm | 240:Axor-Actros Yeni Model Ön | 17:Axor-Actros Yeni Model Arka  120 mm | 32:BİJON AXOR-ACTROS ARKA 92 MM DAKROMATLI"
+    },
+    {
+      "slug": "mercedes-actros-kaliper-tamir-takimi",
+      "heading": "Mercedes Actros Kaliper Tamir Takımı",
+      "title": "Mercedes Actros Kaliper Tamir Takımı | Fiyat ve Stok | Frenciniz",
+      "description": "Mercedes Actros uyumlu kaliper tamir takımı ürünleri. OEM/parça kodu ile uyumluluk teyidi, stok ve fiyat kontrolü, aynı gün kargo ve WhatsApp hızlı teklif.",
+      "priority": "0.87",
+      "matchedProducts": 24,
+      "categories": "kaliper-tamir-takimi|kaliper-perno-tamir-takimi|kaliper-toz-lastigi|kaliper-kapak-conta|kaliper-ayar-mekanizmasi|kaliper-kilavuz-pim-takimi",
+      "topProducts": "1016:Kaliper Toz Lastiği Tamir Takımı (Ø 69 mm) | 1002:Kaliper Perno Tamir Takımı Mercedes Actros Axor Atego | 1014:Kaliper Toz Lastiği Tamir Takımı (Ø 74 mm) | 527:Perno Tamir Takımı | 530:SB6/SB7 PERNO TAMİR TAKIMI"
+    },
+    {
+      "slug": "mercedes-actros-otomatik-fren-circiri",
+      "heading": "Mercedes Actros Otomatik Fren Cırcırı",
+      "title": "Mercedes Actros Otomatik Fren Cırcırı | Fiyat ve Stok | Frenciniz",
+      "description": "Mercedes Actros uyumlu otomatik fren cırcırı ürünleri. OEM/parça kodu ile uyumluluk teyidi, stok ve fiyat kontrolü, aynı gün kargo ve WhatsApp hızlı teklif.",
+      "priority": "0.87",
+      "matchedProducts": 24,
+      "categories": "otomatik-fren-circiri|fren-circiri",
+      "topProducts": "85:EKERSAN AROX-ACTROS FREN CIRCIRI 5017 GÖVDE SAĞ | 51:Otomatik Fren Cırcırı Mercedes Actros Axor Atego SK | 52:Otomatik Fren Cırcırı Mercedes Actros Axor Atego SK | 86:EKERSAN AROX-ACTROST FREN CIRCIRI 5018 GÖVDE SOL | 28:MERCEDES V-8 OTOBÜS ÖN CIRCIR R-L"
+    },
+    {
+      "slug": "mercedes-axor-fren-kampanasi",
+      "heading": "Mercedes Axor Fren Kampanası",
+      "title": "Mercedes Axor Fren Kampanası | Fiyat ve Stok | Frenciniz",
+      "description": "Mercedes Axor uyumlu fren kampanası ürünleri. OEM/parça kodu ile uyumluluk teyidi, stok ve fiyat kontrolü, aynı gün kargo ve WhatsApp hızlı teklif.",
+      "priority": "0.87",
+      "matchedProducts": 24,
+      "categories": "fren-kampanasi",
+      "topProducts": "276:KAMPANA MERC.ACTROS ATECO AXOR | 153:Fren Kampanası Mercedes Actros Axor Atego SK | 18:Fren Kampanası Mercedes Actros Axor Atego | 82:Fren Kampanası Mercedes Actros Axor Atego | 159:Fren Kampanası Mercedes Actros Axor Atego SK"
+    },
+    {
+      "slug": "mercedes-axor-fren-balatasi",
+      "heading": "Mercedes Axor Fren Balatası",
+      "title": "Mercedes Axor Fren Balatası | Fiyat ve Stok | Frenciniz",
+      "description": "Mercedes Axor uyumlu fren balatası ürünleri. OEM/parça kodu ile uyumluluk teyidi, stok ve fiyat kontrolü, aynı gün kargo ve WhatsApp hızlı teklif.",
+      "priority": "0.87",
+      "matchedProducts": 24,
+      "categories": "fren-balatasi|fren-pabucu|percin",
+      "topProducts": "734:BALATA AXOR DİSK ARKA Y.M. (29244 / 29245) | 736:BALATA AXOR DİSK  E.M. (29087) | 735:BALATA AXOR DİSK ÖN Y.M. (29246 / 29247) | 644:Fren Pabucu - MERCEDES 22CM | 851:Fren Pabucu - MERCEDES 18CM"
+    },
+    {
+      "slug": "mercedes-axor-fren-korugu",
+      "heading": "Mercedes Axor Fren Körüğü",
+      "title": "Mercedes Axor Fren Körüğü | Fiyat ve Stok | Frenciniz",
+      "description": "Mercedes Axor uyumlu fren körüğü ürünleri. OEM/parça kodu ile uyumluluk teyidi, stok ve fiyat kontrolü, aynı gün kargo ve WhatsApp hızlı teklif.",
+      "priority": "0.86",
+      "matchedProducts": 24,
+      "categories": "fren-korugu",
+      "topProducts": "960:24/30 D/P KISA MİL KÖRÜK DİSK KÖRÜĞÜ | 665:24/16 D/P DİSK KÖRÜK SCANIA | 449:ARFESAN 16/24 D/D DİSK TİPİ DORSE İMDATLI KÖRÜK SOL | 450:ARFESAN 16/24 D/D DİSK TİPİ DORSE İMDATLI KÖRÜK SAĞ | 553:ARFESAN 16/24 D/D DİSK TİPİ DORSE İMDATLI KÖRÜK"
+    },
+    {
+      "slug": "mercedes-axor-bijon-somun",
+      "heading": "Mercedes Axor Bijon Somun",
+      "title": "Mercedes Axor Bijon Somun | Fiyat ve Stok | Frenciniz",
+      "description": "Mercedes Axor uyumlu bijon ve somun ürünleri. OEM/parça kodu ile uyumluluk teyidi, stok ve fiyat kontrolü, aynı gün kargo ve WhatsApp hızlı teklif.",
+      "priority": "0.86",
+      "matchedProducts": 24,
+      "categories": "bijon|disk-bijonu-civatasi|somun-civata",
+      "topProducts": "329:AXOR ANAHTAR BAŞLI DİSK CİVATASI | 326:AXOR YM  DİSK CİVATASI | 24:AXOR DİSK CİVATASI YILDIZ BAŞLI | 239:Axor-Actros Yeni Model Arka 92 mm | 241:Axor-Actros Yeni Model Arka 86 mm"
+    },
+    {
+      "slug": "mercedes-axor-kaliper-tamir-takimi",
+      "heading": "Mercedes Axor Kaliper Tamir Takımı",
+      "title": "Mercedes Axor Kaliper Tamir Takımı | Fiyat ve Stok | Frenciniz",
+      "description": "Mercedes Axor uyumlu kaliper tamir takımı ürünleri. OEM/parça kodu ile uyumluluk teyidi, stok ve fiyat kontrolü, aynı gün kargo ve WhatsApp hızlı teklif.",
+      "priority": "0.86",
+      "matchedProducts": 24,
+      "categories": "kaliper-tamir-takimi|kaliper-perno-tamir-takimi|kaliper-toz-lastigi|kaliper-kapak-conta|kaliper-ayar-mekanizmasi|kaliper-kilavuz-pim-takimi",
+      "topProducts": "1016:Kaliper Toz Lastiği Tamir Takımı (Ø 69 mm) | 992:KLİPER AYAR CİVATASI (AXOR YM 3 YİVLİ CİVATA) | 1002:Kaliper Perno Tamir Takımı Mercedes Actros Axor Atego | 1014:Kaliper Toz Lastiği Tamir Takımı (Ø 74 mm) | 530:SB6/SB7 PERNO TAMİR TAKIMI"
+    },
+    {
+      "slug": "mercedes-axor-otomatik-fren-circiri",
+      "heading": "Mercedes Axor Otomatik Fren Cırcırı",
+      "title": "Mercedes Axor Otomatik Fren Cırcırı | Fiyat ve Stok | Frenciniz",
+      "description": "Mercedes Axor uyumlu otomatik fren cırcırı ürünleri. OEM/parça kodu ile uyumluluk teyidi, stok ve fiyat kontrolü, aynı gün kargo ve WhatsApp hızlı teklif.",
+      "priority": "0.86",
+      "matchedProducts": 24,
+      "categories": "otomatik-fren-circiri|fren-circiri",
+      "topProducts": "51:Otomatik Fren Cırcırı Mercedes Actros Axor Atego SK | 52:Otomatik Fren Cırcırı Mercedes Actros Axor Atego SK | 85:EKERSAN AROX-ACTROS FREN CIRCIRI 5017 GÖVDE SAĞ | 28:MERCEDES V-8 OTOBÜS ÖN CIRCIR R-L | 416:MERCEDES V-8 OTOBÜS ARKA CIRCIR R-L"
+    },
+    {
+      "slug": "mercedes-atego-fren-kampanasi",
+      "heading": "Mercedes Atego Fren Kampanası",
+      "title": "Mercedes Atego Fren Kampanası | Fiyat ve Stok | Frenciniz",
+      "description": "Mercedes Atego uyumlu fren kampanası ürünleri. OEM/parça kodu ile uyumluluk teyidi, stok ve fiyat kontrolü, aynı gün kargo ve WhatsApp hızlı teklif.",
+      "priority": "0.84",
+      "matchedProducts": 24,
+      "categories": "fren-kampanasi",
+      "topProducts": "153:Fren Kampanası Mercedes Actros Axor Atego SK | 18:Fren Kampanası Mercedes Actros Axor Atego | 82:Fren Kampanası Mercedes Actros Axor Atego | 159:Fren Kampanası Mercedes Actros Axor Atego SK | 160:Fren Kampanası Mercedes Actros Axor Atego SK"
+    },
+    {
+      "slug": "mercedes-atego-fren-balatasi",
+      "heading": "Mercedes Atego Fren Balatası",
+      "title": "Mercedes Atego Fren Balatası | Fiyat ve Stok | Frenciniz",
+      "description": "Mercedes Atego uyumlu fren balatası ürünleri. OEM/parça kodu ile uyumluluk teyidi, stok ve fiyat kontrolü, aynı gün kargo ve WhatsApp hızlı teklif.",
+      "priority": "0.84",
+      "matchedProducts": 24,
+      "categories": "fren-balatasi|fren-pabucu|percin",
+      "topProducts": "644:Fren Pabucu - MERCEDES 22CM | 851:Fren Pabucu - MERCEDES 18CM | 690:SL7 SM7 BALATA TUTUTCU | 852:MERCEDES FREN PABUCU 16 CM | 643:Mercedes Pabuç Makarası"
+    },
+    {
+      "slug": "mercedes-atego-fren-korugu",
+      "heading": "Mercedes Atego Fren Körüğü",
+      "title": "Mercedes Atego Fren Körüğü | Fiyat ve Stok | Frenciniz",
+      "description": "Mercedes Atego uyumlu fren körüğü ürünleri. OEM/parça kodu ile uyumluluk teyidi, stok ve fiyat kontrolü, aynı gün kargo ve WhatsApp hızlı teklif.",
+      "priority": "0.83",
+      "matchedProducts": 24,
+      "categories": "fren-korugu",
+      "topProducts": "960:24/30 D/P KISA MİL KÖRÜK DİSK KÖRÜĞÜ | 665:24/16 D/P DİSK KÖRÜK SCANIA | 449:ARFESAN 16/24 D/D DİSK TİPİ DORSE İMDATLI KÖRÜK SOL | 450:ARFESAN 16/24 D/D DİSK TİPİ DORSE İMDATLI KÖRÜK SAĞ | 553:ARFESAN 16/24 D/D DİSK TİPİ DORSE İMDATLI KÖRÜK"
+    },
+    {
+      "slug": "mercedes-atego-bijon-somun",
+      "heading": "Mercedes Atego Bijon Somun",
+      "title": "Mercedes Atego Bijon Somun | Fiyat ve Stok | Frenciniz",
+      "description": "Mercedes Atego uyumlu bijon ve somun ürünleri. OEM/parça kodu ile uyumluluk teyidi, stok ve fiyat kontrolü, aynı gün kargo ve WhatsApp hızlı teklif.",
+      "priority": "0.83",
+      "matchedProducts": 24,
+      "categories": "bijon|disk-bijonu-civatasi|somun-civata",
+      "topProducts": "327:ALYAN BAŞLIKLI DİSK CİVATASI | 246:Atego 1517 Mercedes Ön 66 MM | 8:ATECO Y.M. ARKA DISK BIJONU | 242:Bijon Mercedes Actros Axor Atego | 936:Man-Mercedes Somunu Uzun"
+    }
+  ],
+  "landingPagesNeedingMoreSpecificProducts": [],
+  "nextManualActions": [
+    "Google Search Console'da sitemap.xml yeniden gönder.",
+    "Search Console URL Denetimi ile ana sayfa ve en yüksek niyetli 10 landing sayfası için dizine ekleme iste.",
+    "Merchant Center ürün feedi zaten temizse haftalık otomatik çekim açık kalsın.",
+    "3-7 gün sonra Search Console Performans raporunda sorguları kontrol edip title/descriptionları kazanan sorgulara göre daralt."
+  ]
+}

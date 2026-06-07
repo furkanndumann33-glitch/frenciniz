@@ -256,6 +256,319 @@ export const LANDING_PAGES = [
   },
 ];
 
+const PART_LANDING_GROUPS = {
+  "fren-diski": {
+    label: "Fren Diski",
+    part: "fren diski",
+    cats: ["fren-diski", "fren-diski-abs-li"],
+    terms: ["fren diski", "disk", "absli disk"],
+    priorityBoost: 0.04,
+  },
+  "fren-kampanasi": {
+    label: "Fren Kampanası",
+    part: "fren kampanası",
+    cats: ["fren-kampanasi"],
+    terms: ["fren kampanasi", "kampana"],
+    priorityBoost: 0.04,
+  },
+  "fren-balatasi": {
+    label: "Fren Balatası",
+    part: "fren balatası",
+    cats: ["fren-balatasi", "fren-pabucu", "percin"],
+    terms: ["fren balatasi", "balata", "pabuc", "pabuç"],
+    priorityBoost: 0.04,
+  },
+  "fren-korugu": {
+    label: "Fren Körüğü",
+    part: "fren körüğü",
+    cats: ["fren-korugu"],
+    terms: ["fren korugu", "fren körüğü", "koruk", "körük"],
+    priorityBoost: 0.03,
+  },
+  "suspansiyon-korugu": {
+    label: "Süspansiyon Körüğü",
+    part: "süspansiyon körüğü",
+    cats: ["suspansiyon-korugu"],
+    terms: ["suspansiyon", "hava korugu", "hava körüğü", "koruk", "körük"],
+    priorityBoost: 0.03,
+  },
+  "bijon-somun": {
+    label: "Bijon Somun",
+    part: "bijon ve somun",
+    cats: ["bijon", "disk-bijonu-civatasi", "somun-civata"],
+    terms: ["bijon", "somun", "civata", "disk bijonu"],
+    priorityBoost: 0.03,
+  },
+  "porya-kapagi": {
+    label: "Porya Kapağı",
+    part: "porya kapağı",
+    cats: ["porya", "kece"],
+    terms: ["porya", "kapak", "porya kapagi", "kece", "keçe", "rulman"],
+    priorityBoost: 0.02,
+  },
+  "kaliper-tamir-takimi": {
+    label: "Kaliper Tamir Takımı",
+    part: "kaliper tamir takımı",
+    cats: [
+      "kaliper-tamir-takimi",
+      "kaliper-perno-tamir-takimi",
+      "kaliper-toz-lastigi",
+      "kaliper-kapak-conta",
+      "kaliper-ayar-mekanizmasi",
+      "kaliper-kilavuz-pim-takimi",
+    ],
+    terms: ["kaliper", "tamir takimi", "tamir takımı", "perno", "toz lastigi", "kılavuz pim"],
+    priorityBoost: 0.03,
+  },
+  "otomatik-fren-circiri": {
+    label: "Otomatik Fren Cırcırı",
+    part: "otomatik fren cırcırı",
+    cats: ["otomatik-fren-circiri", "fren-circiri"],
+    terms: ["otomatik", "fren circiri", "fren cırcırı", "ayar kolu"],
+    priorityBoost: 0.03,
+  },
+  "mekanik-fren-circiri": {
+    label: "Mekanik Fren Cırcırı",
+    part: "mekanik fren cırcırı",
+    cats: ["mekanik-fren-circiri", "fren-circiri"],
+    terms: ["mekanik", "fren circiri", "fren cırcırı", "ayar kolu"],
+    priorityBoost: 0.02,
+  },
+  "abs-sensoru-ebs-modulator": {
+    label: "ABS Sensörü EBS Modülatör",
+    part: "ABS sensörü ve EBS modülatör",
+    cats: ["abs-sensoru-modulu-kablo", "ebs-modulator", "sensor", "elektrik-kablosu"],
+    terms: ["abs", "ebs", "sensor", "sensör", "modulator", "modülatör", "kablo"],
+    priorityBoost: 0.03,
+  },
+};
+
+const VEHICLE_LANDING_GROUPS = [
+  {
+    key: "mercedes-actros",
+    label: "Mercedes Actros",
+    primaryTerm: "Actros",
+    terms: ["mercedes", "actros", "1840", "1841", "1844", "3340", "4140"],
+    parts: ["fren-diski", "fren-kampanasi", "fren-balatasi", "fren-korugu", "suspansiyon-korugu", "bijon-somun", "kaliper-tamir-takimi", "otomatik-fren-circiri"],
+    priority: 0.84,
+  },
+  {
+    key: "mercedes-axor",
+    label: "Mercedes Axor",
+    primaryTerm: "Axor",
+    terms: ["mercedes", "axor", "1840", "2528", "3228", "3340", "4140"],
+    parts: ["fren-diski", "fren-kampanasi", "fren-balatasi", "fren-korugu", "bijon-somun", "kaliper-tamir-takimi", "otomatik-fren-circiri"],
+    priority: 0.83,
+  },
+  {
+    key: "mercedes-atego",
+    label: "Mercedes Atego",
+    primaryTerm: "Atego",
+    terms: ["mercedes", "atego", "1517", "1524", "2524"],
+    parts: ["fren-diski", "fren-kampanasi", "fren-balatasi", "fren-korugu", "bijon-somun", "kaliper-tamir-takimi"],
+    priority: 0.8,
+  },
+  {
+    key: "man-tga",
+    label: "MAN TGA",
+    primaryTerm: "TGA",
+    terms: ["man", "tga", "18430", "18460", "41400", "41460"],
+    parts: ["fren-diski", "fren-kampanasi", "fren-balatasi", "bijon-somun", "kaliper-tamir-takimi", "otomatik-fren-circiri", "mekanik-fren-circiri"],
+    priority: 0.84,
+  },
+  {
+    key: "man-tgs-tgx",
+    label: "MAN TGS TGX",
+    primaryTerm: "MAN",
+    terms: ["man", "tgs", "tgx", "tgm", "tgl"],
+    parts: ["fren-diski", "fren-kampanasi", "fren-balatasi", "suspansiyon-korugu", "bijon-somun", "kaliper-tamir-takimi", "abs-sensoru-ebs-modulator"],
+    priority: 0.82,
+  },
+  {
+    key: "volvo-fh",
+    label: "Volvo FH/FM",
+    primaryTerm: "Volvo",
+    terms: ["volvo", "fh", "fm", "fh12", "fh13"],
+    parts: ["fren-diski", "fren-kampanasi", "fren-balatasi", "suspansiyon-korugu", "bijon-somun", "kaliper-tamir-takimi"],
+    priority: 0.82,
+  },
+  {
+    key: "scania-r-g",
+    label: "Scania R/G",
+    primaryTerm: "Scania",
+    terms: ["scania", "r420", "r440", "g420", "g440", "p"],
+    parts: ["fren-diski", "fren-kampanasi", "fren-balatasi", "bijon-somun", "kaliper-tamir-takimi", "otomatik-fren-circiri"],
+    priority: 0.82,
+  },
+  {
+    key: "daf-xf-cf",
+    label: "DAF XF/CF",
+    primaryTerm: "DAF",
+    terms: ["daf", "xf", "cf", "lf"],
+    parts: ["fren-diski", "fren-kampanasi", "fren-balatasi", "bijon-somun", "kaliper-tamir-takimi", "otomatik-fren-circiri"],
+    priority: 0.8,
+  },
+  {
+    key: "iveco-stralis-eurocargo",
+    label: "Iveco Stralis Eurocargo",
+    primaryTerm: "Iveco",
+    terms: ["iveco", "stralis", "eurocargo", "daily"],
+    parts: ["fren-diski", "fren-kampanasi", "fren-balatasi", "bijon-somun", "kaliper-tamir-takimi", "otomatik-fren-circiri"],
+    priority: 0.79,
+  },
+  {
+    key: "renault-premium",
+    label: "Renault Premium/Magnum",
+    primaryTerm: "Renault",
+    terms: ["renault", "premium", "magnum", "kerax"],
+    parts: ["fren-diski", "fren-kampanasi", "fren-balatasi", "kaliper-tamir-takimi", "otomatik-fren-circiri"],
+    priority: 0.79,
+  },
+  {
+    key: "ford-cargo",
+    label: "Ford Cargo",
+    primaryTerm: "Cargo",
+    terms: ["ford", "cargo", "1838", "2532", "3232", "3542"],
+    parts: ["fren-diski", "fren-kampanasi", "fren-balatasi", "bijon-somun", "otomatik-fren-circiri"],
+    priority: 0.8,
+  },
+  {
+    key: "bmc",
+    label: "BMC",
+    primaryTerm: "BMC",
+    terms: ["bmc", "pro", "profesyonel", "fatih"],
+    parts: ["fren-diski", "fren-kampanasi", "fren-balatasi", "bijon-somun", "otomatik-fren-circiri"],
+    priority: 0.77,
+  },
+  {
+    key: "bpw-dorse",
+    label: "BPW Dorse",
+    primaryTerm: "BPW",
+    terms: ["bpw", "dorse", "treyler"],
+    parts: ["fren-diski", "fren-kampanasi", "fren-balatasi", "bijon-somun", "porya-kapagi", "suspansiyon-korugu", "abs-sensoru-ebs-modulator"],
+    priority: 0.85,
+  },
+  {
+    key: "saf-dorse",
+    label: "SAF Dorse",
+    primaryTerm: "SAF",
+    terms: ["saf", "dorse", "treyler"],
+    parts: ["fren-diski", "fren-kampanasi", "fren-balatasi", "bijon-somun", "porya-kapagi", "suspansiyon-korugu", "abs-sensoru-ebs-modulator"],
+    priority: 0.84,
+  },
+  {
+    key: "krone-dorse",
+    label: "Krone Dorse",
+    primaryTerm: "Krone",
+    terms: ["krone", "dorse", "treyler"],
+    parts: ["fren-diski", "fren-kampanasi", "fren-balatasi", "bijon-somun", "porya-kapagi", "suspansiyon-korugu"],
+    priority: 0.78,
+  },
+  {
+    key: "kogel-dorse",
+    label: "Kögel Dorse",
+    primaryTerm: "Kögel",
+    terms: ["kogel", "kögel", "dorse", "treyler"],
+    parts: ["fren-diski", "fren-kampanasi", "fren-balatasi", "bijon-somun", "suspansiyon-korugu"],
+    priority: 0.77,
+  },
+  {
+    key: "ror-meritor-dorse",
+    label: "ROR Meritor Dorse",
+    primaryTerm: "ROR",
+    terms: ["ror", "meritor", "dorse", "treyler"],
+    parts: ["fren-diski", "fren-kampanasi", "fren-balatasi", "bijon-somun", "porya-kapagi"],
+    priority: 0.77,
+  },
+  {
+    key: "schmitz-dorse",
+    label: "Schmitz Dorse",
+    primaryTerm: "Schmitz",
+    terms: ["schmitz", "cargobull", "dorse", "treyler"],
+    parts: ["fren-diski", "fren-kampanasi", "fren-balatasi", "bijon-somun", "suspansiyon-korugu"],
+    priority: 0.76,
+  },
+  {
+    key: "tirsan-dorse",
+    label: "Tırsan Dorse",
+    primaryTerm: "Tırsan",
+    terms: ["tirsan", "tırsan", "dorse", "treyler"],
+    parts: ["fren-diski", "fren-kampanasi", "fren-balatasi", "bijon-somun", "suspansiyon-korugu"],
+    priority: 0.76,
+  },
+  {
+    key: "otobus",
+    label: "Otobüs",
+    primaryTerm: "Otobüs",
+    terms: ["otobus", "otobüs", "temsa", "otokar", "setra", "travego"],
+    parts: ["fren-diski", "fren-balatasi", "fren-korugu", "suspansiyon-korugu", "kaliper-tamir-takimi", "abs-sensoru-ebs-modulator"],
+    priority: 0.75,
+  },
+  {
+    key: "tir",
+    label: "Tır",
+    primaryTerm: "Tır",
+    terms: ["tir", "tır", "cekici", "çekici", "agir vasita", "ağır vasıta"],
+    parts: ["fren-diski", "fren-kampanasi", "fren-balatasi", "fren-korugu", "suspansiyon-korugu", "bijon-somun", "kaliper-tamir-takimi", "otomatik-fren-circiri"],
+    priority: 0.82,
+  },
+  {
+    key: "kamyon",
+    label: "Kamyon",
+    primaryTerm: "Kamyon",
+    terms: ["kamyon", "agir vasita", "ağır vasıta", "hafriyat"],
+    parts: ["fren-diski", "fren-kampanasi", "fren-balatasi", "fren-korugu", "suspansiyon-korugu", "bijon-somun", "kaliper-tamir-takimi", "otomatik-fren-circiri"],
+    priority: 0.82,
+  },
+  {
+    key: "dorse",
+    label: "Dorse",
+    primaryTerm: "Dorse",
+    terms: ["dorse", "treyler", "semi treyler"],
+    parts: ["fren-diski", "fren-kampanasi", "fren-balatasi", "suspansiyon-korugu", "bijon-somun", "porya-kapagi", "abs-sensoru-ebs-modulator"],
+    priority: 0.84,
+  },
+];
+
+function slugify(value) {
+  return normalize(value)
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function buildLandingPage(vehicle, partKey) {
+  const part = PART_LANDING_GROUPS[partKey];
+  const heading = `${vehicle.label} ${part.label}`;
+  const priority = Math.min(0.9, Number(vehicle.priority || 0.78) + Number(part.priorityBoost || 0)).toFixed(2);
+  return {
+    slug: `${vehicle.key}-${slugify(partKey)}`,
+    heading,
+    title: `${heading} | Fiyat ve Stok | Frenciniz`,
+    description: `${vehicle.label} uyumlu ${part.part} ürünleri. OEM/parça kodu ile uyumluluk teyidi, stok ve fiyat kontrolü, aynı gün kargo ve WhatsApp hızlı teklif.`,
+    cats: part.cats,
+    terms: [...new Set([...(vehicle.terms || []), ...(part.terms || [])])],
+    primaryTerm: vehicle.primaryTerm || vehicle.label,
+    part: part.part,
+    priority,
+  };
+}
+
+function registerGeneratedLandingPages() {
+  const seen = new Set(LANDING_PAGES.map(page => page.slug));
+
+  for (const vehicle of VEHICLE_LANDING_GROUPS) {
+    for (const partKey of vehicle.parts) {
+      if (!PART_LANDING_GROUPS[partKey]) continue;
+      const page = buildLandingPage(vehicle, partKey);
+      if (seen.has(page.slug)) continue;
+      LANDING_PAGES.push(page);
+      seen.add(page.slug);
+    }
+  }
+}
+
+registerGeneratedLandingPages();
+
 export function getLandingBySlug(slug) {
   return LANDING_PAGES.find(page => page.slug === slug);
 }

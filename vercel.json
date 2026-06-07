@@ -1,68 +1,729 @@
 {
   "rewrites": [
-    { "source": "/sitemap.xml", "destination": "/api/sitemap" },
-    { "source": "/google-merchant-feed.xml", "destination": "/api/sitemap?type=merchant" },
-    { "source": "/meta-catalog-feed.csv", "destination": "/api/sitemap?type=meta" },
-    { "source": "/facebook-catalog-feed.csv", "destination": "/api/sitemap?type=meta" },
-    { "source": "/mercedes-actros-fren-diski", "destination": "/api/sitemap?type=landing&slug=mercedes-actros-fren-diski" },
-    { "source": "/mercedes-axor-fren-diski", "destination": "/api/sitemap?type=landing&slug=mercedes-axor-fren-diski" },
-    { "source": "/mercedes-atego-fren-diski", "destination": "/api/sitemap?type=landing&slug=mercedes-atego-fren-diski" },
-    { "source": "/man-tga-fren-diski", "destination": "/api/sitemap?type=landing&slug=man-tga-fren-diski" },
-    { "source": "/man-tgs-tgx-fren-diski", "destination": "/api/sitemap?type=landing&slug=man-tgs-tgx-fren-diski" },
-    { "source": "/volvo-fh-fren-diski", "destination": "/api/sitemap?type=landing&slug=volvo-fh-fren-diski" },
-    { "source": "/scania-bijon", "destination": "/api/sitemap?type=landing&slug=scania-bijon" },
-    { "source": "/ford-cargo-fren-kampanasi", "destination": "/api/sitemap?type=landing&slug=ford-cargo-fren-kampanasi" },
-    { "source": "/renault-premium-fren-parcalari", "destination": "/api/sitemap?type=landing&slug=renault-premium-fren-parcalari" },
-    { "source": "/bpw-dorse-fren-kampanasi", "destination": "/api/sitemap?type=landing&slug=bpw-dorse-fren-kampanasi" },
-    { "source": "/saf-dorse-porya-kapagi", "destination": "/api/sitemap?type=landing&slug=saf-dorse-porya-kapagi" },
-    { "source": "/krone-dorse-fren-parcalari", "destination": "/api/sitemap?type=landing&slug=krone-dorse-fren-parcalari" },
-    { "source": "/agir-vasita-otomatik-fren-circiri", "destination": "/api/sitemap?type=landing&slug=agir-vasita-otomatik-fren-circiri" },
-    { "source": "/agir-vasita-mekanik-fren-circiri", "destination": "/api/sitemap?type=landing&slug=agir-vasita-mekanik-fren-circiri" },
-    { "source": "/agir-vasita-kaliper-tamir-takimi", "destination": "/api/sitemap?type=landing&slug=agir-vasita-kaliper-tamir-takimi" },
-    { "source": "/knorr-wabco-kaliper-tamir-takimi", "destination": "/api/sitemap?type=landing&slug=knorr-wabco-kaliper-tamir-takimi" },
-    { "source": "/abs-sensoru-ebs-modulator", "destination": "/api/sitemap?type=landing&slug=abs-sensoru-ebs-modulator" },
-    { "source": "/agir-vasita-fren-korugu", "destination": "/api/sitemap?type=landing&slug=agir-vasita-fren-korugu" },
-    { "source": "/agir-vasita-suspansiyon-korugu", "destination": "/api/sitemap?type=landing&slug=agir-vasita-suspansiyon-korugu" },
-    { "source": "/agir-vasita-fren-balatasi", "destination": "/api/sitemap?type=landing&slug=agir-vasita-fren-balatasi" },
-    { "source": "/dorse-bijon-somun", "destination": "/api/sitemap?type=landing&slug=dorse-bijon-somun" },
-    { "source": "/ekersan-fren-diski", "destination": "/api/sitemap?type=landing&slug=ekersan-fren-diski" },
-    { "source": "/porya-kapagi", "destination": "/api/sitemap?type=landing&slug=porya-kapagi" },
-    { "source": "/api/auth/:action", "destination": "/api/auth?action=:action" },
-    { "source": "/api/admin/:action", "destination": "/api/admin?action=:action" },
-    { "source": "/api/(.*)", "destination": "/api/$1" },
-    { "source": "/admin.html", "destination": "/admin.html" },
-    { "source": "/data/(.*)", "destination": "/data/$1" },
-    { "source": "/img/(.*)", "destination": "/img/$1" },
-    { "source": "/social/(.*)", "destination": "/social/$1" },
-    { "source": "/raporlar/(.*)", "destination": "/raporlar/$1" },
-    { "source": "/assets/(.*)", "destination": "/assets/$1" },
-    { "source": "/favicon.svg", "destination": "/favicon.svg" },
-    { "source": "/robots.txt", "destination": "/robots.txt" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    {
+      "source": "/sitemap.xml",
+      "destination": "/api/sitemap"
+    },
+    {
+      "source": "/google-merchant-feed.xml",
+      "destination": "/api/sitemap?type=merchant"
+    },
+    {
+      "source": "/meta-catalog-feed.csv",
+      "destination": "/api/sitemap?type=meta"
+    },
+    {
+      "source": "/facebook-catalog-feed.csv",
+      "destination": "/api/sitemap?type=meta"
+    },
+    {
+      "source": "/mercedes-actros-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-actros-fren-diski"
+    },
+    {
+      "source": "/mercedes-axor-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-axor-fren-diski"
+    },
+    {
+      "source": "/mercedes-atego-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-atego-fren-diski"
+    },
+    {
+      "source": "/man-tga-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=man-tga-fren-diski"
+    },
+    {
+      "source": "/man-tgs-tgx-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=man-tgs-tgx-fren-diski"
+    },
+    {
+      "source": "/volvo-fh-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh-fren-diski"
+    },
+    {
+      "source": "/scania-bijon",
+      "destination": "/api/sitemap?type=landing&slug=scania-bijon"
+    },
+    {
+      "source": "/ford-cargo-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-fren-kampanasi"
+    },
+    {
+      "source": "/renault-premium-fren-parcalari",
+      "destination": "/api/sitemap?type=landing&slug=renault-premium-fren-parcalari"
+    },
+    {
+      "source": "/bpw-dorse-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=bpw-dorse-fren-kampanasi"
+    },
+    {
+      "source": "/saf-dorse-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=saf-dorse-porya-kapagi"
+    },
+    {
+      "source": "/krone-dorse-fren-parcalari",
+      "destination": "/api/sitemap?type=landing&slug=krone-dorse-fren-parcalari"
+    },
+    {
+      "source": "/agir-vasita-otomatik-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=agir-vasita-otomatik-fren-circiri"
+    },
+    {
+      "source": "/agir-vasita-mekanik-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=agir-vasita-mekanik-fren-circiri"
+    },
+    {
+      "source": "/agir-vasita-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=agir-vasita-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/knorr-wabco-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=knorr-wabco-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/abs-sensoru-ebs-modulator",
+      "destination": "/api/sitemap?type=landing&slug=abs-sensoru-ebs-modulator"
+    },
+    {
+      "source": "/agir-vasita-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=agir-vasita-fren-korugu"
+    },
+    {
+      "source": "/agir-vasita-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=agir-vasita-suspansiyon-korugu"
+    },
+    {
+      "source": "/agir-vasita-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=agir-vasita-fren-balatasi"
+    },
+    {
+      "source": "/dorse-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=dorse-bijon-somun"
+    },
+    {
+      "source": "/ekersan-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=ekersan-fren-diski"
+    },
+    {
+      "source": "/porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=porya-kapagi"
+    },
+    {
+      "source": "/mercedes-actros-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-actros-fren-kampanasi"
+    },
+    {
+      "source": "/mercedes-actros-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-actros-fren-balatasi"
+    },
+    {
+      "source": "/mercedes-actros-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-actros-fren-korugu"
+    },
+    {
+      "source": "/mercedes-actros-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-actros-suspansiyon-korugu"
+    },
+    {
+      "source": "/mercedes-actros-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-actros-bijon-somun"
+    },
+    {
+      "source": "/mercedes-actros-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-actros-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/mercedes-actros-otomatik-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-actros-otomatik-fren-circiri"
+    },
+    {
+      "source": "/mercedes-axor-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-axor-fren-kampanasi"
+    },
+    {
+      "source": "/mercedes-axor-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-axor-fren-balatasi"
+    },
+    {
+      "source": "/mercedes-axor-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-axor-fren-korugu"
+    },
+    {
+      "source": "/mercedes-axor-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-axor-bijon-somun"
+    },
+    {
+      "source": "/mercedes-axor-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-axor-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/mercedes-axor-otomatik-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-axor-otomatik-fren-circiri"
+    },
+    {
+      "source": "/mercedes-atego-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-atego-fren-kampanasi"
+    },
+    {
+      "source": "/mercedes-atego-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-atego-fren-balatasi"
+    },
+    {
+      "source": "/mercedes-atego-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-atego-fren-korugu"
+    },
+    {
+      "source": "/mercedes-atego-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-atego-bijon-somun"
+    },
+    {
+      "source": "/mercedes-atego-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-atego-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/man-tga-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=man-tga-fren-kampanasi"
+    },
+    {
+      "source": "/man-tga-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=man-tga-fren-balatasi"
+    },
+    {
+      "source": "/man-tga-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=man-tga-bijon-somun"
+    },
+    {
+      "source": "/man-tga-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=man-tga-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/man-tga-otomatik-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=man-tga-otomatik-fren-circiri"
+    },
+    {
+      "source": "/man-tga-mekanik-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=man-tga-mekanik-fren-circiri"
+    },
+    {
+      "source": "/man-tgs-tgx-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=man-tgs-tgx-fren-kampanasi"
+    },
+    {
+      "source": "/man-tgs-tgx-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=man-tgs-tgx-fren-balatasi"
+    },
+    {
+      "source": "/man-tgs-tgx-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=man-tgs-tgx-suspansiyon-korugu"
+    },
+    {
+      "source": "/man-tgs-tgx-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=man-tgs-tgx-bijon-somun"
+    },
+    {
+      "source": "/man-tgs-tgx-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=man-tgs-tgx-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/man-tgs-tgx-abs-sensoru-ebs-modulator",
+      "destination": "/api/sitemap?type=landing&slug=man-tgs-tgx-abs-sensoru-ebs-modulator"
+    },
+    {
+      "source": "/volvo-fh-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh-fren-kampanasi"
+    },
+    {
+      "source": "/volvo-fh-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh-fren-balatasi"
+    },
+    {
+      "source": "/volvo-fh-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh-suspansiyon-korugu"
+    },
+    {
+      "source": "/volvo-fh-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh-bijon-somun"
+    },
+    {
+      "source": "/volvo-fh-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/scania-r-g-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=scania-r-g-fren-diski"
+    },
+    {
+      "source": "/scania-r-g-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=scania-r-g-fren-kampanasi"
+    },
+    {
+      "source": "/scania-r-g-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=scania-r-g-fren-balatasi"
+    },
+    {
+      "source": "/scania-r-g-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=scania-r-g-bijon-somun"
+    },
+    {
+      "source": "/scania-r-g-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=scania-r-g-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/scania-r-g-otomatik-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=scania-r-g-otomatik-fren-circiri"
+    },
+    {
+      "source": "/daf-xf-cf-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-cf-fren-diski"
+    },
+    {
+      "source": "/daf-xf-cf-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-cf-fren-kampanasi"
+    },
+    {
+      "source": "/daf-xf-cf-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-cf-fren-balatasi"
+    },
+    {
+      "source": "/daf-xf-cf-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-cf-bijon-somun"
+    },
+    {
+      "source": "/daf-xf-cf-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-cf-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/daf-xf-cf-otomatik-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-cf-otomatik-fren-circiri"
+    },
+    {
+      "source": "/iveco-stralis-eurocargo-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=iveco-stralis-eurocargo-fren-diski"
+    },
+    {
+      "source": "/iveco-stralis-eurocargo-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=iveco-stralis-eurocargo-fren-kampanasi"
+    },
+    {
+      "source": "/iveco-stralis-eurocargo-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=iveco-stralis-eurocargo-fren-balatasi"
+    },
+    {
+      "source": "/iveco-stralis-eurocargo-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=iveco-stralis-eurocargo-bijon-somun"
+    },
+    {
+      "source": "/iveco-stralis-eurocargo-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=iveco-stralis-eurocargo-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/iveco-stralis-eurocargo-otomatik-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=iveco-stralis-eurocargo-otomatik-fren-circiri"
+    },
+    {
+      "source": "/renault-premium-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=renault-premium-fren-diski"
+    },
+    {
+      "source": "/renault-premium-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=renault-premium-fren-kampanasi"
+    },
+    {
+      "source": "/renault-premium-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=renault-premium-fren-balatasi"
+    },
+    {
+      "source": "/renault-premium-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=renault-premium-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/renault-premium-otomatik-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=renault-premium-otomatik-fren-circiri"
+    },
+    {
+      "source": "/ford-cargo-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-fren-diski"
+    },
+    {
+      "source": "/ford-cargo-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-fren-balatasi"
+    },
+    {
+      "source": "/ford-cargo-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-bijon-somun"
+    },
+    {
+      "source": "/ford-cargo-otomatik-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-otomatik-fren-circiri"
+    },
+    {
+      "source": "/bmc-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=bmc-fren-diski"
+    },
+    {
+      "source": "/bmc-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=bmc-fren-kampanasi"
+    },
+    {
+      "source": "/bmc-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=bmc-fren-balatasi"
+    },
+    {
+      "source": "/bmc-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=bmc-bijon-somun"
+    },
+    {
+      "source": "/bmc-otomatik-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=bmc-otomatik-fren-circiri"
+    },
+    {
+      "source": "/bpw-dorse-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=bpw-dorse-fren-diski"
+    },
+    {
+      "source": "/bpw-dorse-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=bpw-dorse-fren-balatasi"
+    },
+    {
+      "source": "/bpw-dorse-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=bpw-dorse-bijon-somun"
+    },
+    {
+      "source": "/bpw-dorse-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=bpw-dorse-porya-kapagi"
+    },
+    {
+      "source": "/bpw-dorse-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=bpw-dorse-suspansiyon-korugu"
+    },
+    {
+      "source": "/bpw-dorse-abs-sensoru-ebs-modulator",
+      "destination": "/api/sitemap?type=landing&slug=bpw-dorse-abs-sensoru-ebs-modulator"
+    },
+    {
+      "source": "/saf-dorse-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=saf-dorse-fren-diski"
+    },
+    {
+      "source": "/saf-dorse-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=saf-dorse-fren-kampanasi"
+    },
+    {
+      "source": "/saf-dorse-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=saf-dorse-fren-balatasi"
+    },
+    {
+      "source": "/saf-dorse-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=saf-dorse-bijon-somun"
+    },
+    {
+      "source": "/saf-dorse-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=saf-dorse-suspansiyon-korugu"
+    },
+    {
+      "source": "/saf-dorse-abs-sensoru-ebs-modulator",
+      "destination": "/api/sitemap?type=landing&slug=saf-dorse-abs-sensoru-ebs-modulator"
+    },
+    {
+      "source": "/krone-dorse-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=krone-dorse-fren-diski"
+    },
+    {
+      "source": "/krone-dorse-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=krone-dorse-fren-kampanasi"
+    },
+    {
+      "source": "/krone-dorse-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=krone-dorse-fren-balatasi"
+    },
+    {
+      "source": "/krone-dorse-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=krone-dorse-bijon-somun"
+    },
+    {
+      "source": "/krone-dorse-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=krone-dorse-porya-kapagi"
+    },
+    {
+      "source": "/krone-dorse-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=krone-dorse-suspansiyon-korugu"
+    },
+    {
+      "source": "/kogel-dorse-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=kogel-dorse-fren-diski"
+    },
+    {
+      "source": "/kogel-dorse-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=kogel-dorse-fren-kampanasi"
+    },
+    {
+      "source": "/kogel-dorse-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=kogel-dorse-fren-balatasi"
+    },
+    {
+      "source": "/kogel-dorse-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=kogel-dorse-bijon-somun"
+    },
+    {
+      "source": "/kogel-dorse-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=kogel-dorse-suspansiyon-korugu"
+    },
+    {
+      "source": "/ror-meritor-dorse-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=ror-meritor-dorse-fren-diski"
+    },
+    {
+      "source": "/ror-meritor-dorse-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=ror-meritor-dorse-fren-kampanasi"
+    },
+    {
+      "source": "/ror-meritor-dorse-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=ror-meritor-dorse-fren-balatasi"
+    },
+    {
+      "source": "/ror-meritor-dorse-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=ror-meritor-dorse-bijon-somun"
+    },
+    {
+      "source": "/ror-meritor-dorse-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=ror-meritor-dorse-porya-kapagi"
+    },
+    {
+      "source": "/schmitz-dorse-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=schmitz-dorse-fren-diski"
+    },
+    {
+      "source": "/schmitz-dorse-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=schmitz-dorse-fren-kampanasi"
+    },
+    {
+      "source": "/schmitz-dorse-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=schmitz-dorse-fren-balatasi"
+    },
+    {
+      "source": "/schmitz-dorse-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=schmitz-dorse-bijon-somun"
+    },
+    {
+      "source": "/schmitz-dorse-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=schmitz-dorse-suspansiyon-korugu"
+    },
+    {
+      "source": "/tirsan-dorse-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=tirsan-dorse-fren-diski"
+    },
+    {
+      "source": "/tirsan-dorse-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=tirsan-dorse-fren-kampanasi"
+    },
+    {
+      "source": "/tirsan-dorse-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=tirsan-dorse-fren-balatasi"
+    },
+    {
+      "source": "/tirsan-dorse-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=tirsan-dorse-bijon-somun"
+    },
+    {
+      "source": "/tirsan-dorse-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=tirsan-dorse-suspansiyon-korugu"
+    },
+    {
+      "source": "/otobus-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=otobus-fren-diski"
+    },
+    {
+      "source": "/otobus-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=otobus-fren-balatasi"
+    },
+    {
+      "source": "/otobus-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=otobus-fren-korugu"
+    },
+    {
+      "source": "/otobus-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=otobus-suspansiyon-korugu"
+    },
+    {
+      "source": "/otobus-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=otobus-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/otobus-abs-sensoru-ebs-modulator",
+      "destination": "/api/sitemap?type=landing&slug=otobus-abs-sensoru-ebs-modulator"
+    },
+    {
+      "source": "/tir-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=tir-fren-diski"
+    },
+    {
+      "source": "/tir-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=tir-fren-kampanasi"
+    },
+    {
+      "source": "/tir-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=tir-fren-balatasi"
+    },
+    {
+      "source": "/tir-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=tir-fren-korugu"
+    },
+    {
+      "source": "/tir-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=tir-suspansiyon-korugu"
+    },
+    {
+      "source": "/tir-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=tir-bijon-somun"
+    },
+    {
+      "source": "/tir-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=tir-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/tir-otomatik-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=tir-otomatik-fren-circiri"
+    },
+    {
+      "source": "/kamyon-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=kamyon-fren-diski"
+    },
+    {
+      "source": "/kamyon-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=kamyon-fren-kampanasi"
+    },
+    {
+      "source": "/kamyon-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=kamyon-fren-balatasi"
+    },
+    {
+      "source": "/kamyon-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=kamyon-fren-korugu"
+    },
+    {
+      "source": "/kamyon-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=kamyon-suspansiyon-korugu"
+    },
+    {
+      "source": "/kamyon-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=kamyon-bijon-somun"
+    },
+    {
+      "source": "/kamyon-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=kamyon-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/kamyon-otomatik-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=kamyon-otomatik-fren-circiri"
+    },
+    {
+      "source": "/dorse-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=dorse-fren-diski"
+    },
+    {
+      "source": "/dorse-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=dorse-fren-kampanasi"
+    },
+    {
+      "source": "/dorse-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=dorse-fren-balatasi"
+    },
+    {
+      "source": "/dorse-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=dorse-suspansiyon-korugu"
+    },
+    {
+      "source": "/dorse-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=dorse-porya-kapagi"
+    },
+    {
+      "source": "/dorse-abs-sensoru-ebs-modulator",
+      "destination": "/api/sitemap?type=landing&slug=dorse-abs-sensoru-ebs-modulator"
+    },
+    {
+      "source": "/api/auth/:action",
+      "destination": "/api/auth?action=:action"
+    },
+    {
+      "source": "/api/admin/:action",
+      "destination": "/api/admin?action=:action"
+    },
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
+    },
+    {
+      "source": "/admin.html",
+      "destination": "/admin.html"
+    },
+    {
+      "source": "/data/(.*)",
+      "destination": "/data/$1"
+    },
+    {
+      "source": "/img/(.*)",
+      "destination": "/img/$1"
+    },
+    {
+      "source": "/social/(.*)",
+      "destination": "/social/$1"
+    },
+    {
+      "source": "/raporlar/(.*)",
+      "destination": "/raporlar/$1"
+    },
+    {
+      "source": "/assets/(.*)",
+      "destination": "/assets/$1"
+    },
+    {
+      "source": "/favicon.svg",
+      "destination": "/favicon.svg"
+    },
+    {
+      "source": "/robots.txt",
+      "destination": "/robots.txt"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
   ],
   "headers": [
     {
       "source": "/(.*)\\.(png|webp|jpg|jpeg|svg|ico)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=2592000" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000"
+        }
       ]
     },
     {
       "source": "/assets/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
       "source": "/img/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
       "source": "/data/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=300, s-maxage=86400, stale-while-revalidate=604800" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=300, s-maxage=86400, stale-while-revalidate=604800"
+        }
       ]
     }
   ],

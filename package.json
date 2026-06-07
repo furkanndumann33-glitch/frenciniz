@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "seo:rewrites": "node scripts/sync-seo-rewrites.mjs",
+    "seo:audit": "node scripts/audit-google-seo.mjs"
   },
   "dependencies": {
     "react": "^18.2.0",
