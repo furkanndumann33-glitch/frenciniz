@@ -518,6 +518,23 @@ for (const label of ["Ağır vasıta", "Dorse / treyler", "Ağır vasıta dorse 
   GENERIC_LABELS.add(label);
 }
 
+const GENERIC_PRODUCT_TITLES = new Map([
+  ["FREN DISKI", "Fren Diski"],
+  ["FREN DISK", "Fren Diski"],
+  ["DISK", "Fren Diski"],
+  ["FREN KAMPANASI", "Fren Kampanası"],
+  ["KAMPANA", "Fren Kampanası"],
+  ["DISK BALATASI", "Disk Balatası"],
+  ["FREN DISK BALATASI", "Fren Disk Balatası"],
+  ["FREN BALATASI", "Fren Balatası"],
+]);
+
+const TITLE_RULES = [
+  { regex: /9267086|6604261/i, suffix: "Kögel Krone" },
+  { regex: /8551042|3092710/i, suffix: "Volvo FH FM FL" },
+  { regex: /21227349|MBR9018|68323825|MBR5124|MBR9004|M069018|M200135|MBR9007|1176816|17870|MBR5143|1088133/i, suffix: "ROR Meritor" },
+];
+
 function normalize(value) {
   return String(value || "")
     .normalize("NFD")
@@ -535,6 +552,60 @@ function cleanOem(oem) {
 
 function uniq(values) {
   return [...new Set(values.map((value) => String(value || "").trim()).filter(Boolean))];
+}
+
+function titleCaseBase(productName) {
+  return GENERIC_PRODUCT_TITLES.get(normalize(productName).replace(/\s+/g, " ").trim());
+}
+
+function cleanTitlePart(value) {
+  return String(value || "")
+    .replace(/\b(?:dorse dingili|dorse|treyler|disk fren sistemi|kaliper sistemi|ağır vasıta|araç grubu|serisi)\b/gi, "")
+    .replace(/Mercedes-Benz/g, "Mercedes")
+    .replace(/Renault Trucks/g, "Renault")
+    .replace(/Meritor\/ROR/g, "Meritor ROR")
+    .replace(/[()/]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function compactTitleSuffix(parts) {
+  const cleaned = uniq(parts.filter((part) => !GENERIC_LABELS.has(part)).map(cleanTitlePart)).filter((part) => {
+    if (!part || GENERIC_LABELS.has(part)) return false;
+    return !/^(Kamyon|T[ıi]r|Çekici|Otobüs|Dorse|Treyler)$/i.test(part);
+  });
+  if (!cleaned.length) return "";
+
+  const volvo = cleaned.filter((part) => /^Volvo\s/i.test(part));
+  if (volvo.length >= 2) {
+    return `Volvo ${uniq(volvo.map((part) => part.replace(/^Volvo\s+/i, ""))).slice(0, 4).join(" ")}`;
+  }
+
+  const mercedes = cleaned.filter((part) => /^Mercedes\s/i.test(part));
+  if (mercedes.length >= 2) {
+    return `Mercedes ${uniq(mercedes.map((part) => part.replace(/^Mercedes\s+/i, ""))).slice(0, 4).join(" ")}`;
+  }
+
+  return cleaned.slice(0, 3).join(" ");
+}
+
+function makeProductName(product, compat) {
+  const currentName = String(product.name || "").trim();
+  const text = `${currentName} ${product.sku || ""} ${product.oem || ""}`;
+  const titleRule = TITLE_RULES.find((rule) => rule.regex.test(text));
+  const suffix = titleRule?.suffix || compactTitleSuffix(compat);
+  const generatedGeneric = currentName.match(/^(Fren Diski|Fren Kampanası|Disk Balatası|Fren Balatası|Fren Disk Balatası) (?:Kamyon|T[ıi]r çekici|Otobüs|Dorse|Treyler)$/i);
+  if (!suffix && generatedGeneric) return generatedGeneric[1];
+
+  const generatedBase = suffix
+    ? [...new Set(GENERIC_PRODUCT_TITLES.values())].find((baseName) => currentName === `${baseName} ${suffix}`)
+    : "";
+  const base = titleCaseBase(currentName) || generatedBase;
+  if (!base) return currentName;
+  if (!suffix) return currentName;
+
+  const nextName = `${base} ${suffix}`.replace(/\s+/g, " ").trim();
+  return nextName.length > 90 ? nextName.slice(0, 90).trim() : nextName;
 }
 
 function groupId(product) {
@@ -607,7 +678,8 @@ const summary = {
 
 for (const product of products) {
   const { compat, notes } = detectCompatibility(product);
-  const desc = makeDescription(product, compat, notes);
+  const name = makeProductName(product, compat);
+  const desc = makeDescription({ ...product, name }, compat, notes);
   const group = groupId(product);
   summary.byGroup[group] = summary.byGroup[group] || {
     total: 0,
@@ -620,17 +692,20 @@ for (const product of products) {
 
   const nextNotes = notes.length ? notes : undefined;
   const before = JSON.stringify({
+    name: product.name,
     desc: product.desc,
     compat: product.compat,
     compat_notes: product.compat_notes,
     compat_source: product.compat_source,
   });
   const after = JSON.stringify({
+    name,
     desc,
     compat,
     compat_notes: nextNotes,
     compat_source: RULE_SOURCE,
   });
+  product.name = name;
   product.desc = desc;
   product.compat = compat;
   product.compat_source = RULE_SOURCE;

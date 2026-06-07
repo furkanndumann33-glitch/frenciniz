@@ -1,6 +1,6 @@
 {
   "total": 1055,
-  "changed": 0,
+  "changed": 33,
   "withDescription": 1055,
   "withCompatibility": 1055,
   "specificCompatibility": 886,
@@ -21,14 +21,14 @@
     },
     "disk": {
       "total": 97,
-      "changed": 0,
+      "changed": 2,
       "withDescription": 97,
       "withCompatibility": 97,
       "specificCompatibility": 95
     },
     "kampana": {
       "total": 118,
-      "changed": 0,
+      "changed": 31,
       "withDescription": 118,
       "withCompatibility": 118,
       "specificCompatibility": 86
@@ -182,5 +182,5 @@
       "usedFor": "Mercedes Axor / Actros / Econic WVA 29244 brake pad reference"
     }
   ],
-  "generatedAt": "2026-06-07T14:12:41.581Z"
+  "generatedAt": "2026-06-07T14:34:45.238Z"
 }
