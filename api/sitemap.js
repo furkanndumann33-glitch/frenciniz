@@ -265,7 +265,7 @@ export default async function handler(req, res) {
     if (isMetaCatalogFeed) {
       const csv = buildMetaCatalogFeed(products, categories);
       res.setHeader("Content-Type", "text/csv; charset=utf-8");
-      res.setHeader("Cache-Control", "public, max-age=600, s-maxage=86400, stale-while-revalidate=604800");
+      res.setHeader("Cache-Control", "public, max-age=60, s-maxage=300, stale-while-revalidate=600");
       return res.status(200).send(csv);
     }
 
@@ -274,7 +274,7 @@ export default async function handler(req, res) {
     if (isMerchantFeed) {
       const xml = buildMerchantFeed(products, categories);
       res.setHeader("Content-Type", "application/xml; charset=utf-8");
-      res.setHeader("Cache-Control", "public, max-age=600, s-maxage=86400, stale-while-revalidate=604800");
+      res.setHeader("Cache-Control", "public, max-age=60, s-maxage=300, stale-while-revalidate=600");
       return res.status(200).send(xml);
     }
 
