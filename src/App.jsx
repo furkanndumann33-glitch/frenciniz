@@ -406,6 +406,39 @@ function directImg(url) {
 // ===== SEO HELPERS =====
 const SITE_URL = "https://frenciniz.com";
 
+function absoluteSiteUrl(value) {
+  const raw = String(value || "").trim();
+  if (!raw) return "";
+  if (/^https?:\/\//i.test(raw)) return raw;
+  return `${SITE_URL}${raw.startsWith("/") ? "" : "/"}${raw}`;
+}
+
+function waUrl(message) {
+  return `https://wa.me/908508887881?text=${encodeURIComponent(message)}`;
+}
+
+function generalWhatsAppUrl(topic = "agir vasita fren parcasi") {
+  return waUrl([
+    "Merhaba Frenciniz, destek almak istiyorum.",
+    `Konu: ${topic}`,
+    "OEM/parca kodum:",
+    "Arac / sase no:",
+  ].join("\n"));
+}
+
+function productWhatsAppUrl(product, qty = 1) {
+  return waUrl([
+    "Merhaba Frenciniz, bu urun icin stok, fiyat ve arac uyumlulugu teyidi almak istiyorum.",
+    `Urun: ${product?.name || "-"}`,
+    `SKU: ${product?.sku || "-"}`,
+    `OEM / muadil: ${product?.oem || "-"}`,
+    `Adet: ${qty || 1}`,
+    `Link: ${SITE_URL}/urun/${product?.id || ""}`,
+    "Arac / sase no:",
+    "Eski parca fotosu gonderebilirim.",
+  ].join("\n"));
+}
+
 function setMeta(name, content, attr = "name") {
   if (typeof document === 'undefined' || !content) return;
   let el = document.head.querySelector(`meta[${attr}="${name}"]`);
@@ -572,6 +605,77 @@ function categoryVisual(cat) {
   if (id.includes("susp") || id.includes("dingil")) return withImage({icon:"R", color:"#a3e635", bg:"rgba(163,230,53,.18)"});
   return withImage({icon:">", color:"#ff6000", bg:"rgba(255,96,0,.16)"});
 }
+function categoryIdsFor(catId, cats = CATS) {
+  const id = String(catId || "all");
+  if (id === "all") return [];
+  const found = cats.find(c => c.id === id);
+  if (found?.isGroup) return cats.filter(c => c.parent === id).map(c => c.id);
+  return [id];
+}
+
+function topValues(values, limit = 5) {
+  const counts = new Map();
+  for (const value of values.flat().filter(Boolean)) {
+    const clean = String(value).trim();
+    const lower = clean.toLowerCase();
+    if (!clean || lower === "agir vasita" || lower === "ağır vasıta") continue;
+    counts.set(clean, (counts.get(clean) || 0) + 1);
+  }
+  return [...counts.entries()].sort((a, b) => b[1] - a[1]).slice(0, limit).map(([value]) => value);
+}
+
+const CATEGORY_SALES_COPY = {
+  all: { eyebrow: "Tüm ağır vasıta fren aksamı", desc: "Kamyon, tır, otobüs ve dorse için fren diski, kampana, balata, körük, kaliper, bijon ve sensör gruplarında hızlı stok ve uyumluluk teyidi alın.", chips: ["Fren Diski", "Fren Kampanası", "Fren Balatası", "Süspansiyon Körüğü", "Bijon", "Kaliper"] },
+  disk: { eyebrow: "Disk fren grubu", desc: "Fren disklerinde OEM, çap, bijon deliği ve aks/dorse uyumunu sipariş öncesi birlikte netleştirelim.", chips: ["Kögel", "Krone", "Mercedes Axor", "BPW", "SAF", "DAF"] },
+  kampana: { eyebrow: "Kampana grubu", desc: "Fren kampanası seçiminde ölçü, aks markası ve OEM kodu kritik. Kod veya eski parça fotosu ile hızlı teyit verebiliriz.", chips: ["BPW", "SAF", "Mercedes", "MAN", "Dorse", "Treyler"] },
+  balata: { eyebrow: "Balata grubu", desc: "Balata, pabuçlu sistem ve perçinli gruplarda araç tipi, kaliper/kampana ölçüsü ve OEM koduna göre teklif alın.", chips: ["Mercedes", "MAN", "Volvo", "Scania", "DAF", "Iveco"] },
+  circir: { eyebrow: "Fren cırcırı grubu", desc: "Mekanik ve otomatik fren cırcırında delik, kanal, sağ-sol ve OEM koduna göre uyumluluk kontrolü yapalım.", chips: ["Mercedes Actros", "Axor", "Atego", "Renault", "MAN", "Volvo"] },
+  "bijon-grup": { eyebrow: "Bijon ve somun grubu", desc: "Bijon, somun ve disk civatasında diş ölçüsü, boy ve porya/disk uyumu için parça kodu ile teklif alın.", chips: ["DAF", "ROR", "Meritor", "Mercedes", "MAN", "SAF"] },
+  "porya-grup": { eyebrow: "Porya ve rulman grubu", desc: "Porya, rulman ve keçe seçiminde aks markası, rulman ölçüsü ve OEM kodu ile net uyumluluk teyidi alın.", chips: ["BPW", "SAF", "ROR", "Kögel", "Krone", "Dorse"] },
+  "kaliper-urunleri": { eyebrow: "Kaliper ve tamir takımı", desc: "Kaliper, perno, kılavuz pim ve tamir setlerinde sistem tipi ve eski parça fotosu ile doğru seti hızlı bulalım.", chips: ["Wabco", "Knorr", "Meritor", "Elsa", "PAN", "Maxx22"] },
+  "fren-korukleri": { eyebrow: "Fren körüğü grubu", desc: "Fren körüklerinde T tipi, strok, bağlantı ve araç/dorse uyumu sipariş öncesi teyit edilmelidir.", chips: ["T24", "T30", "T30/30", "Dorse", "Kamyon", "Otobüs"] },
+  "fren-pabuclari": { eyebrow: "Fren pabucu grubu", desc: "Pabuç ve perçinli sistemlerde kampana ölçüsü, aks markası ve eski parça fotosu ile doğru ürünü seçin.", chips: ["BPW", "SAF", "Dorse", "Treyler", "Kampana", "Perçin"] },
+  "fren-yaylari": { eyebrow: "Fren yayı grubu", desc: "Fren yaylarında set içeriği, pabuç tipi ve aks uyumu için OEM veya eski parça fotoğrafı ile destek alın.", chips: ["BPW", "SAF", "Pabuç", "Kampana", "Dorse", "Treyler"] },
+  "sensor-uzatma": { eyebrow: "ABS, EBS ve kablo grubu", desc: "ABS sensörü, EBS modül ve kablolarda soket tipi, kablo boyu ve sistem uyumu kritik. Kodla hızlı teyit alın.", chips: ["ABS Sensörü", "EBS Modül", "Wabco", "Kablo", "Dorse", "Kamyon"] },
+  "susp-korugu": { eyebrow: "Süspansiyon körüğü grubu", desc: "Süspansiyon körüğünde kapak tipi, yükseklik, delik ölçüsü ve aks/marka uyumunu sipariş öncesi birlikte netleştirelim.", chips: ["BPW", "SAF", "Krone", "Kögel", "Dorse", "Treyler"] },
+};
+
+function categorySalesInfo(catId, catName, items, productList, catList, lang) {
+  const id = String(catId || "all");
+  const selected = id === "all" ? productList : items;
+  const found = catList.find(c => c.id === id);
+  const parent = found?.parent ? catList.find(c => c.id === found.parent) : null;
+  const copy = CATEGORY_SALES_COPY[id] || CATEGORY_SALES_COPY[parent?.id] || CATEGORY_SALES_COPY.all;
+  const productsInScope = Array.isArray(selected) ? selected : [];
+  const itemCount = productsInScope.length;
+  const stockCount = productsInScope.filter(p => Number(p.stock || 0) > 0).length;
+  const missingImages = productsInScope.filter(p => !hasRealImg(p)).length;
+  const compat = topValues(productsInScope.map(p => p.compat || []), 6);
+  const brands = topValues(productsInScope.map(p => p.brand ? [p.brand] : []), 4);
+  const chips = [...new Set([...(copy.chips || []), ...compat, ...brands])].slice(0, 8);
+  const displayCat = catName || found?.name || "Tüm Ürünler";
+  const msg = [
+    "Merhaba Frenciniz, kategori için teklif almak istiyorum.",
+    `Kategori: ${displayCat}`,
+    `Listede görünen ürün sayısı: ${itemCount}`,
+    "OEM/parça kodum:",
+    "Araç / şase no:",
+  ].join("\n");
+  return {
+    eyebrow: copy.eyebrow,
+    title: displayCat,
+    desc: copy.desc,
+    chips,
+    whatsappHref: waUrl(msg),
+    stats: [
+      { label: lang === "en" ? "Products" : "ürün", value: itemCount },
+      { label: lang === "en" ? "In stock" : "stokta", value: stockCount },
+      { label: lang === "en" ? "Photo gap" : "görsel eksik", value: missingImages },
+      { label: "OEM", value: "teyit" },
+    ],
+  };
+}
+
 const VEHS = [{id:"all",name:"Tüm Araçlar"},{id:"kamyon",name:"Kamyon"},{id:"tir",name:"Tır"},{id:"otobus",name:"Otobüs"},{id:"dorse",name:"Dorse"}];
 let BRANDS = ["Ekersan"];
 function deriveBrands(prods) {
@@ -998,7 +1102,7 @@ export default function App() {
               "item": {
                 "@type": "Product",
                 "name": p.name,
-                "image": p.img && !p.img.includes("placehold") ? cdnImg(p.img, 400) : baseImg,
+                "image": absoluteSiteUrl(hasRealImg(p) ? cdnImg(p.img, 400) : SITE_IMAGES.missingProduct),
                 "sku": p.sku || undefined,
                 "brand": { "@type": "Brand", "name": p.brand || "Ekersan" },
                 "offers": {
@@ -1051,7 +1155,12 @@ export default function App() {
         const catName = sub ? sub.name : "fren aksamı";
         desc = `${p.name} - ${catName} kategorisinde ${p.brand || "Ekersan"} marka. ${p.sku ? "Stok: " + p.sku + ". " : ""}${p.oem ? "OEM: " + p.oem + ". " : ""}${compatStr ? "Uyumlu: " + compatStr + ". " : ""}ECE R-90 sertifikalı, aynı gün kargo, 12 taksit. ${p.price}₺. Tel: 0545 608 7008.`.slice(0, 300);
         canonical = `${SITE_URL}/urun/${p.id}`;
-        const productImg = p.img && !p.img.includes("placehold") ? cdnImg(p.img, 600) : baseImg;
+        const productImageList = (hasRealImg(p)
+          ? (Array.isArray(p.images) && p.images.length ? p.images : [p.img_lg || p.img])
+          : [SITE_IMAGES.missingProduct])
+          .filter(Boolean)
+          .map(src => absoluteSiteUrl(cdnImg(src, 800)));
+        const productImg = productImageList[0] || baseImg;
         img = productImg;
 
         // Per-product keyword genişletmesi (long-tail için)
@@ -1096,7 +1205,7 @@ export default function App() {
           "@context": "https://schema.org",
           "@type": "Product",
           "name": p.name,
-          "image": [productImg],
+          "image": productImageList,
           "description": (p.desc || p.name),
           "sku": p.sku,
           "mpn": p.oem || p.sku,
@@ -1104,6 +1213,12 @@ export default function App() {
           "productID": p.id,
           "brand": { "@type": "Brand", "name": p.brand || "Ekersan" },
           "category": sub ? sub.name : undefined,
+          "additionalProperty": [
+            p.sku ? { "@type": "PropertyValue", "name": "SKU", "value": p.sku } : null,
+            p.oem ? { "@type": "PropertyValue", "name": "OEM / Muadil", "value": p.oem } : null,
+            p.compat?.length ? { "@type": "PropertyValue", "name": "Uyumlu Araçlar", "value": p.compat.slice(0, 10).join(", ") } : null,
+            { "@type": "PropertyValue", "name": "Stok", "value": String(p.stock || 0) },
+          ].filter(Boolean),
           "aggregateRating": p.rating ? {
             "@type": "AggregateRating",
             "ratingValue": p.rating,
@@ -1308,7 +1423,7 @@ export default function App() {
         {toast && <div style={{position:"fixed",top:80,right:20,zIndex:9999,background:"#4caf50",color:"#fff",padding:"12px 20px",borderRadius:8,fontSize:14,fontWeight:500,boxShadow:"0 4px 12px rgba(0,0,0,.15)",animation:"slideUp .3s"}}>✓ {toast} — {t("addedToCart")}</div>}
 
         {/* WhatsApp Button */}
-        <a href="https://wa.me/908508887881" target="_blank" rel="noopener noreferrer"
+        <a href={generalWhatsAppUrl("site genel destek")} target="_blank" rel="noopener noreferrer" onClick={() => metaTrackCustom("WhatsAppLead", { source: "floating" })}
           style={{position:"fixed",bottom:24,right:24,zIndex:998,width:64,height:64,borderRadius:"50%",background:"#25D366",display:"flex",alignItems:"center",justifyContent:"center",boxShadow:"0 4px 16px rgba(37,211,102,.4)",textDecoration:"none"}}
           title="WhatsApp ile yazın">
           <svg viewBox="0 0 32 32" width="36" height="36" fill="#fff"><path d="M16.01 2.93A13.07 13.07 0 0 0 2.93 16a12.94 12.94 0 0 0 1.75 6.53L2.93 29.07l6.72-1.76A13.07 13.07 0 1 0 16.01 2.93Zm0 23.9a10.8 10.8 0 0 1-5.52-1.51l-.4-.23-3.98 1.04 1.06-3.88-.26-.41a10.83 10.83 0 1 1 9.1 5Z"/><path d="M22.36 18.76c-.35-.17-2.05-1.01-2.37-1.13-.32-.11-.55-.17-.78.17-.23.35-.9 1.13-1.1 1.36-.2.23-.41.26-.76.09-.35-.18-1.47-.54-2.8-1.73-1.04-.92-1.73-2.06-1.94-2.41-.2-.35-.02-.54.15-.71.16-.16.35-.41.53-.61.17-.21.23-.35.35-.59.12-.23.06-.44-.03-.61-.09-.17-.78-1.88-1.07-2.57-.28-.68-.57-.59-.78-.6h-.67a1.28 1.28 0 0 0-.93.44 3.93 3.93 0 0 0-1.22 2.92c0 1.72 1.25 3.38 1.43 3.61.17.24 2.47 3.77 5.98 5.28.84.36 1.49.58 2 .74.84.27 1.6.23 2.2.14.67-.1 2.05-.84 2.34-1.65.29-.81.29-1.5.2-1.65-.08-.14-.32-.23-.67-.4Z"/></svg>
@@ -1329,7 +1444,7 @@ export default function App() {
               {!isMobile && <div style={{display:"flex",gap:12,alignItems:"center"}}>
                 <>
                   <a href="tel:+905456087008" style={{color:"#ccc",fontSize:12,textDecoration:"none"}} onMouseEnter={e=>e.currentTarget.style.color="#ff6000"} onMouseLeave={e=>e.currentTarget.style.color="#ccc"}>📞 0545 608 7008</a>
-                  <a href="https://wa.me/908508887881" target="_blank" rel="noopener noreferrer" style={{color:"#25D366",fontSize:12,textDecoration:"none",fontWeight:600}} onMouseEnter={e=>e.currentTarget.style.color="#4ade80"} onMouseLeave={e=>e.currentTarget.style.color="#25D366"}>💬 WhatsApp</a>
+                  <a href={generalWhatsAppUrl("ust bar")} target="_blank" rel="noopener noreferrer" onClick={() => metaTrackCustom("WhatsAppLead", { source: "header" })} style={{color:"#25D366",fontSize:12,textDecoration:"none",fontWeight:600}} onMouseEnter={e=>e.currentTarget.style.color="#4ade80"} onMouseLeave={e=>e.currentTarget.style.color="#25D366"}>💬 WhatsApp</a>
                 </>
                 {/* Social media in header */}
                 {(socialMedia.facebook||socialMedia.instagram) && <div style={{display:"flex",gap:6,marginLeft:4}}>
@@ -1788,7 +1903,7 @@ function ProductCard({p, eager}) {
       <div style={{height:isMobile?176:212,background:`radial-gradient(circle at 78% 18%, ${accentB}33, transparent 32%), linear-gradient(145deg,#0b1020,#161b29 58%,#222835)`,display:"flex",alignItems:"center",justifyContent:"center",position:"relative",overflow:"hidden"}}>
         <div style={{position:"absolute",inset:0,background:"linear-gradient(135deg,rgba(255,255,255,.14),transparent 35%,rgba(255,96,0,.16))",pointerEvents:"none"}} />
         <OptImg src={prodImg(p)} alt={translateName(p.name,lang)} eager={eager} style={{maxWidth:realImage?"82%":"94%",maxHeight:realImage?"82%":"94%",objectFit:"contain",filter:"drop-shadow(0 18px 24px rgba(0,0,0,.38))",transition:"transform .25s ease"}} />
-        {!realImage && <span style={{position:"absolute",left:10,bottom:10,background:"rgba(255,255,255,.92)",color:"#111",fontSize:10,fontWeight:800,padding:"4px 8px",borderRadius:4,letterSpacing:0}}>{lang==="en"?"Visual coming":"Gorsel hazirlaniyor"}</span>}
+        {!realImage && <span style={{position:"absolute",left:10,bottom:10,background:"rgba(255,255,255,.92)",color:"#111",fontSize:10,fontWeight:800,padding:"4px 8px",borderRadius:4,letterSpacing:0}}>{lang==="en"?"Visual coming":"Görsel hazırlanıyor"}</span>}
         {disc > 0 && <span style={{position:"absolute",top:10,left:10,background:"linear-gradient(135deg,#ff6000,#facc15)",color:"#111",fontSize:12,fontWeight:900,padding:"4px 9px",borderRadius:4}}>%{disc}</span>}
         {p.stock > 0 && <span style={{position:"absolute",top:10,right:48,background:"rgba(34,197,94,.95)",color:"#fff",fontSize:11,fontWeight:800,padding:"4px 8px",borderRadius:4}}>{lang==="en"?"In stock":"Stokta"}</span>}
         <button onClick={e => {e.stopPropagation(); toggleFav(p.id)}}
@@ -1959,7 +2074,7 @@ function HomePage() {
           </p>
           <div style={{display:"flex",flexDirection:isMobile?"column":"row",flexWrap:isMobile?"nowrap":"wrap",gap:12,alignItems:isMobile?"stretch":"center",maxWidth:isMobile?310:"none"}}>
             <button onClick={() => go("products")} style={{minHeight:48,padding:"14px 22px",borderRadius:8,border:"none",background:"linear-gradient(135deg,#ff6000,#facc15)",color:"#111",fontWeight:950,fontSize:15,boxShadow:"0 18px 45px rgba(255,96,0,.28)",animation:"glowPulse 4s ease-in-out infinite"}}>{t("browseProducts")}</button>
-            <a href="https://wa.me/908508887881" target="_blank" rel="noopener noreferrer" style={{minHeight:48,padding:"13px 18px",borderRadius:8,border:"1px solid rgba(255,255,255,.28)",background:"rgba(255,255,255,.1)",color:"#fff",fontWeight:850,fontSize:14,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center",textAlign:"center"}}>{lang==="en"?"Ask compatibility":"Parca kodu gonder, teklif al"}</a>
+            <a href={generalWhatsAppUrl("parca kodu ile teklif")} target="_blank" rel="noopener noreferrer" onClick={() => metaTrackCustom("WhatsAppLead", { source: "home_hero" })} style={{minHeight:48,padding:"13px 18px",borderRadius:8,border:"1px solid rgba(255,255,255,.28)",background:"rgba(255,255,255,.1)",color:"#fff",fontWeight:850,fontSize:14,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center",textAlign:"center"}}>{lang==="en"?"Ask compatibility":"Parca kodu gonder, teklif al"}</a>
           </div>
         </div>
 
@@ -2209,6 +2324,8 @@ function ProductsPage() {
     return found ? translateCat(found,lang) : t("allProducts");
   }, [cat, t, lang, catList]);
 
+  const salesInfo = useMemo(() => categorySalesInfo(cat, catName, items, productList, catList, lang), [cat, catName, items, productList, catList, lang]);
+
   const FilterPanel = ({includeCategory=true}={}) => (
     <>
       {includeCategory && <div style={{border:"1px solid rgba(255,96,0,.22)",borderRadius:8,padding:10,marginBottom:16,background:"#0b1020",boxShadow:"0 14px 32px rgba(15,23,42,.12)"}}>
@@ -2238,8 +2355,32 @@ function ProductsPage() {
         {!isMobile && <div style={{width:220,flexShrink:0,position:"sticky",top:150,maxHeight:"calc(100vh - 170px)",overflowY:"auto"}}><FilterPanel includeCategory={false} /></div>}
 
         <div style={{flex:1}}>
+          {!term && <div style={{position:"relative",overflow:"hidden",borderRadius:8,background:"linear-gradient(135deg,#07111f 0%,#111827 54%,#7c2d12 100%)",color:"#fff",padding:isMobile?"18px 16px":"24px 26px",marginBottom:18,boxShadow:"0 20px 50px rgba(15,23,42,.18)",border:"1px solid rgba(255,255,255,.1)"}}>
+            <div style={{position:"absolute",inset:0,background:"radial-gradient(circle at 80% 10%, rgba(250,204,21,.26), transparent 28%), radial-gradient(circle at 10% 80%, rgba(255,96,0,.25), transparent 32%)",pointerEvents:"none"}} />
+            <div style={{position:"relative",display:"grid",gridTemplateColumns:isMobile?"1fr":"minmax(0,1fr) 260px",gap:isMobile?16:22,alignItems:"center"}}>
+              <div style={{minWidth:0}}>
+                <div style={{fontSize:12,fontWeight:900,color:"#facc15",textTransform:"uppercase",letterSpacing:.2,marginBottom:8}}>{salesInfo.eyebrow}</div>
+                <h1 style={{fontSize:isMobile?22:30,lineHeight:1.1,fontWeight:950,marginBottom:10,letterSpacing:0}}>{salesInfo.title}</h1>
+                <p style={{fontSize:isMobile?13:15,lineHeight:1.65,color:"#dbeafe",maxWidth:760,marginBottom:14}}>{salesInfo.desc}</p>
+                {salesInfo.chips.length > 0 && <div style={{display:"flex",flexWrap:"wrap",gap:8,marginBottom:16}}>
+                  {salesInfo.chips.map(chip => <button key={chip} onClick={() => go("products",{q:chip})} style={{border:"1px solid rgba(255,255,255,.2)",background:"rgba(255,255,255,.1)",color:"#fff",borderRadius:6,padding:"7px 10px",fontSize:12,fontWeight:800,cursor:"pointer"}}>{chip}</button>)}
+                </div>}
+                <a href={salesInfo.whatsappHref} target="_blank" rel="noopener noreferrer" onClick={() => metaTrackCustom("WhatsAppCategoryLead", { category: cat, name: salesInfo.title })}
+                  style={{display:"inline-flex",alignItems:"center",justifyContent:"center",gap:8,minHeight:44,padding:"12px 16px",background:"#25D366",color:"#07111f",borderRadius:6,textDecoration:"none",fontSize:14,fontWeight:950,boxShadow:"0 14px 28px rgba(37,211,102,.22)"}}>
+                  WhatsApp'tan teklif al
+                </a>
+              </div>
+              <div style={{display:"grid",gridTemplateColumns:"repeat(2,minmax(0,1fr))",gap:10}}>
+                {salesInfo.stats.map(stat => <div key={stat.label} style={{background:"rgba(255,255,255,.1)",border:"1px solid rgba(255,255,255,.15)",borderRadius:8,padding:"13px 10px",minWidth:0}}>
+                  <div style={{fontSize:isMobile?20:24,fontWeight:950,color:"#fff",lineHeight:1}}>{stat.value}</div>
+                  <div style={{fontSize:11,color:"#cbd5e1",fontWeight:800,marginTop:6,textTransform:"uppercase"}}>{stat.label}</div>
+                </div>)}
+              </div>
+            </div>
+          </div>}
+
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:16,gap:10,flexWrap:"wrap"}}>
-            <h1 style={{fontSize:isMobile?18:20,fontWeight:700}}>{term ? `"${term}"` : catName} <span style={{fontSize:14,fontWeight:400,color:"#999"}}>({items.length})</span></h1>
+            <h2 style={{fontSize:isMobile?18:20,fontWeight:700}}>{term ? `"${term}"` : catName} <span style={{fontSize:14,fontWeight:400,color:"#999"}}>({items.length})</span></h2>
             <div style={{display:"flex",gap:8,alignItems:"center"}}>
               {/* Mobile filter button */}
               {isMobile && <button onClick={() => setShowFilters(true)} style={{padding:"8px 14px",border:"1px solid #ddd",borderRadius:6,background:"#fff",fontSize:13,fontWeight:600,cursor:"pointer",display:"flex",alignItems:"center",gap:6}}>
@@ -2297,6 +2438,7 @@ function ProductDetailPage() {
   const disc = p.old ? Math.round((1-p.price/p.old)*100) : 0;
   const related = productList.filter(x => x.cat === p.cat && x.id !== p.id).slice(0,4);
   const isFav = favs.includes(p.id);
+  const whatsappQuoteHref = productWhatsAppUrl(p, qty);
 
   return (
     <div style={{maxWidth:1200,margin:"0 auto",padding:"20px"}}>
@@ -2322,6 +2464,21 @@ function ProductDetailPage() {
               <span style={{fontSize:12,color:"#999"}}>+ KDV</span>
             </div>
             <div style={{marginTop:8,fontSize:13,color:p.stock?"#4caf50":"#e53935",fontWeight:600}}>{p.stock ? t("stockXItems").replace("{0}",p.stock) : t("outOfStockFull")}</div>
+          </div>
+          <div style={{padding:"15px 16px",background:"linear-gradient(135deg,#07111f,#172033)",borderRadius:8,marginBottom:16,border:"1px solid rgba(255,96,0,.25)",color:"#fff",boxShadow:"0 14px 34px rgba(15,23,42,.12)"}}>
+            <div style={{display:"flex",justifyContent:"space-between",gap:12,alignItems:isMobile?"flex-start":"center",flexDirection:isMobile?"column":"row"}}>
+              <div style={{minWidth:0}}>
+                <div style={{fontSize:14,fontWeight:950,marginBottom:6}}>OEM / şase ile hızlı teyit</div>
+                <div style={{fontSize:12,color:"#cbd5e1",lineHeight:1.55}}>Kod, şase veya eski parça fotoğrafı gönderin; uyumluluğu siparişten önce netleştirelim.</div>
+                <div style={{display:"flex",flexWrap:"wrap",gap:6,marginTop:10}}>
+                  {["Araç modeli","Şase no","Eski parça fotoğrafı"].map(label => <span key={label} style={{fontSize:11,fontWeight:800,color:"#facc15",background:"rgba(250,204,21,.12)",border:"1px solid rgba(250,204,21,.22)",borderRadius:5,padding:"5px 7px"}}>{label}</span>)}
+                </div>
+              </div>
+              <a href={whatsappQuoteHref} target="_blank" rel="noopener noreferrer" onClick={() => metaTrack("Contact", metaProductPayload(p, qty, p.cat))}
+                style={{minHeight:42,padding:"11px 14px",background:"#25D366",color:"#07111f",borderRadius:6,fontSize:13,fontWeight:950,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center",whiteSpace:"nowrap"}}>
+                WhatsApp teklif al
+              </a>
+            </div>
           </div>
           <div style={{display:"flex",gap:10,marginBottom:p.stock?20:10}}>
             <div style={{display:"flex",border:"1px solid #ddd",borderRadius:6,overflow:"hidden"}}>
@@ -2375,7 +2532,7 @@ function ProductDetailPage() {
         <div style={{display:"flex",flexWrap:"wrap",gap:10,padding:16,background:"#fff8f0",borderRadius:10,border:"1px solid #ffd9b3"}}>
           <div style={{width:"100%",fontSize:13,fontWeight:700,color:"#c05200",marginBottom:4}}>{lang==="en"?"Contact us for stock & compatibility":"Stok ve uyumluluk için bize ulaşın"}</div>
           <a href="tel:+905456087008" style={{flex:"1 1 150px",display:"flex",alignItems:"center",justifyContent:"center",gap:8,padding:"12px 20px",background:"#ff6000",color:"#fff",borderRadius:8,fontSize:14,fontWeight:700,textDecoration:"none",minHeight:44}}>📞 {lang==="en"?"Call":"Ara"}: 0545 608 7008</a>
-          <a href="https://wa.me/908508887881" target="_blank" rel="noopener noreferrer" style={{flex:"1 1 150px",display:"flex",alignItems:"center",justifyContent:"center",gap:8,padding:"12px 20px",background:"#25D366",color:"#fff",borderRadius:8,fontSize:14,fontWeight:700,textDecoration:"none",minHeight:44}}>💬 WhatsApp: 0850 888 7881</a>
+          <a href={whatsappQuoteHref} target="_blank" rel="noopener noreferrer" onClick={() => metaTrack("Contact", metaProductPayload(p, qty, p.cat))} style={{flex:"1 1 150px",display:"flex",alignItems:"center",justifyContent:"center",gap:8,padding:"12px 20px",background:"#25D366",color:"#fff",borderRadius:8,fontSize:14,fontWeight:700,textDecoration:"none",minHeight:44}}>💬 WhatsApp: 0850 888 7881</a>
           <a href="mailto:info@frenciniz.com" style={{flex:"1 1 150px",display:"flex",alignItems:"center",justifyContent:"center",gap:8,padding:"12px 20px",background:"#fff",color:"#333",border:"1px solid #ddd",borderRadius:8,fontSize:14,fontWeight:600,textDecoration:"none",minHeight:44}}>✉️ E-posta</a>
         </div>
       </div>}

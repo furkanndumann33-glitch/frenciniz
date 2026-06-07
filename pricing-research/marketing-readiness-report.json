@@ -1,0 +1,1565 @@
+{
+  "generatedAt": "2026-06-07T15:32:05.722Z",
+  "site": "https://www.frenciniz.com",
+  "feedUrls": {
+    "googleMerchant": "https://www.frenciniz.com/google-merchant-feed.xml",
+    "metaCatalog": "https://www.frenciniz.com/meta-catalog-feed.csv",
+    "sitemap": "https://www.frenciniz.com/sitemap.xml"
+  },
+  "totals": {
+    "products": 1055,
+    "categories": 53,
+    "categoryGroups": 12,
+    "inStock": 1055,
+    "outOfStock": 0,
+    "realImages": 953,
+    "missingImages": 102,
+    "missingSku": 0,
+    "missingOem": 351,
+    "missingDescription": 0,
+    "missingPrice": 0,
+    "merchantRows": 1055,
+    "metaRows": 1055
+  },
+  "priorityActions": [
+    "Google Merchant Center'da feed URL olarak https://www.frenciniz.com/google-merchant-feed.xml kullan.",
+    "Meta katalogda feed URL olarak https://www.frenciniz.com/meta-catalog-feed.csv kullan.",
+    "Eksik gorselli urunlerde once stoklu ve yuksek talep kategorileri tamamla: suspansiyon korugu, fren korugu, porya, fren pabucu, bijon.",
+    "WhatsApp teklif akisinda musteriye OEM, sase ve eski parca fotosu istendigini soyle.",
+    "Instagram/Facebook'ta tek reklam butcesi yoksa once organik story/post + WhatsApp mesaj kampanyasi yap."
+  ],
+  "categoryOpportunities": [
+    {
+      "id": "bijon-grup",
+      "name": "BİJON",
+      "productCount": 187,
+      "inStockCount": 187,
+      "missingImageCount": 9,
+      "realImageRate": 0.952,
+      "topCompatibility": [
+        {
+          "value": "Mercedes-Benz Axor",
+          "count": 31
+        },
+        {
+          "value": "Mercedes-Benz Actros",
+          "count": 27
+        },
+        {
+          "value": "Kamyon",
+          "count": 26
+        },
+        {
+          "value": "Tır / çekici",
+          "count": 26
+        },
+        {
+          "value": "Dorse",
+          "count": 26
+        },
+        {
+          "value": "Mercedes-Benz Atego",
+          "count": 24
+        }
+      ],
+      "topStockProducts": [
+        {
+          "id": 945,
+          "sku": "ESS 020 10",
+          "name": "Döner Pullu Somun",
+          "stock": 100000,
+          "price": 74.09,
+          "url": "https://www.frenciniz.com/urun/945"
+        },
+        {
+          "id": 941,
+          "sku": "ESS 025 20",
+          "name": "Döner Pullu Somun MAN TGA TGS TGX",
+          "stock": 91042,
+          "price": 74.09,
+          "url": "https://www.frenciniz.com/urun/941"
+        },
+        {
+          "id": 842,
+          "sku": "EYD 209 02",
+          "name": "Disk Bijonu",
+          "stock": 68549,
+          "price": 50.82,
+          "url": "https://www.frenciniz.com/urun/842"
+        },
+        {
+          "id": 940,
+          "sku": "ESS 025 20-3",
+          "name": "SOMUN KISA DÖNER PULLU 22*1,5 DAKROMATLI",
+          "stock": 55436,
+          "price": 73.37,
+          "url": "https://www.frenciniz.com/urun/940"
+        },
+        {
+          "id": 364,
+          "sku": "ESB 2032 10",
+          "name": "Bijon",
+          "stock": 30700,
+          "price": 199.31,
+          "url": "https://www.frenciniz.com/urun/364"
+        },
+        {
+          "id": 932,
+          "sku": "ESS 171 10",
+          "name": "Büyük Döner Pullu Somun",
+          "stock": 24994,
+          "price": 78.76,
+          "url": "https://www.frenciniz.com/urun/932"
+        },
+        {
+          "id": 939,
+          "sku": "ESS 028 10",
+          "name": "30'luk Döner Pullu Somun",
+          "stock": 14995,
+          "price": 74.09,
+          "url": "https://www.frenciniz.com/urun/939"
+        },
+        {
+          "id": 938,
+          "sku": "ESS 029 10",
+          "name": "27'lik 18x1,5 Döner Pullu Somun",
+          "stock": 12133,
+          "price": 74.09,
+          "url": "https://www.frenciniz.com/urun/938"
+        }
+      ]
+    },
+    {
+      "id": "kaliper-urunleri",
+      "name": "KALİPER ÜRÜNLERİ",
+      "productCount": 169,
+      "inStockCount": 169,
+      "missingImageCount": 2,
+      "realImageRate": 0.988,
+      "topCompatibility": [
+        {
+          "value": "Knorr / WABCO / Meritor kaliper uygulamaları",
+          "count": 92
+        },
+        {
+          "value": "Ağır vasıta kaliper sistemi",
+          "count": 90
+        },
+        {
+          "value": "Disk fren montaj sistemi",
+          "count": 90
+        },
+        {
+          "value": "DAF CF/XF",
+          "count": 50
+        },
+        {
+          "value": "Knorr-Bremse SB/SN/SK kaliper sistemi",
+          "count": 27
+        },
+        {
+          "value": "MAN TGA/TGS/TGX",
+          "count": 27
+        }
+      ],
+      "topStockProducts": [
+        {
+          "id": 863,
+          "sku": "EYD 202 06",
+          "name": "MERCEDES PERNO STANDART",
+          "stock": 4916,
+          "price": 191.4,
+          "url": "https://www.frenciniz.com/urun/863"
+        },
+        {
+          "id": 1007,
+          "sku": "421138",
+          "name": "Kaliper Ayar Civatası",
+          "stock": 3873,
+          "price": 158.4,
+          "url": "https://www.frenciniz.com/urun/1007"
+        },
+        {
+          "id": 1016,
+          "sku": "421100",
+          "name": "Kaliper Toz Lastiği Tamir Takımı (Ø 69 mm)",
+          "stock": 1890,
+          "price": 369.6,
+          "url": "https://www.frenciniz.com/urun/1016"
+        },
+        {
+          "id": 992,
+          "sku": "421236",
+          "name": "KLİPER AYAR CİVATASI (AXOR YM 3 YİVLİ CİVATA)",
+          "stock": 1770,
+          "price": 158.4,
+          "url": "https://www.frenciniz.com/urun/992"
+        },
+        {
+          "id": 840,
+          "sku": "EYD 209 11",
+          "name": "Perno Klips",
+          "stock": 1161,
+          "price": 25.08,
+          "url": "https://www.frenciniz.com/urun/840"
+        },
+        {
+          "id": 973,
+          "sku": "429002",
+          "name": "Perno Tapası 40x12 mm",
+          "stock": 703,
+          "price": 22.44,
+          "url": "https://www.frenciniz.com/urun/973"
+        },
+        {
+          "id": 1012,
+          "sku": "421127",
+          "name": "Kaliper Ayar Mekanizması (Yaylı)",
+          "stock": 641,
+          "price": 178.2,
+          "url": "https://www.frenciniz.com/urun/1012"
+        },
+        {
+          "id": 977,
+          "sku": "426123",
+          "name": "Kaliper Perno Tamir Takımı Knorr WABCO Meritor",
+          "stock": 436,
+          "price": 1254,
+          "url": "https://www.frenciniz.com/urun/977"
+        }
+      ]
+    },
+    {
+      "id": "kampana",
+      "name": "KAMPANA",
+      "productCount": 118,
+      "inStockCount": 118,
+      "missingImageCount": 0,
+      "realImageRate": 1,
+      "topCompatibility": [
+        {
+          "value": "Kamyon",
+          "count": 22
+        },
+        {
+          "value": "Tır / çekici",
+          "count": 22
+        },
+        {
+          "value": "Otobüs",
+          "count": 22
+        },
+        {
+          "value": "Dorse",
+          "count": 22
+        },
+        {
+          "value": "Dorse / treyler",
+          "count": 17
+        },
+        {
+          "value": "BMC Probus",
+          "count": 14
+        }
+      ],
+      "topStockProducts": [
+        {
+          "id": 97,
+          "sku": "ESK 160 29-S",
+          "name": "Fren Kampanası",
+          "stock": 1278,
+          "price": 4950.09,
+          "url": "https://www.frenciniz.com/urun/97"
+        },
+        {
+          "id": 133,
+          "sku": "ESK 040 12",
+          "name": "Fren Kampanası Ford Cargo 1833 1846 2532 3232",
+          "stock": 1180,
+          "price": 6678.75,
+          "url": "https://www.frenciniz.com/urun/133"
+        },
+        {
+          "id": 151,
+          "sku": "ESK 020 05",
+          "name": "Fren Kampanası MAN TGA TGS TGX TGM",
+          "stock": 1087,
+          "price": 5360.02,
+          "url": "https://www.frenciniz.com/urun/151"
+        },
+        {
+          "id": 152,
+          "sku": "ESK 020 03",
+          "name": "Fren Kampanası MAN TGA TGS TGX TGM",
+          "stock": 837,
+          "price": 5508.91,
+          "url": "https://www.frenciniz.com/urun/152"
+        },
+        {
+          "id": 145,
+          "sku": "ESK 030 08",
+          "name": "KAMPANA 220.26 DEV-822-827 PRO 20 CM",
+          "stock": 537,
+          "price": 6083.19,
+          "url": "https://www.frenciniz.com/urun/145"
+        },
+        {
+          "id": 91,
+          "sku": "ESK 160 87",
+          "name": "KAMPANA SERTEL K-4 420-200-246 ÇAKMA 687 (PORYA T-4)",
+          "stock": 381,
+          "price": 5346.48,
+          "url": "https://www.frenciniz.com/urun/91"
+        },
+        {
+          "id": 135,
+          "sku": "ESK 040 09",
+          "name": "KAMPANA 2524-3227-3230 ÖN-ARKA",
+          "stock": 363,
+          "price": 5370.65,
+          "url": "https://www.frenciniz.com/urun/135"
+        },
+        {
+          "id": 269,
+          "sku": "ESK 160 29",
+          "name": "Fren Kampanası",
+          "stock": 324,
+          "price": 4950.09,
+          "url": "https://www.frenciniz.com/urun/269"
+        }
+      ]
+    },
+    {
+      "id": "susp-korugu",
+      "name": "SÜSP. KÖRÜĞÜ",
+      "productCount": 105,
+      "inStockCount": 105,
+      "missingImageCount": 28,
+      "realImageRate": 0.733,
+      "topCompatibility": [
+        {
+          "value": "Dorse",
+          "count": 37
+        },
+        {
+          "value": "Treyler",
+          "count": 37
+        },
+        {
+          "value": "Kamyon",
+          "count": 37
+        },
+        {
+          "value": "Tır / çekici",
+          "count": 37
+        },
+        {
+          "value": "Volvo FH",
+          "count": 18
+        },
+        {
+          "value": "Volvo FM",
+          "count": 18
+        }
+      ],
+      "topStockProducts": [
+        {
+          "id": 461,
+          "sku": "EYD 301 05-2",
+          "name": "SERİN/BPW DORSE MAKARA TAKIMI 45 LİK  BURÇLU",
+          "stock": 2838,
+          "price": 231,
+          "url": "https://www.frenciniz.com/urun/461"
+        },
+        {
+          "id": 887,
+          "sku": "42813.S",
+          "name": "Pistonsuz Körük",
+          "stock": 667,
+          "price": 1815,
+          "url": "https://www.frenciniz.com/urun/887"
+        },
+        {
+          "id": 879,
+          "sku": "42941.C",
+          "name": "Komple Körük Metal Piston SAF Holland",
+          "stock": 293,
+          "price": 3498,
+          "url": "https://www.frenciniz.com/urun/879"
+        },
+        {
+          "id": 661,
+          "sku": "424183.S1",
+          "name": "Pistonsuz Körük",
+          "stock": 288,
+          "price": 1947,
+          "url": "https://www.frenciniz.com/urun/661"
+        },
+        {
+          "id": 885,
+          "sku": "42836.C1",
+          "name": "Daf",
+          "stock": 279,
+          "price": 2772,
+          "url": "https://www.frenciniz.com/urun/885"
+        },
+        {
+          "id": 446,
+          "sku": "FT 34220-2P01",
+          "name": "İKİ KATLI KÖRÜK ÇAPRAZ",
+          "stock": 221,
+          "price": 726,
+          "url": "https://www.frenciniz.com/urun/446"
+        },
+        {
+          "id": 925,
+          "sku": "422211.P01",
+          "name": "Katlı Körük Civatasız Düz",
+          "stock": 213,
+          "price": 1056,
+          "url": "https://www.frenciniz.com/urun/925"
+        },
+        {
+          "id": 924,
+          "sku": "423608.C",
+          "name": "SÜSP.KÖRÜK KOMPLE SCANIA Y.M.",
+          "stock": 191,
+          "price": 3610.2,
+          "url": "https://www.frenciniz.com/urun/924"
+        }
+      ]
+    },
+    {
+      "id": "disk",
+      "name": "DİSK",
+      "productCount": 97,
+      "inStockCount": 97,
+      "missingImageCount": 2,
+      "realImageRate": 0.979,
+      "topCompatibility": [
+        {
+          "value": "Iveco Eurocargo",
+          "count": 12
+        },
+        {
+          "value": "Iveco Stralis",
+          "count": 12
+        },
+        {
+          "value": "WABCO ABS/EBS sistemi",
+          "count": 10
+        },
+        {
+          "value": "Dorse EBS sistemi",
+          "count": 10
+        },
+        {
+          "value": "Kamyon / treyler ABS sensör hattı",
+          "count": 10
+        },
+        {
+          "value": "BPW dorse dingili",
+          "count": 10
+        }
+      ],
+      "topStockProducts": [
+        {
+          "id": 231,
+          "sku": "ESD 010 12",
+          "name": "Fren Diski Mercedes Actros Axor Atego SK",
+          "stock": 1291,
+          "price": 3857.59,
+          "url": "https://www.frenciniz.com/urun/231"
+        },
+        {
+          "id": 234,
+          "sku": "ESD 010 02",
+          "name": "Fren Diski Mercedes Actros Axor Atego SK",
+          "stock": 1286,
+          "price": 3857.59,
+          "url": "https://www.frenciniz.com/urun/234"
+        },
+        {
+          "id": 186,
+          "sku": "ESD 070 23",
+          "name": "Fren Diski BPW ECOPlus",
+          "stock": 1244,
+          "price": 4126.36,
+          "url": "https://www.frenciniz.com/urun/186"
+        },
+        {
+          "id": 843,
+          "sku": "EYD 209 01",
+          "name": "Disk Montaj Seti",
+          "stock": 862,
+          "price": 396,
+          "url": "https://www.frenciniz.com/urun/843"
+        },
+        {
+          "id": 216,
+          "sku": "ESD 030 09",
+          "name": "Fren Diski Iveco Eurocargo Stralis",
+          "stock": 534,
+          "price": 4849.54,
+          "url": "https://www.frenciniz.com/urun/216"
+        },
+        {
+          "id": 679,
+          "sku": "EYD 91 21",
+          "name": "Disk Montaj Seti",
+          "stock": 469,
+          "price": 455.4,
+          "url": "https://www.frenciniz.com/urun/679"
+        },
+        {
+          "id": 227,
+          "sku": "ESD 010 27",
+          "name": "Fren Diski Mercedes Actros Axor Atego SK",
+          "stock": 442,
+          "price": 4273.32,
+          "url": "https://www.frenciniz.com/urun/227"
+        },
+        {
+          "id": 224,
+          "sku": "ESD 020 09",
+          "name": "Fren Diski MAN TGA TGS TGX",
+          "stock": 437,
+          "price": 4137.96,
+          "url": "https://www.frenciniz.com/urun/224"
+        }
+      ]
+    },
+    {
+      "id": "porya-grup",
+      "name": "PORYA",
+      "productCount": 79,
+      "inStockCount": 79,
+      "missingImageCount": 13,
+      "realImageRate": 0.835,
+      "topCompatibility": [
+        {
+          "value": "Dorse / treyler",
+          "count": 33
+        },
+        {
+          "value": "Ağır vasıta dorse dingili",
+          "count": 33
+        },
+        {
+          "value": "Yerel dorse dingil grubu",
+          "count": 28
+        },
+        {
+          "value": "BPW dorse dingili",
+          "count": 11
+        },
+        {
+          "value": "BPW ECOPlus dingil",
+          "count": 11
+        },
+        {
+          "value": "BPW treyler",
+          "count": 11
+        }
+      ],
+      "topStockProducts": [
+        {
+          "id": 1053,
+          "sku": "EYD.075099",
+          "name": "SAF DORSE PORYA KAPAK (PLASTİK BÜYÜK)",
+          "stock": 1623,
+          "price": 224.4,
+          "url": "https://www.frenciniz.com/urun/1053"
+        },
+        {
+          "id": 811,
+          "sku": "EYD 700 06",
+          "name": "SERTEL PORYA KAPAĞI 143 ALÜMİNYUM",
+          "stock": 396,
+          "price": 528,
+          "url": "https://www.frenciniz.com/urun/811"
+        },
+        {
+          "id": 596,
+          "sku": "CDF-88149",
+          "name": "125*152,4*15 NBR ARKA TEKER PORYA KEÇESİ",
+          "stock": 332,
+          "price": 4.92,
+          "url": "https://www.frenciniz.com/urun/596"
+        },
+        {
+          "id": 810,
+          "sku": "EYD 700 07",
+          "name": "SERİN DORSE PORYA KAPAĞI",
+          "stock": 124,
+          "price": 528,
+          "url": "https://www.frenciniz.com/urun/810"
+        },
+        {
+          "id": 813,
+          "sku": "EYD 700 03",
+          "name": "OSMAN KOÇ PORYA KAPAĞI K1",
+          "stock": 74,
+          "price": 528,
+          "url": "https://www.frenciniz.com/urun/813"
+        },
+        {
+          "id": 808,
+          "sku": "EYD 700 28",
+          "name": "MUSTAFA CEYLAN DORSE PORYA KAPAK",
+          "stock": 71,
+          "price": 528,
+          "url": "https://www.frenciniz.com/urun/808"
+        },
+        {
+          "id": 802,
+          "sku": "EYD 700 51",
+          "name": "YEKSAN AXS PORYA KAPAĞI",
+          "stock": 70,
+          "price": 528,
+          "url": "https://www.frenciniz.com/urun/802"
+        },
+        {
+          "id": 805,
+          "sku": "EYD 700 33",
+          "name": "PIRLANTA PORYA KAPAĞI",
+          "stock": 70,
+          "price": 528,
+          "url": "https://www.frenciniz.com/urun/805"
+        }
+      ]
+    },
+    {
+      "id": "fren-korukleri",
+      "name": "FREN KÖRÜKLERİ",
+      "productCount": 77,
+      "inStockCount": 77,
+      "missingImageCount": 28,
+      "realImageRate": 0.636,
+      "topCompatibility": [
+        {
+          "value": "Disk fren imdatlı fren körüğü",
+          "count": 64
+        },
+        {
+          "value": "Kampana fren imdatlı fren körüğü",
+          "count": 64
+        },
+        {
+          "value": "Dorse fren körüğü",
+          "count": 64
+        },
+        {
+          "value": "Kamyon",
+          "count": 10
+        },
+        {
+          "value": "Tır / çekici",
+          "count": 10
+        },
+        {
+          "value": "Dorse",
+          "count": 10
+        }
+      ],
+      "topStockProducts": [
+        {
+          "id": 833,
+          "sku": "EYD 500 05-2",
+          "name": "KAPLİN LASTİĞİ DÜZ E.M",
+          "stock": 3080,
+          "price": 13.2,
+          "url": "https://www.frenciniz.com/urun/833"
+        },
+        {
+          "id": 972,
+          "sku": "8122-1",
+          "name": "16/24 D/P DİSK FREN KÖRÜĞÜ 22*1,5 BOY:64 MM",
+          "stock": 1985,
+          "price": 3300,
+          "url": "https://www.frenciniz.com/urun/972"
+        },
+        {
+          "id": 967,
+          "sku": "8104",
+          "name": "30/30 D/P İMD.FREN KÖRÜĞÜ EKERSAN",
+          "stock": 1946,
+          "price": 3432,
+          "url": "https://www.frenciniz.com/urun/967"
+        },
+        {
+          "id": 954,
+          "sku": "8131",
+          "name": "16'LIK SERVİS FREN KÖRÜĞÜ DİSK",
+          "stock": 1351,
+          "price": 1320,
+          "url": "https://www.frenciniz.com/urun/954"
+        },
+        {
+          "id": 962,
+          "sku": "8109",
+          "name": "24'LÜK SERVİS FREN KÖRÜĞÜ EKERSAN",
+          "stock": 1251,
+          "price": 1267.2,
+          "url": "https://www.frenciniz.com/urun/962"
+        },
+        {
+          "id": 557,
+          "sku": "8108",
+          "name": "30 LUK SERVİS KAMPANA KÖRÜĞÜ",
+          "stock": 1238,
+          "price": 1267.2,
+          "url": "https://www.frenciniz.com/urun/557"
+        },
+        {
+          "id": 953,
+          "sku": "8132",
+          "name": "20/24 D/P Disk Fren Körüğü 64 mm",
+          "stock": 1170,
+          "price": 3432,
+          "url": "https://www.frenciniz.com/urun/953"
+        },
+        {
+          "id": 961,
+          "sku": "8110",
+          "name": "24'lük Servis Fren Körüğü Disk",
+          "stock": 1075,
+          "price": 1320,
+          "url": "https://www.frenciniz.com/urun/961"
+        }
+      ]
+    },
+    {
+      "id": "balata",
+      "name": "BALATA",
+      "productCount": 58,
+      "inStockCount": 58,
+      "missingImageCount": 1,
+      "realImageRate": 0.983,
+      "topCompatibility": [
+        {
+          "value": "Ağır vasıta disk fren balata sistemi",
+          "count": 22
+        },
+        {
+          "value": "Knorr / WABCO / Meritor kaliper uygulamaları",
+          "count": 21
+        },
+        {
+          "value": "Kamyon / tır / otobüs",
+          "count": 15
+        },
+        {
+          "value": "BPW dorse dingili",
+          "count": 11
+        },
+        {
+          "value": "Mercedes-Benz Actros/Axor",
+          "count": 10
+        },
+        {
+          "value": "BPW treyler",
+          "count": 8
+        }
+      ],
+      "topStockProducts": [
+        {
+          "id": 657,
+          "sku": "42182/1-300",
+          "name": "Disk Balatası (29087)",
+          "stock": 343,
+          "price": 2059.2,
+          "url": "https://www.frenciniz.com/urun/657"
+        },
+        {
+          "id": 481,
+          "sku": "PWR-K004",
+          "name": "MAN - MERCEDES 22 LİK BALATA (K6268)",
+          "stock": 228,
+          "price": 1295.71,
+          "url": "https://www.frenciniz.com/urun/481"
+        },
+        {
+          "id": 641,
+          "sku": "42322/1-300",
+          "name": "Disk Balatası (29195)",
+          "stock": 204,
+          "price": 2059.2,
+          "url": "https://www.frenciniz.com/urun/641"
+        },
+        {
+          "id": 1026,
+          "sku": "42200/7-290",
+          "name": "Disk Balatası BPW",
+          "stock": 196,
+          "price": 1900.8,
+          "url": "https://www.frenciniz.com/urun/1026"
+        },
+        {
+          "id": 479,
+          "sku": "PWR-K006",
+          "name": "MAN - MERCEDES 18 LİK BALATA (K623)",
+          "stock": 180,
+          "price": 1122,
+          "url": "https://www.frenciniz.com/urun/479"
+        },
+        {
+          "id": 483,
+          "sku": "PWR-K002",
+          "name": "BPW DORSE KAMPANA BALATASI (K689)",
+          "stock": 171,
+          "price": 1210.31,
+          "url": "https://www.frenciniz.com/urun/483"
+        },
+        {
+          "id": 727,
+          "sku": "PWR-5013",
+          "name": "BALATA YENİ BPW BÜYÜK (29228)",
+          "stock": 165,
+          "price": 2501.66,
+          "url": "https://www.frenciniz.com/urun/727"
+        },
+        {
+          "id": 670,
+          "sku": "42310/2-292",
+          "name": "Disk Balatası (29173-29203-29272)",
+          "stock": 152,
+          "price": 2138.4,
+          "url": "https://www.frenciniz.com/urun/670"
+        }
+      ]
+    },
+    {
+      "id": "circir",
+      "name": "CIRCIR",
+      "productCount": 52,
+      "inStockCount": 52,
+      "missingImageCount": 4,
+      "realImageRate": 0.923,
+      "topCompatibility": [
+        {
+          "value": "Renault Trucks Premium",
+          "count": 12
+        },
+        {
+          "value": "Renault Trucks Magnum",
+          "count": 12
+        },
+        {
+          "value": "Renault Trucks Kerax",
+          "count": 12
+        },
+        {
+          "value": "Renault Trucks Midlum",
+          "count": 12
+        },
+        {
+          "value": "MAN TGA",
+          "count": 8
+        },
+        {
+          "value": "MAN TGS",
+          "count": 8
+        }
+      ],
+      "topStockProducts": [
+        {
+          "id": 1,
+          "sku": "ESC 1760-1",
+          "name": "Mekanik Fren Cırcırı 7 Delik 10 Kanal (EUR)",
+          "stock": 600,
+          "price": 1082.4,
+          "url": "https://www.frenciniz.com/urun/1"
+        },
+        {
+          "id": 51,
+          "sku": "ESC 80159",
+          "name": "Otomatik Fren Cırcırı Mercedes Actros Axor Atego SK",
+          "stock": 362,
+          "price": 1452,
+          "url": "https://www.frenciniz.com/urun/51"
+        },
+        {
+          "id": 52,
+          "sku": "ESC 80158",
+          "name": "Otomatik Fren Cırcırı Mercedes Actros Axor Atego SK",
+          "stock": 300,
+          "price": 1452,
+          "url": "https://www.frenciniz.com/urun/52"
+        },
+        {
+          "id": 60,
+          "sku": "ESC 114075",
+          "name": "FRUEHAUF",
+          "stock": 204,
+          "price": 1082.4,
+          "url": "https://www.frenciniz.com/urun/60"
+        },
+        {
+          "id": 62,
+          "sku": "ESC 80331",
+          "name": "Otomatik Fren Cırcırı MAN TGA TGS TGX",
+          "stock": 114,
+          "price": 1452,
+          "url": "https://www.frenciniz.com/urun/62"
+        },
+        {
+          "id": 420,
+          "sku": "ESC 1760",
+          "name": "Mekanik Fren Cırcırı 7 Delik 10 Kanal",
+          "stock": 113,
+          "price": 1082.4,
+          "url": "https://www.frenciniz.com/urun/420"
+        },
+        {
+          "id": 419,
+          "sku": "ESC 1815",
+          "name": "Fren Cırcırı Tamir Takımı",
+          "stock": 95,
+          "price": 759,
+          "url": "https://www.frenciniz.com/urun/419"
+        },
+        {
+          "id": 55,
+          "sku": "ESC 79360",
+          "name": "Otomatik Fren Cırcırı MAN TGA TGS TGX",
+          "stock": 92,
+          "price": 1452,
+          "url": "https://www.frenciniz.com/urun/55"
+        }
+      ]
+    },
+    {
+      "id": "sensor-uzatma",
+      "name": "SENSÖR VE UZATMALAR",
+      "productCount": 41,
+      "inStockCount": 41,
+      "missingImageCount": 5,
+      "realImageRate": 0.878,
+      "topCompatibility": [
+        {
+          "value": "WABCO ABS/EBS sistemi",
+          "count": 35
+        },
+        {
+          "value": "Dorse EBS sistemi",
+          "count": 35
+        },
+        {
+          "value": "Kamyon / treyler ABS sensör hattı",
+          "count": 35
+        },
+        {
+          "value": "MAN TGA",
+          "count": 5
+        },
+        {
+          "value": "MAN TGS",
+          "count": 5
+        },
+        {
+          "value": "MAN TGX",
+          "count": 5
+        }
+      ],
+      "topStockProducts": [
+        {
+          "id": 500,
+          "sku": "EF-4410328080",
+          "name": "ABS SENSÖR L 40 CM",
+          "stock": 316,
+          "price": 462,
+          "url": "https://www.frenciniz.com/urun/500"
+        },
+        {
+          "id": 787,
+          "sku": "EYD 91 10",
+          "name": "AXOR ABS DİŞLİSİ E.M / ARKA",
+          "stock": 293,
+          "price": 303.6,
+          "url": "https://www.frenciniz.com/urun/787"
+        },
+        {
+          "id": 474,
+          "sku": "EF-4410325730",
+          "name": "ABS SENSÖRÜ DÜZ 100 CM",
+          "stock": 229,
+          "price": 580.8,
+          "url": "https://www.frenciniz.com/urun/474"
+        },
+        {
+          "id": 499,
+          "sku": "EF-4410329050",
+          "name": "ABS SENSÖR DÜZ 40 CM",
+          "stock": 169,
+          "price": 462,
+          "url": "https://www.frenciniz.com/urun/499"
+        },
+        {
+          "id": 782,
+          "sku": "EYD 91 15",
+          "name": "VOLVO RENAULT 440 ABS DİŞLİSİ / ARKA",
+          "stock": 159,
+          "price": 475.2,
+          "url": "https://www.frenciniz.com/urun/782"
+        },
+        {
+          "id": 792,
+          "sku": "EYD 91 01",
+          "name": "126*156.5*7.8 BPW ABS DİŞLİSİ ÇELİK",
+          "stock": 155,
+          "price": 488.4,
+          "url": "https://www.frenciniz.com/urun/792"
+        },
+        {
+          "id": 600,
+          "sku": "EF-0278324000",
+          "name": "EBS UZATMA SENSÖRÜ KNORR  4 MT",
+          "stock": 105,
+          "price": 653.4,
+          "url": "https://www.frenciniz.com/urun/600"
+        },
+        {
+          "id": 789,
+          "sku": "EYD 91 06",
+          "name": "DAF ABS DİŞLİSİ / ÖN",
+          "stock": 79,
+          "price": 217.8,
+          "url": "https://www.frenciniz.com/urun/789"
+        }
+      ]
+    },
+    {
+      "id": "fren-pabuclari",
+      "name": "FREN PABUÇLARI",
+      "productCount": 40,
+      "inStockCount": 40,
+      "missingImageCount": 7,
+      "realImageRate": 0.825,
+      "topCompatibility": [
+        {
+          "value": "BPW dorse dingili",
+          "count": 9
+        },
+        {
+          "value": "BPW ECOPlus dingil",
+          "count": 9
+        },
+        {
+          "value": "BPW treyler",
+          "count": 9
+        },
+        {
+          "value": "BMC Probus",
+          "count": 9
+        },
+        {
+          "value": "BMC Profesyonel",
+          "count": 9
+        },
+        {
+          "value": "BMC Fatih",
+          "count": 9
+        }
+      ],
+      "topStockProducts": [
+        {
+          "id": 834,
+          "sku": "EYD 301 08",
+          "name": "SERTEL DİNGİL PABUÇ MAKARA TAKIMI 5 CM",
+          "stock": 2872,
+          "price": 231,
+          "url": "https://www.frenciniz.com/urun/834"
+        },
+        {
+          "id": 801,
+          "sku": "EYD 80 03",
+          "name": "Fren Pabucu Bpw 20 cm.",
+          "stock": 1521,
+          "price": 1141.8,
+          "url": "https://www.frenciniz.com/urun/801"
+        },
+        {
+          "id": 841,
+          "sku": "EYD 209 03",
+          "name": "SERTEL PABUÇ PERNO TEK TARAFI YARIKLI KİLİT SAÇLI TAKIM",
+          "stock": 1218,
+          "price": 633.6,
+          "url": "https://www.frenciniz.com/urun/841"
+        },
+        {
+          "id": 772,
+          "sku": "H-24327",
+          "name": "BPW PABUÇ YAYI-2'Lİ ÇATAL YAY",
+          "stock": 389,
+          "price": 42.24,
+          "url": "https://www.frenciniz.com/urun/772"
+        },
+        {
+          "id": 771,
+          "sku": "H-24328",
+          "name": "BPW PABUÇ YAYI-2'Lİ ÇATAL YAY",
+          "stock": 382,
+          "price": 42.24,
+          "url": "https://www.frenciniz.com/urun/771"
+        },
+        {
+          "id": 846,
+          "sku": "EYD 206 38",
+          "name": "Fren Pabucu VOLVO-RENAULT-BMC NO: 68371632P-UST",
+          "stock": 301,
+          "price": 1102.2,
+          "url": "https://www.frenciniz.com/urun/846"
+        },
+        {
+          "id": 847,
+          "sku": "EYD 206 37",
+          "name": "Fren Pabucu VOLVO-RENAULT-BMC NO: 68371632P-ALT",
+          "stock": 287,
+          "price": 1102.2,
+          "url": "https://www.frenciniz.com/urun/847"
+        },
+        {
+          "id": 835,
+          "sku": "EYD 300 34",
+          "name": "Fren Pabucu",
+          "stock": 286,
+          "price": 3300,
+          "url": "https://www.frenciniz.com/urun/835"
+        }
+      ]
+    },
+    {
+      "id": "fren-yaylari",
+      "name": "FREN YAYLARI",
+      "productCount": 32,
+      "inStockCount": 32,
+      "missingImageCount": 3,
+      "realImageRate": 0.906,
+      "topCompatibility": [
+        {
+          "value": "Dorse / treyler",
+          "count": 11
+        },
+        {
+          "value": "Ağır vasıta dorse dingili",
+          "count": 11
+        },
+        {
+          "value": "Dorse",
+          "count": 7
+        },
+        {
+          "value": "Kamyon",
+          "count": 7
+        },
+        {
+          "value": "Otobüs",
+          "count": 7
+        },
+        {
+          "value": "Tırsan dorse",
+          "count": 5
+        }
+      ],
+      "topStockProducts": [
+        {
+          "id": 876,
+          "sku": "EYD 10 02",
+          "name": "MERCEDES V6-V8 ÖN FREN YAYI",
+          "stock": 3090,
+          "price": 52.8,
+          "url": "https://www.frenciniz.com/urun/876"
+        },
+        {
+          "id": 873,
+          "sku": "EYD 10 07",
+          "name": "Kol Yayı Standart - ORTA",
+          "stock": 2057,
+          "price": 52.8,
+          "url": "https://www.frenciniz.com/urun/873"
+        },
+        {
+          "id": 826,
+          "sku": "EYD 70 05",
+          "name": "TIRSAN DORSE BÜYÜK YAY 29 CM",
+          "stock": 1480,
+          "price": 85.8,
+          "url": "https://www.frenciniz.com/urun/826"
+        },
+        {
+          "id": 877,
+          "sku": "EYD 10 01",
+          "name": "FREN YAYI",
+          "stock": 1390,
+          "price": 52.8,
+          "url": "https://www.frenciniz.com/urun/877"
+        },
+        {
+          "id": 874,
+          "sku": "EYD 10 06",
+          "name": "Kol Yayı Uzun",
+          "stock": 1243,
+          "price": 52.8,
+          "url": "https://www.frenciniz.com/urun/874"
+        },
+        {
+          "id": 828,
+          "sku": "EYD 70 04-1",
+          "name": "TIRSAN DORSE ORTA YAY (SERTEL) 27 CM",
+          "stock": 973,
+          "price": 85.8,
+          "url": "https://www.frenciniz.com/urun/828"
+        },
+        {
+          "id": 872,
+          "sku": "EYD 10 08",
+          "name": "KOL YAYI KISA",
+          "stock": 610,
+          "price": 52.8,
+          "url": "https://www.frenciniz.com/urun/872"
+        },
+        {
+          "id": 818,
+          "sku": "EYD 70 48",
+          "name": "ISUZU NPR FREN YAYI",
+          "stock": 420,
+          "price": 46.2,
+          "url": "https://www.frenciniz.com/urun/818"
+        }
+      ]
+    }
+  ],
+  "missingImageSample": [
+    {
+      "id": 1,
+      "sku": "ESC 1760-1",
+      "name": "Mekanik Fren Cırcırı 7 Delik 10 Kanal (EUR)",
+      "category": "Mekanik Fren Cırcırı",
+      "group": "CIRCIR",
+      "stock": 600,
+      "price": 1082.4,
+      "oem": "517465130-517465130-517465220-100001760-24490-A3450",
+      "url": "https://www.frenciniz.com/urun/1"
+    },
+    {
+      "id": 2,
+      "sku": "ESB 1315 10",
+      "name": "BİJON ROR DORSE-95 MM",
+      "category": "Bijon",
+      "group": "BİJON",
+      "stock": 155,
+      "price": 218.55,
+      "oem": "21022167",
+      "url": "https://www.frenciniz.com/urun/2"
+    },
+    {
+      "id": 3,
+      "sku": "ESC 79458",
+      "name": "RENAULT OTOMOTİK FREN CIRCIRI 3717 GÖVDE",
+      "category": "Otomatik Fren Cırcırı",
+      "group": "CIRCIR",
+      "stock": 25,
+      "price": 1452,
+      "oem": "14632, 79308, 79075, 79308, 5010260115, 79308, 4W3055",
+      "url": "https://www.frenciniz.com/urun/3"
+    },
+    {
+      "id": 4,
+      "sku": "ESC 79445",
+      "name": "Otomatik Fren Cırcırı Renault Midlum Premium Magnum",
+      "category": "Otomatik Fren Cırcırı",
+      "group": "CIRCIR",
+      "stock": 29,
+      "price": 1452,
+      "oem": "5010098861, 50010098861, 14634, 79295, 72799, 05010098861, 4W2925, KB2925",
+      "url": "https://www.frenciniz.com/urun/4"
+    },
+    {
+      "id": 5,
+      "sku": "ESC 79444",
+      "name": "Otomatik Fren Cırcırı Renault Midlum Premium Magnum",
+      "category": "Otomatik Fren Cırcırı",
+      "group": "CIRCIR",
+      "stock": 14,
+      "price": 1452,
+      "oem": "5010098860, 50010098860, 14633, 79294, 72798, 05010098860, 4W2920, 4W2920, KB2920",
+      "url": "https://www.frenciniz.com/urun/5"
+    },
+    {
+      "id": 7,
+      "sku": "ESD 220 03",
+      "name": "KRONE 430 GÖBEKLİ DİSK",
+      "category": "Fren Diski",
+      "group": "DİSK",
+      "stock": 179,
+      "price": 4918.32,
+      "oem": "",
+      "url": "https://www.frenciniz.com/urun/7"
+    },
+    {
+      "id": 252,
+      "sku": "ESB 112 20-1",
+      "name": "Mercedes Ön Bijon 84 mm D.P.S.Li",
+      "category": "Bijon",
+      "group": "BİJON",
+      "stock": 2298,
+      "price": 178.69,
+      "oem": "3814011271-3814010071",
+      "url": "https://www.frenciniz.com/urun/252"
+    },
+    {
+      "id": 282,
+      "sku": "ESD 030 25",
+      "name": "DİSK İVECO T-WAY ÖN (5802234113)",
+      "category": "Fren Diski",
+      "group": "DİSK",
+      "stock": 54,
+      "price": 4945.25,
+      "oem": "5802234113",
+      "url": "https://www.frenciniz.com/urun/282"
+    },
+    {
+      "id": 364,
+      "sku": "ESB 2032 10",
+      "name": "Bijon",
+      "category": "Bijon",
+      "group": "BİJON",
+      "stock": 30700,
+      "price": 199.31,
+      "oem": "",
+      "url": "https://www.frenciniz.com/urun/364"
+    },
+    {
+      "id": 421,
+      "sku": "EYD 700 14-1",
+      "name": "BPW PORYA KAPAĞI GEÇMELİ - TIRNAKLI ORJİNAL YAZILI",
+      "category": "Porya",
+      "group": "PORYA",
+      "stock": 6,
+      "price": 699.6,
+      "oem": "",
+      "url": "https://www.frenciniz.com/urun/421"
+    },
+    {
+      "id": 422,
+      "sku": "FT 34810-K04F",
+      "name": "DORSE KÖRÜĞÜ KOMPLE KÖRÜK",
+      "category": "Süspansiyon Körüğü",
+      "group": "SÜSP. KÖRÜĞÜ",
+      "stock": 22,
+      "price": 3300,
+      "oem": "",
+      "url": "https://www.frenciniz.com/urun/422"
+    },
+    {
+      "id": 423,
+      "sku": "421128-1",
+      "name": "Kaliper Mekanizması Bilyalı YILDIZ BAŞLI",
+      "category": "Kaliper Ayar Mekanizması",
+      "group": "KALİPER ÜRÜNLERİ",
+      "stock": 250,
+      "price": 726,
+      "oem": "",
+      "url": "https://www.frenciniz.com/urun/423"
+    },
+    {
+      "id": 424,
+      "sku": "EYD 92 30",
+      "name": "AKS SOMUN BÜYüK YENİ MODEL VİDALI",
+      "category": "Somun / Cıvata",
+      "group": "BİJON",
+      "stock": 186,
+      "price": 1056,
+      "oem": "",
+      "url": "https://www.frenciniz.com/urun/424"
+    },
+    {
+      "id": 425,
+      "sku": "EYD 70 67",
+      "name": "YTE DORSE YAYI",
+      "category": "Yay",
+      "group": "FREN YAYLARI",
+      "stock": 76,
+      "price": 66,
+      "oem": "",
+      "url": "https://www.frenciniz.com/urun/425"
+    },
+    {
+      "id": 427,
+      "sku": "EYD 700 06-1",
+      "name": "SERTEL PORYA KAPAĞI ALÜMİNYUM KÜÇÜK M135-22",
+      "category": "Porya",
+      "group": "PORYA",
+      "stock": 2,
+      "price": 462,
+      "oem": "",
+      "url": "https://www.frenciniz.com/urun/427"
+    },
+    {
+      "id": 428,
+      "sku": "FT 34644",
+      "name": "Roll Körük BPW ECOPlus",
+      "category": "Süspansiyon Körüğü",
+      "group": "SÜSP. KÖRÜĞÜ",
+      "stock": 22,
+      "price": 1320,
+      "oem": "0003270101 , 0003270201 , 3073270101 ,1134445",
+      "url": "https://www.frenciniz.com/urun/428"
+    },
+    {
+      "id": 429,
+      "sku": "FT 3498608-KP",
+      "name": "PİSTONLU KOMPLE KÖRÜK",
+      "category": "Süspansiyon Körüğü",
+      "group": "SÜSP. KÖRÜĞÜ",
+      "stock": 13,
+      "price": 2970,
+      "oem": "",
+      "url": "https://www.frenciniz.com/urun/429"
+    },
+    {
+      "id": 430,
+      "sku": "FT 34720",
+      "name": "Roll Körük MAN TGA TGS TGX",
+      "category": "Süspansiyon Körüğü",
+      "group": "SÜSP. KÖRÜĞÜ",
+      "stock": 74,
+      "price": 1320,
+      "oem": "3873280101 , 81436010033 , 1629193 , 0220024100",
+      "url": "https://www.frenciniz.com/urun/430"
+    },
+    {
+      "id": 431,
+      "sku": "EYD 92 28",
+      "name": "AKS SOMUN BP E.M BÜYÜK",
+      "category": "Somun / Cıvata",
+      "group": "BİJON",
+      "stock": 169,
+      "price": 1056,
+      "oem": "",
+      "url": "https://www.frenciniz.com/urun/431"
+    },
+    {
+      "id": 432,
+      "sku": "EYD 70 04-3",
+      "name": "TIRSAN DORSE KISA YAY 24 CM",
+      "category": "Yay",
+      "group": "FREN YAYLARI",
+      "stock": 300,
+      "price": 72.6,
+      "oem": "(A) B4",
+      "url": "https://www.frenciniz.com/urun/432"
+    },
+    {
+      "id": 433,
+      "sku": "EF-4410329880",
+      "name": "MAN ABS SENSÖRÜ SAĞ 300CM",
+      "category": "ABS Sensörü/Modülü/Kablo",
+      "group": "SENSÖR VE UZATMALAR",
+      "stock": 20,
+      "price": 831.6,
+      "oem": "",
+      "url": "https://www.frenciniz.com/urun/433"
+    },
+    {
+      "id": 434,
+      "sku": "EF-4410329870",
+      "name": "MAN ABS SENSÖRÜ SOL 300CM",
+      "category": "ABS Sensörü/Modülü/Kablo",
+      "group": "SENSÖR VE UZATMALAR",
+      "stock": 20,
+      "price": 831.6,
+      "oem": "",
+      "url": "https://www.frenciniz.com/urun/434"
+    },
+    {
+      "id": 435,
+      "sku": "EYD 70 66",
+      "name": "JUMBO DORSE YAYI BPV",
+      "category": "Yay",
+      "group": "FREN YAYLARI",
+      "stock": 30,
+      "price": 66,
+      "oem": "",
+      "url": "https://www.frenciniz.com/urun/435"
+    },
+    {
+      "id": 436,
+      "sku": "8106-2",
+      "name": "24/24 D/P İMD.FREN KÖRÜĞÜ M22 57 mm",
+      "category": "Fren Körüğü",
+      "group": "FREN KÖRÜKLERİ",
+      "stock": 120,
+      "price": 3168,
+      "oem": "",
+      "url": "https://www.frenciniz.com/urun/436"
+    },
+    {
+      "id": 437,
+      "sku": "EYD 100 67-K",
+      "name": "20 Nolu Körük Lastiği DERİN KÖRÜKSAN",
+      "category": "Fren Körüğü",
+      "group": "FREN KÖRÜKLERİ",
+      "stock": 50,
+      "price": 188.76,
+      "oem": "",
+      "url": "https://www.frenciniz.com/urun/437"
+    },
+    {
+      "id": 438,
+      "sku": "EYD 100 66-K",
+      "name": "16 Nolu Körük Lastiği DERİN KÖRÜKSAN",
+      "category": "Fren Körüğü",
+      "group": "FREN KÖRÜKLERİ",
+      "stock": 52,
+      "price": 181.5,
+      "oem": "",
+      "url": "https://www.frenciniz.com/urun/438"
+    },
+    {
+      "id": 439,
+      "sku": "EYD 100 65-K",
+      "name": "36 Nolu Körük Lastiği DERİN KÖRÜKSAN",
+      "category": "Fren Körüğü",
+      "group": "FREN KÖRÜKLERİ",
+      "stock": 10,
+      "price": 236.28,
+      "oem": "",
+      "url": "https://www.frenciniz.com/urun/439"
+    },
+    {
+      "id": 440,
+      "sku": "EYD 100 51-K",
+      "name": "12 Nolu Körük Lastiği DERİN KÖRÜKSAN",
+      "category": "Fren Körüğü",
+      "group": "FREN KÖRÜKLERİ",
+      "stock": 15,
+      "price": 166.98,
+      "oem": "",
+      "url": "https://www.frenciniz.com/urun/440"
+    },
+    {
+      "id": 441,
+      "sku": "EYD 100 63-K",
+      "name": "30 Nolu Körük Lastiği DERİN KÖRÜKSAN",
+      "category": "Fren Körüğü",
+      "group": "FREN KÖRÜKLERİ",
+      "stock": 30,
+      "price": 216.48,
+      "oem": "",
+      "url": "https://www.frenciniz.com/urun/441"
+    },
+    {
+      "id": 442,
+      "sku": "EYD 100 62-K",
+      "name": "24 Nolu Körük Lastiği DERİN KÖRÜKSAN",
+      "category": "Fren Körüğü",
+      "group": "FREN KÖRÜKLERİ",
+      "stock": 20,
+      "price": 204.6,
+      "oem": "",
+      "url": "https://www.frenciniz.com/urun/442"
+    }
+  ]
+}

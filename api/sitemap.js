@@ -40,6 +40,18 @@ function merchantSafeProductText(value) {
     .replace(/D(?:\u00fc|u)rb(?:\u00fc|u)n\s+Tak(?:\u0131|i)m(?:\u0131|i)/gi, "Kilavuz Pim Takimi");
 }
 
+function isRealProductImage(value) {
+  const img = String(value || "").toLowerCase();
+  return !!img && !img.includes("placehold") && !img.includes("/logo") && !img.includes("logo.");
+}
+
+function absoluteUrl(value) {
+  const raw = String(value || "").trim();
+  if (!raw) return "";
+  if (/^https?:\/\//i.test(raw)) return raw;
+  return `${SITE}${raw.startsWith("/") ? "" : "/"}${raw}`;
+}
+
 async function loadProducts() {
   // 1) KV
   try {
@@ -80,15 +92,16 @@ function buildMerchantFeed(products, categories) {
     const productName = merchantSafeProductText(p.name);
     const productDesc = merchantSafeProductText(p.desc || "");
 
-    const hasImg = p.img && !String(p.img).includes("placehold");
+    const hasImg = isRealProductImage(p.img);
     const rawImg = hasImg ? String(p.img) : "/img/site/missing-product.webp";
-    const imgUrl = rawImg.startsWith("http") ? rawImg : `${SITE}${rawImg.startsWith("/") ? "" : "/"}${rawImg}`;
+    const imgUrl = absoluteUrl(rawImg);
 
     const availability = p.stock > 0 ? "in_stock" : "out_of_stock";
     const condition = "new";
     const brand = p.brand || "Ekersan";
     const mpn = p.oem || p.sku || p.id;
     const gtin = p.gtin || "";
+    const hasIdentifier = Boolean(gtin || (brand && mpn));
     const price = Number(p.price || 0);
     const stock = Number(p.stock || 0);
     const titleParts = [productName, p.sku, brand, catName]
@@ -106,8 +119,9 @@ function buildMerchantFeed(products, categories) {
     const additionalImages = Array.isArray(p.images)
       ? p.images
           .filter(Boolean)
+          .filter(isRealProductImage)
           .slice(0, 5)
-          .map(img => String(img).startsWith("http") ? String(img) : `${SITE}${String(img).startsWith("/") ? "" : "/"}${img}`)
+          .map(absoluteUrl)
       : [];
 
     items.push(
@@ -116,6 +130,7 @@ function buildMerchantFeed(products, categories) {
       `<g:title>${xmlEscape(merchantTitle)}</g:title>` +
       `<g:description>${xmlEscape(desc)}</g:description>` +
       `<g:link>${SITE}/urun/${xmlEscape(p.id)}</g:link>` +
+      `<g:mobile_link>${SITE}/urun/${xmlEscape(p.id)}</g:mobile_link>` +
       `<g:canonical_link>${SITE}/urun/${xmlEscape(p.id)}</g:canonical_link>` +
       `<g:image_link>${xmlEscape(imgUrl)}</g:image_link>` +
       additionalImages.map(img => `<g:additional_image_link>${xmlEscape(img)}</g:additional_image_link>`).join("") +
@@ -125,8 +140,8 @@ function buildMerchantFeed(products, categories) {
       `<g:condition>${condition}</g:condition>` +
       (mpn ? `<g:mpn>${xmlEscape(mpn)}</g:mpn>` : "") +
       (gtin ? `<g:gtin>${xmlEscape(gtin)}</g:gtin>` : "") +
-      // Fren parçaları için brand+mpn yeterli identifier — gtin yoksa identifier_exists=no
-      `<g:identifier_exists>${gtin ? "yes" : "no"}</g:identifier_exists>` +
+      `<g:identifier_exists>${hasIdentifier ? "yes" : "no"}</g:identifier_exists>` +
+      `<g:adult>no</g:adult>` +
       `<g:product_type>${xmlEscape(fullCat)}</g:product_type>` +
       `<g:google_product_category>Vehicles &amp; Parts &gt; Vehicle Parts &amp; Accessories &gt; Motor Vehicle Parts &gt; Motor Vehicle Brake Parts</g:google_product_category>` +
       `<g:custom_label_0>${xmlEscape(categoryLabel)}</g:custom_label_0>` +
@@ -183,9 +198,9 @@ function buildMetaCatalogFeed(products, categories) {
     const productName = merchantSafeProductText(p.name);
     const price = Number(p.price || 0);
     const stock = Number(p.stock || 0);
-    const hasImg = p.img && !String(p.img).includes("placehold");
+    const hasImg = isRealProductImage(p.img);
     const rawImg = hasImg ? String(p.img) : "/img/site/missing-product.webp";
-    const imgUrl = rawImg.startsWith("http") ? rawImg : `${SITE}${rawImg.startsWith("/") ? "" : "/"}${rawImg}`;
+    const imgUrl = absoluteUrl(rawImg);
     const brand = p.brand || "Ekersan";
     const mpn = p.oem || p.sku || p.id;
     const priceTier = price >= 5000 ? "5000tl-ustu" : price >= 3000 ? "3000-5000tl" : price >= 1000 ? "1000-3000tl" : "1000tl-alti";
@@ -300,12 +315,12 @@ export default async function handler(req, res) {
     // Ürünler
     for (const p of products) {
       if (!p.id) continue;
-      const hasImg = p.img && !String(p.img).includes("placehold");
+      const hasImg = isRealProductImage(p.img);
       // Image URL absolute olmalı (sitemap protokolü gereği) — relative ise SITE prefix ekle
       let imgUrl = null;
       if (hasImg) {
         const raw = String(p.img);
-        imgUrl = raw.startsWith("http") ? raw : `${SITE}${raw.startsWith("/") ? "" : "/"}${raw}`;
+        imgUrl = absoluteUrl(raw);
       }
       urls.push(
         `<url>` +
