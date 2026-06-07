@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-06-07T19:01:59.620Z",
+  "generatedAt": "2026-06-07T19:29:21.631Z",
   "site": "https://frenciniz.com",
   "totals": {
     "products": 1055,
     "categories": 53,
     "categoryPages": 52,
-    "landingPages": 156,
-    "sitemapUrlEstimate": 1279
+    "landingPages": 157,
+    "sitemapUrlEstimate": 1280
   },
   "productReadiness": {
     "productsWithImage": 953,
@@ -30,6 +30,16 @@
       "title": "Mercedes Actros Fren Diski Fiyatları ve Stok | Frenciniz",
       "description": "Mercedes Actros uyumlu Ekersan fren diski, bijon ve fren grubu parçaları. OEM/parça kodu ile stok teyidi, aynı gün kargo ve WhatsApp hızlı teklif.",
       "priority": "0.86",
+      "matchedProducts": 24,
+      "categories": "fren-diski|fren-diski-abs-li",
+      "topProducts": "231:Fren Diski Mercedes Actros Axor Atego SK | 234:Fren Diski Mercedes Actros Axor Atego SK | 227:Fren Diski Mercedes Actros Axor Atego SK | 233:Fren Diski Mercedes Actros Axor Atego SK | 235:Fren Diski Mercedes Actros Axor Atego SK"
+    },
+    {
+      "slug": "mercedes-actros-axor-fren-diski",
+      "heading": "Mercedes Actros Axor Fren Diski",
+      "title": "Mercedes Actros Axor Fren Diski Fiyat ve Stok | Frenciniz",
+      "description": "Mercedes Actros, Axor, Atego ve SK uyumlu fren diski ürünleri. OEM/parça kodu ile stok teyidi, güncel fiyat ve WhatsApp hızlı teklif.",
+      "priority": "0.88",
       "matchedProducts": 24,
       "categories": "fren-diski|fren-diski-abs-li",
       "topProducts": "231:Fren Diski Mercedes Actros Axor Atego SK | 234:Fren Diski Mercedes Actros Axor Atego SK | 227:Fren Diski Mercedes Actros Axor Atego SK | 233:Fren Diski Mercedes Actros Axor Atego SK | 235:Fren Diski Mercedes Actros Axor Atego SK"
@@ -413,16 +423,6 @@
       "matchedProducts": 24,
       "categories": "fren-korugu",
       "topProducts": "960:24/30 D/P KISA MİL KÖRÜK DİSK KÖRÜĞÜ | 665:24/16 D/P DİSK KÖRÜK SCANIA | 449:ARFESAN 16/24 D/D DİSK TİPİ DORSE İMDATLI KÖRÜK SOL | 450:ARFESAN 16/24 D/D DİSK TİPİ DORSE İMDATLI KÖRÜK SAĞ | 553:ARFESAN 16/24 D/D DİSK TİPİ DORSE İMDATLI KÖRÜK"
-    },
-    {
-      "slug": "mercedes-atego-bijon-somun",
-      "heading": "Mercedes Atego Bijon Somun",
-      "title": "Mercedes Atego Bijon Somun | Fiyat ve Stok | Frenciniz",
-      "description": "Mercedes Atego uyumlu bijon ve somun ürünleri. OEM/parça kodu ile uyumluluk teyidi, stok ve fiyat kontrolü, aynı gün kargo ve WhatsApp hızlı teklif.",
-      "priority": "0.83",
-      "matchedProducts": 24,
-      "categories": "bijon|disk-bijonu-civatasi|somun-civata",
-      "topProducts": "327:ALYAN BAŞLIKLI DİSK CİVATASI | 246:Atego 1517 Mercedes Ön 66 MM | 8:ATECO Y.M. ARKA DISK BIJONU | 242:Bijon Mercedes Actros Axor Atego | 936:Man-Mercedes Somunu Uzun"
     }
   ],
   "landingPagesNeedingMoreSpecificProducts": [],

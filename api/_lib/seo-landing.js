@@ -13,6 +13,17 @@ export const LANDING_PAGES = [
     priority: "0.86",
   },
   {
+    slug: "mercedes-actros-axor-fren-diski",
+    heading: "Mercedes Actros Axor Fren Diski",
+    title: "Mercedes Actros Axor Fren Diski Fiyat ve Stok | Frenciniz",
+    description: "Mercedes Actros, Axor, Atego ve SK uyumlu fren diski ürünleri. OEM/parça kodu ile stok teyidi, güncel fiyat ve WhatsApp hızlı teklif.",
+    cats: ["fren-diski", "fren-diski-abs-li"],
+    terms: ["actros", "axor", "atego", "sk", "mercedes"],
+    primaryTerm: "Actros Axor",
+    part: "fren diski",
+    priority: "0.88",
+  },
+  {
     slug: "mercedes-axor-fren-diski",
     heading: "Mercedes Axor Fren Diski",
     title: "Mercedes Axor Fren Diski ve Fren Parçaları | Frenciniz",

@@ -21,6 +21,10 @@
       "destination": "/api/sitemap?type=landing&slug=mercedes-actros-fren-diski"
     },
     {
+      "source": "/mercedes-actros-axor-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-actros-axor-fren-diski"
+    },
+    {
       "source": "/mercedes-axor-fren-diski",
       "destination": "/api/sitemap?type=landing&slug=mercedes-axor-fren-diski"
     },
