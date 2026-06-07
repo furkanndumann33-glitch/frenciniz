@@ -2,6 +2,7 @@
 // Niyet algılama → kategori/araç/sku eşleştirme → bağlamsal cevap.
 import fs from "fs";
 import path from "path";
+import { productSeoUrl } from "../../shared/product-seo.js";
 
 let PRODUCTS_CACHE = null;
 let CATS_CACHE = null;
@@ -156,7 +157,7 @@ function searchProducts(msg, products, opts = {}) {
 
 function productLine(p) {
   const stock = p.stock > 0 ? `Stokta (${p.stock})` : "Tükendi";
-  const url = `${SITE}/urun/${p.id}`;
+  const url = productSeoUrl(SITE, p);
   let line = `• ${p.name}\n`;
   line += `   Fiyat: ${fp(p.price)}  |  ${stock}\n`;
   if (p.sku) line += `   SKU: ${p.sku}\n`;

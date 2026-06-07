@@ -7,9 +7,10 @@ import {
   htmlEscape,
   landingWhatsappUrl,
 } from "./seo-landing.js";
+import { productSeoUrl } from "../../shared/product-seo.js";
 
 function productUrl(product) {
-  return `${SITE}/urun/${encodeURIComponent(product.id)}`;
+  return productSeoUrl(SITE, product);
 }
 
 function money(value) {

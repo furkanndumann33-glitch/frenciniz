@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useMemo, createContext, useContext, useRef } from "react";
+import { productIdFromRoute, productSeoPath, productSeoUrl } from "../shared/product-seo.js";
 
 // ===== TRANSLATIONS =====
 const TR = {
@@ -433,7 +434,7 @@ function productWhatsAppUrl(product, qty = 1) {
     `SKU: ${product?.sku || "-"}`,
     `OEM / muadil: ${product?.oem || "-"}`,
     `Adet: ${qty || 1}`,
-    `Link: ${SITE_URL}/urun/${product?.id || ""}`,
+    `Link: ${product ? productSeoUrl(SITE_URL, product) : `${SITE_URL}/urunler`}`,
     "Arac / sase no:",
     "Eski parca fotosu gonderebilirim.",
   ].join("\n"));
@@ -830,9 +831,12 @@ export default function App() {
       if (pr.veh) return `/?veh=${encodeURIComponent(pr.veh)}`;
       return "/urunler";
     }
-    if (p === "product") return `/urun/${pr.id}`;
+    if (p === "product") {
+      const product = pr.product || products.find(item => String(item.id) === String(pr.id));
+      return product ? productSeoPath(product) : `/urun/${pr.id}`;
+    }
     return `/${p}`;
-  }, []);
+  }, [products]);
 
   const parseUrl = useCallback(() => {
     const path = window.location.pathname.replace(/^\/+|\/+$/g, "");
@@ -857,7 +861,7 @@ export default function App() {
     }
     // Ürün detay: /urun/123
     const prodMatch = path.match(/^urun\/(.+)$/);
-    if (prodMatch) return { page: "product", params: { id: Number(prodMatch[1]) || prodMatch[1] } };
+    if (prodMatch) return { page: "product", params: { id: productIdFromRoute(prodMatch[1]) } };
     // Diğer: kategori slug (örn: /disk, /kampana, /fren-diski)
     return { page: "products", params: { cat: path } };
   }, []);
@@ -1054,7 +1058,7 @@ export default function App() {
           "itemListElement": featuredProds.map((p, i) => ({
             "@type": "ListItem",
             "position": i + 1,
-            "url": `${SITE_URL}/urun/${p.id}`,
+            "url": productSeoUrl(SITE_URL, p),
             "item": {
               "@type": "Product",
               "name": p.name,
@@ -1066,7 +1070,7 @@ export default function App() {
                 "priceCurrency": "TRY",
                 "price": p.price,
                 "availability": "https://schema.org/InStock",
-                "url": `${SITE_URL}/urun/${p.id}`,
+                "url": productSeoUrl(SITE_URL, p),
               },
             },
           })),
@@ -1098,7 +1102,7 @@ export default function App() {
             "itemListElement": sample.map((p, i) => ({
               "@type": "ListItem",
               "position": i + 1,
-              "url": `${SITE_URL}/urun/${p.id}`,
+              "url": productSeoUrl(SITE_URL, p),
               "item": {
                 "@type": "Product",
                 "name": p.name,
@@ -1154,7 +1158,7 @@ export default function App() {
         const compatStr = (p.compat || []).slice(0, 4).join(", ");
         const catName = sub ? sub.name : "fren aksamı";
         desc = `${p.name} - ${catName} kategorisinde ${p.brand || "Ekersan"} marka. ${p.sku ? "Stok: " + p.sku + ". " : ""}${p.oem ? "OEM: " + p.oem + ". " : ""}${compatStr ? "Uyumlu: " + compatStr + ". " : ""}ECE R-90 sertifikalı, aynı gün kargo, 12 taksit. ${p.price}₺. Tel: 0545 608 7008.`.slice(0, 300);
-        canonical = `${SITE_URL}/urun/${p.id}`;
+        canonical = productSeoUrl(SITE_URL, p);
         const productImageList = (hasRealImg(p)
           ? (Array.isArray(p.images) && p.images.length ? p.images : [p.img_lg || p.img])
           : [SITE_IMAGES.missingProduct])

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-07T19:29:21.631Z",
+  "generatedAt": "2026-06-07T19:41:31.334Z",
   "site": "https://frenciniz.com",
   "totals": {
     "products": 1055,
@@ -21,7 +21,8 @@
     "sitemap": "https://frenciniz.com/sitemap.xml",
     "merchantFeed": "https://frenciniz.com/google-merchant-feed.xml",
     "metaCatalogFeed": "https://frenciniz.com/meta-catalog-feed.csv",
-    "robots": "https://frenciniz.com/robots.txt"
+    "robots": "https://frenciniz.com/robots.txt",
+    "productSeoUrls": "pricing-research/google-seo-product-urls.csv"
   },
   "highIntentLandingPages": [
     {

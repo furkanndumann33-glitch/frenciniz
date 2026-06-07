@@ -4,6 +4,7 @@ import {
   LANDING_PAGES,
   filterProductsForLanding,
 } from "../api/_lib/seo-landing.js";
+import { productSeoSlug, productSeoUrl } from "../shared/product-seo.js";
 
 const ROOT = process.cwd();
 const OUT_DIR = path.join(ROOT, "pricing-research");
@@ -45,6 +46,25 @@ const landingRows = LANDING_PAGES.map(page => {
   };
 });
 
+const categoryById = new Map(categories.map(category => [category.id, category]));
+const productRows = products.map(product => {
+  const category = categoryById.get(product.cat);
+  const group = category?.parent ? categoryById.get(category.parent) : null;
+  return {
+    id: product.id,
+    slug: productSeoSlug(product),
+    name: product.name,
+    sku: product.sku,
+    oem: product.oem,
+    brand: product.brand || "Ekersan",
+    category: category?.name || product.cat || "",
+    group: group?.name || "",
+    stock: product.stock,
+    price: product.price,
+    seoUrl: productSeoUrl("https://frenciniz.com", product),
+  };
+});
+
 const staticPages = 11;
 const vehicleFilterPages = 4;
 const sitemapUrlEstimate = staticPages + LANDING_PAGES.length + categoryPages + brandFilterPages + vehicleFilterPages + products.length;
@@ -73,6 +93,7 @@ const report = {
     merchantFeed: "https://frenciniz.com/google-merchant-feed.xml",
     metaCatalogFeed: "https://frenciniz.com/meta-catalog-feed.csv",
     robots: "https://frenciniz.com/robots.txt",
+    productSeoUrls: "pricing-research/google-seo-product-urls.csv",
   },
   highIntentLandingPages: landingRows
     .filter(row => row.priority >= 0.84 || row.matchedProducts >= 12)
@@ -101,6 +122,13 @@ const lines = [
 ];
 fs.writeFileSync(path.join(OUT_DIR, "google-seo-keyword-pages.csv"), `${lines.join("\n")}\n`);
 
+const productHeaders = ["id", "slug", "name", "sku", "oem", "brand", "category", "group", "stock", "price", "seoUrl"];
+const productLines = [
+  productHeaders.map(csv).join(","),
+  ...productRows.map(row => productHeaders.map(header => csv(row[header])).join(",")),
+];
+fs.writeFileSync(path.join(OUT_DIR, "google-seo-product-urls.csv"), `${productLines.join("\n")}\n`);
+
 console.log(JSON.stringify({
   products: products.length,
   landingPages: LANDING_PAGES.length,
@@ -109,4 +137,5 @@ console.log(JSON.stringify({
   productsWithOem,
   report: "pricing-research/google-seo-readiness-report.json",
   csv: "pricing-research/google-seo-keyword-pages.csv",
+  productUrls: "pricing-research/google-seo-product-urls.csv",
 }, null, 2));

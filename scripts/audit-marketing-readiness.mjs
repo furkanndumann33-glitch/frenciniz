@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { productSeoUrl } from "../shared/product-seo.js";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SITE = "https://www.frenciniz.com";
@@ -77,7 +78,7 @@ const categoryOpportunities = groups.map(group => {
     .filter(p => Number(p.stock || 0) > 0)
     .sort((a, b) => Number(b.stock || 0) - Number(a.stock || 0))
     .slice(0, 8)
-    .map(p => ({ id: p.id, sku: p.sku, name: p.name, stock: p.stock, price: p.price, url: `${SITE}/urun/${p.id}` }));
+    .map(p => ({ id: p.id, sku: p.sku, name: p.name, stock: p.stock, price: p.price, url: productSeoUrl(SITE, p) }));
   return {
     id: group.id,
     name: group.name,
@@ -133,7 +134,7 @@ const report = {
       stock: p.stock,
       price: p.price,
       oem: p.oem,
-      url: `${SITE}/urun/${p.id}`,
+      url: productSeoUrl(SITE, p),
     };
   }),
 };
@@ -152,7 +153,7 @@ const missingRows = [
       p.stock,
       p.price,
       p.oem,
-      `${SITE}/urun/${p.id}`,
+      productSeoUrl(SITE, p),
       "Gercek urun fotosu veya kategoriye uygun AI urun gorseli hazirla",
     ];
   }),

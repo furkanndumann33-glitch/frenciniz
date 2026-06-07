@@ -3,6 +3,7 @@ import fs from "fs";
 import path from "path";
 import { LANDING_PAGES, getLandingBySlug } from "./_lib/seo-landing.js";
 import { renderLanding, renderLandingIndex } from "./_lib/landing-render.js";
+import { productSeoUrl } from "../shared/product-seo.js";
 
 const SITE = "https://frenciniz.com";
 
@@ -129,9 +130,9 @@ function buildMerchantFeed(products, categories) {
       `<g:id>${xmlEscape(p.id)}</g:id>` +
       `<g:title>${xmlEscape(merchantTitle)}</g:title>` +
       `<g:description>${xmlEscape(desc)}</g:description>` +
-      `<g:link>${SITE}/urun/${xmlEscape(p.id)}</g:link>` +
-      `<g:mobile_link>${SITE}/urun/${xmlEscape(p.id)}</g:mobile_link>` +
-      `<g:canonical_link>${SITE}/urun/${xmlEscape(p.id)}</g:canonical_link>` +
+      `<g:link>${xmlEscape(productSeoUrl(SITE, p))}</g:link>` +
+      `<g:mobile_link>${xmlEscape(productSeoUrl(SITE, p))}</g:mobile_link>` +
+      `<g:canonical_link>${xmlEscape(productSeoUrl(SITE, p))}</g:canonical_link>` +
       `<g:image_link>${xmlEscape(imgUrl)}</g:image_link>` +
       additionalImages.map(img => `<g:additional_image_link>${xmlEscape(img)}</g:additional_image_link>`).join("") +
       `<g:availability>${availability}</g:availability>` +
@@ -219,7 +220,7 @@ function buildMetaCatalogFeed(products, categories) {
       stock > 0 ? "in stock" : "out of stock",
       "new",
       `${price.toFixed(2)} TRY`,
-      `${SITE}/urun/${p.id}`,
+      productSeoUrl(SITE, p),
       imgUrl,
       brand,
       mpn,
@@ -324,7 +325,7 @@ export default async function handler(req, res) {
       }
       urls.push(
         `<url>` +
-        `<loc>${SITE}/urun/${xmlEscape(p.id)}</loc>` +
+        `<loc>${xmlEscape(productSeoUrl(SITE, p))}</loc>` +
         `<lastmod>${today}</lastmod>` +
         `<changefreq>weekly</changefreq>` +
         `<priority>0.7</priority>` +
