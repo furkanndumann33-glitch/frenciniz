@@ -1,90 +1,90 @@
 {
   "total": 1055,
-  "changed": 227,
+  "changed": 0,
   "withDescription": 1055,
   "withCompatibility": 1055,
   "specificCompatibility": 886,
   "byGroup": {
     "circir": {
       "total": 52,
-      "changed": 11,
+      "changed": 0,
       "withDescription": 52,
       "withCompatibility": 52,
       "specificCompatibility": 41
     },
     "bijon-grup": {
       "total": 187,
-      "changed": 39,
+      "changed": 0,
       "withDescription": 187,
       "withCompatibility": 187,
       "specificCompatibility": 145
     },
     "disk": {
       "total": 97,
-      "changed": 11,
+      "changed": 0,
       "withDescription": 97,
       "withCompatibility": 97,
       "specificCompatibility": 95
     },
     "kampana": {
       "total": 118,
-      "changed": 6,
+      "changed": 0,
       "withDescription": 118,
       "withCompatibility": 118,
       "specificCompatibility": 86
     },
     "porya-grup": {
       "total": 79,
-      "changed": 7,
+      "changed": 0,
       "withDescription": 79,
       "withCompatibility": 79,
       "specificCompatibility": 78
     },
     "susp-korugu": {
       "total": 105,
-      "changed": 5,
+      "changed": 0,
       "withDescription": 105,
       "withCompatibility": 105,
       "specificCompatibility": 66
     },
     "kaliper-urunleri": {
       "total": 169,
-      "changed": 106,
+      "changed": 0,
       "withDescription": 169,
       "withCompatibility": 169,
       "specificCompatibility": 157
     },
     "fren-yaylari": {
       "total": 32,
-      "changed": 1,
+      "changed": 0,
       "withDescription": 32,
       "withCompatibility": 32,
       "specificCompatibility": 22
     },
     "sensor-uzatma": {
       "total": 41,
-      "changed": 2,
+      "changed": 0,
       "withDescription": 41,
       "withCompatibility": 41,
       "specificCompatibility": 37
     },
     "fren-korukleri": {
       "total": 77,
-      "changed": 14,
+      "changed": 0,
       "withDescription": 77,
       "withCompatibility": 77,
       "specificCompatibility": 67
     },
     "fren-pabuclari": {
       "total": 40,
-      "changed": 4,
+      "changed": 0,
       "withDescription": 40,
       "withCompatibility": 40,
       "specificCompatibility": 35
     },
     "balata": {
       "total": 58,
-      "changed": 21,
+      "changed": 0,
       "withDescription": 58,
       "withCompatibility": 58,
       "specificCompatibility": 57
@@ -182,5 +182,5 @@
       "usedFor": "Mercedes Axor / Actros / Econic WVA 29244 brake pad reference"
     }
   ],
-  "generatedAt": "2026-06-06T22:30:02.498Z"
+  "generatedAt": "2026-06-07T14:12:41.581Z"
 }

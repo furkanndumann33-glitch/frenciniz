@@ -30,6 +30,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PRODUCTS_PATH = os.path.join(BASE_DIR, "public", "data", "products.json")
 CATEGORIES_PATH = os.path.join(BASE_DIR, "public", "data", "categories.json")
 RAW_CACHE_PATH = os.path.join(BASE_DIR, "raw_cache.json")
+COMPAT_FIELDS = ("desc", "compat", "compat_source", "compat_updated_at", "compat_notes")
 
 # Brand id -> name. brand_id=1 baskın (Ekersan'ın kendi ürünleri).
 BRAND_MAP = {
@@ -366,6 +367,30 @@ def clean_product_name_for_google(name, cat_name):
 def log(msg):
     print(f"[{datetime.now().strftime('%H:%M:%S')}] {msg}", flush=True)
 
+def preserve_compatibility_fields(final_products):
+    """Keep generated compatibility fields across B2B sync rewrites."""
+    if not os.path.exists(PRODUCTS_PATH):
+        return 0
+    try:
+        with open(PRODUCTS_PATH, "r", encoding="utf-8") as f:
+            old_products = json.load(f)
+    except Exception as e:
+        log(f"UYARI: Eski uyumluluk alanları okunamadı: {e}")
+        return 0
+
+    old_by_sku = {str(p.get("sku") or ""): p for p in old_products if p.get("sku")}
+    old_by_id = {str(p.get("id") or ""): p for p in old_products if p.get("id") is not None}
+    preserved = 0
+    for product in final_products:
+        old = old_by_sku.get(str(product.get("sku") or "")) or old_by_id.get(str(product.get("id") or ""))
+        if not old or not str(old.get("compat_source") or "").startswith("name_oem_rules_"):
+            continue
+        for field in COMPAT_FIELDS:
+            if field in old:
+                product[field] = old[field]
+        preserved += 1
+    return preserved
+
 def fetch_with_resume():
     """Tüm ürünleri çek, raw_cache.json'a checkpoint yaz, kaldığı yerden devam et."""
     all_products, all_included, start_page = [], [], 1
@@ -590,6 +615,10 @@ def main():
         cats_list.append({"id": "diger-parcalar", "name": "Diğer Parçalar", "parent": None, "isGroup": True})
         cats_list.extend(ungrouped)
 
+    preserved_count = preserve_compatibility_fields(final)
+    if preserved_count:
+        log(f"Uyumluluk alanları korundu: {preserved_count} ürün")
+
     log(f"Stokta: {len(final)} ürün, {len(cats_list)-1} kategori")
 
     # Diff
@@ -636,6 +665,14 @@ def main():
         except subprocess.CalledProcessError as e:
             log(f"UYARI: Görsel cache hatası, devam ediliyor: {e}")
 
+    enrich_script = os.path.join(BASE_DIR, "scripts", "enrich-compatibility.mjs")
+    if os.path.exists(enrich_script):
+        log("Ürün açıklama/uyumluluk alanları zenginleştiriliyor...")
+        env = os.environ.copy()
+        env["COMPAT_SKIP_REPORT"] = "1"
+        subprocess.run(["node", enrich_script], check=True, cwd=BASE_DIR, env=env)
+        log("Uyumluluk zenginleştirme tamamlandı")
+
     # Push (DRY_RUN env ile atla)
     if os.environ.get("DRY_RUN"):
         log(f"DRY_RUN: push atlandı. {len(final)} ürün hazır.")
@@ -646,6 +683,9 @@ def main():
         "public/data/products.json",
         "public/data/categories.json",
         "public/img"], check=True)
+    if subprocess.run(["git", "diff", "--cached", "--quiet"]).returncode == 0:
+        log("Commit gerektiren ürün/kategori/görsel değişikliği yok.")
+        return
     now = datetime.now().strftime("%d.%m.%Y %H:%M")
     sub_count = len([c for c in cats_list if c.get("parent") and not c.get("isGroup")])
     grp_count = len([c for c in cats_list if c.get("isGroup")])

@@ -618,11 +618,25 @@ for (const product of products) {
   };
   summary.byGroup[group].total += 1;
 
-  const before = JSON.stringify({ desc: product.desc, compat: product.compat });
+  const nextNotes = notes.length ? notes : undefined;
+  const before = JSON.stringify({
+    desc: product.desc,
+    compat: product.compat,
+    compat_notes: product.compat_notes,
+    compat_source: product.compat_source,
+  });
+  const after = JSON.stringify({
+    desc,
+    compat,
+    compat_notes: nextNotes,
+    compat_source: RULE_SOURCE,
+  });
   product.desc = desc;
   product.compat = compat;
   product.compat_source = RULE_SOURCE;
-  product.compat_updated_at = summary.generatedAt;
+  if (after !== before || !product.compat_updated_at) {
+    product.compat_updated_at = summary.generatedAt;
+  }
   if (notes.length) product.compat_notes = notes;
   else delete product.compat_notes;
 
@@ -640,14 +654,16 @@ for (const product of products) {
     summary.byGroup[group].specificCompatibility += 1;
   }
 
-  if (JSON.stringify({ desc: product.desc, compat: product.compat }) !== before) {
+  if (after !== before) {
     summary.changed += 1;
     summary.byGroup[group].changed += 1;
   }
 }
 
 fs.writeFileSync(PRODUCTS_PATH, JSON.stringify(products));
-fs.mkdirSync(path.dirname(REPORT_PATH), { recursive: true });
-fs.writeFileSync(REPORT_PATH, `${JSON.stringify(summary, null, 2)}\n`);
+if (process.env.COMPAT_SKIP_REPORT !== "1") {
+  fs.mkdirSync(path.dirname(REPORT_PATH), { recursive: true });
+  fs.writeFileSync(REPORT_PATH, `${JSON.stringify(summary, null, 2)}\n`);
+}
 
 console.log(JSON.stringify(summary, null, 2));
