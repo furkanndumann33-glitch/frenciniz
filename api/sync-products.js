@@ -341,6 +341,13 @@ function processProducts(raw) {
   return { products: final, categories: cats };
 }
 
+function buildRawSourceMap(raw) {
+  return new Map((raw.products || [])
+    .map((row) => row?.attributes || {})
+    .filter((attrs) => attrs.sku)
+    .map((attrs) => [String(attrs.sku), attrs]));
+}
+
 export default async function handler(req, res) {
   const authHeader = req.headers.authorization;
   if (authHeader !== `Bearer ${process.env.CRON_SECRET || "frenciniz-cron-2026"}`) {
@@ -358,7 +365,9 @@ export default async function handler(req, res) {
     console.log(`[sync] Raw: ${raw.products.length} products, ${raw.included.length} included`);
 
     const { products, categories } = processProducts(raw);
-    const { summary: compatibilitySummary } = enrichProducts(products, categories);
+    const { summary: compatibilitySummary } = enrichProducts(products, categories, {
+      sourceBySku: buildRawSourceMap(raw),
+    });
     console.log(`[sync] Processed: ${products.length} in-stock, ${categories.length} categories`);
     console.log(`[sync] Compatibility enriched: ${compatibilitySummary.specificCompatibility} specific matches`);
 
