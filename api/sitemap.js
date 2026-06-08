@@ -54,7 +54,21 @@ function absoluteUrl(value) {
 }
 
 async function loadProducts() {
-  // 1) KV
+  // 1) Static JSON from the deployed build. This keeps public feeds aligned
+  // with the reviewed product SEO data even if KV still has an older sync.
+  try {
+    const prodPath = path.join(process.cwd(), "public/data/products.json");
+    const catPath = path.join(process.cwd(), "public/data/categories.json");
+    const products = JSON.parse(fs.readFileSync(prodPath, "utf8"));
+    const categories = JSON.parse(fs.readFileSync(catPath, "utf8"));
+    if (Array.isArray(products) && products.length > 0) {
+      return { products, categories: Array.isArray(categories) ? categories : [] };
+    }
+  } catch (e) {
+    // Static yoksa KV'ye dus.
+  }
+
+  // 2) KV fallback
   try {
     const { kv } = await import("@vercel/kv");
     const prods = await kv.get("products");
@@ -65,16 +79,7 @@ async function loadProducts() {
   } catch (e) {
     // KV yoksa devam
   }
-  // 2) Static JSON
-  try {
-    const prodPath = path.join(process.cwd(), "public/data/products.json");
-    const catPath = path.join(process.cwd(), "public/data/categories.json");
-    const products = JSON.parse(fs.readFileSync(prodPath, "utf8"));
-    const categories = JSON.parse(fs.readFileSync(catPath, "utf8"));
-    return { products, categories };
-  } catch (e) {
-    return { products: [], categories: [] };
-  }
+  return { products: [], categories: [] };
 }
 
 // ===== GOOGLE MERCHANT CENTER XML FEED =====
