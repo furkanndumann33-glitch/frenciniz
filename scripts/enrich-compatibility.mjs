@@ -6,7 +6,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const PRODUCTS_PATH = path.join(ROOT, "public", "data", "products.json");
 const CATEGORIES_PATH = path.join(ROOT, "public", "data", "categories.json");
 const REPORT_PATH = path.join(ROOT, "pricing-research", "compatibility-enrichment-report.json");
-const RULE_SOURCE = "name_oem_rules_v3_model_seo";
+const RULE_SOURCE = "name_oem_rules_v4_model_seo_ui";
 
 let catById = {};
 
@@ -850,6 +850,31 @@ function compactTitleSuffix(parts) {
   return cleaned.slice(0, 3).join(" ");
 }
 
+function skuTitleDetail(product) {
+  const sku = String(product.sku || "").trim();
+  if (!sku) return "";
+  return sku
+    .replace(/[._-]+/g, " ")
+    .replace(/\s+/g, " ")
+    .toUpperCase()
+    .trim();
+}
+
+function needsSpecificTitleFallback(name) {
+  const text = String(name || "").trim();
+  if (!text) return false;
+  const normalized = normalize(text);
+  return text.length < 8 || /^(bijon|porya|fren diski|fren pabucu|somun|civata)$/i.test(normalized);
+}
+
+function applySkuTitleFallback(product, name) {
+  const text = String(name || "").replace(/\s+/g, " ").trim();
+  if (!needsSpecificTitleFallback(text)) return text;
+  const sku = skuTitleDetail(product);
+  if (!sku || normalize(text).includes(normalize(sku))) return text;
+  return `${text} ${sku}`.replace(/\s+/g, " ").trim();
+}
+
 function makeProductName(product, compat) {
   const currentName = String(product.name || "").trim();
   const text = `${currentName} ${product.sku || ""} ${product.oem || ""}`;
@@ -864,10 +889,11 @@ function makeProductName(product, compat) {
   const base = titleCaseBase(currentName) || generatedBase || categoryBase;
   if (!base) return currentName;
   const detail = extractProductDetails(product, base, suffix);
-  if (!suffix) return `${base} ${detail}`.replace(/\s+/g, " ").trim();
+  if (!suffix) return applySkuTitleFallback(product, `${base} ${detail}`);
 
   const nextName = `${base} ${suffix} ${detail}`.replace(/\s+/g, " ").trim();
-  return nextName.length > 90 ? nextName.slice(0, 90).trim() : nextName;
+  const finalName = applySkuTitleFallback(product, nextName);
+  return finalName.length > 90 ? finalName.slice(0, 90).trim() : finalName;
 }
 
 function groupId(product) {
