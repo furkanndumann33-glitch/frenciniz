@@ -5,7 +5,7 @@
 // Vercel Cron ile günde 1 kez çalışır (05:00 UTC)
 
 import { kv } from "@vercel/kv";
-import { enrichProducts } from "../scripts/enrich-compatibility.mjs";
+import { enrichProducts, RULE_SOURCE } from "../scripts/enrich-compatibility.mjs";
 
 const EKERSAN_API = "https://bayi.ekersan.com/api/tr/v1";
 const EKERSAN_USER = process.env.EKERSAN_USERNAME || "DUMANLAR";
@@ -370,7 +370,8 @@ export default async function handler(req, res) {
       inStock: products.length,
       categories: categories.length - 1,
       compatibilitySpecific: compatibilitySummary.specificCompatibility,
-      compatibilitySource: "name_oem_rules_v3_model_seo",
+      compatibilitySource: RULE_SOURCE,
+      compatibilityByConfidence: compatibilitySummary.byConfidence,
       time: new Date().toISOString(),
     }));
 
@@ -380,6 +381,7 @@ export default async function handler(req, res) {
       inStock: products.length,
       categories: categories.length - 1,
       compatibilitySpecific: compatibilitySummary.specificCompatibility,
+      compatibilityByConfidence: compatibilitySummary.byConfidence,
       syncTime: new Date().toISOString(),
     });
   } catch (err) {

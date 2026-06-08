@@ -256,12 +256,9 @@ const INTENT_RULES = [
     id: "warranty",
     test: (n) => /(garanti|sertifika|orjinal|orijinal|kalite|ece r|r-?90|r90|saglam mi|saglam mi|tse|iso)/.test(n),
     reply: () => "🛡 Kalite ve garanti:\n\n" +
-      "Sertifikalar: ECE R-90 (AB), ISO 9001:2015, TSE uygunluk.\n\n" +
-      "Garanti süreleri:\n" +
-      "• Fren diski ve kampana: 2 yıl\n" +
-      "• Elektronik (EBS, ABS): 1 yıl\n" +
-      "• Aşınan parçalar (balata vb.): 6 ay\n\n" +
-      "Her üründe fatura, garanti belgesi ve orijinal ambalaj çıkar."
+      "Orijinal/eşdeğer ve sertifika bilgisi ürün bazında OEM kodu, ambalaj, üretici etiketi ve stok kaydıyla teyit edilir.\n\n" +
+      "Sipariş öncesi şase numarası, eski parça fotoğrafı veya OEM numarasıyla uyumluluk kontrolü yapıyoruz.\n\n" +
+      "Her satışta fatura çıkar; garanti/iade süreci ürünün üretici şartına ve kullanım durumuna göre değerlendirilir."
   },
   {
     id: "contact",
@@ -298,8 +295,8 @@ const INTENT_RULES = [
     reply: () => {
       const { products } = loadProducts();
       const brands = [...new Set(products.map(p => p.brand).filter(Boolean))];
-      let r = "🏭 Ana üretici markamız: *Ekersan* (kendi üretimimiz, ECE R-90 sertifikalı).\n\n";
-      r += "Uyumlu araç markaları:\n";
+      let r = "🏭 Ana üretici markamız: *Ekersan*. Ürün bazında OEM/şase ve sertifika bilgisi teyit edilir.\n\n";
+      r += "Uyumluluk adayı araç markaları:\n";
       r += "• Mercedes — Actros, Atego, Axor, Arocs\n";
       r += "• MAN — TGA, TGS, TGX, TGM, TGL\n";
       r += "• Volvo — FH, FM, FMX\n";

@@ -30,7 +30,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PRODUCTS_PATH = os.path.join(BASE_DIR, "public", "data", "products.json")
 CATEGORIES_PATH = os.path.join(BASE_DIR, "public", "data", "categories.json")
 RAW_CACHE_PATH = os.path.join(BASE_DIR, "raw_cache.json")
-COMPAT_FIELDS = ("desc", "compat", "compat_source", "compat_updated_at", "compat_notes")
+COMPAT_FIELDS = ("desc", "compat", "compat_source", "compat_updated_at", "compat_notes", "compat_confidence", "compat_basis")
 
 # Brand id -> name. brand_id=1 baskın (Ekersan'ın kendi ürünleri).
 BRAND_MAP = {

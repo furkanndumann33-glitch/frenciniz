@@ -245,7 +245,7 @@ export function renderLanding(page, products, categories) {
         <div><strong>${matched.length || products.length} ürün</strong>İlgili stok ve alternatifler</div>
         <div><strong>14:00'a kadar</strong>Stoklu üründe aynı gün kargo</div>
         <div><strong>3000 TL üzeri</strong>Standart kargo ücretsiz</div>
-        <div><strong>ECE R-90</strong>Üretici garantili fren aksamı</div>
+        <div><strong>OEM</strong>Şase ile uyumluluk teyidi</div>
       </div>
     </div>
   </section>

@@ -1,93 +1,156 @@
 {
   "total": 1055,
-  "changed": 1055,
+  "changed": 24,
   "withDescription": 1055,
   "withCompatibility": 1055,
-  "specificCompatibility": 918,
+  "specificCompatibility": 811,
+  "byConfidence": {
+    "category_generic": 241,
+    "verified_oem": 281,
+    "model_signal": 533
+  },
   "byGroup": {
     "circir": {
       "total": 52,
-      "changed": 52,
+      "changed": 0,
       "withDescription": 52,
       "withCompatibility": 52,
-      "specificCompatibility": 39
+      "specificCompatibility": 30,
+      "byConfidence": {
+        "category_generic": 22,
+        "verified_oem": 19,
+        "model_signal": 11
+      }
     },
     "bijon-grup": {
       "total": 187,
-      "changed": 187,
+      "changed": 5,
       "withDescription": 187,
       "withCompatibility": 187,
-      "specificCompatibility": 160
+      "specificCompatibility": 147,
+      "byConfidence": {
+        "verified_oem": 78,
+        "model_signal": 69,
+        "category_generic": 40
+      }
     },
     "disk": {
       "total": 97,
-      "changed": 97,
+      "changed": 1,
       "withDescription": 97,
       "withCompatibility": 97,
-      "specificCompatibility": 95
+      "specificCompatibility": 90,
+      "byConfidence": {
+        "verified_oem": 38,
+        "model_signal": 52,
+        "category_generic": 7
+      }
     },
     "kampana": {
       "total": 118,
-      "changed": 118,
+      "changed": 1,
       "withDescription": 118,
       "withCompatibility": 118,
-      "specificCompatibility": 96
+      "specificCompatibility": 85,
+      "byConfidence": {
+        "verified_oem": 47,
+        "category_generic": 33,
+        "model_signal": 38
+      }
     },
     "porya-grup": {
       "total": 79,
-      "changed": 79,
+      "changed": 0,
       "withDescription": 79,
       "withCompatibility": 79,
-      "specificCompatibility": 78
+      "specificCompatibility": 37,
+      "byConfidence": {
+        "category_generic": 42,
+        "model_signal": 24,
+        "verified_oem": 13
+      }
     },
     "susp-korugu": {
       "total": 105,
-      "changed": 105,
+      "changed": 17,
       "withDescription": 105,
       "withCompatibility": 105,
-      "specificCompatibility": 66
+      "specificCompatibility": 49,
+      "byConfidence": {
+        "category_generic": 56,
+        "verified_oem": 27,
+        "model_signal": 22
+      }
     },
     "kaliper-urunleri": {
       "total": 169,
-      "changed": 169,
+      "changed": 0,
       "withDescription": 169,
       "withCompatibility": 169,
-      "specificCompatibility": 157
+      "specificCompatibility": 157,
+      "byConfidence": {
+        "model_signal": 137,
+        "category_generic": 12,
+        "verified_oem": 20
+      }
     },
     "fren-yaylari": {
       "total": 32,
-      "changed": 32,
+      "changed": 0,
       "withDescription": 32,
       "withCompatibility": 32,
-      "specificCompatibility": 22
+      "specificCompatibility": 22,
+      "byConfidence": {
+        "model_signal": 25,
+        "category_generic": 7
+      }
     },
     "sensor-uzatma": {
       "total": 41,
-      "changed": 41,
+      "changed": 0,
       "withDescription": 41,
       "withCompatibility": 41,
-      "specificCompatibility": 37
+      "specificCompatibility": 37,
+      "byConfidence": {
+        "model_signal": 37,
+        "category_generic": 4
+      }
     },
     "fren-korukleri": {
       "total": 77,
-      "changed": 77,
+      "changed": 0,
       "withDescription": 77,
       "withCompatibility": 77,
-      "specificCompatibility": 76
+      "specificCompatibility": 76,
+      "byConfidence": {
+        "model_signal": 75,
+        "verified_oem": 1,
+        "category_generic": 1
+      }
     },
     "fren-pabuclari": {
       "total": 40,
-      "changed": 40,
+      "changed": 0,
       "withDescription": 40,
       "withCompatibility": 40,
-      "specificCompatibility": 35
+      "specificCompatibility": 33,
+      "byConfidence": {
+        "model_signal": 30,
+        "verified_oem": 3,
+        "category_generic": 7
+      }
     },
     "balata": {
       "total": 58,
-      "changed": 58,
+      "changed": 0,
       "withDescription": 58,
       "withCompatibility": 58,
-      "specificCompatibility": 57
+      "specificCompatibility": 48,
+      "byConfidence": {
+        "model_signal": 13,
+        "category_generic": 10,
+        "verified_oem": 35
+      }
     }
   },
   "referenceSources": [
@@ -182,5 +245,5 @@
       "usedFor": "Mercedes Axor / Actros / Econic WVA 29244 brake pad reference"
     }
   ],
-  "generatedAt": "2026-06-08T18:41:00.346Z"
+  "generatedAt": "2026-06-08T19:41:58.431Z"
 }

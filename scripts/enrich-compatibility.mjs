@@ -6,7 +6,8 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const PRODUCTS_PATH = path.join(ROOT, "public", "data", "products.json");
 const CATEGORIES_PATH = path.join(ROOT, "public", "data", "categories.json");
 const REPORT_PATH = path.join(ROOT, "pricing-research", "compatibility-enrichment-report.json");
-const RULE_SOURCE = "name_oem_rules_v4_model_seo_ui";
+export const RULE_SOURCE = "name_oem_rules_v5_strict_verified";
+const GENERATED_COMPAT_PREFIX = "name_oem_rules_";
 
 let catById = {};
 
@@ -400,7 +401,7 @@ const OEM_RULES = [
   {
     regex: /786450|786115/i,
     compat: ["York dorse dingili", "Otoyol / York treyler"],
-    note: "OEM 786450 / 786115 York dorse fren kampanası referansı olarak listelenir.",
+    note: "OEM 786450 / 786115 referansı York dorse fren kampanası kataloglarında geçer.",
   },
   {
     regex: /5010525326|5010598305|5010525362|5010525015|5010422593|5010216437|5010422363|5006172150|504134958|5010260218|5010488071|5010557355|5010294307|5001832067/i,
@@ -465,7 +466,7 @@ const OEM_RULES = [
   {
     regex: /9267086|6604261/i,
     compat: ["Gigant dorse dingili", "ROR dorse dingili", "Kögel dorse", "Krone dorse"],
-    note: "OEM 9267086 / 6604261 Gigant-ROR dorse fren diski referansı olarak listelenir.",
+    note: "OEM 9267086 / 6604261 referansı Gigant-ROR dorse fren diski kataloglarında geçer.",
   },
   {
     regex: /21227349|MBR9018|68323825|MBR5124|MBR9004|M069018|M200135|MBR9007|1176816|17870|MBR5143|1088133/i,
@@ -875,10 +876,10 @@ function applySkuTitleFallback(product, name) {
   return `${text} ${sku}`.replace(/\s+/g, " ").trim();
 }
 
-function makeProductName(product, compat) {
+function makeProductName(product, compat, detection = {}) {
   const currentName = String(product.name || "").trim();
   const text = `${currentName} ${product.sku || ""} ${product.oem || ""}`;
-  const titleRule = TITLE_RULES.find((rule) => rule.regex.test(text));
+  const titleRule = detection.confidence === "verified_oem" ? TITLE_RULES.find((rule) => rule.regex.test(text)) : null;
   const suffix = titleRule?.suffix || compactTitleSuffix(compat);
   const genericBases = [...new Set(GENERIC_PRODUCT_TITLES.values())];
   const generatedGeneric = currentName.match(new RegExp(`^(${genericBases.map((base) => base.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")}) (?:Kamyon|T[ıi]r çekici|Otobüs|Dorse|Treyler)$`, "i"));
@@ -889,7 +890,13 @@ function makeProductName(product, compat) {
   const base = titleCaseBase(currentName) || generatedBase || categoryBase;
   if (!base) return currentName;
   const detail = extractProductDetails(product, base, suffix);
-  if (!suffix) return applySkuTitleFallback(product, `${base} ${detail}`);
+  if (!suffix) {
+    const sku = skuTitleDetail(product);
+    if (PRIORITY_GROUPS.has(groupId(product)) && sku && (!detail || /^\d{2,4}$/.test(detail))) {
+      return `${base} ${sku}`.replace(/\s+/g, " ").trim();
+    }
+    return applySkuTitleFallback(product, `${base} ${detail}`);
+  }
 
   const nextName = `${base} ${suffix} ${detail}`.replace(/\s+/g, " ").trim();
   const finalName = applySkuTitleFallback(product, nextName);
@@ -909,10 +916,16 @@ function detectCompatibility(product) {
   const normalized = normalize(text);
   const compat = [];
   const notes = [];
+  const basis = [];
+  let modelMatches = 0;
+  let oemMatches = 0;
+  let existingMatches = 0;
 
   for (const rule of MODEL_RULES) {
     if (rule.regex.test(text) || rule.regex.test(normalized)) {
       compat.push(...rule.compat);
+      basis.push(`model:${rule.key}`);
+      modelMatches += 1;
     }
   }
 
@@ -920,19 +933,42 @@ function detectCompatibility(product) {
     if (rule.regex.test(text) || rule.regex.test(normalized)) {
       compat.push(...rule.compat);
       notes.push(rule.note);
+      basis.push(`oem:${String(rule.regex).slice(1, 80)}`);
+      oemMatches += 1;
     }
   }
 
-  compat.push(...(product.compat || []));
+  const canTrustExistingCompat = Array.isArray(product.compat)
+    && product.compat.length > 0
+    && !String(product.compat_source || "").startsWith(GENERATED_COMPAT_PREFIX);
+  if (canTrustExistingCompat) {
+    compat.push(...product.compat);
+    basis.push("source:existing_catalog");
+    existingMatches += product.compat.length;
+  }
 
   if (compat.length === 0) {
     compat.push(...(GENERIC_BY_GROUP[groupId(product)] || ["Ağır vasıta"]));
+    basis.push("fallback:category_group");
   }
 
-  return { compat: uniq(compat).slice(0, 16), notes: uniq(notes) };
+  const confidence = oemMatches > 0
+    ? "verified_oem"
+    : existingMatches > 0
+      ? "catalog_signal"
+      : modelMatches > 0
+        ? "model_signal"
+        : "category_generic";
+
+  return {
+    compat: uniq(compat).slice(0, 16),
+    notes: uniq(notes),
+    confidence,
+    basis: uniq(basis).slice(0, 12),
+  };
 }
 
-function makeDescription(product, compat, notes) {
+function makeDescription(product, compat, notes, confidence) {
   const group = groupId(product);
   const label = categoryLabel(product);
   const oem = cleanOem(product.oem);
@@ -940,13 +976,20 @@ function makeDescription(product, compat, notes) {
   const priority = PRIORITY_GROUPS.has(group);
   const modelText = compat.slice(0, priority ? 12 : 8).join(", ");
 
-  const intro = priority
-    ? `${baseName} ${label} ürünüdür. OEM, ürün adı ve kategori referansına göre özellikle ${modelText} araç gruplarında kullanılan ağır vasıta fren parçası olarak listelenmiştir.`
-    : `${baseName} ${label} ürünüdür. ${modelText} araç grupları ve ağır vasıta fren sistemleri için uyumluluk kontrolü yapılabilir.`;
+  const confidenceText = {
+    verified_oem: "OEM/muadil referans sinyaliyle eslesen aday uyumluluklar",
+    catalog_signal: "tedarikci katalog sinyaliyle gelen aday uyumluluklar",
+    model_signal: "urun adi, model kodu veya parca kodu sinyaliyle olusan aday uyumluluklar",
+    category_generic: "kategori bazli arac grubu bilgisi",
+  }[confidence] || "aday uyumluluklar";
 
-  const oemLine = oem ? `OEM / muadil referans: ${oem}.` : "OEM / muadil referans için ürün kodu ve eski parça numarasıyla teyit önerilir.";
+  const intro = priority
+    ? `${baseName} ${label} urunudur. ${confidenceText}: ${modelText}.`
+    : `${baseName} ${label} urunudur. ${modelText} icin OEM/sase ile uyumluluk kontrolu yapilabilir.`;
+
+  const oemLine = oem ? `OEM / muadil referans: ${oem}.` : "OEM / muadil referans icin urun kodu ve eski parca numarasiyla teyit onerilir.";
   const noteLine = notes.length ? `${notes.join(" ")}` : "";
-  const safetyLine = "Uyumluluk model, aks tipi, ölçü, üretim yılı ve şaseye göre değişebilir; kesin sipariş öncesi şase numarası, eski parça fotoğrafı veya OEM numarasıyla Frenciniz'den teyit alın.";
+  const safetyLine = "Kesin uyumluluk model, aks tipi, olcu, uretim yili ve saseye gore degisir; siparis oncesi sase numarasi, eski parca fotografi veya OEM numarasiyla Frenciniz'den teyit alin.";
 
   return [intro, oemLine, noteLine, safetyLine].filter(Boolean).join("\n");
 }
@@ -960,24 +1003,29 @@ export function enrichProducts(products, categories, options = {}) {
     withDescription: 0,
     withCompatibility: 0,
     specificCompatibility: 0,
+    byConfidence: {},
     byGroup: {},
     referenceSources: REFERENCE_SOURCES,
     generatedAt: options.generatedAt || new Date().toISOString(),
   };
 
   for (const product of products) {
-    const { compat, notes } = detectCompatibility(product);
-    const name = makeProductName(product, compat);
-    const desc = makeDescription({ ...product, name }, compat, notes);
+    const detection = detectCompatibility(product);
+    const { compat, notes, confidence, basis } = detection;
+    const name = makeProductName(product, compat, detection);
+    const desc = makeDescription({ ...product, name }, compat, notes, confidence);
     const group = groupId(product);
+    summary.byConfidence[confidence] = (summary.byConfidence[confidence] || 0) + 1;
     summary.byGroup[group] = summary.byGroup[group] || {
       total: 0,
       changed: 0,
       withDescription: 0,
       withCompatibility: 0,
       specificCompatibility: 0,
+      byConfidence: {},
     };
     summary.byGroup[group].total += 1;
+    summary.byGroup[group].byConfidence[confidence] = (summary.byGroup[group].byConfidence[confidence] || 0) + 1;
 
     const nextNotes = notes.length ? notes : undefined;
     const before = JSON.stringify({
@@ -986,6 +1034,8 @@ export function enrichProducts(products, categories, options = {}) {
       compat: product.compat,
       compat_notes: product.compat_notes,
       compat_source: product.compat_source,
+      compat_confidence: product.compat_confidence,
+      compat_basis: product.compat_basis,
     });
     const after = JSON.stringify({
       name,
@@ -993,11 +1043,15 @@ export function enrichProducts(products, categories, options = {}) {
       compat,
       compat_notes: nextNotes,
       compat_source: RULE_SOURCE,
+      compat_confidence: confidence,
+      compat_basis: basis,
     });
     product.name = name;
     product.desc = desc;
     product.compat = compat;
     product.compat_source = RULE_SOURCE;
+    product.compat_confidence = confidence;
+    product.compat_basis = basis;
     if (after !== before || !product.compat_updated_at) {
       product.compat_updated_at = summary.generatedAt;
     }

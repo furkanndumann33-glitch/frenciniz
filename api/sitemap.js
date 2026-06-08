@@ -114,7 +114,7 @@ function buildMerchantFeed(products, categories) {
     const imageTier = hasImg ? "gorselli-urun" : "gorsel-hazirlaniyor";
     const vehicleLabel = Array.isArray(p.veh) && p.veh.length ? p.veh.slice(0, 2).join("-") : "agir-vasita";
     const categoryLabel = grp?.id || p.cat || "fren-aksami";
-    const richDesc = `${productName} - ${catName} kategorisinde ${brand} marka orijinal/eşdeğer parça. ${p.sku ? "Stok kodu: " + p.sku + ". " : ""}${p.oem ? "OEM: " + p.oem + ". " : ""}ECE R-90 sertifikalı, kamyon, tır, otobüs ve dorse için uyumlu fren aksamı. 3000₺ üzeri ücretsiz kargo, 12 taksit, 14 gün koşulsuz iade. Tel: 0545 608 7008 · WhatsApp: 0850 888 7881.`;
+    const richDesc = `${productName} - ${catName} kategorisinde ${brand} marka orijinal/eşdeğer parça. ${p.sku ? "Stok kodu: " + p.sku + ". " : ""}${p.oem ? "OEM: " + p.oem + ". " : ""}Kamyon, tır, otobüs ve dorse fren sistemleri için OEM/şase ile uyumluluk teyidi yapılır. 3000₺ üzeri ücretsiz kargo, 12 taksit, 14 gün koşulsuz iade. Tel: 0545 608 7008 · WhatsApp: 0850 888 7881.`;
     const baseDesc = productDesc && productDesc.length > productName.length + 10 ? productDesc : richDesc;
     const desc = baseDesc.slice(0, 5000);
     const additionalImages = Array.isArray(p.images)
@@ -160,7 +160,7 @@ function buildMerchantFeed(products, categories) {
 <channel>
 <title>Frenciniz - Ağır Vasıta Fren Aksamı</title>
 <link>${SITE}</link>
-<description>Kamyon, tır, otobüs ve dorse için ECE R-90 sertifikalı fren aksamı ve yedek parça. ${products.length} ürün.</description>
+<description>Kamyon, tır, otobüs ve dorse için ağır vasıta fren aksamı ve yedek parça. OEM/şase ile uyumluluk teyidi, ${products.length} ürün.</description>
 <lastBuildDate>${today}</lastBuildDate>
 ${items.join("\n")}
 </channel>
@@ -210,7 +210,7 @@ function buildMetaCatalogFeed(products, categories) {
     const vehicleLabel = Array.isArray(p.veh) && p.veh.length ? p.veh.slice(0, 2).join("-") : "agir-vasita";
     const categoryLabel = grp?.id || p.cat || "fren-aksami";
     const title = [productName, p.sku, brand].filter(Boolean).join(" - ").slice(0, 200);
-    const richDesc = `${productName} - ${catName} kategorisinde ${brand} marka orijinal/esdeger agir vasita fren parcasi. ${p.sku ? "Stok kodu: " + p.sku + ". " : ""}${p.oem ? "OEM: " + p.oem + ". " : ""}Kamyon, tir, otobus ve dorse icin uyumlu fren aksami. Ayni gun kargo, 12 taksit, 14 gun iade.`;
+    const richDesc = `${productName} - ${catName} kategorisinde ${brand} marka orijinal/esdeger agir vasita fren parcasi. ${p.sku ? "Stok kodu: " + p.sku + ". " : ""}${p.oem ? "OEM: " + p.oem + ". " : ""}Kamyon, tir, otobus ve dorse fren sistemleri icin OEM/sase ile uyumluluk teyidi yapilir. Ayni gun kargo, 12 taksit, 14 gun iade.`;
     const desc = merchantSafeProductText(p.desc || richDesc).slice(0, 5000);
 
     rows.push([

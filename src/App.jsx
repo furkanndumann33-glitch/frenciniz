@@ -9,7 +9,7 @@ const TR = {
   addToCart:"Sepete Ekle",outOfStock:"Tükendi",notifyMe:"🔔 Haber Ver",buyAgain:"Tekrar Al",
   heroTitle:"Fren Aksamı Uzmanı",heroDesc:"10.000+ orijinal ve eşdeğer parça. Aynı gün kargo, 12 taksit.",browseProducts:"Ürünleri İncele",
   byVehicle:"Araç Tipine Göre Alışveriş",bestSellers:"Çok Satanlar",featured:"Öne Çıkanlar",seeAll:"Tümünü Gör →",discounted:"🔥 İndirimli Ürünler",
-  sameDay:"Aynı Gün Kargo",sameDayDesc:"14:00'a kadar sipariş",origGuarantee:"Orijinal Garanti",origDesc:"ECE R-90 sertifikalı",
+  sameDay:"Aynı Gün Kargo",sameDayDesc:"14:00'a kadar sipariş",origGuarantee:"Uyumluluk Teyidi",origDesc:"OEM/şase kontrolü",
   installment:"12 Taksit",installmentDesc:"Tüm kredi kartlarına",returnPolicy:"14 Gün İade",returnDesc:"Koşulsuz iade hakkı",
   emptyCart:"Sepetiniz boş",startShopping:"Alışverişe Başla",orderSummary:"Sipariş Özeti",subtotal:"Ara Toplam",shipping:"Kargo",
   free:"Ücretsiz",total:"Toplam",checkout:"Siparişi Tamamla",applyCoupon:"Uygula",couponPlaceholder:"Kupon kodu",
@@ -20,7 +20,7 @@ const TR = {
   recentlyViewed:"Son Görüntülediğiniz Ürünler",frequentlyBought:"🔄 Sık Aldığınız Ürünler",
   allProducts:"Tüm Ürünler",category:"Kategori",vehicleType:"Araç Tipi",brand:"Marka",popularity:"Popülerlik",
   priceLow:"Fiyat: Düşük → Yüksek",priceHigh:"Fiyat: Yüksek → Düşük",noResults:"Ürün bulunamadı",
-  description:"Açıklama",techSpecs:"Teknik Özellikler",compatVehicles:"Uyumlu Araçlar",similarProducts:"Benzer Ürünler",
+  description:"Açıklama",techSpecs:"Teknik Özellikler",compatVehicles:"Uyumluluk Adayları",similarProducts:"Benzer Ürünler",
   newsletter:"Bültenimize Abone Olun",newsletterDesc:"Yeni ürünler ve kampanyalar için katılın.",subscribe:"Abone Ol",
   filterTitle:"Filtreler",apply:"Uygula",close:"Kapat",menu:"Menü",
   truck:"Kamyon",trailer:"Tır / Çekici",bus:"Otobüs",semitrailer:"Dorse",allVehicles:"Tüm Araçlar",allBrands:"Tüm Markalar",
@@ -60,7 +60,7 @@ const EN = {
   addToCart:"Add to Cart",outOfStock:"Sold Out",notifyMe:"🔔 Notify Me",buyAgain:"Reorder",
   heroTitle:"Brake Parts Expert",heroDesc:"10,000+ original and equivalent parts. Same day shipping, 12 installments.",browseProducts:"Browse Products",
   byVehicle:"Shop by Vehicle Type",bestSellers:"Best Sellers",featured:"Featured",seeAll:"See All →",discounted:"🔥 Discounted Products",
-  sameDay:"Same Day Shipping",sameDayDesc:"Order before 2 PM",origGuarantee:"Original Guarantee",origDesc:"ECE R-90 certified",
+  sameDay:"Same Day Shipping",sameDayDesc:"Order before 2 PM",origGuarantee:"Fitment Check",origDesc:"OEM/chassis check",
   installment:"12 Installments",installmentDesc:"All credit cards",returnPolicy:"14 Day Return",returnDesc:"Unconditional return",
   emptyCart:"Your cart is empty",startShopping:"Start Shopping",orderSummary:"Order Summary",subtotal:"Subtotal",shipping:"Shipping",
   free:"Free",total:"Total",checkout:"Complete Order",applyCoupon:"Apply",couponPlaceholder:"Coupon code",
@@ -71,7 +71,7 @@ const EN = {
   recentlyViewed:"Recently Viewed Products",frequentlyBought:"🔄 Frequently Purchased",
   allProducts:"All Products",category:"Category",vehicleType:"Vehicle Type",brand:"Brand",popularity:"Popularity",
   priceLow:"Price: Low → High",priceHigh:"Price: High → Low",noResults:"No products found",
-  description:"Description",techSpecs:"Technical Specs",compatVehicles:"Compatible Vehicles",similarProducts:"Similar Products",
+  description:"Description",techSpecs:"Technical Specs",compatVehicles:"Compatibility Candidates",similarProducts:"Similar Products",
   newsletter:"Subscribe to Newsletter",newsletterDesc:"Join for new products and deals.",subscribe:"Subscribe",
   filterTitle:"Filters",apply:"Apply",close:"Close",menu:"Menu",
   truck:"Truck",trailer:"Tractor",bus:"Bus",semitrailer:"Trailer",allVehicles:"All Vehicles",allBrands:"All Brands",
@@ -217,7 +217,7 @@ const PROD_TERMS = [
   ["Disk Civatası","Disc Bolt"],
   ["Ağır Vasıta","Heavy Duty"],
   ["Stok durumu ve aracınıza uygunluk için lütfen iletişime geçiniz","For stock and vehicle compatibility please contact us"],
-  ["Uyumlu araç markaları","Compatible vehicle brands"],
+  ["Uyumluluk adayı araç markaları","Compatibility candidate brands"],
   ["Ürün Kodu","Product Code"],
   ["OEM No","OEM No"],
   ["Marka","Brand"],
@@ -1125,7 +1125,7 @@ export default function App() {
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const baseTitle = "Frenciniz - Ağır Vasıta Fren Aksamı | 0545 608 7008";
-    const baseDesc = "Kamyon, tır, otobüs ve dorse için ECE R-90 sertifikalı fren diski, balata, kampana, kaliper, EBS modülatör ve ABS sensörü. 1000+ ürün, aynı gün kargo, 12 taksit, 14 gün iade. Tel: 0545 608 7008 · WhatsApp: 0850 888 7881.";
+    const baseDesc = "Kamyon, tır, otobüs ve dorse için fren diski, balata, kampana, kaliper, EBS modülatör ve ABS sensörü. 1000+ ürün, OEM/şase ile uyumluluk teyidi, aynı gün kargo, 12 taksit, 14 gün iade. Tel: 0545 608 7008 · WhatsApp: 0850 888 7881.";
     const baseImg = `${SITE_URL}/img/site/frenciniz-logo-real-og.jpg`;
 
     // Önceki sayfa-spesifik JSON-LD'yi temizle
@@ -1175,9 +1175,9 @@ export default function App() {
         const brandsInCat = [...new Set(inCat.map(p => p.brand).filter(Boolean))].slice(0, 5);
 
         title = `${catName} | ${count > 0 ? `${count} Ürün` : "Tüm Ürünler"} - Ağır Vasıta Fren Aksamı | Frenciniz`;
-        desc = `${catName}: ${count} adet orijinal ve eşdeğer ürün. ${brandsInCat.length ? brandsInCat.join(", ") + ". " : ""}ECE R-90 sertifikalı, kamyon/tır/otobüs/dorse uyumlu. 3000₺ üzeri ücretsiz kargo, 12 taksit, 14 gün iade. Tel: 0545 608 7008.`.slice(0, 300);
+        desc = `${catName}: ${count} adet orijinal/eşdeğer ürün. ${brandsInCat.length ? brandsInCat.join(", ") + ". " : ""}OEM/parça kodu veya şase ile uyumluluk teyidi yapılır. 3000₺ üzeri ücretsiz kargo, 12 taksit, 14 gün iade. Tel: 0545 608 7008.`.slice(0, 300);
         canonical = `${SITE_URL}/${cat.id}`;
-        keywords = [catName, ...brandsInCat, "fren aksamı", "ağır vasıta yedek parça", "kamyon", "tır", "otobüs", "dorse", "ECE R-90", "Mercedes Actros", "MAN TGA", "Volvo FH", "Scania", "DAF", "BPW", "SAF", "Ekersan", "Frenciniz"].join(", ");
+        keywords = [catName, ...brandsInCat, "fren aksamı", "ağır vasıta yedek parça", "OEM parça kodu", "şase ile uyumluluk", "kamyon", "tır", "otobüs", "dorse", "Mercedes Actros", "MAN TGA", "Volvo FH", "Scania", "DAF", "BPW", "SAF", "Ekersan", "Frenciniz"].join(", ");
 
         // ItemList JSON-LD (ilk 20 ürün)
         const sample = inCat.slice(0, 20);
@@ -1220,7 +1220,7 @@ export default function App() {
         robots = "noindex, follow";
       } else if (params?.brand) {
         title = `${params.brand} fren aksamı ürünleri - Frenciniz`;
-        desc = `${params.brand} marka uyumlu fren diski, balata, kampana, kaliper. ECE R-90 sertifikalı.`;
+        desc = `${params.brand} marka fren diski, balata, kampana ve kaliper ürünlerinde OEM/parça kodu veya şase ile uyumluluk teyidi.`;
         canonical = `${SITE_URL}/?brand=${encodeURIComponent(params.brand)}`;
       } else if (params?.veh) {
         const vname = ({kamyon:"Kamyon",tir:"Tır",otobus:"Otobüs",dorse:"Dorse"})[params.veh] || params.veh;
@@ -1239,7 +1239,7 @@ export default function App() {
         title = `${p.name} ${p.sku ? "(" + p.sku + ")" : ""} - ${p.brand || "Frenciniz"} | Fren Aksamı`;
         const compatStr = (p.compat || []).slice(0, 4).join(", ");
         const catName = sub ? sub.name : "fren aksamı";
-        desc = `${p.name} - ${catName} kategorisinde ${p.brand || "Ekersan"} marka. ${p.sku ? "Stok: " + p.sku + ". " : ""}${p.oem ? "OEM: " + p.oem + ". " : ""}${compatStr ? "Uyumlu: " + compatStr + ". " : ""}ECE R-90 sertifikalı, aynı gün kargo, 12 taksit. ${p.price}₺. Tel: 0545 608 7008.`.slice(0, 300);
+        desc = `${p.name} - ${catName} kategorisinde ${p.brand || "Ekersan"} marka. ${p.sku ? "Stok: " + p.sku + ". " : ""}${p.oem ? "OEM: " + p.oem + ". " : ""}${compatStr ? "Aday uyumluluk: " + compatStr + ". " : ""}Kesin uyum için OEM/şase teyidi, aynı gün kargo, 12 taksit. ${p.price}₺. Tel: 0545 608 7008.`.slice(0, 300);
         canonical = productSeoUrl(SITE_URL, p);
         const productImageList = (hasRealImg(p)
           ? (Array.isArray(p.images) && p.images.length ? p.images : [p.img_lg || p.img])
@@ -1254,7 +1254,7 @@ export default function App() {
           p.name, p.brand, p.sku, p.oem, catName,
           ...(p.compat || []).slice(0, 6),
           "fren aksamı", "ağır vasıta yedek parça", "kamyon", "tır", "otobüs", "dorse",
-          "ECE R-90", "Frenciniz", "orijinal", "eşdeğer"
+          "OEM", "şase ile uyumluluk", "Frenciniz", "orijinal", "eşdeğer"
         ].filter(Boolean);
         keywords = [...new Set(kwParts)].join(", ");
         ogType = "product";
@@ -1302,7 +1302,7 @@ export default function App() {
           "additionalProperty": [
             p.sku ? { "@type": "PropertyValue", "name": "SKU", "value": p.sku } : null,
             p.oem ? { "@type": "PropertyValue", "name": "OEM / Muadil", "value": p.oem } : null,
-            p.compat?.length ? { "@type": "PropertyValue", "name": "Uyumlu Araçlar", "value": p.compat.slice(0, 10).join(", ") } : null,
+            p.compat?.length ? { "@type": "PropertyValue", "name": "Uyumluluk Adayları", "value": p.compat.slice(0, 10).join(", ") } : null,
             { "@type": "PropertyValue", "name": "Stok", "value": String(p.stock || 0) },
           ].filter(Boolean),
           "aggregateRating": p.rating ? {
@@ -1374,7 +1374,7 @@ export default function App() {
     } else if (page === "contact") { title = "İletişim - Frenciniz"; desc = "Frenciniz iletişim: 0545 608 7008 (Tel), 0850 888 7881 (WhatsApp), info@frenciniz.com. Isparta merkez."; canonical = `${SITE_URL}/contact`; }
     else if (page === "about") {
       title = "Hakkımızda — Frenciniz Dumanlar Ticaret | Isparta Fren Aksamı";
-      desc = "Frenciniz (Dumanlar Ticaret) — Isparta merkezli ağır vasıta fren aksamı uzmanı. Ekersan üretici garantili, ECE R-90 sertifikalı 1000+ ürün. Aynı gün kargo, 12 taksit, 14 gün iade.";
+      desc = "Frenciniz (Dumanlar Ticaret) — Isparta merkezli ağır vasıta fren aksamı uzmanı. Ekersan ve muadil ürünlerde OEM/şase ile uyumluluk teyidi, 1000+ stoklu ürün, aynı gün kargo, 12 taksit, 14 gün iade.";
       canonical = `${SITE_URL}/about`;
       setJsonLd("page-organization", {
         "@context": "https://schema.org",
@@ -1383,7 +1383,7 @@ export default function App() {
         "alternateName": "Dumanlar Ticaret",
         "url": SITE_URL,
         "logo": `${SITE_URL}/img/site/frenciniz-logo-real.png`,
-        "description": "Kamyon, tır, otobüs ve dorse için ECE R-90 sertifikalı fren aksamı satışı. 1000+ orijinal ve eşdeğer parça.",
+        "description": "Kamyon, tır, otobüs ve dorse için ağır vasıta fren aksamı satışı. 1000+ orijinal/eşdeğer parça ve OEM/şase ile uyumluluk teyidi.",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Hızırbey Mah. 1509 Sok. No:24",
@@ -1407,11 +1407,11 @@ export default function App() {
       canonical = `${SITE_URL}/faq`;
       const faqList = [
         {q:"Kargo süresi nedir?",a:"14:00'a kadar verilen siparişler aynı gün kargoya verilir. Aras Kargo ile gönderim yapılır."},
-        {q:"Ürünler orijinal mi?",a:"ECE R-90 sertifikalı orijinal ve eşdeğer parçalar sunuyoruz. Her ürün üretici garantilidir."},
+        {q:"Ürünler orijinal mi?",a:"Orijinal ve eşdeğer parça seçenekleri sunuyoruz; üretici/sertifika bilgisi ürün bazında OEM kodu, ambalaj ve stok kaydıyla teyit edilir."},
         {q:"İade yapabilir miyim?",a:"Kullanılmamış ürünler 14 gün içinde koşulsuz iade edilebilir. Hasarlı/yanlış üründe kargo ücreti tarafımıza aittir."},
         {q:"Toplu alım indirimi var mı?",a:"5.000₺ üzeri siparişlerde indirim mevcuttur. B2B teklif için 0545 608 7008 numaralı telefondan ulaşabilirsiniz."},
         {q:"Taksit yapılıyor mu?",a:"Tüm kredi kartlarına 12 taksit imkânı mevcuttur. PayTR güvenli ödeme altyapısı kullanılır."},
-        {q:"Ürün aracıma uyar mı?",a:"Ürün sayfasında uyumlu araç listesi ve OEM referansları yer alır. Emin değilseniz 0545 608 7008'den uyumluluk teyidi alabilirsiniz."},
+        {q:"Ürün aracıma uyar mı?",a:"Ürün sayfasında uyumluluk adayları ve OEM referansları yer alır. Kesin sipariş öncesi şase numarası, eski parça fotoğrafı veya OEM koduyla 0545 608 7008'den teyit alabilirsiniz."},
         {q:"Kargo ücreti ne kadar?",a:"3000₺ altı siparişlerde 150₺, 3000₺ üzeri siparişlerde ücretsiz kargo."},
       ];
       setJsonLd("page-faq", {
@@ -2238,7 +2238,7 @@ function HomePage() {
 
         <div className="fr-glass" style={{borderRadius:8,padding:isMobile?16:20}}>
           <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:12}}>
-            {[{n:`${totalCount}+`,l:lang==="en"?"products":"urun"},{n:`${stockCount}+`,l:lang==="en"?"in stock":"stoklu"},{n:"14:00",l:lang==="en"?"same-day cargo":"ayni gun kargo"},{n:"ECE R-90",l:lang==="en"?"certified parts":"sertifikali parca"}].map((s,i)=>(
+            {[{n:`${totalCount}+`,l:lang==="en"?"products":"urun"},{n:`${stockCount}+`,l:lang==="en"?"in stock":"stoklu"},{n:"14:00",l:lang==="en"?"same-day cargo":"ayni gun kargo"},{n:"OEM",l:lang==="en"?"chassis check":"sase teyidi"}].map((s,i)=>(
               <div key={i} style={{padding:14,borderRadius:8,background:"rgba(5,8,15,.72)",border:"1px solid rgba(255,255,255,.12)"}}>
                 <div style={{fontSize:isMobile?22:28,fontWeight:950,color:i===0?"#facc15":i===1?"#22c55e":"#fff",lineHeight:1}}>{s.n}</div>
                 <div style={{fontSize:12,color:"rgba(255,255,255,.72)",fontWeight:700,marginTop:6}}>{s.l}</div>
@@ -2676,7 +2676,7 @@ function ProductDetailPage() {
           <div style={{fontSize:13,color:"#999",marginBottom:16}}>SKU: {p.sku} | OEM: {p.oem}</div>
           <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1.15fr .85fr",gap:10,marginBottom:16}}>
             <div style={{padding:"14px 15px",background:"#fff",border:"1px solid #e5e7eb",borderRadius:8,boxShadow:"0 10px 24px rgba(15,23,42,.05)"}}>
-              <div style={{fontSize:12,fontWeight:900,color:"#ff6000",textTransform:"uppercase",letterSpacing:0,marginBottom:8}}>Uyumlu araçlar</div>
+              <div style={{fontSize:12,fontWeight:900,color:"#ff6000",textTransform:"uppercase",letterSpacing:0,marginBottom:8}}>Uyumluluk adayları</div>
               {compatPreview.length ? (
                 <div style={{display:"flex",flexWrap:"wrap",gap:6}}>
                   {compatPreview.map(label => (
@@ -4246,14 +4246,14 @@ function FaqPage() {
     {q:"Can I make a return?",a:"Unused products can be returned within 14 days."},
     {q:"Is there a bulk purchase discount?",a:"Discounts on orders over 5,000 TL. You can request a B2B quote."},
     {q:"Is installment payment available?",a:"12-month installment options are available for all credit cards."},
-    {q:"Will the product fit my vehicle?",a:"Compatible vehicle list and OEM references are available on the product page."}
+    {q:"Will the product fit my vehicle?",a:"Compatibility candidates and OEM references are available on the product page; please confirm by chassis, OEM code or old part photo before ordering."}
   ] : [
     {q:"Kargo süresi nedir?",a:"14:00'a kadar verilen siparişler aynı gün kargoya verilir."},
-    {q:"Ürünler orijinal mi?",a:"Orijinal ve sertifikalı eşdeğer parçalar sunuyoruz."},
+    {q:"Ürünler orijinal mi?",a:"Orijinal ve eşdeğer seçenekler sunuyoruz; sertifika/üretici bilgisi ürün bazında teyit edilir."},
     {q:"İade yapabilir miyim?",a:"Kullanılmamış ürünler 14 gün içinde iade edilebilir."},
     {q:"Toplu alım indirimi var mı?",a:"5.000₺ üzeri siparişlerde indirim. B2B teklif alabilirsiniz."},
     {q:"Taksit yapılıyor mu?",a:"Tüm kredi kartlarına 12 taksit imkânı mevcuttur."},
-    {q:"Ürün aracıma uyar mı?",a:"Ürün sayfasında uyumlu araç listesi ve OEM referansları yer alır."}
+    {q:"Ürün aracıma uyar mı?",a:"Ürün sayfasında uyumluluk adayları ve OEM referansları yer alır; kesin sipariş öncesi şase, OEM kodu veya eski parça fotoğrafıyla teyit alın."}
   ];
   return <div style={{maxWidth:700,margin:"0 auto",padding:"20px"}}><h1 style={{fontSize:22,fontWeight:700,marginBottom:20}}>{en?"Frequently Asked Questions":"Sık Sorulan Sorular"}</h1>
     {faqs.map((f,i) => <div key={i} style={{borderBottom:"1px solid #eee"}}>

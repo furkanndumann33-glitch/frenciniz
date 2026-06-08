@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-08T18:42:05.221Z",
+  "generatedAt": "2026-06-08T19:42:31.812Z",
   "site": "https://www.frenciniz.com",
   "feedUrls": {
     "googleMerchant": "https://www.frenciniz.com/google-merchant-feed.xml",
@@ -38,6 +38,18 @@
       "realImageRate": 0.952,
       "topCompatibility": [
         {
+          "value": "Kamyon",
+          "count": 40
+        },
+        {
+          "value": "Tır / çekici",
+          "count": 40
+        },
+        {
+          "value": "Dorse",
+          "count": 40
+        },
+        {
           "value": "Mercedes-Benz Axor",
           "count": 32
         },
@@ -48,28 +60,16 @@
         {
           "value": "Mercedes-Benz Axor 2528",
           "count": 32
-        },
-        {
-          "value": "Mercedes-Benz Axor 3228",
-          "count": 32
-        },
-        {
-          "value": "Mercedes-Benz Axor 3340",
-          "count": 32
-        },
-        {
-          "value": "Mercedes-Benz Axor 4140",
-          "count": 32
         }
       ],
       "topStockProducts": [
         {
           "id": 945,
           "sku": "ESS 020 10",
-          "name": "Döner Pullu Somun",
+          "name": "Bijon Somunu ESS 020 10",
           "stock": 100000,
           "price": 74.09,
-          "url": "https://www.frenciniz.com/urun/945/doner-pullu-somun-ess-020-10-ekersan"
+          "url": "https://www.frenciniz.com/urun/945/bijon-somunu-ess-020-10-ess-020-10-ekersan"
         },
         {
           "id": 941,
@@ -82,18 +82,18 @@
         {
           "id": 842,
           "sku": "EYD 209 02",
-          "name": "Disk Bijonu",
+          "name": "Disk Bijonu EYD 209 02",
           "stock": 68549,
           "price": 50.82,
-          "url": "https://www.frenciniz.com/urun/842/disk-bijonu-eyd-209-02-ekersan"
+          "url": "https://www.frenciniz.com/urun/842/disk-bijonu-eyd-209-02-eyd-209-02-ekersan"
         },
         {
           "id": 940,
           "sku": "ESS 025 20-3",
-          "name": "Bijon Somunu",
+          "name": "Bijon Somunu ESS 025 20 3",
           "stock": 55436,
           "price": 73.37,
-          "url": "https://www.frenciniz.com/urun/940/bijon-somunu-ess-025-20-3-ekersan"
+          "url": "https://www.frenciniz.com/urun/940/bijon-somunu-ess-025-20-3-ess-025-20-3-ekersan"
         },
         {
           "id": 364,
@@ -106,26 +106,26 @@
         {
           "id": 932,
           "sku": "ESS 171 10",
-          "name": "Büyük Döner Pullu Somun",
+          "name": "Bijon Somunu ESS 171 10",
           "stock": 24994,
           "price": 78.76,
-          "url": "https://www.frenciniz.com/urun/932/buyuk-doner-pullu-somun-ess-171-10-ekersan"
+          "url": "https://www.frenciniz.com/urun/932/bijon-somunu-ess-171-10-ess-171-10-ekersan"
         },
         {
           "id": 939,
           "sku": "ESS 028 10",
-          "name": "Bijon Somunu",
+          "name": "Bijon Somunu ESS 028 10",
           "stock": 14995,
           "price": 74.09,
-          "url": "https://www.frenciniz.com/urun/939/bijon-somunu-ess-028-10-ekersan"
+          "url": "https://www.frenciniz.com/urun/939/bijon-somunu-ess-028-10-ess-028-10-ekersan"
         },
         {
           "id": 938,
           "sku": "ESS 029 10",
-          "name": "Bijon Somunu",
+          "name": "Bijon Somunu ESS 029 10",
           "stock": 12133,
           "price": 74.09,
-          "url": "https://www.frenciniz.com/urun/938/bijon-somunu-ess-029-10-ekersan"
+          "url": "https://www.frenciniz.com/urun/938/bijon-somunu-ess-029-10-ess-029-10-ekersan"
         }
       ]
     },
@@ -239,26 +239,26 @@
       "topCompatibility": [
         {
           "value": "Kamyon",
-          "count": 22
+          "count": 33
         },
         {
           "value": "Tır / çekici",
-          "count": 22
+          "count": 33
         },
         {
           "value": "Otobüs",
-          "count": 22
+          "count": 33
         },
         {
           "value": "Dorse",
-          "count": 22
-        },
-        {
-          "value": "Dorse / treyler",
-          "count": 16
+          "count": 33
         },
         {
           "value": "BMC Probus",
+          "count": 14
+        },
+        {
+          "value": "BMC Profesyonel",
           "count": 14
         }
       ],
@@ -266,10 +266,10 @@
         {
           "id": 97,
           "sku": "ESK 160 29-S",
-          "name": "Fren Kampanası",
+          "name": "Fren Kampanası ESK 160 29 S",
           "stock": 1278,
           "price": 4950.09,
-          "url": "https://www.frenciniz.com/urun/97/fren-kampanasi-esk-160-29-s-ekersan"
+          "url": "https://www.frenciniz.com/urun/97/fren-kampanasi-esk-160-29-s-esk-160-29-s-ekersan"
         },
         {
           "id": 133,
@@ -322,10 +322,10 @@
         {
           "id": 269,
           "sku": "ESK 160 29",
-          "name": "Fren Kampanası",
+          "name": "Fren Kampanası ESK 160 29",
           "stock": 324,
           "price": 4950.09,
-          "url": "https://www.frenciniz.com/urun/269/fren-kampanasi-esk-160-29-ekersan"
+          "url": "https://www.frenciniz.com/urun/269/fren-kampanasi-esk-160-29-esk-160-29-ekersan"
         }
       ]
     },
@@ -339,27 +339,27 @@
       "topCompatibility": [
         {
           "value": "Dorse",
-          "count": 37
+          "count": 56
         },
         {
           "value": "Treyler",
-          "count": 37
+          "count": 56
         },
         {
           "value": "Kamyon",
-          "count": 37
+          "count": 56
         },
         {
           "value": "Tır / çekici",
-          "count": 37
+          "count": 56
         },
         {
           "value": "Volvo FH",
-          "count": 18
+          "count": 12
         },
         {
           "value": "Volvo FM",
-          "count": 18
+          "count": 12
         }
       ],
       "topStockProducts": [
@@ -374,10 +374,10 @@
         {
           "id": 887,
           "sku": "42813.S",
-          "name": "Pistonsuz Körük",
+          "name": "Süspansiyon Körüğü 42813 S",
           "stock": 667,
           "price": 1815,
-          "url": "https://www.frenciniz.com/urun/887/pistonsuz-koruk-42813-s-ekersan"
+          "url": "https://www.frenciniz.com/urun/887/suspansiyon-korugu-42813-s-42813-s-ekersan"
         },
         {
           "id": 879,
@@ -390,42 +390,42 @@
         {
           "id": 661,
           "sku": "424183.S1",
-          "name": "Pistonsuz Körük",
+          "name": "Süspansiyon Körüğü 424183 S1",
           "stock": 288,
           "price": 1947,
-          "url": "https://www.frenciniz.com/urun/661/pistonsuz-koruk-424183-s1-ekersan"
+          "url": "https://www.frenciniz.com/urun/661/suspansiyon-korugu-424183-s1-424183-s1-ekersan"
         },
         {
           "id": 885,
           "sku": "42836.C1",
-          "name": "Süspansiyon Körüğü DAF XF CF",
+          "name": "Süspansiyon Körüğü 42836 C1",
           "stock": 279,
           "price": 2772,
-          "url": "https://www.frenciniz.com/urun/885/suspansiyon-korugu-daf-xf-cf-42836-c1-ekersan"
+          "url": "https://www.frenciniz.com/urun/885/suspansiyon-korugu-42836-c1-42836-c1-ekersan"
         },
         {
           "id": 446,
           "sku": "FT 34220-2P01",
-          "name": "Süspansiyon Körüğü",
+          "name": "Süspansiyon Körüğü FT 34220 2P01",
           "stock": 221,
           "price": 726,
-          "url": "https://www.frenciniz.com/urun/446/suspansiyon-korugu-ft-34220-2p01-ekersan"
+          "url": "https://www.frenciniz.com/urun/446/suspansiyon-korugu-ft-34220-2p01-ft-34220-2p01-ekersan"
         },
         {
           "id": 925,
           "sku": "422211.P01",
-          "name": "Süspansiyon Körüğü",
+          "name": "Süspansiyon Körüğü 422211 P01",
           "stock": 213,
           "price": 1056,
-          "url": "https://www.frenciniz.com/urun/925/suspansiyon-korugu-422211-p01-ekersan"
+          "url": "https://www.frenciniz.com/urun/925/suspansiyon-korugu-422211-p01-422211-p01-ekersan"
         },
         {
           "id": 924,
           "sku": "423608.C",
-          "name": "Süspansiyon Körüğü Scania G420 R420",
+          "name": "Süspansiyon Körüğü 423608 C",
           "stock": 191,
           "price": 3610.2,
-          "url": "https://www.frenciniz.com/urun/924/suspansiyon-korugu-scania-g420-r420-423608-c-ekersan"
+          "url": "https://www.frenciniz.com/urun/924/suspansiyon-korugu-423608-c-423608-c-ekersan"
         }
       ]
     },
@@ -439,26 +439,26 @@
       "topCompatibility": [
         {
           "value": "Iveco Eurocargo",
-          "count": 13
+          "count": 12
         },
         {
           "value": "Iveco Stralis",
-          "count": 13
-        },
-        {
-          "value": "WABCO ABS/EBS sistemi",
-          "count": 10
-        },
-        {
-          "value": "Dorse EBS sistemi",
-          "count": 10
-        },
-        {
-          "value": "Kamyon / treyler ABS sensör hattı",
-          "count": 10
+          "count": 12
         },
         {
           "value": "Mercedes-Benz Atego",
+          "count": 10
+        },
+        {
+          "value": "BPW dorse dingili",
+          "count": 10
+        },
+        {
+          "value": "BPW ECOPlus dingil",
+          "count": 10
+        },
+        {
+          "value": "BPW treyler",
           "count": 10
         }
       ],
@@ -490,10 +490,10 @@
         {
           "id": 843,
           "sku": "EYD 209 01",
-          "name": "Fren Diski Knorr WABCO Meritor",
+          "name": "Fren Diski EYD 209 01",
           "stock": 862,
           "price": 396,
-          "url": "https://www.frenciniz.com/urun/843/fren-diski-knorr-wabco-meritor-eyd-209-01-ekersan"
+          "url": "https://www.frenciniz.com/urun/843/fren-diski-eyd-209-01-eyd-209-01-ekersan"
         },
         {
           "id": 216,
@@ -506,10 +506,10 @@
         {
           "id": 679,
           "sku": "EYD 91 21",
-          "name": "Fren Diski Knorr WABCO Meritor",
+          "name": "Fren Diski EYD 91 21",
           "stock": 469,
           "price": 455.4,
-          "url": "https://www.frenciniz.com/urun/679/fren-diski-knorr-wabco-meritor-eyd-91-21-ekersan"
+          "url": "https://www.frenciniz.com/urun/679/fren-diski-eyd-91-21-eyd-91-21-ekersan"
         },
         {
           "id": 227,
@@ -538,46 +538,46 @@
       "realImageRate": 0.835,
       "topCompatibility": [
         {
-          "value": "Dorse / treyler",
-          "count": 33
+          "value": "Dorse",
+          "count": 42
         },
         {
-          "value": "Ağır vasıta dorse dingili",
-          "count": 33
+          "value": "Treyler",
+          "count": 42
         },
         {
-          "value": "Yerel dorse dingil grubu",
-          "count": 28
+          "value": "Kamyon",
+          "count": 42
         },
         {
           "value": "BPW dorse dingili",
-          "count": 11
+          "count": 8
         },
         {
           "value": "BPW ECOPlus dingil",
-          "count": 11
+          "count": 8
         },
         {
           "value": "BPW treyler",
-          "count": 11
+          "count": 8
         }
       ],
       "topStockProducts": [
         {
           "id": 1053,
           "sku": "EYD.075099",
-          "name": "Porya Kapağı SAF Holland",
+          "name": "Porya EYD 075099",
           "stock": 1623,
           "price": 224.4,
-          "url": "https://www.frenciniz.com/urun/1053/porya-kapagi-saf-holland-eyd-075099-ekersan"
+          "url": "https://www.frenciniz.com/urun/1053/porya-eyd-075099-eyd-075099-ekersan"
         },
         {
           "id": 811,
           "sku": "EYD 700 06",
-          "name": "Porya Kapağı",
+          "name": "Porya Kapağı EYD 700 06",
           "stock": 396,
           "price": 528,
-          "url": "https://www.frenciniz.com/urun/811/porya-kapagi-eyd-700-06-ekersan"
+          "url": "https://www.frenciniz.com/urun/811/porya-kapagi-eyd-700-06-eyd-700-06-ekersan"
         },
         {
           "id": 596,
@@ -590,42 +590,42 @@
         {
           "id": 810,
           "sku": "EYD 700 07",
-          "name": "Porya Kapağı",
+          "name": "Porya Kapağı EYD 700 07",
           "stock": 124,
           "price": 528,
-          "url": "https://www.frenciniz.com/urun/810/porya-kapagi-eyd-700-07-ekersan"
+          "url": "https://www.frenciniz.com/urun/810/porya-kapagi-eyd-700-07-eyd-700-07-ekersan"
         },
         {
           "id": 813,
           "sku": "EYD 700 03",
-          "name": "Porya Kapağı",
+          "name": "Porya Kapağı EYD 700 03",
           "stock": 74,
           "price": 528,
-          "url": "https://www.frenciniz.com/urun/813/porya-kapagi-eyd-700-03-ekersan"
+          "url": "https://www.frenciniz.com/urun/813/porya-kapagi-eyd-700-03-eyd-700-03-ekersan"
         },
         {
           "id": 808,
           "sku": "EYD 700 28",
-          "name": "Porya Kapağı",
+          "name": "Porya Kapağı EYD 700 28",
           "stock": 71,
           "price": 528,
-          "url": "https://www.frenciniz.com/urun/808/porya-kapagi-eyd-700-28-ekersan"
+          "url": "https://www.frenciniz.com/urun/808/porya-kapagi-eyd-700-28-eyd-700-28-ekersan"
         },
         {
           "id": 802,
           "sku": "EYD 700 51",
-          "name": "Porya Kapağı",
+          "name": "Porya Kapağı EYD 700 51",
           "stock": 70,
           "price": 528,
-          "url": "https://www.frenciniz.com/urun/802/porya-kapagi-eyd-700-51-ekersan"
+          "url": "https://www.frenciniz.com/urun/802/porya-kapagi-eyd-700-51-eyd-700-51-ekersan"
         },
         {
           "id": 805,
           "sku": "EYD 700 33",
-          "name": "Porya Kapağı",
+          "name": "Porya Kapağı EYD 700 33",
           "stock": 70,
           "price": 528,
-          "url": "https://www.frenciniz.com/urun/805/porya-kapagi-eyd-700-33-ekersan"
+          "url": "https://www.frenciniz.com/urun/805/porya-kapagi-eyd-700-33-eyd-700-33-ekersan"
         }
       ]
     },
@@ -650,16 +650,16 @@
           "count": 75
         },
         {
-          "value": "Kamyon",
-          "count": 10
+          "value": "SAF dorse dingili",
+          "count": 7
         },
         {
-          "value": "Tır / çekici",
-          "count": 10
+          "value": "SAF Holland treyler",
+          "count": 7
         },
         {
-          "value": "Dorse",
-          "count": 10
+          "value": "Ford Cargo",
+          "count": 2
         }
       ],
       "topStockProducts": [
@@ -738,19 +738,19 @@
       "realImageRate": 0.983,
       "topCompatibility": [
         {
-          "value": "Mercedes-Benz Atego",
-          "count": 22
-        },
-        {
-          "value": "Mercedes-Benz Arocs",
-          "count": 22
-        },
-        {
           "value": "Mercedes-Benz Axor",
           "count": 21
         },
         {
           "value": "Mercedes-Benz Axor 1840",
+          "count": 21
+        },
+        {
+          "value": "Mercedes-Benz Axor 2528",
+          "count": 21
+        },
+        {
+          "value": "Mercedes-Benz Axor 3228",
           "count": 21
         },
         {
@@ -806,10 +806,10 @@
         {
           "id": 483,
           "sku": "PWR-K002",
-          "name": "Fren Balatası BPW ECOPlus",
+          "name": "Fren Balatası PWR K002",
           "stock": 171,
           "price": 1210.31,
-          "url": "https://www.frenciniz.com/urun/483/fren-balatasi-bpw-ecoplus-pwr-k002-ekersan"
+          "url": "https://www.frenciniz.com/urun/483/fren-balatasi-pwr-k002-pwr-k002-ekersan"
         },
         {
           "id": 727,
@@ -838,27 +838,27 @@
       "realImageRate": 0.923,
       "topCompatibility": [
         {
-          "value": "Renault Trucks Midlum",
-          "count": 12
-        },
-        {
-          "value": "Renault Trucks Premium",
-          "count": 10
-        },
-        {
-          "value": "Renault Trucks Magnum",
-          "count": 10
-        },
-        {
-          "value": "Renault Trucks Kerax",
-          "count": 10
-        },
-        {
           "value": "Mercedes-Benz Axor",
           "count": 10
         },
         {
           "value": "Mercedes-Benz Axor 1840",
+          "count": 10
+        },
+        {
+          "value": "Mercedes-Benz Axor 3340",
+          "count": 10
+        },
+        {
+          "value": "Mercedes-Benz Axor 4140",
+          "count": 10
+        },
+        {
+          "value": "Mercedes-Benz Actros",
+          "count": 10
+        },
+        {
+          "value": "Mercedes-Benz Actros 1840",
           "count": 10
         }
       ],
@@ -914,10 +914,10 @@
         {
           "id": 419,
           "sku": "ESC 1815",
-          "name": "Fren Cırcırı",
+          "name": "Fren Cırcırı ESC 1815",
           "stock": 95,
           "price": 759,
-          "url": "https://www.frenciniz.com/urun/419/fren-circiri-esc-1815-ekersan"
+          "url": "https://www.frenciniz.com/urun/419/fren-circiri-esc-1815-esc-1815-ekersan"
         },
         {
           "id": 55,
@@ -1050,16 +1050,16 @@
           "count": 9
         },
         {
-          "value": "BMC Probus",
-          "count": 9
+          "value": "Volvo FH",
+          "count": 8
         },
         {
-          "value": "BMC Profesyonel",
-          "count": 9
+          "value": "Volvo FH12",
+          "count": 8
         },
         {
-          "value": "BMC Fatih",
-          "count": 9
+          "value": "Volvo FM",
+          "count": 8
         }
       ],
       "topStockProducts": [
@@ -1256,13 +1256,13 @@
     {
       "id": 3,
       "sku": "ESC 79458",
-      "name": "Otomatik Fren Cırcırı Renault Midlum Premium Magnum",
+      "name": "Otomatik Fren Cırcırı ESC 79458",
       "category": "Otomatik Fren Cırcırı",
       "group": "CIRCIR",
       "stock": 25,
       "price": 1452,
       "oem": "14632, 79308, 79075, 79308, 5010260115, 79308, 4W3055",
-      "url": "https://www.frenciniz.com/urun/3/otomatik-fren-circiri-renault-midlum-premium-magnum-esc-79458-ekersan"
+      "url": "https://www.frenciniz.com/urun/3/otomatik-fren-circiri-esc-79458-esc-79458-ekersan"
     },
     {
       "id": 4,
@@ -1333,24 +1333,24 @@
     {
       "id": 421,
       "sku": "EYD 700 14-1",
-      "name": "Porya Kapağı BPW ECOPlus",
+      "name": "Porya EYD 700 14 1",
       "category": "Porya",
       "group": "PORYA",
       "stock": 6,
       "price": 699.6,
       "oem": "",
-      "url": "https://www.frenciniz.com/urun/421/porya-kapagi-bpw-ecoplus-eyd-700-14-1-ekersan"
+      "url": "https://www.frenciniz.com/urun/421/porya-eyd-700-14-1-eyd-700-14-1-ekersan"
     },
     {
       "id": 422,
       "sku": "FT 34810-K04F",
-      "name": "Süspansiyon Körüğü",
+      "name": "Süspansiyon Körüğü FT 34810 K04F",
       "category": "Süspansiyon Körüğü",
       "group": "SÜSP. KÖRÜĞÜ",
       "stock": 22,
       "price": 3300,
       "oem": "",
-      "url": "https://www.frenciniz.com/urun/422/suspansiyon-korugu-ft-34810-k04f-ekersan"
+      "url": "https://www.frenciniz.com/urun/422/suspansiyon-korugu-ft-34810-k04f-ft-34810-k04f-ekersan"
     },
     {
       "id": 423,
@@ -1366,13 +1366,13 @@
     {
       "id": 424,
       "sku": "EYD 92 30",
-      "name": "Bijon Somunu",
+      "name": "Bijon Somunu EYD 92 30",
       "category": "Somun / Cıvata",
       "group": "BİJON",
       "stock": 186,
       "price": 1056,
       "oem": "",
-      "url": "https://www.frenciniz.com/urun/424/bijon-somunu-eyd-92-30-ekersan"
+      "url": "https://www.frenciniz.com/urun/424/bijon-somunu-eyd-92-30-eyd-92-30-ekersan"
     },
     {
       "id": 425,
@@ -1388,13 +1388,13 @@
     {
       "id": 427,
       "sku": "EYD 700 06-1",
-      "name": "Porya Kapağı",
+      "name": "Porya Kapağı EYD 700 06 1",
       "category": "Porya",
       "group": "PORYA",
       "stock": 2,
       "price": 462,
       "oem": "",
-      "url": "https://www.frenciniz.com/urun/427/porya-kapagi-eyd-700-06-1-ekersan"
+      "url": "https://www.frenciniz.com/urun/427/porya-kapagi-eyd-700-06-1-eyd-700-06-1-ekersan"
     },
     {
       "id": 428,
@@ -1410,13 +1410,13 @@
     {
       "id": 429,
       "sku": "FT 3498608-KP",
-      "name": "Süspansiyon Körüğü",
+      "name": "Süspansiyon Körüğü FT 3498608 KP",
       "category": "Süspansiyon Körüğü",
       "group": "SÜSP. KÖRÜĞÜ",
       "stock": 13,
       "price": 2970,
       "oem": "",
-      "url": "https://www.frenciniz.com/urun/429/suspansiyon-korugu-ft-3498608-kp-ekersan"
+      "url": "https://www.frenciniz.com/urun/429/suspansiyon-korugu-ft-3498608-kp-ft-3498608-kp-ekersan"
     },
     {
       "id": 430,
@@ -1432,13 +1432,13 @@
     {
       "id": 431,
       "sku": "EYD 92 28",
-      "name": "Bijon BPW ECOPlus",
+      "name": "Bijon Somunu EYD 92 28",
       "category": "Somun / Cıvata",
       "group": "BİJON",
       "stock": 169,
       "price": 1056,
       "oem": "",
-      "url": "https://www.frenciniz.com/urun/431/bijon-bpw-ecoplus-eyd-92-28-ekersan"
+      "url": "https://www.frenciniz.com/urun/431/bijon-somunu-eyd-92-28-eyd-92-28-ekersan"
     },
     {
       "id": 432,

@@ -225,7 +225,7 @@ export const LANDING_PAGES = [
     slug: "agir-vasita-fren-balatasi",
     heading: "Ağır Vasıta Fren Balatası",
     title: "Ağır Vasıta Fren Balatası ve Disk Balatası | Frenciniz",
-    description: "Kamyon, tır, otobüs ve dorse için fren balatası, disk balatası ve fren pabucu ürünleri. ECE R-90 sertifikalı ürünler.",
+    description: "Kamyon, tır, otobüs ve dorse için fren balatası, disk balatası ve fren pabucu ürünleri. OEM/şase ile uyumluluk teyidi.",
     cats: ["fren-balatasi", "fren-pabucu", "percin"],
     terms: ["balata", "pabuç", "pabuc"],
     primaryTerm: "Balata",
@@ -683,6 +683,14 @@ function registerGeneratedLandingPages() {
 }
 
 registerGeneratedLandingPages();
+
+function applyStrictLandingDescriptions() {
+  for (const page of LANDING_PAGES) {
+    page.description = `${page.heading} icin ${page.part || "fren aksami"} urunlerinde stok ve fiyat secenekleri. OEM/parca kodu, eski parca fotografi veya sase ile uyumluluk teyidi, ayni gun kargo ve WhatsApp teklif.`;
+  }
+}
+
+applyStrictLandingDescriptions();
 
 export function getLandingBySlug(slug) {
   return LANDING_PAGES.find(page => page.slug === slug);
