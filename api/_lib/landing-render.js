@@ -127,6 +127,30 @@ export function renderLanding(page, products, categories) {
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'AW-18146656139');
+    window.FRENCINIZ_ADS = {
+      accountId: 'AW-18146656139',
+      leadConversion: 'AW-18146656139/3fAcCJ6-s7scEIv__8xD',
+      phoneConversion: 'AW-18146656139/n0u1CJu-s7scEIv__8xD',
+      purchaseConversion: ''
+    };
+    window.frencinizTrackAdsConversion = function (kind, payload) {
+      if (!window.gtag) return;
+      var data = payload || {};
+      var label = kind === 'phone' ? window.FRENCINIZ_ADS.phoneConversion
+        : kind === 'purchase' ? window.FRENCINIZ_ADS.purchaseConversion
+        : window.FRENCINIZ_ADS.leadConversion;
+      if (!label) return;
+      var eventData = {
+        send_to: label,
+        value: Number(data.value) || 1,
+        currency: data.currency || 'TRY',
+        event_category: data.category || 'lead',
+        event_label: data.label || data.kind || kind,
+        transport_type: 'beacon'
+      };
+      if (data.transaction_id) eventData.transaction_id = data.transaction_id;
+      window.gtag('event', 'conversion', eventData);
+    };
   </script>
   <script>
     !function(f,b,e,v,n,t,s)
@@ -153,6 +177,13 @@ export function renderLanding(page, products, categories) {
             event_category: 'contact',
             event_label: href || window.location.pathname,
             transport_type: 'beacon'
+          });
+        }
+        if (window.frencinizTrackAdsConversion) {
+          window.frencinizTrackAdsConversion(kind === 'phone' ? 'phone' : 'lead', {
+            kind: kind,
+            label: href || kind,
+            value: 1
           });
         }
         if (window.fbq) {

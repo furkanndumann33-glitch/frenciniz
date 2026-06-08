@@ -1098,13 +1098,14 @@ export default function App() {
             quantity: c.qty
           }))
         });
-        // Google Ads enhanced conversion için ayrı event (Conversion Action eklendiğinde label set edilecek)
-        window.gtag('event', 'conversion', {
-          send_to: 'AW-18146656139',
-          value: total,
-          currency: 'TRY',
-          transaction_id: txnId
-        });
+        if (window.frencinizTrackAdsConversion) {
+          window.frencinizTrackAdsConversion('purchase', {
+            value: total,
+            currency: 'TRY',
+            transaction_id: txnId,
+            label: 'checkout_complete'
+          });
+        }
       }
     } catch(e) {}
     if (cart.length > 0) {
