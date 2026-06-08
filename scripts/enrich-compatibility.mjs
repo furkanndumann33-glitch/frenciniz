@@ -6,10 +6,12 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const PRODUCTS_PATH = path.join(ROOT, "public", "data", "products.json");
 const CATEGORIES_PATH = path.join(ROOT, "public", "data", "categories.json");
 const REPORT_PATH = path.join(ROOT, "pricing-research", "compatibility-enrichment-report.json");
-export const RULE_SOURCE = "name_oem_rules_v5_strict_verified";
+const RAW_CACHE_PATH = path.join(ROOT, "raw_cache.json");
+export const RULE_SOURCE = "name_oem_rules_v6_raw_oem_strict";
 const GENERATED_COMPAT_PREFIX = "name_oem_rules_";
 
 let catById = {};
+let sourceBySku = new Map();
 
 const PRIORITY_GROUPS = new Set([
   "disk",
@@ -167,7 +169,7 @@ const MODEL_RULES = [
   },
   {
     key: "mercedes-general",
-    regex: /\bMERCEDES\b|\bMB\b|\bARCS\b|A0{3}421|640915|624\.?420|620\.?420|393\.?420/i,
+    regex: /\bMERCEDES\b|\bARCS\b|A0{3}421|640915|624\.?420|620\.?420|393\.?420/i,
     compat: ["Mercedes-Benz Actros", "Mercedes-Benz Actros 1840", "Mercedes-Benz Actros 3340", "Mercedes-Benz Actros 4140", "Mercedes-Benz Axor", "Mercedes-Benz Axor 1840", "Mercedes-Benz Axor 3340", "Mercedes-Benz Axor 4140", "Mercedes-Benz Atego", "Mercedes-Benz Arocs"],
   },
   {
@@ -198,7 +200,7 @@ const MODEL_RULES = [
   {
     key: "ford-cargo",
     regex: /\bFORD\b|\bCARGO\b|9C46|DC46|7C46|85DB|13C33|FC46|A333K/i,
-    compat: ["Ford Cargo", "Ford Cargo 1833", "Ford Cargo 1846", "Ford Cargo 2532", "Ford Cargo 3232"],
+    compat: ["Ford Cargo"],
   },
   {
     key: "daf",
@@ -435,7 +437,7 @@ const OEM_RULES = [
   },
   {
     regex: /7C46|85DB|13C33|FC46|A333K4561/i,
-    compat: ["Ford Cargo", "Ford Cargo 2520/2524/3227/3230", "Ford Cargo çekici"],
+    compat: ["Ford Cargo"],
     note: "7C46 / 85DB / 13C33 / A333K referansları Ford Cargo ağır vasıta fren ve porya parçalarında kullanılır.",
   },
   {
@@ -598,15 +600,18 @@ const CATEGORY_TITLE_BASES = {
 const TITLE_RULES = [
   { regex: /TRAVEGO|TOURISMO|TOURINO|INTOURO|O ?403|O ?404|O ?500|000327|307327/i, suffix: "Mercedes Travego Tourismo" },
   { regex: /\bFORTUNA\b|LION'?S|NEOPLAN/i, suffix: "MAN Fortuna Otobüs" },
-  { regex: /\bAXOR\b|\bACTROS\b|942401|943401|970401|960401|381401|327401|305401|305423|346420|348420|000 ?420|301421|A0{3}421/i, suffix: "Mercedes Actros Axor 1840 3340 4140" },
-  { regex: /815061|815080|815082|814550|814360|\bTGA\b|\bTGS\b|\bTGX\b/i, suffix: "MAN TGA TGS TGX 40.360 40.460" },
-  { regex: /136869|1411980|1528655|1528712|1847739|2285275|2051551|20524942|1391617|3963997|1573081|1573082/i, suffix: "Scania G420 R420" },
-  { regex: /7C46|85DB|13C33|FC46|A333K|\bCARGO\b/i, suffix: "Ford Cargo 1833 1846 2532 3232" },
+  { regex: /\bATEGO\b|\bATECO\b/i, suffix: "Mercedes Atego" },
+  { regex: /960421/i, suffix: "Mercedes Actros Arocs Axor" },
+  { regex: /\bAXOR\b|\bACTROS\b|942401|943401|970401|960401|381401|327401|305401|305423|346420|348420|000 ?420|301421|A0{3}421/i, suffix: "Mercedes Actros Axor" },
+  { regex: /\b\d{2}[-.]153\b/i, suffix: "MAN 12-153" },
+  { regex: /815061|815080|815082|814550|814360|\bTGA\b|\bTGS\b|\bTGX\b/i, suffix: "MAN TGA TGS TGX" },
+  { regex: /136869|1411980|1528655|1528712|1847739|2285275|2051551|20524942|1391617|3963997|1573081|1573082/i, suffix: "Scania P G R" },
+  { regex: /7C46|85DB|13C33|FC46|A333K|\bCARGO\b/i, suffix: "Ford Cargo" },
   { regex: /9267086|6604261/i, suffix: "Kögel Krone" },
   { regex: /8551042|3092710/i, suffix: "Volvo FH FM FL" },
   { regex: /21227349|MBR9018|68323825|MBR5124|MBR9004|M069018|M200135|MBR9007|1176816|17870|MBR5143|1088133/i, suffix: "ROR Meritor" },
   { regex: /421174|421184|4211 ?74|4212 ?72|7168|7189|718305|7179|7192|42117459|42117447|42117463/i, suffix: "Iveco Eurocargo Stralis" },
-  { regex: /942401|943401|970401|960401|381401|327401|305401|305423|346420|348420|000 ?420|301421|A0{3}421/i, suffix: "Mercedes Actros Axor Atego" },
+  { regex: /942401|943401|970401|960401|381401|327401|305401|305423|346420|348420|000 ?420|301421|A0{3}421/i, suffix: "Mercedes Actros Axor" },
   { regex: /815061|815080|815082|814550|814360/i, suffix: "MAN TGA TGS TGX" },
   { regex: /136869|1411980|1528655|1528712|2285275|2051551|20524942|1391617|3963997|1573081|1573082/i, suffix: "Scania Volvo" },
   { regex: /7C46|85DB|13C33|FC46|A333K/i, suffix: "Ford Cargo" },
@@ -626,6 +631,57 @@ function normalize(value) {
     .toUpperCase();
 }
 
+function loadRawSourceMap() {
+  if (!fs.existsSync(RAW_CACHE_PATH)) return new Map();
+
+  try {
+    const raw = JSON.parse(fs.readFileSync(RAW_CACHE_PATH, "utf8"));
+    const rows = Array.isArray(raw?.products) ? raw.products : [];
+    return new Map(rows
+      .map((row) => row?.attributes || {})
+      .filter((attrs) => attrs.sku)
+      .map((attrs) => [String(attrs.sku), attrs]));
+  } catch {
+    return new Map();
+  }
+}
+
+function rawAttrs(product) {
+  return sourceBySku.get(String(product?.sku || "")) || null;
+}
+
+function sourceName(product) {
+  return String(rawAttrs(product)?.name || stripGeneratedProductName(product?.name) || product?.name || "").trim();
+}
+
+function sourceText(product) {
+  const source = rawAttrs(product);
+  return [
+    source?.name,
+    source?.path,
+    source?.field1,
+    source?.field10,
+    product?.sku,
+    product?.oem,
+    source ? "" : stripGeneratedProductName(product?.name),
+  ].filter(Boolean).join(" ");
+}
+
+function formatMm(value) {
+  const text = String(value || "").replace(",", ".").trim();
+  const number = Number(text);
+  if (!Number.isFinite(number)) return "";
+  return Number.isInteger(number)
+    ? String(number)
+    : String(number).replace(".", ",");
+}
+
+function extractBijonLengthMm(product) {
+  if (groupId(product) !== "bijon-grup") return "";
+  const match = sourceText(product).match(/\b(\d{2,3}(?:[,.]\d{1,2})?)\s*MM\b/i);
+  return match ? formatMm(match[1]) : "";
+}
+
 function cleanOem(oem) {
   const raw = String(oem || "").trim();
   if (!raw || /^fren\s/i.test(raw)) return "";
@@ -634,6 +690,93 @@ function cleanOem(oem) {
 
 function uniq(values) {
   return [...new Set(values.map((value) => String(value || "").trim()).filter(Boolean))];
+}
+
+function keepSpecificCompat(product, value) {
+  const text = normalize(sourceText(product));
+  const item = normalize(value);
+  const compactItem = item.replace(/[^A-Z0-9]/g, "");
+  const rawNameText = normalize(sourceName(product));
+  const rawOrTitleText = `${rawNameText} ${text}`;
+
+  const sourceHasToken = (token) => {
+    const key = token.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace("\\.", "[.]?");
+    if (/^[0-9.]+$/.test(token)) {
+      return new RegExp(`(^|[^0-9])${key}([^0-9]|$)`).test(text);
+    }
+    return new RegExp(`(^|[^A-Z0-9])${key}([^A-Z0-9]|$)`).test(text);
+  };
+
+  const exactNumbers = [
+    "1840", "1841", "1844", "2528", "3228", "3340", "4140",
+    "18.430", "18.460", "40.360", "40.460", "G420", "R420", "R440",
+  ];
+  if (exactNumbers.some((token) => {
+    const key = token.replace(/[^A-Z0-9]/g, "");
+    return compactItem.includes(key) && !sourceHasToken(token);
+  })) {
+    return false;
+  }
+
+  if (/ATEGO/.test(item) && !/(ATEGO|ATECO|675421|677421|90142|90242)/.test(text)) {
+    return false;
+  }
+  if (/AROCS/.test(item) && !/(AROCS|AROX|960421)/.test(text)) {
+    return false;
+  }
+  if (/MERCEDES-BENZ (ACTROS|AXOR)/.test(item) && /(ATEGO|ATECO)/.test(rawNameText) && !/(ACTROS|AXOR)/.test(rawNameText)) {
+    return false;
+  }
+  if (/SK\/NG/.test(item) && !/(\bSK\b|\bNG\b)/.test(rawNameText)) {
+    return false;
+  }
+  if (/FORD CARGO\s+\d|FORD CARGO.*\d{4}/.test(item)) {
+    return false;
+  }
+  if (/MAN TGM/.test(item) && !/\bTGM\b/.test(rawOrTitleText)) {
+    return false;
+  }
+  if (/MAN TGL/.test(item) && !/\bTGL\b/.test(rawOrTitleText)) {
+    return false;
+  }
+  if (/MAN TGA|MAN TGS|MAN TGX/.test(item)) {
+    const explicitMan = {
+      TGA: /\bTGA\b/.test(rawOrTitleText),
+      TGS: /\bTGS\b/.test(rawOrTitleText),
+      TGX: /\bTGX\b/.test(rawOrTitleText),
+    };
+    if (/MAN TGA/.test(item) && !explicitMan.TGA) return false;
+    if (/MAN TGS/.test(item) && !explicitMan.TGS) return false;
+    if (/MAN TGX/.test(item) && !explicitMan.TGX) return false;
+    if (/\b\d{2}[-.]\d{3}\b/.test(text) && !/(TGA|TGS|TGX)/.test(rawNameText)) return false;
+    if (/(MERCEDES|MERS|AXOR|ACTROS|ATEGO|ATECO)/.test(rawNameText) && !/(MAN|TGA|TGS|TGX)/.test(rawNameText)) return false;
+  }
+
+  return true;
+}
+
+function filterCompatibility(product, values) {
+  const filtered = uniq(values).filter((value) => keepSpecificCompat(product, value));
+  const text = normalize(sourceText(product));
+  const covered = [...filtered];
+  const hasCompat = (pattern) => covered.some((value) => pattern.test(normalize(value)));
+  if (/\bMAN\b/.test(text) && !hasCompat(/\bMAN\b/)) covered.unshift("MAN ağır vasıta");
+  if (/(MERCEDES|MERS|AXOR|ACTROS|ATEGO|ATECO|AROCS|AROX)/.test(text) && !hasCompat(/MERCEDES-BENZ/)) covered.unshift("Mercedes-Benz ağır vasıta");
+  if (/(^|[^A-Z0-9])(FORD|CARGO)([^A-Z0-9]|$)/.test(text) && !hasCompat(/FORD CARGO/)) covered.unshift("Ford Cargo");
+  if (/SCANIA/.test(text) && !hasCompat(/SCANIA/)) covered.unshift("Scania ağır vasıta");
+  if (/VOLVO/.test(text) && !hasCompat(/VOLVO/)) covered.unshift("Volvo ağır vasıta");
+  if (/RENAULT|RENO|RVI/.test(text) && !hasCompat(/RENAULT/)) covered.unshift("Renault Trucks");
+  if (/IVECO|EUROBUS|EUROCARGO/.test(text) && !hasCompat(/IVECO/)) covered.unshift("Iveco ağır vasıta");
+  if (covered.length) return uniq(covered);
+  if (!filtered.length) {
+    if (/MERCEDES|MERS|AXOR|ACTROS|ATEGO|ATECO/.test(text)) return ["Mercedes-Benz ağır vasıta"];
+    if (/\bMAN\b/.test(text)) return ["MAN ağır vasıta"];
+    if (/SCANIA/.test(text)) return ["Scania ağır vasıta"];
+    if (/FORD|CARGO/.test(text)) return ["Ford Cargo"];
+    if (/IVECO|EUROBUS|EUROCARGO/.test(text)) return ["Iveco ağır vasıta"];
+    if (/ISUZU|NOVO|NOVA|CITIBUS|CITILIFE/.test(text)) return ["Isuzu otobüs / hafif ticari"];
+  }
+  return filtered;
 }
 
 function titleCaseBase(productName) {
@@ -703,14 +846,21 @@ function formatDetail(value) {
 }
 
 function extractProductDetails(product, base, suffix) {
-  const raw = stripGeneratedProductName(product.name).replace(/[_/]+/g, " ");
+  const source = rawAttrs(product);
+  const raw = [
+    source?.name,
+    source?.field1 && /MM|CM|DEL[Ä°I]K|KANAL|DPS|FREZ|DAKROMAT|ARKA|Ã–N|ON|SAÄ|SAG|SOL|Y\.?M|E\.?M|D[Ä°I]Åž/i.test(source.field1) ? source.field1 : "",
+    source ? "" : stripGeneratedProductName(product.name),
+  ].filter(Boolean).join(" ").replace(/[_/]+/g, " ");
   const group = groupId(product);
-  const allowLooseNumbers = new Set(["disk", "kampana", "balata", "fren-pabuclari"]).has(group);
+  const allowLooseNumbers = new Set(["disk", "kampana", "balata", "fren-pabuclari", "bijon-grup"]).has(group);
   const patterns = [
-    /\b\d{2,4}\s*MM\b/gi,
+    /\b\d{2,4}(?:[,.]\d{1,2})?\s*MM\b/gi,
     /\b\d{1,2}\s*CM\b/gi,
     /\b\d+\s*DEL[İI]K\b/gi,
     /\b\d+\s*KANAL\b/gi,
+    /\bM\d{1,2}\s*[*X]\s*\d(?:[,.]\d)?\s*D[Ä°I]Åž\b/gi,
+    /\b\d{2}[-.]\d{3}\b/g,
     /G[ÖO]BEKL[İI]/gi,
     /\bDPS'?L?[İI]?\b/gi,
     /\bDAKROMATLI\b/gi,
@@ -801,20 +951,37 @@ function compactTitleSuffix(parts) {
   }
   const hasActros = hasPart(/Actros/i);
   const hasAxor = hasPart(/Axor/i);
+  const hasArocs = hasPart(/Arocs/i);
+  if (hasActros && hasArocs && hasAxor) {
+    return "Mercedes Actros Arocs Axor";
+  }
   if (hasActros && hasAxor) {
-    return "Mercedes Actros Axor 1840 3340 4140";
+    return "Mercedes Actros Axor";
+  }
+  if (hasActros && hasArocs) {
+    return "Mercedes Actros Arocs";
   }
   if (hasActros) {
-    return "Mercedes Actros 1840 3340 4140";
+    return "Mercedes Actros";
   }
   if (hasAxor) {
-    return "Mercedes Axor 1840 3340 4140";
+    return "Mercedes Axor";
   }
-  if (hasPart(/MAN TGA|MAN TGS|MAN TGX|40\.360|40\.460/i)) {
-    return "MAN TGA TGS TGX 40.360 40.460";
+  if (hasArocs) {
+    return "Mercedes Arocs";
+  }
+  const manModels = [
+    hasPart(/MAN TGA/i) ? "TGA" : "",
+    hasPart(/MAN TGS/i) ? "TGS" : "",
+    hasPart(/MAN TGX/i) ? "TGX" : "",
+    hasPart(/MAN TGM/i) ? "TGM" : "",
+    hasPart(/MAN TGL/i) ? "TGL" : "",
+  ].filter(Boolean);
+  if (manModels.length) {
+    return `MAN ${manModels.join(" ")}`;
   }
   if (hasPart(/Scania/i)) {
-    return "Scania G420 R420";
+    return "Scania P G R";
   }
 
   const trailerSignals = parts.filter((part) => /dorse|treyler|trailer|fruehauf|smb|york|valx|yte|öztreyler|oztreyler/i.test(part));
@@ -876,11 +1043,49 @@ function applySkuTitleFallback(product, name) {
   return `${text} ${sku}`.replace(/\s+/g, " ").trim();
 }
 
+function canUseTitleRuleSuffix(product, suffix, compat) {
+  const normalizedSuffix = normalize(suffix);
+  const text = normalize(sourceText(product));
+  const compatText = compat.map((value) => normalize(value)).join(" ");
+  if (!normalizedSuffix) return false;
+
+  if (/MAN 12[- ]153/.test(normalizedSuffix)) {
+    return /\b12[-.]153\b/.test(text);
+  }
+  if (/MAN TGA TGS TGX/.test(normalizedSuffix)) {
+    return /MAN TGA/.test(compatText) && /MAN TGS/.test(compatText) && /MAN TGX/.test(compatText);
+  }
+  if (/MERCEDES ACTROS AROCS AXOR/.test(normalizedSuffix)) {
+    return /MERCEDES-BENZ ACTROS/.test(compatText)
+      && /MERCEDES-BENZ AROCS/.test(compatText)
+      && /MERCEDES-BENZ AXOR/.test(compatText);
+  }
+  if (/MERCEDES ACTROS AXOR/.test(normalizedSuffix)) {
+    return /MERCEDES-BENZ ACTROS/.test(compatText) && /MERCEDES-BENZ AXOR/.test(compatText);
+  }
+  if (/FORD CARGO/.test(normalizedSuffix)) {
+    return /FORD|CARGO|7C46|85DB|13C33|FC46|A333K/.test(text);
+  }
+  if (/SCANIA/.test(normalizedSuffix)) return /SCANIA/.test(compatText);
+  if (/VOLVO/.test(normalizedSuffix)) return /VOLVO/.test(compatText);
+  if (/RENAULT/.test(normalizedSuffix)) return /RENAULT/.test(compatText);
+  if (/IVECO/.test(normalizedSuffix)) return /IVECO/.test(compatText);
+  if (/DAF/.test(normalizedSuffix)) return /DAF/.test(compatText);
+  if (/BPW/.test(normalizedSuffix)) return /BPW/.test(compatText);
+  if (/SAF/.test(normalizedSuffix)) return /SAF/.test(compatText);
+  if (/ROR|MERITOR/.test(normalizedSuffix)) return /(ROR|MERITOR)/.test(compatText);
+
+  return true;
+}
+
 function makeProductName(product, compat, detection = {}) {
-  const currentName = String(product.name || "").trim();
-  const text = `${currentName} ${product.sku || ""} ${product.oem || ""}`;
+  const currentName = sourceName(product);
+  const text = sourceText(product);
   const titleRule = detection.confidence === "verified_oem" ? TITLE_RULES.find((rule) => rule.regex.test(text)) : null;
-  const suffix = titleRule?.suffix || compactTitleSuffix(compat);
+  const compactSuffix = compactTitleSuffix(compat);
+  const suffix = titleRule?.suffix && canUseTitleRuleSuffix(product, titleRule.suffix, compat)
+    ? titleRule.suffix
+    : compactSuffix;
   const genericBases = [...new Set(GENERIC_PRODUCT_TITLES.values())];
   const generatedGeneric = currentName.match(new RegExp(`^(${genericBases.map((base) => base.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")}) (?:Kamyon|T[ıi]r çekici|Otobüs|Dorse|Treyler)$`, "i"));
   if (!suffix && generatedGeneric) return generatedGeneric[1];
@@ -912,7 +1117,7 @@ function categoryLabel(product) {
 }
 
 function detectCompatibility(product) {
-  const text = `${stripGeneratedProductName(product.name) || ""} ${product.sku || ""} ${product.oem || ""}`;
+  const text = sourceText(product);
   const normalized = normalize(text);
   const compat = [];
   const notes = [];
@@ -938,6 +1143,11 @@ function detectCompatibility(product) {
     }
   }
 
+  if (/960421/.test(normalized)) {
+    compat.push("Mercedes-Benz Arocs");
+    basis.push("oem:960421-arocs-cross");
+  }
+
   const canTrustExistingCompat = Array.isArray(product.compat)
     && product.compat.length > 0
     && !String(product.compat_source || "").startsWith(GENERATED_COMPAT_PREFIX);
@@ -947,7 +1157,8 @@ function detectCompatibility(product) {
     existingMatches += product.compat.length;
   }
 
-  if (compat.length === 0) {
+  let safeCompat = filterCompatibility(product, compat);
+  if (safeCompat.length === 0) {
     compat.push(...(GENERIC_BY_GROUP[groupId(product)] || ["Ağır vasıta"]));
     basis.push("fallback:category_group");
   }
@@ -968,6 +1179,69 @@ function detectCompatibility(product) {
   };
 }
 
+function detectCompatibilityStrict(product) {
+  const text = sourceText(product);
+  const normalized = normalize(text);
+  const compat = [];
+  const notes = [];
+  const basis = [];
+  let modelMatches = 0;
+  let oemMatches = 0;
+  let existingMatches = 0;
+
+  for (const rule of MODEL_RULES) {
+    if (rule.regex.test(text) || rule.regex.test(normalized)) {
+      compat.push(...rule.compat);
+      basis.push(`model:${rule.key}`);
+      modelMatches += 1;
+    }
+  }
+
+  for (const rule of OEM_RULES) {
+    if (rule.regex.test(text) || rule.regex.test(normalized)) {
+      compat.push(...rule.compat);
+      notes.push(rule.note);
+      basis.push(`oem:${String(rule.regex).slice(1, 80)}`);
+      oemMatches += 1;
+    }
+  }
+
+  if (/960421/.test(normalized)) {
+    compat.push("Mercedes-Benz Arocs");
+    basis.push("oem:960421-arocs-cross");
+  }
+
+  const canTrustExistingCompat = Array.isArray(product.compat)
+    && product.compat.length > 0
+    && !String(product.compat_source || "").startsWith(GENERATED_COMPAT_PREFIX);
+  if (canTrustExistingCompat) {
+    compat.push(...product.compat);
+    basis.push("source:existing_catalog");
+    existingMatches += product.compat.length;
+  }
+
+  let safeCompat = filterCompatibility(product, compat);
+  if (safeCompat.length === 0) {
+    safeCompat = GENERIC_BY_GROUP[groupId(product)] || ["Ağır vasıta"];
+    basis.push("fallback:category_group");
+  }
+
+  const confidence = oemMatches > 0
+    ? "verified_oem"
+    : existingMatches > 0
+      ? "catalog_signal"
+      : modelMatches > 0
+        ? "model_signal"
+        : "category_generic";
+
+  return {
+    compat: uniq(safeCompat).slice(0, 16),
+    notes: uniq(notes),
+    confidence,
+    basis: uniq(basis).slice(0, 12),
+  };
+}
+
 function makeDescription(product, compat, notes, confidence) {
   const group = groupId(product);
   const label = categoryLabel(product);
@@ -975,6 +1249,7 @@ function makeDescription(product, compat, notes, confidence) {
   const baseName = String(product.name || "").trim();
   const priority = PRIORITY_GROUPS.has(group);
   const modelText = compat.slice(0, priority ? 12 : 8).join(", ");
+  const bijonLengthMm = extractBijonLengthMm(product);
 
   const confidenceText = {
     verified_oem: "OEM/muadil referans sinyaliyle eslesen aday uyumluluklar",
@@ -987,15 +1262,17 @@ function makeDescription(product, compat, notes, confidence) {
     ? `${baseName} ${label} urunudur. ${confidenceText}: ${modelText}.`
     : `${baseName} ${label} urunudur. ${modelText} icin OEM/sase ile uyumluluk kontrolu yapilabilir.`;
 
+  const detailLine = bijonLengthMm ? `Bijon uzunlugu: ${bijonLengthMm} mm.` : "";
   const oemLine = oem ? `OEM / muadil referans: ${oem}.` : "OEM / muadil referans icin urun kodu ve eski parca numarasiyla teyit onerilir.";
-  const noteLine = notes.length ? `${notes.join(" ")}` : "";
+  const noteLine = "";
   const safetyLine = "Kesin uyumluluk model, aks tipi, olcu, uretim yili ve saseye gore degisir; siparis oncesi sase numarasi, eski parca fotografi veya OEM numarasiyla Frenciniz'den teyit alin.";
 
-  return [intro, oemLine, noteLine, safetyLine].filter(Boolean).join("\n");
+  return [intro, detailLine, oemLine, noteLine, safetyLine].filter(Boolean).join("\n");
 }
 
 export function enrichProducts(products, categories, options = {}) {
   catById = Object.fromEntries((categories || []).map((category) => [category.id, category]));
+  sourceBySku = options.sourceBySku instanceof Map ? options.sourceBySku : loadRawSourceMap();
 
   const summary = {
     total: products.length,
@@ -1010,10 +1287,17 @@ export function enrichProducts(products, categories, options = {}) {
   };
 
   for (const product of products) {
-    const detection = detectCompatibility(product);
+    const detection = detectCompatibilityStrict(product);
     const { compat, notes, confidence, basis } = detection;
     const name = makeProductName(product, compat, detection);
     const desc = makeDescription({ ...product, name }, compat, notes, confidence);
+    const bijonLengthMm = extractBijonLengthMm(product);
+    const nextSpecs = { ...(product.specs || {}) };
+    if (bijonLengthMm) {
+      nextSpecs.bijon_uzunluk_mm = bijonLengthMm;
+    } else {
+      delete nextSpecs.bijon_uzunluk_mm;
+    }
     const group = groupId(product);
     summary.byConfidence[confidence] = (summary.byConfidence[confidence] || 0) + 1;
     summary.byGroup[group] = summary.byGroup[group] || {
@@ -1036,6 +1320,7 @@ export function enrichProducts(products, categories, options = {}) {
       compat_source: product.compat_source,
       compat_confidence: product.compat_confidence,
       compat_basis: product.compat_basis,
+      specs: product.specs,
     });
     const after = JSON.stringify({
       name,
@@ -1045,9 +1330,11 @@ export function enrichProducts(products, categories, options = {}) {
       compat_source: RULE_SOURCE,
       compat_confidence: confidence,
       compat_basis: basis,
+      specs: nextSpecs,
     });
     product.name = name;
     product.desc = desc;
+    product.specs = nextSpecs;
     product.compat = compat;
     product.compat_source = RULE_SOURCE;
     product.compat_confidence = confidence;
