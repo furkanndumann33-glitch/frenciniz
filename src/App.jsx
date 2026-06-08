@@ -686,6 +686,22 @@ function deriveBrands(prods) {
   return [...set].sort();
 }
 
+function readJsonStorage(key, fallback) {
+  try {
+    if (typeof window === "undefined") return fallback;
+    const raw = localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+function writeJsonStorage(key, value) {
+  try {
+    if (typeof window !== "undefined") localStorage.setItem(key, JSON.stringify(value));
+  } catch {}
+}
+
 const Ctx = createContext();
 const use$ = () => useContext(Ctx);
 
@@ -703,7 +719,7 @@ export default function App() {
   })();
   const [page, setPage] = useState(initRoute.page);
   const [params, setParams] = useState(initRoute.params);
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(() => readJsonStorage("frenciniz_cart", []));
   const [products, setProducts] = useState(PRODUCTS);
   const [cats, setCatsState] = useState(CATS);
   const [dataLoaded, setDataLoaded] = useState(false);
@@ -726,6 +742,25 @@ export default function App() {
       preloadImages(p);
     }).catch(() => setDataLoaded(true));
   }, []);
+  useEffect(() => {
+    writeJsonStorage("frenciniz_cart", cart);
+  }, [cart]);
+  useEffect(() => {
+    if (!dataLoaded || !products?.length) return;
+    setCart(prev => prev.map(item => {
+      const fresh = products.find(product => product.id === item.id);
+      return fresh ? {
+        ...item,
+        name: fresh.name,
+        brand: fresh.brand,
+        sku: fresh.sku,
+        cat: fresh.cat,
+        price: fresh.price,
+        img: fresh.img,
+        stock: fresh.stock,
+      } : item;
+    }));
+  }, [dataLoaded, products]);
   const [favs, setFavs] = useState([]);
   const [viewed, setViewed] = useState([]);
   const [user, setUser] = useState(() => {
@@ -783,10 +818,20 @@ export default function App() {
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
   const [admin, setAdmin] = useState(false);
   const [authChecked, setAuthChecked] = useState(false);
-  const [cookieOk, setCookieOk] = useState(false);
+  const [cookieOk, setCookieOk] = useState(() => {
+    try {
+      return typeof window !== "undefined" && localStorage.getItem("frenciniz_cookie_ok") === "1";
+    } catch {
+      return false;
+    }
+  });
   const [socialMedia, setSocialMedia] = useState({facebook:"",instagram:"",twitter:"",youtube:""});
   const isMobile = useIsMobile();
   const t = useCallback((key) => LANGS[lang]?.[key] || key, [lang]);
+  useEffect(() => {
+    if (!cookieOk) return;
+    try { localStorage.setItem("frenciniz_cookie_ok", "1"); } catch {}
+  }, [cookieOk]);
   // Döviz kuru ile fiyat formatlama
   const CURR_SYMBOLS = {TRY:"₺",EUR:"€",USD:"$"};
   const fp = useCallback((price) => {
@@ -2442,6 +2487,9 @@ function ProductDetailPage() {
   const related = productList.filter(x => x.cat === p.cat && x.id !== p.id).slice(0,4);
   const isFav = favs.includes(p.id);
   const whatsappQuoteHref = productWhatsAppUrl(p, qty);
+  const detailDesc = translateName(prodDesc(p,lang),lang);
+  const compatPreview = Array.isArray(p.compat) ? p.compat.filter(Boolean).slice(0, 7) : [];
+  const specs = p.specs && typeof p.specs === "object" ? p.specs : {};
 
   return (
     <div style={{maxWidth:1200,margin:"0 auto",padding:"20px"}}>
@@ -2459,7 +2507,26 @@ function ProductDetailPage() {
             <span style={{color:"#999",fontSize:13}}>{p.reviews || 0} değerlendirme</span>
           </div>
           <div style={{fontSize:13,color:"#999",marginBottom:16}}>SKU: {p.sku} | OEM: {p.oem}</div>
-          <div style={{fontSize:14,color:"#666",lineHeight:1.7,marginBottom:16,whiteSpace:"pre-line"}}>{linkifyContacts(translateName(prodDesc(p,lang),lang))}</div>
+          <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1.15fr .85fr",gap:10,marginBottom:16}}>
+            <div style={{padding:"14px 15px",background:"#fff",border:"1px solid #e5e7eb",borderRadius:8,boxShadow:"0 10px 24px rgba(15,23,42,.05)"}}>
+              <div style={{fontSize:12,fontWeight:900,color:"#ff6000",textTransform:"uppercase",letterSpacing:0,marginBottom:8}}>Uyumlu araçlar</div>
+              {compatPreview.length ? (
+                <div style={{display:"flex",flexWrap:"wrap",gap:6}}>
+                  {compatPreview.map(label => (
+                    <span key={label} style={{fontSize:12,fontWeight:800,color:"#122033",background:"#f3f6fb",border:"1px solid #dbe3ef",borderRadius:5,padding:"6px 8px"}}>{label}</span>
+                  ))}
+                </div>
+              ) : (
+                <div style={{fontSize:13,color:"#667085",lineHeight:1.55}}>Araç modeli, şase veya OEM koduyla hızlı uyumluluk teyidi alın.</div>
+              )}
+            </div>
+            <div style={{padding:"14px 15px",background:"linear-gradient(135deg,#07111f,#172033)",border:"1px solid rgba(255,96,0,.2)",borderRadius:8,color:"#fff",boxShadow:"0 12px 26px rgba(15,23,42,.12)"}}>
+              <div style={{fontSize:12,fontWeight:900,color:"#facc15",textTransform:"uppercase",letterSpacing:0,marginBottom:8}}>OEM / parça kodu</div>
+              <div style={{fontSize:13,lineHeight:1.6,color:"#e5e7eb",overflowWrap:"anywhere"}}>{p.oem || p.sku || "Kod ile teyit"}</div>
+              <div style={{fontSize:12,color:"#a7b0c0",marginTop:8,lineHeight:1.45}}>Siparişten önce eski parça fotoğrafı veya şase ile kontrol önerilir.</div>
+            </div>
+          </div>
+          <div style={{fontSize:14,color:"#666",lineHeight:1.7,marginBottom:16,whiteSpace:"pre-line"}}>{linkifyContacts(detailDesc)}</div>
           <div style={{padding:"16px 20px",background:"#f9f9f9",borderRadius:8,marginBottom:20,border:"1px solid #eee"}}>
             <div style={{display:"flex",alignItems:"baseline",gap:10}}>
               <span style={{fontSize:32,fontWeight:800}}>{fp(p.price)}</span>
@@ -2529,7 +2596,7 @@ function ProductDetailPage() {
       </div>
       {tab==="desc" && <div style={{marginBottom:32}}>
         <div style={{fontSize:15,color:"#555",lineHeight:1.8,whiteSpace:"pre-line",marginBottom:20}}>
-          {linkifyContacts(translateName(prodDesc(p,lang),lang))}
+          {linkifyContacts(detailDesc)}
         </div>
         {/* Hızlı iletişim butonları */}
         <div style={{display:"flex",flexWrap:"wrap",gap:10,padding:16,background:"#fff8f0",borderRadius:10,border:"1px solid #ffd9b3"}}>
@@ -2539,7 +2606,7 @@ function ProductDetailPage() {
           <a href="mailto:info@frenciniz.com" style={{flex:"1 1 150px",display:"flex",alignItems:"center",justifyContent:"center",gap:8,padding:"12px 20px",background:"#fff",color:"#333",border:"1px solid #ddd",borderRadius:8,fontSize:14,fontWeight:600,textDecoration:"none",minHeight:44}}>✉️ E-posta</a>
         </div>
       </div>}
-      {tab==="specs" && <div style={{marginBottom:32}}>{Object.entries(p.specs).map(([k,v],i) => (<div key={k} style={{display:"flex",padding:"10px 0",borderBottom:"1px solid #f0f0f0"}}><span style={{width:200,color:"#999"}}>{k}</span><span style={{fontWeight:500,color:"#333"}}>{v}</span></div>))}</div>}
+      {tab==="specs" && <div style={{marginBottom:32}}>{Object.keys(specs).length ? Object.entries(specs).map(([k,v]) => (<div key={k} style={{display:"flex",padding:"10px 0",borderBottom:"1px solid #f0f0f0"}}><span style={{width:200,color:"#999"}}>{k}</span><span style={{fontWeight:500,color:"#333"}}>{v}</span></div>)) : <div style={{color:"#999",fontSize:14}}>Teknik bilgi için SKU/OEM koduyla Frenciniz'den teyit alın.</div>}</div>}
       {tab==="compat" && <div style={{marginBottom:32}}>
         {p.compat && p.compat.length > 0 ? <div style={{display:"flex",flexWrap:"wrap",gap:10}}>{p.compat.map((c,i) => {
           const isUniv = c==="Ağır Vasıta";
