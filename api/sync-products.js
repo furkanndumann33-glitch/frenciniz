@@ -5,6 +5,7 @@
 // Vercel Cron ile günde 1 kez çalışır (05:00 UTC)
 
 import { kv } from "@vercel/kv";
+import { enrichProducts } from "../scripts/enrich-compatibility.mjs";
 
 const EKERSAN_API = "https://bayi.ekersan.com/api/tr/v1";
 const EKERSAN_USER = process.env.EKERSAN_USERNAME || "DUMANLAR";
@@ -357,7 +358,9 @@ export default async function handler(req, res) {
     console.log(`[sync] Raw: ${raw.products.length} products, ${raw.included.length} included`);
 
     const { products, categories } = processProducts(raw);
+    const { summary: compatibilitySummary } = enrichProducts(products, categories);
     console.log(`[sync] Processed: ${products.length} in-stock, ${categories.length} categories`);
+    console.log(`[sync] Compatibility enriched: ${compatibilitySummary.specificCompatibility} specific matches`);
 
     await kv.set("products", JSON.stringify(products));
     await kv.set("categories", JSON.stringify(categories));
@@ -366,6 +369,8 @@ export default async function handler(req, res) {
       total: raw.products.length,
       inStock: products.length,
       categories: categories.length - 1,
+      compatibilitySpecific: compatibilitySummary.specificCompatibility,
+      compatibilitySource: "name_oem_rules_v3_model_seo",
       time: new Date().toISOString(),
     }));
 
@@ -374,6 +379,7 @@ export default async function handler(req, res) {
       total: raw.products.length,
       inStock: products.length,
       categories: categories.length - 1,
+      compatibilitySpecific: compatibilitySummary.specificCompatibility,
       syncTime: new Date().toISOString(),
     });
   } catch (err) {

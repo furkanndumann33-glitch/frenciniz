@@ -353,6 +353,34 @@
       "destination": "/api/sitemap?type=landing&slug=man-tgs-tgx-abs-sensoru-ebs-modulator"
     },
     {
+      "source": "/man-fortuna-otobus-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=man-fortuna-otobus-fren-diski"
+    },
+    {
+      "source": "/man-fortuna-otobus-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=man-fortuna-otobus-fren-kampanasi"
+    },
+    {
+      "source": "/man-fortuna-otobus-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=man-fortuna-otobus-fren-balatasi"
+    },
+    {
+      "source": "/man-fortuna-otobus-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=man-fortuna-otobus-fren-korugu"
+    },
+    {
+      "source": "/man-fortuna-otobus-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=man-fortuna-otobus-suspansiyon-korugu"
+    },
+    {
+      "source": "/man-fortuna-otobus-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=man-fortuna-otobus-bijon-somun"
+    },
+    {
+      "source": "/man-fortuna-otobus-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=man-fortuna-otobus-kaliper-tamir-takimi"
+    },
+    {
       "source": "/volvo-fh-fren-kampanasi",
       "destination": "/api/sitemap?type=landing&slug=volvo-fh-fren-kampanasi"
     },
@@ -735,6 +763,34 @@
     {
       "source": "/otobus-abs-sensoru-ebs-modulator",
       "destination": "/api/sitemap?type=landing&slug=otobus-abs-sensoru-ebs-modulator"
+    },
+    {
+      "source": "/mercedes-travego-tourismo-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-travego-tourismo-fren-diski"
+    },
+    {
+      "source": "/mercedes-travego-tourismo-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-travego-tourismo-fren-kampanasi"
+    },
+    {
+      "source": "/mercedes-travego-tourismo-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-travego-tourismo-fren-balatasi"
+    },
+    {
+      "source": "/mercedes-travego-tourismo-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-travego-tourismo-fren-korugu"
+    },
+    {
+      "source": "/mercedes-travego-tourismo-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-travego-tourismo-suspansiyon-korugu"
+    },
+    {
+      "source": "/mercedes-travego-tourismo-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-travego-tourismo-bijon-somun"
+    },
+    {
+      "source": "/mercedes-travego-tourismo-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-travego-tourismo-kaliper-tamir-takimi"
     },
     {
       "source": "/isuzu-novociti-fren-diski",

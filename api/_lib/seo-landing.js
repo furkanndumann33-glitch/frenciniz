@@ -444,6 +444,14 @@ const VEHICLE_LANDING_GROUPS = [
     priority: 0.82,
   },
   {
+    key: "man-fortuna-otobus",
+    label: "MAN Fortuna Otobüs",
+    primaryTerm: "MAN Fortuna",
+    terms: ["man", "fortuna", "otobus", "otobüs", "lion", "neoplan"],
+    parts: ["fren-diski", "fren-kampanasi", "fren-balatasi", "fren-korugu", "suspansiyon-korugu", "bijon-somun", "kaliper-tamir-takimi"],
+    priority: 0.82,
+  },
+  {
     key: "volvo-fh",
     label: "Volvo FH/FM",
     primaryTerm: "Volvo",
@@ -586,6 +594,14 @@ const VEHICLE_LANDING_GROUPS = [
     terms: ["otobus", "otobüs", "temsa", "otokar", "setra", "travego"],
     parts: ["fren-diski", "fren-balatasi", "fren-korugu", "suspansiyon-korugu", "kaliper-tamir-takimi", "abs-sensoru-ebs-modulator"],
     priority: 0.75,
+  },
+  {
+    key: "mercedes-travego-tourismo",
+    label: "Mercedes Travego Tourismo",
+    primaryTerm: "Travego Tourismo",
+    terms: ["mercedes", "travego", "tourismo", "tourino", "intouro", "o500", "otobus", "otobüs"],
+    parts: ["fren-diski", "fren-kampanasi", "fren-balatasi", "fren-korugu", "suspansiyon-korugu", "bijon-somun", "kaliper-tamir-takimi"],
+    priority: 0.84,
   },
   {
     key: "isuzu-novociti",

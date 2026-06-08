@@ -1,17 +1,26 @@
 import fs from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-const ROOT = path.resolve(import.meta.dirname, "..");
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const PRODUCTS_PATH = path.join(ROOT, "public", "data", "products.json");
 const CATEGORIES_PATH = path.join(ROOT, "public", "data", "categories.json");
 const REPORT_PATH = path.join(ROOT, "pricing-research", "compatibility-enrichment-report.json");
-const RULE_SOURCE = "name_oem_rules_v2";
+const RULE_SOURCE = "name_oem_rules_v3_model_seo";
 
-const products = JSON.parse(fs.readFileSync(PRODUCTS_PATH, "utf8"));
-const categories = JSON.parse(fs.readFileSync(CATEGORIES_PATH, "utf8"));
-const catById = Object.fromEntries(categories.map((category) => [category.id, category]));
+let catById = {};
 
-const PRIORITY_GROUPS = new Set(["disk", "kampana", "balata", "susp-korugu"]);
+const PRIORITY_GROUPS = new Set([
+  "disk",
+  "kampana",
+  "balata",
+  "circir",
+  "bijon-grup",
+  "porya-grup",
+  "fren-pabuclari",
+  "susp-korugu",
+  "fren-korukleri",
+]);
 const REFERENCE_SOURCES = [
   {
     title: "CEI 5010598308 brake disc",
@@ -133,12 +142,12 @@ const MODEL_RULES = [
   {
     key: "mercedes-axor",
     regex: /\bAXOR\b|AXOR-ACTROS/i,
-    compat: ["Mercedes-Benz Axor", "Mercedes-Benz Axor 1840", "Mercedes-Benz Axor 3340", "Mercedes-Benz Axor 4140"],
+    compat: ["Mercedes-Benz Axor", "Mercedes-Benz Axor 1840", "Mercedes-Benz Axor 2528", "Mercedes-Benz Axor 3228", "Mercedes-Benz Axor 3340", "Mercedes-Benz Axor 4140"],
   },
   {
     key: "mercedes-actros",
     regex: /\bACTROS\b|AXOR-ACTROS/i,
-    compat: ["Mercedes-Benz Actros", "Mercedes-Benz Actros 1840", "Mercedes-Benz Actros 3340", "Mercedes-Benz Actros 4140"],
+    compat: ["Mercedes-Benz Actros", "Mercedes-Benz Actros 1840", "Mercedes-Benz Actros 1841", "Mercedes-Benz Actros 1844", "Mercedes-Benz Actros 3340", "Mercedes-Benz Actros 4140"],
   },
   {
     key: "mercedes-arocs",
@@ -152,18 +161,23 @@ const MODEL_RULES = [
   },
   {
     key: "mercedes-bus",
-    regex: /MERCEDES.*(OTOB|BUS|V-8)|0302|0303|0304|0305|0307|0309/i,
-    compat: ["Mercedes-Benz O302/O303/O304/O305/O307/O309 otobüs", "Mercedes-Benz V6/V8 otobüs"],
+    regex: /TRAVEGO|TOURISMO|TOURINO|INTOURO|O ?403|O ?404|O ?500|SETRA|MERCEDES.*(OTOB|BUS|V-8)|0302|0303|0304|0305|0307|0309/i,
+    compat: ["Mercedes-Benz Travego", "Mercedes-Benz Tourismo", "Mercedes-Benz Tourino/Intouro", "Mercedes-Benz O403/O404/O500 otobüs", "Setra S300/S400/S500"],
   },
   {
     key: "mercedes-general",
     regex: /\bMERCEDES\b|\bMB\b|\bARCS\b|A0{3}421|640915|624\.?420|620\.?420|393\.?420/i,
-    compat: ["Mercedes-Benz Actros", "Mercedes-Benz Axor", "Mercedes-Benz Atego", "Mercedes-Benz Arocs"],
+    compat: ["Mercedes-Benz Actros", "Mercedes-Benz Actros 1840", "Mercedes-Benz Actros 3340", "Mercedes-Benz Actros 4140", "Mercedes-Benz Axor", "Mercedes-Benz Axor 1840", "Mercedes-Benz Axor 3340", "Mercedes-Benz Axor 4140", "Mercedes-Benz Atego", "Mercedes-Benz Arocs"],
+  },
+  {
+    key: "man-bus",
+    regex: /\bMAN\b.*(OTOB|BUS|FORTUNA|LION'?S|LION|NEOPLAN)|\bFORTUNA\b|\bLION'?S\b|\bNEOPLAN\b/i,
+    compat: ["MAN Fortuna otobüs", "MAN Lion's Coach", "MAN Lion's City", "Neoplan otobüs"],
   },
   {
     key: "man-tg",
     regex: /\bMAN\b|\bTGA\b|\bTGS\b|\bTGX\b|\bTGM\b|815080|8150\.?803|8150\.?11|8143|8135|814550|819980|835700/i,
-    compat: ["MAN TGA", "MAN TGS", "MAN TGX", "MAN TGM", "MAN TGS/TGX 40.360", "MAN TGS/TGX 40.460"],
+    compat: ["MAN TGA", "MAN TGA 18.430", "MAN TGA 18.460", "MAN TGS", "MAN TGX", "MAN TGM", "MAN TGL", "MAN TGS/TGX 40.360", "MAN TGS/TGX 40.460"],
   },
   {
     key: "scania",
@@ -325,8 +339,8 @@ const OEM_RULES = [
   },
   {
     regex: /3014210801/i,
-    compat: ["Mercedes-Benz Actros/Axor serisi"],
-    note: "OEM 3014210801 Mercedes-Benz fren kampanası referansı olarak kullanılır.",
+    compat: ["Mercedes-Benz Actros", "Mercedes-Benz Actros 1840", "Mercedes-Benz Actros 3340", "Mercedes-Benz Actros 4140", "Mercedes-Benz Axor", "Mercedes-Benz Axor 1840", "Mercedes-Benz Axor 3340", "Mercedes-Benz Axor 4140"],
+    note: "OEM 3014210801 Mercedes-Benz Actros/Axor ağır vasıta fren kampanası referansı olarak kullanılır; araç yıl, aks ve şaseye göre teyit edilmelidir.",
   },
   {
     regex: /20700508|5010598308|20931249/i,
@@ -335,12 +349,12 @@ const OEM_RULES = [
   },
   {
     regex: /0003270101|0003270201|3073270101|1134445/i,
-    compat: ["Mercedes-Benz O300/O400/O500 otobüs", "Setra S200/S300/S400/S500"],
-    note: "OEM 0003270101 / 0003270201 / 3073270101 referansı Mercedes-Benz ve Setra otobüs süspansiyon körüğü kataloglarında geçer.",
+    compat: ["Mercedes-Benz Travego", "Mercedes-Benz Tourismo", "Mercedes-Benz O403/O404/O500 otobüs", "Setra S200/S300/S400/S500"],
+    note: "OEM 0003270101 / 0003270201 / 3073270101 referansı Mercedes-Benz Travego/Tourismo/O500 ve Setra otobüs süspansiyon körüğü kataloglarında geçer.",
   },
   {
     regex: /3873280101|81436010033|1629193|0220024100|51436010039/i,
-    compat: ["MAN kamyon/otobüs", "Mercedes-Benz kamyon/otobüs", "Volvo kamyon/otobüs", "BPW dorse dingili"],
+    compat: ["MAN TGA/TGS/TGX", "MAN Fortuna otobüs", "Mercedes-Benz Actros/Axor", "Mercedes-Benz Travego/Tourismo", "Volvo kamyon/otobüs", "BPW dorse dingili"],
     note: "OEM 3873280101 / 81436010033 / 1629193 / 0220024100 referansı MAN, Mercedes-Benz, Volvo ve BPW roll körük kataloglarında geçer.",
   },
   {
@@ -410,13 +424,13 @@ const OEM_RULES = [
   },
   {
     regex: /942421|943421|946356|960421|970421|970423|975423|942990|000\s?420|305421|305423|301421|301423|346420|348420|346423|355423|360423|617423|624421|623420|619420|658420|658421|381401|381402|371401|371402|327401|327402|346401|355401|393420/i,
-    compat: ["Mercedes-Benz Actros", "Mercedes-Benz Axor", "Mercedes-Benz Atego", "Mercedes-Benz SK/NG", "Mercedes-Benz 2517/2521/2524/2622"],
-    note: "Mercedes-Benz 000420 / 3xx401 / 3xx421 / 3xx423 / 9xx421 OEM referansları Actros, Axor, Atego ve SK/NG ağır vasıta gruplarında kullanılır.",
+    compat: ["Mercedes-Benz Actros", "Mercedes-Benz Actros 1840", "Mercedes-Benz Actros 3340", "Mercedes-Benz Actros 4140", "Mercedes-Benz Axor", "Mercedes-Benz Axor 1840", "Mercedes-Benz Axor 3340", "Mercedes-Benz Axor 4140", "Mercedes-Benz Atego", "Mercedes-Benz SK/NG"],
+    note: "Mercedes-Benz 000420 / 3xx401 / 3xx421 / 3xx423 / 9xx421 OEM referansları Actros, Axor, Atego ve SK/NG ağır vasıta fren, kampana, bijon, porya ve balata gruplarında kullanılır.",
   },
   {
     regex: /815011|815061|815082|814360|814430|814550|813570|819980|81\.50822|81\.50820|81\.50803/i,
-    compat: ["MAN TGA", "MAN TGS", "MAN TGX", "MAN TGM", "MAN TGL"],
-    note: "MAN 81.x / 814 / 815 OEM referansları MAN TGA, TGS, TGX, TGM ve TGL ağır vasıta fren parça kataloglarında geçer.",
+    compat: ["MAN TGA", "MAN TGA 18.430", "MAN TGA 18.460", "MAN TGS", "MAN TGX", "MAN TGM", "MAN TGL", "MAN TGS/TGX 40.360", "MAN TGS/TGX 40.460"],
+    note: "MAN 81.x / 814 / 815 OEM referansları MAN TGA, TGS, TGX, TGM, TGL ve 40.360/40.460 ağır vasıta fren parça kataloglarında geçer.",
   },
   {
     regex: /7C46|85DB|13C33|FC46|A333K4561/i,
@@ -470,8 +484,8 @@ const OEM_RULES = [
   },
   {
     regex: /82135830|501315228|501316953|4200172|1415147|234110|II371910061/i,
-    compat: ["Neoplan otobüs", "Scania otobüs", "Volvo otobüs / ağır vasıta"],
-    note: "82135830 / 501315228 / 1415147 referansları otobüs ve ağır vasıta fren diski kataloglarında geçer.",
+    compat: ["Mercedes-Benz Travego/Tourismo", "MAN Fortuna otobüs", "Neoplan otobüs", "Scania otobüs", "Volvo otobüs / ağır vasıta"],
+    note: "82135830 / 501315228 / 1415147 referansları otobüs ve ağır vasıta fren diski kataloglarında geçer; Travego, Tourismo, Fortuna, Neoplan ve Scania/Volvo otobüs uygulamalarında ölçü/şase teyidi gerekir.",
   },
   {
     regex: /5010098949|5010098861|5010098860|5010098832|5010098831|5010439317|5010439406|5010260028|5010260117|5000791212|5021172204|5021172197/i,
@@ -480,18 +494,18 @@ const OEM_RULES = [
   },
   {
     regex: /\b29087\b|\b29108\b|\b29106\b|\b29109\b|\b29163\b|\b29179\b|\b29201\b|\b29202\b|\b29061\b/i,
-    compat: ["Mercedes-Benz Actros/Axor", "BPW dorse dingili", "Scania P/G/R serisi", "DAF CF/XF", "Iveco Stralis", "MAN TGA/TGS/TGX"],
+    compat: ["Mercedes-Benz Actros/Axor", "Mercedes-Benz Actros 1840/3340/4140", "Mercedes-Benz Axor 1840/3340/4140", "BPW dorse dingili", "Scania P/G/R serisi", "Scania G420", "DAF CF/XF", "Iveco Stralis", "MAN TGA/TGS/TGX"],
     note: "WVA 29087 ailesi çok markalı ağır vasıta disk fren balatası olarak Mercedes, BPW, Scania, DAF, Iveco ve MAN uygulamalarında listelenir.",
   },
   {
     regex: /\b29173\b|\b29203\b|\b29272\b|\b29174\b|\b29244\b|\b29094\b|\b29095\b|\b29197\b/i,
-    compat: ["Mercedes-Benz Actros/Axor", "Renault Trucks Premium/Magnum", "Volvo FH/FM", "Ağır vasıta disk fren balata sistemi"],
+    compat: ["Mercedes-Benz Actros/Axor", "Mercedes-Benz Actros 1840/3340/4140", "Mercedes-Benz Axor 1840/3340/4140", "Renault Trucks Premium/Magnum", "Volvo FH/FM", "Ağır vasıta disk fren balata sistemi"],
     note: "WVA 29173 / 29203 / 29244 / 29174 referansları ağır vasıta disk fren balatası kataloglarında Mercedes, Renault ve Volvo uygulamalarıyla geçer.",
   },
   {
     regex: /942401|943401|970401|960401|942328|942320|624\.?420|620\.?420|393\.?420|A0{3}421|640915/i,
-    compat: ["Mercedes-Benz Actros", "Mercedes-Benz Axor", "Mercedes-Benz Atego", "Mercedes-Benz Arocs"],
-    note: "Mercedes-Benz 942/943/970/960 ve A000421 referansları Mercedes ağır vasıta fren, porya ve kaliper parçalarında kullanılır.",
+    compat: ["Mercedes-Benz Actros", "Mercedes-Benz Actros 1840", "Mercedes-Benz Actros 3340", "Mercedes-Benz Actros 4140", "Mercedes-Benz Axor", "Mercedes-Benz Axor 1840", "Mercedes-Benz Axor 3340", "Mercedes-Benz Axor 4140", "Mercedes-Benz Atego", "Mercedes-Benz Arocs"],
+    note: "Mercedes-Benz 942/943/970/960 ve A000421 referansları Mercedes Actros/Axor ağır vasıta fren, porya, bijon ve kaliper parçalarında kullanılır.",
   },
   {
     regex: /2285275|1868665|20515519|20515515|1391617|1388906|1818003|2019853|2120485/i,
@@ -549,6 +563,7 @@ const GENERIC_PRODUCT_TITLES = new Map([
   ["MEKANIK FREN CIRCIRI", "Mekanik Fren Cırcırı"],
   ["CIRCIR TAMIR TAKIM", "Fren Cırcırı Tamir Takımı"],
   ["PORYA", "Porya"],
+  ["PORYA KAPAGI", "Porya Kapağı"],
   ["FREN KORUGU", "Fren Körüğü"],
   ["SUSPANSIYON KORUGU", "Süspansiyon Körüğü"],
   ["PISTONSUZ KORUK", "Pistonsuz Körük"],
@@ -561,7 +576,31 @@ const GENERIC_PRODUCT_TITLES = new Map([
   ["KALIPER MASURA BILYA TAKIMI", "Kaliper Masura Bilya Takımı"],
 ]);
 
+const CATEGORY_TITLE_BASES = {
+  "fren-diski": "Fren Diski",
+  "fren-diski-abs-li": "ABS'li Fren Diski",
+  "fren-kampanasi": "Fren Kampanası",
+  "fren-balatasi": "Fren Balatası",
+  "fren-circiri": "Fren Cırcırı",
+  "otomatik-fren-circiri": "Otomatik Fren Cırcırı",
+  "mekanik-fren-circiri": "Mekanik Fren Cırcırı",
+  bijon: "Bijon",
+  "disk-bijonu-civatasi": "Disk Bijonu",
+  "somun-civata": "Bijon Somunu",
+  porya: "Porya",
+  "fren-pabucu": "Fren Pabucu",
+  "suspansiyon-korugu": "Süspansiyon Körüğü",
+  "fren-korugu": "Fren Körüğü",
+  lastik: "Körük Lastiği",
+};
+
 const TITLE_RULES = [
+  { regex: /TRAVEGO|TOURISMO|TOURINO|INTOURO|O ?403|O ?404|O ?500|000327|307327/i, suffix: "Mercedes Travego Tourismo" },
+  { regex: /\bFORTUNA\b|LION'?S|NEOPLAN/i, suffix: "MAN Fortuna Otobüs" },
+  { regex: /\bAXOR\b|\bACTROS\b|942401|943401|970401|960401|381401|327401|305401|305423|346420|348420|000 ?420|301421|A0{3}421/i, suffix: "Mercedes Actros Axor 1840 3340 4140" },
+  { regex: /815061|815080|815082|814550|814360|\bTGA\b|\bTGS\b|\bTGX\b/i, suffix: "MAN TGA TGS TGX 40.360 40.460" },
+  { regex: /136869|1411980|1528655|1528712|1847739|2285275|2051551|20524942|1391617|3963997|1573081|1573082/i, suffix: "Scania G420 R420" },
+  { regex: /7C46|85DB|13C33|FC46|A333K|\bCARGO\b/i, suffix: "Ford Cargo 1833 1846 2532 3232" },
   { regex: /9267086|6604261/i, suffix: "Kögel Krone" },
   { regex: /8551042|3092710/i, suffix: "Volvo FH FM FL" },
   { regex: /21227349|MBR9018|68323825|MBR5124|MBR9004|M069018|M200135|MBR9007|1176816|17870|MBR5143|1088133/i, suffix: "ROR Meritor" },
@@ -602,7 +641,7 @@ function titleCaseBase(productName) {
 
 function looksLikeGeneratedSuffix(tail) {
   if (!tail || /[:()]/.test(tail)) return false;
-  if (/\b(?:SOL|SAĞ|SAG|ÖN|ON|ARKA|DELİK|DELIK|KANAL|ÇIKIŞ|CIKIS|SAPLAMALI|LASTİK|LASTIK)\b/i.test(tail)) return false;
+  if (/(^|\s)(?:SOL|SAĞ|SAG|ÖN|ON|ARKA)(?=\s|$)|\b(?:R-?L|DELİK|DELIK|KANAL|ÇIKIŞ|CIKIS|SAPLAMALI|LASTİK|LASTIK|MM|CM)\b|G[ÖO]BEKL[İI]|\b\d{2,4}\b/i.test(tail)) return false;
   return /\b(?:BPW|ECOPlus|SAF|Holland|Mercedes|Actros|Axor|Atego|Arocs|SK|NG|MAN|TGA|TGS|TGX|Renault|Midlum|Premium|Magnum|Kerax|Volvo|FH|FM|FL|ROR|Meritor|DAF|CF|XF|Iveco|Eurocargo|Eurotech|Stralis|Mitsubishi|Canter|Fuso|Isuzu|NPR|NQR|Ford|Cargo|Scania|Kögel|Krone|Knorr|WABCO|Haldex|otobüs|dingil|dorse|treyler|Yerel|uygulamaları|fren|kampanası|grubu)\b/i.test(tail);
 }
 
@@ -627,6 +666,78 @@ function stripGeneratedProductName(productName) {
     return looksLikeGeneratedSuffix(currentName.slice(baseName.length).trim());
   });
   return base || currentName;
+}
+
+function categoryTitleBase(product) {
+  const currentName = stripGeneratedProductName(product.name);
+  const normalized = normalize(currentName);
+  if (product.cat === "fren-balatasi" && /\bDISK\b/.test(normalized)) return "Disk Balatası";
+  if (product.cat === "porya" && /KAPAK|KAPAGI/.test(normalized)) return "Porya Kapağı";
+  return CATEGORY_TITLE_BASES[product.cat] || "";
+}
+
+function normalizeTitleToken(value) {
+  return normalize(value).replace(/[^A-Z0-9]+/g, "");
+}
+
+function formatDetail(value) {
+  return String(value || "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/(?<=\d)\s*MM\b/gi, " mm")
+    .replace(/(?<=\d)\s*CM\b/gi, " cm")
+    .replace(/G[ÖO]BEKL[İI]/gi, "Göbekli")
+    .replace(/\bDAKROMATLI\b/gi, "Dakromatlı")
+    .replace(/\bÖZEL\b/gi, "Özel")
+    .replace(/\bARKA\b/gi, "Arka")
+    .replace(/ÖN/gi, "Ön")
+    .replace(/^ON$/gi, "Ön")
+    .replace(/\bSAĞ\b/gi, "Sağ")
+    .replace(/\bSAG\b/gi, "Sağ")
+    .replace(/\bSOL\b/gi, "Sol")
+    .replace(/\bMM\b/gi, "mm")
+    .replace(/\bCM\b/gi, "cm")
+    .replace(/\bDEL[İI]K\b/gi, "Delik")
+    .replace(/\bKANAL\b/gi, "Kanal");
+}
+
+function extractProductDetails(product, base, suffix) {
+  const raw = stripGeneratedProductName(product.name).replace(/[_/]+/g, " ");
+  const group = groupId(product);
+  const allowLooseNumbers = new Set(["disk", "kampana", "balata", "fren-pabuclari"]).has(group);
+  const patterns = [
+    /\b\d{2,4}\s*MM\b/gi,
+    /\b\d{1,2}\s*CM\b/gi,
+    /\b\d+\s*DEL[İI]K\b/gi,
+    /\b\d+\s*KANAL\b/gi,
+    /G[ÖO]BEKL[İI]/gi,
+    /\bDPS'?L?[İI]?\b/gi,
+    /\bDAKROMATLI\b/gi,
+    /\bÖZEL\b/gi,
+    /(?<![A-ZÇĞİÖŞÜ])(?:SAĞ|SAG|SOL|ÖN|ON|ARKA)(?![A-ZÇĞİÖŞÜ])/gi,
+    /\bR-?L\b/gi,
+    /\bY\.?M\.?\b/gi,
+    /\bE\.?M\.?\b/gi,
+    /\bEUR\b/gi,
+    /\b\d{4}(?:[-\s]\d{4}){1,3}\b/g,
+  ];
+  if (allowLooseNumbers) patterns.push(/\b\d{3,4}\b/g);
+
+  const forbidden = normalizeTitleToken(`${base} ${suffix}`);
+  const details = [];
+  for (const pattern of patterns) {
+    for (const match of raw.matchAll(pattern)) {
+      const value = formatDetail(match[0]);
+      const key = normalizeTitleToken(value);
+      if (!key || forbidden.includes(key)) continue;
+      if (details.some((item) => {
+        const existingKey = normalizeTitleToken(item);
+        return existingKey === key || existingKey.includes(key) || key.includes(existingKey);
+      })) continue;
+      details.push(value);
+    }
+  }
+  return details.slice(0, 4).join(" ");
 }
 
 function cleanTitlePart(value) {
@@ -680,6 +791,31 @@ function compactTitleSuffix(parts) {
   });
   if (!cleaned.length) return "";
 
+  const hasPart = (pattern) => parts.some((part) => pattern.test(part));
+  if (hasPart(/Travego|Tourismo|Tourino|Intouro|O403|O404|O500|Setra/i)) {
+    return "Mercedes Travego Tourismo";
+  }
+  if (hasPart(/Fortuna|Lion'?s|Neoplan/i)) {
+    return "MAN Fortuna Otobüs";
+  }
+  const hasActros = hasPart(/Actros/i);
+  const hasAxor = hasPart(/Axor/i);
+  if (hasActros && hasAxor) {
+    return "Mercedes Actros Axor 1840 3340 4140";
+  }
+  if (hasActros) {
+    return "Mercedes Actros 1840 3340 4140";
+  }
+  if (hasAxor) {
+    return "Mercedes Axor 1840 3340 4140";
+  }
+  if (hasPart(/MAN TGA|MAN TGS|MAN TGX|40\.360|40\.460/i)) {
+    return "MAN TGA TGS TGX 40.360 40.460";
+  }
+  if (hasPart(/Scania/i)) {
+    return "Scania G420 R420";
+  }
+
   const trailerSignals = parts.filter((part) => /dorse|treyler|trailer|fruehauf|smb|york|valx|yte|öztreyler|oztreyler/i.test(part));
   const trailerBrands = [
     trailerSignals.some((part) => /K[öo]gel/i.test(part)) ? "Kögel" : "",
@@ -724,11 +860,13 @@ function makeProductName(product, compat) {
   if (!suffix && generatedGeneric) return generatedGeneric[1];
 
   const generatedBase = generatedBaseFromCurrentName(currentName, genericBases, suffix);
-  const base = titleCaseBase(currentName) || generatedBase;
+  const categoryBase = PRIORITY_GROUPS.has(groupId(product)) ? categoryTitleBase(product) : "";
+  const base = titleCaseBase(currentName) || generatedBase || categoryBase;
   if (!base) return currentName;
-  if (!suffix) return base;
+  const detail = extractProductDetails(product, base, suffix);
+  if (!suffix) return `${base} ${detail}`.replace(/\s+/g, " ").trim();
 
-  const nextName = `${base} ${suffix}`.replace(/\s+/g, " ").trim();
+  const nextName = `${base} ${suffix} ${detail}`.replace(/\s+/g, " ").trim();
   return nextName.length > 90 ? nextName.slice(0, 90).trim() : nextName;
 }
 
@@ -759,27 +897,25 @@ function detectCompatibility(product) {
     }
   }
 
-  if (!String(product.compat_source || "").startsWith("name_oem_rules_")) {
-    compat.push(...(product.compat || []));
-  }
+  compat.push(...(product.compat || []));
 
   if (compat.length === 0) {
     compat.push(...(GENERIC_BY_GROUP[groupId(product)] || ["Ağır vasıta"]));
   }
 
-  return { compat: uniq(compat).slice(0, 12), notes: uniq(notes) };
+  return { compat: uniq(compat).slice(0, 16), notes: uniq(notes) };
 }
 
 function makeDescription(product, compat, notes) {
   const group = groupId(product);
   const label = categoryLabel(product);
   const oem = cleanOem(product.oem);
-  const modelText = compat.slice(0, 8).join(", ");
   const baseName = String(product.name || "").trim();
   const priority = PRIORITY_GROUPS.has(group);
+  const modelText = compat.slice(0, priority ? 12 : 8).join(", ");
 
   const intro = priority
-    ? `${baseName} ${label} ürünüdür. OEM ve ürün adı referansına göre ${modelText} araç gruplarında kullanılan ağır vasıta fren parçası olarak listelenmiştir.`
+    ? `${baseName} ${label} ürünüdür. OEM, ürün adı ve kategori referansına göre özellikle ${modelText} araç gruplarında kullanılan ağır vasıta fren parçası olarak listelenmiştir.`
     : `${baseName} ${label} ürünüdür. ${modelText} araç grupları ve ağır vasıta fren sistemleri için uyumluluk kontrolü yapılabilir.`;
 
   const oemLine = oem ? `OEM / muadil referans: ${oem}.` : "OEM / muadil referans için ürün kodu ve eski parça numarasıyla teyit önerilir.";
@@ -789,80 +925,92 @@ function makeDescription(product, compat, notes) {
   return [intro, oemLine, noteLine, safetyLine].filter(Boolean).join("\n");
 }
 
-const summary = {
-  total: products.length,
-  changed: 0,
-  withDescription: 0,
-  withCompatibility: 0,
-  specificCompatibility: 0,
-  byGroup: {},
-  referenceSources: REFERENCE_SOURCES,
-  generatedAt: new Date().toISOString(),
-};
+export function enrichProducts(products, categories, options = {}) {
+  catById = Object.fromEntries((categories || []).map((category) => [category.id, category]));
 
-for (const product of products) {
-  const { compat, notes } = detectCompatibility(product);
-  const name = makeProductName(product, compat);
-  const desc = makeDescription({ ...product, name }, compat, notes);
-  const group = groupId(product);
-  summary.byGroup[group] = summary.byGroup[group] || {
-    total: 0,
+  const summary = {
+    total: products.length,
     changed: 0,
     withDescription: 0,
     withCompatibility: 0,
     specificCompatibility: 0,
+    byGroup: {},
+    referenceSources: REFERENCE_SOURCES,
+    generatedAt: options.generatedAt || new Date().toISOString(),
   };
-  summary.byGroup[group].total += 1;
 
-  const nextNotes = notes.length ? notes : undefined;
-  const before = JSON.stringify({
-    name: product.name,
-    desc: product.desc,
-    compat: product.compat,
-    compat_notes: product.compat_notes,
-    compat_source: product.compat_source,
-  });
-  const after = JSON.stringify({
-    name,
-    desc,
-    compat,
-    compat_notes: nextNotes,
-    compat_source: RULE_SOURCE,
-  });
-  product.name = name;
-  product.desc = desc;
-  product.compat = compat;
-  product.compat_source = RULE_SOURCE;
-  if (after !== before || !product.compat_updated_at) {
-    product.compat_updated_at = summary.generatedAt;
-  }
-  if (notes.length) product.compat_notes = notes;
-  else delete product.compat_notes;
+  for (const product of products) {
+    const { compat, notes } = detectCompatibility(product);
+    const name = makeProductName(product, compat);
+    const desc = makeDescription({ ...product, name }, compat, notes);
+    const group = groupId(product);
+    summary.byGroup[group] = summary.byGroup[group] || {
+      total: 0,
+      changed: 0,
+      withDescription: 0,
+      withCompatibility: 0,
+      specificCompatibility: 0,
+    };
+    summary.byGroup[group].total += 1;
 
-  const isSpecific = compat.some((item) => !GENERIC_LABELS.has(item));
-  if (product.desc) {
-    summary.withDescription += 1;
-    summary.byGroup[group].withDescription += 1;
-  }
-  if (product.compat?.length) {
-    summary.withCompatibility += 1;
-    summary.byGroup[group].withCompatibility += 1;
-  }
-  if (isSpecific) {
-    summary.specificCompatibility += 1;
-    summary.byGroup[group].specificCompatibility += 1;
+    const nextNotes = notes.length ? notes : undefined;
+    const before = JSON.stringify({
+      name: product.name,
+      desc: product.desc,
+      compat: product.compat,
+      compat_notes: product.compat_notes,
+      compat_source: product.compat_source,
+    });
+    const after = JSON.stringify({
+      name,
+      desc,
+      compat,
+      compat_notes: nextNotes,
+      compat_source: RULE_SOURCE,
+    });
+    product.name = name;
+    product.desc = desc;
+    product.compat = compat;
+    product.compat_source = RULE_SOURCE;
+    if (after !== before || !product.compat_updated_at) {
+      product.compat_updated_at = summary.generatedAt;
+    }
+    if (notes.length) product.compat_notes = notes;
+    else delete product.compat_notes;
+
+    const isSpecific = compat.some((item) => !GENERIC_LABELS.has(item));
+    if (product.desc) {
+      summary.withDescription += 1;
+      summary.byGroup[group].withDescription += 1;
+    }
+    if (product.compat?.length) {
+      summary.withCompatibility += 1;
+      summary.byGroup[group].withCompatibility += 1;
+    }
+    if (isSpecific) {
+      summary.specificCompatibility += 1;
+      summary.byGroup[group].specificCompatibility += 1;
+    }
+
+    if (after !== before) {
+      summary.changed += 1;
+      summary.byGroup[group].changed += 1;
+    }
   }
 
-  if (after !== before) {
-    summary.changed += 1;
-    summary.byGroup[group].changed += 1;
-  }
+  return { products, categories, summary };
 }
 
-fs.writeFileSync(PRODUCTS_PATH, JSON.stringify(products));
-if (process.env.COMPAT_SKIP_REPORT !== "1") {
-  fs.mkdirSync(path.dirname(REPORT_PATH), { recursive: true });
-  fs.writeFileSync(REPORT_PATH, `${JSON.stringify(summary, null, 2)}\n`);
-}
+if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1])) {
+  const products = JSON.parse(fs.readFileSync(PRODUCTS_PATH, "utf8"));
+  const categories = JSON.parse(fs.readFileSync(CATEGORIES_PATH, "utf8"));
+  const { summary } = enrichProducts(products, categories);
 
-console.log(JSON.stringify(summary, null, 2));
+  fs.writeFileSync(PRODUCTS_PATH, JSON.stringify(products));
+  if (process.env.COMPAT_SKIP_REPORT !== "1") {
+    fs.mkdirSync(path.dirname(REPORT_PATH), { recursive: true });
+    fs.writeFileSync(REPORT_PATH, `${JSON.stringify(summary, null, 2)}\n`);
+  }
+
+  console.log(JSON.stringify(summary, null, 2));
+}
