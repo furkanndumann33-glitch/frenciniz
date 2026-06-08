@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useMemo, createContext, useContext, useRef } from "react";
 import { productIdFromRoute, productSeoPath, productSeoUrl } from "../shared/product-seo.js";
+import { buildOrganizationJsonLd, buildProductJsonLd } from "../shared/structured-data.js";
 
 // ===== TRANSLATIONS =====
 const TR = {
@@ -1039,6 +1040,7 @@ export default function App() {
     setJsonLd("page-breadcrumb", null);
     setJsonLd("page-faq", null);
     setJsonLd("page-organization", null);
+    setJsonLd("page-organization", buildOrganizationJsonLd(SITE_URL));
 
     let title = baseTitle, desc = baseDesc, canonical = `${SITE_URL}${window.location.pathname}`, img = baseImg, robots;
     let ogType = "website", productData = null, keywords = null;
@@ -1059,20 +1061,12 @@ export default function App() {
             "@type": "ListItem",
             "position": i + 1,
             "url": productSeoUrl(SITE_URL, p),
-            "item": {
-              "@type": "Product",
-              "name": p.name,
-              "image": cdnImg(p.img, 400),
-              "sku": p.sku || undefined,
-              "brand": { "@type": "Brand", "name": p.brand || "Ekersan" },
-              "offers": {
-                "@type": "Offer",
-                "priceCurrency": "TRY",
-                "price": p.price,
-                "availability": "https://schema.org/InStock",
-                "url": productSeoUrl(SITE_URL, p),
-              },
-            },
+            "item": buildProductJsonLd(p, cats, {
+              site: SITE_URL,
+              url: productSeoUrl(SITE_URL, p),
+              images: [absoluteSiteUrl(cdnImg(p.img, 400))],
+              includeContext: false,
+            }),
           })),
         });
       }
@@ -1103,19 +1097,13 @@ export default function App() {
               "@type": "ListItem",
               "position": i + 1,
               "url": productSeoUrl(SITE_URL, p),
-              "item": {
-                "@type": "Product",
-                "name": p.name,
-                "image": absoluteSiteUrl(hasRealImg(p) ? cdnImg(p.img, 400) : SITE_IMAGES.missingProduct),
-                "sku": p.sku || undefined,
-                "brand": { "@type": "Brand", "name": p.brand || "Ekersan" },
-                "offers": {
-                  "@type": "Offer",
-                  "priceCurrency": "TRY",
-                  "price": p.price,
-                  "availability": p.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
-                },
-              },
+              "item": buildProductJsonLd(p, cats, {
+                site: SITE_URL,
+                url: productSeoUrl(SITE_URL, p),
+                images: [absoluteSiteUrl(hasRealImg(p) ? cdnImg(p.img, 400) : SITE_IMAGES.missingProduct)],
+                categoryName: catName,
+                includeContext: false,
+              }),
             })),
           });
         }
@@ -1263,6 +1251,14 @@ export default function App() {
             }
           }
         });
+
+        setJsonLd("page-product", buildProductJsonLd(p, cats, {
+          site: SITE_URL,
+          url: canonical,
+          images: productImageList,
+          categoryName: catName,
+          priceValidUntil,
+        }));
 
         // Breadcrumb JSON-LD
         const grp = sub?.parent ? cats.find(c => c.id === sub.parent) : null;

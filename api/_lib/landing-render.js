@@ -8,6 +8,7 @@ import {
   landingWhatsappUrl,
 } from "./seo-landing.js";
 import { productSeoUrl } from "../../shared/product-seo.js";
+import { buildOrganizationJsonLd, buildProductJsonLd } from "../../shared/structured-data.js";
 
 function productUrl(product) {
   return productSeoUrl(SITE, product);
@@ -53,8 +54,16 @@ export function renderLanding(page, products, categories) {
     position: index + 1,
     url: productUrl(product),
     name: product.name,
+    item: buildProductJsonLd(product, categories, {
+      site: SITE,
+      url: productUrl(product),
+      images: [absoluteImage(product)],
+      categoryName: categoryName(categories, product.cat),
+      includeContext: false,
+    }),
   }));
   const schema = [
+    buildOrganizationJsonLd(SITE),
     {
       "@context": "https://schema.org",
       "@type": "CollectionPage",

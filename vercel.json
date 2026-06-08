@@ -165,6 +165,86 @@
       "destination": "/api/sitemap?type=landing&slug=mercedes-axor-otomatik-fren-circiri"
     },
     {
+      "source": "/mercedes-actros-1840-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-actros-1840-fren-diski"
+    },
+    {
+      "source": "/mercedes-actros-1840-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-actros-1840-fren-kampanasi"
+    },
+    {
+      "source": "/mercedes-actros-1840-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-actros-1840-fren-balatasi"
+    },
+    {
+      "source": "/mercedes-actros-1840-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-actros-1840-bijon-somun"
+    },
+    {
+      "source": "/mercedes-actros-1840-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-actros-1840-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/mercedes-actros-3340-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-actros-3340-fren-diski"
+    },
+    {
+      "source": "/mercedes-actros-3340-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-actros-3340-fren-kampanasi"
+    },
+    {
+      "source": "/mercedes-actros-3340-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-actros-3340-fren-balatasi"
+    },
+    {
+      "source": "/mercedes-actros-3340-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-actros-3340-bijon-somun"
+    },
+    {
+      "source": "/mercedes-actros-3340-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-actros-3340-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/mercedes-axor-1840-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-axor-1840-fren-diski"
+    },
+    {
+      "source": "/mercedes-axor-1840-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-axor-1840-fren-kampanasi"
+    },
+    {
+      "source": "/mercedes-axor-1840-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-axor-1840-fren-balatasi"
+    },
+    {
+      "source": "/mercedes-axor-1840-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-axor-1840-bijon-somun"
+    },
+    {
+      "source": "/mercedes-axor-1840-otomatik-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-axor-1840-otomatik-fren-circiri"
+    },
+    {
+      "source": "/mercedes-axor-3340-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-axor-3340-fren-diski"
+    },
+    {
+      "source": "/mercedes-axor-3340-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-axor-3340-fren-kampanasi"
+    },
+    {
+      "source": "/mercedes-axor-3340-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-axor-3340-fren-balatasi"
+    },
+    {
+      "source": "/mercedes-axor-3340-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-axor-3340-bijon-somun"
+    },
+    {
+      "source": "/mercedes-axor-3340-otomatik-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-axor-3340-otomatik-fren-circiri"
+    },
+    {
       "source": "/mercedes-atego-fren-kampanasi",
       "destination": "/api/sitemap?type=landing&slug=mercedes-atego-fren-kampanasi"
     },
@@ -207,6 +287,46 @@
     {
       "source": "/man-tga-mekanik-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=man-tga-mekanik-fren-circiri"
+    },
+    {
+      "source": "/man-40-360-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=man-40-360-fren-diski"
+    },
+    {
+      "source": "/man-40-360-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=man-40-360-fren-kampanasi"
+    },
+    {
+      "source": "/man-40-360-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=man-40-360-fren-balatasi"
+    },
+    {
+      "source": "/man-40-360-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=man-40-360-bijon-somun"
+    },
+    {
+      "source": "/man-40-360-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=man-40-360-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/man-40-460-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=man-40-460-fren-diski"
+    },
+    {
+      "source": "/man-40-460-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=man-40-460-fren-kampanasi"
+    },
+    {
+      "source": "/man-40-460-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=man-40-460-fren-balatasi"
+    },
+    {
+      "source": "/man-40-460-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=man-40-460-bijon-somun"
+    },
+    {
+      "source": "/man-40-460-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=man-40-460-kaliper-tamir-takimi"
     },
     {
       "source": "/man-tgs-tgx-fren-kampanasi",
@@ -253,6 +373,26 @@
       "destination": "/api/sitemap?type=landing&slug=volvo-fh-kaliper-tamir-takimi"
     },
     {
+      "source": "/volvo-fh12-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh12-fren-diski"
+    },
+    {
+      "source": "/volvo-fh12-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh12-fren-kampanasi"
+    },
+    {
+      "source": "/volvo-fh12-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh12-fren-balatasi"
+    },
+    {
+      "source": "/volvo-fh12-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh12-suspansiyon-korugu"
+    },
+    {
+      "source": "/volvo-fh12-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh12-bijon-somun"
+    },
+    {
       "source": "/scania-r-g-fren-diski",
       "destination": "/api/sitemap?type=landing&slug=scania-r-g-fren-diski"
     },
@@ -275,6 +415,46 @@
     {
       "source": "/scania-r-g-otomatik-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=scania-r-g-otomatik-fren-circiri"
+    },
+    {
+      "source": "/scania-g420-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=scania-g420-fren-diski"
+    },
+    {
+      "source": "/scania-g420-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=scania-g420-fren-kampanasi"
+    },
+    {
+      "source": "/scania-g420-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=scania-g420-fren-balatasi"
+    },
+    {
+      "source": "/scania-g420-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=scania-g420-bijon-somun"
+    },
+    {
+      "source": "/scania-g420-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=scania-g420-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/scania-r420-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=scania-r420-fren-diski"
+    },
+    {
+      "source": "/scania-r420-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=scania-r420-fren-kampanasi"
+    },
+    {
+      "source": "/scania-r420-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=scania-r420-fren-balatasi"
+    },
+    {
+      "source": "/scania-r420-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=scania-r420-bijon-somun"
+    },
+    {
+      "source": "/scania-r420-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=scania-r420-kaliper-tamir-takimi"
     },
     {
       "source": "/daf-xf-cf-fren-diski",
@@ -555,6 +735,46 @@
     {
       "source": "/otobus-abs-sensoru-ebs-modulator",
       "destination": "/api/sitemap?type=landing&slug=otobus-abs-sensoru-ebs-modulator"
+    },
+    {
+      "source": "/isuzu-novociti-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=isuzu-novociti-fren-diski"
+    },
+    {
+      "source": "/isuzu-novociti-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=isuzu-novociti-fren-kampanasi"
+    },
+    {
+      "source": "/isuzu-novociti-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=isuzu-novociti-fren-balatasi"
+    },
+    {
+      "source": "/isuzu-novociti-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=isuzu-novociti-fren-korugu"
+    },
+    {
+      "source": "/isuzu-novociti-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=isuzu-novociti-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/temsa-prestij-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=temsa-prestij-fren-diski"
+    },
+    {
+      "source": "/temsa-prestij-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=temsa-prestij-fren-kampanasi"
+    },
+    {
+      "source": "/temsa-prestij-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=temsa-prestij-fren-balatasi"
+    },
+    {
+      "source": "/temsa-prestij-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=temsa-prestij-fren-korugu"
+    },
+    {
+      "source": "/temsa-prestij-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=temsa-prestij-kaliper-tamir-takimi"
     },
     {
       "source": "/tir-fren-diski",

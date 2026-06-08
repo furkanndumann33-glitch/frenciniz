@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-06-07T19:41:31.334Z",
+  "generatedAt": "2026-06-08T17:23:40.421Z",
   "site": "https://frenciniz.com",
   "totals": {
     "products": 1055,
     "categories": 53,
     "categoryPages": 52,
-    "landingPages": 157,
-    "sitemapUrlEstimate": 1280
+    "landingPages": 212,
+    "sitemapUrlEstimate": 1335
   },
   "productReadiness": {
     "productsWithImage": 953,
@@ -173,7 +173,7 @@
       "priority": "0.8",
       "matchedProducts": 24,
       "categories": "mekanik-fren-circiri|fren-circiri",
-      "topProducts": "1:Mekanik Fren Cırcırı 7 Delik 10 Kanal (EUR) | 420:Mekanik Fren Cırcırı 7 Delik 10 Kanal | 283:Mekanik Fren Cırcırı 3 Delik 10 Kanal | 418:Mekanik Fren Cırcırı Mercedes Actros Axor Atego | 417:Mekanik Fren Cırcırı Mercedes Actros Axor Atego"
+      "topProducts": "1:Mekanik Fren Cırcırı 7 Delik 10 Kanal (EUR) | 420:Mekanik Fren Cırcırı 7 Delik 10 Kanal | 283:Mekanik Fren Cırcırı 3 Delik 10 Kanal | 418:Mekanik Fren Cırcırı Mercedes Actros Axor Atego | 417:Mekanik Fren Cırcırı Mercedes Sol"
     },
     {
       "slug": "agir-vasita-kaliper-tamir-takimi",
@@ -396,34 +396,34 @@
       "topProducts": "51:Otomatik Fren Cırcırı Mercedes Actros Axor Atego SK | 52:Otomatik Fren Cırcırı Mercedes Actros Axor Atego SK | 85:EKERSAN AROX-ACTROS FREN CIRCIRI 5017 GÖVDE SAĞ | 28:MERCEDES V-8 OTOBÜS ÖN CIRCIR R-L | 416:MERCEDES V-8 OTOBÜS ARKA CIRCIR R-L"
     },
     {
-      "slug": "mercedes-atego-fren-kampanasi",
-      "heading": "Mercedes Atego Fren Kampanası",
-      "title": "Mercedes Atego Fren Kampanası | Fiyat ve Stok | Frenciniz",
-      "description": "Mercedes Atego uyumlu fren kampanası ürünleri. OEM/parça kodu ile uyumluluk teyidi, stok ve fiyat kontrolü, aynı gün kargo ve WhatsApp hızlı teklif.",
-      "priority": "0.84",
+      "slug": "mercedes-actros-1840-fren-diski",
+      "heading": "Mercedes Actros 1840 Fren Diski",
+      "title": "Mercedes Actros 1840 Fren Diski | Fiyat ve Stok | Frenciniz",
+      "description": "Mercedes Actros 1840 uyumlu fren diski ürünleri. OEM/parça kodu ile uyumluluk teyidi, stok ve fiyat kontrolü, aynı gün kargo ve WhatsApp hızlı teklif.",
+      "priority": "0.90",
+      "matchedProducts": 24,
+      "categories": "fren-diski|fren-diski-abs-li",
+      "topProducts": "231:Fren Diski Mercedes Actros Axor Atego SK | 234:Fren Diski Mercedes Actros Axor Atego SK | 227:Fren Diski Mercedes Actros Axor Atego SK | 233:Fren Diski Mercedes Actros Axor Atego SK | 235:Fren Diski Mercedes Actros Axor Atego SK"
+    },
+    {
+      "slug": "mercedes-actros-1840-fren-kampanasi",
+      "heading": "Mercedes Actros 1840 Fren Kampanası",
+      "title": "Mercedes Actros 1840 Fren Kampanası | Fiyat ve Stok | Frenciniz",
+      "description": "Mercedes Actros 1840 uyumlu fren kampanası ürünleri. OEM/parça kodu ile uyumluluk teyidi, stok ve fiyat kontrolü, aynı gün kargo ve WhatsApp hızlı teklif.",
+      "priority": "0.90",
       "matchedProducts": 24,
       "categories": "fren-kampanasi",
-      "topProducts": "153:Fren Kampanası Mercedes Actros Axor Atego SK | 18:Fren Kampanası Mercedes Actros Axor Atego | 82:Fren Kampanası Mercedes Actros Axor Atego | 159:Fren Kampanası Mercedes Actros Axor Atego SK | 160:Fren Kampanası Mercedes Actros Axor Atego SK"
+      "topProducts": "276:KAMPANA MERC.ACTROS ATECO AXOR | 153:Fren Kampanası Mercedes Actros Axor Atego SK | 18:Fren Kampanası Mercedes Actros Axor Atego | 82:Fren Kampanası Mercedes Actros Axor Atego | 159:Fren Kampanası Mercedes Actros Axor Atego SK"
     },
     {
-      "slug": "mercedes-atego-fren-balatasi",
-      "heading": "Mercedes Atego Fren Balatası",
-      "title": "Mercedes Atego Fren Balatası | Fiyat ve Stok | Frenciniz",
-      "description": "Mercedes Atego uyumlu fren balatası ürünleri. OEM/parça kodu ile uyumluluk teyidi, stok ve fiyat kontrolü, aynı gün kargo ve WhatsApp hızlı teklif.",
-      "priority": "0.84",
+      "slug": "mercedes-actros-1840-fren-balatasi",
+      "heading": "Mercedes Actros 1840 Fren Balatası",
+      "title": "Mercedes Actros 1840 Fren Balatası | Fiyat ve Stok | Frenciniz",
+      "description": "Mercedes Actros 1840 uyumlu fren balatası ürünleri. OEM/parça kodu ile uyumluluk teyidi, stok ve fiyat kontrolü, aynı gün kargo ve WhatsApp hızlı teklif.",
+      "priority": "0.90",
       "matchedProducts": 24,
       "categories": "fren-balatasi|fren-pabucu|percin",
-      "topProducts": "644:Fren Pabucu - MERCEDES 22CM | 851:Fren Pabucu - MERCEDES 18CM | 690:SL7 SM7 BALATA TUTUTCU | 852:MERCEDES FREN PABUCU 16 CM | 643:Mercedes Pabuç Makarası"
-    },
-    {
-      "slug": "mercedes-atego-fren-korugu",
-      "heading": "Mercedes Atego Fren Körüğü",
-      "title": "Mercedes Atego Fren Körüğü | Fiyat ve Stok | Frenciniz",
-      "description": "Mercedes Atego uyumlu fren körüğü ürünleri. OEM/parça kodu ile uyumluluk teyidi, stok ve fiyat kontrolü, aynı gün kargo ve WhatsApp hızlı teklif.",
-      "priority": "0.83",
-      "matchedProducts": 24,
-      "categories": "fren-korugu",
-      "topProducts": "960:24/30 D/P KISA MİL KÖRÜK DİSK KÖRÜĞÜ | 665:24/16 D/P DİSK KÖRÜK SCANIA | 449:ARFESAN 16/24 D/D DİSK TİPİ DORSE İMDATLI KÖRÜK SOL | 450:ARFESAN 16/24 D/D DİSK TİPİ DORSE İMDATLI KÖRÜK SAĞ | 553:ARFESAN 16/24 D/D DİSK TİPİ DORSE İMDATLI KÖRÜK"
+      "topProducts": "644:Fren Pabucu - MERCEDES 22CM | 734:BALATA AXOR DİSK ARKA Y.M. (29244 / 29245) | 736:BALATA AXOR DİSK  E.M. (29087) | 851:Fren Pabucu - MERCEDES 18CM | 852:MERCEDES FREN PABUCU 16 CM"
     }
   ],
   "landingPagesNeedingMoreSpecificProducts": [],
