@@ -17,6 +17,14 @@
       "destination": "/api/sitemap?type=meta"
     },
     {
+      "source": "/urun/:id/:slug*",
+      "destination": "/api/product-page?route=:id"
+    },
+    {
+      "source": "/urun/:id",
+      "destination": "/api/product-page?route=:id"
+    },
+    {
       "source": "/mercedes-actros-fren-diski",
       "destination": "/api/sitemap?type=landing&slug=mercedes-actros-fren-diski"
     },
