@@ -479,13 +479,15 @@ function generalWhatsAppUrl(topic = "agir vasita fren parcasi") {
 
 function productWhatsAppUrl(product, qty = 1) {
   return waUrl([
-    "Merhaba Frenciniz, bu urun icin stok, fiyat ve arac uyumlulugu teyidi almak istiyorum.",
+    "Merhaba Frenciniz, bu urun aracima uyar mi? Stok, fiyat ve kargo teyidi rica ederim.",
     `Urun: ${product?.name || "-"}`,
     `SKU: ${product?.sku || "-"}`,
     `OEM / muadil: ${product?.oem || "-"}`,
     `Adet: ${qty || 1}`,
     `Link: ${product ? productSeoUrl(SITE_URL, product) : `${SITE_URL}/urunler`}`,
-    "Arac / sase no:",
+    "Arac marka/model:",
+    "Sase no:",
+    "Eski parca/OEM no:",
     "Eski parca fotosu gonderebilirim.",
   ].join("\n"));
 }
@@ -1820,7 +1822,7 @@ export default function App() {
           </div>
         )}
 
-        {!isAdminPage && <MobileBottomBar />}
+        {!isAdminPage && page !== "product" && <MobileBottomBar />}
 
         {/* FOOTER */}
         <footer style={{display:isAdminPage?"none":"block",background:"#1a1a1a",color:"#ccc",padding:"40px 0 20px",marginTop:40}}>
@@ -2801,9 +2803,15 @@ function ProductDetailPage() {
   const detailDesc = translateName(prodDesc(p,lang),lang);
   const compatPreview = Array.isArray(p.compat) ? p.compat.filter(Boolean).slice(0, 7) : [];
   const specs = p.specs && typeof p.specs === "object" ? p.specs : {};
+  const checkoutNow = () => {
+    if (!p.stock) return;
+    addToCart(p, qty);
+    metaTrackCustom("BuyNowClick", { source: "product_detail", product_id: p.id, sku: p.sku, value: (p.price || 0) * qty });
+    go("cart");
+  };
 
   return (
-    <div style={{maxWidth:1200,margin:"0 auto",padding:"20px"}}>
+    <div style={{maxWidth:1200,margin:"0 auto",padding:isMobile?"16px 12px 104px":"20px"}}>
       <div style={{fontSize:13,color:"#999",marginBottom:20}}>
         <span style={{cursor:"pointer"}} onClick={() => go("home")}>{t("home")}</span> / {(() => { const sub = CATS.find(c=>c.id===p.cat); const grp = sub?.parent ? CATS.find(c=>c.id===sub.parent) : null; return <>{grp && <><span style={{cursor:"pointer"}} onClick={() => go("products",{cat:grp.id})}>{translateCat(grp,lang)}</span> / </>}<span style={{cursor:"pointer"}} onClick={() => go("products",{cat:p.cat})}>{sub ? translateCat(sub,lang) : p.cat}</span></>; })()} / <span style={{color:"#555"}}>{translateName(p.name,lang)}</span>
       </div>
@@ -2854,6 +2862,29 @@ function ProductDetailPage() {
             </div>
             <div style={{marginTop:8,fontSize:13,color:p.stock?"#4caf50":"#e53935",fontWeight:600}}>{p.stock ? t("stockXItems").replace("{0}",p.stock) : t("outOfStockFull")}</div>
           </div>
+          <div style={{padding:"15px 16px",background:"linear-gradient(135deg,#fff7ed,#fff)",border:"1px solid #fed7aa",borderRadius:8,marginBottom:16,boxShadow:"0 12px 28px rgba(249,115,22,.10)"}}>
+            <div style={{display:"flex",gap:12,justifyContent:"space-between",alignItems:isMobile?"stretch":"center",flexDirection:isMobile?"column":"row"}}>
+              <div style={{minWidth:0}}>
+                <div style={{fontSize:15,fontWeight:950,color:"#111827",marginBottom:5}}>Sase / OEM ile hizli uyumluluk</div>
+                <div style={{fontSize:13,color:"#6b7280",lineHeight:1.55}}>Arac modeli, sase veya eski parca fotografini gonderin; siparisten once dogru parcayi netlestirelim.</div>
+                <div style={{display:"flex",flexWrap:"wrap",gap:6,marginTop:10}}>
+                  {["14:00'a kadar ayni gun kargo","3000 TL uzeri ucretsiz kargo","14 gun iade"].map(label => (
+                    <span key={label} style={{fontSize:11,fontWeight:850,color:"#9a3412",background:"#ffedd5",border:"1px solid #fed7aa",borderRadius:5,padding:"5px 7px"}}>{label}</span>
+                  ))}
+                </div>
+              </div>
+              <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr 1fr":"1fr",gap:8,minWidth:isMobile?"100%":170}}>
+                <a href={whatsappQuoteHref} target="_blank" rel="noopener noreferrer" onClick={() => metaTrack("Contact", metaProductPayload(p, qty, p.cat))}
+                  style={{minHeight:42,padding:"10px 12px",background:"#25D366",color:"#062813",borderRadius:6,fontSize:13,fontWeight:950,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center",textAlign:"center"}}>
+                  WhatsApp'ta sor
+                </a>
+                <a href="tel:+905456087008" onClick={() => metaTrackCustom("PhoneLead", { source: "product_detail_fast_box", product_id: p.id, sku: p.sku })}
+                  style={{minHeight:42,padding:"10px 12px",background:"#111827",color:"#fff",borderRadius:6,fontSize:13,fontWeight:950,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center",textAlign:"center"}}>
+                  Hemen ara
+                </a>
+              </div>
+            </div>
+          </div>
           <div style={{padding:"15px 16px",background:"linear-gradient(135deg,#07111f,#172033)",borderRadius:8,marginBottom:16,border:"1px solid rgba(255,96,0,.25)",color:"#fff",boxShadow:"0 14px 34px rgba(15,23,42,.12)"}}>
             <div style={{display:"flex",justifyContent:"space-between",gap:12,alignItems:isMobile?"flex-start":"center",flexDirection:isMobile?"column":"row"}}>
               <div style={{minWidth:0}}>
@@ -2869,15 +2900,20 @@ function ProductDetailPage() {
               </a>
             </div>
           </div>
-          <div style={{display:"flex",gap:10,marginBottom:p.stock?20:10}}>
+          <div style={{display:"flex",gap:10,flexWrap:"wrap",marginBottom:p.stock?20:10}}>
             <div style={{display:"flex",border:"1px solid #ddd",borderRadius:6,overflow:"hidden"}}>
               <button onClick={() => setQty(Math.max(1,qty-1))} style={{width:40,height:44,background:"#f5f5f5",border:"none",fontSize:18,color:"#555"}}>−</button>
               <span style={{width:48,display:"flex",alignItems:"center",justifyContent:"center",fontWeight:600}}>{qty}</span>
               <button onClick={() => setQty(qty+1)} style={{width:40,height:44,background:"#f5f5f5",border:"none",fontSize:18,color:"#555"}}>+</button>
             </div>
-            <button onClick={() => p.stock && addToCart(p, qty)} style={{flex:1,padding:"12px",background:p.stock?"#ff6000":"#eee",color:p.stock?"#fff":"#999",border:"none",borderRadius:6,fontSize:16,fontWeight:700,cursor:p.stock?"pointer":"default"}}>
+            <button onClick={() => p.stock && addToCart(p, qty)} style={{flex:"1 1 150px",padding:"12px",background:p.stock?"#ff6000":"#eee",color:p.stock?"#fff":"#999",border:"none",borderRadius:6,fontSize:16,fontWeight:700,cursor:p.stock?"pointer":"default"}}>
               {p.stock ? t("addToCart") : t("outOfStockFull")}
             </button>
+            {p.stock && (
+              <button onClick={checkoutNow} style={{flex:"1 1 120px",padding:"12px",background:"#111827",color:"#fff",border:"none",borderRadius:6,fontSize:16,fontWeight:900,cursor:"pointer"}}>
+                Hemen Al
+              </button>
+            )}
             <button onClick={() => toggleFav(p.id)} style={{width:48,height:48,border:"1px solid #eee",borderRadius:6,background:"#fff",fontSize:22,color:isFav?"#ff6000":"#ccc",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer"}}>
               {isFav ? "♥" : "♡"}
             </button>
@@ -2935,6 +2971,25 @@ function ProductDetailPage() {
       </div>}
       {related.length > 0 && <div><h2 style={{fontSize:20,fontWeight:700,marginBottom:16}}>{t("similarProducts")}</h2><div style={{display:"grid",gridTemplateColumns:isMobile?"repeat(2,1fr)":"repeat(4,1fr)",gap:isMobile?10:16}}>{related.map(rp => <ProductCard key={rp.id} p={rp} />)}</div></div>}
       <RecentlyViewed />
+      {isMobile && (
+        <nav aria-label="Urun hizli islemleri" style={{position:"fixed",left:0,right:0,bottom:0,zIndex:998,padding:"8px 10px calc(8px + env(safe-area-inset-bottom))",background:"linear-gradient(180deg,rgba(7,10,18,.94),#070a12)",borderTop:"1px solid rgba(255,255,255,.12)",boxShadow:"0 -14px 38px rgba(0,0,0,.34)",display:"grid",gridTemplateColumns:"1.15fr .95fr .72fr .95fr",gap:7,alignItems:"stretch"}}>
+          <div style={{minWidth:0,color:"#fff",display:"flex",flexDirection:"column",justifyContent:"center",lineHeight:1.1}}>
+            <span style={{fontSize:10,color:"#a7b0c0",fontWeight:800}}>Fiyat</span>
+            <strong style={{fontSize:14,whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}>{fp(p.price)}</strong>
+          </div>
+          <a href={whatsappQuoteHref} target="_blank" rel="noopener noreferrer" onClick={() => metaTrack("Contact", metaProductPayload(p, qty, p.cat))}
+            style={{minHeight:48,borderRadius:8,background:"linear-gradient(135deg,#16a34a,#25D366)",color:"#062813",textDecoration:"none",fontSize:12,fontWeight:950,display:"flex",alignItems:"center",justifyContent:"center",textAlign:"center",padding:"0 8px"}}>
+            WhatsApp
+          </a>
+          <a href="tel:+905456087008" onClick={() => metaTrackCustom("PhoneLead", { source: "product_sticky_bar", product_id: p.id, sku: p.sku })}
+            style={{minHeight:48,borderRadius:8,background:"linear-gradient(135deg,#ff6000,#facc15)",color:"#111827",textDecoration:"none",fontSize:12,fontWeight:950,display:"flex",alignItems:"center",justifyContent:"center",textAlign:"center",padding:"0 8px"}}>
+            Ara
+          </a>
+          <button onClick={checkoutNow} disabled={!p.stock} style={{minHeight:48,borderRadius:8,border:"1px solid rgba(255,255,255,.14)",background:p.stock?"linear-gradient(135deg,#111827,#263246)":"#1f2937",color:p.stock?"#fff":"#9ca3af",fontSize:12,fontWeight:950,cursor:p.stock?"pointer":"default",padding:"0 8px"}}>
+            {p.stock ? "Hemen Al" : "Tukendi"}
+          </button>
+        </nav>
+      )}
     </div>
   );
 }
