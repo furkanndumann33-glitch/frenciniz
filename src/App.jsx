@@ -1464,11 +1464,12 @@ export default function App() {
     applySEO({ title, description: desc, canonical, ogImage: img, robots, ogType, productData, keywords });
   }, [page, params, products, cats]);
 
+  const isAdminPage = page === "admin" || page === "admin-login" || page === "admin-panel";
   const ctx = useMemo(() => ({page, params, go, cart, addToCart, updateQty, removeItem, cartCount, cartTotal, q, setQ, favs, toggleFav, viewed, addViewed, user, setUser, addresses, setAddresses, coupon, setCoupon, couponApplied, setCouponApplied, couponData, setCouponData, couponError, setCouponError, discount, stockAlerts, addStockAlert, chatOpen, setChatOpen, chatMessages, setChatMessages, pastOrders, completePurchase, lang, setLang, curr, setCurr, t, isMobile, mobileMenuOpen, setMobileMenuOpen, mobileFilterOpen, setMobileFilterOpen, fp, admin, setAdmin, authChecked, socialMedia, setSocialMedia, products, cats, dataLoaded}), [page, params, go, cart, addToCart, updateQty, removeItem, cartCount, cartTotal, q, favs, toggleFav, viewed, addViewed, user, addresses, coupon, couponApplied, couponData, couponError, discount, stockAlerts, addStockAlert, chatOpen, chatMessages, pastOrders, completePurchase, lang, curr, t, isMobile, mobileMenuOpen, mobileFilterOpen, fp, admin, authChecked, products, cats, dataLoaded]);
 
   return (
     <Ctx.Provider value={ctx}>
-      <div style={{fontFamily:"-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", background:"#f4f7fb", color:"#202226", minHeight:"100vh"}}>
+      <div style={{fontFamily:"-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", background:isAdminPage?"#f3f4f6":"#f4f7fb", color:"#202226", minHeight:"100vh"}}>
         <style>{`
           * { box-sizing: border-box; margin: 0; padding: 0; }
           html, body, #root { overflow-x: hidden; }
@@ -1512,8 +1513,158 @@ export default function App() {
           .fr-product-card:hover img { transform: scale(1.045); }
           .fr-product-card:hover .fr-card-action { background: linear-gradient(135deg,#ff6000,#facc15); color:#111; }
           .fr-vehicle-card:hover { transform: translateY(-4px); border-color: rgba(255,96,0,.7) !important; }
+          [data-admin-panel] { min-width: 0; }
+          [data-admin-panel] * { min-width: 0; }
+          .admin-card-body { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+          .admin-card-body table { min-width: 720px; }
+          .admin-card-body td, .admin-card-body th { vertical-align: top; }
+          .admin-button { min-height: 36px; }
+          .admin-input, [data-admin-panel] select, [data-admin-panel] textarea {
+            min-height: 38px;
+          }
           @media (max-width: 760px) {
             .fr-hero { min-height: 620px; background-position: 67% center; }
+            .admin-shell {
+              display: block !important;
+              min-height: auto !important;
+              background: #f3f4f6 !important;
+            }
+            .admin-sidebar {
+              width: 100% !important;
+              position: sticky !important;
+              top: 0 !important;
+              z-index: 120 !important;
+              padding: 10px 10px 12px !important;
+              border-bottom: 1px solid rgba(255,255,255,.08);
+              box-shadow: 0 12px 26px rgba(0,0,0,.18);
+            }
+            .admin-brand {
+              padding: 0 4px 8px !important;
+              border-bottom: 0 !important;
+              display: flex !important;
+              align-items: center !important;
+              justify-content: space-between !important;
+              gap: 10px !important;
+            }
+            .admin-brand-title { font-size: 17px !important; }
+            .admin-menu {
+              display: flex !important;
+              gap: 7px !important;
+              overflow-x: auto !important;
+              padding: 4px 0 2px !important;
+              scrollbar-width: thin;
+            }
+            .admin-menu button {
+              flex: 0 0 auto !important;
+              width: auto !important;
+              max-width: 170px !important;
+              margin-bottom: 0 !important;
+              padding: 9px 11px !important;
+              white-space: nowrap !important;
+              border: 1px solid rgba(255,255,255,.08) !important;
+              background: rgba(255,255,255,.04) !important;
+            }
+            .admin-menu button.admin-tab-active {
+              background: #ff6000 !important;
+              color: #111 !important;
+              border-color: #ff6000 !important;
+            }
+            .admin-sidebar-footer {
+              padding: 8px 0 0 !important;
+              margin-top: 6px !important;
+              border-top: 1px solid rgba(255,255,255,.08) !important;
+            }
+            .admin-sidebar-footer button {
+              min-height: 38px !important;
+              color: #fff !important;
+              background: rgba(255,255,255,.08) !important;
+            }
+            .admin-content {
+              padding: 12px !important;
+              overflow: visible !important;
+            }
+            .admin-content h1 {
+              font-size: 20px !important;
+              margin-bottom: 12px !important;
+              line-height: 1.25 !important;
+            }
+            .admin-card {
+              border-radius: 8px !important;
+              margin-bottom: 12px !important;
+              overflow: hidden !important;
+            }
+            .admin-card-head {
+              align-items: stretch !important;
+              flex-direction: column !important;
+              gap: 10px !important;
+              padding: 12px !important;
+            }
+            .admin-card-head h2 {
+              font-size: 15px !important;
+              line-height: 1.25 !important;
+            }
+            .admin-card-action,
+            .admin-card-action > div {
+              width: 100% !important;
+              display: flex !important;
+              flex-wrap: wrap !important;
+              gap: 8px !important;
+            }
+            .admin-card-body {
+              padding: 12px !important;
+              overflow-x: auto !important;
+            }
+            .admin-button {
+              flex: 1 1 128px !important;
+              width: auto !important;
+              min-height: 42px !important;
+              padding: 10px 12px !important;
+              font-size: 12px !important;
+              white-space: normal !important;
+              text-align: center !important;
+            }
+            .admin-input,
+            [data-admin-panel] select,
+            [data-admin-panel] textarea {
+              min-height: 42px !important;
+              font-size: 13px !important;
+            }
+            [data-admin-panel] [style*="grid-template-columns"] {
+              grid-template-columns: minmax(0, 1fr) !important;
+            }
+            [data-admin-panel] [style*="max-width:400"],
+            [data-admin-panel] [style*="max-width:500"],
+            [data-admin-panel] [style*="max-width:600"] {
+              max-width: none !important;
+            }
+            [data-admin-panel] [style*="display: flex"] {
+              max-width: 100%;
+            }
+            .admin-card-body table {
+              min-width: 680px !important;
+              font-size: 12px !important;
+            }
+            .admin-card-body td,
+            .admin-card-body th {
+              padding: 8px !important;
+            }
+            .admin-card-body table button,
+            .admin-card-body table select {
+              min-height: 34px !important;
+              font-size: 12px !important;
+            }
+            .admin-card-body > div[style*="display: flex"],
+            [data-admin-panel] form,
+            [data-admin-panel] label {
+              max-width: 100%;
+            }
+            .admin-login-shell {
+              margin: 24px auto !important;
+              padding: 0 14px !important;
+            }
+            .admin-login-card {
+              padding: 22px !important;
+            }
           }
         `}</style>
 
@@ -1522,17 +1673,17 @@ export default function App() {
 
         {/* WhatsApp Button */}
         <a href={generalWhatsAppUrl("site genel destek")} target="_blank" rel="noopener noreferrer" onClick={() => metaTrackCustom("WhatsAppLead", { source: "floating" })}
-          style={{position:"fixed",bottom:24,right:24,zIndex:998,width:64,height:64,borderRadius:"50%",background:"#25D366",display:isMobile?"none":"flex",alignItems:"center",justifyContent:"center",boxShadow:"0 4px 16px rgba(37,211,102,.4)",textDecoration:"none"}}
+          style={{position:"fixed",bottom:24,right:24,zIndex:998,width:64,height:64,borderRadius:"50%",background:"#25D366",display:(isMobile||isAdminPage)?"none":"flex",alignItems:"center",justifyContent:"center",boxShadow:"0 4px 16px rgba(37,211,102,.4)",textDecoration:"none"}}
           title="WhatsApp ile yazın">
           <svg viewBox="0 0 32 32" width="36" height="36" fill="#fff"><path d="M16.01 2.93A13.07 13.07 0 0 0 2.93 16a12.94 12.94 0 0 0 1.75 6.53L2.93 29.07l6.72-1.76A13.07 13.07 0 1 0 16.01 2.93Zm0 23.9a10.8 10.8 0 0 1-5.52-1.51l-.4-.23-3.98 1.04 1.06-3.88-.26-.41a10.83 10.83 0 1 1 9.1 5Z"/><path d="M22.36 18.76c-.35-.17-2.05-1.01-2.37-1.13-.32-.11-.55-.17-.78.17-.23.35-.9 1.13-1.1 1.36-.2.23-.41.26-.76.09-.35-.18-1.47-.54-2.8-1.73-1.04-.92-1.73-2.06-1.94-2.41-.2-.35-.02-.54.15-.71.16-.16.35-.41.53-.61.17-.21.23-.35.35-.59.12-.23.06-.44-.03-.61-.09-.17-.78-1.88-1.07-2.57-.28-.68-.57-.59-.78-.6h-.67a1.28 1.28 0 0 0-.93.44 3.93 3.93 0 0 0-1.22 2.92c0 1.72 1.25 3.38 1.43 3.61.17.24 2.47 3.77 5.98 5.28.84.36 1.49.58 2 .74.84.27 1.6.23 2.2.14.67-.1 2.05-.84 2.34-1.65.29-.81.29-1.5.2-1.65-.08-.14-.32-.23-.67-.4Z"/></svg>
         </a>
 
         {/* Scroll to Top */}
-        {showTop && <button onClick={() => window.scrollTo({top:0,behavior:"smooth"})}
+        {showTop && !isAdminPage && <button onClick={() => window.scrollTo({top:0,behavior:"smooth"})}
           style={{position:"fixed",bottom:100,right:24,zIndex:999,width:44,height:44,borderRadius:"50%",background:"#fff",border:"1px solid #ddd",boxShadow:"0 2px 8px rgba(0,0,0,.1)",fontSize:18,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",animation:"fadeIn .3s"}}>↑</button>}
 
         {/* HEADER */}
-        <header style={{background:"#080d17",borderBottom:"1px solid rgba(255,255,255,.08)",position:"sticky",top:0,zIndex:100,boxShadow:"0 12px 34px rgba(0,0,0,.28)",backdropFilter:"blur(12px)"}}>
+        <header style={{display:isAdminPage?"none":"block",background:"#080d17",borderBottom:"1px solid rgba(255,255,255,.08)",position:"sticky",top:0,zIndex:100,boxShadow:"0 12px 34px rgba(0,0,0,.28)",backdropFilter:"blur(12px)"}}>
           <div style={{background:"linear-gradient(90deg,#090d16,#151821 48%,#ff6000)",padding:isMobile?"5px 0":"6px 0"}}>
             <div style={{maxWidth:1200,margin:"0 auto",padding:isMobile?"0 14px":"0 20px",display:"flex",justifyContent:isMobile?"center":"space-between",alignItems:"center"}}>
               <div style={{display:"flex",gap:12,alignItems:"center"}}>
@@ -1618,10 +1769,10 @@ export default function App() {
         </header>
 
         {/* CONTENT */}
-        {mobileMenuOpen && <MobileMenu />}
-        {mobileFilterOpen && <MobileFilterDrawer />}
+        {!isAdminPage && mobileMenuOpen && <MobileMenu />}
+        {!isAdminPage && mobileFilterOpen && <MobileFilterDrawer />}
         <div style={{marginLeft: ((page==="home" || page==="products") && !isMobile) ? 220 : 0}}>
-        <main style={{minHeight:"60vh"}}>
+        <main style={{minHeight:isAdminPage?"100vh":"60vh"}}>
           {page==="home"&&<HomePage/>}
           {page==="products"&&<ProductsPage/>}
           {page==="product"&&<ProductDetailPage/>}
@@ -1653,7 +1804,7 @@ export default function App() {
         </main>
 
         {/* Cookie Consent Banner */}
-        {!cookieOk && (
+        {!isAdminPage && !cookieOk && (
           <div style={{position:"fixed",bottom:0,left:0,right:0,zIndex:9998,background:"#1a1a1a",borderTop:"1px solid #333",padding:isMobile?"10px 0":"16px 0",animation:"slideUp .4s ease"}}>
             <div style={{maxWidth:1200,margin:"0 auto",padding:isMobile?"0 14px":"0 20px",display:"flex",alignItems:isMobile?"stretch":"center",gap:isMobile?10:20,flexDirection:isMobile?"column":"row"}}>
               <div style={{flex:1}}>
@@ -1669,10 +1820,10 @@ export default function App() {
           </div>
         )}
 
-        <MobileBottomBar />
+        {!isAdminPage && <MobileBottomBar />}
 
         {/* FOOTER */}
-        <footer style={{background:"#1a1a1a",color:"#ccc",padding:"40px 0 20px",marginTop:40}}>
+        <footer style={{display:isAdminPage?"none":"block",background:"#1a1a1a",color:"#ccc",padding:"40px 0 20px",marginTop:40}}>
           <div style={{maxWidth:1200,margin:"0 auto",padding:"0 20px"}}>
             {/* Newsletter */}
             <div style={{background:"#252525",borderRadius:8,padding:isMobile?"20px":"24px 28px",marginBottom:32,display:"flex",flexDirection:isMobile?"column":"row",justifyContent:"space-between",alignItems:isMobile?"stretch":"center",gap:isMobile?16:20}}>
@@ -4642,8 +4793,8 @@ function AdminLoginPage() {
     }catch(e){ setErr(e.message); } finally { setBusy(false); }
   }
   return (
-    <div style={{maxWidth:380,margin:"60px auto",padding:"0 20px"}}>
-      <div style={{border:"1px solid #eee",borderRadius:8,padding:32,textAlign:"center"}}>
+    <div className="admin-login-shell" style={{maxWidth:380,margin:"60px auto",padding:"0 20px"}}>
+      <div className="admin-login-card" style={{border:"1px solid #eee",borderRadius:8,padding:32,textAlign:"center"}}>
         <div style={{fontSize:28,fontWeight:800,color:"#ff6000",marginBottom:4}}>frenciniz</div>
         <div style={{fontSize:13,color:"#999",marginBottom:24}}>Yönetim Paneli Girişi</div>
         <input value={email} onChange={e=>{setEmail(e.target.value);setErr("")}} type="text" placeholder="E-posta veya telefon"
@@ -4684,24 +4835,24 @@ function AdminPanel() {
   ];
 
   return (
-    <div style={{display:"flex",minHeight:"80vh",background:"#f5f5f5"}}>
-      <div style={{width:220,background:"#1a1a1a",padding:"20px 0",flexShrink:0}}>
-        <div style={{padding:"0 16px 16px",borderBottom:"1px solid #333"}}>
-          <div style={{fontSize:18,fontWeight:800,color:"#ff6000"}}>frenciniz</div>
+    <div data-admin-panel className="admin-shell" style={{display:"flex",minHeight:"80vh",background:"#f5f5f5"}}>
+      <div className="admin-sidebar" style={{width:220,background:"#1a1a1a",padding:"20px 0",flexShrink:0}}>
+        <div className="admin-brand" style={{padding:"0 16px 16px",borderBottom:"1px solid #333"}}>
+          <div className="admin-brand-title" style={{fontSize:18,fontWeight:800,color:"#ff6000"}}>frenciniz</div>
           <div style={{fontSize:10,color:"#666"}}>Admin Panel</div>
         </div>
-        <div style={{padding:"12px 8px"}}>
+        <div className="admin-menu" style={{padding:"12px 8px"}}>
           {menu.map(m=>(
-            <button key={m.id} onClick={()=>setTab(m.id)} style={{display:"flex",alignItems:"center",gap:10,width:"100%",padding:"9px 12px",border:"none",borderRadius:6,background:tab===m.id?"#333":"transparent",color:tab===m.id?"#fff":"#888",fontSize:13,fontWeight:tab===m.id?600:400,cursor:"pointer",textAlign:"left",marginBottom:2,fontFamily:"inherit"}}>
+            <button key={m.id} className={tab===m.id?"admin-tab-active":""} onClick={()=>setTab(m.id)} style={{display:"flex",alignItems:"center",gap:10,width:"100%",padding:"9px 12px",border:"none",borderRadius:6,background:tab===m.id?"#333":"transparent",color:tab===m.id?"#fff":"#888",fontSize:13,fontWeight:tab===m.id?600:400,cursor:"pointer",textAlign:"left",marginBottom:2,fontFamily:"inherit"}}>
               <span style={{fontSize:14}}>{m.icon}</span>{m.label}
             </button>
           ))}
         </div>
-        <div style={{padding:"12px 16px",borderTop:"1px solid #333",marginTop:8}}>
+        <div className="admin-sidebar-footer" style={{padding:"12px 16px",borderTop:"1px solid #333",marginTop:8}}>
           <button onClick={()=>{setAdmin(false);go("home")}} style={{width:"100%",padding:"8px",background:"#333",color:"#999",border:"none",borderRadius:6,fontSize:12,cursor:"pointer",fontFamily:"inherit"}}>← Siteye Dön</button>
         </div>
       </div>
-      <div style={{flex:1,padding:24,overflowY:"auto"}}>
+      <div className="admin-content" style={{flex:1,padding:24,overflowY:"auto"}}>
         {tab==="dashboard"&&<ADash/>}
         {tab==="sales-chart"&&<ASalesChart/>}
         {tab==="products"&&<AProds/>}
@@ -4734,9 +4885,9 @@ function AdminPanel() {
   );
 }
 
-const ACard=({title,children,action})=>(<div style={{background:"#fff",border:"1px solid #e8e8e8",borderRadius:8,marginBottom:16}}><div style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"14px 20px",borderBottom:"1px solid #f0f0f0"}}><h2 style={{fontSize:16,fontWeight:700}}>{title}</h2>{action}</div><div style={{padding:20}}>{children}</div></div>);
-const ABtn=({children,color,...p})=><button {...p} style={{padding:"8px 18px",background:color||"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:13,fontWeight:600,cursor:"pointer",fontFamily:"inherit",...(p.style||{})}}>{children}</button>;
-const AIn=p=><input {...p} style={{width:"100%",padding:"9px 12px",border:"1px solid #ddd",borderRadius:6,fontSize:13,fontFamily:"inherit",...(p.style||{})}}/>;
+const ACard=({title,children,action})=>(<div className="admin-card" style={{background:"#fff",border:"1px solid #e8e8e8",borderRadius:8,marginBottom:16}}><div className="admin-card-head" style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"14px 20px",borderBottom:"1px solid #f0f0f0"}}><h2 style={{fontSize:16,fontWeight:700}}>{title}</h2>{action&&<div className="admin-card-action">{action}</div>}</div><div className="admin-card-body" style={{padding:20}}>{children}</div></div>);
+const ABtn=({children,color,className="",...p})=><button {...p} className={`admin-button ${className}`.trim()} style={{padding:"8px 18px",background:color||"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:13,fontWeight:600,cursor:"pointer",fontFamily:"inherit",...(p.style||{})}}>{children}</button>;
+const AIn=({className="",...p})=><input {...p} className={`admin-input ${className}`.trim()} style={{width:"100%",padding:"9px 12px",border:"1px solid #ddd",borderRadius:6,fontSize:13,fontFamily:"inherit",...(p.style||{})}}/>;
 
 function ADash(){
   const [stats,setStats]=useState(null);
