@@ -18,11 +18,11 @@
     },
     {
       "source": "/urun/:id/:slug*",
-      "destination": "/api/product-page?route=:id"
+      "destination": "/api/sitemap?type=product&route=:id"
     },
     {
       "source": "/urun/:id",
-      "destination": "/api/product-page?route=:id"
+      "destination": "/api/sitemap?type=product&route=:id"
     },
     {
       "source": "/mercedes-actros-fren-diski",

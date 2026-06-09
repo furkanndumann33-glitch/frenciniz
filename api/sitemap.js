@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 import { LANDING_PAGES, getLandingBySlug } from "./_lib/seo-landing.js";
 import { renderLanding, renderLandingIndex } from "./_lib/landing-render.js";
-import { productSeoUrl } from "../shared/product-seo.js";
+import { productIdFromRoute, productSeoUrl } from "../shared/product-seo.js";
 
 const SITE = "https://frenciniz.com";
 
@@ -51,6 +51,77 @@ function absoluteUrl(value) {
   if (!raw) return "";
   if (/^https?:\/\//i.test(raw)) return raw;
   return `${SITE}${raw.startsWith("/") ? "" : "/"}${raw}`;
+}
+
+function compactText(value, max = 155) {
+  const text = String(value || "").replace(/\s+/g, " ").trim();
+  if (text.length <= max) return text;
+  return text.slice(0, max - 1).replace(/\s+\S*$/, "") + "…";
+}
+
+function readIndexHtml() {
+  for (const file of [path.join(process.cwd(), "dist/index.html"), path.join(process.cwd(), "index.html")]) {
+    try { return fs.readFileSync(file, "utf8"); } catch {}
+  }
+  return "";
+}
+
+function productJsonLd(product, canonical, image) {
+  const price = Number(product.price || 0);
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    image: [image],
+    description: compactText(product.desc || `${product.name} ağır vasıta fren aksamı ürünüdür.`, 500),
+    sku: product.sku || String(product.id),
+    mpn: product.oem || product.sku || String(product.id),
+    brand: { "@type": "Brand", name: product.brand || "Ekersan" },
+    offers: {
+      "@type": "Offer",
+      url: canonical,
+      priceCurrency: "TRY",
+      price: price > 0 ? price.toFixed(2) : undefined,
+      availability: Number(product.stock || 0) > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+      itemCondition: "https://schema.org/NewCondition",
+    },
+  };
+}
+
+function replaceOrInject(html, pattern, replacement, before = "</head>") {
+  if (pattern.test(html)) return html.replace(pattern, replacement);
+  return html.replace(before, `${replacement}\n${before}`);
+}
+
+function renderProductHtml(product) {
+  const canonical = productSeoUrl(SITE, product);
+  const title = compactText(`${product.name} | ${product.sku || product.oem || "Ağır Vasıta Fren Aksamı"} | Frenciniz`, 70);
+  const description = compactText(
+    product.desc ||
+      `${product.name} için OEM/muadil uyumluluk teyidi, aynı gün kargo ve 12 taksit imkanı. Stok kodu: ${product.sku || product.id}.`,
+    155
+  );
+  const image = absoluteUrl(product.img || (Array.isArray(product.images) && product.images[0]) || "/img/site/frenciniz-logo-real-og.jpg");
+  const jsonLd = `<script type="application/ld+json">${JSON.stringify(productJsonLd(product, canonical, image))}</script>`;
+  let html = readIndexHtml();
+
+  if (!html) {
+    html = `<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${xmlEscape(title)}</title><meta name="description" content="${xmlEscape(description)}"><link rel="canonical" href="${xmlEscape(canonical)}">${jsonLd}</head><body><h1>${xmlEscape(product.name)}</h1><p>${xmlEscape(description)}</p><a href="${xmlEscape(canonical)}">Ürünü aç</a></body></html>`;
+    return html;
+  }
+
+  html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${xmlEscape(title)}</title>`);
+  html = replaceOrInject(html, /<meta name="description" content="[^"]*"\s*\/?>/i, `<meta name="description" content="${xmlEscape(description)}" />`);
+  html = replaceOrInject(html, /<link rel="canonical" href="[^"]*"\s*\/?>/i, `<link rel="canonical" href="${xmlEscape(canonical)}" />`);
+  html = replaceOrInject(html, /<meta property="og:type" content="[^"]*"\s*\/?>/i, `<meta property="og:type" content="product" />`);
+  html = replaceOrInject(html, /<meta property="og:title" content="[^"]*"\s*\/?>/i, `<meta property="og:title" content="${xmlEscape(title)}" />`);
+  html = replaceOrInject(html, /<meta property="og:description" content="[^"]*"\s*\/?>/i, `<meta property="og:description" content="${xmlEscape(description)}" />`);
+  html = replaceOrInject(html, /<meta property="og:image" content="[^"]*"\s*\/?>/i, `<meta property="og:image" content="${xmlEscape(image)}" />`);
+  html = replaceOrInject(html, /<meta property="og:url" content="[^"]*"\s*\/?>/i, `<meta property="og:url" content="${xmlEscape(canonical)}" />`);
+  html = replaceOrInject(html, /<meta name="twitter:title" content="[^"]*"\s*\/?>/i, `<meta name="twitter:title" content="${xmlEscape(title)}" />`);
+  html = replaceOrInject(html, /<meta name="twitter:description" content="[^"]*"\s*\/?>/i, `<meta name="twitter:description" content="${xmlEscape(description)}" />`);
+  html = replaceOrInject(html, /<meta name="twitter:image" content="[^"]*"\s*\/?>/i, `<meta name="twitter:image" content="${xmlEscape(image)}" />`);
+  return html.replace("</head>", `${jsonLd}\n</head>`);
 }
 
 async function loadProducts() {
@@ -264,6 +335,18 @@ export default async function handler(req, res) {
       const html = renderLanding(page, products, categories);
       res.setHeader("Content-Type", "text/html; charset=utf-8");
       res.setHeader("Cache-Control", "public, max-age=600, s-maxage=86400, stale-while-revalidate=604800");
+      return res.status(200).send(html);
+    }
+
+    if (type === "product") {
+      const route = String(req.query?.route || parsedUrl.searchParams.get("route") || "");
+      const id = productIdFromRoute(route);
+      const product = products.find(p => String(p.id) === String(id));
+      if (!product) return res.status(404).send("Product not found");
+
+      const html = renderProductHtml(product);
+      res.setHeader("Content-Type", "text/html; charset=utf-8");
+      res.setHeader("Cache-Control", "public, max-age=300, s-maxage=3600, stale-while-revalidate=86400");
       return res.status(200).send(html);
     }
 
