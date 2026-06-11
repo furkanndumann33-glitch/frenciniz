@@ -61,7 +61,7 @@ const productRows = products.map(product => {
     group: group?.name || "",
     stock: product.stock,
     price: product.price,
-    seoUrl: productSeoUrl("https://frenciniz.com", product),
+    seoUrl: productSeoUrl("https://www.frenciniz.com", product),
   };
 });
 
@@ -71,7 +71,7 @@ const sitemapUrlEstimate = staticPages + LANDING_PAGES.length + categoryPages + 
 
 const report = {
   generatedAt: new Date().toISOString(),
-  site: "https://frenciniz.com",
+  site: "https://www.frenciniz.com",
   totals: {
     products: products.length,
     categories: categories.length,
@@ -89,10 +89,10 @@ const report = {
     descriptionCoveragePercent: Number(((productsWithDescription / products.length) * 100).toFixed(2)),
   },
   seoAssets: {
-    sitemap: "https://frenciniz.com/sitemap.xml",
-    merchantFeed: "https://frenciniz.com/google-merchant-feed.xml",
-    metaCatalogFeed: "https://frenciniz.com/meta-catalog-feed.csv",
-    robots: "https://frenciniz.com/robots.txt",
+    sitemap: "https://www.frenciniz.com/sitemap.xml",
+    merchantFeed: "https://www.frenciniz.com/google-merchant-feed.xml",
+    metaCatalogFeed: "https://www.frenciniz.com/meta-catalog-feed.csv",
+    robots: "https://www.frenciniz.com/robots.txt",
     productSeoUrls: "pricing-research/google-seo-product-urls.csv",
   },
   highIntentLandingPages: landingRows

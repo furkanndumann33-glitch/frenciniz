@@ -18,7 +18,7 @@ export default async function handler(req, res) {
     if (!buyer || !buyer.emailAddress) return res.status(400).json({ error: "Alıcı bilgileri eksik" });
 
     const orderRef = randomOrderRef();
-    const baseUrl = (process.env.PUBLIC_BASE_URL || "https://frenciniz.com").replace(/\/+$/, "");
+    const baseUrl = (process.env.PUBLIC_BASE_URL || "https://www.frenciniz.com").replace(/\/+$/, "");
     const okUrl = `${baseUrl}/odeme-basarili?orderRef=${encodeURIComponent(orderRef)}`;
     const failUrl = `${baseUrl}/odeme-basarisiz?orderRef=${encodeURIComponent(orderRef)}`;
 

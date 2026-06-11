@@ -62,7 +62,7 @@ export default async function handler(req, res) {
               "Frenciniz ailesine katıldığınız için teşekkür ederiz.",
               "Hesabınız başarıyla oluşturuldu. Artık siparişlerinizi takip edebilir, favori ürünlerinizi kaydedebilir ve özel kampanyalardan faydalanabilirsiniz.",
             ],
-            cta: { url: "https://frenciniz.com/", label: "Alışverişe Başla" },
+            cta: { url: "https://www.frenciniz.com/", label: "Alışverişe Başla" },
           }),
           text: `Hoşgeldiniz ${user.name}, Frenciniz hesabınız oluşturuldu.`,
         }).catch(()=>{});

@@ -92,7 +92,7 @@ export default async function handler(req, res) {
                 items.length ? `<table style="width:100%;border-top:1px solid #eee;border-bottom:1px solid #eee;margin:12px 0">${itemsHtml}</table>` : "",
                 "Siparişiniz hazırlanmaya başlandı. Kargoya verildiğinde tarafınıza ayrıca bildirim göndereceğiz.",
               ].filter(Boolean),
-              cta: { url: "https://frenciniz.com/orders", label: "Siparişlerimi Gör" },
+              cta: { url: "https://www.frenciniz.com/orders", label: "Siparişlerimi Gör" },
             }),
             text: `Siparişiniz alındı. Sipariş No: ${merchant_oid}. Toplam: ${merged.amount} TL.`,
           }).catch(()=>{});

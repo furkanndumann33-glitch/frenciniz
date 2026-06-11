@@ -75,7 +75,7 @@ export default async function handler(req, res) {
                   trackInfo ? `${trackInfo}` : "Kargo takip bilgisi en kısa sürede iletilecektir.",
                   "Yolda iyi haberler!",
                 ],
-                cta: { url: "https://frenciniz.com/orders", label: "Siparişlerimi Gör" },
+                cta: { url: "https://www.frenciniz.com/orders", label: "Siparişlerimi Gör" },
               }),
               text: `Siparisiniz kargoya verildi. No: ${orderRef}. ${trackInfo}`,
             }).catch(()=>{});

@@ -1,4 +1,4 @@
-export const SITE = "https://frenciniz.com";
+export const SITE = "https://www.frenciniz.com";
 
 export const LANDING_PAGES = [
   {

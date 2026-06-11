@@ -455,7 +455,7 @@ function directImg(url) {
 }
 
 // ===== SEO HELPERS =====
-const SITE_URL = "https://frenciniz.com";
+const SITE_URL = "https://www.frenciniz.com";
 
 function absoluteSiteUrl(value) {
   const raw = String(value || "").trim();
@@ -6063,8 +6063,8 @@ function APaymentCfg(){
       {key:"merchantId",label:"Üye İşyeri No (Merchant ID)",ph:"XXXXXX"},
       {key:"apiKey",label:"API Anahtarı (API Key)",ph:"••••••••",type:"password"},
       {key:"secretKey",label:"Gizli Anahtar (Secret Key)",ph:"••••••••",type:"password"},
-      {key:"successUrl",label:"Başarılı Ödeme URL",ph:"https://frenciniz.com/odeme-basarili"},
-      {key:"failUrl",label:"Başarısız Ödeme URL",ph:"https://frenciniz.com/odeme-basarisiz"},
+      {key:"successUrl",label:"Başarılı Ödeme URL",ph:"https://www.frenciniz.com/odeme-basarili"},
+      {key:"failUrl",label:"Başarısız Ödeme URL",ph:"https://www.frenciniz.com/odeme-basarisiz"},
     ]},
   };
 

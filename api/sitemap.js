@@ -5,7 +5,7 @@ import { LANDING_PAGES, getLandingBySlug } from "./_lib/seo-landing.js";
 import { renderLanding, renderLandingIndex } from "./_lib/landing-render.js";
 import { productIdFromRoute, productSeoUrl } from "../shared/product-seo.js";
 
-const SITE = "https://frenciniz.com";
+const SITE = "https://www.frenciniz.com";
 
 const STATIC_PAGES = [
   { loc: "/", priority: "1.0", changefreq: "daily" },

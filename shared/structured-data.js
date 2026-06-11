@@ -1,6 +1,6 @@
 import { productSeoUrl } from "./product-seo.js";
 
-const DEFAULT_SITE = "https://frenciniz.com";
+const DEFAULT_SITE = "https://www.frenciniz.com";
 const DEFAULT_IMAGE = "/img/site/missing-product.webp";
 
 function cleanText(value, fallback = "") {

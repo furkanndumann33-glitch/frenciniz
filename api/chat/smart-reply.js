@@ -27,7 +27,7 @@ function loadProducts() {
   return { products: PRODUCTS_CACHE, cats: CATS_CACHE };
 }
 
-const SITE = "https://frenciniz.com";
+const SITE = "https://www.frenciniz.com";
 
 const VEHICLES = {
   mercedes: ["mercedes","mersedes","mercede","benz","actros","atego","axor","sprinter","unimog","arocs","antos","accelo"],
