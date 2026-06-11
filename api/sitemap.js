@@ -6,6 +6,8 @@ import { renderLanding, renderLandingIndex } from "./_lib/landing-render.js";
 import { productIdFromRoute, productSeoUrl } from "../shared/product-seo.js";
 
 const SITE = "https://www.frenciniz.com";
+const GOOGLE_MOTOR_VEHICLE_BRAKING_CATEGORY =
+  "Vehicles & Parts > Vehicle Parts & Accessories > Motor Vehicle Parts > Motor Vehicle Braking";
 
 const STATIC_PAGES = [
   { loc: "/", priority: "1.0", changefreq: "daily" },
@@ -43,7 +45,7 @@ function merchantSafeProductText(value) {
 
 function isRealProductImage(value) {
   const img = String(value || "").toLowerCase();
-  return !!img && !img.includes("placehold") && !img.includes("/logo") && !img.includes("logo.");
+  return !!img && !img.includes("placehold") && !img.includes("missing-product") && !img.includes("/logo") && !img.includes("logo.");
 }
 
 function absoluteUrl(value) {
@@ -220,7 +222,7 @@ function buildMerchantFeed(products, categories) {
       `<g:identifier_exists>${hasIdentifier ? "yes" : "no"}</g:identifier_exists>` +
       `<g:adult>no</g:adult>` +
       `<g:product_type>${xmlEscape(fullCat)}</g:product_type>` +
-      `<g:google_product_category>Vehicles &amp; Parts &gt; Vehicle Parts &amp; Accessories &gt; Motor Vehicle Parts &gt; Motor Vehicle Brake Parts</g:google_product_category>` +
+      `<g:google_product_category>${xmlEscape(GOOGLE_MOTOR_VEHICLE_BRAKING_CATEGORY)}</g:google_product_category>` +
       `<g:custom_label_0>${xmlEscape(categoryLabel)}</g:custom_label_0>` +
       `<g:custom_label_1>${xmlEscape(stockTier)}</g:custom_label_1>` +
       `<g:custom_label_2>${xmlEscape(priceTier)}</g:custom_label_2>` +
@@ -301,7 +303,7 @@ function buildMetaCatalogFeed(products, categories) {
       brand,
       mpn,
       Math.max(0, Math.floor(stock)),
-      "Vehicles & Parts > Vehicle Parts & Accessories > Motor Vehicle Parts > Motor Vehicle Brake Parts",
+      GOOGLE_MOTOR_VEHICLE_BRAKING_CATEGORY,
       fullCat,
       categoryLabel,
       stockTier,
