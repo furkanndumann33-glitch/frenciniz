@@ -937,6 +937,10 @@
       "destination": "/api/admin?action=:action"
     },
     {
+      "source": "/api/chat/:action",
+      "destination": "/api/chat?action=:action"
+    },
+    {
       "source": "/api/(.*)",
       "destination": "/api/$1"
     },

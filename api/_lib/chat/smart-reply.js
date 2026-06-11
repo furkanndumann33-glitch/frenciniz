@@ -2,7 +2,7 @@
 // Niyet algılama → kategori/araç/sku eşleştirme → bağlamsal cevap.
 import fs from "fs";
 import path from "path";
-import { productSeoUrl } from "../../shared/product-seo.js";
+import { productSeoUrl } from "../../../shared/product-seo.js";
 
 let PRODUCTS_CACHE = null;
 let CATS_CACHE = null;
