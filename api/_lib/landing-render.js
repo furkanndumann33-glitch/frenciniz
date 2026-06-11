@@ -137,7 +137,7 @@ export function renderLanding(page, products, categories) {
       if (!window.gtag) return;
       var data = payload || {};
       var label = kind === 'phone' ? window.FRENCINIZ_ADS.phoneConversion
-        : kind === 'purchase' ? window.FRENCINIZ_ADS.purchaseConversion
+        : kind === 'purchase' ? (window.FRENCINIZ_ADS.purchaseConversion || window.FRENCINIZ_ADS.leadConversion)
         : window.FRENCINIZ_ADS.leadConversion;
       if (!label) return;
       var eventData = {
