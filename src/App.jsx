@@ -456,6 +456,7 @@ function directImg(url) {
 
 // ===== SEO HELPERS =====
 const SITE_URL = "https://www.frenciniz.com";
+const WHATSAPP_NUMBER = "908508887881";
 
 function absoluteSiteUrl(value) {
   const raw = String(value || "").trim();
@@ -465,7 +466,7 @@ function absoluteSiteUrl(value) {
 }
 
 function waUrl(message) {
-  return `https://wa.me/908508887881?text=${encodeURIComponent(message)}`;
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 }
 
 function generalWhatsAppUrl(topic = "agir vasita fren parcasi") {
@@ -490,6 +491,26 @@ function productWhatsAppUrl(product, qty = 1) {
     "Eski parca/OEM no:",
     "Eski parca fotosu gonderebilirim.",
   ].join("\n"));
+}
+
+function cartWhatsAppUrl(cartItems = [], total = 0, shipping = 0, discount = 0) {
+  const items = (cartItems || []).slice(0, 12).map((item, index) => (
+    `${index + 1}. ${item.name || "-"} | SKU: ${item.sku || "-"} | Adet: ${item.qty || 1} | Tutar: ${Math.round((Number(item.price) || 0) * (Number(item.qty) || 1))} TL`
+  ));
+  const grandTotal = Math.max(0, (Number(total) || 0) + (Number(shipping) || 0) - (Number(discount) || 0));
+  return waUrl([
+    "Merhaba Frenciniz, sepetimdeki urunler icin WhatsApp siparisi/uyumluluk teyidi almak istiyorum.",
+    ...items,
+    cartItems.length > 12 ? `+ ${cartItems.length - 12} urun daha var.` : "",
+    `Sepet ara toplami: ${Math.round(Number(total) || 0)} TL`,
+    `Kargo: ${Math.round(Number(shipping) || 0)} TL`,
+    discount ? `Indirim: ${Math.round(Number(discount) || 0)} TL` : "",
+    `Tahmini toplam: ${Math.round(grandTotal)} TL`,
+    `Sepet linki: ${SITE_URL}/cart`,
+    "Arac marka/model:",
+    "Sase no:",
+    "Eski parca/OEM no:",
+  ].filter(Boolean).join("\n"));
 }
 
 function setMeta(name, content, attr = "name") {
@@ -3001,6 +3022,7 @@ function CartPage() {
   const shippingProgress = Math.min((cartTotal / 3000) * 100, 100);
   const remaining = Math.max(3000 - cartTotal, 0);
   const [couponLoading, setCouponLoading] = useState(false);
+  const whatsappCartHref = cartWhatsAppUrl(cart, cartTotal, ship, discount);
 
   const applyCoupon = async () => {
     const code = coupon.trim().toUpperCase();
@@ -3108,6 +3130,10 @@ function CartPage() {
             <div style={{borderTop:"1px solid #eee",padding:"12px 0 0"}}>
               <div style={{display:"flex",justifyContent:"space-between",alignItems:"baseline",gap:12}}><span style={{fontSize:16,fontWeight:700}}>{t("total")}</span><span style={{fontSize:isMobile?20:22,fontWeight:800,color:"#ff6000",textAlign:"right"}}>{fp(cartTotal + ship - discount)}</span></div>
             </div>
+            <a href={whatsappCartHref} target="_blank" rel="noopener noreferrer" data-lead-source="cart_whatsapp" data-lead-value={cartTotal + ship - discount} data-lead-items={cart.length}
+              style={{width:"100%",padding:"14px",background:"#25D366",color:"#062813",border:"none",borderRadius:6,fontSize:15,fontWeight:950,cursor:"pointer",marginTop:16,textDecoration:"none",display:"flex",alignItems:"center",justifyContent:"center",textAlign:"center",minHeight:46}}>
+              WhatsApp ile Siparisi Tamamla
+            </a>
             <button onClick={() => go("checkout")} style={{width:"100%",padding:"14px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:16,fontWeight:700,cursor:"pointer",marginTop:16}}>Siparişi Tamamla</button>
           </div>
         </div>
@@ -5396,6 +5422,7 @@ function ASMSCfg(){
 
 function ATraffic(){
   const [data,setData]=useState(null);
+  const [leadData,setLeadData]=useState(null);
   const [err,setErr]=useState("");
   const [visitors,setVisitors]=useState([]);
   const [vLoading,setVLoading]=useState(true);
@@ -5409,6 +5436,9 @@ function ATraffic(){
     fetch("/api/admin/traffic",{credentials:"include"}).then(r=>r.json()).then(d=>{
       if(d.error) setErr(d.error); else setData(d);
     }).catch(e=>setErr(e.message));
+    fetch("/api/admin/leads",{credentials:"include"}).then(r=>r.json()).then(d=>{
+      if(!d.error) setLeadData(d);
+    }).catch(()=>{});
     refreshVisitors();
   },[]);
   if(err) return <div style={{padding:20,color:"#dc2626"}}>⚠ {err}</div>;
@@ -5417,15 +5447,21 @@ function ATraffic(){
   const last7Views = data.chart.slice(-7).reduce((s,c)=>s+c.views,0);
   const last7Unique = data.chart.slice(-7).reduce((s,c)=>s+c.unique,0);
   const max = Math.max(...data.chart.map(c=>c.views), 1);
+  const whatsappLeads = leadData?.totals?.whatsapp || 0;
+  const phoneLeads = leadData?.totals?.phone || 0;
+  const emailLeads = leadData?.totals?.email || 0;
 
   return <div style={{display:"flex",flexDirection:"column",gap:16}}>
     {/* Stats cards */}
-    <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:12}}>
+    <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(170px,1fr))",gap:12}}>
       {[
         {label:"Toplam Sayfa Görüntüleme (30g)",val:data.totalViews,icon:"👁"},
         {label:"Toplam Tekil Ziyaretçi (30g)",val:data.totalUnique,icon:"👤"},
         {label:"Görüntüleme (7g)",val:last7Views,icon:"📊"},
         {label:"Tekil Ziyaretçi (7g)",val:last7Unique,icon:"📈"},
+        {label:"WhatsApp Lead (30g)",val:whatsappLeads,icon:"WA"},
+        {label:"Telefon Lead (30g)",val:phoneLeads,icon:"TEL"},
+        {label:"E-posta Lead (30g)",val:emailLeads,icon:"MAIL"},
       ].map((s,i)=>(
         <div key={i} style={{padding:16,background:"#fff",border:"1px solid #eee",borderRadius:10}}>
           <div style={{fontSize:12,color:"#888",marginBottom:6}}>{s.label}</div>
@@ -5457,6 +5493,47 @@ function ATraffic(){
         <span><span style={{display:"inline-block",width:10,height:10,background:"#ffd699",marginRight:4,borderRadius:2,verticalAlign:"middle"}}/>Tekil ziyaretçi</span>
       </div>
     </ACard>
+
+    {leadData && <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))",gap:16}}>
+      <ACard title="Lead Kaynaklari (son 7 gun)">
+        {!leadData.topSources?.length ? <div style={{color:"#999",fontSize:13}}>Henuz lead kaydi yok.</div> :
+        <table style={{width:"100%",borderCollapse:"collapse",fontSize:12}}>
+          <thead><tr style={{borderBottom:"2px solid #eee"}}>
+            <th style={{padding:"8px",textAlign:"left",color:"#999"}}>Tip</th>
+            <th style={{padding:"8px",textAlign:"left",color:"#999"}}>Kaynak</th>
+            <th style={{padding:"8px",textAlign:"right",color:"#999"}}>Adet</th>
+          </tr></thead>
+          <tbody>{leadData.topSources.map((row,i)=>(
+            <tr key={i} style={{borderBottom:"1px solid #f0f0f0"}}>
+              <td style={{padding:"8px",fontWeight:700,color:row.type==="whatsapp"?"#16a34a":row.type==="phone"?"#ff6000":"#555"}}>{row.type}</td>
+              <td style={{padding:"8px",fontFamily:"monospace",fontSize:11,overflowWrap:"anywhere"}}>{row.source}</td>
+              <td style={{padding:"8px",textAlign:"right",fontWeight:800}}>{Number(row.count||0).toLocaleString("tr-TR")}</td>
+            </tr>
+          ))}</tbody>
+        </table>}
+      </ACard>
+      <ACard title="Son Lead Tiklamalari">
+        {!leadData.recent?.length ? <div style={{color:"#999",fontSize:13}}>Henuz kayit yok.</div> :
+        <div style={{maxHeight:260,overflow:"auto"}}>
+          <table style={{width:"100%",borderCollapse:"collapse",fontSize:12}}>
+            <thead><tr style={{borderBottom:"2px solid #eee"}}>
+              <th style={{padding:"8px",textAlign:"left",color:"#999"}}>Zaman</th>
+              <th style={{padding:"8px",textAlign:"left",color:"#999"}}>Tip</th>
+              <th style={{padding:"8px",textAlign:"left",color:"#999"}}>Sayfa</th>
+            </tr></thead>
+            <tbody>{leadData.recent.slice(0,20).map((row,i)=>{
+              const d = row.at ? new Date(row.at) : null;
+              const when = d ? d.toLocaleString("tr-TR",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}) : "-";
+              return <tr key={i} style={{borderBottom:"1px solid #f0f0f0"}}>
+                <td style={{padding:"8px",whiteSpace:"nowrap",color:"#666"}}>{when}</td>
+                <td style={{padding:"8px",fontWeight:700}}>{row.type}</td>
+                <td style={{padding:"8px",fontFamily:"monospace",fontSize:11,maxWidth:260,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}} title={row.path}>{row.path || "/"}</td>
+              </tr>;
+            })}</tbody>
+          </table>
+        </div>}
+      </ACard>
+    </div>}
 
     {/* Top paths */}
     <ACard title="En Çok Ziyaret Edilen Sayfalar (son 7 gün)">

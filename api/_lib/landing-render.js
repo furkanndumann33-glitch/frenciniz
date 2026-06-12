@@ -166,7 +166,40 @@ export function renderLanding(page, products, categories) {
   </script>
   <script>
     (function () {
-      function trackLead(kind, href) {
+      function sendInternalLead(kind, href, link) {
+        try {
+          var data = link && link.dataset ? link.dataset : {};
+          var path = window.location.pathname || '/';
+          var inferredSource = data.leadSource || (path.indexOf('/urun/') === 0 ? 'product_detail' : (path === '/cart' ? 'cart' : (path === '/contact' ? 'contact' : kind + '_site')));
+          var payload = {
+            type: kind,
+            source: inferredSource,
+            href: href || '',
+            path: path,
+            ref: document.referrer || '',
+            productId: data.leadProductId || '',
+            sku: data.leadSku || '',
+            category: data.leadCategory || '',
+            value: Number(data.leadValue || 0) || 0,
+            items: Number(data.leadItems || 0) || 0
+          };
+          var json = JSON.stringify(payload);
+          if (navigator.sendBeacon) {
+            var blob = new Blob([json], { type: 'application/json' });
+            if (navigator.sendBeacon('/api/auth/lead', blob)) return;
+          }
+          fetch('/api/auth/lead', {
+            method: 'POST',
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json' },
+            body: json,
+            keepalive: true
+          }).catch(function () {});
+        } catch (e) {}
+      }
+
+      function trackLead(kind, href, link) {
+        sendInternalLead(kind, href, link);
         if (window.gtag) {
           window.gtag('event', 'generate_lead', {
             event_category: 'lead',
@@ -199,9 +232,9 @@ export function renderLanding(page, products, categories) {
         if (!link) return;
         var href = link.getAttribute('href') || '';
         var normalized = href.toLowerCase();
-        if (normalized.indexOf('wa.me') !== -1 || normalized.indexOf('whatsapp') !== -1) trackLead('whatsapp', href);
-        else if (normalized.indexOf('tel:') === 0) trackLead('phone', href);
-        else if (normalized.indexOf('mailto:') === 0) trackLead('email', href);
+        if (normalized.indexOf('wa.me') !== -1 || normalized.indexOf('whatsapp') !== -1) trackLead('whatsapp', href, link);
+        else if (normalized.indexOf('tel:') === 0) trackLead('phone', href, link);
+        else if (normalized.indexOf('mailto:') === 0) trackLead('email', href, link);
       }, true);
     })();
   </script>

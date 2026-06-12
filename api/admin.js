@@ -156,6 +156,72 @@ export default async function handler(req, res) {
       return res.status(200).json({ visitors, total: visitors.length });
     }
 
+    if (action === "leads") {
+      const types = ["whatsapp", "phone", "email"];
+      const today = new Date();
+      const days = [];
+      for (let i = 29; i >= 0; i--) {
+        const d = new Date(today); d.setDate(d.getDate() - i);
+        days.push(d.toISOString().slice(0, 10));
+      }
+
+      const totals = { whatsapp: 0, phone: 0, email: 0 };
+      const chart = [];
+      for (const day of days) {
+        const row = { date: day };
+        const values = await Promise.all(types.map(type => kv.get(`lead:${type}:${day}`)));
+        types.forEach((type, idx) => {
+          const count = Number(values[idx]) || 0;
+          row[type] = count;
+          totals[type] += count;
+        });
+        chart.push(row);
+      }
+
+      const last7 = days.slice(-7);
+      const sourceCounts = {};
+      const pathCounts = {};
+      for (const day of last7) {
+        for (const type of types) {
+          const [sources, paths] = await Promise.all([
+            kv.smembers(`lead:${type}:sources:${day}`),
+            kv.smembers(`lead:${type}:paths:${day}`),
+          ]);
+          for (const source of (sources || [])) {
+            const c = await kv.get(`lead:${type}:source:${day}:${source}`);
+            const key = `${type}:${source}`;
+            sourceCounts[key] = (sourceCounts[key] || 0) + (Number(c) || 0);
+          }
+          for (const path of (paths || [])) {
+            const c = await kv.get(`lead:${type}:path:${day}:${path}`);
+            const key = `${type}:${path}`;
+            pathCounts[key] = (pathCounts[key] || 0) + (Number(c) || 0);
+          }
+        }
+      }
+
+      const topSources = Object.entries(sourceCounts)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 12)
+        .map(([key, count]) => {
+          const [type, ...rest] = key.split(":");
+          return { type, source: rest.join(":") || "-", count };
+        });
+      const topPaths = Object.entries(pathCounts)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 12)
+        .map(([key, count]) => {
+          const [type, ...rest] = key.split(":");
+          return { type, path: rest.join(":") || "/", count };
+        });
+      const raw = (await kv.lrange("lead:log", 0, 99)) || [];
+      const recent = raw.map(r => {
+        try { return typeof r === "string" ? JSON.parse(r) : r; } catch { return null; }
+      }).filter(Boolean);
+
+      return res.status(200).json({ success: true, totals, chart, topSources, topPaths, recent });
+    }
+
     if (action === "dashboard") {
       const userIds = (await kv.lrange("users:index", 0, 9999)) || [];
       const orderRefs = (await kv.lrange("orders:index", 0, 9999)) || [];
