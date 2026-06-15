@@ -1826,7 +1826,7 @@ export default function App() {
           <div style={{background:"linear-gradient(90deg,#090d16,#151821 48%,#ff6000)",padding:isMobile?"5px 0":"6px 0"}}>
             <div style={{maxWidth:1200,margin:"0 auto",padding:isMobile?"0 14px":"0 20px",display:"flex",justifyContent:isMobile?"center":"space-between",alignItems:"center"}}>
               <div style={{display:"flex",gap:12,alignItems:"center"}}>
-                <span style={{color:"#f8fafc",fontSize:isMobile?11:12,fontWeight:isMobile?800:400,whiteSpace:"nowrap",letterSpacing:isMobile?.2:0}}>{lang==="tr"?(isMobile?"3000₺ üzeri ücretsiz kargo":"Türkiye geneli kargo | 3000₺ üzeri ücretsiz"):(isMobile?"Free shipping over 3000₺":"Free shipping over 3000₺ in Turkey")}</span>
+                <span style={{color:"#f8fafc",fontSize:isMobile?11:12,fontWeight:isMobile?800:400,whiteSpace:"nowrap",letterSpacing:isMobile?.2:0}}>{lang==="tr"?(isMobile?"Kod/sase gonder, teklif al":"Kod/sase gonder, uyum teyidi al | 3000 TL uzeri ucretsiz kargo"):(isMobile?"Send code, get quote":"Send code for fitment check | Free shipping over 3000 TL")}</span>
                 {!isMobile && rates.EUR>0 && <span style={{color:"#aaa",fontSize:11,borderLeft:"1px solid #444",paddingLeft:10}}>€1 = ₺{(1/rates.EUR).toFixed(2)} | $1 = ₺{(1/rates.USD).toFixed(2)}</span>}
               </div>
               {!isMobile && <div style={{display:"flex",gap:12,alignItems:"center"}}>
@@ -2558,23 +2558,23 @@ function HomePage() {
       <div style={{position:"relative",zIndex:1,maxWidth:1220,margin:"0 auto",padding:isMobile?"42px 18px 34px":"66px 28px 44px",display:"grid",gridTemplateColumns:isMobile?"1fr":"minmax(0,1.05fr) minmax(310px,.65fr)",gap:isMobile?28:36,alignItems:"center"}}>
         <div style={{maxWidth:720}}>
           <div style={{display:"inline-flex",alignItems:"center",gap:8,padding:"8px 12px",borderRadius:999,background:"rgba(255,96,0,.16)",border:"1px solid rgba(255,96,0,.45)",color:"#ffd8bf",fontSize:12,fontWeight:900,letterSpacing:.4,textTransform:"uppercase",marginBottom:16}}>
-            {lang==="en"?"Heavy duty brake warehouse":"Agir vasita fren deposu"}
+            {lang==="en"?"Fast quote by OEM code":"OEM koduyla hizli teklif"}
           </div>
           <h1 style={{fontSize:isMobile?32:62,lineHeight:isMobile?1.1:1.02,fontWeight:950,letterSpacing:0,margin:"0 0 16px",maxWidth:isMobile?350:760,wordBreak:"normal"}}>
-            {lang==="en"?"Welcome to Frenciniz.":"Frenciniz'e Hoş Geldiniz."}
+            {lang==="en"?"Send the code, confirm the right brake part.":"Parca kodunu gonder, dogru fren parcasini bulalim."}
           </h1>
           <p style={{fontSize:isMobile?15:19,lineHeight:1.7,color:"rgba(255,255,255,.86)",maxWidth:isMobile?320:650,margin:"0 0 24px"}}>
-            {lang==="en"?"Ekersan heavy-duty brake discs, drums, chambers, calipers, pads and trailer parts with fast compatibility check and Turkey-wide shipping.":"Ekersan fren diski, kampana, koruk, kaliper, balata ve dorse fren parcalarinda stoklu urun, hizli uyumluluk teyidi ve Turkiye geneli kargo."}
+            {lang==="en"?"Heavy-duty brake discs, drums, pads, chambers, calipers, bolts and trailer parts. Send OEM, chassis or old part photo; get stock, price and compatibility confirmation before ordering.":"Agir vasita fren diski, kampana, balata, koruk, kaliper, bijon ve dorse fren parcalarinda OEM, sase veya eski parca fotografiyla stok, fiyat ve uyumluluk teyidi alin."}
           </p>
           <div style={{display:"flex",flexDirection:isMobile?"column":"row",flexWrap:isMobile?"nowrap":"wrap",gap:12,alignItems:isMobile?"stretch":"center",maxWidth:isMobile?310:"none"}}>
-            <button onClick={() => go("products")} style={{minHeight:48,padding:"14px 22px",borderRadius:8,border:"none",background:"linear-gradient(135deg,#ff6000,#facc15)",color:"#111",fontWeight:950,fontSize:15,boxShadow:"0 18px 45px rgba(255,96,0,.28)",animation:"glowPulse 4s ease-in-out infinite"}}>{t("browseProducts")}</button>
-            <a href={generalWhatsAppUrl("parca kodu ile teklif")} target="_blank" rel="noopener noreferrer" onClick={() => metaTrackCustom("WhatsAppLead", { source: "home_hero" })} style={{minHeight:48,padding:"13px 18px",borderRadius:8,border:"1px solid rgba(255,255,255,.28)",background:"rgba(255,255,255,.1)",color:"#fff",fontWeight:850,fontSize:14,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center",textAlign:"center"}}>{lang==="en"?"Ask compatibility":"Parca kodu gonder, teklif al"}</a>
+            <button onClick={() => go("products")} style={{minHeight:48,padding:"14px 22px",borderRadius:8,border:"none",background:"linear-gradient(135deg,#ff6000,#facc15)",color:"#111",fontWeight:950,fontSize:15,boxShadow:"0 18px 45px rgba(255,96,0,.28)",animation:"glowPulse 4s ease-in-out infinite"}}>{lang==="en"?"See in-stock parts":"Stoklu urunlere bak"}</button>
+            <a href={generalWhatsAppUrl("parca kodu ile teklif")} target="_blank" rel="noopener noreferrer" onClick={() => metaTrackCustom("WhatsAppLead", { source: "home_hero" })} style={{minHeight:48,padding:"13px 18px",borderRadius:8,border:"1px solid rgba(255,255,255,.28)",background:"rgba(255,255,255,.1)",color:"#fff",fontWeight:850,fontSize:14,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center",textAlign:"center"}}>{lang==="en"?"Get quote on WhatsApp":"WhatsApp'tan hizli teklif al"}</a>
           </div>
           <div style={{marginTop:16,maxWidth:isMobile?320:560,padding:isMobile?10:12,borderRadius:8,background:"rgba(4,8,15,.62)",border:"1px solid rgba(255,255,255,.18)",boxShadow:"0 16px 44px rgba(0,0,0,.22)"}}>
-            <div style={{fontSize:12,fontWeight:900,color:"#facc15",marginBottom:8,textTransform:"uppercase",letterSpacing:.3}}>{lang==="en"?"Find by code":"OEM kodu yaz, dogru parcayi bulalim"}</div>
+            <div style={{fontSize:12,fontWeight:900,color:"#facc15",marginBottom:8,textTransform:"uppercase",letterSpacing:.3}}>{lang==="en"?"Send code, get price and fitment":"Kod gonder, fiyat ve uyum teyidi al"}</div>
             <div style={{display:"flex",gap:8,flexDirection:isMobile?"column":"row"}}>
-              <input value={quickCode} onChange={e=>setQuickCode(e.target.value)} placeholder={lang==="en"?"OEM / SKU / chassis / part code":"OEM / SKU / sase / parca kodu"} style={{flex:1,minHeight:44,border:"1px solid rgba(255,255,255,.2)",borderRadius:7,background:"rgba(255,255,255,.96)",color:"#111827",fontSize:14,fontWeight:700,padding:"0 12px"}} />
-              <a href={quickQuoteHref} target="_blank" rel="noopener noreferrer" onClick={() => metaTrackCustom("WhatsAppLead", { source: "home_quick_code", hasCode: !!quickCode.trim() })} style={{minHeight:44,padding:"0 14px",borderRadius:7,background:"#25D366",color:"#07111f",fontSize:13,fontWeight:950,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center",whiteSpace:"nowrap"}}>{lang==="en"?"Ask on WhatsApp":"WhatsApp'ta sor"}</a>
+              <input value={quickCode} onChange={e=>setQuickCode(e.target.value)} placeholder={lang==="en"?"OEM / SKU / chassis / old part code":"OEM / SKU / sase / eski parca kodu"} style={{flex:1,minHeight:44,border:"1px solid rgba(255,255,255,.2)",borderRadius:7,background:"rgba(255,255,255,.96)",color:"#111827",fontSize:14,fontWeight:700,padding:"0 12px"}} />
+              <a href={quickQuoteHref} target="_blank" rel="noopener noreferrer" onClick={() => metaTrackCustom("WhatsAppLead", { source: "home_quick_code", hasCode: !!quickCode.trim() })} style={{minHeight:44,padding:"0 14px",borderRadius:7,background:"#25D366",color:"#07111f",fontSize:13,fontWeight:950,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center",whiteSpace:"nowrap"}}>{lang==="en"?"Send to WhatsApp":"WhatsApp'a gonder"}</a>
             </div>
           </div>
         </div>
@@ -3056,8 +3056,8 @@ function ProductDetailPage() {
           <div style={{padding:"15px 16px",background:"linear-gradient(135deg,#fff7ed,#fff)",border:"1px solid #fed7aa",borderRadius:8,marginBottom:16,boxShadow:"0 12px 28px rgba(249,115,22,.10)"}}>
             <div style={{display:"flex",gap:12,justifyContent:"space-between",alignItems:isMobile?"stretch":"center",flexDirection:isMobile?"column":"row"}}>
               <div style={{minWidth:0}}>
-                <div style={{fontSize:15,fontWeight:950,color:"#111827",marginBottom:5}}>Sase / OEM ile hizli uyumluluk</div>
-                <div style={{fontSize:13,color:"#6b7280",lineHeight:1.55}}>Arac modeli, sase veya eski parca fotografini gonderin; siparisten once dogru parcayi netlestirelim.</div>
+                <div style={{fontSize:15,fontWeight:950,color:"#111827",marginBottom:5}}>Bu parca araciniza uyar mi? Hemen teyit edelim</div>
+                <div style={{fontSize:13,color:"#6b7280",lineHeight:1.55}}>OEM kodu, sase no veya eski parca fotografini gonderin; stok, fiyat ve uyumlulugu siparisten once netlestirelim.</div>
                 <div style={{display:"flex",flexWrap:"wrap",gap:6,marginTop:10}}>
                   {["14:00'a kadar ayni gun kargo","3000 TL uzeri ucretsiz kargo","14 gun iade"].map(label => (
                     <span key={label} style={{fontSize:11,fontWeight:850,color:"#9a3412",background:"#ffedd5",border:"1px solid #fed7aa",borderRadius:5,padding:"5px 7px"}}>{label}</span>
@@ -3067,11 +3067,11 @@ function ProductDetailPage() {
               <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr 1fr":"1fr",gap:8,minWidth:isMobile?"100%":170}}>
                 <a href={whatsappQuoteHref} target="_blank" rel="noopener noreferrer" onClick={() => metaTrack("Contact", metaProductPayload(p, qty, p.cat))}
                   style={{minHeight:42,padding:"10px 12px",background:"#25D366",color:"#062813",borderRadius:6,fontSize:13,fontWeight:950,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center",textAlign:"center"}}>
-                  WhatsApp'ta sor
+                  Sase/OEM gonder, fiyat al
                 </a>
                 <a href="tel:+905456087008" onClick={() => metaTrackCustom("PhoneLead", { source: "product_detail_fast_box", product_id: p.id, sku: p.sku })}
                   style={{minHeight:42,padding:"10px 12px",background:"#111827",color:"#fff",borderRadius:6,fontSize:13,fontWeight:950,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center",textAlign:"center"}}>
-                  Hemen ara
+                  Hemen ara, stok sor
                 </a>
               </div>
             </div>
@@ -3079,15 +3079,15 @@ function ProductDetailPage() {
           <div style={{padding:"15px 16px",background:"linear-gradient(135deg,#07111f,#172033)",borderRadius:8,marginBottom:16,border:"1px solid rgba(255,96,0,.25)",color:"#fff",boxShadow:"0 14px 34px rgba(15,23,42,.12)"}}>
             <div style={{display:"flex",justifyContent:"space-between",gap:12,alignItems:isMobile?"flex-start":"center",flexDirection:isMobile?"column":"row"}}>
               <div style={{minWidth:0}}>
-                <div style={{fontSize:14,fontWeight:950,marginBottom:6}}>OEM / şase ile hızlı teyit</div>
-                <div style={{fontSize:12,color:"#cbd5e1",lineHeight:1.55}}>Kod, şase veya eski parça fotoğrafı gönderin; uyumluluğu siparişten önce netleştirelim.</div>
+                <div style={{fontSize:14,fontWeight:950,marginBottom:6}}>Yanlis parca riski almadan siparis verin</div>
+                <div style={{fontSize:12,color:"#cbd5e1",lineHeight:1.55}}>Kod, sase veya eski parca fotografi ile kontrol edip dogru urunu teyit edelim.</div>
                 <div style={{display:"flex",flexWrap:"wrap",gap:6,marginTop:10}}>
-                  {["Araç modeli","Şase no","Eski parça fotoğrafı"].map(label => <span key={label} style={{fontSize:11,fontWeight:800,color:"#facc15",background:"rgba(250,204,21,.12)",border:"1px solid rgba(250,204,21,.22)",borderRadius:5,padding:"5px 7px"}}>{label}</span>)}
+                  {["Arac modeli","Sase no","Eski parca fotografi"].map(label => <span key={label} style={{fontSize:11,fontWeight:800,color:"#facc15",background:"rgba(250,204,21,.12)",border:"1px solid rgba(250,204,21,.22)",borderRadius:5,padding:"5px 7px"}}>{label}</span>)}
                 </div>
               </div>
               <a href={whatsappQuoteHref} target="_blank" rel="noopener noreferrer" onClick={() => metaTrack("Contact", metaProductPayload(p, qty, p.cat))}
                 style={{minHeight:42,padding:"11px 14px",background:"#25D366",color:"#07111f",borderRadius:6,fontSize:13,fontWeight:950,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center",whiteSpace:"nowrap"}}>
-                WhatsApp teklif al
+                WhatsApp'tan teyit al
               </a>
             </div>
           </div>
