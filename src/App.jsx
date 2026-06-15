@@ -560,6 +560,21 @@ const HOME_INTENT_LINKS = [
   { href: "/saf-intrax-fren-diski", title: "SAF Intrax Fren Diski", desc: "SAF Intrax / Intradisc disk ve balata" },
   { href: "/schmitz-cargobull-balata", title: "Schmitz Balata", desc: "Schmitz Cargobull dorse balata ve kampana" },
   { href: "/kogel-maxx-balata", title: "Kogel Maxx Balata", desc: "Kogel dorse balata, disk ve suspansiyon korugu" },
+  { href: "/axor-1840-fren-diski", title: "Axor 1840 Fren Diski", desc: "Mercedes Axor 1840 disk, balata ve bijon teyidi" },
+  { href: "/axor-1840-kampana", title: "Axor 1840 Kampana", desc: "Axor 1840 kampana, pabuclu fren ve balata" },
+  { href: "/axor-1840-bijon", title: "Axor 1840 Bijon", desc: "Mercedes Axor 1840 bijon ve disk civatasi" },
+  { href: "/axor-3340-balata", title: "Axor 3340 Balata", desc: "Axor 3340 / 4140 fren balatasi ve pabuc" },
+  { href: "/actros-1848-fren-diski", title: "Actros 1848 Fren Diski", desc: "Actros 1848 / 1851 disk ve kampana grubu" },
+  { href: "/tourismo-balata", title: "Tourismo Balata", desc: "Mercedes Tourismo otobus balata ve disk" },
+  { href: "/tourismo-fren-diski", title: "Tourismo Fren Diski", desc: "Tourismo / Tourino otobus fren diski" },
+  { href: "/man-fortuna-balata", title: "MAN Fortuna Balata", desc: "MAN Fortuna otobus balata ve koruk grubu" },
+  { href: "/man-40-360-fren-diski", title: "MAN 40.360 Fren Diski", desc: "MAN 40.360 / 40.460 disk ve kampana" },
+  { href: "/scania-g420-balata", title: "Scania G420 Balata", desc: "Scania G420 / G440 balata ve disk" },
+  { href: "/daf-cf-bijon", title: "DAF CF Bijon", desc: "DAF CF / XF bijon, somun ve civata" },
+  { href: "/bpw-30k-bijon", title: "BPW 30K Bijon", desc: "BPW 30K dorse bijon, somun ve porya" },
+  { href: "/saf-intrax-kampana", title: "SAF Intrax Kampana", desc: "SAF Intrax dorse kampana ve disk" },
+  { href: "/krone-dorse-kampana", title: "Krone Dorse Kampana", desc: "Krone dorse kampana, bijon ve porya" },
+  { href: "/kogel-dorse-fren-diski", title: "Kogel Dorse Fren Diski", desc: "Kogel dorse disk, balata ve koruk" },
 ];
 
 function HomeIntentLinks({isMobile, lang}) {

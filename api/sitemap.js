@@ -61,6 +61,70 @@ function compactText(value, max = 155) {
   return text.slice(0, max - 1).replace(/\s+\S*$/, "") + "…";
 }
 
+function cleanSeoText(value) {
+  return String(value || "").replace(/\s+/g, " ").trim();
+}
+
+function shortCode(value, max = 38) {
+  const first = cleanSeoText(value)
+    .split(/[,;/|]+|\s+-\s+/)
+    .map(part => part.trim())
+    .find(Boolean) || "";
+  return first.slice(0, max);
+}
+
+function categoryNameForProduct(product, categories = []) {
+  const sub = categories.find(c => c.id === product?.cat);
+  return merchantSafeProductText(sub?.name || product?.cat || "Agir Vasita Fren Aksami");
+}
+
+function vehiclePhrase(product) {
+  const values = [
+    ...(Array.isArray(product?.compat) ? product.compat : []),
+    ...(Array.isArray(product?.veh) ? product.veh : []),
+  ].map(cleanSeoText).filter(Boolean);
+  if (values.length) return values.slice(0, 5).join(", ");
+
+  const text = cleanSeoText(product?.name).toLowerCase();
+  const known = [
+    "Mercedes", "Axor", "Actros", "Atego", "Arocs", "Travego", "Tourismo",
+    "MAN", "TGA", "TGS", "TGX", "Volvo", "FH", "FM", "Scania", "DAF",
+    "Ford Cargo", "F-Max", "Renault", "Premium", "Kerax", "Iveco",
+    "BPW", "SAF", "Krone", "Kogel", "Schmitz", "Tirsan", "ROR", "Meritor",
+  ].filter(term => text.includes(term.toLowerCase()));
+  return [...new Set(known)].slice(0, 6).join(", ");
+}
+
+function buildSeoProductTitle(product, categories = [], max = 74) {
+  const productName = merchantSafeProductText(product?.name || "Agir Vasita Fren Parcasi");
+  const category = categoryNameForProduct(product, categories);
+  const code = shortCode(product?.oem || product?.sku || product?.id);
+  const parts = [productName, category, code ? `OEM/SKU ${code}` : "", "Frenciniz"]
+    .filter(Boolean)
+    .filter((value, index, arr) => arr.findIndex(item => item.toLowerCase() === value.toLowerCase()) === index);
+  return compactText(parts.join(" | "), max);
+}
+
+function buildSeoProductDescription(product, categories = [], max = 5000) {
+  const productName = merchantSafeProductText(product?.name || "Agir vasita fren parcasi");
+  const category = categoryNameForProduct(product, categories);
+  const brand = merchantSafeProductText(product?.brand || "Ekersan");
+  const sku = cleanSeoText(product?.sku);
+  const oem = cleanSeoText(product?.oem);
+  const vehicles = vehiclePhrase(product);
+  const stock = Number(product?.stock || 0);
+  const pieces = [
+    `${productName}, ${category} kategorisinde ${brand} marka agir vasita fren parcasi.`,
+    sku ? `Stok kodu: ${sku}.` : "",
+    oem ? `OEM / muadil kod: ${oem}.` : "",
+    vehicles ? `Uyumluluk adaylari: ${vehicles}.` : "",
+    "Kamyon, tir, otobus ve dorse fren sistemleri icin OEM kodu, sase no veya eski parca fotografi ile uyumluluk teyidi yapilir.",
+    stock > 0 ? `Stokta ${Math.floor(stock)} adet gorunuyor; fiyat ve kargo icin teklif alabilirsiniz.` : "Stok ve fiyat icin WhatsApp uzerinden teyit alabilirsiniz.",
+    "Ayni gun kargo, 12 taksit ve 14 gun iade destegi vardir.",
+  ];
+  return compactText(pieces.filter(Boolean).join(" "), max);
+}
+
 function readIndexHtml() {
   for (const file of [path.join(process.cwd(), "dist/index.html"), path.join(process.cwd(), "index.html")]) {
     try { return fs.readFileSync(file, "utf8"); } catch {}
@@ -68,7 +132,7 @@ function readIndexHtml() {
   return "";
 }
 
-function productJsonLd(product, canonical, image) {
+function productJsonLd(product, canonical, image, categories = []) {
   const price = Number(product.price || 0);
   return {
     "@context": "https://schema.org",
@@ -79,6 +143,7 @@ function productJsonLd(product, canonical, image) {
     sku: product.sku || String(product.id),
     mpn: product.oem || product.sku || String(product.id),
     brand: { "@type": "Brand", name: product.brand || "Ekersan" },
+    category: categoryNameForProduct(product, categories),
     offers: {
       "@type": "Offer",
       url: canonical,
@@ -110,6 +175,61 @@ function renderProductHtml(product) {
   if (!html) {
     html = `<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${xmlEscape(title)}</title><meta name="description" content="${xmlEscape(description)}"><link rel="canonical" href="${xmlEscape(canonical)}">${jsonLd}</head><body><h1>${xmlEscape(product.name)}</h1><p>${xmlEscape(description)}</p><a href="${xmlEscape(canonical)}">Ürünü aç</a></body></html>`;
     return html;
+  }
+
+  html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${xmlEscape(title)}</title>`);
+  html = replaceOrInject(html, /<meta name="description" content="[^"]*"\s*\/?>/i, `<meta name="description" content="${xmlEscape(description)}" />`);
+  html = replaceOrInject(html, /<link rel="canonical" href="[^"]*"\s*\/?>/i, `<link rel="canonical" href="${xmlEscape(canonical)}" />`);
+  html = replaceOrInject(html, /<meta property="og:type" content="[^"]*"\s*\/?>/i, `<meta property="og:type" content="product" />`);
+  html = replaceOrInject(html, /<meta property="og:title" content="[^"]*"\s*\/?>/i, `<meta property="og:title" content="${xmlEscape(title)}" />`);
+  html = replaceOrInject(html, /<meta property="og:description" content="[^"]*"\s*\/?>/i, `<meta property="og:description" content="${xmlEscape(description)}" />`);
+  html = replaceOrInject(html, /<meta property="og:image" content="[^"]*"\s*\/?>/i, `<meta property="og:image" content="${xmlEscape(image)}" />`);
+  html = replaceOrInject(html, /<meta property="og:url" content="[^"]*"\s*\/?>/i, `<meta property="og:url" content="${xmlEscape(canonical)}" />`);
+  html = replaceOrInject(html, /<meta name="twitter:title" content="[^"]*"\s*\/?>/i, `<meta name="twitter:title" content="${xmlEscape(title)}" />`);
+  html = replaceOrInject(html, /<meta name="twitter:description" content="[^"]*"\s*\/?>/i, `<meta name="twitter:description" content="${xmlEscape(description)}" />`);
+  html = replaceOrInject(html, /<meta name="twitter:image" content="[^"]*"\s*\/?>/i, `<meta name="twitter:image" content="${xmlEscape(image)}" />`);
+  return html.replace("</head>", `${jsonLd}\n</head>`);
+}
+
+function productJsonLdSeo(product, canonical, image, categories = []) {
+  const price = Number(product.price || 0);
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    image: [image],
+    description: buildSeoProductDescription(product, categories, 500),
+    sku: product.sku || String(product.id),
+    mpn: product.oem || product.sku || String(product.id),
+    brand: { "@type": "Brand", name: product.brand || "Ekersan" },
+    category: categoryNameForProduct(product, categories),
+    additionalProperty: [
+      product.sku ? { "@type": "PropertyValue", name: "SKU", value: product.sku } : null,
+      product.oem ? { "@type": "PropertyValue", name: "OEM / Muadil", value: product.oem } : null,
+      vehiclePhrase(product) ? { "@type": "PropertyValue", name: "Uyumluluk Adaylari", value: vehiclePhrase(product) } : null,
+    ].filter(Boolean),
+    offers: {
+      "@type": "Offer",
+      url: canonical,
+      priceCurrency: "TRY",
+      price: price > 0 ? price.toFixed(2) : undefined,
+      availability: Number(product.stock || 0) > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+      itemCondition: "https://schema.org/NewCondition",
+      seller: { "@type": "Organization", name: "Frenciniz", url: SITE },
+    },
+  };
+}
+
+function renderSeoProductHtml(product, categories = []) {
+  const canonical = productSeoUrl(SITE, product);
+  const title = buildSeoProductTitle(product, categories);
+  const description = buildSeoProductDescription(product, categories, 165);
+  const image = absoluteUrl(product.img || (Array.isArray(product.images) && product.images[0]) || "/img/site/frenciniz-logo-real-og.jpg");
+  const jsonLd = `<script type="application/ld+json">${JSON.stringify(productJsonLdSeo(product, canonical, image, categories))}</script>`;
+  let html = readIndexHtml();
+
+  if (!html) {
+    return `<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${xmlEscape(title)}</title><meta name="description" content="${xmlEscape(description)}"><link rel="canonical" href="${xmlEscape(canonical)}">${jsonLd}</head><body><h1>${xmlEscape(product.name)}</h1><p>${xmlEscape(description)}</p><a href="${xmlEscape(canonical)}">Urunu ac</a></body></html>`;
   }
 
   html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${xmlEscape(title)}</title>`);
@@ -183,7 +303,7 @@ function buildMerchantFeed(products, categories) {
     const hasIdentifier = Boolean(gtin || (brand && mpn));
     const price = Number(p.price || 0);
     const stock = Number(p.stock || 0);
-    const titleParts = [productName, p.sku, brand, catName]
+    const titleParts = [productName, shortCode(p.oem), p.sku, catName, brand]
       .filter(Boolean)
       .filter((value, index, arr) => arr.findIndex(v => String(v).toLowerCase() === String(value).toLowerCase()) === index);
     const merchantTitle = titleParts.join(" - ").slice(0, 150);
@@ -195,6 +315,7 @@ function buildMerchantFeed(products, categories) {
     const richDesc = `${productName} - ${catName} kategorisinde ${brand} marka orijinal/eşdeğer parça. ${p.sku ? "Stok kodu: " + p.sku + ". " : ""}${p.oem ? "OEM: " + p.oem + ". " : ""}Kamyon, tır, otobüs ve dorse fren sistemleri için OEM/şase ile uyumluluk teyidi yapılır. 3000₺ üzeri ücretsiz kargo, 12 taksit, 14 gün koşulsuz iade. Tel: 0545 608 7008 · WhatsApp: 0850 888 7881.`;
     const baseDesc = productDesc && productDesc.length > productName.length + 10 ? productDesc : richDesc;
     const desc = baseDesc.slice(0, 5000);
+    const merchantDesc = buildSeoProductDescription(p, categories, 5000);
     const additionalImages = Array.isArray(p.images)
       ? p.images
           .filter(Boolean)
@@ -207,7 +328,7 @@ function buildMerchantFeed(products, categories) {
       `<item>` +
       `<g:id>${xmlEscape(p.id)}</g:id>` +
       `<g:title>${xmlEscape(merchantTitle)}</g:title>` +
-      `<g:description>${xmlEscape(desc)}</g:description>` +
+      `<g:description>${xmlEscape(merchantDesc || desc)}</g:description>` +
       `<g:link>${xmlEscape(productSeoUrl(SITE, p))}</g:link>` +
       `<g:mobile_link>${xmlEscape(productSeoUrl(SITE, p))}</g:mobile_link>` +
       `<g:canonical_link>${xmlEscape(productSeoUrl(SITE, p))}</g:canonical_link>` +
@@ -287,9 +408,9 @@ function buildMetaCatalogFeed(products, categories) {
     const imageTier = hasImg ? "gorselli-urun" : "gorsel-hazirlaniyor";
     const vehicleLabel = Array.isArray(p.veh) && p.veh.length ? p.veh.slice(0, 2).join("-") : "agir-vasita";
     const categoryLabel = grp?.id || p.cat || "fren-aksami";
-    const title = [productName, p.sku, brand].filter(Boolean).join(" - ").slice(0, 200);
+    const title = [productName, shortCode(p.oem), p.sku, catName, brand].filter(Boolean).join(" - ").slice(0, 200);
     const richDesc = `${productName} - ${catName} kategorisinde ${brand} marka orijinal/esdeger agir vasita fren parcasi. ${p.sku ? "Stok kodu: " + p.sku + ". " : ""}${p.oem ? "OEM: " + p.oem + ". " : ""}Kamyon, tir, otobus ve dorse fren sistemleri icin OEM/sase ile uyumluluk teyidi yapilir. Ayni gun kargo, 12 taksit, 14 gun iade.`;
-    const desc = merchantSafeProductText(p.desc || richDesc).slice(0, 5000);
+    const desc = buildSeoProductDescription(p, categories, 5000);
 
     rows.push([
       p.id,
@@ -346,7 +467,7 @@ export default async function handler(req, res) {
       const product = products.find(p => String(p.id) === String(id));
       if (!product) return res.status(404).send("Product not found");
 
-      const html = renderProductHtml(product);
+      const html = renderSeoProductHtml(product, categories);
       res.setHeader("Content-Type", "text/html; charset=utf-8");
       res.setHeader("Cache-Control", "public, max-age=300, s-maxage=3600, stale-while-revalidate=86400");
       return res.status(200).send(html);

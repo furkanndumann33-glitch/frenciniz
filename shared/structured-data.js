@@ -54,9 +54,6 @@ export function buildProductDescription(product, categories = [], options = {}) 
   const name = cleanText(product?.name, "Fren aksami urunu");
   const brand = cleanText(product?.brand, "Ekersan");
   const compat = Array.isArray(product?.compat) ? product.compat.slice(0, 8).join(", ") : "";
-  const existing = cleanText(product?.desc);
-
-  if (existing.length >= 80) return existing.slice(0, 5000);
 
   return cleanText([
     `${name} - ${category} kategorisinde ${brand} marka agir vasita fren parcasi.`,
