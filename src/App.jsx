@@ -513,6 +513,74 @@ function cartWhatsAppUrl(cartItems = [], total = 0, shipping = 0, discount = 0) 
   ].filter(Boolean).join("\n"));
 }
 
+const HOME_INTENT_LINKS = [
+  { href: "/axor-1840-balata", title: "Axor 1840 Balata", desc: "Mercedes Axor 1840 fren balatasi ve pabuc grubu" },
+  { href: "/axor-3340-fren-diski", title: "Axor 3340 Fren Diski", desc: "Axor 3340 / 4140 disk, bijon ve kaliper teyidi" },
+  { href: "/actros-1840-balata", title: "Actros 1840 Balata", desc: "Actros 1840 / 1841 fren balatasi aramasi" },
+  { href: "/travego-balata", title: "Travego Balata", desc: "Mercedes Travego otobus fren balatasi ve disk grubu" },
+  { href: "/man-40-460-balata", title: "MAN 40.460 Balata", desc: "MAN TGA / TGS / 40.360 / 40.460 parca teyidi" },
+  { href: "/scania-g420-fren-diski", title: "Scania G420 Fren Diski", desc: "Scania G/R seri disk, balata ve kaliper tamir" },
+  { href: "/volvo-fh-fren-diski", title: "Volvo FH FM Fren Diski", desc: "Volvo FH / FM disk, kampana ve suspansiyon korugu" },
+  { href: "/bpw-dorse-balata", title: "BPW Dorse Balata", desc: "BPW dorse balata, kampana, porya ve bijon" },
+  { href: "/saf-dorse-kampana", title: "SAF Dorse Kampana", desc: "SAF dorse kampana, disk, bijon ve porya" },
+  { href: "/ford-fmax-balata", title: "Ford F-Max Balata", desc: "Ford F-Max balata, disk ve kampana grubu" },
+  { href: "/agir-vasita-kaliper-tamir-takimi", title: "Kaliper Tamir Takimi", desc: "Knorr, Wabco, Elsa, PAN ve Maxx22 setleri" },
+  { href: "/agir-vasita-suspansiyon-korugu", title: "Suspansiyon Korugu", desc: "Dorse, kamyon ve otobus hava korugu kontrolu" },
+  { href: "/daf-xf-balata", title: "DAF XF Balata", desc: "DAF XF / CF balata, disk ve kampana aramalari" },
+  { href: "/axor-2528-balata", title: "Axor 2528 Balata", desc: "Axor 2528 / 3228 balata ve pabuc aramasi" },
+  { href: "/actros-1844-fren-diski", title: "Actros 1844 Fren Diski", desc: "Actros 1841 / 1844 disk, kampana ve bijon" },
+  { href: "/travego-15-balata", title: "Travego 15 Balata", desc: "Travego 15 otobus balata ve koruk grubu" },
+  { href: "/man-18-460-balata", title: "MAN 18.460 Balata", desc: "MAN 18.460 / TGA / TGX fren balatasi" },
+  { href: "/man-tgs-fren-circiri", title: "MAN TGS Fren Circiri", desc: "MAN TGS otomatik fren circiri ve ayar kolu" },
+  { href: "/volvo-fh13-fren-diski", title: "Volvo FH13 Fren Diski", desc: "Volvo FH12 / FH13 disk ve balata grubu" },
+  { href: "/daf-xf-105-balata", title: "DAF XF 105 Balata", desc: "DAF XF 105 / 106 balata, disk ve kampana" },
+  { href: "/renault-premium-balata", title: "Renault Premium Balata", desc: "Premium / Kerax balata ve kampana aramasi" },
+  { href: "/iveco-stralis-fren-diski", title: "Iveco Stralis Fren Diski", desc: "Stralis / Trakker disk, kampana ve bijon" },
+  { href: "/bpw-eco-plus-porya-kapagi", title: "BPW Eco Plus Porya", desc: "BPW Eco Plus porya kapagi, rulman ve bijon" },
+  { href: "/saf-intradisc-porya-kapagi", title: "SAF Intradisc Porya", desc: "SAF Intradisc porya, disk ve kampana grubu" },
+  { href: "/isuzu-novociti-balata", title: "Isuzu NovoCiti Balata", desc: "NovoCiti / Turkuaz midibus balata aramasi" },
+  { href: "/actros-1848-balata", title: "Actros 1848 Balata", desc: "Actros 1848 / 1851 balata, disk ve kampana" },
+  { href: "/arocs-4142-fren-diski", title: "Arocs 4142 Fren Diski", desc: "Arocs 4142 / 4145 disk ve bijon grubu" },
+  { href: "/axor-1843-kampana", title: "Axor 1843 Kampana", desc: "Axor 1833 / 1843 kampana ve balata" },
+  { href: "/mercedes-o403-balata", title: "Mercedes O403 Balata", desc: "O403 / O500 otobus balata ve koruk" },
+  { href: "/mercedes-o500-fren-korugu", title: "Mercedes O500 Koruk", desc: "O500 otobus fren korugu ve hava korugu" },
+  { href: "/man-18-440-balata", title: "MAN 18.440 Balata", desc: "MAN 18.440 / 18.480 balata aramasi" },
+  { href: "/scania-r450-fren-diski", title: "Scania R450 Fren Diski", desc: "Scania R450 / R500 disk ve kampana" },
+  { href: "/volvo-fh460-balata", title: "Volvo FH460 Balata", desc: "Volvo FH460 / FH13 fren balatasi" },
+  { href: "/daf-xf-460-balata", title: "DAF XF 460 Balata", desc: "DAF XF 460 / XF105 / XF106 balata" },
+  { href: "/ford-cargo-1846-fren-diski", title: "Ford Cargo 1846 Disk", desc: "Cargo 1846 / 3542 fren diski ve kampana" },
+  { href: "/renault-kerax-kampana", title: "Renault Kerax Kampana", desc: "Kerax / Premium kampana ve balata" },
+  { href: "/iveco-trakker-fren-diski", title: "Iveco Trakker Disk", desc: "Trakker / Stralis fren diski ve balata" },
+  { href: "/bpw-30k-kampana", title: "BPW 30K Kampana", desc: "BPW 30K dorse kampana ve porya" },
+  { href: "/saf-intrax-fren-diski", title: "SAF Intrax Fren Diski", desc: "SAF Intrax / Intradisc disk ve balata" },
+  { href: "/schmitz-cargobull-balata", title: "Schmitz Balata", desc: "Schmitz Cargobull dorse balata ve kampana" },
+  { href: "/kogel-maxx-balata", title: "Kogel Maxx Balata", desc: "Kogel dorse balata, disk ve suspansiyon korugu" },
+];
+
+function HomeIntentLinks({isMobile, lang}) {
+  return (
+    <section style={{maxWidth:1220,margin:"0 auto",padding:isMobile?"8px 18px 28px":"8px 24px 34px"}}>
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"end",gap:16,marginBottom:14}}>
+        <div>
+          <div style={{fontSize:12,color:"#16a34a",fontWeight:950,textTransform:"uppercase",letterSpacing:.5}}>{lang==="en"?"Search shortcuts":"Google'da en cok arananlar"}</div>
+          <h2 style={{fontSize:isMobile?22:28,fontWeight:950,color:"#111827",letterSpacing:0}}>{lang==="en"?"Popular fitment pages":"Model ve parca uyumluluk sayfalari"}</h2>
+        </div>
+        {!isMobile && <span style={{fontSize:12,color:"#64748b",fontWeight:800}}>OEM / sase / eski parca fotosu ile teyit</span>}
+      </div>
+      <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"repeat(4,minmax(0,1fr))",gap:10}}>
+        {HOME_INTENT_LINKS.map(item => (
+          <a key={item.href} href={item.href} onClick={() => metaTrackCustom("SeoLandingClick", { source: "home_intent_links", href: item.href })}
+            style={{display:"block",minHeight:isMobile?84:112,padding:isMobile?13:15,borderRadius:8,border:"1px solid rgba(15,23,42,.1)",background:"linear-gradient(180deg,#ffffff,#f8fafc)",boxShadow:"0 10px 26px rgba(15,23,42,.06)",textDecoration:"none",color:"#111827"}}>
+            <div style={{fontSize:15,fontWeight:950,lineHeight:1.25}}>{item.title}</div>
+            <div style={{fontSize:12,color:"#64748b",lineHeight:1.45,marginTop:7}}>{item.desc}</div>
+            <div style={{fontSize:12,color:"#ff6000",fontWeight:950,marginTop:10}}>Urunleri gor</div>
+          </a>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function setMeta(name, content, attr = "name") {
   if (typeof document === 'undefined' || !content) return;
   let el = document.head.querySelector(`meta[${attr}="${name}"]`);
@@ -1188,6 +1256,34 @@ export default function App() {
           })),
         });
       }
+      setJsonLd("page-breadcrumb", {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Frenciniz", "item": `${SITE_URL}/`},
+        ],
+      });
+      setJsonLd("page-faq", {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Frenciniz hangi araclar icin fren parcasi satar?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Frenciniz kamyon, tir, cekici, otobus, dorse ve treyler icin fren diski, kampana, balata, kaliper, bijon, porya, fren korugu ve suspansiyon korugu urunleri satar."}
+          },
+          {
+            "@type": "Question",
+            "name": "OEM kodu veya sase ile uyumluluk teyidi yapiliyor mu?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Evet. Musteri OEM kodu, parca kodu, sase bilgisi veya eski parca fotografini WhatsApp hattina gondererek stok ve uyumluluk teyidi alabilir."}
+          },
+          {
+            "@type": "Question",
+            "name": "Ayni gun kargo var mi?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Stoklu urunlerde kargo saatine gore ayni gun cikis yapilabilir. 3000 TL uzeri siparislerde standart kargo ucretsizdir."}
+          }
+        ],
+      });
     } else if (page === "products") {
       const cat = params?.cat ? cats.find(c => c.id === params.cat) : null;
       const catName = cat ? (cat.name || params.cat) : null;
@@ -1796,6 +1892,7 @@ export default function App() {
         {!isAdminPage && mobileFilterOpen && <MobileFilterDrawer />}
         <div style={{marginLeft: ((page==="home" || page==="products") && !isMobile) ? 220 : 0}}>
         <main style={{minHeight:isAdminPage?"100vh":"60vh"}}>
+          {!isAdminPage && <ReferralSalesBar />}
           {page==="home"&&<HomePage/>}
           {page==="products"&&<ProductsPage/>}
           {page==="product"&&<ProductDetailPage/>}
@@ -1950,6 +2047,51 @@ function MobileBottomBar() {
         {cartCount > 0 && <span style={{position:"absolute",top:-6,right:-4,minWidth:20,height:20,padding:"0 5px",borderRadius:999,background:"#ff6000",color:"#fff",fontSize:11,fontWeight:950,display:"flex",alignItems:"center",justifyContent:"center",border:"2px solid #070a12"}}>{cartCount}</span>}
       </button>
     </nav>
+  );
+}
+
+function ReferralSalesBar() {
+  const {isMobile, go, lang} = use$();
+  const source = useMemo(() => {
+    if (typeof window === "undefined") return "";
+    const qs = new URLSearchParams(window.location.search || "");
+    const utm = String(qs.get("utm_source") || "").toLowerCase();
+    const ref = String(document.referrer || "").toLowerCase();
+    if (utm.includes("facebook") || ref.includes("facebook.com") || ref.includes("fb.com")) return "facebook";
+    if (utm.includes("google") || ref.includes("google.")) return "google";
+    return "";
+  }, []);
+  if (!source) return null;
+  const isFb = source === "facebook";
+  const href = waUrl([
+    "Merhaba Frenciniz, grup/arama uzerinden geldim.",
+    "Parca uyumlulugu ve fiyat teklifi almak istiyorum.",
+    "OEM / SKU / parca kodu:",
+    "Arac marka-model:",
+    "Sase no:",
+    "Eski parca fotosu gonderebilirim.",
+  ].join("\n"));
+  return (
+    <section style={{background:isFb?"linear-gradient(135deg,#07111f,#0b2a1a 56%,#134e4a)":"linear-gradient(135deg,#07111f,#172554 58%,#1e3a8a)",borderBottom:"1px solid rgba(255,255,255,.12)",color:"#fff"}}>
+      <div style={{maxWidth:1220,margin:"0 auto",padding:isMobile?"12px 14px":"12px 24px",display:"flex",flexDirection:isMobile?"column":"row",alignItems:isMobile?"stretch":"center",justifyContent:"space-between",gap:10}}>
+        <div style={{minWidth:0}}>
+          <div style={{fontSize:11,fontWeight:950,color:isFb?"#86efac":"#bfdbfe",letterSpacing:.4,textTransform:"uppercase",marginBottom:3}}>
+            {isFb ? "Facebook grubundan gelenlere hizli destek" : "Google aramasindan gelenlere hizli destek"}
+          </div>
+          <div style={{fontSize:isMobile?13:14,lineHeight:1.45,fontWeight:800}}>
+            Parca kodu, OEM, sase veya eski parca fotosunu gonderin; uyumluluk ve stok teyidini hizli yapalim.
+          </div>
+        </div>
+        <div style={{display:"flex",gap:8,flexWrap:"wrap",flexShrink:0}}>
+          <a href={href} target="_blank" rel="noopener noreferrer" data-lead-source={`${source}_referral_bar`} onClick={() => metaTrackCustom("WhatsAppLead", { source: `${source}_referral_bar` })} style={{minHeight:40,padding:"10px 14px",borderRadius:8,background:"#25D366",color:"#062813",fontSize:13,fontWeight:950,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center"}}>
+            WhatsApp'tan teyit al
+          </a>
+          <button onClick={() => go("products")} style={{minHeight:40,padding:"10px 14px",borderRadius:8,border:"1px solid rgba(255,255,255,.26)",background:"rgba(255,255,255,.08)",color:"#fff",fontSize:13,fontWeight:900}}>
+            Urunleri incele
+          </button>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -2205,6 +2347,7 @@ function ProductCard({p, eager}) {
   const [accentA, accentB] = productAccent(p);
   const realImage = hasRealImg(p);
   const catName = productCategoryName(p, lang);
+  const quoteHref = productWhatsAppUrl(p, 1);
 
   return (
     <div onClick={() => go("product",{id:p.id})}
@@ -2262,6 +2405,11 @@ function ProductCard({p, eager}) {
             {p.stock ? t("addToCart") : t("notifyMe")}
           </button>
         </div>
+        <a href={quoteHref} target="_blank" rel="noopener noreferrer" data-lead-source="product_card_whatsapp" data-lead-product-id={p.id} data-lead-sku={p.sku || ""} data-lead-category={p.cat || ""} data-lead-value={p.price || 0}
+          onClick={e => {e.stopPropagation(); metaTrack("Contact", metaProductPayload(p, 1, p.cat)); metaTrackCustom("WhatsAppLead", { source: "product_card", productId: p.id, category: p.cat });}}
+          style={{minHeight:34,borderRadius:6,background:"linear-gradient(135deg,#16a34a,#25D366)",color:"#062813",display:"flex",alignItems:"center",justifyContent:"center",textDecoration:"none",fontSize:isMobile?11:12,fontWeight:950,marginTop:2}}>
+          WhatsApp'ta uyumluluk sor
+        </a>
         {showAlert && <StockAlertInline productId={p.id} onClose={() => setShowAlert(false)} />}
       </div>
     </div>
@@ -2453,6 +2601,8 @@ function HomePage() {
         ))}
       </div>
     </section>
+
+    <HomeIntentLinks isMobile={isMobile} lang={lang} />
 
     <section style={{maxWidth:1220,margin:"0 auto",padding:isMobile?"22px 18px":"26px 24px 36px"}}>
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"end",gap:16,marginBottom:16}}>

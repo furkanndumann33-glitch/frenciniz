@@ -265,6 +265,94 @@ export const LANDING_PAGES = [
     part: "porya kapağı",
     priority: "0.82",
   },
+  {
+    slug: "man-81508030027-fren-diski",
+    heading: "MAN 81508030027 Fren Diski",
+    title: "MAN 81508030027 Fren Diski | L2000 M2000 TGM | Frenciniz",
+    description: "81508030027, 81508030020 ve 81508030057 OEM referansli MAN L2000, M2000, TGM fren diski icin stok ve fiyat teyidi.",
+    cats: ["fren-diski", "fren-diski-abs-li"],
+    terms: ["81508030027", "81508030020", "81508030057", "l2000", "m2000", "tgm", "man"],
+    primaryTerm: "81508030027",
+    part: "fren diski",
+    priority: "0.9",
+  },
+  {
+    slug: "man-81508030042-fren-diski",
+    heading: "MAN 81508030042 Fren Diski",
+    title: "MAN 81508030042 Fren Diski | L2000 TGL TGM | Frenciniz",
+    description: "81508030042 OEM referansli MAN L2000, TGL ve TGM fren diski icin stok, fiyat ve uyumluluk teyidi.",
+    cats: ["fren-diski", "fren-diski-abs-li"],
+    terms: ["81508030042", "l2000", "tgl", "tgm", "man"],
+    primaryTerm: "81508030042",
+    part: "fren diski",
+    priority: "0.9",
+  },
+  {
+    slug: "man-81508030063-fren-diski",
+    heading: "MAN 81508030063 Fren Diski",
+    title: "MAN 81508030063 Fren Diski | TGL | Frenciniz",
+    description: "81508030063 ve 81508030054 OEM referansli MAN TGL fren diski icin Frenciniz stok ve fiyat teyidi.",
+    cats: ["fren-diski", "fren-diski-abs-li"],
+    terms: ["81508030063", "81508030054", "tgl", "man"],
+    primaryTerm: "81508030063",
+    part: "fren diski",
+    priority: "0.9",
+  },
+  {
+    slug: "man-81508030024-fren-diski",
+    heading: "MAN 81508030024 Fren Diski",
+    title: "MAN 81508030024 Fren Diski | L2000 M2000 | Frenciniz",
+    description: "81508030024 ve 81508030026 OEM referansli MAN L2000 / M2000 fren diski icin OEM kodu, olcu ve saseye gore kontrol.",
+    cats: ["fren-diski", "fren-diski-abs-li"],
+    terms: ["81508030024", "81508030026", "l2000", "m2000", "man"],
+    primaryTerm: "81508030024",
+    part: "fren diski",
+    priority: "0.9",
+  },
+  {
+    slug: "man-81508030041-fren-diski",
+    heading: "MAN 81508030041 Fren Diski",
+    title: "MAN 81508030041 Fren Diski | TGA TGM TGS TGX | Frenciniz",
+    description: "81508030041, 81508030021 ve muadil MAN TGA, TGM, TGS, TGX fren diski aramalari icin stoklu urun ve OEM/sase teyidi.",
+    cats: ["fren-diski", "fren-diski-abs-li"],
+    terms: ["81508030041", "81508030021", "tga", "tgm", "tgs", "tgx", "man"],
+    primaryTerm: "81508030041",
+    part: "fren diski",
+    priority: "0.9",
+  },
+  {
+    slug: "mercedes-9754210212-fren-diski",
+    heading: "Mercedes 9754210212 Fren Diski",
+    title: "Mercedes 9754210212 Fren Diski | Atego Tourino | Frenciniz",
+    description: "9754210212, 9754210012 ve 9754210112 OEM referansli Mercedes Atego / Tourino fren diski icin stok, fiyat ve uyumluluk teyidi.",
+    cats: ["fren-diski", "fren-diski-abs-li"],
+    terms: ["9754210212", "9754210012", "9754210112", "atego", "tourino", "mercedes"],
+    primaryTerm: "9754210212",
+    part: "fren diski",
+    priority: "0.9",
+  },
+  {
+    slug: "man-29279-fren-balatasi",
+    heading: "MAN 29279 Fren Balatası",
+    title: "MAN 29279 Fren Balatası | TGA TGS TGX | Frenciniz",
+    description: "WVA 29279, 81508206065 ve 81508205112 referansli MAN TGA, TGS, TGX disk fren balatasi icin stok ve fiyat teyidi.",
+    cats: ["fren-balatasi"],
+    terms: ["29279", "81508206065", "81508205112", "tga", "tgs", "tgx", "man", "balata"],
+    primaryTerm: "29279",
+    part: "fren balatası",
+    priority: "0.9",
+  },
+  {
+    slug: "man-81436010163-roll-koruk",
+    heading: "MAN 81436010163 Roll Körük",
+    title: "MAN 81436010163 Roll Körük | TGA TGS TGX | Frenciniz",
+    description: "81436010163 ve 81436010162 OEM referansli MAN TGA, TGS, TGX roll koruk / suspansiyon korugu icin stok ve uyumluluk teyidi.",
+    cats: ["suspansiyon-korugu"],
+    terms: ["81436010163", "81436010162", "tga", "tgs", "tgx", "man", "roll", "koruk", "körük"],
+    primaryTerm: "81436010163",
+    part: "roll körük",
+    priority: "0.9",
+  },
 ];
 
 const PART_LANDING_GROUPS = {
@@ -643,6 +731,299 @@ const VEHICLE_LANDING_GROUPS = [
     parts: ["fren-diski", "fren-kampanasi", "fren-balatasi", "suspansiyon-korugu", "bijon-somun", "porya-kapagi", "abs-sensoru-ebs-modulator"],
     priority: 0.84,
   },
+  {
+    key: "ford-fmax",
+    label: "Ford F-Max",
+    primaryTerm: "Ford F-Max",
+    terms: ["ford", "fmax", "f-max", "f max", "cekici"],
+    parts: ["fren-diski", "fren-kampanasi", "fren-balatasi", "bijon-somun", "kaliper-tamir-takimi"],
+    priority: 0.83,
+  },
+  {
+    key: "ford-cargo-4142",
+    label: "Ford Cargo 4142",
+    primaryTerm: "Ford Cargo 4142",
+    terms: ["ford", "cargo", "4142", "3542", "3232", "2532"],
+    parts: ["fren-diski", "fren-kampanasi", "fren-balatasi", "bijon-somun", "otomatik-fren-circiri"],
+    priority: 0.84,
+  },
+  {
+    key: "daf-xf-105-106",
+    label: "DAF XF 105 106",
+    primaryTerm: "DAF XF",
+    terms: ["daf", "xf", "105", "106", "xf105", "xf106"],
+    parts: ["fren-diski", "fren-kampanasi", "fren-balatasi", "bijon-somun", "kaliper-tamir-takimi"],
+    priority: 0.83,
+  },
+  {
+    key: "daf-cf-85",
+    label: "DAF CF 85",
+    primaryTerm: "DAF CF",
+    terms: ["daf", "cf", "85", "cf85", "lf"],
+    parts: ["fren-diski", "fren-kampanasi", "fren-balatasi", "bijon-somun", "otomatik-fren-circiri"],
+    priority: 0.82,
+  },
+  {
+    key: "iveco-stralis",
+    label: "Iveco Stralis",
+    primaryTerm: "Iveco Stralis",
+    terms: ["iveco", "stralis", "eurostar", "trakker"],
+    parts: ["fren-diski", "fren-kampanasi", "fren-balatasi", "bijon-somun", "kaliper-tamir-takimi"],
+    priority: 0.82,
+  },
+  {
+    key: "iveco-eurocargo",
+    label: "Iveco Eurocargo",
+    primaryTerm: "Iveco Eurocargo",
+    terms: ["iveco", "eurocargo", "daily", "cargo"],
+    parts: ["fren-diski", "fren-kampanasi", "fren-balatasi", "bijon-somun", "fren-korugu"],
+    priority: 0.81,
+  },
+  {
+    key: "bmc-pro",
+    label: "BMC Pro",
+    primaryTerm: "BMC Pro",
+    terms: ["bmc", "pro", "profesyonel", "fatih", "tuğra", "tugra"],
+    parts: ["fren-diski", "fren-kampanasi", "fren-balatasi", "bijon-somun", "otomatik-fren-circiri"],
+    priority: 0.81,
+  },
+  {
+    key: "temsa-safir-prestij",
+    label: "Temsa Safir Prestij",
+    primaryTerm: "Temsa",
+    terms: ["temsa", "safir", "prestij", "maraton", "otobus", "midibus"],
+    parts: ["fren-diski", "fren-kampanasi", "fren-balatasi", "fren-korugu", "kaliper-tamir-takimi"],
+    priority: 0.81,
+  },
+  {
+    key: "isuzu-turkuaz-novociti",
+    label: "Isuzu Turkuaz NovoCiti",
+    primaryTerm: "Isuzu",
+    terms: ["isuzu", "turkuaz", "novociti", "novo citi", "citibus", "midibus"],
+    parts: ["fren-diski", "fren-kampanasi", "fren-balatasi", "fren-korugu", "kaliper-tamir-takimi"],
+    priority: 0.81,
+  },
+  {
+    key: "mercedes-travego-15",
+    label: "Mercedes Travego 15",
+    primaryTerm: "Travego 15",
+    terms: ["mercedes", "travego", "tourismo", "15", "17", "o403", "o500"],
+    parts: ["fren-diski", "fren-balatasi", "fren-korugu", "suspansiyon-korugu", "kaliper-tamir-takimi"],
+    priority: 0.83,
+  },
+  {
+    key: "man-lions-fortuna",
+    label: "MAN Lions Fortuna",
+    primaryTerm: "MAN Lions",
+    terms: ["man", "lion", "lions", "fortuna", "neoplan", "tourliner", "otobus"],
+    parts: ["fren-diski", "fren-balatasi", "fren-korugu", "suspansiyon-korugu", "kaliper-tamir-takimi"],
+    priority: 0.81,
+  },
+  {
+    key: "volvo-fh13",
+    label: "Volvo FH13",
+    primaryTerm: "Volvo FH13",
+    terms: ["volvo", "fh13", "fh12", "fh", "fm", "fm12"],
+    parts: ["fren-diski", "fren-kampanasi", "fren-balatasi", "suspansiyon-korugu", "bijon-somun"],
+    priority: 0.83,
+  },
+  {
+    key: "bpw-eco-plus",
+    label: "BPW Eco Plus Dorse",
+    primaryTerm: "BPW Eco",
+    terms: ["bpw", "eco", "eco plus", "dorse", "treyler"],
+    parts: ["fren-diski", "fren-kampanasi", "fren-balatasi", "bijon-somun", "porya-kapagi"],
+    priority: 0.84,
+  },
+  {
+    key: "saf-intradisc",
+    label: "SAF Intradisc Dorse",
+    primaryTerm: "SAF Intradisc",
+    terms: ["saf", "intradisc", "intrax", "dorse", "treyler"],
+    parts: ["fren-diski", "fren-kampanasi", "fren-balatasi", "bijon-somun", "porya-kapagi"],
+    priority: 0.83,
+  },
+];
+
+const EXACT_INTENT_PARTS = {
+  "balata": {
+    label: "Balata",
+    part: "fren balatası",
+    cats: ["fren-balatasi", "fren-pabucu", "percin"],
+    terms: ["balata", "fren balatasi", "pabuc", "pabuç"],
+    boost: 0.05,
+  },
+  "fren-diski": {
+    label: "Fren Diski",
+    part: "fren diski",
+    cats: ["fren-diski", "fren-diski-abs-li"],
+    terms: ["fren diski", "disk", "diski"],
+    boost: 0.05,
+  },
+  "kampana": {
+    label: "Kampana",
+    part: "fren kampanası",
+    cats: ["fren-kampanasi"],
+    terms: ["kampana", "fren kampanasi"],
+    boost: 0.04,
+  },
+  "fren-korugu": {
+    label: "Fren Körüğü",
+    part: "fren körüğü",
+    cats: ["fren-korugu"],
+    terms: ["fren korugu", "körük", "koruk"],
+    boost: 0.03,
+  },
+  "suspansiyon-korugu": {
+    label: "Süspansiyon Körüğü",
+    part: "süspansiyon körüğü",
+    cats: ["suspansiyon-korugu"],
+    terms: ["suspansiyon", "hava korugu", "körük", "koruk"],
+    boost: 0.03,
+  },
+  "bijon": {
+    label: "Bijon",
+    part: "bijon ve somun",
+    cats: ["bijon", "disk-bijonu-civatasi", "somun-civata"],
+    terms: ["bijon", "somun", "civata", "disk bijonu"],
+    boost: 0.03,
+  },
+  "fren-pabucu": {
+    label: "Fren Pabucu",
+    part: "fren pabucu",
+    cats: ["fren-balatasi", "fren-pabucu", "percin"],
+    terms: ["fren pabucu", "pabuc", "pabucu", "balata"],
+    boost: 0.04,
+  },
+  "kaliper-tamir-takimi": {
+    label: "Kaliper Tamir Takimi",
+    part: "kaliper tamir takimi",
+    cats: ["kaliper-tamir-takimi", "kaliper-perno-tamir-takimi", "kaliper-toz-lastigi", "kaliper-kapak-conta", "kaliper-ayar-mekanizmasi", "kaliper-kilavuz-pim-takimi"],
+    terms: ["kaliper", "tamir takimi", "perno", "ayar mekanizmasi", "kilavuz pim"],
+    boost: 0.03,
+  },
+  "fren-circiri": {
+    label: "Fren Circiri",
+    part: "fren circiri",
+    cats: ["otomatik-fren-circiri", "mekanik-fren-circiri", "fren-circiri"],
+    terms: ["fren circiri", "otomatik circir", "mekanik circir", "ayar kolu"],
+    boost: 0.03,
+  },
+  "porya-kapagi": {
+    label: "Porya Kapagi",
+    part: "porya kapagi",
+    cats: ["porya", "kece"],
+    terms: ["porya", "porya kapagi", "kapak", "rulman", "kece"],
+    boost: 0.03,
+  },
+  "abs-sensoru": {
+    label: "ABS Sensoru",
+    part: "ABS sensoru",
+    cats: ["abs-sensoru-modulu-kablo", "sensor", "elektrik-kablosu"],
+    terms: ["abs", "sensor", "abs sensoru", "kablo"],
+    boost: 0.03,
+  },
+  "ebs-modulator": {
+    label: "EBS Modulator",
+    part: "EBS modulator",
+    cats: ["ebs-modulator", "abs-sensoru-modulu-kablo", "sensor", "elektrik-kablosu"],
+    terms: ["ebs", "modulator", "modul", "wabco"],
+    boost: 0.03,
+  },
+  "hava-korugu": {
+    label: "Hava Korugu",
+    part: "hava korugu",
+    cats: ["suspansiyon-korugu"],
+    terms: ["hava korugu", "suspansiyon", "koruk", "körük"],
+    boost: 0.03,
+  },
+};
+
+const EXACT_INTENT_VEHICLES = [
+  { base: "axor-1840", label: "Axor 1840", full: "Mercedes Axor 1840", terms: ["mercedes", "axor", "1840"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.9 },
+  { base: "axor-3340", label: "Axor 3340", full: "Mercedes Axor 3340", terms: ["mercedes", "axor", "3340", "4140"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.9 },
+  { base: "axor-4140", label: "Axor 4140", full: "Mercedes Axor 4140", terms: ["mercedes", "axor", "4140", "3340"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.89 },
+  { base: "actros-1840", label: "Actros 1840", full: "Mercedes Actros 1840", terms: ["mercedes", "actros", "1840", "1841"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.9 },
+  { base: "actros-3340", label: "Actros 3340", full: "Mercedes Actros 3340", terms: ["mercedes", "actros", "3340", "4140"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.9 },
+  { base: "actros-4140", label: "Actros 4140", full: "Mercedes Actros 4140", terms: ["mercedes", "actros", "4140", "3340"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.89 },
+  { base: "atego", label: "Atego", full: "Mercedes Atego", terms: ["mercedes", "atego", "1517", "1524", "2524"], parts: ["balata", "fren-diski", "kampana"], priority: 0.84 },
+  { base: "travego", label: "Travego", full: "Mercedes Travego", terms: ["mercedes", "travego", "o403", "o500"], parts: ["balata", "fren-diski", "fren-korugu", "suspansiyon-korugu"], priority: 0.88 },
+  { base: "tourismo", label: "Tourismo", full: "Mercedes Tourismo", terms: ["mercedes", "tourismo", "tourino", "intouro"], parts: ["balata", "fren-diski", "fren-korugu", "suspansiyon-korugu"], priority: 0.87 },
+  { base: "man-40-460", label: "MAN 40.460", full: "MAN 40.460", terms: ["man", "40.460", "40460", "tga", "tgs"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.88 },
+  { base: "man-40-360", label: "MAN 40.360", full: "MAN 40.360", terms: ["man", "40.360", "40360", "tga", "tgs"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.88 },
+  { base: "man-tga", label: "MAN TGA", full: "MAN TGA", terms: ["man", "tga", "18460", "18430"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.86 },
+  { base: "man-tgx", label: "MAN TGX", full: "MAN TGX", terms: ["man", "tgx", "tgs"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.85 },
+  { base: "man-fortuna", label: "MAN Fortuna", full: "MAN Fortuna Otobüs", terms: ["man", "fortuna", "lion", "otobus"], parts: ["balata", "fren-diski", "fren-korugu", "suspansiyon-korugu"], priority: 0.84 },
+  { base: "scania-g420", label: "Scania G420", full: "Scania G420", terms: ["scania", "g420", "g440"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.88 },
+  { base: "scania-r420", label: "Scania R420", full: "Scania R420", terms: ["scania", "r420", "r440"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.88 },
+  { base: "volvo-fh", label: "Volvo FH", full: "Volvo FH", terms: ["volvo", "fh", "fh12", "fh13"], parts: ["balata", "fren-diski", "kampana", "suspansiyon-korugu"], priority: 0.86 },
+  { base: "volvo-fm", label: "Volvo FM", full: "Volvo FM", terms: ["volvo", "fm", "fm12", "fm13"], parts: ["balata", "fren-diski", "kampana", "suspansiyon-korugu"], priority: 0.85 },
+  { base: "daf-xf", label: "DAF XF", full: "DAF XF", terms: ["daf", "xf", "xf105", "xf106"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.84 },
+  { base: "daf-cf", label: "DAF CF", full: "DAF CF", terms: ["daf", "cf", "cf85"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.83 },
+  { base: "ford-cargo", label: "Ford Cargo", full: "Ford Cargo", terms: ["ford", "cargo", "2532", "3232", "3542", "4142"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.85 },
+  { base: "ford-fmax", label: "Ford F-Max", full: "Ford F-Max", terms: ["ford", "fmax", "f-max", "f max"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.84 },
+  { base: "bmc-pro", label: "BMC Pro", full: "BMC Pro", terms: ["bmc", "pro", "profesyonel"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.82 },
+  { base: "bpw-dorse", label: "BPW Dorse", full: "BPW Dorse", terms: ["bpw", "dorse", "treyler"], parts: ["balata", "fren-diski", "kampana", "bijon", "suspansiyon-korugu"], priority: 0.89 },
+  { base: "saf-dorse", label: "SAF Dorse", full: "SAF Dorse", terms: ["saf", "dorse", "treyler"], parts: ["balata", "fren-diski", "kampana", "bijon", "suspansiyon-korugu"], priority: 0.88 },
+  { base: "krone-dorse", label: "Krone Dorse", full: "Krone Dorse", terms: ["krone", "dorse", "treyler"], parts: ["balata", "fren-diski", "kampana", "bijon", "suspansiyon-korugu"], priority: 0.82 },
+  { base: "kogel-dorse", label: "Kögel Dorse", full: "Kögel Dorse", terms: ["kogel", "kögel", "dorse", "treyler"], parts: ["balata", "fren-diski", "kampana", "bijon", "suspansiyon-korugu"], priority: 0.82 },
+  { base: "axor-2528", label: "Axor 2528", full: "Mercedes Axor 2528", terms: ["mercedes", "axor", "2528", "3228"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.87 },
+  { base: "axor-3228", label: "Axor 3228", full: "Mercedes Axor 3228", terms: ["mercedes", "axor", "3228", "2528"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.87 },
+  { base: "actros-1841", label: "Actros 1841", full: "Mercedes Actros 1841", terms: ["mercedes", "actros", "1841", "1840"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.88 },
+  { base: "actros-1844", label: "Actros 1844", full: "Mercedes Actros 1844", terms: ["mercedes", "actros", "1844", "1841"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.88 },
+  { base: "atego-1517", label: "Atego 1517", full: "Mercedes Atego 1517", terms: ["mercedes", "atego", "1517"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.84 },
+  { base: "atego-1524", label: "Atego 1524", full: "Mercedes Atego 1524", terms: ["mercedes", "atego", "1524", "2524"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.84 },
+  { base: "travego-15", label: "Travego 15", full: "Mercedes Travego 15", terms: ["mercedes", "travego", "15", "o403", "o500"], parts: ["balata", "fren-diski", "fren-korugu", "suspansiyon-korugu"], priority: 0.87 },
+  { base: "tourismo-15", label: "Tourismo 15", full: "Mercedes Tourismo 15", terms: ["mercedes", "tourismo", "15", "tourino", "intouro"], parts: ["balata", "fren-diski", "fren-korugu", "suspansiyon-korugu"], priority: 0.86 },
+  { base: "man-18-460", label: "MAN 18.460", full: "MAN 18.460", terms: ["man", "18.460", "18460", "tga", "tgx"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.87 },
+  { base: "man-tgs", label: "MAN TGS", full: "MAN TGS", terms: ["man", "tgs", "40.360", "40.460"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.85 },
+  { base: "scania-g440", label: "Scania G440", full: "Scania G440", terms: ["scania", "g440", "g420"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.87 },
+  { base: "scania-r440", label: "Scania R440", full: "Scania R440", terms: ["scania", "r440", "r420"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.87 },
+  { base: "volvo-fh12", label: "Volvo FH12", full: "Volvo FH12", terms: ["volvo", "fh12", "fh", "fm"], parts: ["balata", "fren-diski", "kampana", "suspansiyon-korugu"], priority: 0.86 },
+  { base: "volvo-fh13", label: "Volvo FH13", full: "Volvo FH13", terms: ["volvo", "fh13", "fh", "fm"], parts: ["balata", "fren-diski", "kampana", "suspansiyon-korugu"], priority: 0.86 },
+  { base: "volvo-fm12", label: "Volvo FM12", full: "Volvo FM12", terms: ["volvo", "fm12", "fm", "fh"], parts: ["balata", "fren-diski", "kampana", "suspansiyon-korugu"], priority: 0.85 },
+  { base: "daf-xf-105", label: "DAF XF 105", full: "DAF XF 105", terms: ["daf", "xf", "105", "xf105"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.84 },
+  { base: "daf-xf-106", label: "DAF XF 106", full: "DAF XF 106", terms: ["daf", "xf", "106", "xf106"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.84 },
+  { base: "daf-cf-85", label: "DAF CF 85", full: "DAF CF 85", terms: ["daf", "cf", "85", "cf85"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.83 },
+  { base: "renault-premium", label: "Renault Premium", full: "Renault Premium", terms: ["renault", "premium", "kerax"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.82 },
+  { base: "renault-magnum", label: "Renault Magnum", full: "Renault Magnum", terms: ["renault", "magnum", "premium"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.81 },
+  { base: "iveco-stralis", label: "Iveco Stralis", full: "Iveco Stralis", terms: ["iveco", "stralis", "trakker"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.82 },
+  { base: "iveco-eurocargo", label: "Iveco Eurocargo", full: "Iveco Eurocargo", terms: ["iveco", "eurocargo", "daily"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.81 },
+  { base: "ford-cargo-4142", label: "Ford Cargo 4142", full: "Ford Cargo 4142", terms: ["ford", "cargo", "4142", "3542"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.85 },
+  { base: "bmc-tugra", label: "BMC Tugra", full: "BMC Tugra", terms: ["bmc", "tugra", "tuğra", "pro"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.81 },
+  { base: "temsa-safir", label: "Temsa Safir", full: "Temsa Safir", terms: ["temsa", "safir", "maraton", "otobus"], parts: ["balata", "fren-diski", "fren-korugu", "suspansiyon-korugu"], priority: 0.82 },
+  { base: "otokar-sultan", label: "Otokar Sultan", full: "Otokar Sultan", terms: ["otokar", "sultan", "doruk", "otobus"], parts: ["balata", "fren-diski", "fren-korugu", "suspansiyon-korugu"], priority: 0.8 },
+  { base: "isuzu-turkuaz", label: "Isuzu Turkuaz", full: "Isuzu Turkuaz", terms: ["isuzu", "turkuaz", "midibus"], parts: ["balata", "fren-diski", "fren-korugu", "suspansiyon-korugu"], priority: 0.8 },
+  { base: "isuzu-novociti", label: "Isuzu NovoCiti", full: "Isuzu NovoCiti", terms: ["isuzu", "novociti", "novo citi", "citibus"], parts: ["balata", "fren-diski", "fren-korugu", "suspansiyon-korugu"], priority: 0.8 },
+  { base: "bpw-eco-plus", label: "BPW Eco Plus", full: "BPW Eco Plus Dorse", terms: ["bpw", "eco plus", "eco", "dorse"], parts: ["balata", "fren-diski", "kampana", "bijon", "porya-kapagi"], priority: 0.88 },
+  { base: "saf-intradisc", label: "SAF Intradisc", full: "SAF Intradisc Dorse", terms: ["saf", "intradisc", "intrax", "dorse"], parts: ["balata", "fren-diski", "kampana", "bijon", "porya-kapagi"], priority: 0.87 },
+  { base: "ror-meritor-dorse", label: "ROR Meritor Dorse", full: "ROR Meritor Dorse", terms: ["ror", "meritor", "dorse", "treyler"], parts: ["balata", "fren-diski", "kampana", "bijon", "porya-kapagi"], priority: 0.81 },
+  { base: "schmitz-dorse", label: "Schmitz Dorse", full: "Schmitz Dorse", terms: ["schmitz", "cargobull", "dorse", "treyler"], parts: ["balata", "fren-diski", "kampana", "bijon", "suspansiyon-korugu"], priority: 0.8 },
+  { base: "tirsan-dorse", label: "Tirsan Dorse", full: "Tirsan Dorse", terms: ["tirsan", "tırsan", "dorse", "treyler"], parts: ["balata", "fren-diski", "kampana", "bijon", "suspansiyon-korugu"], priority: 0.8 },
+  { base: "axor-1833", label: "Axor 1833", full: "Mercedes Axor 1833", terms: ["mercedes", "axor", "1833", "1840"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.86 },
+  { base: "axor-1843", label: "Axor 1843", full: "Mercedes Axor 1843", terms: ["mercedes", "axor", "1843", "1840"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.86 },
+  { base: "actros-1842", label: "Actros 1842", full: "Mercedes Actros 1842", terms: ["mercedes", "actros", "1842", "1844"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.87 },
+  { base: "actros-1845", label: "Actros 1845", full: "Mercedes Actros 1845", terms: ["mercedes", "actros", "1845", "1844"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.87 },
+  { base: "actros-1848", label: "Actros 1848", full: "Mercedes Actros 1848", terms: ["mercedes", "actros", "1848", "1851"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.87 },
+  { base: "actros-1851", label: "Actros 1851", full: "Mercedes Actros 1851", terms: ["mercedes", "actros", "1851", "1848"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.86 },
+  { base: "arocs-4142", label: "Arocs 4142", full: "Mercedes Arocs 4142", terms: ["mercedes", "arocs", "4142", "4145"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.86 },
+  { base: "arocs-4145", label: "Arocs 4145", full: "Mercedes Arocs 4145", terms: ["mercedes", "arocs", "4145", "4142"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.86 },
+  { base: "atego-2524", label: "Atego 2524", full: "Mercedes Atego 2524", terms: ["mercedes", "atego", "2524", "1524"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.83 },
+  { base: "mercedes-o403", label: "Mercedes O403", full: "Mercedes O403 Otobus", terms: ["mercedes", "o403", "travego", "otobus"], parts: ["balata", "fren-diski", "fren-korugu", "suspansiyon-korugu"], priority: 0.84 },
+  { base: "mercedes-o500", label: "Mercedes O500", full: "Mercedes O500 Otobus", terms: ["mercedes", "o500", "travego", "tourismo", "otobus"], parts: ["balata", "fren-diski", "fren-korugu", "suspansiyon-korugu"], priority: 0.84 },
+  { base: "man-18-440", label: "MAN 18.440", full: "MAN 18.440", terms: ["man", "18.440", "18440", "tga", "tgx"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.85 },
+  { base: "man-18-480", label: "MAN 18.480", full: "MAN 18.480", terms: ["man", "18.480", "18480", "tga", "tgx"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.85 },
+  { base: "scania-r450", label: "Scania R450", full: "Scania R450", terms: ["scania", "r450", "r440", "r500"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.86 },
+  { base: "volvo-fh460", label: "Volvo FH460", full: "Volvo FH460", terms: ["volvo", "fh460", "fh", "fh13"], parts: ["balata", "fren-diski", "kampana", "suspansiyon-korugu"], priority: 0.85 },
+  { base: "daf-xf-460", label: "DAF XF 460", full: "DAF XF 460", terms: ["daf", "xf", "460", "xf105", "xf106"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.83 },
+  { base: "ford-cargo-1846", label: "Ford Cargo 1846", full: "Ford Cargo 1846", terms: ["ford", "cargo", "1846", "4142"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.84 },
+  { base: "ford-cargo-3542", label: "Ford Cargo 3542", full: "Ford Cargo 3542", terms: ["ford", "cargo", "3542", "4142"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.84 },
+  { base: "renault-kerax", label: "Renault Kerax", full: "Renault Kerax", terms: ["renault", "kerax", "premium"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.81 },
+  { base: "iveco-trakker", label: "Iveco Trakker", full: "Iveco Trakker", terms: ["iveco", "trakker", "stralis"], parts: ["balata", "fren-diski", "kampana", "bijon"], priority: 0.81 },
+  { base: "bpw-30k", label: "BPW 30K", full: "BPW 30K Dorse", terms: ["bpw", "30k", "dorse", "treyler"], parts: ["balata", "fren-diski", "kampana", "bijon", "porya-kapagi", "suspansiyon-korugu"], priority: 0.86 },
+  { base: "saf-intrax", label: "SAF Intrax", full: "SAF Intrax Dorse", terms: ["saf", "intrax", "intradisc", "dorse"], parts: ["balata", "fren-diski", "kampana", "bijon", "porya-kapagi", "suspansiyon-korugu"], priority: 0.85 },
+  { base: "schmitz-cargobull", label: "Schmitz Cargobull", full: "Schmitz Cargobull Dorse", terms: ["schmitz", "cargobull", "dorse", "treyler"], parts: ["balata", "fren-diski", "kampana", "bijon", "suspansiyon-korugu"], priority: 0.8 },
+  { base: "kogel-maxx", label: "Kogel Maxx", full: "Kogel Maxx Dorse", terms: ["kogel", "kÃ¶gel", "maxx", "dorse", "treyler"], parts: ["balata", "fren-diski", "kampana", "bijon", "suspansiyon-korugu"], priority: 0.8 },
 ];
 
 function slugify(value) {
@@ -682,7 +1063,63 @@ function registerGeneratedLandingPages() {
   }
 }
 
+function buildExactIntentPage(vehicle, partKey) {
+  const part = EXACT_INTENT_PARTS[partKey];
+  const heading = `${vehicle.label} ${part.label}`;
+  const priority = Math.min(0.93, Number(vehicle.priority || 0.82) + Number(part.boost || 0)).toFixed(2);
+  return {
+    slug: `${vehicle.base}-${partKey}`,
+    heading,
+    title: `${heading} | ${vehicle.full} ${part.part} Fiyat ve Stok | Frenciniz`,
+    description: `${heading} arayanlar icin ${vehicle.full} uyumlu ${part.part} urunleri. OEM/parca kodu, eski parca fotografi veya sase ile uyumluluk teyidi, ayni gun kargo ve WhatsApp teklif.`,
+    cats: part.cats,
+    terms: [...new Set([...(vehicle.terms || []), ...(part.terms || [])])],
+    primaryTerm: vehicle.label,
+    part: part.part,
+    priority,
+  };
+}
+
+function registerExactIntentLandingPages() {
+  const seen = new Set(LANDING_PAGES.map(page => page.slug));
+
+  for (const vehicle of EXACT_INTENT_VEHICLES) {
+    for (const partKey of exactPartsForVehicle(vehicle)) {
+      const part = EXACT_INTENT_PARTS[partKey];
+      if (!part) continue;
+      const page = buildExactIntentPage(vehicle, partKey);
+      if (seen.has(page.slug)) continue;
+      LANDING_PAGES.push(page);
+      seen.add(page.slug);
+    }
+  }
+}
+
+function exactPartsForVehicle(vehicle) {
+  const parts = new Set(vehicle.parts || []);
+  const text = normalize([vehicle.base, vehicle.full, ...(vehicle.terms || [])].join(" "));
+  const hasAny = list => list.some(term => text.includes(normalize(term)));
+  const isDorse = hasAny(["dorse", "treyler", "bpw", "saf", "krone", "kogel", "ror", "meritor", "schmitz", "tirsan"]);
+  const isBus = hasAny(["travego", "tourismo", "fortuna", "lion", "safir", "prestij", "novociti", "turkuaz", "otokar", "sultan", "otobus"]);
+
+  parts.add("fren-pabucu");
+  parts.add("fren-korugu");
+  parts.add("kaliper-tamir-takimi");
+
+  if (!isBus) parts.add("fren-circiri");
+  if (isBus) parts.add("hava-korugu");
+  if (isDorse) {
+    parts.add("porya-kapagi");
+    parts.add("abs-sensoru");
+    parts.add("ebs-modulator");
+    parts.add("hava-korugu");
+  }
+
+  return [...parts];
+}
+
 registerGeneratedLandingPages();
+registerExactIntentLandingPages();
 
 function applyStrictLandingDescriptions() {
   for (const page of LANDING_PAGES) {
@@ -747,6 +1184,44 @@ export function absoluteImage(product) {
 
 export function categoryName(categories, id) {
   return categories.find(category => category.id === id)?.name || id || "Fren Aksamı";
+}
+
+export function getRelatedLandingPages(page, limit = 14) {
+  if (!page) return [];
+  const pageTerms = new Set((page.terms || []).map(term => normalize(term)).filter(Boolean));
+  const pageCats = new Set(page.cats || []);
+
+  return LANDING_PAGES
+    .filter(candidate => candidate.slug !== page.slug)
+    .map(candidate => {
+      const candidateTerms = (candidate.terms || []).map(term => normalize(term)).filter(Boolean);
+      const sharedTerms = candidateTerms.filter(term => pageTerms.has(term)).length;
+      const sharedCats = (candidate.cats || []).filter(cat => pageCats.has(cat)).length;
+      let score = 0;
+      if (candidate.primaryTerm && page.primaryTerm && normalize(candidate.primaryTerm) === normalize(page.primaryTerm)) score += 60;
+      if (candidate.part && page.part && normalize(candidate.part) === normalize(page.part)) score += 42;
+      score += Math.min(50, sharedTerms * 12);
+      score += Math.min(30, sharedCats * 10);
+      return { candidate, score };
+    })
+    .filter(row => row.score > 0)
+    .sort((a, b) => b.score - a.score || Number(b.candidate.priority || 0) - Number(a.candidate.priority || 0))
+    .slice(0, limit)
+    .map(row => row.candidate);
+}
+
+export function landingSearchPhrases(page) {
+  if (!page) return [];
+  const model = page.primaryTerm || page.heading || "agir vasita";
+  const part = page.part || "fren aksami";
+  return [
+    `${page.heading} fiyat`,
+    `${page.heading} stok`,
+    `${model} ${part} oem`,
+    `${model} ${part} uyumlu`,
+    `${model} ${part} sase ile kontrol`,
+    `${model} fren parcasi`,
+  ];
 }
 
 export function scoreProductForLanding(product, page) {

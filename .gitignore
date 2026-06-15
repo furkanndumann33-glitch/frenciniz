@@ -6,3 +6,4 @@ dist
 sync.log
 
 .vercel
+.env*.local

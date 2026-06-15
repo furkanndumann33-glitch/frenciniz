@@ -4,7 +4,9 @@ import {
   absoluteImage,
   categoryName,
   filterProductsForLanding,
+  getRelatedLandingPages,
   htmlEscape,
+  landingSearchPhrases,
   landingWhatsappUrl,
 } from "./seo-landing.js";
 import { productSeoUrl } from "../../shared/product-seo.js";
@@ -23,6 +25,16 @@ function renderProductCard(product, categories) {
   const cat = categoryName(categories, product.cat);
   const stock = Number(product.stock || 0);
   const oem = product.oem ? `<div class="muted">OEM: ${htmlEscape(String(product.oem).slice(0, 90))}</div>` : "";
+  const quoteText = [
+    "Merhaba Frenciniz, bu landing sayfasindaki urun icin fiyat, stok ve uyumluluk teyidi istiyorum.",
+    `Urun: ${product.name || "-"}`,
+    `SKU: ${product.sku || "-"}`,
+    `OEM: ${product.oem || "-"}`,
+    `Link: ${productUrl(product)}`,
+    "Arac marka/model:",
+    "Sase no:",
+  ].join("\n");
+  const quoteUrl = `https://wa.me/908508887881?text=${encodeURIComponent(quoteText)}`;
   return `
     <article class="product-card">
       <a href="${productUrl(product)}" class="image-link" aria-label="${htmlEscape(product.name)}">
@@ -38,6 +50,7 @@ function renderProductCard(product, categories) {
           <span class="${stock > 0 ? "stock" : "nostock"}">${stock > 0 ? `Stokta ${stock} adet` : "Stok sorunuz"}</span>
         </div>
         <a class="mini-cta" href="${productUrl(product)}">Ürünü incele</a>
+        <a class="mini-cta wa" href="${htmlEscape(quoteUrl)}" data-lead-source="landing_product_card" data-lead-product-id="${htmlEscape(product.id)}" data-lead-sku="${htmlEscape(product.sku || "")}" data-lead-category="${htmlEscape(product.cat || "")}" data-lead-value="${htmlEscape(product.price || 0)}">WhatsApp teklif</a>
       </div>
     </article>`;
 }
@@ -46,8 +59,16 @@ export function renderLanding(page, products, categories) {
   const matched = filterProductsForLanding(products, page, 24);
   const canonical = `${SITE}/${page.slug}`;
   const firstImage = matched[0] ? absoluteImage(matched[0]) : `${SITE}/img/site/frenciniz-logo-real-og.jpg`;
+  const searchPhrases = landingSearchPhrases(page);
+  const relatedPages = getRelatedLandingPages(page, 14);
   const categoryLinks = [...new Set(page.cats || [])]
     .map(cat => `<a href="${SITE}/${cat}">${htmlEscape(categoryName(categories, cat))}</a>`)
+    .join("");
+  const relatedLinks = relatedPages
+    .map(related => `<a href="${SITE}/${related.slug}">${htmlEscape(related.heading)}</a>`)
+    .join("");
+  const phraseLinks = searchPhrases
+    .map(phrase => `<span>${htmlEscape(phrase)}</span>`)
     .join("");
   const itemList = matched.slice(0, 12).map((product, index) => ({
     "@type": "ListItem",
@@ -70,6 +91,7 @@ export function renderLanding(page, products, categories) {
       name: page.heading,
       description: page.description,
       url: canonical,
+      keywords: searchPhrases.join(", "),
       isPartOf: { "@type": "WebSite", name: "Frenciniz", url: SITE },
       mainEntity: { "@type": "ItemList", itemListElement: itemList },
     },
@@ -112,6 +134,7 @@ export function renderLanding(page, products, categories) {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${htmlEscape(page.title)}</title>
   <meta name="description" content="${htmlEscape(page.description)}">
+  <meta name="keywords" content="${htmlEscape(searchPhrases.join(", "))}">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
   <link rel="canonical" href="${canonical}">
   <meta property="og:type" content="website">
@@ -275,9 +298,12 @@ export function renderLanding(page, products, categories) {
     .row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;padding-top:8px}
     .stock{font-size:12px;color:#087f3d;font-weight:700}.nostock{font-size:12px;color:#a33;font-weight:700}
     .mini-cta{display:block;text-align:center;text-decoration:none;margin-top:8px;border:1px solid var(--orange);color:var(--orange);border-radius:6px;padding:8px;font-size:13px;font-weight:800}
+    .mini-cta.wa{border-color:#16a34a;background:#16a34a;color:#fff}
     .content{display:grid;grid-template-columns:2fr 1fr;gap:24px;margin-top:34px}
     .panel{background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:20px}
     .links{display:flex;flex-wrap:wrap;gap:8px}.links a{padding:8px 10px;background:#fff;border:1px solid var(--line);border-radius:6px;text-decoration:none;font-size:13px}
+    .phrase-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.phrase-grid span{padding:8px 10px;background:#fff;border:1px solid var(--line);border-radius:6px;font-size:13px;color:#333}
+    .related-panel{margin-top:22px}.related-panel h2{font-size:20px}.related-panel .links a{font-weight:700}
     .footer{border-top:1px solid var(--line);padding:20px;color:#666;font-size:13px;text-align:center}
     @media(max-width:900px){.hero-inner{grid-template-columns:1fr}.products{grid-template-columns:repeat(2,minmax(0,1fr))}.content{grid-template-columns:1fr}h1{font-size:30px}.trust{grid-template-columns:1fr 1fr}}
     @media(max-width:560px){.bar{align-items:flex-start;flex-direction:column}.hero-inner{padding-top:28px}.products{grid-template-columns:1fr}.trust{grid-template-columns:1fr}.lead{font-size:16px}}
@@ -301,7 +327,7 @@ export function renderLanding(page, products, categories) {
         <h1>${htmlEscape(page.heading)}</h1>
         <p class="lead">${htmlEscape(page.description)} Parça kodu, OEM numarası veya araç modelini gönderin; doğru ürünü hızlıca teyit edelim.</p>
         <div class="cta-row">
-          <a class="cta" href="${landingWhatsappUrl(page)}">WhatsApp'tan fiyat al</a>
+          <a class="cta" href="${landingWhatsappUrl(page)}" data-lead-source="landing_hero" data-lead-category="${htmlEscape(page.slug)}">WhatsApp'tan fiyat al</a>
           <a class="cta secondary" href="tel:+905456087008">Hemen ara</a>
         </div>
       </div>
@@ -328,12 +354,15 @@ export function renderLanding(page, products, categories) {
         <h2>${htmlEscape(page.heading)} seçerken nelere bakılır?</h2>
         <p>${htmlEscape(page.primaryTerm)} için ${htmlEscape(page.part)} seçerken ürün kodu, OEM numarası, araç modeli, dingil tipi ve ölçü uyumluluğu beraber kontrol edilmelidir. Yanlış parça hem montaj süresini uzatır hem de aracın fren güvenliğini riske atar.</p>
         <p>Frenciniz, Dumanlar Ticaret çatısı altında ağır vasıta fren aksamında stoklu ürün, hızlı teyit ve Türkiye geneli kargo desteği sunar. Elinizdeki eski parçanın kodunu veya fotoğrafını WhatsApp hattımıza göndererek doğru ürünü hızlıca bulabilirsiniz.</p>
+        <h2 style="font-size:20px;margin-top:22px">Bu sayfanın cevap verdiği aramalar</h2>
+        <div class="phrase-grid">${phraseLinks}</div>
+        ${relatedLinks ? `<div class="related-panel"><h2>Yakın model ve parça sayfaları</h2><div class="links">${relatedLinks}</div></div>` : ""}
       </div>
       <aside class="panel">
         <h2>İlgili Kategoriler</h2>
         <div class="links">${categoryLinks}</div>
         <p class="muted" style="margin-top:16px">Uyumluluk teyidi için parça kodu veya OEM numarası göndermeniz yeterli.</p>
-        <a class="cta" href="${landingWhatsappUrl(page)}" style="width:100%;margin-top:6px">Kod gönder, teklif al</a>
+        <a class="cta" href="${landingWhatsappUrl(page)}" data-lead-source="landing_sidebar" data-lead-category="${htmlEscape(page.slug)}" style="width:100%;margin-top:6px">Kod gönder, teklif al</a>
       </aside>
     </section>
   </main>

@@ -115,6 +115,26 @@ const REFERENCE_SOURCES = [
     url: "https://www.cei.it/parts/products-details/brake-pads/wva/29244.html",
     usedFor: "Mercedes Axor / Actros / Econic WVA 29244 brake pad reference",
   },
+  {
+    title: "CEI 81508030020 / 30027 / 30057 MAN brake disc",
+    url: "https://www.cei.it/parts/products-details/brake-discs/man/81508030027.html",
+    usedFor: "MAN L2000 / M2000 / TGM / HOCL brake disc OEM grouping",
+  },
+  {
+    title: "CEI 81508030040 / 30041 MAN brake disc",
+    url: "https://www.cei.it/parts/products-details/brake-discs/man/81508030041.html",
+    usedFor: "MAN L2000 / M2000 / E2000 / F2000 / TGM / TGA / TGS / TGX brake disc OEM grouping",
+  },
+  {
+    title: "CEI 81508030042 MAN brake disc",
+    url: "https://www.cei.it/parts/products-details/brake-discs/man/81508030042.html",
+    usedFor: "MAN L2000 / TGL / TGM brake disc OEM grouping",
+  },
+  {
+    title: "CEI 9754210212 Mercedes brake disc",
+    url: "https://www.cei.it/parts/products-details/brake-discs/mercedes/9754210212.html",
+    usedFor: "Mercedes Atego / Tourino brake disc OEM grouping",
+  },
 ];
 
 const CATEGORY_LABELS = {
@@ -325,6 +345,36 @@ const MODEL_RULES = [
 ];
 
 const OEM_RULES = [
+  {
+    regex: /81508030020|81508030027|81508030057/i,
+    compat: ["MAN L2000", "MAN M2000", "MAN TGM", "MAN HOCL"],
+    note: "OEM 81508030020 / 81508030027 / 81508030057 referansi MAN L2000, M2000, TGM ve HOCL fren diski grubunda listelenir.",
+  },
+  {
+    regex: /81508030024|81508030026/i,
+    compat: ["MAN L2000", "MAN M2000"],
+    note: "OEM 81508030024 / 81508030026 referansi MAN L2000 ve M2000 fren diski grubunda listelenir.",
+  },
+  {
+    regex: /81508030040|81508030041|81508030023|81508030031|81508030033|81508030038|81508030047/i,
+    compat: ["MAN L2000", "MAN M2000", "MAN E2000", "MAN F2000", "MAN TGA", "MAN TGM", "MAN TGS", "MAN TGX", "MAN Lion's Coach"],
+    note: "OEM 81508030040 / 81508030041 ve muadil 81508030023/31/33/38/47 referanslari MAN L/M/E/F 2000, TGA, TGM, TGS, TGX ve MAN otobus uygulamalarinda listelenir.",
+  },
+  {
+    regex: /81508030042/i,
+    compat: ["MAN L2000", "MAN TGL", "MAN TGM"],
+    note: "OEM 81508030042 referansi MAN L2000, TGL ve TGM fren diski grubunda listelenir.",
+  },
+  {
+    regex: /81508030054|81508030063/i,
+    compat: ["MAN TGL"],
+    note: "OEM 81508030054 / 81508030063 referansi MAN TGL fren diski grubunda listelenir.",
+  },
+  {
+    regex: /9754210012|9754210112|9754210212/i,
+    compat: ["Mercedes-Benz Atego", "Mercedes-Benz Tourino", "Neoplan"],
+    note: "OEM 9754210012 / 9754210112 / 9754210212 referansi Mercedes Atego ve Tourino fren diski grubunda listelenir.",
+  },
   {
     regex: /20763234|5010598309/i,
     compat: ["Volvo FL II/FL III", "Renault Trucks Midlum", "Renault Trucks D serisi"],
@@ -600,7 +650,13 @@ const CATEGORY_TITLE_BASES = {
 const TITLE_RULES = [
   { regex: /TRAVEGO|TOURISMO|TOURINO|INTOURO|O ?403|O ?404|O ?500|000327|307327/i, suffix: "Mercedes Travego Tourismo" },
   { regex: /\bFORTUNA\b|LION'?S|NEOPLAN/i, suffix: "MAN Fortuna Otobüs" },
+  { regex: /9754210012|9754210112|9754210212/i, suffix: "Mercedes Atego Tourino" },
   { regex: /\bATEGO\b|\bATECO\b/i, suffix: "Mercedes Atego" },
+  { regex: /81508030020|81508030027|81508030057/i, suffix: "MAN L2000 M2000 TGM" },
+  { regex: /81508030024|81508030026/i, suffix: "MAN L2000 M2000" },
+  { regex: /81508030040|81508030041|81508030023|81508030031|81508030033|81508030038|81508030047/i, suffix: "MAN TGA TGM TGS TGX" },
+  { regex: /81508030042/i, suffix: "MAN L2000 TGL TGM" },
+  { regex: /81508030054|81508030063/i, suffix: "MAN TGL" },
   { regex: /960421/i, suffix: "Mercedes Actros Arocs Axor" },
   { regex: /\bAXOR\b|\bACTROS\b|942401|943401|970401|960401|381401|327401|305401|305423|346420|348420|000 ?420|301421|A0{3}421/i, suffix: "Mercedes Actros Axor" },
   { regex: /\b\d{2}[-.]153\b/i, suffix: "MAN 12-153" },
@@ -718,7 +774,7 @@ function keepSpecificCompat(product, value) {
     return false;
   }
 
-  if (/ATEGO/.test(item) && !/(ATEGO|ATECO|675421|677421|90142|90242)/.test(text)) {
+  if (/ATEGO/.test(item) && !/(ATEGO|ATECO|675421|677421|90142|90242|975421)/.test(text)) {
     return false;
   }
   if (/AROCS/.test(item) && !/(AROCS|AROX|960421)/.test(text)) {
@@ -733,10 +789,21 @@ function keepSpecificCompat(product, value) {
   if (/FORD CARGO\s+\d|FORD CARGO.*\d{4}/.test(item)) {
     return false;
   }
-  if (/MAN TGM/.test(item) && !/\bTGM\b/.test(rawOrTitleText)) {
+  const hasManDiscOemFor = (models) => {
+    const compact = text.replace(/[^A-Z0-9]/g, "");
+    const groups = {
+      TGL: /81508030042|81508030054|81508030063|81508030040|81508030041/.test(compact),
+      TGM: /81508030020|81508030027|81508030057|81508030042|81508030040|81508030041/.test(compact),
+      TGA: /81508030021|81508030023|81508030031|81508030033|81508030038|81508030040|81508030041|81508030047|29279|81508206065|81508205112|6403229332|81436010162|81436010163/.test(compact),
+      TGS: /81508030021|81508030023|81508030031|81508030033|81508030038|81508030040|81508030041|81508030047|29279|81508206065|81508205112|6403229332|81436010162|81436010163/.test(compact),
+      TGX: /81508030021|81508030023|81508030031|81508030033|81508030038|81508030040|81508030041|81508030047|29279|81508206065|81508205112|6403229332|81436010162|81436010163/.test(compact),
+    };
+    return models.some((model) => groups[model]);
+  };
+  if (/MAN TGM/.test(item) && !/\bTGM\b/.test(rawOrTitleText) && !hasManDiscOemFor(["TGM"])) {
     return false;
   }
-  if (/MAN TGL/.test(item) && !/\bTGL\b/.test(rawOrTitleText)) {
+  if (/MAN TGL/.test(item) && !/\bTGL\b/.test(rawOrTitleText) && !hasManDiscOemFor(["TGL"])) {
     return false;
   }
   if (/MAN TGA|MAN TGS|MAN TGX/.test(item)) {
@@ -745,9 +812,9 @@ function keepSpecificCompat(product, value) {
       TGS: /\bTGS\b/.test(rawOrTitleText),
       TGX: /\bTGX\b/.test(rawOrTitleText),
     };
-    if (/MAN TGA/.test(item) && !explicitMan.TGA) return false;
-    if (/MAN TGS/.test(item) && !explicitMan.TGS) return false;
-    if (/MAN TGX/.test(item) && !explicitMan.TGX) return false;
+    if (/MAN TGA/.test(item) && !explicitMan.TGA && !hasManDiscOemFor(["TGA"])) return false;
+    if (/MAN TGS/.test(item) && !explicitMan.TGS && !hasManDiscOemFor(["TGS"])) return false;
+    if (/MAN TGX/.test(item) && !explicitMan.TGX && !hasManDiscOemFor(["TGX"])) return false;
     if (/\b\d{2}[-.]\d{3}\b/.test(text) && !/(TGA|TGS|TGX)/.test(rawNameText)) return false;
     if (/(MERCEDES|MERS|AXOR|ACTROS|ATEGO|ATECO)/.test(rawNameText) && !/(MAN|TGA|TGS|TGX)/.test(rawNameText)) return false;
   }
@@ -815,6 +882,10 @@ function stripGeneratedProductName(productName) {
 function categoryTitleBase(product) {
   const currentName = stripGeneratedProductName(product.name);
   const normalized = normalize(currentName);
+  if (/^ROLL KORUK/.test(normalized)) return "Roll Körük";
+  if (/^PISTONSUZ KORUK/.test(normalized)) return "Pistonsuz Körük";
+  if (/^KOMPLE KORUK METAL PISTON/.test(normalized)) return "Komple Körük Metal Piston";
+  if (/^KOMPLE KORUK PLASTIK PISTON/.test(normalized)) return "Komple Körük Plastik Piston";
   if (product.cat === "fren-balatasi" && /\bDISK\b/.test(normalized)) return "Disk Balatası";
   if (product.cat === "porya" && /KAPAK|KAPAGI/.test(normalized)) return "Porya Kapağı";
   return CATEGORY_TITLE_BASES[product.cat] || "";

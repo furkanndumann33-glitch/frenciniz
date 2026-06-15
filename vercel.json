@@ -17,14 +17,6 @@
       "destination": "/api/sitemap?type=meta"
     },
     {
-      "source": "/urun/:id/:slug*",
-      "destination": "/api/sitemap?type=product&route=:id"
-    },
-    {
-      "source": "/urun/:id",
-      "destination": "/api/sitemap?type=product&route=:id"
-    },
-    {
       "source": "/mercedes-actros-fren-diski",
       "destination": "/api/sitemap?type=landing&slug=mercedes-actros-fren-diski"
     },
@@ -119,6 +111,38 @@
     {
       "source": "/porya-kapagi",
       "destination": "/api/sitemap?type=landing&slug=porya-kapagi"
+    },
+    {
+      "source": "/man-81508030027-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=man-81508030027-fren-diski"
+    },
+    {
+      "source": "/man-81508030042-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=man-81508030042-fren-diski"
+    },
+    {
+      "source": "/man-81508030063-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=man-81508030063-fren-diski"
+    },
+    {
+      "source": "/man-81508030024-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=man-81508030024-fren-diski"
+    },
+    {
+      "source": "/man-81508030041-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=man-81508030041-fren-diski"
+    },
+    {
+      "source": "/mercedes-9754210212-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-9754210212-fren-diski"
+    },
+    {
+      "source": "/man-29279-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=man-29279-fren-balatasi"
+    },
+    {
+      "source": "/man-81436010163-roll-koruk",
+      "destination": "/api/sitemap?type=landing&slug=man-81436010163-roll-koruk"
     },
     {
       "source": "/mercedes-actros-fren-kampanasi",
@@ -927,6 +951,2982 @@
     {
       "source": "/dorse-abs-sensoru-ebs-modulator",
       "destination": "/api/sitemap?type=landing&slug=dorse-abs-sensoru-ebs-modulator"
+    },
+    {
+      "source": "/ford-fmax-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=ford-fmax-fren-diski"
+    },
+    {
+      "source": "/ford-fmax-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=ford-fmax-fren-kampanasi"
+    },
+    {
+      "source": "/ford-fmax-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=ford-fmax-fren-balatasi"
+    },
+    {
+      "source": "/ford-fmax-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=ford-fmax-bijon-somun"
+    },
+    {
+      "source": "/ford-fmax-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=ford-fmax-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/ford-cargo-4142-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-4142-fren-diski"
+    },
+    {
+      "source": "/ford-cargo-4142-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-4142-fren-kampanasi"
+    },
+    {
+      "source": "/ford-cargo-4142-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-4142-fren-balatasi"
+    },
+    {
+      "source": "/ford-cargo-4142-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-4142-bijon-somun"
+    },
+    {
+      "source": "/ford-cargo-4142-otomatik-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-4142-otomatik-fren-circiri"
+    },
+    {
+      "source": "/daf-xf-105-106-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-105-106-fren-diski"
+    },
+    {
+      "source": "/daf-xf-105-106-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-105-106-fren-kampanasi"
+    },
+    {
+      "source": "/daf-xf-105-106-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-105-106-fren-balatasi"
+    },
+    {
+      "source": "/daf-xf-105-106-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-105-106-bijon-somun"
+    },
+    {
+      "source": "/daf-xf-105-106-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-105-106-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/daf-cf-85-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=daf-cf-85-fren-diski"
+    },
+    {
+      "source": "/daf-cf-85-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=daf-cf-85-fren-kampanasi"
+    },
+    {
+      "source": "/daf-cf-85-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=daf-cf-85-fren-balatasi"
+    },
+    {
+      "source": "/daf-cf-85-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=daf-cf-85-bijon-somun"
+    },
+    {
+      "source": "/daf-cf-85-otomatik-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=daf-cf-85-otomatik-fren-circiri"
+    },
+    {
+      "source": "/iveco-stralis-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=iveco-stralis-fren-diski"
+    },
+    {
+      "source": "/iveco-stralis-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=iveco-stralis-fren-kampanasi"
+    },
+    {
+      "source": "/iveco-stralis-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=iveco-stralis-fren-balatasi"
+    },
+    {
+      "source": "/iveco-stralis-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=iveco-stralis-bijon-somun"
+    },
+    {
+      "source": "/iveco-stralis-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=iveco-stralis-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/iveco-eurocargo-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=iveco-eurocargo-fren-diski"
+    },
+    {
+      "source": "/iveco-eurocargo-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=iveco-eurocargo-fren-kampanasi"
+    },
+    {
+      "source": "/iveco-eurocargo-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=iveco-eurocargo-fren-balatasi"
+    },
+    {
+      "source": "/iveco-eurocargo-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=iveco-eurocargo-bijon-somun"
+    },
+    {
+      "source": "/iveco-eurocargo-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=iveco-eurocargo-fren-korugu"
+    },
+    {
+      "source": "/bmc-pro-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=bmc-pro-fren-diski"
+    },
+    {
+      "source": "/bmc-pro-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=bmc-pro-fren-kampanasi"
+    },
+    {
+      "source": "/bmc-pro-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=bmc-pro-fren-balatasi"
+    },
+    {
+      "source": "/bmc-pro-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=bmc-pro-bijon-somun"
+    },
+    {
+      "source": "/bmc-pro-otomatik-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=bmc-pro-otomatik-fren-circiri"
+    },
+    {
+      "source": "/temsa-safir-prestij-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=temsa-safir-prestij-fren-diski"
+    },
+    {
+      "source": "/temsa-safir-prestij-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=temsa-safir-prestij-fren-kampanasi"
+    },
+    {
+      "source": "/temsa-safir-prestij-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=temsa-safir-prestij-fren-balatasi"
+    },
+    {
+      "source": "/temsa-safir-prestij-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=temsa-safir-prestij-fren-korugu"
+    },
+    {
+      "source": "/temsa-safir-prestij-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=temsa-safir-prestij-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/isuzu-turkuaz-novociti-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=isuzu-turkuaz-novociti-fren-diski"
+    },
+    {
+      "source": "/isuzu-turkuaz-novociti-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=isuzu-turkuaz-novociti-fren-kampanasi"
+    },
+    {
+      "source": "/isuzu-turkuaz-novociti-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=isuzu-turkuaz-novociti-fren-balatasi"
+    },
+    {
+      "source": "/isuzu-turkuaz-novociti-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=isuzu-turkuaz-novociti-fren-korugu"
+    },
+    {
+      "source": "/isuzu-turkuaz-novociti-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=isuzu-turkuaz-novociti-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/mercedes-travego-15-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-travego-15-fren-diski"
+    },
+    {
+      "source": "/mercedes-travego-15-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-travego-15-fren-balatasi"
+    },
+    {
+      "source": "/mercedes-travego-15-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-travego-15-fren-korugu"
+    },
+    {
+      "source": "/mercedes-travego-15-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-travego-15-suspansiyon-korugu"
+    },
+    {
+      "source": "/mercedes-travego-15-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-travego-15-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/man-lions-fortuna-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=man-lions-fortuna-fren-diski"
+    },
+    {
+      "source": "/man-lions-fortuna-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=man-lions-fortuna-fren-balatasi"
+    },
+    {
+      "source": "/man-lions-fortuna-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=man-lions-fortuna-fren-korugu"
+    },
+    {
+      "source": "/man-lions-fortuna-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=man-lions-fortuna-suspansiyon-korugu"
+    },
+    {
+      "source": "/man-lions-fortuna-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=man-lions-fortuna-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/volvo-fh13-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh13-fren-diski"
+    },
+    {
+      "source": "/volvo-fh13-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh13-fren-kampanasi"
+    },
+    {
+      "source": "/volvo-fh13-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh13-fren-balatasi"
+    },
+    {
+      "source": "/volvo-fh13-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh13-suspansiyon-korugu"
+    },
+    {
+      "source": "/volvo-fh13-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh13-bijon-somun"
+    },
+    {
+      "source": "/bpw-eco-plus-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=bpw-eco-plus-fren-diski"
+    },
+    {
+      "source": "/bpw-eco-plus-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=bpw-eco-plus-fren-kampanasi"
+    },
+    {
+      "source": "/bpw-eco-plus-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=bpw-eco-plus-fren-balatasi"
+    },
+    {
+      "source": "/bpw-eco-plus-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=bpw-eco-plus-bijon-somun"
+    },
+    {
+      "source": "/bpw-eco-plus-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=bpw-eco-plus-porya-kapagi"
+    },
+    {
+      "source": "/saf-intradisc-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=saf-intradisc-fren-diski"
+    },
+    {
+      "source": "/saf-intradisc-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=saf-intradisc-fren-kampanasi"
+    },
+    {
+      "source": "/saf-intradisc-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=saf-intradisc-fren-balatasi"
+    },
+    {
+      "source": "/saf-intradisc-bijon-somun",
+      "destination": "/api/sitemap?type=landing&slug=saf-intradisc-bijon-somun"
+    },
+    {
+      "source": "/saf-intradisc-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=saf-intradisc-porya-kapagi"
+    },
+    {
+      "source": "/axor-1840-balata",
+      "destination": "/api/sitemap?type=landing&slug=axor-1840-balata"
+    },
+    {
+      "source": "/axor-1840-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=axor-1840-fren-diski"
+    },
+    {
+      "source": "/axor-1840-kampana",
+      "destination": "/api/sitemap?type=landing&slug=axor-1840-kampana"
+    },
+    {
+      "source": "/axor-1840-bijon",
+      "destination": "/api/sitemap?type=landing&slug=axor-1840-bijon"
+    },
+    {
+      "source": "/axor-1840-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=axor-1840-fren-pabucu"
+    },
+    {
+      "source": "/axor-1840-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=axor-1840-fren-korugu"
+    },
+    {
+      "source": "/axor-1840-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=axor-1840-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/axor-1840-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=axor-1840-fren-circiri"
+    },
+    {
+      "source": "/axor-3340-balata",
+      "destination": "/api/sitemap?type=landing&slug=axor-3340-balata"
+    },
+    {
+      "source": "/axor-3340-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=axor-3340-fren-diski"
+    },
+    {
+      "source": "/axor-3340-kampana",
+      "destination": "/api/sitemap?type=landing&slug=axor-3340-kampana"
+    },
+    {
+      "source": "/axor-3340-bijon",
+      "destination": "/api/sitemap?type=landing&slug=axor-3340-bijon"
+    },
+    {
+      "source": "/axor-3340-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=axor-3340-fren-pabucu"
+    },
+    {
+      "source": "/axor-3340-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=axor-3340-fren-korugu"
+    },
+    {
+      "source": "/axor-3340-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=axor-3340-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/axor-3340-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=axor-3340-fren-circiri"
+    },
+    {
+      "source": "/axor-4140-balata",
+      "destination": "/api/sitemap?type=landing&slug=axor-4140-balata"
+    },
+    {
+      "source": "/axor-4140-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=axor-4140-fren-diski"
+    },
+    {
+      "source": "/axor-4140-kampana",
+      "destination": "/api/sitemap?type=landing&slug=axor-4140-kampana"
+    },
+    {
+      "source": "/axor-4140-bijon",
+      "destination": "/api/sitemap?type=landing&slug=axor-4140-bijon"
+    },
+    {
+      "source": "/axor-4140-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=axor-4140-fren-pabucu"
+    },
+    {
+      "source": "/axor-4140-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=axor-4140-fren-korugu"
+    },
+    {
+      "source": "/axor-4140-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=axor-4140-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/axor-4140-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=axor-4140-fren-circiri"
+    },
+    {
+      "source": "/actros-1840-balata",
+      "destination": "/api/sitemap?type=landing&slug=actros-1840-balata"
+    },
+    {
+      "source": "/actros-1840-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=actros-1840-fren-diski"
+    },
+    {
+      "source": "/actros-1840-kampana",
+      "destination": "/api/sitemap?type=landing&slug=actros-1840-kampana"
+    },
+    {
+      "source": "/actros-1840-bijon",
+      "destination": "/api/sitemap?type=landing&slug=actros-1840-bijon"
+    },
+    {
+      "source": "/actros-1840-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=actros-1840-fren-pabucu"
+    },
+    {
+      "source": "/actros-1840-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=actros-1840-fren-korugu"
+    },
+    {
+      "source": "/actros-1840-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=actros-1840-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/actros-1840-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=actros-1840-fren-circiri"
+    },
+    {
+      "source": "/actros-3340-balata",
+      "destination": "/api/sitemap?type=landing&slug=actros-3340-balata"
+    },
+    {
+      "source": "/actros-3340-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=actros-3340-fren-diski"
+    },
+    {
+      "source": "/actros-3340-kampana",
+      "destination": "/api/sitemap?type=landing&slug=actros-3340-kampana"
+    },
+    {
+      "source": "/actros-3340-bijon",
+      "destination": "/api/sitemap?type=landing&slug=actros-3340-bijon"
+    },
+    {
+      "source": "/actros-3340-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=actros-3340-fren-pabucu"
+    },
+    {
+      "source": "/actros-3340-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=actros-3340-fren-korugu"
+    },
+    {
+      "source": "/actros-3340-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=actros-3340-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/actros-3340-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=actros-3340-fren-circiri"
+    },
+    {
+      "source": "/actros-4140-balata",
+      "destination": "/api/sitemap?type=landing&slug=actros-4140-balata"
+    },
+    {
+      "source": "/actros-4140-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=actros-4140-fren-diski"
+    },
+    {
+      "source": "/actros-4140-kampana",
+      "destination": "/api/sitemap?type=landing&slug=actros-4140-kampana"
+    },
+    {
+      "source": "/actros-4140-bijon",
+      "destination": "/api/sitemap?type=landing&slug=actros-4140-bijon"
+    },
+    {
+      "source": "/actros-4140-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=actros-4140-fren-pabucu"
+    },
+    {
+      "source": "/actros-4140-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=actros-4140-fren-korugu"
+    },
+    {
+      "source": "/actros-4140-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=actros-4140-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/actros-4140-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=actros-4140-fren-circiri"
+    },
+    {
+      "source": "/atego-balata",
+      "destination": "/api/sitemap?type=landing&slug=atego-balata"
+    },
+    {
+      "source": "/atego-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=atego-fren-diski"
+    },
+    {
+      "source": "/atego-kampana",
+      "destination": "/api/sitemap?type=landing&slug=atego-kampana"
+    },
+    {
+      "source": "/atego-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=atego-fren-pabucu"
+    },
+    {
+      "source": "/atego-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=atego-fren-korugu"
+    },
+    {
+      "source": "/atego-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=atego-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/atego-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=atego-fren-circiri"
+    },
+    {
+      "source": "/travego-balata",
+      "destination": "/api/sitemap?type=landing&slug=travego-balata"
+    },
+    {
+      "source": "/travego-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=travego-fren-diski"
+    },
+    {
+      "source": "/travego-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=travego-fren-korugu"
+    },
+    {
+      "source": "/travego-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=travego-suspansiyon-korugu"
+    },
+    {
+      "source": "/travego-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=travego-fren-pabucu"
+    },
+    {
+      "source": "/travego-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=travego-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/travego-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=travego-hava-korugu"
+    },
+    {
+      "source": "/tourismo-balata",
+      "destination": "/api/sitemap?type=landing&slug=tourismo-balata"
+    },
+    {
+      "source": "/tourismo-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=tourismo-fren-diski"
+    },
+    {
+      "source": "/tourismo-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=tourismo-fren-korugu"
+    },
+    {
+      "source": "/tourismo-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=tourismo-suspansiyon-korugu"
+    },
+    {
+      "source": "/tourismo-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=tourismo-fren-pabucu"
+    },
+    {
+      "source": "/tourismo-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=tourismo-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/tourismo-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=tourismo-hava-korugu"
+    },
+    {
+      "source": "/man-40-460-balata",
+      "destination": "/api/sitemap?type=landing&slug=man-40-460-balata"
+    },
+    {
+      "source": "/man-40-460-kampana",
+      "destination": "/api/sitemap?type=landing&slug=man-40-460-kampana"
+    },
+    {
+      "source": "/man-40-460-bijon",
+      "destination": "/api/sitemap?type=landing&slug=man-40-460-bijon"
+    },
+    {
+      "source": "/man-40-460-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=man-40-460-fren-pabucu"
+    },
+    {
+      "source": "/man-40-460-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=man-40-460-fren-korugu"
+    },
+    {
+      "source": "/man-40-460-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=man-40-460-fren-circiri"
+    },
+    {
+      "source": "/man-40-360-balata",
+      "destination": "/api/sitemap?type=landing&slug=man-40-360-balata"
+    },
+    {
+      "source": "/man-40-360-kampana",
+      "destination": "/api/sitemap?type=landing&slug=man-40-360-kampana"
+    },
+    {
+      "source": "/man-40-360-bijon",
+      "destination": "/api/sitemap?type=landing&slug=man-40-360-bijon"
+    },
+    {
+      "source": "/man-40-360-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=man-40-360-fren-pabucu"
+    },
+    {
+      "source": "/man-40-360-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=man-40-360-fren-korugu"
+    },
+    {
+      "source": "/man-40-360-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=man-40-360-fren-circiri"
+    },
+    {
+      "source": "/man-tga-balata",
+      "destination": "/api/sitemap?type=landing&slug=man-tga-balata"
+    },
+    {
+      "source": "/man-tga-kampana",
+      "destination": "/api/sitemap?type=landing&slug=man-tga-kampana"
+    },
+    {
+      "source": "/man-tga-bijon",
+      "destination": "/api/sitemap?type=landing&slug=man-tga-bijon"
+    },
+    {
+      "source": "/man-tga-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=man-tga-fren-pabucu"
+    },
+    {
+      "source": "/man-tga-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=man-tga-fren-korugu"
+    },
+    {
+      "source": "/man-tga-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=man-tga-fren-circiri"
+    },
+    {
+      "source": "/man-tgx-balata",
+      "destination": "/api/sitemap?type=landing&slug=man-tgx-balata"
+    },
+    {
+      "source": "/man-tgx-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=man-tgx-fren-diski"
+    },
+    {
+      "source": "/man-tgx-kampana",
+      "destination": "/api/sitemap?type=landing&slug=man-tgx-kampana"
+    },
+    {
+      "source": "/man-tgx-bijon",
+      "destination": "/api/sitemap?type=landing&slug=man-tgx-bijon"
+    },
+    {
+      "source": "/man-tgx-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=man-tgx-fren-pabucu"
+    },
+    {
+      "source": "/man-tgx-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=man-tgx-fren-korugu"
+    },
+    {
+      "source": "/man-tgx-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=man-tgx-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/man-tgx-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=man-tgx-fren-circiri"
+    },
+    {
+      "source": "/man-fortuna-balata",
+      "destination": "/api/sitemap?type=landing&slug=man-fortuna-balata"
+    },
+    {
+      "source": "/man-fortuna-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=man-fortuna-fren-diski"
+    },
+    {
+      "source": "/man-fortuna-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=man-fortuna-fren-korugu"
+    },
+    {
+      "source": "/man-fortuna-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=man-fortuna-suspansiyon-korugu"
+    },
+    {
+      "source": "/man-fortuna-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=man-fortuna-fren-pabucu"
+    },
+    {
+      "source": "/man-fortuna-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=man-fortuna-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/man-fortuna-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=man-fortuna-hava-korugu"
+    },
+    {
+      "source": "/scania-g420-balata",
+      "destination": "/api/sitemap?type=landing&slug=scania-g420-balata"
+    },
+    {
+      "source": "/scania-g420-kampana",
+      "destination": "/api/sitemap?type=landing&slug=scania-g420-kampana"
+    },
+    {
+      "source": "/scania-g420-bijon",
+      "destination": "/api/sitemap?type=landing&slug=scania-g420-bijon"
+    },
+    {
+      "source": "/scania-g420-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=scania-g420-fren-pabucu"
+    },
+    {
+      "source": "/scania-g420-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=scania-g420-fren-korugu"
+    },
+    {
+      "source": "/scania-g420-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=scania-g420-fren-circiri"
+    },
+    {
+      "source": "/scania-r420-balata",
+      "destination": "/api/sitemap?type=landing&slug=scania-r420-balata"
+    },
+    {
+      "source": "/scania-r420-kampana",
+      "destination": "/api/sitemap?type=landing&slug=scania-r420-kampana"
+    },
+    {
+      "source": "/scania-r420-bijon",
+      "destination": "/api/sitemap?type=landing&slug=scania-r420-bijon"
+    },
+    {
+      "source": "/scania-r420-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=scania-r420-fren-pabucu"
+    },
+    {
+      "source": "/scania-r420-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=scania-r420-fren-korugu"
+    },
+    {
+      "source": "/scania-r420-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=scania-r420-fren-circiri"
+    },
+    {
+      "source": "/volvo-fh-balata",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh-balata"
+    },
+    {
+      "source": "/volvo-fh-kampana",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh-kampana"
+    },
+    {
+      "source": "/volvo-fh-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh-fren-pabucu"
+    },
+    {
+      "source": "/volvo-fh-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh-fren-korugu"
+    },
+    {
+      "source": "/volvo-fh-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh-fren-circiri"
+    },
+    {
+      "source": "/volvo-fm-balata",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fm-balata"
+    },
+    {
+      "source": "/volvo-fm-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fm-fren-diski"
+    },
+    {
+      "source": "/volvo-fm-kampana",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fm-kampana"
+    },
+    {
+      "source": "/volvo-fm-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fm-suspansiyon-korugu"
+    },
+    {
+      "source": "/volvo-fm-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fm-fren-pabucu"
+    },
+    {
+      "source": "/volvo-fm-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fm-fren-korugu"
+    },
+    {
+      "source": "/volvo-fm-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fm-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/volvo-fm-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fm-fren-circiri"
+    },
+    {
+      "source": "/daf-xf-balata",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-balata"
+    },
+    {
+      "source": "/daf-xf-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-fren-diski"
+    },
+    {
+      "source": "/daf-xf-kampana",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-kampana"
+    },
+    {
+      "source": "/daf-xf-bijon",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-bijon"
+    },
+    {
+      "source": "/daf-xf-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-fren-pabucu"
+    },
+    {
+      "source": "/daf-xf-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-fren-korugu"
+    },
+    {
+      "source": "/daf-xf-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/daf-xf-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-fren-circiri"
+    },
+    {
+      "source": "/daf-cf-balata",
+      "destination": "/api/sitemap?type=landing&slug=daf-cf-balata"
+    },
+    {
+      "source": "/daf-cf-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=daf-cf-fren-diski"
+    },
+    {
+      "source": "/daf-cf-kampana",
+      "destination": "/api/sitemap?type=landing&slug=daf-cf-kampana"
+    },
+    {
+      "source": "/daf-cf-bijon",
+      "destination": "/api/sitemap?type=landing&slug=daf-cf-bijon"
+    },
+    {
+      "source": "/daf-cf-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=daf-cf-fren-pabucu"
+    },
+    {
+      "source": "/daf-cf-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=daf-cf-fren-korugu"
+    },
+    {
+      "source": "/daf-cf-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=daf-cf-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/daf-cf-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=daf-cf-fren-circiri"
+    },
+    {
+      "source": "/ford-cargo-balata",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-balata"
+    },
+    {
+      "source": "/ford-cargo-kampana",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-kampana"
+    },
+    {
+      "source": "/ford-cargo-bijon",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-bijon"
+    },
+    {
+      "source": "/ford-cargo-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-fren-pabucu"
+    },
+    {
+      "source": "/ford-cargo-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-fren-korugu"
+    },
+    {
+      "source": "/ford-cargo-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/ford-cargo-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-fren-circiri"
+    },
+    {
+      "source": "/ford-fmax-balata",
+      "destination": "/api/sitemap?type=landing&slug=ford-fmax-balata"
+    },
+    {
+      "source": "/ford-fmax-kampana",
+      "destination": "/api/sitemap?type=landing&slug=ford-fmax-kampana"
+    },
+    {
+      "source": "/ford-fmax-bijon",
+      "destination": "/api/sitemap?type=landing&slug=ford-fmax-bijon"
+    },
+    {
+      "source": "/ford-fmax-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=ford-fmax-fren-pabucu"
+    },
+    {
+      "source": "/ford-fmax-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=ford-fmax-fren-korugu"
+    },
+    {
+      "source": "/ford-fmax-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=ford-fmax-fren-circiri"
+    },
+    {
+      "source": "/bmc-pro-balata",
+      "destination": "/api/sitemap?type=landing&slug=bmc-pro-balata"
+    },
+    {
+      "source": "/bmc-pro-kampana",
+      "destination": "/api/sitemap?type=landing&slug=bmc-pro-kampana"
+    },
+    {
+      "source": "/bmc-pro-bijon",
+      "destination": "/api/sitemap?type=landing&slug=bmc-pro-bijon"
+    },
+    {
+      "source": "/bmc-pro-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=bmc-pro-fren-pabucu"
+    },
+    {
+      "source": "/bmc-pro-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=bmc-pro-fren-korugu"
+    },
+    {
+      "source": "/bmc-pro-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=bmc-pro-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/bmc-pro-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=bmc-pro-fren-circiri"
+    },
+    {
+      "source": "/bpw-dorse-balata",
+      "destination": "/api/sitemap?type=landing&slug=bpw-dorse-balata"
+    },
+    {
+      "source": "/bpw-dorse-kampana",
+      "destination": "/api/sitemap?type=landing&slug=bpw-dorse-kampana"
+    },
+    {
+      "source": "/bpw-dorse-bijon",
+      "destination": "/api/sitemap?type=landing&slug=bpw-dorse-bijon"
+    },
+    {
+      "source": "/bpw-dorse-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=bpw-dorse-fren-pabucu"
+    },
+    {
+      "source": "/bpw-dorse-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=bpw-dorse-fren-korugu"
+    },
+    {
+      "source": "/bpw-dorse-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=bpw-dorse-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/bpw-dorse-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=bpw-dorse-fren-circiri"
+    },
+    {
+      "source": "/bpw-dorse-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=bpw-dorse-abs-sensoru"
+    },
+    {
+      "source": "/bpw-dorse-ebs-modulator",
+      "destination": "/api/sitemap?type=landing&slug=bpw-dorse-ebs-modulator"
+    },
+    {
+      "source": "/bpw-dorse-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=bpw-dorse-hava-korugu"
+    },
+    {
+      "source": "/saf-dorse-balata",
+      "destination": "/api/sitemap?type=landing&slug=saf-dorse-balata"
+    },
+    {
+      "source": "/saf-dorse-kampana",
+      "destination": "/api/sitemap?type=landing&slug=saf-dorse-kampana"
+    },
+    {
+      "source": "/saf-dorse-bijon",
+      "destination": "/api/sitemap?type=landing&slug=saf-dorse-bijon"
+    },
+    {
+      "source": "/saf-dorse-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=saf-dorse-fren-pabucu"
+    },
+    {
+      "source": "/saf-dorse-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=saf-dorse-fren-korugu"
+    },
+    {
+      "source": "/saf-dorse-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=saf-dorse-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/saf-dorse-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=saf-dorse-fren-circiri"
+    },
+    {
+      "source": "/saf-dorse-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=saf-dorse-abs-sensoru"
+    },
+    {
+      "source": "/saf-dorse-ebs-modulator",
+      "destination": "/api/sitemap?type=landing&slug=saf-dorse-ebs-modulator"
+    },
+    {
+      "source": "/saf-dorse-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=saf-dorse-hava-korugu"
+    },
+    {
+      "source": "/krone-dorse-balata",
+      "destination": "/api/sitemap?type=landing&slug=krone-dorse-balata"
+    },
+    {
+      "source": "/krone-dorse-kampana",
+      "destination": "/api/sitemap?type=landing&slug=krone-dorse-kampana"
+    },
+    {
+      "source": "/krone-dorse-bijon",
+      "destination": "/api/sitemap?type=landing&slug=krone-dorse-bijon"
+    },
+    {
+      "source": "/krone-dorse-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=krone-dorse-fren-pabucu"
+    },
+    {
+      "source": "/krone-dorse-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=krone-dorse-fren-korugu"
+    },
+    {
+      "source": "/krone-dorse-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=krone-dorse-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/krone-dorse-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=krone-dorse-fren-circiri"
+    },
+    {
+      "source": "/krone-dorse-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=krone-dorse-abs-sensoru"
+    },
+    {
+      "source": "/krone-dorse-ebs-modulator",
+      "destination": "/api/sitemap?type=landing&slug=krone-dorse-ebs-modulator"
+    },
+    {
+      "source": "/krone-dorse-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=krone-dorse-hava-korugu"
+    },
+    {
+      "source": "/kogel-dorse-balata",
+      "destination": "/api/sitemap?type=landing&slug=kogel-dorse-balata"
+    },
+    {
+      "source": "/kogel-dorse-kampana",
+      "destination": "/api/sitemap?type=landing&slug=kogel-dorse-kampana"
+    },
+    {
+      "source": "/kogel-dorse-bijon",
+      "destination": "/api/sitemap?type=landing&slug=kogel-dorse-bijon"
+    },
+    {
+      "source": "/kogel-dorse-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=kogel-dorse-fren-pabucu"
+    },
+    {
+      "source": "/kogel-dorse-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=kogel-dorse-fren-korugu"
+    },
+    {
+      "source": "/kogel-dorse-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=kogel-dorse-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/kogel-dorse-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=kogel-dorse-fren-circiri"
+    },
+    {
+      "source": "/kogel-dorse-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=kogel-dorse-porya-kapagi"
+    },
+    {
+      "source": "/kogel-dorse-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=kogel-dorse-abs-sensoru"
+    },
+    {
+      "source": "/kogel-dorse-ebs-modulator",
+      "destination": "/api/sitemap?type=landing&slug=kogel-dorse-ebs-modulator"
+    },
+    {
+      "source": "/kogel-dorse-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=kogel-dorse-hava-korugu"
+    },
+    {
+      "source": "/axor-2528-balata",
+      "destination": "/api/sitemap?type=landing&slug=axor-2528-balata"
+    },
+    {
+      "source": "/axor-2528-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=axor-2528-fren-diski"
+    },
+    {
+      "source": "/axor-2528-kampana",
+      "destination": "/api/sitemap?type=landing&slug=axor-2528-kampana"
+    },
+    {
+      "source": "/axor-2528-bijon",
+      "destination": "/api/sitemap?type=landing&slug=axor-2528-bijon"
+    },
+    {
+      "source": "/axor-2528-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=axor-2528-fren-pabucu"
+    },
+    {
+      "source": "/axor-2528-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=axor-2528-fren-korugu"
+    },
+    {
+      "source": "/axor-2528-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=axor-2528-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/axor-2528-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=axor-2528-fren-circiri"
+    },
+    {
+      "source": "/axor-3228-balata",
+      "destination": "/api/sitemap?type=landing&slug=axor-3228-balata"
+    },
+    {
+      "source": "/axor-3228-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=axor-3228-fren-diski"
+    },
+    {
+      "source": "/axor-3228-kampana",
+      "destination": "/api/sitemap?type=landing&slug=axor-3228-kampana"
+    },
+    {
+      "source": "/axor-3228-bijon",
+      "destination": "/api/sitemap?type=landing&slug=axor-3228-bijon"
+    },
+    {
+      "source": "/axor-3228-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=axor-3228-fren-pabucu"
+    },
+    {
+      "source": "/axor-3228-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=axor-3228-fren-korugu"
+    },
+    {
+      "source": "/axor-3228-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=axor-3228-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/axor-3228-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=axor-3228-fren-circiri"
+    },
+    {
+      "source": "/actros-1841-balata",
+      "destination": "/api/sitemap?type=landing&slug=actros-1841-balata"
+    },
+    {
+      "source": "/actros-1841-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=actros-1841-fren-diski"
+    },
+    {
+      "source": "/actros-1841-kampana",
+      "destination": "/api/sitemap?type=landing&slug=actros-1841-kampana"
+    },
+    {
+      "source": "/actros-1841-bijon",
+      "destination": "/api/sitemap?type=landing&slug=actros-1841-bijon"
+    },
+    {
+      "source": "/actros-1841-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=actros-1841-fren-pabucu"
+    },
+    {
+      "source": "/actros-1841-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=actros-1841-fren-korugu"
+    },
+    {
+      "source": "/actros-1841-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=actros-1841-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/actros-1841-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=actros-1841-fren-circiri"
+    },
+    {
+      "source": "/actros-1844-balata",
+      "destination": "/api/sitemap?type=landing&slug=actros-1844-balata"
+    },
+    {
+      "source": "/actros-1844-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=actros-1844-fren-diski"
+    },
+    {
+      "source": "/actros-1844-kampana",
+      "destination": "/api/sitemap?type=landing&slug=actros-1844-kampana"
+    },
+    {
+      "source": "/actros-1844-bijon",
+      "destination": "/api/sitemap?type=landing&slug=actros-1844-bijon"
+    },
+    {
+      "source": "/actros-1844-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=actros-1844-fren-pabucu"
+    },
+    {
+      "source": "/actros-1844-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=actros-1844-fren-korugu"
+    },
+    {
+      "source": "/actros-1844-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=actros-1844-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/actros-1844-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=actros-1844-fren-circiri"
+    },
+    {
+      "source": "/atego-1517-balata",
+      "destination": "/api/sitemap?type=landing&slug=atego-1517-balata"
+    },
+    {
+      "source": "/atego-1517-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=atego-1517-fren-diski"
+    },
+    {
+      "source": "/atego-1517-kampana",
+      "destination": "/api/sitemap?type=landing&slug=atego-1517-kampana"
+    },
+    {
+      "source": "/atego-1517-bijon",
+      "destination": "/api/sitemap?type=landing&slug=atego-1517-bijon"
+    },
+    {
+      "source": "/atego-1517-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=atego-1517-fren-pabucu"
+    },
+    {
+      "source": "/atego-1517-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=atego-1517-fren-korugu"
+    },
+    {
+      "source": "/atego-1517-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=atego-1517-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/atego-1517-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=atego-1517-fren-circiri"
+    },
+    {
+      "source": "/atego-1524-balata",
+      "destination": "/api/sitemap?type=landing&slug=atego-1524-balata"
+    },
+    {
+      "source": "/atego-1524-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=atego-1524-fren-diski"
+    },
+    {
+      "source": "/atego-1524-kampana",
+      "destination": "/api/sitemap?type=landing&slug=atego-1524-kampana"
+    },
+    {
+      "source": "/atego-1524-bijon",
+      "destination": "/api/sitemap?type=landing&slug=atego-1524-bijon"
+    },
+    {
+      "source": "/atego-1524-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=atego-1524-fren-pabucu"
+    },
+    {
+      "source": "/atego-1524-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=atego-1524-fren-korugu"
+    },
+    {
+      "source": "/atego-1524-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=atego-1524-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/atego-1524-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=atego-1524-fren-circiri"
+    },
+    {
+      "source": "/travego-15-balata",
+      "destination": "/api/sitemap?type=landing&slug=travego-15-balata"
+    },
+    {
+      "source": "/travego-15-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=travego-15-fren-diski"
+    },
+    {
+      "source": "/travego-15-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=travego-15-fren-korugu"
+    },
+    {
+      "source": "/travego-15-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=travego-15-suspansiyon-korugu"
+    },
+    {
+      "source": "/travego-15-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=travego-15-fren-pabucu"
+    },
+    {
+      "source": "/travego-15-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=travego-15-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/travego-15-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=travego-15-hava-korugu"
+    },
+    {
+      "source": "/tourismo-15-balata",
+      "destination": "/api/sitemap?type=landing&slug=tourismo-15-balata"
+    },
+    {
+      "source": "/tourismo-15-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=tourismo-15-fren-diski"
+    },
+    {
+      "source": "/tourismo-15-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=tourismo-15-fren-korugu"
+    },
+    {
+      "source": "/tourismo-15-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=tourismo-15-suspansiyon-korugu"
+    },
+    {
+      "source": "/tourismo-15-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=tourismo-15-fren-pabucu"
+    },
+    {
+      "source": "/tourismo-15-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=tourismo-15-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/tourismo-15-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=tourismo-15-hava-korugu"
+    },
+    {
+      "source": "/man-18-460-balata",
+      "destination": "/api/sitemap?type=landing&slug=man-18-460-balata"
+    },
+    {
+      "source": "/man-18-460-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=man-18-460-fren-diski"
+    },
+    {
+      "source": "/man-18-460-kampana",
+      "destination": "/api/sitemap?type=landing&slug=man-18-460-kampana"
+    },
+    {
+      "source": "/man-18-460-bijon",
+      "destination": "/api/sitemap?type=landing&slug=man-18-460-bijon"
+    },
+    {
+      "source": "/man-18-460-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=man-18-460-fren-pabucu"
+    },
+    {
+      "source": "/man-18-460-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=man-18-460-fren-korugu"
+    },
+    {
+      "source": "/man-18-460-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=man-18-460-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/man-18-460-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=man-18-460-fren-circiri"
+    },
+    {
+      "source": "/man-tgs-balata",
+      "destination": "/api/sitemap?type=landing&slug=man-tgs-balata"
+    },
+    {
+      "source": "/man-tgs-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=man-tgs-fren-diski"
+    },
+    {
+      "source": "/man-tgs-kampana",
+      "destination": "/api/sitemap?type=landing&slug=man-tgs-kampana"
+    },
+    {
+      "source": "/man-tgs-bijon",
+      "destination": "/api/sitemap?type=landing&slug=man-tgs-bijon"
+    },
+    {
+      "source": "/man-tgs-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=man-tgs-fren-pabucu"
+    },
+    {
+      "source": "/man-tgs-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=man-tgs-fren-korugu"
+    },
+    {
+      "source": "/man-tgs-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=man-tgs-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/man-tgs-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=man-tgs-fren-circiri"
+    },
+    {
+      "source": "/scania-g440-balata",
+      "destination": "/api/sitemap?type=landing&slug=scania-g440-balata"
+    },
+    {
+      "source": "/scania-g440-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=scania-g440-fren-diski"
+    },
+    {
+      "source": "/scania-g440-kampana",
+      "destination": "/api/sitemap?type=landing&slug=scania-g440-kampana"
+    },
+    {
+      "source": "/scania-g440-bijon",
+      "destination": "/api/sitemap?type=landing&slug=scania-g440-bijon"
+    },
+    {
+      "source": "/scania-g440-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=scania-g440-fren-pabucu"
+    },
+    {
+      "source": "/scania-g440-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=scania-g440-fren-korugu"
+    },
+    {
+      "source": "/scania-g440-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=scania-g440-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/scania-g440-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=scania-g440-fren-circiri"
+    },
+    {
+      "source": "/scania-r440-balata",
+      "destination": "/api/sitemap?type=landing&slug=scania-r440-balata"
+    },
+    {
+      "source": "/scania-r440-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=scania-r440-fren-diski"
+    },
+    {
+      "source": "/scania-r440-kampana",
+      "destination": "/api/sitemap?type=landing&slug=scania-r440-kampana"
+    },
+    {
+      "source": "/scania-r440-bijon",
+      "destination": "/api/sitemap?type=landing&slug=scania-r440-bijon"
+    },
+    {
+      "source": "/scania-r440-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=scania-r440-fren-pabucu"
+    },
+    {
+      "source": "/scania-r440-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=scania-r440-fren-korugu"
+    },
+    {
+      "source": "/scania-r440-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=scania-r440-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/scania-r440-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=scania-r440-fren-circiri"
+    },
+    {
+      "source": "/volvo-fh12-balata",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh12-balata"
+    },
+    {
+      "source": "/volvo-fh12-kampana",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh12-kampana"
+    },
+    {
+      "source": "/volvo-fh12-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh12-fren-pabucu"
+    },
+    {
+      "source": "/volvo-fh12-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh12-fren-korugu"
+    },
+    {
+      "source": "/volvo-fh12-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh12-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/volvo-fh12-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh12-fren-circiri"
+    },
+    {
+      "source": "/volvo-fh13-balata",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh13-balata"
+    },
+    {
+      "source": "/volvo-fh13-kampana",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh13-kampana"
+    },
+    {
+      "source": "/volvo-fh13-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh13-fren-pabucu"
+    },
+    {
+      "source": "/volvo-fh13-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh13-fren-korugu"
+    },
+    {
+      "source": "/volvo-fh13-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh13-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/volvo-fh13-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh13-fren-circiri"
+    },
+    {
+      "source": "/volvo-fm12-balata",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fm12-balata"
+    },
+    {
+      "source": "/volvo-fm12-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fm12-fren-diski"
+    },
+    {
+      "source": "/volvo-fm12-kampana",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fm12-kampana"
+    },
+    {
+      "source": "/volvo-fm12-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fm12-suspansiyon-korugu"
+    },
+    {
+      "source": "/volvo-fm12-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fm12-fren-pabucu"
+    },
+    {
+      "source": "/volvo-fm12-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fm12-fren-korugu"
+    },
+    {
+      "source": "/volvo-fm12-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fm12-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/volvo-fm12-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fm12-fren-circiri"
+    },
+    {
+      "source": "/daf-xf-105-balata",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-105-balata"
+    },
+    {
+      "source": "/daf-xf-105-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-105-fren-diski"
+    },
+    {
+      "source": "/daf-xf-105-kampana",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-105-kampana"
+    },
+    {
+      "source": "/daf-xf-105-bijon",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-105-bijon"
+    },
+    {
+      "source": "/daf-xf-105-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-105-fren-pabucu"
+    },
+    {
+      "source": "/daf-xf-105-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-105-fren-korugu"
+    },
+    {
+      "source": "/daf-xf-105-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-105-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/daf-xf-105-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-105-fren-circiri"
+    },
+    {
+      "source": "/daf-xf-106-balata",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-106-balata"
+    },
+    {
+      "source": "/daf-xf-106-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-106-fren-diski"
+    },
+    {
+      "source": "/daf-xf-106-kampana",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-106-kampana"
+    },
+    {
+      "source": "/daf-xf-106-bijon",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-106-bijon"
+    },
+    {
+      "source": "/daf-xf-106-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-106-fren-pabucu"
+    },
+    {
+      "source": "/daf-xf-106-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-106-fren-korugu"
+    },
+    {
+      "source": "/daf-xf-106-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-106-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/daf-xf-106-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-106-fren-circiri"
+    },
+    {
+      "source": "/daf-cf-85-balata",
+      "destination": "/api/sitemap?type=landing&slug=daf-cf-85-balata"
+    },
+    {
+      "source": "/daf-cf-85-kampana",
+      "destination": "/api/sitemap?type=landing&slug=daf-cf-85-kampana"
+    },
+    {
+      "source": "/daf-cf-85-bijon",
+      "destination": "/api/sitemap?type=landing&slug=daf-cf-85-bijon"
+    },
+    {
+      "source": "/daf-cf-85-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=daf-cf-85-fren-pabucu"
+    },
+    {
+      "source": "/daf-cf-85-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=daf-cf-85-fren-korugu"
+    },
+    {
+      "source": "/daf-cf-85-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=daf-cf-85-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/daf-cf-85-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=daf-cf-85-fren-circiri"
+    },
+    {
+      "source": "/renault-premium-balata",
+      "destination": "/api/sitemap?type=landing&slug=renault-premium-balata"
+    },
+    {
+      "source": "/renault-premium-kampana",
+      "destination": "/api/sitemap?type=landing&slug=renault-premium-kampana"
+    },
+    {
+      "source": "/renault-premium-bijon",
+      "destination": "/api/sitemap?type=landing&slug=renault-premium-bijon"
+    },
+    {
+      "source": "/renault-premium-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=renault-premium-fren-pabucu"
+    },
+    {
+      "source": "/renault-premium-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=renault-premium-fren-korugu"
+    },
+    {
+      "source": "/renault-premium-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=renault-premium-fren-circiri"
+    },
+    {
+      "source": "/renault-magnum-balata",
+      "destination": "/api/sitemap?type=landing&slug=renault-magnum-balata"
+    },
+    {
+      "source": "/renault-magnum-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=renault-magnum-fren-diski"
+    },
+    {
+      "source": "/renault-magnum-kampana",
+      "destination": "/api/sitemap?type=landing&slug=renault-magnum-kampana"
+    },
+    {
+      "source": "/renault-magnum-bijon",
+      "destination": "/api/sitemap?type=landing&slug=renault-magnum-bijon"
+    },
+    {
+      "source": "/renault-magnum-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=renault-magnum-fren-pabucu"
+    },
+    {
+      "source": "/renault-magnum-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=renault-magnum-fren-korugu"
+    },
+    {
+      "source": "/renault-magnum-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=renault-magnum-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/renault-magnum-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=renault-magnum-fren-circiri"
+    },
+    {
+      "source": "/iveco-stralis-balata",
+      "destination": "/api/sitemap?type=landing&slug=iveco-stralis-balata"
+    },
+    {
+      "source": "/iveco-stralis-kampana",
+      "destination": "/api/sitemap?type=landing&slug=iveco-stralis-kampana"
+    },
+    {
+      "source": "/iveco-stralis-bijon",
+      "destination": "/api/sitemap?type=landing&slug=iveco-stralis-bijon"
+    },
+    {
+      "source": "/iveco-stralis-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=iveco-stralis-fren-pabucu"
+    },
+    {
+      "source": "/iveco-stralis-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=iveco-stralis-fren-korugu"
+    },
+    {
+      "source": "/iveco-stralis-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=iveco-stralis-fren-circiri"
+    },
+    {
+      "source": "/iveco-eurocargo-balata",
+      "destination": "/api/sitemap?type=landing&slug=iveco-eurocargo-balata"
+    },
+    {
+      "source": "/iveco-eurocargo-kampana",
+      "destination": "/api/sitemap?type=landing&slug=iveco-eurocargo-kampana"
+    },
+    {
+      "source": "/iveco-eurocargo-bijon",
+      "destination": "/api/sitemap?type=landing&slug=iveco-eurocargo-bijon"
+    },
+    {
+      "source": "/iveco-eurocargo-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=iveco-eurocargo-fren-pabucu"
+    },
+    {
+      "source": "/iveco-eurocargo-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=iveco-eurocargo-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/iveco-eurocargo-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=iveco-eurocargo-fren-circiri"
+    },
+    {
+      "source": "/ford-cargo-4142-balata",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-4142-balata"
+    },
+    {
+      "source": "/ford-cargo-4142-kampana",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-4142-kampana"
+    },
+    {
+      "source": "/ford-cargo-4142-bijon",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-4142-bijon"
+    },
+    {
+      "source": "/ford-cargo-4142-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-4142-fren-pabucu"
+    },
+    {
+      "source": "/ford-cargo-4142-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-4142-fren-korugu"
+    },
+    {
+      "source": "/ford-cargo-4142-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-4142-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/ford-cargo-4142-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-4142-fren-circiri"
+    },
+    {
+      "source": "/bmc-tugra-balata",
+      "destination": "/api/sitemap?type=landing&slug=bmc-tugra-balata"
+    },
+    {
+      "source": "/bmc-tugra-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=bmc-tugra-fren-diski"
+    },
+    {
+      "source": "/bmc-tugra-kampana",
+      "destination": "/api/sitemap?type=landing&slug=bmc-tugra-kampana"
+    },
+    {
+      "source": "/bmc-tugra-bijon",
+      "destination": "/api/sitemap?type=landing&slug=bmc-tugra-bijon"
+    },
+    {
+      "source": "/bmc-tugra-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=bmc-tugra-fren-pabucu"
+    },
+    {
+      "source": "/bmc-tugra-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=bmc-tugra-fren-korugu"
+    },
+    {
+      "source": "/bmc-tugra-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=bmc-tugra-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/bmc-tugra-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=bmc-tugra-fren-circiri"
+    },
+    {
+      "source": "/temsa-safir-balata",
+      "destination": "/api/sitemap?type=landing&slug=temsa-safir-balata"
+    },
+    {
+      "source": "/temsa-safir-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=temsa-safir-fren-diski"
+    },
+    {
+      "source": "/temsa-safir-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=temsa-safir-fren-korugu"
+    },
+    {
+      "source": "/temsa-safir-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=temsa-safir-suspansiyon-korugu"
+    },
+    {
+      "source": "/temsa-safir-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=temsa-safir-fren-pabucu"
+    },
+    {
+      "source": "/temsa-safir-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=temsa-safir-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/temsa-safir-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=temsa-safir-hava-korugu"
+    },
+    {
+      "source": "/temsa-safir-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=temsa-safir-porya-kapagi"
+    },
+    {
+      "source": "/temsa-safir-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=temsa-safir-abs-sensoru"
+    },
+    {
+      "source": "/temsa-safir-ebs-modulator",
+      "destination": "/api/sitemap?type=landing&slug=temsa-safir-ebs-modulator"
+    },
+    {
+      "source": "/otokar-sultan-balata",
+      "destination": "/api/sitemap?type=landing&slug=otokar-sultan-balata"
+    },
+    {
+      "source": "/otokar-sultan-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=otokar-sultan-fren-diski"
+    },
+    {
+      "source": "/otokar-sultan-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=otokar-sultan-fren-korugu"
+    },
+    {
+      "source": "/otokar-sultan-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=otokar-sultan-suspansiyon-korugu"
+    },
+    {
+      "source": "/otokar-sultan-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=otokar-sultan-fren-pabucu"
+    },
+    {
+      "source": "/otokar-sultan-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=otokar-sultan-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/otokar-sultan-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=otokar-sultan-hava-korugu"
+    },
+    {
+      "source": "/isuzu-turkuaz-balata",
+      "destination": "/api/sitemap?type=landing&slug=isuzu-turkuaz-balata"
+    },
+    {
+      "source": "/isuzu-turkuaz-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=isuzu-turkuaz-fren-diski"
+    },
+    {
+      "source": "/isuzu-turkuaz-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=isuzu-turkuaz-fren-korugu"
+    },
+    {
+      "source": "/isuzu-turkuaz-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=isuzu-turkuaz-suspansiyon-korugu"
+    },
+    {
+      "source": "/isuzu-turkuaz-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=isuzu-turkuaz-fren-pabucu"
+    },
+    {
+      "source": "/isuzu-turkuaz-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=isuzu-turkuaz-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/isuzu-turkuaz-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=isuzu-turkuaz-hava-korugu"
+    },
+    {
+      "source": "/isuzu-novociti-balata",
+      "destination": "/api/sitemap?type=landing&slug=isuzu-novociti-balata"
+    },
+    {
+      "source": "/isuzu-novociti-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=isuzu-novociti-suspansiyon-korugu"
+    },
+    {
+      "source": "/isuzu-novociti-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=isuzu-novociti-fren-pabucu"
+    },
+    {
+      "source": "/isuzu-novociti-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=isuzu-novociti-hava-korugu"
+    },
+    {
+      "source": "/bpw-eco-plus-balata",
+      "destination": "/api/sitemap?type=landing&slug=bpw-eco-plus-balata"
+    },
+    {
+      "source": "/bpw-eco-plus-kampana",
+      "destination": "/api/sitemap?type=landing&slug=bpw-eco-plus-kampana"
+    },
+    {
+      "source": "/bpw-eco-plus-bijon",
+      "destination": "/api/sitemap?type=landing&slug=bpw-eco-plus-bijon"
+    },
+    {
+      "source": "/bpw-eco-plus-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=bpw-eco-plus-fren-pabucu"
+    },
+    {
+      "source": "/bpw-eco-plus-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=bpw-eco-plus-fren-korugu"
+    },
+    {
+      "source": "/bpw-eco-plus-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=bpw-eco-plus-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/bpw-eco-plus-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=bpw-eco-plus-fren-circiri"
+    },
+    {
+      "source": "/bpw-eco-plus-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=bpw-eco-plus-abs-sensoru"
+    },
+    {
+      "source": "/bpw-eco-plus-ebs-modulator",
+      "destination": "/api/sitemap?type=landing&slug=bpw-eco-plus-ebs-modulator"
+    },
+    {
+      "source": "/bpw-eco-plus-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=bpw-eco-plus-hava-korugu"
+    },
+    {
+      "source": "/saf-intradisc-balata",
+      "destination": "/api/sitemap?type=landing&slug=saf-intradisc-balata"
+    },
+    {
+      "source": "/saf-intradisc-kampana",
+      "destination": "/api/sitemap?type=landing&slug=saf-intradisc-kampana"
+    },
+    {
+      "source": "/saf-intradisc-bijon",
+      "destination": "/api/sitemap?type=landing&slug=saf-intradisc-bijon"
+    },
+    {
+      "source": "/saf-intradisc-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=saf-intradisc-fren-pabucu"
+    },
+    {
+      "source": "/saf-intradisc-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=saf-intradisc-fren-korugu"
+    },
+    {
+      "source": "/saf-intradisc-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=saf-intradisc-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/saf-intradisc-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=saf-intradisc-fren-circiri"
+    },
+    {
+      "source": "/saf-intradisc-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=saf-intradisc-abs-sensoru"
+    },
+    {
+      "source": "/saf-intradisc-ebs-modulator",
+      "destination": "/api/sitemap?type=landing&slug=saf-intradisc-ebs-modulator"
+    },
+    {
+      "source": "/saf-intradisc-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=saf-intradisc-hava-korugu"
+    },
+    {
+      "source": "/ror-meritor-dorse-balata",
+      "destination": "/api/sitemap?type=landing&slug=ror-meritor-dorse-balata"
+    },
+    {
+      "source": "/ror-meritor-dorse-kampana",
+      "destination": "/api/sitemap?type=landing&slug=ror-meritor-dorse-kampana"
+    },
+    {
+      "source": "/ror-meritor-dorse-bijon",
+      "destination": "/api/sitemap?type=landing&slug=ror-meritor-dorse-bijon"
+    },
+    {
+      "source": "/ror-meritor-dorse-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=ror-meritor-dorse-fren-pabucu"
+    },
+    {
+      "source": "/ror-meritor-dorse-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=ror-meritor-dorse-fren-korugu"
+    },
+    {
+      "source": "/ror-meritor-dorse-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=ror-meritor-dorse-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/ror-meritor-dorse-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=ror-meritor-dorse-fren-circiri"
+    },
+    {
+      "source": "/ror-meritor-dorse-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=ror-meritor-dorse-abs-sensoru"
+    },
+    {
+      "source": "/ror-meritor-dorse-ebs-modulator",
+      "destination": "/api/sitemap?type=landing&slug=ror-meritor-dorse-ebs-modulator"
+    },
+    {
+      "source": "/ror-meritor-dorse-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=ror-meritor-dorse-hava-korugu"
+    },
+    {
+      "source": "/schmitz-dorse-balata",
+      "destination": "/api/sitemap?type=landing&slug=schmitz-dorse-balata"
+    },
+    {
+      "source": "/schmitz-dorse-kampana",
+      "destination": "/api/sitemap?type=landing&slug=schmitz-dorse-kampana"
+    },
+    {
+      "source": "/schmitz-dorse-bijon",
+      "destination": "/api/sitemap?type=landing&slug=schmitz-dorse-bijon"
+    },
+    {
+      "source": "/schmitz-dorse-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=schmitz-dorse-fren-pabucu"
+    },
+    {
+      "source": "/schmitz-dorse-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=schmitz-dorse-fren-korugu"
+    },
+    {
+      "source": "/schmitz-dorse-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=schmitz-dorse-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/schmitz-dorse-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=schmitz-dorse-fren-circiri"
+    },
+    {
+      "source": "/schmitz-dorse-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=schmitz-dorse-porya-kapagi"
+    },
+    {
+      "source": "/schmitz-dorse-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=schmitz-dorse-abs-sensoru"
+    },
+    {
+      "source": "/schmitz-dorse-ebs-modulator",
+      "destination": "/api/sitemap?type=landing&slug=schmitz-dorse-ebs-modulator"
+    },
+    {
+      "source": "/schmitz-dorse-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=schmitz-dorse-hava-korugu"
+    },
+    {
+      "source": "/tirsan-dorse-balata",
+      "destination": "/api/sitemap?type=landing&slug=tirsan-dorse-balata"
+    },
+    {
+      "source": "/tirsan-dorse-kampana",
+      "destination": "/api/sitemap?type=landing&slug=tirsan-dorse-kampana"
+    },
+    {
+      "source": "/tirsan-dorse-bijon",
+      "destination": "/api/sitemap?type=landing&slug=tirsan-dorse-bijon"
+    },
+    {
+      "source": "/tirsan-dorse-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=tirsan-dorse-fren-pabucu"
+    },
+    {
+      "source": "/tirsan-dorse-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=tirsan-dorse-fren-korugu"
+    },
+    {
+      "source": "/tirsan-dorse-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=tirsan-dorse-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/tirsan-dorse-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=tirsan-dorse-fren-circiri"
+    },
+    {
+      "source": "/tirsan-dorse-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=tirsan-dorse-porya-kapagi"
+    },
+    {
+      "source": "/tirsan-dorse-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=tirsan-dorse-abs-sensoru"
+    },
+    {
+      "source": "/tirsan-dorse-ebs-modulator",
+      "destination": "/api/sitemap?type=landing&slug=tirsan-dorse-ebs-modulator"
+    },
+    {
+      "source": "/tirsan-dorse-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=tirsan-dorse-hava-korugu"
+    },
+    {
+      "source": "/axor-1833-balata",
+      "destination": "/api/sitemap?type=landing&slug=axor-1833-balata"
+    },
+    {
+      "source": "/axor-1833-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=axor-1833-fren-diski"
+    },
+    {
+      "source": "/axor-1833-kampana",
+      "destination": "/api/sitemap?type=landing&slug=axor-1833-kampana"
+    },
+    {
+      "source": "/axor-1833-bijon",
+      "destination": "/api/sitemap?type=landing&slug=axor-1833-bijon"
+    },
+    {
+      "source": "/axor-1833-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=axor-1833-fren-pabucu"
+    },
+    {
+      "source": "/axor-1833-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=axor-1833-fren-korugu"
+    },
+    {
+      "source": "/axor-1833-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=axor-1833-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/axor-1833-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=axor-1833-fren-circiri"
+    },
+    {
+      "source": "/axor-1843-balata",
+      "destination": "/api/sitemap?type=landing&slug=axor-1843-balata"
+    },
+    {
+      "source": "/axor-1843-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=axor-1843-fren-diski"
+    },
+    {
+      "source": "/axor-1843-kampana",
+      "destination": "/api/sitemap?type=landing&slug=axor-1843-kampana"
+    },
+    {
+      "source": "/axor-1843-bijon",
+      "destination": "/api/sitemap?type=landing&slug=axor-1843-bijon"
+    },
+    {
+      "source": "/axor-1843-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=axor-1843-fren-pabucu"
+    },
+    {
+      "source": "/axor-1843-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=axor-1843-fren-korugu"
+    },
+    {
+      "source": "/axor-1843-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=axor-1843-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/axor-1843-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=axor-1843-fren-circiri"
+    },
+    {
+      "source": "/actros-1842-balata",
+      "destination": "/api/sitemap?type=landing&slug=actros-1842-balata"
+    },
+    {
+      "source": "/actros-1842-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=actros-1842-fren-diski"
+    },
+    {
+      "source": "/actros-1842-kampana",
+      "destination": "/api/sitemap?type=landing&slug=actros-1842-kampana"
+    },
+    {
+      "source": "/actros-1842-bijon",
+      "destination": "/api/sitemap?type=landing&slug=actros-1842-bijon"
+    },
+    {
+      "source": "/actros-1842-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=actros-1842-fren-pabucu"
+    },
+    {
+      "source": "/actros-1842-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=actros-1842-fren-korugu"
+    },
+    {
+      "source": "/actros-1842-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=actros-1842-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/actros-1842-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=actros-1842-fren-circiri"
+    },
+    {
+      "source": "/actros-1845-balata",
+      "destination": "/api/sitemap?type=landing&slug=actros-1845-balata"
+    },
+    {
+      "source": "/actros-1845-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=actros-1845-fren-diski"
+    },
+    {
+      "source": "/actros-1845-kampana",
+      "destination": "/api/sitemap?type=landing&slug=actros-1845-kampana"
+    },
+    {
+      "source": "/actros-1845-bijon",
+      "destination": "/api/sitemap?type=landing&slug=actros-1845-bijon"
+    },
+    {
+      "source": "/actros-1845-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=actros-1845-fren-pabucu"
+    },
+    {
+      "source": "/actros-1845-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=actros-1845-fren-korugu"
+    },
+    {
+      "source": "/actros-1845-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=actros-1845-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/actros-1845-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=actros-1845-fren-circiri"
+    },
+    {
+      "source": "/actros-1848-balata",
+      "destination": "/api/sitemap?type=landing&slug=actros-1848-balata"
+    },
+    {
+      "source": "/actros-1848-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=actros-1848-fren-diski"
+    },
+    {
+      "source": "/actros-1848-kampana",
+      "destination": "/api/sitemap?type=landing&slug=actros-1848-kampana"
+    },
+    {
+      "source": "/actros-1848-bijon",
+      "destination": "/api/sitemap?type=landing&slug=actros-1848-bijon"
+    },
+    {
+      "source": "/actros-1848-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=actros-1848-fren-pabucu"
+    },
+    {
+      "source": "/actros-1848-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=actros-1848-fren-korugu"
+    },
+    {
+      "source": "/actros-1848-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=actros-1848-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/actros-1848-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=actros-1848-fren-circiri"
+    },
+    {
+      "source": "/actros-1851-balata",
+      "destination": "/api/sitemap?type=landing&slug=actros-1851-balata"
+    },
+    {
+      "source": "/actros-1851-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=actros-1851-fren-diski"
+    },
+    {
+      "source": "/actros-1851-kampana",
+      "destination": "/api/sitemap?type=landing&slug=actros-1851-kampana"
+    },
+    {
+      "source": "/actros-1851-bijon",
+      "destination": "/api/sitemap?type=landing&slug=actros-1851-bijon"
+    },
+    {
+      "source": "/actros-1851-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=actros-1851-fren-pabucu"
+    },
+    {
+      "source": "/actros-1851-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=actros-1851-fren-korugu"
+    },
+    {
+      "source": "/actros-1851-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=actros-1851-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/actros-1851-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=actros-1851-fren-circiri"
+    },
+    {
+      "source": "/arocs-4142-balata",
+      "destination": "/api/sitemap?type=landing&slug=arocs-4142-balata"
+    },
+    {
+      "source": "/arocs-4142-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=arocs-4142-fren-diski"
+    },
+    {
+      "source": "/arocs-4142-kampana",
+      "destination": "/api/sitemap?type=landing&slug=arocs-4142-kampana"
+    },
+    {
+      "source": "/arocs-4142-bijon",
+      "destination": "/api/sitemap?type=landing&slug=arocs-4142-bijon"
+    },
+    {
+      "source": "/arocs-4142-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=arocs-4142-fren-pabucu"
+    },
+    {
+      "source": "/arocs-4142-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=arocs-4142-fren-korugu"
+    },
+    {
+      "source": "/arocs-4142-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=arocs-4142-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/arocs-4142-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=arocs-4142-fren-circiri"
+    },
+    {
+      "source": "/arocs-4145-balata",
+      "destination": "/api/sitemap?type=landing&slug=arocs-4145-balata"
+    },
+    {
+      "source": "/arocs-4145-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=arocs-4145-fren-diski"
+    },
+    {
+      "source": "/arocs-4145-kampana",
+      "destination": "/api/sitemap?type=landing&slug=arocs-4145-kampana"
+    },
+    {
+      "source": "/arocs-4145-bijon",
+      "destination": "/api/sitemap?type=landing&slug=arocs-4145-bijon"
+    },
+    {
+      "source": "/arocs-4145-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=arocs-4145-fren-pabucu"
+    },
+    {
+      "source": "/arocs-4145-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=arocs-4145-fren-korugu"
+    },
+    {
+      "source": "/arocs-4145-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=arocs-4145-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/arocs-4145-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=arocs-4145-fren-circiri"
+    },
+    {
+      "source": "/atego-2524-balata",
+      "destination": "/api/sitemap?type=landing&slug=atego-2524-balata"
+    },
+    {
+      "source": "/atego-2524-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=atego-2524-fren-diski"
+    },
+    {
+      "source": "/atego-2524-kampana",
+      "destination": "/api/sitemap?type=landing&slug=atego-2524-kampana"
+    },
+    {
+      "source": "/atego-2524-bijon",
+      "destination": "/api/sitemap?type=landing&slug=atego-2524-bijon"
+    },
+    {
+      "source": "/atego-2524-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=atego-2524-fren-pabucu"
+    },
+    {
+      "source": "/atego-2524-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=atego-2524-fren-korugu"
+    },
+    {
+      "source": "/atego-2524-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=atego-2524-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/atego-2524-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=atego-2524-fren-circiri"
+    },
+    {
+      "source": "/mercedes-o403-balata",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-o403-balata"
+    },
+    {
+      "source": "/mercedes-o403-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-o403-fren-diski"
+    },
+    {
+      "source": "/mercedes-o403-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-o403-fren-korugu"
+    },
+    {
+      "source": "/mercedes-o403-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-o403-suspansiyon-korugu"
+    },
+    {
+      "source": "/mercedes-o403-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-o403-fren-pabucu"
+    },
+    {
+      "source": "/mercedes-o403-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-o403-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/mercedes-o403-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-o403-hava-korugu"
+    },
+    {
+      "source": "/mercedes-o500-balata",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-o500-balata"
+    },
+    {
+      "source": "/mercedes-o500-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-o500-fren-diski"
+    },
+    {
+      "source": "/mercedes-o500-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-o500-fren-korugu"
+    },
+    {
+      "source": "/mercedes-o500-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-o500-suspansiyon-korugu"
+    },
+    {
+      "source": "/mercedes-o500-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-o500-fren-pabucu"
+    },
+    {
+      "source": "/mercedes-o500-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-o500-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/mercedes-o500-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-o500-hava-korugu"
+    },
+    {
+      "source": "/man-18-440-balata",
+      "destination": "/api/sitemap?type=landing&slug=man-18-440-balata"
+    },
+    {
+      "source": "/man-18-440-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=man-18-440-fren-diski"
+    },
+    {
+      "source": "/man-18-440-kampana",
+      "destination": "/api/sitemap?type=landing&slug=man-18-440-kampana"
+    },
+    {
+      "source": "/man-18-440-bijon",
+      "destination": "/api/sitemap?type=landing&slug=man-18-440-bijon"
+    },
+    {
+      "source": "/man-18-440-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=man-18-440-fren-pabucu"
+    },
+    {
+      "source": "/man-18-440-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=man-18-440-fren-korugu"
+    },
+    {
+      "source": "/man-18-440-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=man-18-440-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/man-18-440-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=man-18-440-fren-circiri"
+    },
+    {
+      "source": "/man-18-480-balata",
+      "destination": "/api/sitemap?type=landing&slug=man-18-480-balata"
+    },
+    {
+      "source": "/man-18-480-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=man-18-480-fren-diski"
+    },
+    {
+      "source": "/man-18-480-kampana",
+      "destination": "/api/sitemap?type=landing&slug=man-18-480-kampana"
+    },
+    {
+      "source": "/man-18-480-bijon",
+      "destination": "/api/sitemap?type=landing&slug=man-18-480-bijon"
+    },
+    {
+      "source": "/man-18-480-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=man-18-480-fren-pabucu"
+    },
+    {
+      "source": "/man-18-480-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=man-18-480-fren-korugu"
+    },
+    {
+      "source": "/man-18-480-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=man-18-480-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/man-18-480-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=man-18-480-fren-circiri"
+    },
+    {
+      "source": "/scania-r450-balata",
+      "destination": "/api/sitemap?type=landing&slug=scania-r450-balata"
+    },
+    {
+      "source": "/scania-r450-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=scania-r450-fren-diski"
+    },
+    {
+      "source": "/scania-r450-kampana",
+      "destination": "/api/sitemap?type=landing&slug=scania-r450-kampana"
+    },
+    {
+      "source": "/scania-r450-bijon",
+      "destination": "/api/sitemap?type=landing&slug=scania-r450-bijon"
+    },
+    {
+      "source": "/scania-r450-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=scania-r450-fren-pabucu"
+    },
+    {
+      "source": "/scania-r450-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=scania-r450-fren-korugu"
+    },
+    {
+      "source": "/scania-r450-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=scania-r450-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/scania-r450-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=scania-r450-fren-circiri"
+    },
+    {
+      "source": "/volvo-fh460-balata",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh460-balata"
+    },
+    {
+      "source": "/volvo-fh460-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh460-fren-diski"
+    },
+    {
+      "source": "/volvo-fh460-kampana",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh460-kampana"
+    },
+    {
+      "source": "/volvo-fh460-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh460-suspansiyon-korugu"
+    },
+    {
+      "source": "/volvo-fh460-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh460-fren-pabucu"
+    },
+    {
+      "source": "/volvo-fh460-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh460-fren-korugu"
+    },
+    {
+      "source": "/volvo-fh460-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh460-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/volvo-fh460-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh460-fren-circiri"
+    },
+    {
+      "source": "/daf-xf-460-balata",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-460-balata"
+    },
+    {
+      "source": "/daf-xf-460-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-460-fren-diski"
+    },
+    {
+      "source": "/daf-xf-460-kampana",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-460-kampana"
+    },
+    {
+      "source": "/daf-xf-460-bijon",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-460-bijon"
+    },
+    {
+      "source": "/daf-xf-460-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-460-fren-pabucu"
+    },
+    {
+      "source": "/daf-xf-460-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-460-fren-korugu"
+    },
+    {
+      "source": "/daf-xf-460-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-460-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/daf-xf-460-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-460-fren-circiri"
+    },
+    {
+      "source": "/ford-cargo-1846-balata",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-1846-balata"
+    },
+    {
+      "source": "/ford-cargo-1846-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-1846-fren-diski"
+    },
+    {
+      "source": "/ford-cargo-1846-kampana",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-1846-kampana"
+    },
+    {
+      "source": "/ford-cargo-1846-bijon",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-1846-bijon"
+    },
+    {
+      "source": "/ford-cargo-1846-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-1846-fren-pabucu"
+    },
+    {
+      "source": "/ford-cargo-1846-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-1846-fren-korugu"
+    },
+    {
+      "source": "/ford-cargo-1846-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-1846-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/ford-cargo-1846-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-1846-fren-circiri"
+    },
+    {
+      "source": "/ford-cargo-3542-balata",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-3542-balata"
+    },
+    {
+      "source": "/ford-cargo-3542-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-3542-fren-diski"
+    },
+    {
+      "source": "/ford-cargo-3542-kampana",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-3542-kampana"
+    },
+    {
+      "source": "/ford-cargo-3542-bijon",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-3542-bijon"
+    },
+    {
+      "source": "/ford-cargo-3542-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-3542-fren-pabucu"
+    },
+    {
+      "source": "/ford-cargo-3542-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-3542-fren-korugu"
+    },
+    {
+      "source": "/ford-cargo-3542-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-3542-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/ford-cargo-3542-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-3542-fren-circiri"
+    },
+    {
+      "source": "/renault-kerax-balata",
+      "destination": "/api/sitemap?type=landing&slug=renault-kerax-balata"
+    },
+    {
+      "source": "/renault-kerax-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=renault-kerax-fren-diski"
+    },
+    {
+      "source": "/renault-kerax-kampana",
+      "destination": "/api/sitemap?type=landing&slug=renault-kerax-kampana"
+    },
+    {
+      "source": "/renault-kerax-bijon",
+      "destination": "/api/sitemap?type=landing&slug=renault-kerax-bijon"
+    },
+    {
+      "source": "/renault-kerax-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=renault-kerax-fren-pabucu"
+    },
+    {
+      "source": "/renault-kerax-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=renault-kerax-fren-korugu"
+    },
+    {
+      "source": "/renault-kerax-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=renault-kerax-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/renault-kerax-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=renault-kerax-fren-circiri"
+    },
+    {
+      "source": "/iveco-trakker-balata",
+      "destination": "/api/sitemap?type=landing&slug=iveco-trakker-balata"
+    },
+    {
+      "source": "/iveco-trakker-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=iveco-trakker-fren-diski"
+    },
+    {
+      "source": "/iveco-trakker-kampana",
+      "destination": "/api/sitemap?type=landing&slug=iveco-trakker-kampana"
+    },
+    {
+      "source": "/iveco-trakker-bijon",
+      "destination": "/api/sitemap?type=landing&slug=iveco-trakker-bijon"
+    },
+    {
+      "source": "/iveco-trakker-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=iveco-trakker-fren-pabucu"
+    },
+    {
+      "source": "/iveco-trakker-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=iveco-trakker-fren-korugu"
+    },
+    {
+      "source": "/iveco-trakker-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=iveco-trakker-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/iveco-trakker-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=iveco-trakker-fren-circiri"
+    },
+    {
+      "source": "/bpw-30k-balata",
+      "destination": "/api/sitemap?type=landing&slug=bpw-30k-balata"
+    },
+    {
+      "source": "/bpw-30k-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=bpw-30k-fren-diski"
+    },
+    {
+      "source": "/bpw-30k-kampana",
+      "destination": "/api/sitemap?type=landing&slug=bpw-30k-kampana"
+    },
+    {
+      "source": "/bpw-30k-bijon",
+      "destination": "/api/sitemap?type=landing&slug=bpw-30k-bijon"
+    },
+    {
+      "source": "/bpw-30k-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=bpw-30k-porya-kapagi"
+    },
+    {
+      "source": "/bpw-30k-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=bpw-30k-suspansiyon-korugu"
+    },
+    {
+      "source": "/bpw-30k-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=bpw-30k-fren-pabucu"
+    },
+    {
+      "source": "/bpw-30k-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=bpw-30k-fren-korugu"
+    },
+    {
+      "source": "/bpw-30k-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=bpw-30k-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/bpw-30k-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=bpw-30k-fren-circiri"
+    },
+    {
+      "source": "/bpw-30k-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=bpw-30k-abs-sensoru"
+    },
+    {
+      "source": "/bpw-30k-ebs-modulator",
+      "destination": "/api/sitemap?type=landing&slug=bpw-30k-ebs-modulator"
+    },
+    {
+      "source": "/bpw-30k-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=bpw-30k-hava-korugu"
+    },
+    {
+      "source": "/saf-intrax-balata",
+      "destination": "/api/sitemap?type=landing&slug=saf-intrax-balata"
+    },
+    {
+      "source": "/saf-intrax-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=saf-intrax-fren-diski"
+    },
+    {
+      "source": "/saf-intrax-kampana",
+      "destination": "/api/sitemap?type=landing&slug=saf-intrax-kampana"
+    },
+    {
+      "source": "/saf-intrax-bijon",
+      "destination": "/api/sitemap?type=landing&slug=saf-intrax-bijon"
+    },
+    {
+      "source": "/saf-intrax-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=saf-intrax-porya-kapagi"
+    },
+    {
+      "source": "/saf-intrax-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=saf-intrax-suspansiyon-korugu"
+    },
+    {
+      "source": "/saf-intrax-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=saf-intrax-fren-pabucu"
+    },
+    {
+      "source": "/saf-intrax-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=saf-intrax-fren-korugu"
+    },
+    {
+      "source": "/saf-intrax-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=saf-intrax-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/saf-intrax-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=saf-intrax-fren-circiri"
+    },
+    {
+      "source": "/saf-intrax-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=saf-intrax-abs-sensoru"
+    },
+    {
+      "source": "/saf-intrax-ebs-modulator",
+      "destination": "/api/sitemap?type=landing&slug=saf-intrax-ebs-modulator"
+    },
+    {
+      "source": "/saf-intrax-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=saf-intrax-hava-korugu"
+    },
+    {
+      "source": "/schmitz-cargobull-balata",
+      "destination": "/api/sitemap?type=landing&slug=schmitz-cargobull-balata"
+    },
+    {
+      "source": "/schmitz-cargobull-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=schmitz-cargobull-fren-diski"
+    },
+    {
+      "source": "/schmitz-cargobull-kampana",
+      "destination": "/api/sitemap?type=landing&slug=schmitz-cargobull-kampana"
+    },
+    {
+      "source": "/schmitz-cargobull-bijon",
+      "destination": "/api/sitemap?type=landing&slug=schmitz-cargobull-bijon"
+    },
+    {
+      "source": "/schmitz-cargobull-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=schmitz-cargobull-suspansiyon-korugu"
+    },
+    {
+      "source": "/schmitz-cargobull-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=schmitz-cargobull-fren-pabucu"
+    },
+    {
+      "source": "/schmitz-cargobull-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=schmitz-cargobull-fren-korugu"
+    },
+    {
+      "source": "/schmitz-cargobull-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=schmitz-cargobull-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/schmitz-cargobull-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=schmitz-cargobull-fren-circiri"
+    },
+    {
+      "source": "/schmitz-cargobull-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=schmitz-cargobull-porya-kapagi"
+    },
+    {
+      "source": "/schmitz-cargobull-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=schmitz-cargobull-abs-sensoru"
+    },
+    {
+      "source": "/schmitz-cargobull-ebs-modulator",
+      "destination": "/api/sitemap?type=landing&slug=schmitz-cargobull-ebs-modulator"
+    },
+    {
+      "source": "/schmitz-cargobull-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=schmitz-cargobull-hava-korugu"
+    },
+    {
+      "source": "/kogel-maxx-balata",
+      "destination": "/api/sitemap?type=landing&slug=kogel-maxx-balata"
+    },
+    {
+      "source": "/kogel-maxx-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=kogel-maxx-fren-diski"
+    },
+    {
+      "source": "/kogel-maxx-kampana",
+      "destination": "/api/sitemap?type=landing&slug=kogel-maxx-kampana"
+    },
+    {
+      "source": "/kogel-maxx-bijon",
+      "destination": "/api/sitemap?type=landing&slug=kogel-maxx-bijon"
+    },
+    {
+      "source": "/kogel-maxx-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=kogel-maxx-suspansiyon-korugu"
+    },
+    {
+      "source": "/kogel-maxx-fren-pabucu",
+      "destination": "/api/sitemap?type=landing&slug=kogel-maxx-fren-pabucu"
+    },
+    {
+      "source": "/kogel-maxx-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=kogel-maxx-fren-korugu"
+    },
+    {
+      "source": "/kogel-maxx-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=landing&slug=kogel-maxx-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/kogel-maxx-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=kogel-maxx-fren-circiri"
+    },
+    {
+      "source": "/kogel-maxx-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=kogel-maxx-porya-kapagi"
+    },
+    {
+      "source": "/kogel-maxx-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=kogel-maxx-abs-sensoru"
+    },
+    {
+      "source": "/kogel-maxx-ebs-modulator",
+      "destination": "/api/sitemap?type=landing&slug=kogel-maxx-ebs-modulator"
+    },
+    {
+      "source": "/kogel-maxx-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=kogel-maxx-hava-korugu"
+    },
+    {
+      "source": "/urun/:id/:slug*",
+      "destination": "/api/sitemap?type=product&route=:id"
+    },
+    {
+      "source": "/urun/:id",
+      "destination": "/api/sitemap?type=product&route=:id"
     },
     {
       "source": "/api/auth/:action",
