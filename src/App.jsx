@@ -514,6 +514,11 @@ function cartWhatsAppUrl(cartItems = [], total = 0, shipping = 0, discount = 0) 
 }
 
 const HOME_INTENT_LINKS = [
+  { href: "/ford-cargo-9c46-1125-ab-fren-kampanasi", title: "Ford Cargo 9C46 Kampana", desc: "9C46-1125-AB / ESK 040 12 Ford Cargo kampana" },
+  { href: "/daf-cf-xf-99717-bijon", title: "DAF CF XF 99717 Bijon", desc: "DAF CF / XF bijon, somun ve disk civatasi teyidi" },
+  { href: "/wabco-4630840410-ebs-dingil-kaldirma-bobini", title: "Wabco 4630840410 EBS", desc: "EBS dingil kaldirma bobini, dorse sistem teyidi" },
+  { href: "/tirsan-dorse-orta-yay-27-cm", title: "Tirsan Dorse Orta Yay", desc: "27 cm Sertel tip dorse orta yay ve dingil grubu" },
+  { href: "/360573-1414435-fren-kampanasi", title: "360573 Kampana", desc: "360573 / 1414435 fren kampanasi stok ve olcu teyidi" },
   { href: "/axor-1840-balata", title: "Axor 1840 Balata", desc: "Mercedes Axor 1840 fren balatasi ve pabuc grubu" },
   { href: "/axor-3340-fren-diski", title: "Axor 3340 Fren Diski", desc: "Axor 3340 / 4140 disk, bijon ve kaliper teyidi" },
   { href: "/actros-1840-balata", title: "Actros 1840 Balata", desc: "Actros 1840 / 1841 fren balatasi aramasi" },

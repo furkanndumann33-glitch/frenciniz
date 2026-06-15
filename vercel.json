@@ -145,6 +145,26 @@
       "destination": "/api/sitemap?type=landing&slug=man-81436010163-roll-koruk"
     },
     {
+      "source": "/ford-cargo-9c46-1125-ab-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-9c46-1125-ab-fren-kampanasi"
+    },
+    {
+      "source": "/daf-cf-xf-99717-bijon",
+      "destination": "/api/sitemap?type=landing&slug=daf-cf-xf-99717-bijon"
+    },
+    {
+      "source": "/wabco-4630840410-ebs-dingil-kaldirma-bobini",
+      "destination": "/api/sitemap?type=landing&slug=wabco-4630840410-ebs-dingil-kaldirma-bobini"
+    },
+    {
+      "source": "/tirsan-dorse-orta-yay-27-cm",
+      "destination": "/api/sitemap?type=landing&slug=tirsan-dorse-orta-yay-27-cm"
+    },
+    {
+      "source": "/360573-1414435-fren-kampanasi",
+      "destination": "/api/sitemap?type=landing&slug=360573-1414435-fren-kampanasi"
+    },
+    {
       "source": "/mercedes-actros-fren-kampanasi",
       "destination": "/api/sitemap?type=landing&slug=mercedes-actros-fren-kampanasi"
     },
