@@ -5072,6 +5072,7 @@ function AdminPanel() {
     {id:"dashboard",label:"Dashboard",icon:"📊"},{id:"sales-chart",label:"Satış Grafikleri",icon:"📈"},
     {id:"products",label:"Ürünler",icon:"📦"},{id:"categories",label:"Kategoriler",icon:"🗂"},
     {id:"traffic",label:"Site Trafiği",icon:"📈"},
+    {id:"digital-marketing",label:"Dijital Pazarlama",icon:"📣"},
     {id:"orders",label:"Siparişler",icon:"🛒"},{id:"returns",label:"İade Talepleri",icon:"↩️"},
     {id:"customers",label:"Müşteriler",icon:"👥"},{id:"coupons",label:"Kuponlar",icon:"🎟"},
     {id:"stock-alerts",label:"Stok Alarmları",icon:"🔔"},{id:"low-stock",label:"Düşük Stok",icon:"⚠️"},
@@ -5124,6 +5125,7 @@ function AdminPanel() {
         {tab==="sms"&&<ASMSCfg/>}
         {tab==="campaign"&&<ACampaign/>}
         {tab==="traffic"&&<ATraffic/>}
+        {tab==="digital-marketing"&&<ADigitalMarketing/>}
         {tab==="email-templates"&&<AEmailTemplates/>}
         {tab==="chat-history"&&<AChatHistory/>}
         {tab==="revenue"&&<ARevenue/>}
@@ -5751,6 +5753,218 @@ function ATraffic(){
         </table>
       </div>}
     </ACard>
+  </div>;
+}
+
+function ADigitalMarketing(){
+  const [data,setData]=useState({dashboard:null,traffic:null,leads:null,feeds:null});
+  const [loading,setLoading]=useState(true);
+  const [err,setErr]=useState("");
+  const [copied,setCopied]=useState("");
+
+  async function readTextStatus(url){
+    try{
+      const r = await fetch(url, {cache:"no-store"});
+      const text = await r.text();
+      return {
+        url,
+        status: r.status,
+        ok: r.ok,
+        length: text.length,
+        urlCount: (text.match(/<url>/g) || []).length,
+        hasSitemap: text.toLowerCase().includes("sitemap"),
+      };
+    }catch(e){
+      return {url,status:"ERR",ok:false,length:0,error:e.message};
+    }
+  }
+
+  async function load(){
+    setLoading(true); setErr("");
+    try{
+      const [dashboard, traffic, leads, sitemap, robots, merchant, meta] = await Promise.all([
+        fetch("/api/admin/dashboard",{credentials:"include"}).then(r=>r.json()),
+        fetch("/api/admin/traffic",{credentials:"include"}).then(r=>r.json()),
+        fetch("/api/admin/leads",{credentials:"include"}).then(r=>r.json()),
+        readTextStatus("/sitemap.xml"),
+        readTextStatus("/robots.txt"),
+        readTextStatus("/google-merchant-feed.xml"),
+        readTextStatus("/meta-catalog-feed.csv"),
+      ]);
+      if(dashboard?.error) throw new Error(dashboard.error);
+      if(traffic?.error) throw new Error(traffic.error);
+      setData({dashboard,traffic,leads,feeds:{sitemap,robots,merchant,meta}});
+    }catch(e){
+      setErr(e.message || "Dijital pazarlama verileri yuklenemedi");
+    }finally{
+      setLoading(false);
+    }
+  }
+
+  useEffect(()=>{load()},[]);
+
+  async function copyText(id, text){
+    try{
+      await navigator.clipboard.writeText(text);
+      setCopied(id);
+      setTimeout(()=>setCopied(""),1800);
+    }catch{
+      setCopied("kopyalanamadi");
+      setTimeout(()=>setCopied(""),1800);
+    }
+  }
+
+  if(loading) return <div style={{padding:20,color:"#999"}}>Dijital pazarlama paneli yukleniyor...</div>;
+  if(err) return <div style={{padding:20,color:"#dc2626"}}>⚠ {err}</div>;
+
+  const stats = data.dashboard?.stats || {};
+  const traffic = data.traffic || {};
+  const leadTotals = data.leads?.totals || {};
+  const totalLeads = Number(leadTotals.whatsapp||0) + Number(leadTotals.phone||0) + Number(leadTotals.email||0);
+  const totalUnique = Number(traffic.totalUnique || 0);
+  const leadRate = totalUnique ? ((totalLeads / totalUnique) * 100).toFixed(1) : "0.0";
+  const orderRate = totalUnique ? ((Number(stats.paidOrders||0) / totalUnique) * 100).toFixed(1) : "0.0";
+  const last7Views = (traffic.chart || []).slice(-7).reduce((s,c)=>s+Number(c.views||0),0);
+  const last7Unique = (traffic.chart || []).slice(-7).reduce((s,c)=>s+Number(c.unique||0),0);
+  const topPath = traffic.topPaths?.[0];
+  const topLead = data.leads?.topSources?.[0];
+  const feedRows = [
+    {name:"Sitemap",...data.feeds?.sitemap, note:data.feeds?.sitemap?.urlCount ? `${data.feeds.sitemap.urlCount} URL` : ""},
+    {name:"Robots",...data.feeds?.robots, note:data.feeds?.robots?.hasSitemap ? "Sitemap var" : ""},
+    {name:"Google Merchant",...data.feeds?.merchant, note:"Alisveris feed"},
+    {name:"Meta Katalog",...data.feeds?.meta, note:"Facebook/Instagram katalog"},
+  ];
+  const todayTasks = [
+    "Search Console'da ilk 20 para getiren landing/product URL icin dizine ekleme iste.",
+    "Merchant Center urun sorunlarini kontrol et; reddedilen urun varsa baslik, gorsel, fiyat ve stok alanini duzelt.",
+    "Facebook'ta sadece alakali 2-4 agir vasita/yedek parca grubunda gruba ozel post paylas.",
+    "WhatsApp'a gelen her kod/foto icin 5 dakika icinde fiyat + uyum teyidi cevabi ver.",
+    "Google Ads'te genis esleme yerine Axor, Actros, Tourismo, BPW, SAF, Krone + parca adina odaklan.",
+  ];
+  const landingLinks = [
+    {label:"Axor 1840 Fren Diski",url:"/axor-1840-fren-diski"},
+    {label:"Axor 3340 Balata",url:"/axor-3340-balata"},
+    {label:"Tourismo Fren Diski",url:"/tourismo-fren-diski"},
+    {label:"MAN Fortuna Balata",url:"/man-fortuna-balata"},
+    {label:"BPW 30K Bijon",url:"/bpw-30k-bijon"},
+    {label:"Krone Dorse Kampana",url:"/krone-dorse-kampana"},
+    {label:"Kogel Dorse Fren Diski",url:"/kogel-dorse-fren-diski"},
+  ];
+  const snippets = [
+    {
+      id:"facebook",
+      title:"Facebook grup postu",
+      text:"Tir, kamyon, otobus ve dorse fren parcasi icin Frenciniz.com\\n\\nFren diski, kampana, balata, bijon, porya, fren circiri, kaliper, ABS/EBS ve suspansiyon korugu sorabilirsiniz. OEM kodu, sase no veya eski parca fotografi ile uyumluluk teyidi yapiyoruz.\\n\\nSite: https://www.frenciniz.com/",
+    },
+    {
+      id:"whatsapp",
+      title:"WhatsApp hizli cevap",
+      text:"Merhaba, yardimci olalim. Aracin marka/modeli, sase no veya eski parca uzerindeki OEM/parca kodunu gonderir misiniz? Uyum, stok ve guncel fiyat bilgisini hemen kontrol edelim.",
+    },
+    {
+      id:"ads",
+      title:"Google Ads kelime seti",
+      text:"axor 1840 fren diski\\naxor 3340 balata\\nactros fren diski\\ntourismo fren diski\\nman fortuna balata\\nbpw 30k bijon\\nkrone dorse kampana\\nkogel dorse fren diski\\nsaf dorse kampana\\nfren korugu 30/30",
+    },
+  ];
+
+  return <div style={{display:"flex",flexDirection:"column",gap:16}}>
+    <div style={{display:"flex",justifyContent:"space-between",gap:12,alignItems:"flex-start",flexWrap:"wrap"}}>
+      <div>
+        <h1 style={{fontSize:24,fontWeight:800,margin:"0 0 6px"}}>Dijital Pazarlama</h1>
+        <div style={{fontSize:13,color:"#666",lineHeight:1.55}}>Google SEO, Merchant, Meta katalog, Facebook gruplari ve WhatsApp satis akisinin tek ekrani.</div>
+      </div>
+      <ABtn onClick={load}>↻ Verileri Yenile</ABtn>
+    </div>
+
+    <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(170px,1fr))",gap:12}}>
+      {[
+        {label:"30g Goruntuleme",value:traffic.totalViews||0,color:"#ff6000"},
+        {label:"30g Tekil",value:traffic.totalUnique||0,color:"#2563eb"},
+        {label:"7g Goruntuleme",value:last7Views,color:"#7c3aed"},
+        {label:"7g Tekil",value:last7Unique,color:"#0f766e"},
+        {label:"Lead",value:totalLeads,color:"#16a34a"},
+        {label:"Lead Orani",value:`%${leadRate}`,color:"#059669"},
+        {label:"Odenmis Siparis",value:stats.paidOrders||0,color:"#111827"},
+        {label:"Siparis Orani",value:`%${orderRate}`,color:"#b45309"},
+      ].map(k=>(
+        <div key={k.label} style={{background:"#fff",border:"1px solid #e5e7eb",borderRadius:8,padding:16}}>
+          <div style={{fontSize:12,color:"#777",marginBottom:7}}>{k.label}</div>
+          <div style={{fontSize:25,fontWeight:850,color:k.color}}>{typeof k.value==="number"?Number(k.value).toLocaleString("tr-TR"):k.value}</div>
+        </div>
+      ))}
+    </div>
+
+    <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(310px,1fr))",gap:16}}>
+      <ACard title="Kanal Sagligi">
+        <div style={{display:"flex",flexDirection:"column",gap:10}}>
+          {feedRows.map(row=>(
+            <div key={row.name} style={{display:"flex",justifyContent:"space-between",gap:12,alignItems:"center",padding:"10px 0",borderBottom:"1px solid #f0f0f0"}}>
+              <div>
+                <div style={{fontSize:13,fontWeight:800}}>{row.name}</div>
+                <div style={{fontSize:11,color:"#888"}}>{row.note || row.url}</div>
+              </div>
+              <span style={{padding:"5px 9px",borderRadius:999,fontSize:12,fontWeight:800,background:row.ok?"#dcfce7":"#fee2e2",color:row.ok?"#166534":"#991b1b"}}>{row.status}</span>
+            </div>
+          ))}
+        </div>
+      </ACard>
+
+      <ACard title="Satis Hunisi">
+        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
+          <div style={{padding:12,border:"1px solid #eee",borderRadius:8,background:"#fafafa"}}>
+            <div style={{fontSize:11,color:"#777",marginBottom:5}}>WhatsApp</div>
+            <strong style={{fontSize:22,color:"#16a34a"}}>{Number(leadTotals.whatsapp||0).toLocaleString("tr-TR")}</strong>
+          </div>
+          <div style={{padding:12,border:"1px solid #eee",borderRadius:8,background:"#fafafa"}}>
+            <div style={{fontSize:11,color:"#777",marginBottom:5}}>Telefon</div>
+            <strong style={{fontSize:22,color:"#ff6000"}}>{Number(leadTotals.phone||0).toLocaleString("tr-TR")}</strong>
+          </div>
+          <div style={{gridColumn:"1 / -1",padding:12,border:"1px solid #eee",borderRadius:8,background:"#fff"}}>
+            <div style={{fontSize:12,color:"#666",lineHeight:1.55}}>En cok ziyaret edilen sayfa: <strong>{topPath?.path || "veri yok"}</strong></div>
+            <div style={{fontSize:12,color:"#666",lineHeight:1.55}}>En iyi lead kaynagi: <strong>{topLead ? `${topLead.type} / ${topLead.source}` : "veri yok"}</strong></div>
+          </div>
+        </div>
+      </ACard>
+    </div>
+
+    <ACard title="Bugun Yapilacaklar">
+      <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(230px,1fr))",gap:10}}>
+        {todayTasks.map((task,i)=>(
+          <div key={task} style={{padding:12,border:"1px solid #eee",borderRadius:8,background:i<2?"#fff7ed":"#fff"}}>
+            <div style={{fontSize:11,fontWeight:900,color:"#ff6000",marginBottom:6}}>ADIM {i+1}</div>
+            <div style={{fontSize:13,color:"#333",lineHeight:1.5}}>{task}</div>
+          </div>
+        ))}
+      </div>
+    </ACard>
+
+    <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(300px,1fr))",gap:16}}>
+      <ACard title="Para Getiren Landing Linkleri">
+        <div style={{display:"flex",flexDirection:"column",gap:8}}>
+          {landingLinks.map(link=>(
+            <div key={link.url} style={{display:"flex",justifyContent:"space-between",gap:8,alignItems:"center",padding:"8px 0",borderBottom:"1px solid #f4f4f4"}}>
+              <a href={link.url} target="_blank" rel="noopener noreferrer" style={{fontSize:13,fontWeight:700,color:"#2563eb",textDecoration:"none"}}>{link.label}</a>
+              <button onClick={()=>copyText(link.url, `${window.location.origin}${link.url}`)} style={{border:"1px solid #ddd",background:"#fff",borderRadius:6,padding:"6px 8px",fontSize:11,cursor:"pointer"}}>{copied===link.url?"Kopyalandi":"Kopyala"}</button>
+            </div>
+          ))}
+        </div>
+      </ACard>
+
+      <ACard title="Hazir Metinler">
+        <div style={{display:"flex",flexDirection:"column",gap:10}}>
+          {snippets.map(s=>(
+            <div key={s.id} style={{border:"1px solid #eee",borderRadius:8,padding:12,background:"#fafafa"}}>
+              <div style={{display:"flex",justifyContent:"space-between",gap:10,alignItems:"center",marginBottom:8}}>
+                <div style={{fontSize:13,fontWeight:800}}>{s.title}</div>
+                <button onClick={()=>copyText(s.id,s.text)} style={{border:"none",background:"#111827",color:"#fff",borderRadius:6,padding:"7px 10px",fontSize:11,fontWeight:800,cursor:"pointer"}}>{copied===s.id?"Kopyalandi":"Kopyala"}</button>
+              </div>
+              <pre style={{whiteSpace:"pre-wrap",fontFamily:"inherit",fontSize:12,lineHeight:1.45,color:"#555",margin:0,maxHeight:126,overflow:"auto"}}>{s.text}</pre>
+            </div>
+          ))}
+        </div>
+      </ACard>
+    </div>
   </div>;
 }
 
