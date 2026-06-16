@@ -258,6 +258,12 @@ export default async function handler(req, res) {
         const productId = cleanLeadText(body.productId || body.product_id || "", 60);
         const sku = cleanLeadText(body.sku || "", 80);
         const category = cleanLeadText(body.category || "", 80);
+        const contactName = cleanLeadText(body.contactName || body.name || "", 80);
+        const contactPhone = cleanLeadText(body.contactPhone || body.phone || "", 40);
+        const contactEmail = cleanLeadText(body.contactEmail || body.email || "", 100);
+        const code = cleanLeadText(body.code || body.oem || body.partCode || "", 120);
+        const vehicle = cleanLeadText(body.vehicle || body.model || "", 140);
+        const note = cleanLeadText(body.note || body.message || "", 500);
         const value = Number(body.value || 0) || 0;
         const items = Number(body.items || 0) || 0;
         const ip = (req.headers["x-forwarded-for"] || "").split(",")[0].trim() || req.headers["x-real-ip"] || "unknown";
@@ -282,6 +288,7 @@ export default async function handler(req, res) {
 
         const logEntry = {
           type, source, path: pathClean, ref, href, productId, sku, category,
+          contactName, contactPhone, contactEmail, code, vehicle, note,
           value, items, city, country, ip, ua, at: new Date().toISOString(),
         };
         await kv.lpush("lead:log", JSON.stringify(logEntry));

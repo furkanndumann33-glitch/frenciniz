@@ -513,6 +513,56 @@ function cartWhatsAppUrl(cartItems = [], total = 0, shipping = 0, discount = 0) 
   ].filter(Boolean).join("\n"));
 }
 
+function quickQuoteWhatsAppUrl({product, code, vehicle, phone, note} = {}) {
+  return waUrl([
+    "Merhaba Frenciniz, hizli fiyat ve uyumluluk teyidi almak istiyorum.",
+    product ? `Urun: ${product.name || "-"}` : "",
+    product ? `SKU: ${product.sku || "-"}` : "",
+    product?.oem ? `OEM / muadil: ${product.oem}` : "",
+    `OEM / parca kodu: ${code || "-"}`,
+    `Arac marka-model / sase: ${vehicle || "-"}`,
+    phone ? `Telefon: ${phone}` : "",
+    note ? `Not: ${note}` : "",
+    product ? `Link: ${productSeoUrl(SITE_URL, product)}` : `Link: ${SITE_URL}`,
+    "Eski parca fotografi gonderebilirim.",
+  ].filter(Boolean).join("\n"));
+}
+
+function recordLeadEvent(type = "whatsapp", data = {}) {
+  if (typeof window === "undefined") return;
+  const payload = {
+    type,
+    path: window.location.pathname || "/",
+    ref: document.referrer || "",
+    source: data.source || type,
+    href: data.href || "",
+    productId: data.productId || "",
+    sku: data.sku || "",
+    category: data.category || "",
+    value: Number(data.value || 0) || 0,
+    items: Number(data.items || 0) || 0,
+    contactName: data.contactName || "",
+    contactPhone: data.contactPhone || "",
+    contactEmail: data.contactEmail || "",
+    code: data.code || "",
+    vehicle: data.vehicle || "",
+    note: data.note || "",
+  };
+  try {
+    const body = JSON.stringify(payload);
+    if (navigator.sendBeacon) {
+      const blob = new Blob([body], { type: "application/json" });
+      if (navigator.sendBeacon("/api/auth/lead", blob)) return;
+    }
+    fetch("/api/auth/lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body,
+      keepalive: true,
+    }).catch(() => {});
+  } catch {}
+}
+
 const HOME_INTENT_LINKS = [
   { href: "/ford-cargo-9c46-1125-ab-fren-kampanasi", title: "Ford Cargo 9C46 Kampana", desc: "9C46-1125-AB / ESK 040 12 Ford Cargo kampana" },
   { href: "/daf-cf-xf-99717-bijon", title: "DAF CF XF 99717 Bijon", desc: "DAF CF / XF bijon, somun ve disk civatasi teyidi" },
@@ -1961,6 +2011,7 @@ export default function App() {
         )}
 
         {!isAdminPage && page !== "product" && <MobileBottomBar />}
+        {!isAdminPage && !isMobile && <DesktopSalesDock />}
 
         {/* FOOTER */}
         <footer style={{display:isAdminPage?"none":"block",background:"#1a1a1a",color:"#ccc",padding:"40px 0 20px",marginTop:40}}>
@@ -2067,6 +2118,34 @@ function MobileBottomBar() {
         {cartCount > 0 && <span style={{position:"absolute",top:-6,right:-4,minWidth:20,height:20,padding:"0 5px",borderRadius:999,background:"#ff6000",color:"#fff",fontSize:11,fontWeight:950,display:"flex",alignItems:"center",justifyContent:"center",border:"2px solid #070a12"}}>{cartCount}</span>}
       </button>
     </nav>
+  );
+}
+
+function DesktopSalesDock() {
+  const {go, lang} = use$();
+  const href = generalWhatsAppUrl("masaustu sabit teklif bari");
+  return (
+    <aside aria-label={lang==="en"?"Fast quote actions":"Hizli teklif aksiyonlari"} style={{position:"fixed",left:"50%",bottom:18,transform:"translateX(-50%)",zIndex:996,width:"min(920px, calc(100vw - 40px))",borderRadius:8,background:"linear-gradient(135deg,#07111f,#111827 56%,#1f2937)",border:"1px solid rgba(255,255,255,.16)",boxShadow:"0 22px 55px rgba(0,0,0,.35)",padding:"10px 12px",display:"grid",gridTemplateColumns:"minmax(0,1fr) auto",gap:12,alignItems:"center"}}>
+      <div style={{minWidth:0,color:"#fff"}}>
+        <div style={{fontSize:12,fontWeight:950,color:"#facc15",textTransform:"uppercase",letterSpacing:.3}}>Satis destek hatti</div>
+        <div style={{fontSize:14,fontWeight:850,lineHeight:1.35,whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}>
+          OEM, sase veya eski parca fotografini gonderin; dogru parcayi ve fiyati hizli teyit edelim.
+        </div>
+      </div>
+      <div style={{display:"flex",gap:8,alignItems:"center"}}>
+        <a href={href} target="_blank" rel="noopener noreferrer" data-lead-source="desktop_sales_dock" onClick={() => metaTrackCustom("WhatsAppLead", { source: "desktop_sales_dock" })}
+          style={{minHeight:42,padding:"0 14px",borderRadius:7,background:"linear-gradient(135deg,#16a34a,#25D366)",color:"#062813",fontSize:13,fontWeight:950,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center",whiteSpace:"nowrap"}}>
+          WhatsApp teklif
+        </a>
+        <a href="tel:+905456087008" onClick={() => metaTrackCustom("PhoneLead", { source: "desktop_sales_dock" })}
+          style={{minHeight:42,padding:"0 14px",borderRadius:7,background:"linear-gradient(135deg,#ff6000,#facc15)",color:"#111827",fontSize:13,fontWeight:950,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center",whiteSpace:"nowrap"}}>
+          Hemen ara
+        </a>
+        <button onClick={() => go("products")} style={{minHeight:42,padding:"0 14px",borderRadius:7,border:"1px solid rgba(255,255,255,.22)",background:"rgba(255,255,255,.08)",color:"#fff",fontSize:13,fontWeight:900,cursor:"pointer",whiteSpace:"nowrap"}}>
+          Urun ara
+        </button>
+      </div>
+    </aside>
   );
 }
 
@@ -2509,6 +2588,84 @@ function RecentlyViewed() {
   );
 }
 
+function QuickQuoteBox({source = "quick_quote", product = null, dark = false}) {
+  const {lang, isMobile} = use$();
+  const [form, setForm] = useState({
+    code: product?.oem || product?.sku || "",
+    vehicle: "",
+    phone: "",
+    note: "",
+  });
+  const [sent, setSent] = useState(false);
+  const bg = dark ? "rgba(4,8,15,.72)" : "#fff";
+  const border = dark ? "1px solid rgba(255,255,255,.18)" : "1px solid #dbeafe";
+  const text = dark ? "#fff" : "#111827";
+  const muted = dark ? "rgba(255,255,255,.72)" : "#64748b";
+  const inputStyle = {
+    minHeight: 42,
+    border: dark ? "1px solid rgba(255,255,255,.18)" : "1px solid #d1d5db",
+    borderRadius: 7,
+    background: dark ? "rgba(255,255,255,.96)" : "#fff",
+    color: "#111827",
+    fontSize: 13,
+    fontWeight: 700,
+    padding: "0 11px",
+    outline: "none",
+    width: "100%",
+    boxSizing: "border-box",
+  };
+  const href = quickQuoteWhatsAppUrl({ product, ...form });
+  function submit(e) {
+    e.preventDefault();
+    const payload = {
+      source,
+      href,
+      productId: product?.id || "",
+      sku: product?.sku || "",
+      category: product?.cat || "",
+      value: product?.price || 0,
+      code: form.code,
+      vehicle: form.vehicle,
+      contactPhone: form.phone,
+      note: form.note,
+    };
+    recordLeadEvent("whatsapp", payload);
+    metaTrackCustom("QuickQuoteLead", payload);
+    setSent(true);
+    if (typeof window !== "undefined") window.open(href, "_blank", "noopener,noreferrer");
+  }
+  return (
+    <form onSubmit={submit} style={{padding:isMobile?12:14,borderRadius:8,background:bg,border,boxShadow:dark?"0 16px 44px rgba(0,0,0,.22)":"0 14px 34px rgba(37,99,235,.08)"}}>
+      <div style={{display:"flex",justifyContent:"space-between",gap:10,alignItems:"flex-start",marginBottom:10}}>
+        <div>
+          <div style={{fontSize:12,fontWeight:950,color:dark?"#facc15":"#ff6000",textTransform:"uppercase",letterSpacing:.3}}>
+            {lang==="en"?"Fast quote desk":"Hizli teklif masasi"}
+          </div>
+          <div style={{fontSize:isMobile?14:16,fontWeight:950,color:text,marginTop:3,lineHeight:1.25}}>
+            Kod, sase veya eski parca bilgisini gonderin; fiyat ve uyumu teyit edelim.
+          </div>
+        </div>
+        <span style={{fontSize:11,fontWeight:900,color:dark?"#86efac":"#15803d",background:dark?"rgba(34,197,94,.14)":"#dcfce7",borderRadius:999,padding:"5px 8px",whiteSpace:"nowrap"}}>WhatsApp</span>
+      </div>
+      <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr",gap:8}}>
+        <input value={form.code} onChange={e=>setForm(f=>({...f,code:e.target.value}))} placeholder="OEM / SKU / parca kodu" style={inputStyle} />
+        <input value={form.vehicle} onChange={e=>setForm(f=>({...f,vehicle:e.target.value}))} placeholder="Arac model / sase no" style={inputStyle} />
+        <input value={form.phone} onChange={e=>setForm(f=>({...f,phone:e.target.value}))} placeholder="Telefon (isterseniz)" style={inputStyle} />
+        <input value={form.note} onChange={e=>setForm(f=>({...f,note:e.target.value}))} placeholder="Not: on/arka, olcu, adet..." style={inputStyle} />
+      </div>
+      <div style={{display:"flex",flexDirection:isMobile?"column":"row",gap:8,alignItems:isMobile?"stretch":"center",marginTop:10}}>
+        <button type="submit" data-lead-source={source} data-lead-product-id={product?.id || ""} data-lead-sku={product?.sku || ""} data-lead-category={product?.cat || ""} data-lead-value={product?.price || 0}
+          style={{minHeight:44,border:"none",borderRadius:7,background:"linear-gradient(135deg,#16a34a,#25D366)",color:"#062813",fontSize:13,fontWeight:950,padding:"0 14px",cursor:"pointer"}}>
+          Talebi kaydet ve WhatsApp'a gec
+        </button>
+        <div style={{fontSize:12,color:muted,lineHeight:1.45}}>
+          {sent ? "Talep kaydedildi; WhatsApp acildi." : "Yanlis parca riskini almadan once uyumlulugu teyit ederiz."}
+        </div>
+      </div>
+    </form>
+  );
+}
+
 // ===== HOME =====
 function HomePage() {
   const {go, isMobile, t, lang, products} = use$();
@@ -2530,12 +2687,6 @@ function HomePage() {
   const discounted = productList.filter(p => p.old).slice(0, 4);
   const totalCount = productList.length || 1055;
   const stockCount = productList.filter(p => p.stock > 0).length || totalCount;
-  const [quickCode, setQuickCode] = useState("");
-  const quickQuoteHref = waUrl([
-    "Merhaba Frenciniz, hizli uyumluluk ve fiyat teklifi almak istiyorum.",
-    `OEM / SKU / parca kodu: ${quickCode.trim() || "-"}`,
-    "Arac / model / sase:",
-  ].join("\n"));
   useCriticalImagePreload(featured, 6, 320);
 
   const vehicleCards = [
@@ -2570,12 +2721,8 @@ function HomePage() {
             <button onClick={() => go("products")} style={{minHeight:48,padding:"14px 22px",borderRadius:8,border:"none",background:"linear-gradient(135deg,#ff6000,#facc15)",color:"#111",fontWeight:950,fontSize:15,boxShadow:"0 18px 45px rgba(255,96,0,.28)",animation:"glowPulse 4s ease-in-out infinite"}}>{lang==="en"?"See in-stock parts":"Stoklu urunlere bak"}</button>
             <a href={generalWhatsAppUrl("parca kodu ile teklif")} target="_blank" rel="noopener noreferrer" onClick={() => metaTrackCustom("WhatsAppLead", { source: "home_hero" })} style={{minHeight:48,padding:"13px 18px",borderRadius:8,border:"1px solid rgba(255,255,255,.28)",background:"rgba(255,255,255,.1)",color:"#fff",fontWeight:850,fontSize:14,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center",textAlign:"center"}}>{lang==="en"?"Get quote on WhatsApp":"WhatsApp'tan hizli teklif al"}</a>
           </div>
-          <div style={{marginTop:16,maxWidth:isMobile?320:560,padding:isMobile?10:12,borderRadius:8,background:"rgba(4,8,15,.62)",border:"1px solid rgba(255,255,255,.18)",boxShadow:"0 16px 44px rgba(0,0,0,.22)"}}>
-            <div style={{fontSize:12,fontWeight:900,color:"#facc15",marginBottom:8,textTransform:"uppercase",letterSpacing:.3}}>{lang==="en"?"Send code, get price and fitment":"Kod gonder, fiyat ve uyum teyidi al"}</div>
-            <div style={{display:"flex",gap:8,flexDirection:isMobile?"column":"row"}}>
-              <input value={quickCode} onChange={e=>setQuickCode(e.target.value)} placeholder={lang==="en"?"OEM / SKU / chassis / old part code":"OEM / SKU / sase / eski parca kodu"} style={{flex:1,minHeight:44,border:"1px solid rgba(255,255,255,.2)",borderRadius:7,background:"rgba(255,255,255,.96)",color:"#111827",fontSize:14,fontWeight:700,padding:"0 12px"}} />
-              <a href={quickQuoteHref} target="_blank" rel="noopener noreferrer" onClick={() => metaTrackCustom("WhatsAppLead", { source: "home_quick_code", hasCode: !!quickCode.trim() })} style={{minHeight:44,padding:"0 14px",borderRadius:7,background:"#25D366",color:"#07111f",fontSize:13,fontWeight:950,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center",whiteSpace:"nowrap"}}>{lang==="en"?"Send to WhatsApp":"WhatsApp'a gonder"}</a>
-            </div>
+          <div style={{marginTop:16,maxWidth:isMobile?340:620}}>
+            <QuickQuoteBox source="home_hero_form" dark />
           </div>
         </div>
 
@@ -3045,6 +3192,9 @@ function ProductDetailPage() {
             </div>
           </div>
           <div style={{fontSize:14,color:"#666",lineHeight:1.7,marginBottom:16,whiteSpace:"pre-line"}}>{linkifyContacts(detailDesc)}</div>
+          <div style={{marginBottom:16}}>
+            <QuickQuoteBox source="product_detail_quote_form" product={p} />
+          </div>
           <div style={{padding:"16px 20px",background:"#f9f9f9",borderRadius:8,marginBottom:20,border:"1px solid #eee"}}>
             <div style={{display:"flex",alignItems:"baseline",gap:10}}>
               <span style={{fontSize:32,fontWeight:800}}>{fp(p.price)}</span>
@@ -5692,14 +5842,17 @@ function ATraffic(){
               <th style={{padding:"8px",textAlign:"left",color:"#999"}}>Zaman</th>
               <th style={{padding:"8px",textAlign:"left",color:"#999"}}>Tip</th>
               <th style={{padding:"8px",textAlign:"left",color:"#999"}}>Sayfa</th>
+              <th style={{padding:"8px",textAlign:"left",color:"#999"}}>Talep Detayi</th>
             </tr></thead>
             <tbody>{leadData.recent.slice(0,20).map((row,i)=>{
               const d = row.at ? new Date(row.at) : null;
               const when = d ? d.toLocaleString("tr-TR",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}) : "-";
+              const detail = [row.contactPhone && `Tel: ${row.contactPhone}`, row.code && `Kod: ${row.code}`, row.vehicle && `Arac: ${row.vehicle}`, row.note && `Not: ${row.note}`].filter(Boolean).join(" | ");
               return <tr key={i} style={{borderBottom:"1px solid #f0f0f0"}}>
                 <td style={{padding:"8px",whiteSpace:"nowrap",color:"#666"}}>{when}</td>
                 <td style={{padding:"8px",fontWeight:700}}>{row.type}</td>
                 <td style={{padding:"8px",fontFamily:"monospace",fontSize:11,maxWidth:260,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}} title={row.path}>{row.path || "/"}</td>
+                <td style={{padding:"8px",fontSize:11,color:detail?"#111827":"#999",maxWidth:320,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}} title={detail}>{detail || "-"}</td>
               </tr>;
             })}</tbody>
           </table>
@@ -5828,6 +5981,7 @@ function ADigitalMarketing(){
   const last7Unique = (traffic.chart || []).slice(-7).reduce((s,c)=>s+Number(c.unique||0),0);
   const topPath = traffic.topPaths?.[0];
   const topLead = data.leads?.topSources?.[0];
+  const recentLead = data.leads?.recent?.[0];
   const feedRows = [
     {name:"Sitemap",...data.feeds?.sitemap, note:data.feeds?.sitemap?.urlCount ? `${data.feeds.sitemap.urlCount} URL` : ""},
     {name:"Robots",...data.feeds?.robots, note:data.feeds?.robots?.hasSitemap ? "Sitemap var" : ""},
@@ -5923,6 +6077,7 @@ function ADigitalMarketing(){
           <div style={{gridColumn:"1 / -1",padding:12,border:"1px solid #eee",borderRadius:8,background:"#fff"}}>
             <div style={{fontSize:12,color:"#666",lineHeight:1.55}}>En cok ziyaret edilen sayfa: <strong>{topPath?.path || "veri yok"}</strong></div>
             <div style={{fontSize:12,color:"#666",lineHeight:1.55}}>En iyi lead kaynagi: <strong>{topLead ? `${topLead.type} / ${topLead.source}` : "veri yok"}</strong></div>
+            {recentLead && <div style={{fontSize:12,color:"#666",lineHeight:1.55,marginTop:6}}>Son talep: <strong>{[recentLead.contactPhone, recentLead.code, recentLead.vehicle].filter(Boolean).join(" / ") || recentLead.path || "detay yok"}</strong></div>}
           </div>
         </div>
       </ACard>
