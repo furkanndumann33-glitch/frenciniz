@@ -549,6 +549,32 @@ function recordLeadEvent(type = "whatsapp", data = {}) {
     note: data.note || "",
   };
   try {
+    if (typeof window.gtag === "function") {
+      window.gtag("event", "generate_lead", {
+        event_category: "lead",
+        event_label: payload.source,
+        value: payload.value,
+        currency: "TRY",
+      });
+      window.gtag("event", `${type}_lead_submit`, {
+        event_category: "lead",
+        event_label: payload.source,
+      });
+    }
+    if (typeof window.frencinizTrackAdsConversion === "function") {
+      window.frencinizTrackAdsConversion(type === "phone" ? "phone" : "lead", {
+        value: payload.value,
+        category: payload.category || "lead",
+      });
+    }
+    if (typeof window.fbq === "function") {
+      window.fbq("track", "Contact", {
+        content_name: payload.source,
+        content_category: payload.category || "lead",
+        value: payload.value,
+        currency: "TRY",
+      });
+    }
     const body = JSON.stringify(payload);
     if (navigator.sendBeacon) {
       const blob = new Blob([body], { type: "application/json" });

@@ -95,6 +95,39 @@ function vehiclePhrase(product) {
   return [...new Set(known)].slice(0, 6).join(", ");
 }
 
+const SALES_PRIORITY_CATEGORIES = new Set([
+  "fren-diski",
+  "fren-diski-abs-li",
+  "fren-kampanasi",
+  "fren-balatasi",
+  "disk-bijonu-civatasi",
+  "bijon",
+  "porya",
+  "fren-korugu",
+  "suspansiyon-korugu",
+  "fren-pabucu",
+  "fren-circiri",
+  "otomatik-fren-circiri",
+  "kaliper",
+  "kaliper-tamir-takimi",
+]);
+
+function salesPriorityLabel(product) {
+  const price = Number(product?.price || 0);
+  const stock = Number(product?.stock || 0);
+  let score = 0;
+  if (SALES_PRIORITY_CATEGORIES.has(product?.cat)) score += 4;
+  if (isRealProductImage(product?.img)) score += 2;
+  if (cleanSeoText(product?.oem)) score += 2;
+  if (stock > 0) score += 1;
+  if (stock >= 20) score += 1;
+  if (price >= 400 && price <= 20000) score += 1;
+  if (Array.isArray(product?.compat) && product.compat.some(value => !/agir vasita/i.test(cleanSeoText(value)))) score += 1;
+  if (score >= 9) return "sales-priority-1";
+  if (score >= 6) return "sales-priority-2";
+  return "sales-priority-3";
+}
+
 function buildSeoProductTitle(product, categories = [], max = 74) {
   const productName = merchantSafeProductText(product?.name || "Agir Vasita Fren Parcasi");
   const category = categoryNameForProduct(product, categories);
@@ -312,6 +345,7 @@ function buildMerchantFeed(products, categories) {
     const imageTier = hasImg ? "gorselli-urun" : "gorsel-hazirlaniyor";
     const vehicleLabel = Array.isArray(p.veh) && p.veh.length ? p.veh.slice(0, 2).join("-") : "agir-vasita";
     const categoryLabel = grp?.id || p.cat || "fren-aksami";
+    const salesPriority = salesPriorityLabel(p);
     const richDesc = `${productName} - ${catName} kategorisinde ${brand} marka orijinal/eşdeğer parça. ${p.sku ? "Stok kodu: " + p.sku + ". " : ""}${p.oem ? "OEM: " + p.oem + ". " : ""}Kamyon, tır, otobüs ve dorse fren sistemleri için OEM/şase ile uyumluluk teyidi yapılır. 3000₺ üzeri ücretsiz kargo, 12 taksit, 14 gün koşulsuz iade. Tel: 0545 608 7008 · WhatsApp: 0850 888 7881.`;
     const baseDesc = productDesc && productDesc.length > productName.length + 10 ? productDesc : richDesc;
     const desc = baseDesc.slice(0, 5000);
@@ -348,7 +382,7 @@ function buildMerchantFeed(products, categories) {
       `<g:custom_label_1>${xmlEscape(stockTier)}</g:custom_label_1>` +
       `<g:custom_label_2>${xmlEscape(priceTier)}</g:custom_label_2>` +
       `<g:custom_label_3>${xmlEscape(imageTier)}</g:custom_label_3>` +
-      `<g:custom_label_4>${xmlEscape(vehicleLabel)}</g:custom_label_4>` +
+      `<g:custom_label_4>${xmlEscape(salesPriority)}</g:custom_label_4>` +
       `<g:shipping><g:country>TR</g:country><g:service>Standard</g:service><g:price>${price >= 3000 ? "0.00" : "150.00"} TRY</g:price></g:shipping>` +
       `</item>`
     );
@@ -408,6 +442,7 @@ function buildMetaCatalogFeed(products, categories) {
     const imageTier = hasImg ? "gorselli-urun" : "gorsel-hazirlaniyor";
     const vehicleLabel = Array.isArray(p.veh) && p.veh.length ? p.veh.slice(0, 2).join("-") : "agir-vasita";
     const categoryLabel = grp?.id || p.cat || "fren-aksami";
+    const salesPriority = salesPriorityLabel(p);
     const title = [productName, shortCode(p.oem), p.sku, catName, brand].filter(Boolean).join(" - ").slice(0, 200);
     const richDesc = `${productName} - ${catName} kategorisinde ${brand} marka orijinal/esdeger agir vasita fren parcasi. ${p.sku ? "Stok kodu: " + p.sku + ". " : ""}${p.oem ? "OEM: " + p.oem + ". " : ""}Kamyon, tir, otobus ve dorse fren sistemleri icin OEM/sase ile uyumluluk teyidi yapilir. Ayni gun kargo, 12 taksit, 14 gun iade.`;
     const desc = buildSeoProductDescription(p, categories, 5000);
@@ -430,7 +465,7 @@ function buildMetaCatalogFeed(products, categories) {
       stockTier,
       priceTier,
       imageTier,
-      vehicleLabel,
+      salesPriority,
     ].map(csvEscape).join(","));
   }
 

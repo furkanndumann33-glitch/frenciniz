@@ -1160,12 +1160,14 @@ function exactPartsForVehicle(vehicle) {
   parts.add("fren-pabucu");
   parts.add("fren-korugu");
   parts.add("kaliper-tamir-takimi");
+  parts.add("abs-sensoru");
 
   if (!isBus) parts.add("fren-circiri");
+  if (!isBus) parts.add("porya-kapagi");
+  if (!isBus) parts.add("hava-korugu");
   if (isBus) parts.add("hava-korugu");
   if (isDorse) {
     parts.add("porya-kapagi");
-    parts.add("abs-sensoru");
     parts.add("ebs-modulator");
     parts.add("hava-korugu");
   }
@@ -1272,10 +1274,14 @@ export function landingSearchPhrases(page) {
   return [
     `${page.heading} fiyat`,
     `${page.heading} stok`,
+    `${page.heading} whatsapp teklif`,
     `${model} ${part} oem`,
+    `${model} ${part} oem numarasi`,
+    `${model} ${part} parca kodu`,
     `${model} ${part} uyumlu`,
     `${model} ${part} sase ile kontrol`,
     `${model} fren parcasi`,
+    `${model} ${part} nereden alinir`,
   ];
 }
 

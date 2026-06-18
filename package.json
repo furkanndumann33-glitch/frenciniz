@@ -7,7 +7,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "seo:rewrites": "node scripts/sync-seo-rewrites.mjs",
-    "seo:audit": "node scripts/audit-google-seo.mjs"
+    "seo:audit": "node scripts/audit-google-seo.mjs",
+    "sales:assets": "node scripts/build-sales-machine-assets.mjs"
   },
   "dependencies": {
     "react": "^18.2.0",

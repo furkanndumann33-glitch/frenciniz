@@ -265,7 +265,7 @@ export function renderLanding(page, products, categories) {
   <style>
     :root{--orange:#ff6000;--dark:#171717;--muted:#666;--line:#e8e8e8;--soft:#f7f7f7}
     *{box-sizing:border-box}
-    body{margin:0;font-family:Arial,Helvetica,sans-serif;color:#222;background:#fff;line-height:1.55}
+    body{margin:0;font-family:Arial,Helvetica,sans-serif;color:#222;background:#fff;line-height:1.55;padding-bottom:74px}
     a{color:inherit}
     .top{background:#111;color:#fff}
     .bar{max-width:1180px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:18px}
@@ -305,8 +305,12 @@ export function renderLanding(page, products, categories) {
     .phrase-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.phrase-grid span{padding:8px 10px;background:#fff;border:1px solid var(--line);border-radius:6px;font-size:13px;color:#333}
     .related-panel{margin-top:22px}.related-panel h2{font-size:20px}.related-panel .links a{font-weight:700}
     .footer{border-top:1px solid var(--line);padding:20px;color:#666;font-size:13px;text-align:center}
+    .sticky-lead{position:fixed;left:0;right:0;bottom:0;z-index:50;background:#111;color:#fff;border-top:3px solid var(--orange);box-shadow:0 -8px 24px rgba(0,0,0,.18)}
+    .sticky-lead-inner{max-width:1180px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+    .sticky-copy{font-size:13px;color:#ddd}.sticky-copy strong{display:block;color:#fff;font-size:15px}
+    .sticky-actions{display:flex;gap:8px;align-items:center;flex-shrink:0}.sticky-actions a{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:10px 14px;border-radius:6px;text-decoration:none;font-weight:850;font-size:13px}.sticky-wa{background:#16a34a;color:#fff}.sticky-phone{background:#fff;color:#111}
     @media(max-width:900px){.hero-inner{grid-template-columns:1fr}.products{grid-template-columns:repeat(2,minmax(0,1fr))}.content{grid-template-columns:1fr}h1{font-size:30px}.trust{grid-template-columns:1fr 1fr}}
-    @media(max-width:560px){.bar{align-items:flex-start;flex-direction:column}.hero-inner{padding-top:28px}.products{grid-template-columns:1fr}.trust{grid-template-columns:1fr}.lead{font-size:16px}}
+    @media(max-width:560px){body{padding-bottom:118px}.bar{align-items:flex-start;flex-direction:column}.hero-inner{padding-top:28px}.products{grid-template-columns:1fr}.trust{grid-template-columns:1fr}.lead{font-size:16px}.sticky-lead-inner{align-items:stretch;flex-direction:column;padding:10px 12px}.sticky-actions{display:grid;grid-template-columns:1fr 1fr}.sticky-actions a{width:100%}}
   </style>
 </head>
 <body>
@@ -369,6 +373,15 @@ export function renderLanding(page, products, categories) {
   <footer class="footer">
     Frenciniz · Dumanlar Ticaret · Hızırbey Mah. 1509 Sok. No:24, Isparta · info@frenciniz.com
   </footer>
+  <div class="sticky-lead" role="region" aria-label="Hizli teklif">
+    <div class="sticky-lead-inner">
+      <div class="sticky-copy"><strong>${htmlEscape(page.heading)} icin hizli teklif</strong>OEM kodu, sase veya eski parca fotografi ile uyumluluk teyidi.</div>
+      <div class="sticky-actions">
+        <a class="sticky-wa" href="${landingWhatsappUrl(page)}" data-lead-source="landing_sticky" data-lead-category="${htmlEscape(page.slug)}">WhatsApp Teklif</a>
+        <a class="sticky-phone" href="tel:+905456087008" data-lead-source="landing_sticky_phone" data-lead-category="${htmlEscape(page.slug)}">Hemen Ara</a>
+      </div>
+    </div>
+  </div>
 </body>
 </html>`;
 }

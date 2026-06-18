@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-06-08T20:46:05.101Z",
-  "site": "https://frenciniz.com",
+  "generatedAt": "2026-06-18T09:23:32.953Z",
+  "site": "https://www.frenciniz.com",
   "totals": {
     "products": 1055,
     "categories": 53,
     "categoryPages": 52,
-    "landingPages": 226,
-    "sitemapUrlEstimate": 1349
+    "landingPages": 1171,
+    "sitemapUrlEstimate": 2294
   },
   "productReadiness": {
     "productsWithImage": 953,
@@ -18,10 +18,10 @@
     "descriptionCoveragePercent": 100
   },
   "seoAssets": {
-    "sitemap": "https://frenciniz.com/sitemap.xml",
-    "merchantFeed": "https://frenciniz.com/google-merchant-feed.xml",
-    "metaCatalogFeed": "https://frenciniz.com/meta-catalog-feed.csv",
-    "robots": "https://frenciniz.com/robots.txt",
+    "sitemap": "https://www.frenciniz.com/sitemap.xml",
+    "merchantFeed": "https://www.frenciniz.com/google-merchant-feed.xml",
+    "metaCatalogFeed": "https://www.frenciniz.com/meta-catalog-feed.csv",
+    "robots": "https://www.frenciniz.com/robots.txt",
     "productSeoUrls": "pricing-research/google-seo-product-urls.csv"
   },
   "highIntentLandingPages": [
@@ -63,7 +63,7 @@
       "priority": "0.82",
       "matchedProducts": 24,
       "categories": "fren-diski|fren-diski-abs-li",
-      "topProducts": "183:Fren Diski Mercedes Atego | 231:Fren Diski Mercedes Actros Axor | 234:Fren Diski Mercedes Actros Axor | 227:Fren Diski Mercedes Actros Arocs Axor | 169:Fren Diski Mercedes Travego Tourismo"
+      "topProducts": "232:Fren Diski Mercedes Atego Tourino | 183:Fren Diski Mercedes Atego | 231:Fren Diski Mercedes Actros Axor | 234:Fren Diski Mercedes Actros Axor | 227:Fren Diski Mercedes Actros Arocs Axor"
     },
     {
       "slug": "man-tga-fren-diski",
@@ -73,7 +73,7 @@
       "priority": "0.86",
       "matchedProducts": 24,
       "categories": "fren-diski|fren-diski-abs-li",
-      "topProducts": "44:Fren Diski MAN TGA Arka | 42:Fren Diski MAN TGA Ön | 169:Fren Diski Mercedes Travego Tourismo | 231:Fren Diski Mercedes Actros Axor | 234:Fren Diski Mercedes Actros Axor"
+      "topProducts": "224:Fren Diski MAN TGA TGM TGS TGX | 223:Fren Diski MAN TGA TGM TGS TGX | 44:Fren Diski MAN TGA Arka | 42:Fren Diski MAN TGA Ön | 169:Fren Diski Mercedes Travego Tourismo"
     },
     {
       "slug": "man-tgs-tgx-fren-diski",
@@ -83,7 +83,7 @@
       "priority": "0.82",
       "matchedProducts": 24,
       "categories": "fren-diski|fren-diski-abs-li|disk-bijonu-civatasi|kaliper",
-      "topProducts": "11:Disk Bijonu MAN TGS | 169:Fren Diski Mercedes Travego Tourismo | 44:Fren Diski MAN TGA Arka | 42:Fren Diski MAN TGA Ön | 627:FRENCO 12-180 TGL MAN KALİPER SET"
+      "topProducts": "224:Fren Diski MAN TGA TGM TGS TGX | 223:Fren Diski MAN TGA TGM TGS TGX | 11:Disk Bijonu MAN TGS | 169:Fren Diski Mercedes Travego Tourismo | 226:Fren Diski MAN L2000 M2000"
     },
     {
       "slug": "volvo-fh-fren-diski",
@@ -263,7 +263,137 @@
       "priority": "0.82",
       "matchedProducts": 24,
       "categories": "porya|kece",
-      "topProducts": "1053:Porya SAF Holland | 655:Porya BPW ECOPlus | 743:Porya SAF Holland | 744:Porya SAF Holland | 565:Porya BPW ECOPlus"
+      "topProducts": "1053:Porya Kapağı SAF Holland | 655:Porya BPW ECOPlus | 743:Porya SAF Holland | 744:Porya SAF Holland | 565:Porya BPW ECOPlus"
+    },
+    {
+      "slug": "man-81508030027-fren-diski",
+      "heading": "MAN 81508030027 Fren Diski",
+      "title": "MAN 81508030027 Fren Diski | L2000 M2000 TGM | Frenciniz",
+      "description": "MAN 81508030027 Fren Diski icin fren diski urunlerinde stok ve fiyat secenekleri. OEM/parca kodu, eski parca fotografi veya sase ile uyumluluk teyidi, ayni gun kargo ve WhatsApp teklif.",
+      "priority": "0.9",
+      "matchedProducts": 24,
+      "categories": "fren-diski|fren-diski-abs-li",
+      "topProducts": "43:Fren Diski MAN L2000 M2000 TGM | 224:Fren Diski MAN TGA TGM TGS TGX | 223:Fren Diski MAN TGA TGM TGS TGX | 226:Fren Diski MAN L2000 M2000 | 225:Fren Diski MAN L2000 M2000"
+    },
+    {
+      "slug": "man-81508030042-fren-diski",
+      "heading": "MAN 81508030042 Fren Diski",
+      "title": "MAN 81508030042 Fren Diski | L2000 TGL TGM | Frenciniz",
+      "description": "MAN 81508030042 Fren Diski icin fren diski urunlerinde stok ve fiyat secenekleri. OEM/parca kodu, eski parca fotografi veya sase ile uyumluluk teyidi, ayni gun kargo ve WhatsApp teklif.",
+      "priority": "0.9",
+      "matchedProducts": 24,
+      "categories": "fren-diski|fren-diski-abs-li",
+      "topProducts": "72:Fren Diski MAN L2000 TGL TGM | 224:Fren Diski MAN TGA TGM TGS TGX | 223:Fren Diski MAN TGA TGM TGS TGX | 43:Fren Diski MAN L2000 M2000 TGM | 226:Fren Diski MAN L2000 M2000"
+    },
+    {
+      "slug": "man-81508030063-fren-diski",
+      "heading": "MAN 81508030063 Fren Diski",
+      "title": "MAN 81508030063 Fren Diski | TGL | Frenciniz",
+      "description": "MAN 81508030063 Fren Diski icin fren diski urunlerinde stok ve fiyat secenekleri. OEM/parca kodu, eski parca fotografi veya sase ile uyumluluk teyidi, ayni gun kargo ve WhatsApp teklif.",
+      "priority": "0.9",
+      "matchedProducts": 24,
+      "categories": "fren-diski|fren-diski-abs-li",
+      "topProducts": "222:Fren Diski MAN TGL | 224:Fren Diski MAN TGA TGM TGS TGX | 223:Fren Diski MAN TGA TGM TGS TGX | 72:Fren Diski MAN L2000 TGL TGM | 169:Fren Diski Mercedes Travego Tourismo"
+    },
+    {
+      "slug": "man-81508030024-fren-diski",
+      "heading": "MAN 81508030024 Fren Diski",
+      "title": "MAN 81508030024 Fren Diski | L2000 M2000 | Frenciniz",
+      "description": "MAN 81508030024 Fren Diski icin fren diski urunlerinde stok ve fiyat secenekleri. OEM/parca kodu, eski parca fotografi veya sase ile uyumluluk teyidi, ayni gun kargo ve WhatsApp teklif.",
+      "priority": "0.9",
+      "matchedProducts": 24,
+      "categories": "fren-diski|fren-diski-abs-li",
+      "topProducts": "226:Fren Diski MAN L2000 M2000 | 225:Fren Diski MAN L2000 M2000 | 224:Fren Diski MAN TGA TGM TGS TGX | 223:Fren Diski MAN TGA TGM TGS TGX | 43:Fren Diski MAN L2000 M2000 TGM"
+    },
+    {
+      "slug": "man-81508030041-fren-diski",
+      "heading": "MAN 81508030041 Fren Diski",
+      "title": "MAN 81508030041 Fren Diski | TGA TGM TGS TGX | Frenciniz",
+      "description": "MAN 81508030041 Fren Diski icin fren diski urunlerinde stok ve fiyat secenekleri. OEM/parca kodu, eski parca fotografi veya sase ile uyumluluk teyidi, ayni gun kargo ve WhatsApp teklif.",
+      "priority": "0.9",
+      "matchedProducts": 24,
+      "categories": "fren-diski|fren-diski-abs-li",
+      "topProducts": "223:Fren Diski MAN TGA TGM TGS TGX | 224:Fren Diski MAN TGA TGM TGS TGX | 72:Fren Diski MAN L2000 TGL TGM | 43:Fren Diski MAN L2000 M2000 TGM | 44:Fren Diski MAN TGA Arka"
+    },
+    {
+      "slug": "mercedes-9754210212-fren-diski",
+      "heading": "Mercedes 9754210212 Fren Diski",
+      "title": "Mercedes 9754210212 Fren Diski | Atego Tourino | Frenciniz",
+      "description": "Mercedes 9754210212 Fren Diski icin fren diski urunlerinde stok ve fiyat secenekleri. OEM/parca kodu, eski parca fotografi veya sase ile uyumluluk teyidi, ayni gun kargo ve WhatsApp teklif.",
+      "priority": "0.9",
+      "matchedProducts": 24,
+      "categories": "fren-diski|fren-diski-abs-li",
+      "topProducts": "232:Fren Diski Mercedes Atego Tourino | 183:Fren Diski Mercedes Atego | 231:Fren Diski Mercedes Actros Axor | 234:Fren Diski Mercedes Actros Axor | 227:Fren Diski Mercedes Actros Arocs Axor"
+    },
+    {
+      "slug": "man-29279-fren-balatasi",
+      "heading": "MAN 29279 Fren Balatası",
+      "title": "MAN 29279 Fren Balatası | TGA TGS TGX | Frenciniz",
+      "description": "MAN 29279 Fren Balatası icin fren balatası urunlerinde stok ve fiyat secenekleri. OEM/parca kodu, eski parca fotografi veya sase ile uyumluluk teyidi, ayni gun kargo ve WhatsApp teklif.",
+      "priority": "0.9",
+      "matchedProducts": 24,
+      "categories": "fren-balatasi",
+      "topProducts": "720:Fren Balatası MAN TGA TGS TGX | 1017:Disk Balatası MAN TGA TGS TGX | 481:Fren Balatası Mercedes Actros Axor | 479:Fren Balatası Mercedes Actros Axor | 723:Fren Balatası Iveco Eurocargo Stralis Trakker MAN Otokar Doruk Sultan"
+    },
+    {
+      "slug": "man-81436010163-roll-koruk",
+      "heading": "MAN 81436010163 Roll Körük",
+      "title": "MAN 81436010163 Roll Körük | TGA TGS TGX | Frenciniz",
+      "description": "MAN 81436010163 Roll Körük icin roll körük urunlerinde stok ve fiyat secenekleri. OEM/parca kodu, eski parca fotografi veya sase ile uyumluluk teyidi, ayni gun kargo ve WhatsApp teklif.",
+      "priority": "0.9",
+      "matchedProducts": 24,
+      "categories": "suspansiyon-korugu",
+      "topProducts": "447:Roll Körük MAN TGA TGS TGX | 896:Roll Körük Mercedes Travego Tourismo | 430:Roll Körük Mercedes Travego Tourismo | 428:Roll Körük Mercedes Travego Tourismo | 887:Pistonsuz Körük 42813 S"
+    },
+    {
+      "slug": "ford-cargo-9c46-1125-ab-fren-kampanasi",
+      "heading": "Ford Cargo 9C46-1125-AB Fren Kampanası",
+      "title": "Ford Cargo 9C46-1125-AB Fren Kampanası | ESK 040 12 | Frenciniz",
+      "description": "Ford Cargo 9C46-1125-AB Fren Kampanası icin fren kampanası urunlerinde stok ve fiyat secenekleri. OEM/parca kodu, eski parca fotografi veya sase ile uyumluluk teyidi, ayni gun kargo ve WhatsApp teklif.",
+      "priority": "0.91",
+      "matchedProducts": 24,
+      "categories": "fren-kampanasi",
+      "topProducts": "133:Fren Kampanası Ford Cargo | 135:Fren Kampanası Ford Cargo Ön Arka 2524-3227-3230 | 134:Fren Kampanası Ford Cargo Ön 2524-2530-3230 3235 3430 | 137:Fren Kampanası Ford Cargo Arka 2520 | 136:Fren Kampanası Ford Cargo Ön 2520"
+    },
+    {
+      "slug": "daf-cf-xf-99717-bijon",
+      "heading": "DAF CF XF 99717 Bijon",
+      "title": "DAF CF XF 99717 Bijon | ESB 1010 10 | Frenciniz",
+      "description": "DAF CF XF 99717 Bijon icin bijon urunlerinde stok ve fiyat secenekleri. OEM/parca kodu, eski parca fotografi veya sase ile uyumluluk teyidi, ayni gun kargo ve WhatsApp teklif.",
+      "priority": "0.9",
+      "matchedProducts": 24,
+      "categories": "bijon|disk-bijonu-civatasi|somun-civata",
+      "topProducts": "398:Bijon DAF CF XF Dps | 395:Bijon DAF CF XF Dps | 394:Bijon DAF CF XF Dps | 396:Bijon DAF CF XF Dps | 397:Bijon DAF CF XF Dps"
+    },
+    {
+      "slug": "wabco-4630840410-ebs-dingil-kaldirma-bobini",
+      "heading": "Wabco 4630840410 EBS Dingil Kaldırma Bobini",
+      "title": "Wabco 4630840410 EBS Dingil Kaldırma Bobini | Frenciniz",
+      "description": "Wabco 4630840410 EBS Dingil Kaldırma Bobini icin EBS dingil kaldırma bobini urunlerinde stok ve fiyat secenekleri. OEM/parca kodu, eski parca fotografi veya sase ile uyumluluk teyidi, ayni gun kargo ve WhatsApp teklif.",
+      "priority": "0.88",
+      "matchedProducts": 24,
+      "categories": "dingil|ebs-modulator|abs-sensoru-modulu-kablo",
+      "topProducts": "551:EBS DİNGİL KALDIRMA BOBİNİ REKORSUZ 4630840410 | 792:126*156.5*7.8 BPW ABS DİŞLİSİ ÇELİK | 785:SAF DORSE ABS DİŞLİSİ | 790:BPW ABS DİŞLİSİ Y.M SAÇ | 654:SAF ABS DİŞLİSİ YENİ MODEL 100 DİŞ SAÇ BÜYÜK"
+    },
+    {
+      "slug": "tirsan-dorse-orta-yay-27-cm",
+      "heading": "Tırsan Dorse Orta Yay 27 CM",
+      "title": "Tırsan Dorse Orta Yay 27 CM | EYD 70 04-1 | Frenciniz",
+      "description": "Tırsan Dorse Orta Yay 27 CM icin orta yay urunlerinde stok ve fiyat secenekleri. OEM/parca kodu, eski parca fotografi veya sase ile uyumluluk teyidi, ayni gun kargo ve WhatsApp teklif.",
+      "priority": "0.88",
+      "matchedProducts": 24,
+      "categories": "yay",
+      "topProducts": "828:TIRSAN DORSE ORTA YAY (SERTEL) 27 CM | 827:TIRSAN DORSE ORTA YAY 28 CM | 432:TIRSAN DORSE KISA YAY 24 CM | 826:TIRSAN DORSE BÜYÜK YAY 29 CM | 829:TIRSAN DORSE KÜÇÜK YAY 25 CM"
+    },
+    {
+      "slug": "360573-1414435-fren-kampanasi",
+      "heading": "360573 1414435 Fren Kampanası",
+      "title": "360573 1414435 Fren Kampanası | ESK 090 02 | Frenciniz",
+      "description": "360573 1414435 Fren Kampanası icin fren kampanası urunlerinde stok ve fiyat secenekleri. OEM/parca kodu, eski parca fotografi veya sase ile uyumluluk teyidi, ayni gun kargo ve WhatsApp teklif.",
+      "priority": "0.88",
+      "matchedProducts": 24,
+      "categories": "fren-kampanasi",
+      "topProducts": "114:Fren Kampanası ESK 090 02 | 97:Fren Kampanası ESK 160 29 S | 151:Fren Kampanası ESK 020 05 | 152:Fren Kampanası ESK 020 03 | 91:Fren Kampanası 420 200 246 687"
     },
     {
       "slug": "mercedes-actros-fren-kampanasi",
@@ -294,136 +424,6 @@
       "matchedProducts": 24,
       "categories": "fren-korugu",
       "topProducts": "957:Fren Körüğü Mercedes Travego Tourismo | 972:Fren Körüğü Disk imdatlı körüğü Kampana imdatlı körüğü körüğü 64 mm | 962:Fren Körüğü Renault | 557:Fren Körüğü Renault | 953:Fren Körüğü Disk imdatlı körüğü Kampana imdatlı körüğü körüğü 64 mm"
-    },
-    {
-      "slug": "mercedes-actros-suspansiyon-korugu",
-      "heading": "Mercedes Actros Süspansiyon Körüğü",
-      "title": "Mercedes Actros Süspansiyon Körüğü | Fiyat ve Stok | Frenciniz",
-      "description": "Mercedes Actros Süspansiyon Körüğü icin süspansiyon körüğü urunlerinde stok ve fiyat secenekleri. OEM/parca kodu, eski parca fotografi veya sase ile uyumluluk teyidi, ayni gun kargo ve WhatsApp teklif.",
-      "priority": "0.87",
-      "matchedProducts": 24,
-      "categories": "suspansiyon-korugu",
-      "topProducts": "637:Pistonsuz Körük Mercedes Actros Axor | 896:Roll Körük Mercedes Travego Tourismo | 913:Komple Körük Metal Piston Mercedes Actros Axor | 660:Komple Körük Metal Piston Mercedes Actros Axor | 430:Roll Körük Mercedes Travego Tourismo"
-    },
-    {
-      "slug": "mercedes-actros-bijon-somun",
-      "heading": "Mercedes Actros Bijon Somun",
-      "title": "Mercedes Actros Bijon Somun | Fiyat ve Stok | Frenciniz",
-      "description": "Mercedes Actros Bijon Somun icin bijon ve somun urunlerinde stok ve fiyat secenekleri. OEM/parca kodu, eski parca fotografi veya sase ile uyumluluk teyidi, ayni gun kargo ve WhatsApp teklif.",
-      "priority": "0.87",
-      "matchedProducts": 24,
-      "categories": "bijon|disk-bijonu-civatasi|somun-civata",
-      "topProducts": "936:Bijon Somunu Mercedes Actros Axor | 327:Disk Bijonu Mercedes Actros Axor | 56:Bijon Mercedes Actros Axor Dps | 242:Bijon Mercedes Actros Axor | 58:Bijon Mercedes Actros Axor Dps"
-    },
-    {
-      "slug": "mercedes-actros-kaliper-tamir-takimi",
-      "heading": "Mercedes Actros Kaliper Tamir Takımı",
-      "title": "Mercedes Actros Kaliper Tamir Takımı | Fiyat ve Stok | Frenciniz",
-      "description": "Mercedes Actros Kaliper Tamir Takımı icin kaliper tamir takımı urunlerinde stok ve fiyat secenekleri. OEM/parca kodu, eski parca fotografi veya sase ile uyumluluk teyidi, ayni gun kargo ve WhatsApp teklif.",
-      "priority": "0.87",
-      "matchedProducts": 24,
-      "categories": "kaliper-tamir-takimi|kaliper-perno-tamir-takimi|kaliper-toz-lastigi|kaliper-kapak-conta|kaliper-ayar-mekanizmasi|kaliper-kilavuz-pim-takimi",
-      "topProducts": "1016:Kaliper Toz Lastiği Tamir Takımı (Ø 69 mm) | 1002:Kaliper Perno Tamir Takımı Mercedes Actros Axor | 1014:Kaliper Toz Lastiği Tamir Takımı (Ø 74 mm) | 527:Perno Tamir Takımı | 530:SB6/SB7 PERNO TAMİR TAKIMI"
-    },
-    {
-      "slug": "mercedes-actros-otomatik-fren-circiri",
-      "heading": "Mercedes Actros Otomatik Fren Cırcırı",
-      "title": "Mercedes Actros Otomatik Fren Cırcırı | Fiyat ve Stok | Frenciniz",
-      "description": "Mercedes Actros Otomatik Fren Cırcırı icin otomatik fren cırcırı urunlerinde stok ve fiyat secenekleri. OEM/parca kodu, eski parca fotografi veya sase ile uyumluluk teyidi, ayni gun kargo ve WhatsApp teklif.",
-      "priority": "0.87",
-      "matchedProducts": 24,
-      "categories": "otomatik-fren-circiri|fren-circiri",
-      "topProducts": "51:Otomatik Fren Cırcırı Mercedes Actros Axor | 52:Otomatik Fren Cırcırı Mercedes Actros Axor | 28:Fren Cırcırı Mercedes Travego Tourismo Ön R-L | 416:Fren Cırcırı Mercedes Travego Tourismo Arka R-L | 85:Fren Cırcırı Mercedes Actros Arocs SAĞ"
-    },
-    {
-      "slug": "mercedes-axor-fren-kampanasi",
-      "heading": "Mercedes Axor Fren Kampanası",
-      "title": "Mercedes Axor Fren Kampanası | Fiyat ve Stok | Frenciniz",
-      "description": "Mercedes Axor Fren Kampanası icin fren kampanası urunlerinde stok ve fiyat secenekleri. OEM/parca kodu, eski parca fotografi veya sase ile uyumluluk teyidi, ayni gun kargo ve WhatsApp teklif.",
-      "priority": "0.87",
-      "matchedProducts": 24,
-      "categories": "fren-kampanasi",
-      "topProducts": "153:Fren Kampanası Mercedes Actros Axor | 18:Fren Kampanası Mercedes Actros Axor | 156:Fren Kampanası Mercedes Actros Axor 18 cm Ön 2521-2524-3031 | 157:Fren Kampanası Mercedes Actros Axor 22 cm Arka 2517-2521 | 82:Fren Kampanası Mercedes Actros Axor"
-    },
-    {
-      "slug": "mercedes-axor-fren-balatasi",
-      "heading": "Mercedes Axor Fren Balatası",
-      "title": "Mercedes Axor Fren Balatası | Fiyat ve Stok | Frenciniz",
-      "description": "Mercedes Axor Fren Balatası icin fren balatası urunlerinde stok ve fiyat secenekleri. OEM/parca kodu, eski parca fotografi veya sase ile uyumluluk teyidi, ayni gun kargo ve WhatsApp teklif.",
-      "priority": "0.87",
-      "matchedProducts": 24,
-      "categories": "fren-balatasi|fren-pabucu|percin",
-      "topProducts": "481:Fren Balatası Mercedes Actros Axor | 479:Fren Balatası Mercedes Actros Axor | 644:Fren Pabucu Mercedes Actros Axor 22 cm | 733:Fren Balatası Mercedes Actros Axor 430 440 450 460 | 724:Fren Balatası Mercedes Actros Axor"
-    },
-    {
-      "slug": "mercedes-axor-fren-korugu",
-      "heading": "Mercedes Axor Fren Körüğü",
-      "title": "Mercedes Axor Fren Körüğü | Fiyat ve Stok | Frenciniz",
-      "description": "Mercedes Axor Fren Körüğü icin fren körüğü urunlerinde stok ve fiyat secenekleri. OEM/parca kodu, eski parca fotografi veya sase ile uyumluluk teyidi, ayni gun kargo ve WhatsApp teklif.",
-      "priority": "0.86",
-      "matchedProducts": 24,
-      "categories": "fren-korugu",
-      "topProducts": "957:Fren Körüğü Mercedes Travego Tourismo | 972:Fren Körüğü Disk imdatlı körüğü Kampana imdatlı körüğü körüğü 64 mm | 962:Fren Körüğü Renault | 557:Fren Körüğü Renault | 953:Fren Körüğü Disk imdatlı körüğü Kampana imdatlı körüğü körüğü 64 mm"
-    },
-    {
-      "slug": "mercedes-axor-bijon-somun",
-      "heading": "Mercedes Axor Bijon Somun",
-      "title": "Mercedes Axor Bijon Somun | Fiyat ve Stok | Frenciniz",
-      "description": "Mercedes Axor Bijon Somun icin bijon ve somun urunlerinde stok ve fiyat secenekleri. OEM/parca kodu, eski parca fotografi veya sase ile uyumluluk teyidi, ayni gun kargo ve WhatsApp teklif.",
-      "priority": "0.86",
-      "matchedProducts": 24,
-      "categories": "bijon|disk-bijonu-civatasi|somun-civata",
-      "topProducts": "936:Bijon Somunu Mercedes Actros Axor | 327:Disk Bijonu Mercedes Actros Axor | 329:Disk Bijonu Mercedes Axor | 326:Disk Bijonu Mercedes Axor YM | 24:Disk Bijonu Mercedes Axor"
-    },
-    {
-      "slug": "mercedes-axor-kaliper-tamir-takimi",
-      "heading": "Mercedes Axor Kaliper Tamir Takımı",
-      "title": "Mercedes Axor Kaliper Tamir Takımı | Fiyat ve Stok | Frenciniz",
-      "description": "Mercedes Axor Kaliper Tamir Takımı icin kaliper tamir takımı urunlerinde stok ve fiyat secenekleri. OEM/parca kodu, eski parca fotografi veya sase ile uyumluluk teyidi, ayni gun kargo ve WhatsApp teklif.",
-      "priority": "0.86",
-      "matchedProducts": 24,
-      "categories": "kaliper-tamir-takimi|kaliper-perno-tamir-takimi|kaliper-toz-lastigi|kaliper-kapak-conta|kaliper-ayar-mekanizmasi|kaliper-kilavuz-pim-takimi",
-      "topProducts": "1016:Kaliper Toz Lastiği Tamir Takımı (Ø 69 mm) | 1002:Kaliper Perno Tamir Takımı Mercedes Actros Axor | 1014:Kaliper Toz Lastiği Tamir Takımı (Ø 74 mm) | 527:Perno Tamir Takımı | 530:SB6/SB7 PERNO TAMİR TAKIMI"
-    },
-    {
-      "slug": "mercedes-axor-otomatik-fren-circiri",
-      "heading": "Mercedes Axor Otomatik Fren Cırcırı",
-      "title": "Mercedes Axor Otomatik Fren Cırcırı | Fiyat ve Stok | Frenciniz",
-      "description": "Mercedes Axor Otomatik Fren Cırcırı icin otomatik fren cırcırı urunlerinde stok ve fiyat secenekleri. OEM/parca kodu, eski parca fotografi veya sase ile uyumluluk teyidi, ayni gun kargo ve WhatsApp teklif.",
-      "priority": "0.86",
-      "matchedProducts": 24,
-      "categories": "otomatik-fren-circiri|fren-circiri",
-      "topProducts": "51:Otomatik Fren Cırcırı Mercedes Actros Axor | 52:Otomatik Fren Cırcırı Mercedes Actros Axor | 28:Fren Cırcırı Mercedes Travego Tourismo Ön R-L | 416:Fren Cırcırı Mercedes Travego Tourismo Arka R-L | 62:Otomatik Fren Cırcırı ESC 80331"
-    },
-    {
-      "slug": "mercedes-actros-1840-fren-diski",
-      "heading": "Mercedes Actros 1840 Fren Diski",
-      "title": "Mercedes Actros 1840 Fren Diski | Fiyat ve Stok | Frenciniz",
-      "description": "Mercedes Actros 1840 Fren Diski icin fren diski urunlerinde stok ve fiyat secenekleri. OEM/parca kodu, eski parca fotografi veya sase ile uyumluluk teyidi, ayni gun kargo ve WhatsApp teklif.",
-      "priority": "0.90",
-      "matchedProducts": 24,
-      "categories": "fren-diski|fren-diski-abs-li",
-      "topProducts": "231:Fren Diski Mercedes Actros Axor | 234:Fren Diski Mercedes Actros Axor | 227:Fren Diski Mercedes Actros Arocs Axor | 233:Fren Diski Mercedes Actros Axor | 235:Fren Diski Mercedes Actros Axor"
-    },
-    {
-      "slug": "mercedes-actros-1840-fren-kampanasi",
-      "heading": "Mercedes Actros 1840 Fren Kampanası",
-      "title": "Mercedes Actros 1840 Fren Kampanası | Fiyat ve Stok | Frenciniz",
-      "description": "Mercedes Actros 1840 Fren Kampanası icin fren kampanası urunlerinde stok ve fiyat secenekleri. OEM/parca kodu, eski parca fotografi veya sase ile uyumluluk teyidi, ayni gun kargo ve WhatsApp teklif.",
-      "priority": "0.90",
-      "matchedProducts": 24,
-      "categories": "fren-kampanasi",
-      "topProducts": "153:Fren Kampanası Mercedes Actros Axor | 18:Fren Kampanası Mercedes Actros Axor | 156:Fren Kampanası Mercedes Actros Axor 18 cm Ön 2521-2524-3031 | 157:Fren Kampanası Mercedes Actros Axor 22 cm Arka 2517-2521 | 82:Fren Kampanası Mercedes Actros Axor"
-    },
-    {
-      "slug": "mercedes-actros-1840-fren-balatasi",
-      "heading": "Mercedes Actros 1840 Fren Balatası",
-      "title": "Mercedes Actros 1840 Fren Balatası | Fiyat ve Stok | Frenciniz",
-      "description": "Mercedes Actros 1840 Fren Balatası icin fren balatası urunlerinde stok ve fiyat secenekleri. OEM/parca kodu, eski parca fotografi veya sase ile uyumluluk teyidi, ayni gun kargo ve WhatsApp teklif.",
-      "priority": "0.90",
-      "matchedProducts": 24,
-      "categories": "fren-balatasi|fren-pabucu|percin",
-      "topProducts": "481:Fren Balatası Mercedes Actros Axor | 479:Fren Balatası Mercedes Actros Axor | 644:Fren Pabucu Mercedes Actros Axor 22 cm | 733:Fren Balatası Mercedes Actros Axor 430 440 450 460 | 724:Fren Balatası Mercedes Actros Axor"
     }
   ],
   "landingPagesNeedingMoreSpecificProducts": [],
