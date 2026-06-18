@@ -1281,8 +1281,20 @@
       "destination": "/api/sitemap?type=landing&slug=axor-1840-kaliper-tamir-takimi"
     },
     {
+      "source": "/axor-1840-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=axor-1840-abs-sensoru"
+    },
+    {
       "source": "/axor-1840-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=axor-1840-fren-circiri"
+    },
+    {
+      "source": "/axor-1840-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=axor-1840-porya-kapagi"
+    },
+    {
+      "source": "/axor-1840-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=axor-1840-hava-korugu"
     },
     {
       "source": "/axor-3340-balata",
@@ -1313,8 +1325,20 @@
       "destination": "/api/sitemap?type=landing&slug=axor-3340-kaliper-tamir-takimi"
     },
     {
+      "source": "/axor-3340-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=axor-3340-abs-sensoru"
+    },
+    {
       "source": "/axor-3340-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=axor-3340-fren-circiri"
+    },
+    {
+      "source": "/axor-3340-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=axor-3340-porya-kapagi"
+    },
+    {
+      "source": "/axor-3340-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=axor-3340-hava-korugu"
     },
     {
       "source": "/axor-4140-balata",
@@ -1345,8 +1369,20 @@
       "destination": "/api/sitemap?type=landing&slug=axor-4140-kaliper-tamir-takimi"
     },
     {
+      "source": "/axor-4140-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=axor-4140-abs-sensoru"
+    },
+    {
       "source": "/axor-4140-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=axor-4140-fren-circiri"
+    },
+    {
+      "source": "/axor-4140-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=axor-4140-porya-kapagi"
+    },
+    {
+      "source": "/axor-4140-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=axor-4140-hava-korugu"
     },
     {
       "source": "/actros-1840-balata",
@@ -1377,8 +1413,20 @@
       "destination": "/api/sitemap?type=landing&slug=actros-1840-kaliper-tamir-takimi"
     },
     {
+      "source": "/actros-1840-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=actros-1840-abs-sensoru"
+    },
+    {
       "source": "/actros-1840-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=actros-1840-fren-circiri"
+    },
+    {
+      "source": "/actros-1840-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=actros-1840-porya-kapagi"
+    },
+    {
+      "source": "/actros-1840-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=actros-1840-hava-korugu"
     },
     {
       "source": "/actros-3340-balata",
@@ -1409,8 +1457,20 @@
       "destination": "/api/sitemap?type=landing&slug=actros-3340-kaliper-tamir-takimi"
     },
     {
+      "source": "/actros-3340-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=actros-3340-abs-sensoru"
+    },
+    {
       "source": "/actros-3340-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=actros-3340-fren-circiri"
+    },
+    {
+      "source": "/actros-3340-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=actros-3340-porya-kapagi"
+    },
+    {
+      "source": "/actros-3340-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=actros-3340-hava-korugu"
     },
     {
       "source": "/actros-4140-balata",
@@ -1441,8 +1501,20 @@
       "destination": "/api/sitemap?type=landing&slug=actros-4140-kaliper-tamir-takimi"
     },
     {
+      "source": "/actros-4140-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=actros-4140-abs-sensoru"
+    },
+    {
       "source": "/actros-4140-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=actros-4140-fren-circiri"
+    },
+    {
+      "source": "/actros-4140-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=actros-4140-porya-kapagi"
+    },
+    {
+      "source": "/actros-4140-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=actros-4140-hava-korugu"
     },
     {
       "source": "/atego-balata",
@@ -1469,8 +1541,20 @@
       "destination": "/api/sitemap?type=landing&slug=atego-kaliper-tamir-takimi"
     },
     {
+      "source": "/atego-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=atego-abs-sensoru"
+    },
+    {
       "source": "/atego-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=atego-fren-circiri"
+    },
+    {
+      "source": "/atego-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=atego-porya-kapagi"
+    },
+    {
+      "source": "/atego-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=atego-hava-korugu"
     },
     {
       "source": "/travego-balata",
@@ -1495,6 +1579,10 @@
     {
       "source": "/travego-kaliper-tamir-takimi",
       "destination": "/api/sitemap?type=landing&slug=travego-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/travego-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=travego-abs-sensoru"
     },
     {
       "source": "/travego-hava-korugu",
@@ -1525,6 +1613,10 @@
       "destination": "/api/sitemap?type=landing&slug=tourismo-kaliper-tamir-takimi"
     },
     {
+      "source": "/tourismo-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=tourismo-abs-sensoru"
+    },
+    {
       "source": "/tourismo-hava-korugu",
       "destination": "/api/sitemap?type=landing&slug=tourismo-hava-korugu"
     },
@@ -1549,8 +1641,20 @@
       "destination": "/api/sitemap?type=landing&slug=man-40-460-fren-korugu"
     },
     {
+      "source": "/man-40-460-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=man-40-460-abs-sensoru"
+    },
+    {
       "source": "/man-40-460-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=man-40-460-fren-circiri"
+    },
+    {
+      "source": "/man-40-460-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=man-40-460-porya-kapagi"
+    },
+    {
+      "source": "/man-40-460-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=man-40-460-hava-korugu"
     },
     {
       "source": "/man-40-360-balata",
@@ -1573,8 +1677,20 @@
       "destination": "/api/sitemap?type=landing&slug=man-40-360-fren-korugu"
     },
     {
+      "source": "/man-40-360-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=man-40-360-abs-sensoru"
+    },
+    {
       "source": "/man-40-360-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=man-40-360-fren-circiri"
+    },
+    {
+      "source": "/man-40-360-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=man-40-360-porya-kapagi"
+    },
+    {
+      "source": "/man-40-360-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=man-40-360-hava-korugu"
     },
     {
       "source": "/man-tga-balata",
@@ -1597,8 +1713,20 @@
       "destination": "/api/sitemap?type=landing&slug=man-tga-fren-korugu"
     },
     {
+      "source": "/man-tga-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=man-tga-abs-sensoru"
+    },
+    {
       "source": "/man-tga-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=man-tga-fren-circiri"
+    },
+    {
+      "source": "/man-tga-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=man-tga-porya-kapagi"
+    },
+    {
+      "source": "/man-tga-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=man-tga-hava-korugu"
     },
     {
       "source": "/man-tgx-balata",
@@ -1629,8 +1757,20 @@
       "destination": "/api/sitemap?type=landing&slug=man-tgx-kaliper-tamir-takimi"
     },
     {
+      "source": "/man-tgx-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=man-tgx-abs-sensoru"
+    },
+    {
       "source": "/man-tgx-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=man-tgx-fren-circiri"
+    },
+    {
+      "source": "/man-tgx-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=man-tgx-porya-kapagi"
+    },
+    {
+      "source": "/man-tgx-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=man-tgx-hava-korugu"
     },
     {
       "source": "/man-fortuna-balata",
@@ -1657,6 +1797,10 @@
       "destination": "/api/sitemap?type=landing&slug=man-fortuna-kaliper-tamir-takimi"
     },
     {
+      "source": "/man-fortuna-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=man-fortuna-abs-sensoru"
+    },
+    {
       "source": "/man-fortuna-hava-korugu",
       "destination": "/api/sitemap?type=landing&slug=man-fortuna-hava-korugu"
     },
@@ -1681,8 +1825,20 @@
       "destination": "/api/sitemap?type=landing&slug=scania-g420-fren-korugu"
     },
     {
+      "source": "/scania-g420-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=scania-g420-abs-sensoru"
+    },
+    {
       "source": "/scania-g420-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=scania-g420-fren-circiri"
+    },
+    {
+      "source": "/scania-g420-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=scania-g420-porya-kapagi"
+    },
+    {
+      "source": "/scania-g420-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=scania-g420-hava-korugu"
     },
     {
       "source": "/scania-r420-balata",
@@ -1705,8 +1861,20 @@
       "destination": "/api/sitemap?type=landing&slug=scania-r420-fren-korugu"
     },
     {
+      "source": "/scania-r420-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=scania-r420-abs-sensoru"
+    },
+    {
       "source": "/scania-r420-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=scania-r420-fren-circiri"
+    },
+    {
+      "source": "/scania-r420-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=scania-r420-porya-kapagi"
+    },
+    {
+      "source": "/scania-r420-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=scania-r420-hava-korugu"
     },
     {
       "source": "/volvo-fh-balata",
@@ -1725,8 +1893,20 @@
       "destination": "/api/sitemap?type=landing&slug=volvo-fh-fren-korugu"
     },
     {
+      "source": "/volvo-fh-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh-abs-sensoru"
+    },
+    {
       "source": "/volvo-fh-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=volvo-fh-fren-circiri"
+    },
+    {
+      "source": "/volvo-fh-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh-porya-kapagi"
+    },
+    {
+      "source": "/volvo-fh-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh-hava-korugu"
     },
     {
       "source": "/volvo-fm-balata",
@@ -1757,8 +1937,20 @@
       "destination": "/api/sitemap?type=landing&slug=volvo-fm-kaliper-tamir-takimi"
     },
     {
+      "source": "/volvo-fm-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fm-abs-sensoru"
+    },
+    {
       "source": "/volvo-fm-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=volvo-fm-fren-circiri"
+    },
+    {
+      "source": "/volvo-fm-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fm-porya-kapagi"
+    },
+    {
+      "source": "/volvo-fm-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fm-hava-korugu"
     },
     {
       "source": "/daf-xf-balata",
@@ -1789,8 +1981,20 @@
       "destination": "/api/sitemap?type=landing&slug=daf-xf-kaliper-tamir-takimi"
     },
     {
+      "source": "/daf-xf-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-abs-sensoru"
+    },
+    {
       "source": "/daf-xf-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=daf-xf-fren-circiri"
+    },
+    {
+      "source": "/daf-xf-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-porya-kapagi"
+    },
+    {
+      "source": "/daf-xf-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-hava-korugu"
     },
     {
       "source": "/daf-cf-balata",
@@ -1821,8 +2025,20 @@
       "destination": "/api/sitemap?type=landing&slug=daf-cf-kaliper-tamir-takimi"
     },
     {
+      "source": "/daf-cf-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=daf-cf-abs-sensoru"
+    },
+    {
       "source": "/daf-cf-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=daf-cf-fren-circiri"
+    },
+    {
+      "source": "/daf-cf-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=daf-cf-porya-kapagi"
+    },
+    {
+      "source": "/daf-cf-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=daf-cf-hava-korugu"
     },
     {
       "source": "/ford-cargo-balata",
@@ -1849,8 +2065,20 @@
       "destination": "/api/sitemap?type=landing&slug=ford-cargo-kaliper-tamir-takimi"
     },
     {
+      "source": "/ford-cargo-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-abs-sensoru"
+    },
+    {
       "source": "/ford-cargo-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=ford-cargo-fren-circiri"
+    },
+    {
+      "source": "/ford-cargo-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-porya-kapagi"
+    },
+    {
+      "source": "/ford-cargo-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-hava-korugu"
     },
     {
       "source": "/ford-fmax-balata",
@@ -1873,8 +2101,20 @@
       "destination": "/api/sitemap?type=landing&slug=ford-fmax-fren-korugu"
     },
     {
+      "source": "/ford-fmax-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=ford-fmax-abs-sensoru"
+    },
+    {
       "source": "/ford-fmax-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=ford-fmax-fren-circiri"
+    },
+    {
+      "source": "/ford-fmax-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=ford-fmax-porya-kapagi"
+    },
+    {
+      "source": "/ford-fmax-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=ford-fmax-hava-korugu"
     },
     {
       "source": "/bmc-pro-balata",
@@ -1901,8 +2141,20 @@
       "destination": "/api/sitemap?type=landing&slug=bmc-pro-kaliper-tamir-takimi"
     },
     {
+      "source": "/bmc-pro-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=bmc-pro-abs-sensoru"
+    },
+    {
       "source": "/bmc-pro-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=bmc-pro-fren-circiri"
+    },
+    {
+      "source": "/bmc-pro-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=bmc-pro-porya-kapagi"
+    },
+    {
+      "source": "/bmc-pro-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=bmc-pro-hava-korugu"
     },
     {
       "source": "/bpw-dorse-balata",
@@ -1929,20 +2181,20 @@
       "destination": "/api/sitemap?type=landing&slug=bpw-dorse-kaliper-tamir-takimi"
     },
     {
-      "source": "/bpw-dorse-fren-circiri",
-      "destination": "/api/sitemap?type=landing&slug=bpw-dorse-fren-circiri"
-    },
-    {
       "source": "/bpw-dorse-abs-sensoru",
       "destination": "/api/sitemap?type=landing&slug=bpw-dorse-abs-sensoru"
     },
     {
-      "source": "/bpw-dorse-ebs-modulator",
-      "destination": "/api/sitemap?type=landing&slug=bpw-dorse-ebs-modulator"
+      "source": "/bpw-dorse-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=bpw-dorse-fren-circiri"
     },
     {
       "source": "/bpw-dorse-hava-korugu",
       "destination": "/api/sitemap?type=landing&slug=bpw-dorse-hava-korugu"
+    },
+    {
+      "source": "/bpw-dorse-ebs-modulator",
+      "destination": "/api/sitemap?type=landing&slug=bpw-dorse-ebs-modulator"
     },
     {
       "source": "/saf-dorse-balata",
@@ -1969,20 +2221,20 @@
       "destination": "/api/sitemap?type=landing&slug=saf-dorse-kaliper-tamir-takimi"
     },
     {
-      "source": "/saf-dorse-fren-circiri",
-      "destination": "/api/sitemap?type=landing&slug=saf-dorse-fren-circiri"
-    },
-    {
       "source": "/saf-dorse-abs-sensoru",
       "destination": "/api/sitemap?type=landing&slug=saf-dorse-abs-sensoru"
     },
     {
-      "source": "/saf-dorse-ebs-modulator",
-      "destination": "/api/sitemap?type=landing&slug=saf-dorse-ebs-modulator"
+      "source": "/saf-dorse-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=saf-dorse-fren-circiri"
     },
     {
       "source": "/saf-dorse-hava-korugu",
       "destination": "/api/sitemap?type=landing&slug=saf-dorse-hava-korugu"
+    },
+    {
+      "source": "/saf-dorse-ebs-modulator",
+      "destination": "/api/sitemap?type=landing&slug=saf-dorse-ebs-modulator"
     },
     {
       "source": "/krone-dorse-balata",
@@ -2009,20 +2261,20 @@
       "destination": "/api/sitemap?type=landing&slug=krone-dorse-kaliper-tamir-takimi"
     },
     {
-      "source": "/krone-dorse-fren-circiri",
-      "destination": "/api/sitemap?type=landing&slug=krone-dorse-fren-circiri"
-    },
-    {
       "source": "/krone-dorse-abs-sensoru",
       "destination": "/api/sitemap?type=landing&slug=krone-dorse-abs-sensoru"
     },
     {
-      "source": "/krone-dorse-ebs-modulator",
-      "destination": "/api/sitemap?type=landing&slug=krone-dorse-ebs-modulator"
+      "source": "/krone-dorse-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=krone-dorse-fren-circiri"
     },
     {
       "source": "/krone-dorse-hava-korugu",
       "destination": "/api/sitemap?type=landing&slug=krone-dorse-hava-korugu"
+    },
+    {
+      "source": "/krone-dorse-ebs-modulator",
+      "destination": "/api/sitemap?type=landing&slug=krone-dorse-ebs-modulator"
     },
     {
       "source": "/kogel-dorse-balata",
@@ -2049,6 +2301,10 @@
       "destination": "/api/sitemap?type=landing&slug=kogel-dorse-kaliper-tamir-takimi"
     },
     {
+      "source": "/kogel-dorse-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=kogel-dorse-abs-sensoru"
+    },
+    {
       "source": "/kogel-dorse-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=kogel-dorse-fren-circiri"
     },
@@ -2057,16 +2313,12 @@
       "destination": "/api/sitemap?type=landing&slug=kogel-dorse-porya-kapagi"
     },
     {
-      "source": "/kogel-dorse-abs-sensoru",
-      "destination": "/api/sitemap?type=landing&slug=kogel-dorse-abs-sensoru"
+      "source": "/kogel-dorse-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=kogel-dorse-hava-korugu"
     },
     {
       "source": "/kogel-dorse-ebs-modulator",
       "destination": "/api/sitemap?type=landing&slug=kogel-dorse-ebs-modulator"
-    },
-    {
-      "source": "/kogel-dorse-hava-korugu",
-      "destination": "/api/sitemap?type=landing&slug=kogel-dorse-hava-korugu"
     },
     {
       "source": "/axor-2528-balata",
@@ -2097,8 +2349,20 @@
       "destination": "/api/sitemap?type=landing&slug=axor-2528-kaliper-tamir-takimi"
     },
     {
+      "source": "/axor-2528-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=axor-2528-abs-sensoru"
+    },
+    {
       "source": "/axor-2528-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=axor-2528-fren-circiri"
+    },
+    {
+      "source": "/axor-2528-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=axor-2528-porya-kapagi"
+    },
+    {
+      "source": "/axor-2528-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=axor-2528-hava-korugu"
     },
     {
       "source": "/axor-3228-balata",
@@ -2129,8 +2393,20 @@
       "destination": "/api/sitemap?type=landing&slug=axor-3228-kaliper-tamir-takimi"
     },
     {
+      "source": "/axor-3228-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=axor-3228-abs-sensoru"
+    },
+    {
       "source": "/axor-3228-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=axor-3228-fren-circiri"
+    },
+    {
+      "source": "/axor-3228-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=axor-3228-porya-kapagi"
+    },
+    {
+      "source": "/axor-3228-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=axor-3228-hava-korugu"
     },
     {
       "source": "/actros-1841-balata",
@@ -2161,8 +2437,20 @@
       "destination": "/api/sitemap?type=landing&slug=actros-1841-kaliper-tamir-takimi"
     },
     {
+      "source": "/actros-1841-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=actros-1841-abs-sensoru"
+    },
+    {
       "source": "/actros-1841-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=actros-1841-fren-circiri"
+    },
+    {
+      "source": "/actros-1841-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=actros-1841-porya-kapagi"
+    },
+    {
+      "source": "/actros-1841-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=actros-1841-hava-korugu"
     },
     {
       "source": "/actros-1844-balata",
@@ -2193,8 +2481,20 @@
       "destination": "/api/sitemap?type=landing&slug=actros-1844-kaliper-tamir-takimi"
     },
     {
+      "source": "/actros-1844-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=actros-1844-abs-sensoru"
+    },
+    {
       "source": "/actros-1844-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=actros-1844-fren-circiri"
+    },
+    {
+      "source": "/actros-1844-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=actros-1844-porya-kapagi"
+    },
+    {
+      "source": "/actros-1844-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=actros-1844-hava-korugu"
     },
     {
       "source": "/atego-1517-balata",
@@ -2225,8 +2525,20 @@
       "destination": "/api/sitemap?type=landing&slug=atego-1517-kaliper-tamir-takimi"
     },
     {
+      "source": "/atego-1517-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=atego-1517-abs-sensoru"
+    },
+    {
       "source": "/atego-1517-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=atego-1517-fren-circiri"
+    },
+    {
+      "source": "/atego-1517-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=atego-1517-porya-kapagi"
+    },
+    {
+      "source": "/atego-1517-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=atego-1517-hava-korugu"
     },
     {
       "source": "/atego-1524-balata",
@@ -2257,8 +2569,20 @@
       "destination": "/api/sitemap?type=landing&slug=atego-1524-kaliper-tamir-takimi"
     },
     {
+      "source": "/atego-1524-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=atego-1524-abs-sensoru"
+    },
+    {
       "source": "/atego-1524-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=atego-1524-fren-circiri"
+    },
+    {
+      "source": "/atego-1524-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=atego-1524-porya-kapagi"
+    },
+    {
+      "source": "/atego-1524-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=atego-1524-hava-korugu"
     },
     {
       "source": "/travego-15-balata",
@@ -2283,6 +2607,10 @@
     {
       "source": "/travego-15-kaliper-tamir-takimi",
       "destination": "/api/sitemap?type=landing&slug=travego-15-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/travego-15-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=travego-15-abs-sensoru"
     },
     {
       "source": "/travego-15-hava-korugu",
@@ -2311,6 +2639,10 @@
     {
       "source": "/tourismo-15-kaliper-tamir-takimi",
       "destination": "/api/sitemap?type=landing&slug=tourismo-15-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/tourismo-15-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=tourismo-15-abs-sensoru"
     },
     {
       "source": "/tourismo-15-hava-korugu",
@@ -2345,8 +2677,20 @@
       "destination": "/api/sitemap?type=landing&slug=man-18-460-kaliper-tamir-takimi"
     },
     {
+      "source": "/man-18-460-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=man-18-460-abs-sensoru"
+    },
+    {
       "source": "/man-18-460-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=man-18-460-fren-circiri"
+    },
+    {
+      "source": "/man-18-460-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=man-18-460-porya-kapagi"
+    },
+    {
+      "source": "/man-18-460-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=man-18-460-hava-korugu"
     },
     {
       "source": "/man-tgs-balata",
@@ -2377,8 +2721,20 @@
       "destination": "/api/sitemap?type=landing&slug=man-tgs-kaliper-tamir-takimi"
     },
     {
+      "source": "/man-tgs-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=man-tgs-abs-sensoru"
+    },
+    {
       "source": "/man-tgs-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=man-tgs-fren-circiri"
+    },
+    {
+      "source": "/man-tgs-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=man-tgs-porya-kapagi"
+    },
+    {
+      "source": "/man-tgs-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=man-tgs-hava-korugu"
     },
     {
       "source": "/scania-g440-balata",
@@ -2409,8 +2765,20 @@
       "destination": "/api/sitemap?type=landing&slug=scania-g440-kaliper-tamir-takimi"
     },
     {
+      "source": "/scania-g440-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=scania-g440-abs-sensoru"
+    },
+    {
       "source": "/scania-g440-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=scania-g440-fren-circiri"
+    },
+    {
+      "source": "/scania-g440-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=scania-g440-porya-kapagi"
+    },
+    {
+      "source": "/scania-g440-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=scania-g440-hava-korugu"
     },
     {
       "source": "/scania-r440-balata",
@@ -2441,8 +2809,20 @@
       "destination": "/api/sitemap?type=landing&slug=scania-r440-kaliper-tamir-takimi"
     },
     {
+      "source": "/scania-r440-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=scania-r440-abs-sensoru"
+    },
+    {
       "source": "/scania-r440-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=scania-r440-fren-circiri"
+    },
+    {
+      "source": "/scania-r440-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=scania-r440-porya-kapagi"
+    },
+    {
+      "source": "/scania-r440-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=scania-r440-hava-korugu"
     },
     {
       "source": "/volvo-fh12-balata",
@@ -2465,8 +2845,20 @@
       "destination": "/api/sitemap?type=landing&slug=volvo-fh12-kaliper-tamir-takimi"
     },
     {
+      "source": "/volvo-fh12-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh12-abs-sensoru"
+    },
+    {
       "source": "/volvo-fh12-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=volvo-fh12-fren-circiri"
+    },
+    {
+      "source": "/volvo-fh12-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh12-porya-kapagi"
+    },
+    {
+      "source": "/volvo-fh12-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh12-hava-korugu"
     },
     {
       "source": "/volvo-fh13-balata",
@@ -2489,8 +2881,20 @@
       "destination": "/api/sitemap?type=landing&slug=volvo-fh13-kaliper-tamir-takimi"
     },
     {
+      "source": "/volvo-fh13-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh13-abs-sensoru"
+    },
+    {
       "source": "/volvo-fh13-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=volvo-fh13-fren-circiri"
+    },
+    {
+      "source": "/volvo-fh13-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh13-porya-kapagi"
+    },
+    {
+      "source": "/volvo-fh13-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh13-hava-korugu"
     },
     {
       "source": "/volvo-fm12-balata",
@@ -2521,8 +2925,20 @@
       "destination": "/api/sitemap?type=landing&slug=volvo-fm12-kaliper-tamir-takimi"
     },
     {
+      "source": "/volvo-fm12-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fm12-abs-sensoru"
+    },
+    {
       "source": "/volvo-fm12-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=volvo-fm12-fren-circiri"
+    },
+    {
+      "source": "/volvo-fm12-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fm12-porya-kapagi"
+    },
+    {
+      "source": "/volvo-fm12-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fm12-hava-korugu"
     },
     {
       "source": "/daf-xf-105-balata",
@@ -2553,8 +2969,20 @@
       "destination": "/api/sitemap?type=landing&slug=daf-xf-105-kaliper-tamir-takimi"
     },
     {
+      "source": "/daf-xf-105-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-105-abs-sensoru"
+    },
+    {
       "source": "/daf-xf-105-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=daf-xf-105-fren-circiri"
+    },
+    {
+      "source": "/daf-xf-105-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-105-porya-kapagi"
+    },
+    {
+      "source": "/daf-xf-105-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-105-hava-korugu"
     },
     {
       "source": "/daf-xf-106-balata",
@@ -2585,8 +3013,20 @@
       "destination": "/api/sitemap?type=landing&slug=daf-xf-106-kaliper-tamir-takimi"
     },
     {
+      "source": "/daf-xf-106-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-106-abs-sensoru"
+    },
+    {
       "source": "/daf-xf-106-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=daf-xf-106-fren-circiri"
+    },
+    {
+      "source": "/daf-xf-106-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-106-porya-kapagi"
+    },
+    {
+      "source": "/daf-xf-106-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-106-hava-korugu"
     },
     {
       "source": "/daf-cf-85-balata",
@@ -2613,8 +3053,20 @@
       "destination": "/api/sitemap?type=landing&slug=daf-cf-85-kaliper-tamir-takimi"
     },
     {
+      "source": "/daf-cf-85-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=daf-cf-85-abs-sensoru"
+    },
+    {
       "source": "/daf-cf-85-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=daf-cf-85-fren-circiri"
+    },
+    {
+      "source": "/daf-cf-85-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=daf-cf-85-porya-kapagi"
+    },
+    {
+      "source": "/daf-cf-85-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=daf-cf-85-hava-korugu"
     },
     {
       "source": "/renault-premium-balata",
@@ -2637,8 +3089,20 @@
       "destination": "/api/sitemap?type=landing&slug=renault-premium-fren-korugu"
     },
     {
+      "source": "/renault-premium-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=renault-premium-abs-sensoru"
+    },
+    {
       "source": "/renault-premium-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=renault-premium-fren-circiri"
+    },
+    {
+      "source": "/renault-premium-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=renault-premium-porya-kapagi"
+    },
+    {
+      "source": "/renault-premium-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=renault-premium-hava-korugu"
     },
     {
       "source": "/renault-magnum-balata",
@@ -2669,8 +3133,20 @@
       "destination": "/api/sitemap?type=landing&slug=renault-magnum-kaliper-tamir-takimi"
     },
     {
+      "source": "/renault-magnum-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=renault-magnum-abs-sensoru"
+    },
+    {
       "source": "/renault-magnum-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=renault-magnum-fren-circiri"
+    },
+    {
+      "source": "/renault-magnum-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=renault-magnum-porya-kapagi"
+    },
+    {
+      "source": "/renault-magnum-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=renault-magnum-hava-korugu"
     },
     {
       "source": "/iveco-stralis-balata",
@@ -2693,8 +3169,20 @@
       "destination": "/api/sitemap?type=landing&slug=iveco-stralis-fren-korugu"
     },
     {
+      "source": "/iveco-stralis-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=iveco-stralis-abs-sensoru"
+    },
+    {
       "source": "/iveco-stralis-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=iveco-stralis-fren-circiri"
+    },
+    {
+      "source": "/iveco-stralis-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=iveco-stralis-porya-kapagi"
+    },
+    {
+      "source": "/iveco-stralis-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=iveco-stralis-hava-korugu"
     },
     {
       "source": "/iveco-eurocargo-balata",
@@ -2717,8 +3205,20 @@
       "destination": "/api/sitemap?type=landing&slug=iveco-eurocargo-kaliper-tamir-takimi"
     },
     {
+      "source": "/iveco-eurocargo-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=iveco-eurocargo-abs-sensoru"
+    },
+    {
       "source": "/iveco-eurocargo-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=iveco-eurocargo-fren-circiri"
+    },
+    {
+      "source": "/iveco-eurocargo-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=iveco-eurocargo-porya-kapagi"
+    },
+    {
+      "source": "/iveco-eurocargo-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=iveco-eurocargo-hava-korugu"
     },
     {
       "source": "/ford-cargo-4142-balata",
@@ -2745,8 +3245,20 @@
       "destination": "/api/sitemap?type=landing&slug=ford-cargo-4142-kaliper-tamir-takimi"
     },
     {
+      "source": "/ford-cargo-4142-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-4142-abs-sensoru"
+    },
+    {
       "source": "/ford-cargo-4142-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=ford-cargo-4142-fren-circiri"
+    },
+    {
+      "source": "/ford-cargo-4142-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-4142-porya-kapagi"
+    },
+    {
+      "source": "/ford-cargo-4142-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-4142-hava-korugu"
     },
     {
       "source": "/bmc-tugra-balata",
@@ -2777,8 +3289,20 @@
       "destination": "/api/sitemap?type=landing&slug=bmc-tugra-kaliper-tamir-takimi"
     },
     {
+      "source": "/bmc-tugra-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=bmc-tugra-abs-sensoru"
+    },
+    {
       "source": "/bmc-tugra-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=bmc-tugra-fren-circiri"
+    },
+    {
+      "source": "/bmc-tugra-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=bmc-tugra-porya-kapagi"
+    },
+    {
+      "source": "/bmc-tugra-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=bmc-tugra-hava-korugu"
     },
     {
       "source": "/temsa-safir-balata",
@@ -2805,16 +3329,16 @@
       "destination": "/api/sitemap?type=landing&slug=temsa-safir-kaliper-tamir-takimi"
     },
     {
+      "source": "/temsa-safir-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=temsa-safir-abs-sensoru"
+    },
+    {
       "source": "/temsa-safir-hava-korugu",
       "destination": "/api/sitemap?type=landing&slug=temsa-safir-hava-korugu"
     },
     {
       "source": "/temsa-safir-porya-kapagi",
       "destination": "/api/sitemap?type=landing&slug=temsa-safir-porya-kapagi"
-    },
-    {
-      "source": "/temsa-safir-abs-sensoru",
-      "destination": "/api/sitemap?type=landing&slug=temsa-safir-abs-sensoru"
     },
     {
       "source": "/temsa-safir-ebs-modulator",
@@ -2845,6 +3369,10 @@
       "destination": "/api/sitemap?type=landing&slug=otokar-sultan-kaliper-tamir-takimi"
     },
     {
+      "source": "/otokar-sultan-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=otokar-sultan-abs-sensoru"
+    },
+    {
       "source": "/otokar-sultan-hava-korugu",
       "destination": "/api/sitemap?type=landing&slug=otokar-sultan-hava-korugu"
     },
@@ -2873,6 +3401,10 @@
       "destination": "/api/sitemap?type=landing&slug=isuzu-turkuaz-kaliper-tamir-takimi"
     },
     {
+      "source": "/isuzu-turkuaz-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=isuzu-turkuaz-abs-sensoru"
+    },
+    {
       "source": "/isuzu-turkuaz-hava-korugu",
       "destination": "/api/sitemap?type=landing&slug=isuzu-turkuaz-hava-korugu"
     },
@@ -2887,6 +3419,10 @@
     {
       "source": "/isuzu-novociti-fren-pabucu",
       "destination": "/api/sitemap?type=landing&slug=isuzu-novociti-fren-pabucu"
+    },
+    {
+      "source": "/isuzu-novociti-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=isuzu-novociti-abs-sensoru"
     },
     {
       "source": "/isuzu-novociti-hava-korugu",
@@ -2917,20 +3453,20 @@
       "destination": "/api/sitemap?type=landing&slug=bpw-eco-plus-kaliper-tamir-takimi"
     },
     {
-      "source": "/bpw-eco-plus-fren-circiri",
-      "destination": "/api/sitemap?type=landing&slug=bpw-eco-plus-fren-circiri"
-    },
-    {
       "source": "/bpw-eco-plus-abs-sensoru",
       "destination": "/api/sitemap?type=landing&slug=bpw-eco-plus-abs-sensoru"
     },
     {
-      "source": "/bpw-eco-plus-ebs-modulator",
-      "destination": "/api/sitemap?type=landing&slug=bpw-eco-plus-ebs-modulator"
+      "source": "/bpw-eco-plus-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=bpw-eco-plus-fren-circiri"
     },
     {
       "source": "/bpw-eco-plus-hava-korugu",
       "destination": "/api/sitemap?type=landing&slug=bpw-eco-plus-hava-korugu"
+    },
+    {
+      "source": "/bpw-eco-plus-ebs-modulator",
+      "destination": "/api/sitemap?type=landing&slug=bpw-eco-plus-ebs-modulator"
     },
     {
       "source": "/saf-intradisc-balata",
@@ -2957,20 +3493,20 @@
       "destination": "/api/sitemap?type=landing&slug=saf-intradisc-kaliper-tamir-takimi"
     },
     {
-      "source": "/saf-intradisc-fren-circiri",
-      "destination": "/api/sitemap?type=landing&slug=saf-intradisc-fren-circiri"
-    },
-    {
       "source": "/saf-intradisc-abs-sensoru",
       "destination": "/api/sitemap?type=landing&slug=saf-intradisc-abs-sensoru"
     },
     {
-      "source": "/saf-intradisc-ebs-modulator",
-      "destination": "/api/sitemap?type=landing&slug=saf-intradisc-ebs-modulator"
+      "source": "/saf-intradisc-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=saf-intradisc-fren-circiri"
     },
     {
       "source": "/saf-intradisc-hava-korugu",
       "destination": "/api/sitemap?type=landing&slug=saf-intradisc-hava-korugu"
+    },
+    {
+      "source": "/saf-intradisc-ebs-modulator",
+      "destination": "/api/sitemap?type=landing&slug=saf-intradisc-ebs-modulator"
     },
     {
       "source": "/ror-meritor-dorse-balata",
@@ -2997,20 +3533,20 @@
       "destination": "/api/sitemap?type=landing&slug=ror-meritor-dorse-kaliper-tamir-takimi"
     },
     {
-      "source": "/ror-meritor-dorse-fren-circiri",
-      "destination": "/api/sitemap?type=landing&slug=ror-meritor-dorse-fren-circiri"
-    },
-    {
       "source": "/ror-meritor-dorse-abs-sensoru",
       "destination": "/api/sitemap?type=landing&slug=ror-meritor-dorse-abs-sensoru"
     },
     {
-      "source": "/ror-meritor-dorse-ebs-modulator",
-      "destination": "/api/sitemap?type=landing&slug=ror-meritor-dorse-ebs-modulator"
+      "source": "/ror-meritor-dorse-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=ror-meritor-dorse-fren-circiri"
     },
     {
       "source": "/ror-meritor-dorse-hava-korugu",
       "destination": "/api/sitemap?type=landing&slug=ror-meritor-dorse-hava-korugu"
+    },
+    {
+      "source": "/ror-meritor-dorse-ebs-modulator",
+      "destination": "/api/sitemap?type=landing&slug=ror-meritor-dorse-ebs-modulator"
     },
     {
       "source": "/schmitz-dorse-balata",
@@ -3037,6 +3573,10 @@
       "destination": "/api/sitemap?type=landing&slug=schmitz-dorse-kaliper-tamir-takimi"
     },
     {
+      "source": "/schmitz-dorse-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=schmitz-dorse-abs-sensoru"
+    },
+    {
       "source": "/schmitz-dorse-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=schmitz-dorse-fren-circiri"
     },
@@ -3045,16 +3585,12 @@
       "destination": "/api/sitemap?type=landing&slug=schmitz-dorse-porya-kapagi"
     },
     {
-      "source": "/schmitz-dorse-abs-sensoru",
-      "destination": "/api/sitemap?type=landing&slug=schmitz-dorse-abs-sensoru"
+      "source": "/schmitz-dorse-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=schmitz-dorse-hava-korugu"
     },
     {
       "source": "/schmitz-dorse-ebs-modulator",
       "destination": "/api/sitemap?type=landing&slug=schmitz-dorse-ebs-modulator"
-    },
-    {
-      "source": "/schmitz-dorse-hava-korugu",
-      "destination": "/api/sitemap?type=landing&slug=schmitz-dorse-hava-korugu"
     },
     {
       "source": "/tirsan-dorse-balata",
@@ -3081,6 +3617,10 @@
       "destination": "/api/sitemap?type=landing&slug=tirsan-dorse-kaliper-tamir-takimi"
     },
     {
+      "source": "/tirsan-dorse-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=tirsan-dorse-abs-sensoru"
+    },
+    {
       "source": "/tirsan-dorse-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=tirsan-dorse-fren-circiri"
     },
@@ -3089,16 +3629,12 @@
       "destination": "/api/sitemap?type=landing&slug=tirsan-dorse-porya-kapagi"
     },
     {
-      "source": "/tirsan-dorse-abs-sensoru",
-      "destination": "/api/sitemap?type=landing&slug=tirsan-dorse-abs-sensoru"
+      "source": "/tirsan-dorse-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=tirsan-dorse-hava-korugu"
     },
     {
       "source": "/tirsan-dorse-ebs-modulator",
       "destination": "/api/sitemap?type=landing&slug=tirsan-dorse-ebs-modulator"
-    },
-    {
-      "source": "/tirsan-dorse-hava-korugu",
-      "destination": "/api/sitemap?type=landing&slug=tirsan-dorse-hava-korugu"
     },
     {
       "source": "/axor-1833-balata",
@@ -3129,8 +3665,20 @@
       "destination": "/api/sitemap?type=landing&slug=axor-1833-kaliper-tamir-takimi"
     },
     {
+      "source": "/axor-1833-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=axor-1833-abs-sensoru"
+    },
+    {
       "source": "/axor-1833-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=axor-1833-fren-circiri"
+    },
+    {
+      "source": "/axor-1833-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=axor-1833-porya-kapagi"
+    },
+    {
+      "source": "/axor-1833-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=axor-1833-hava-korugu"
     },
     {
       "source": "/axor-1843-balata",
@@ -3161,8 +3709,20 @@
       "destination": "/api/sitemap?type=landing&slug=axor-1843-kaliper-tamir-takimi"
     },
     {
+      "source": "/axor-1843-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=axor-1843-abs-sensoru"
+    },
+    {
       "source": "/axor-1843-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=axor-1843-fren-circiri"
+    },
+    {
+      "source": "/axor-1843-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=axor-1843-porya-kapagi"
+    },
+    {
+      "source": "/axor-1843-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=axor-1843-hava-korugu"
     },
     {
       "source": "/actros-1842-balata",
@@ -3193,8 +3753,20 @@
       "destination": "/api/sitemap?type=landing&slug=actros-1842-kaliper-tamir-takimi"
     },
     {
+      "source": "/actros-1842-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=actros-1842-abs-sensoru"
+    },
+    {
       "source": "/actros-1842-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=actros-1842-fren-circiri"
+    },
+    {
+      "source": "/actros-1842-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=actros-1842-porya-kapagi"
+    },
+    {
+      "source": "/actros-1842-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=actros-1842-hava-korugu"
     },
     {
       "source": "/actros-1845-balata",
@@ -3225,8 +3797,20 @@
       "destination": "/api/sitemap?type=landing&slug=actros-1845-kaliper-tamir-takimi"
     },
     {
+      "source": "/actros-1845-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=actros-1845-abs-sensoru"
+    },
+    {
       "source": "/actros-1845-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=actros-1845-fren-circiri"
+    },
+    {
+      "source": "/actros-1845-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=actros-1845-porya-kapagi"
+    },
+    {
+      "source": "/actros-1845-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=actros-1845-hava-korugu"
     },
     {
       "source": "/actros-1848-balata",
@@ -3257,8 +3841,20 @@
       "destination": "/api/sitemap?type=landing&slug=actros-1848-kaliper-tamir-takimi"
     },
     {
+      "source": "/actros-1848-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=actros-1848-abs-sensoru"
+    },
+    {
       "source": "/actros-1848-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=actros-1848-fren-circiri"
+    },
+    {
+      "source": "/actros-1848-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=actros-1848-porya-kapagi"
+    },
+    {
+      "source": "/actros-1848-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=actros-1848-hava-korugu"
     },
     {
       "source": "/actros-1851-balata",
@@ -3289,8 +3885,20 @@
       "destination": "/api/sitemap?type=landing&slug=actros-1851-kaliper-tamir-takimi"
     },
     {
+      "source": "/actros-1851-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=actros-1851-abs-sensoru"
+    },
+    {
       "source": "/actros-1851-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=actros-1851-fren-circiri"
+    },
+    {
+      "source": "/actros-1851-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=actros-1851-porya-kapagi"
+    },
+    {
+      "source": "/actros-1851-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=actros-1851-hava-korugu"
     },
     {
       "source": "/arocs-4142-balata",
@@ -3321,8 +3929,20 @@
       "destination": "/api/sitemap?type=landing&slug=arocs-4142-kaliper-tamir-takimi"
     },
     {
+      "source": "/arocs-4142-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=arocs-4142-abs-sensoru"
+    },
+    {
       "source": "/arocs-4142-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=arocs-4142-fren-circiri"
+    },
+    {
+      "source": "/arocs-4142-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=arocs-4142-porya-kapagi"
+    },
+    {
+      "source": "/arocs-4142-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=arocs-4142-hava-korugu"
     },
     {
       "source": "/arocs-4145-balata",
@@ -3353,8 +3973,20 @@
       "destination": "/api/sitemap?type=landing&slug=arocs-4145-kaliper-tamir-takimi"
     },
     {
+      "source": "/arocs-4145-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=arocs-4145-abs-sensoru"
+    },
+    {
       "source": "/arocs-4145-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=arocs-4145-fren-circiri"
+    },
+    {
+      "source": "/arocs-4145-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=arocs-4145-porya-kapagi"
+    },
+    {
+      "source": "/arocs-4145-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=arocs-4145-hava-korugu"
     },
     {
       "source": "/atego-2524-balata",
@@ -3385,8 +4017,20 @@
       "destination": "/api/sitemap?type=landing&slug=atego-2524-kaliper-tamir-takimi"
     },
     {
+      "source": "/atego-2524-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=atego-2524-abs-sensoru"
+    },
+    {
       "source": "/atego-2524-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=atego-2524-fren-circiri"
+    },
+    {
+      "source": "/atego-2524-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=atego-2524-porya-kapagi"
+    },
+    {
+      "source": "/atego-2524-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=atego-2524-hava-korugu"
     },
     {
       "source": "/mercedes-o403-balata",
@@ -3411,6 +4055,10 @@
     {
       "source": "/mercedes-o403-kaliper-tamir-takimi",
       "destination": "/api/sitemap?type=landing&slug=mercedes-o403-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/mercedes-o403-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-o403-abs-sensoru"
     },
     {
       "source": "/mercedes-o403-hava-korugu",
@@ -3439,6 +4087,10 @@
     {
       "source": "/mercedes-o500-kaliper-tamir-takimi",
       "destination": "/api/sitemap?type=landing&slug=mercedes-o500-kaliper-tamir-takimi"
+    },
+    {
+      "source": "/mercedes-o500-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=mercedes-o500-abs-sensoru"
     },
     {
       "source": "/mercedes-o500-hava-korugu",
@@ -3473,8 +4125,20 @@
       "destination": "/api/sitemap?type=landing&slug=man-18-440-kaliper-tamir-takimi"
     },
     {
+      "source": "/man-18-440-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=man-18-440-abs-sensoru"
+    },
+    {
       "source": "/man-18-440-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=man-18-440-fren-circiri"
+    },
+    {
+      "source": "/man-18-440-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=man-18-440-porya-kapagi"
+    },
+    {
+      "source": "/man-18-440-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=man-18-440-hava-korugu"
     },
     {
       "source": "/man-18-480-balata",
@@ -3505,8 +4169,20 @@
       "destination": "/api/sitemap?type=landing&slug=man-18-480-kaliper-tamir-takimi"
     },
     {
+      "source": "/man-18-480-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=man-18-480-abs-sensoru"
+    },
+    {
       "source": "/man-18-480-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=man-18-480-fren-circiri"
+    },
+    {
+      "source": "/man-18-480-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=man-18-480-porya-kapagi"
+    },
+    {
+      "source": "/man-18-480-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=man-18-480-hava-korugu"
     },
     {
       "source": "/scania-r450-balata",
@@ -3537,8 +4213,20 @@
       "destination": "/api/sitemap?type=landing&slug=scania-r450-kaliper-tamir-takimi"
     },
     {
+      "source": "/scania-r450-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=scania-r450-abs-sensoru"
+    },
+    {
       "source": "/scania-r450-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=scania-r450-fren-circiri"
+    },
+    {
+      "source": "/scania-r450-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=scania-r450-porya-kapagi"
+    },
+    {
+      "source": "/scania-r450-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=scania-r450-hava-korugu"
     },
     {
       "source": "/volvo-fh460-balata",
@@ -3569,8 +4257,20 @@
       "destination": "/api/sitemap?type=landing&slug=volvo-fh460-kaliper-tamir-takimi"
     },
     {
+      "source": "/volvo-fh460-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh460-abs-sensoru"
+    },
+    {
       "source": "/volvo-fh460-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=volvo-fh460-fren-circiri"
+    },
+    {
+      "source": "/volvo-fh460-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh460-porya-kapagi"
+    },
+    {
+      "source": "/volvo-fh460-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=volvo-fh460-hava-korugu"
     },
     {
       "source": "/daf-xf-460-balata",
@@ -3601,8 +4301,20 @@
       "destination": "/api/sitemap?type=landing&slug=daf-xf-460-kaliper-tamir-takimi"
     },
     {
+      "source": "/daf-xf-460-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-460-abs-sensoru"
+    },
+    {
       "source": "/daf-xf-460-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=daf-xf-460-fren-circiri"
+    },
+    {
+      "source": "/daf-xf-460-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-460-porya-kapagi"
+    },
+    {
+      "source": "/daf-xf-460-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=daf-xf-460-hava-korugu"
     },
     {
       "source": "/ford-cargo-1846-balata",
@@ -3633,8 +4345,20 @@
       "destination": "/api/sitemap?type=landing&slug=ford-cargo-1846-kaliper-tamir-takimi"
     },
     {
+      "source": "/ford-cargo-1846-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-1846-abs-sensoru"
+    },
+    {
       "source": "/ford-cargo-1846-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=ford-cargo-1846-fren-circiri"
+    },
+    {
+      "source": "/ford-cargo-1846-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-1846-porya-kapagi"
+    },
+    {
+      "source": "/ford-cargo-1846-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-1846-hava-korugu"
     },
     {
       "source": "/ford-cargo-3542-balata",
@@ -3665,8 +4389,20 @@
       "destination": "/api/sitemap?type=landing&slug=ford-cargo-3542-kaliper-tamir-takimi"
     },
     {
+      "source": "/ford-cargo-3542-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-3542-abs-sensoru"
+    },
+    {
       "source": "/ford-cargo-3542-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=ford-cargo-3542-fren-circiri"
+    },
+    {
+      "source": "/ford-cargo-3542-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-3542-porya-kapagi"
+    },
+    {
+      "source": "/ford-cargo-3542-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=ford-cargo-3542-hava-korugu"
     },
     {
       "source": "/renault-kerax-balata",
@@ -3697,8 +4433,20 @@
       "destination": "/api/sitemap?type=landing&slug=renault-kerax-kaliper-tamir-takimi"
     },
     {
+      "source": "/renault-kerax-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=renault-kerax-abs-sensoru"
+    },
+    {
       "source": "/renault-kerax-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=renault-kerax-fren-circiri"
+    },
+    {
+      "source": "/renault-kerax-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=renault-kerax-porya-kapagi"
+    },
+    {
+      "source": "/renault-kerax-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=renault-kerax-hava-korugu"
     },
     {
       "source": "/iveco-trakker-balata",
@@ -3729,8 +4477,20 @@
       "destination": "/api/sitemap?type=landing&slug=iveco-trakker-kaliper-tamir-takimi"
     },
     {
+      "source": "/iveco-trakker-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=iveco-trakker-abs-sensoru"
+    },
+    {
       "source": "/iveco-trakker-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=iveco-trakker-fren-circiri"
+    },
+    {
+      "source": "/iveco-trakker-porya-kapagi",
+      "destination": "/api/sitemap?type=landing&slug=iveco-trakker-porya-kapagi"
+    },
+    {
+      "source": "/iveco-trakker-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=iveco-trakker-hava-korugu"
     },
     {
       "source": "/bpw-30k-balata",
@@ -3769,20 +4529,20 @@
       "destination": "/api/sitemap?type=landing&slug=bpw-30k-kaliper-tamir-takimi"
     },
     {
-      "source": "/bpw-30k-fren-circiri",
-      "destination": "/api/sitemap?type=landing&slug=bpw-30k-fren-circiri"
-    },
-    {
       "source": "/bpw-30k-abs-sensoru",
       "destination": "/api/sitemap?type=landing&slug=bpw-30k-abs-sensoru"
     },
     {
-      "source": "/bpw-30k-ebs-modulator",
-      "destination": "/api/sitemap?type=landing&slug=bpw-30k-ebs-modulator"
+      "source": "/bpw-30k-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=bpw-30k-fren-circiri"
     },
     {
       "source": "/bpw-30k-hava-korugu",
       "destination": "/api/sitemap?type=landing&slug=bpw-30k-hava-korugu"
+    },
+    {
+      "source": "/bpw-30k-ebs-modulator",
+      "destination": "/api/sitemap?type=landing&slug=bpw-30k-ebs-modulator"
     },
     {
       "source": "/saf-intrax-balata",
@@ -3821,20 +4581,20 @@
       "destination": "/api/sitemap?type=landing&slug=saf-intrax-kaliper-tamir-takimi"
     },
     {
-      "source": "/saf-intrax-fren-circiri",
-      "destination": "/api/sitemap?type=landing&slug=saf-intrax-fren-circiri"
-    },
-    {
       "source": "/saf-intrax-abs-sensoru",
       "destination": "/api/sitemap?type=landing&slug=saf-intrax-abs-sensoru"
     },
     {
-      "source": "/saf-intrax-ebs-modulator",
-      "destination": "/api/sitemap?type=landing&slug=saf-intrax-ebs-modulator"
+      "source": "/saf-intrax-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=saf-intrax-fren-circiri"
     },
     {
       "source": "/saf-intrax-hava-korugu",
       "destination": "/api/sitemap?type=landing&slug=saf-intrax-hava-korugu"
+    },
+    {
+      "source": "/saf-intrax-ebs-modulator",
+      "destination": "/api/sitemap?type=landing&slug=saf-intrax-ebs-modulator"
     },
     {
       "source": "/schmitz-cargobull-balata",
@@ -3869,6 +4629,10 @@
       "destination": "/api/sitemap?type=landing&slug=schmitz-cargobull-kaliper-tamir-takimi"
     },
     {
+      "source": "/schmitz-cargobull-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=schmitz-cargobull-abs-sensoru"
+    },
+    {
       "source": "/schmitz-cargobull-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=schmitz-cargobull-fren-circiri"
     },
@@ -3877,16 +4641,12 @@
       "destination": "/api/sitemap?type=landing&slug=schmitz-cargobull-porya-kapagi"
     },
     {
-      "source": "/schmitz-cargobull-abs-sensoru",
-      "destination": "/api/sitemap?type=landing&slug=schmitz-cargobull-abs-sensoru"
+      "source": "/schmitz-cargobull-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=schmitz-cargobull-hava-korugu"
     },
     {
       "source": "/schmitz-cargobull-ebs-modulator",
       "destination": "/api/sitemap?type=landing&slug=schmitz-cargobull-ebs-modulator"
-    },
-    {
-      "source": "/schmitz-cargobull-hava-korugu",
-      "destination": "/api/sitemap?type=landing&slug=schmitz-cargobull-hava-korugu"
     },
     {
       "source": "/kogel-maxx-balata",
@@ -3921,6 +4681,10 @@
       "destination": "/api/sitemap?type=landing&slug=kogel-maxx-kaliper-tamir-takimi"
     },
     {
+      "source": "/kogel-maxx-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=kogel-maxx-abs-sensoru"
+    },
+    {
       "source": "/kogel-maxx-fren-circiri",
       "destination": "/api/sitemap?type=landing&slug=kogel-maxx-fren-circiri"
     },
@@ -3929,16 +4693,12 @@
       "destination": "/api/sitemap?type=landing&slug=kogel-maxx-porya-kapagi"
     },
     {
-      "source": "/kogel-maxx-abs-sensoru",
-      "destination": "/api/sitemap?type=landing&slug=kogel-maxx-abs-sensoru"
+      "source": "/kogel-maxx-hava-korugu",
+      "destination": "/api/sitemap?type=landing&slug=kogel-maxx-hava-korugu"
     },
     {
       "source": "/kogel-maxx-ebs-modulator",
       "destination": "/api/sitemap?type=landing&slug=kogel-maxx-ebs-modulator"
-    },
-    {
-      "source": "/kogel-maxx-hava-korugu",
-      "destination": "/api/sitemap?type=landing&slug=kogel-maxx-hava-korugu"
     },
     {
       "source": "/urun/:id/:slug*",
