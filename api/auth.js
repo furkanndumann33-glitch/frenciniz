@@ -299,12 +299,26 @@ export default async function handler(req, res) {
 
     if (action === "track" && req.method === "POST") {
       try {
-        const { path = "/", ref = "" } = req.body || {};
+        const { path = "/", search = "", ref = "" } = req.body || {};
         const ip = (req.headers["x-forwarded-for"] || "").split(",")[0].trim() || req.headers["x-real-ip"] || "unknown";
         const ua = String(req.headers["user-agent"] || "").slice(0, 200);
         const day = new Date().toISOString().slice(0, 10);
         const visitorKey = crypto.createHash("sha256").update(`${ip}|${ua}|${day}`).digest("hex").slice(0, 16);
         const pathClean = String(path).slice(0, 100).replace(/[?#].*$/, "");
+        const searchParams = new URLSearchParams(String(search || "").replace(/^\?/, "").slice(0, 1000));
+        const pickParam = (name, max = 80) => String(searchParams.get(name) || "").slice(0, max);
+        const adClick =
+          searchParams.has("gclid") ? "gclid" :
+          searchParams.has("gbraid") ? "gbraid" :
+          searchParams.has("wbraid") ? "wbraid" : "";
+        const utmSource = pickParam("utm_source", 60);
+        const utmMedium = pickParam("utm_medium", 60);
+        const utmCampaign = pickParam("utm_campaign", 100);
+        const sourceChannel = adClick || /^(cpc|ppc|paid|sem|search_paid)$/i.test(utmMedium)
+          ? "google_ads"
+          : /google/i.test(utmSource)
+            ? "google_utm"
+            : "";
 
         // Vercel geo headers (her runtime'da otomatik gelir)
         const city = decodeURIComponent(String(req.headers["x-vercel-ip-city"] || "")).replace(/\+/g, " ");
@@ -348,6 +362,11 @@ export default async function handler(req, res) {
           ip, city, country, region,
           path: pathClean,
           ref: refDomain || "",
+          adClick,
+          utmSource,
+          utmMedium,
+          utmCampaign,
+          sourceChannel,
           ua: ua.slice(0, 100),
           at: new Date().toISOString(),
         };

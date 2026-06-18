@@ -1156,12 +1156,13 @@ export default function App() {
     if (typeof window === 'undefined') return;
     if (page === "admin" || page === "admin-login" || page === "admin-panel") return;
     const path = window.location.pathname;
+    const search = window.location.search || "";
     const ref = document.referrer || "";
     fetch("/api/auth/track", {
       method: "POST",
       credentials: "include",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ path, ref }),
+      body: JSON.stringify({ path, search, ref }),
       keepalive: true,
     }).catch(() => {});
   }, [page, params]);
