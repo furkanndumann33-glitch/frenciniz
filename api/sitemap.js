@@ -291,6 +291,153 @@ function renderSeoProductHtml(product, categories = []) {
   return html.replace("</head>", `${jsonLd}\n</head>`);
 }
 
+function categoryIdsForSeo(category, categories = []) {
+  if (!category) return [];
+  if (!category.isGroup) return [category.id];
+  const childIds = categories
+    .filter(item => item.parent === category.id)
+    .map(item => item.id)
+    .filter(Boolean);
+  return [category.id, ...childIds];
+}
+
+function categorySeoProducts(category, products = [], categories = []) {
+  const ids = new Set(categoryIdsForSeo(category, categories));
+  return products
+    .filter(product => ids.has(product.cat))
+    .sort((a, b) => {
+      const aScore = (salesPriorityLabel(a) === "sales-priority-1" ? 3 : salesPriorityLabel(a) === "sales-priority-2" ? 2 : 1) + (Number(a.stock || 0) > 0 ? 1 : 0);
+      const bScore = (salesPriorityLabel(b) === "sales-priority-1" ? 3 : salesPriorityLabel(b) === "sales-priority-2" ? 2 : 1) + (Number(b.stock || 0) > 0 ? 1 : 0);
+      return bScore - aScore || Number(b.stock || 0) - Number(a.stock || 0);
+    });
+}
+
+function categoryWhatsAppUrl(category, count) {
+  const text = [
+    "Merhaba Frenciniz, kategori sayfasindan geldim.",
+    `Kategori: ${category?.name || category?.id || "Fren aksami"}`,
+    `Ilgili urun sayisi: ${count || 0}`,
+    "OEM / parca kodu:",
+    "Arac marka-model:",
+    "Sase no:",
+    "Eski parca fotografi gonderebilirim.",
+  ].join("\n");
+  return `https://wa.me/908508887881?text=${encodeURIComponent(text)}`;
+}
+
+function renderCategoryProductCard(product, categories = []) {
+  const href = productSeoUrl(SITE, product);
+  const img = absoluteUrl(product.img || (Array.isArray(product.images) && product.images[0]) || "/img/site/missing-product.webp");
+  const price = Number(product.price || 0);
+  const stock = Number(product.stock || 0);
+  return `
+    <article class="product-card">
+      <a class="image" href="${xmlEscape(href)}"><img src="${xmlEscape(img)}" alt="${xmlEscape(product.name)}" loading="lazy" decoding="async"></a>
+      <div class="body">
+        <a class="title" href="${xmlEscape(href)}">${xmlEscape(product.name)}</a>
+        <div class="meta">${xmlEscape(product.brand || "Ekersan")} · ${xmlEscape(product.sku || product.id || "")}</div>
+        ${product.oem ? `<div class="muted">OEM: ${xmlEscape(String(product.oem).slice(0, 96))}</div>` : ""}
+        <div class="row"><strong>${price ? `${price.toLocaleString("tr-TR")} TL` : "Fiyat sorunuz"}</strong><span>${stock > 0 ? `Stokta ${Math.floor(stock)}` : "Stok sorunuz"}</span></div>
+        <a class="mini" href="${xmlEscape(href)}">Urunu incele</a>
+      </div>
+    </article>`;
+}
+
+function renderSeoCategoryHtml(category, products = [], categories = []) {
+  const matched = categorySeoProducts(category, products, categories);
+  const canonical = `${SITE}/${category.id}`;
+  const cleanName = merchantSafeProductText(category.name || category.id || "Fren Aksami");
+  const parent = category.parent ? categories.find(item => item.id === category.parent) : null;
+  const title = compactText(`${cleanName} Fiyatlari ve Stok | Agir Vasita Yedek Parca | Frenciniz`, 72);
+  const description = compactText(`${cleanName} kategorisinde ${matched.length} agir vasita fren parcasi. Kamyon, tir, otobus ve dorse icin OEM kodu, sase veya eski parca fotografi ile uyumluluk teyidi, WhatsApp hizli teklif ve kargo.`, 165);
+  const firstImage = absoluteUrl((matched.find(item => isRealProductImage(item.img)) || matched[0] || {}).img || "/img/site/frenciniz-logo-real-og.jpg");
+  const itemList = matched.slice(0, 24).map((product, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    url: productSeoUrl(SITE, product),
+    name: product.name,
+  }));
+  const schema = [
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      name: `${cleanName} | Frenciniz`,
+      description,
+      url: canonical,
+      isPartOf: { "@type": "WebSite", name: "Frenciniz", url: SITE },
+      mainEntity: { "@type": "ItemList", itemListElement: itemList },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Frenciniz", item: SITE },
+        ...(parent ? [{ "@type": "ListItem", position: 2, name: parent.name, item: `${SITE}/${parent.id}` }] : []),
+        { "@type": "ListItem", position: parent ? 3 : 2, name: cleanName, item: canonical },
+      ],
+    },
+  ];
+  const wa = categoryWhatsAppUrl(category, matched.length);
+  const related = categories
+    .filter(item => item.id !== "all" && item.id !== category.id && (item.parent === category.parent || item.parent === category.id || item.id === category.parent))
+    .slice(0, 12)
+    .map(item => `<a href="${SITE}/${xmlEscape(item.id)}">${xmlEscape(item.name)}</a>`)
+    .join("");
+
+  return `<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>${xmlEscape(title)}</title>
+  <meta name="description" content="${xmlEscape(description)}">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="${xmlEscape(canonical)}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Frenciniz">
+  <meta property="og:title" content="${xmlEscape(title)}">
+  <meta property="og:description" content="${xmlEscape(description)}">
+  <meta property="og:image" content="${xmlEscape(firstImage)}">
+  <meta property="og:url" content="${xmlEscape(canonical)}">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">${JSON.stringify(schema)}</script>
+  <script>
+    (function () {
+      function post(url, payload) {
+        try {
+          var body = JSON.stringify(payload);
+          if (navigator.sendBeacon) {
+            var blob = new Blob([body], { type: 'application/json' });
+            if (navigator.sendBeacon(url, blob)) return;
+          }
+          fetch(url, { method:'POST', credentials:'include', headers:{'Content-Type':'application/json'}, body:body, keepalive:true }).catch(function(){});
+        } catch (e) {}
+      }
+      post('/api/auth/track', { path: window.location.pathname || '/', search: window.location.search || '', ref: document.referrer || '' });
+      document.addEventListener('click', function(event) {
+        var link = event.target && event.target.closest ? event.target.closest('a[href]') : null;
+        if (!link) return;
+        var href = link.getAttribute('href') || '';
+        var kind = href.indexOf('tel:') === 0 ? 'phone' : (href.indexOf('wa.me') !== -1 || href.toLowerCase().indexOf('whatsapp') !== -1 ? 'whatsapp' : '');
+        if (!kind) return;
+        post('/api/auth/lead', { type: kind, source: link.dataset.leadSource || 'category_seo', href: href, path: window.location.pathname || '/', ref: document.referrer || '', category: '${xmlEscape(category.id)}' });
+      }, true);
+    })();
+  </script>
+  <style>
+    *{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:#172033;background:#f6f8fb;line-height:1.55;padding-bottom:76px}a{color:inherit}.top{background:#080d17;color:#fff}.bar{max-width:1220px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{text-decoration:none;font-size:24px;font-weight:950;color:#fff}.brand span{color:#ff6000}.contact{display:flex;gap:10px;flex-wrap:wrap}.contact a{color:#fff;text-decoration:none;font-size:14px;font-weight:800}.hero{background:#111827;color:#fff;border-bottom:4px solid #ff6000}.hero-inner{max-width:1220px;margin:0 auto;padding:42px 20px;display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:26px;align-items:center}.eyebrow{color:#facc15;font-size:12px;font-weight:950;text-transform:uppercase;letter-spacing:.05em}h1{font-size:42px;line-height:1.08;margin:8px 0 12px;letter-spacing:0}.lead{font-size:18px;color:#d1d5db;max-width:780px;margin:0 0 18px}.cta{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:12px 18px;border-radius:8px;background:#25D366;color:#062813;text-decoration:none;font-weight:950}.trust{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:8px;padding:16px}.trust strong{display:block;font-size:28px;color:#facc15}.wrap{max-width:1220px;margin:0 auto;padding:28px 20px 44px}.head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:16px}h2{font-size:26px;margin:0}.muted{color:#64748b;font-size:13px}.products{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}.product-card{background:#fff;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;display:flex;flex-direction:column;min-height:100%;box-shadow:0 10px 26px rgba(15,23,42,.05)}.image{height:176px;display:flex;align-items:center;justify-content:center;background:#f8fafc}.image img{max-width:100%;max-height:100%;object-fit:contain}.body{padding:14px;display:flex;flex-direction:column;gap:6px;flex:1}.title{font-size:14px;font-weight:900;text-decoration:none;color:#111827;min-height:42px}.meta{font-size:12px;color:#475569}.row{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:auto;padding-top:8px}.row strong{color:#ff6000}.row span{font-size:12px;color:#087f3d;font-weight:800}.mini{display:block;text-align:center;margin-top:8px;border-radius:6px;padding:8px;background:#111827;color:#fff;text-decoration:none;font-size:13px;font-weight:900}.info{display:grid;grid-template-columns:2fr 1fr;gap:18px;margin-top:28px}.panel{background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:18px}.links{display:flex;flex-wrap:wrap;gap:8px}.links a{padding:8px 10px;border:1px solid #e5e7eb;border-radius:6px;text-decoration:none;font-size:13px;background:#f8fafc}.sticky{position:fixed;left:0;right:0;bottom:0;background:#111;color:#fff;border-top:3px solid #ff6000;z-index:30}.sticky-inner{max-width:1220px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}.sticky a{background:#25D366;color:#062813;text-decoration:none;font-weight:950;padding:10px 14px;border-radius:7px}.footer{padding:22px;text-align:center;color:#64748b;font-size:13px}@media(max-width:900px){.hero-inner{grid-template-columns:1fr}h1{font-size:31px}.products{grid-template-columns:repeat(2,minmax(0,1fr))}.info{grid-template-columns:1fr}}@media(max-width:560px){body{padding-bottom:112px}.bar{align-items:flex-start;flex-direction:column}.products{grid-template-columns:1fr}.head{align-items:flex-start;flex-direction:column}.sticky-inner{align-items:stretch;flex-direction:column}.sticky a{text-align:center}}
+  </style>
+</head>
+<body>
+  <header class="top"><div class="bar"><a class="brand" href="${SITE}">FRENCINIZ<span>.com</span></a><div class="contact"><a href="tel:+905456087008">0545 608 7008</a><a href="https://wa.me/908508887881">WhatsApp</a></div></div></header>
+  <section class="hero"><div class="hero-inner"><div><div class="eyebrow">Stoklu kategori · OEM kodu ile teyit</div><h1>${xmlEscape(cleanName)} Fiyatlari ve Stok</h1><p class="lead">${xmlEscape(description)} Yanlis parca riskini azaltmak icin OEM kodu, sase no veya eski parca fotografi ile teyit alin.</p><a class="cta" href="${xmlEscape(wa)}" data-lead-source="category_hero">WhatsApp'tan teklif al</a></div><div class="trust"><strong>${matched.length}</strong><div>ilgili urun ve muadil secenek</div><p class="muted" style="color:#cbd5e1">14:00'a kadar stoklu urunde hizli kargo, 3000 TL uzeri standart kargo ucretsiz.</p></div></div></section>
+  <main class="wrap"><div class="head"><div><h2>${xmlEscape(cleanName)} Urunleri</h2><div class="muted">Fiyat, stok ve uyumluluk icin urunu acin veya WhatsApp'tan kod gonderin.</div></div><a class="cta" href="${xmlEscape(wa)}" data-lead-source="category_top">Kod gonder, teklif al</a></div><section class="products">${matched.slice(0, 36).map(product => renderCategoryProductCard(product, categories)).join("\n")}</section><section class="info"><div class="panel"><h2>${xmlEscape(cleanName)} secimi</h2><p>${xmlEscape(cleanName)} alirken OEM/parca kodu, olcu, dingil/aks tipi ve arac modeli birlikte kontrol edilmelidir. Frenciniz ekibi kamyon, tir, otobus ve dorse fren sistemleri icin uyumluluk teyidi yapar.</p><p>Eski parcadaki kodu veya fotografi WhatsApp hattina gondererek stok, fiyat ve kargo bilgisini hizli alabilirsiniz.</p></div><aside class="panel"><h2>Yakin kategoriler</h2><div class="links">${related}</div></aside></section></main>
+  <div class="sticky"><div class="sticky-inner"><div><strong>${xmlEscape(cleanName)} icin hizli teklif</strong><div style="font-size:13px;color:#cbd5e1">OEM kodu veya eski parca fotosu ile teyit.</div></div><a href="${xmlEscape(wa)}" data-lead-source="category_sticky">WhatsApp Teklif</a></div></div>
+  <footer class="footer">Frenciniz · Dumanlar Ticaret · Isparta · info@frenciniz.com</footer>
+</body>
+</html>`;
+}
+
 async function loadProducts() {
   // 1) Static JSON from the deployed build. This keeps public feeds aligned
   // with the reviewed product SEO data even if KV still has an older sync.
@@ -516,6 +663,17 @@ export default async function handler(req, res) {
       if (!page) return res.status(404).send("Landing page not found");
 
       const html = renderLanding(page, products, categories);
+      res.setHeader("Content-Type", "text/html; charset=utf-8");
+      res.setHeader("Cache-Control", "public, max-age=600, s-maxage=86400, stale-while-revalidate=604800");
+      return res.status(200).send(html);
+    }
+
+    if (type === "category") {
+      const slug = String(req.query?.slug || parsedUrl.searchParams.get("slug") || "").replace(/^\/+|\/+$/g, "");
+      const category = categories.find(item => item.id === slug);
+      if (!category || category.id === "all") return res.status(404).send("Category not found");
+
+      const html = renderSeoCategoryHtml(category, products, categories);
       res.setHeader("Content-Type", "text/html; charset=utf-8");
       res.setHeader("Cache-Control", "public, max-age=600, s-maxage=86400, stale-while-revalidate=604800");
       return res.status(200).send(html);

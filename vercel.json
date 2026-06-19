@@ -4701,6 +4701,214 @@
       "destination": "/api/sitemap?type=landing&slug=kogel-maxx-ebs-modulator"
     },
     {
+      "source": "/disk",
+      "destination": "/api/sitemap?type=category&slug=disk"
+    },
+    {
+      "source": "/fren-diski",
+      "destination": "/api/sitemap?type=category&slug=fren-diski"
+    },
+    {
+      "source": "/fren-diski-abs-li",
+      "destination": "/api/sitemap?type=category&slug=fren-diski-abs-li"
+    },
+    {
+      "source": "/kampana",
+      "destination": "/api/sitemap?type=category&slug=kampana"
+    },
+    {
+      "source": "/fren-kampanasi",
+      "destination": "/api/sitemap?type=category&slug=fren-kampanasi"
+    },
+    {
+      "source": "/balata",
+      "destination": "/api/sitemap?type=category&slug=balata"
+    },
+    {
+      "source": "/fren-balatasi",
+      "destination": "/api/sitemap?type=category&slug=fren-balatasi"
+    },
+    {
+      "source": "/circir",
+      "destination": "/api/sitemap?type=category&slug=circir"
+    },
+    {
+      "source": "/fren-circiri",
+      "destination": "/api/sitemap?type=category&slug=fren-circiri"
+    },
+    {
+      "source": "/mekanik-fren-circiri",
+      "destination": "/api/sitemap?type=category&slug=mekanik-fren-circiri"
+    },
+    {
+      "source": "/otomatik-fren-circiri",
+      "destination": "/api/sitemap?type=category&slug=otomatik-fren-circiri"
+    },
+    {
+      "source": "/bijon-grup",
+      "destination": "/api/sitemap?type=category&slug=bijon-grup"
+    },
+    {
+      "source": "/bijon",
+      "destination": "/api/sitemap?type=category&slug=bijon"
+    },
+    {
+      "source": "/disk-bijonu-civatasi",
+      "destination": "/api/sitemap?type=category&slug=disk-bijonu-civatasi"
+    },
+    {
+      "source": "/somun-civata",
+      "destination": "/api/sitemap?type=category&slug=somun-civata"
+    },
+    {
+      "source": "/porya-grup",
+      "destination": "/api/sitemap?type=category&slug=porya-grup"
+    },
+    {
+      "source": "/kece",
+      "destination": "/api/sitemap?type=category&slug=kece"
+    },
+    {
+      "source": "/porya",
+      "destination": "/api/sitemap?type=category&slug=porya"
+    },
+    {
+      "source": "/kaliper-urunleri",
+      "destination": "/api/sitemap?type=category&slug=kaliper-urunleri"
+    },
+    {
+      "source": "/kaliper",
+      "destination": "/api/sitemap?type=category&slug=kaliper"
+    },
+    {
+      "source": "/kaliper-ayar-mekanizmasi",
+      "destination": "/api/sitemap?type=category&slug=kaliper-ayar-mekanizmasi"
+    },
+    {
+      "source": "/kaliper-kapak-conta",
+      "destination": "/api/sitemap?type=category&slug=kaliper-kapak-conta"
+    },
+    {
+      "source": "/kaliper-kilavuz-pim-takimi",
+      "destination": "/api/sitemap?type=category&slug=kaliper-kilavuz-pim-takimi"
+    },
+    {
+      "source": "/kaliper-perno-tamir-takimi",
+      "destination": "/api/sitemap?type=category&slug=kaliper-perno-tamir-takimi"
+    },
+    {
+      "source": "/kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=category&slug=kaliper-tamir-takimi"
+    },
+    {
+      "source": "/kaliper-tamir-takimi-duco",
+      "destination": "/api/sitemap?type=category&slug=kaliper-tamir-takimi-duco"
+    },
+    {
+      "source": "/kaliper-tamir-takimi-elsa",
+      "destination": "/api/sitemap?type=category&slug=kaliper-tamir-takimi-elsa"
+    },
+    {
+      "source": "/kaliper-tamir-takimi-frenco",
+      "destination": "/api/sitemap?type=category&slug=kaliper-tamir-takimi-frenco"
+    },
+    {
+      "source": "/kaliper-tamir-takimi-maxx22",
+      "destination": "/api/sitemap?type=category&slug=kaliper-tamir-takimi-maxx22"
+    },
+    {
+      "source": "/kaliper-tamir-takimi-modulx",
+      "destination": "/api/sitemap?type=category&slug=kaliper-tamir-takimi-modulx"
+    },
+    {
+      "source": "/kaliper-tamir-takimi-pan",
+      "destination": "/api/sitemap?type=category&slug=kaliper-tamir-takimi-pan"
+    },
+    {
+      "source": "/kaliper-tamir-takimi-wabco",
+      "destination": "/api/sitemap?type=category&slug=kaliper-tamir-takimi-wabco"
+    },
+    {
+      "source": "/kaliper-toz-lastigi",
+      "destination": "/api/sitemap?type=category&slug=kaliper-toz-lastigi"
+    },
+    {
+      "source": "/kizak",
+      "destination": "/api/sitemap?type=category&slug=kizak"
+    },
+    {
+      "source": "/perno",
+      "destination": "/api/sitemap?type=category&slug=perno"
+    },
+    {
+      "source": "/fren-korukleri",
+      "destination": "/api/sitemap?type=category&slug=fren-korukleri"
+    },
+    {
+      "source": "/fren-korugu",
+      "destination": "/api/sitemap?type=category&slug=fren-korugu"
+    },
+    {
+      "source": "/lastik",
+      "destination": "/api/sitemap?type=category&slug=lastik"
+    },
+    {
+      "source": "/fren-pabuclari",
+      "destination": "/api/sitemap?type=category&slug=fren-pabuclari"
+    },
+    {
+      "source": "/fren-pabucu",
+      "destination": "/api/sitemap?type=category&slug=fren-pabucu"
+    },
+    {
+      "source": "/percin",
+      "destination": "/api/sitemap?type=category&slug=percin"
+    },
+    {
+      "source": "/fren-yaylari",
+      "destination": "/api/sitemap?type=category&slug=fren-yaylari"
+    },
+    {
+      "source": "/yay",
+      "destination": "/api/sitemap?type=category&slug=yay"
+    },
+    {
+      "source": "/sensor-uzatma",
+      "destination": "/api/sitemap?type=category&slug=sensor-uzatma"
+    },
+    {
+      "source": "/abs-sensoru-modulu-kablo",
+      "destination": "/api/sitemap?type=category&slug=abs-sensoru-modulu-kablo"
+    },
+    {
+      "source": "/ebs-modulator",
+      "destination": "/api/sitemap?type=category&slug=ebs-modulator"
+    },
+    {
+      "source": "/elektrik-kablosu",
+      "destination": "/api/sitemap?type=category&slug=elektrik-kablosu"
+    },
+    {
+      "source": "/sensor",
+      "destination": "/api/sitemap?type=category&slug=sensor"
+    },
+    {
+      "source": "/susp-korugu",
+      "destination": "/api/sitemap?type=category&slug=susp-korugu"
+    },
+    {
+      "source": "/burc-muylu",
+      "destination": "/api/sitemap?type=category&slug=burc-muylu"
+    },
+    {
+      "source": "/dingil",
+      "destination": "/api/sitemap?type=category&slug=dingil"
+    },
+    {
+      "source": "/suspansiyon-korugu",
+      "destination": "/api/sitemap?type=category&slug=suspansiyon-korugu"
+    },
+    {
       "source": "/urun/:id/:slug*",
       "destination": "/api/sitemap?type=product&route=:id"
     },
