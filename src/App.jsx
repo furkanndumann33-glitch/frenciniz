@@ -2039,6 +2039,7 @@ export default function App() {
 
         {!isAdminPage && page !== "product" && <MobileBottomBar />}
         {!isAdminPage && !isMobile && <DesktopSalesDock />}
+        {!isAdminPage && <ProductLeadNudge />}
 
         {/* FOOTER */}
         <footer style={{display:isAdminPage?"none":"block",background:"#1a1a1a",color:"#ccc",padding:"40px 0 20px",marginTop:40}}>
@@ -2171,6 +2172,69 @@ function DesktopSalesDock() {
         <button onClick={() => go("products")} style={{minHeight:42,padding:"0 14px",borderRadius:7,border:"1px solid rgba(255,255,255,.22)",background:"rgba(255,255,255,.08)",color:"#fff",fontSize:13,fontWeight:900,cursor:"pointer",whiteSpace:"nowrap"}}>
           Urun ara
         </button>
+      </div>
+    </aside>
+  );
+}
+
+function ProductLeadNudge() {
+  const {page, params, products, isMobile, dataLoaded} = use$();
+  const productList = (products && products.length) ? products : PRODUCTS;
+  const product = page === "product" ? productList.find(item => item.id === params?.id) : null;
+  const [visible, setVisible] = useState(false);
+  const [dismissed, setDismissed] = useState(false);
+  const storageKey = product ? `lead_nudge_seen_${product.id}` : "";
+  const href = useMemo(() => product ? productWhatsAppUrl(product, 1) : generalWhatsAppUrl("urun uyumluluk teyidi"), [product?.id]);
+
+  useEffect(() => {
+    setVisible(false);
+    setDismissed(false);
+    if (!product || !dataLoaded) return;
+    try {
+      if (sessionStorage.getItem(storageKey)) return;
+    } catch {}
+    const timer = setTimeout(() => setVisible(true), isMobile ? 5200 : 7400);
+    return () => clearTimeout(timer);
+  }, [product?.id, dataLoaded, isMobile]);
+
+  if (!product || dismissed || !visible) return null;
+  const close = () => {
+    setDismissed(true);
+    try { sessionStorage.setItem(storageKey, "1"); } catch {}
+  };
+  const partCode = product.oem || product.sku || "OEM / parca kodu";
+  return (
+    <aside aria-label="Urun uyumluluk teklifi" style={{
+      position:"fixed",
+      right:isMobile?10:24,
+      left:isMobile?10:"auto",
+      bottom:isMobile?86:92,
+      zIndex:9997,
+      width:isMobile?"auto":360,
+      background:"linear-gradient(135deg,#07111f,#14213a)",
+      color:"#fff",
+      border:"1px solid rgba(255,96,0,.28)",
+      borderRadius:8,
+      boxShadow:"0 20px 48px rgba(0,0,0,.32)",
+      padding:14
+    }}>
+      <button onClick={close} aria-label="Kapat" style={{position:"absolute",top:8,right:8,width:28,height:28,border:"1px solid rgba(255,255,255,.16)",borderRadius:6,background:"rgba(255,255,255,.08)",color:"#fff",cursor:"pointer",fontSize:16,lineHeight:1}}>x</button>
+      <div style={{paddingRight:28}}>
+        <div style={{fontSize:11,fontWeight:950,color:"#facc15",textTransform:"uppercase",marginBottom:5}}>Yanlis parca riskini kaldir</div>
+        <div style={{fontSize:15,fontWeight:950,lineHeight:1.25,marginBottom:7}}>Bu urun araciniza uyar mi?</div>
+        <div style={{fontSize:12,color:"#d1d5db",lineHeight:1.55,marginBottom:10}}>OEM, sase veya eski parca fotografini gonderin; stok ve uyumlulugu teyit edip fiyat verelim.</div>
+        <div style={{fontSize:11,color:"#9ca3af",background:"rgba(255,255,255,.06)",border:"1px solid rgba(255,255,255,.1)",borderRadius:6,padding:"7px 8px",overflowWrap:"anywhere",marginBottom:10}}>Kod: {partCode}</div>
+      </div>
+      <div style={{display:"grid",gridTemplateColumns:"1fr 92px",gap:8}}>
+        <a href={href} target="_blank" rel="noopener noreferrer" data-lead-source="product_lead_nudge" data-lead-product-id={product.id} data-lead-sku={product.sku || ""} data-lead-category={product.cat || ""} data-lead-value={product.price || 0}
+          onClick={() => { recordLeadEvent("whatsapp", { source:"product_lead_nudge", product, value:product.price || 0 }); close(); }}
+          style={{minHeight:42,borderRadius:6,background:"#25D366",color:"#062813",fontSize:13,fontWeight:950,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center",textAlign:"center",padding:"0 10px"}}>
+          WhatsApp teklif al
+        </a>
+        <a href="tel:+905456087008" data-lead-source="product_lead_nudge_phone" onClick={() => { recordLeadEvent("phone", { source:"product_lead_nudge", product, value:product.price || 0 }); close(); }}
+          style={{minHeight:42,borderRadius:6,background:"#fff",color:"#111827",fontSize:13,fontWeight:950,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center",textAlign:"center"}}>
+          Ara
+        </a>
       </div>
     </aside>
   );

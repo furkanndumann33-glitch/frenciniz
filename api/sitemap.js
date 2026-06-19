@@ -55,6 +55,18 @@ function absoluteUrl(value) {
   return `${SITE}${raw.startsWith("/") ? "" : "/"}${raw}`;
 }
 
+function withUtm(url, params = {}) {
+  try {
+    const out = new URL(url, SITE);
+    for (const [key, value] of Object.entries(params)) {
+      if (value) out.searchParams.set(key, value);
+    }
+    return out.toString();
+  } catch {
+    return url;
+  }
+}
+
 function compactText(value, max = 155) {
   const text = String(value || "").replace(/\s+/g, " ").trim();
   if (text.length <= max) return text;
@@ -350,6 +362,13 @@ function buildMerchantFeed(products, categories) {
     const baseDesc = productDesc && productDesc.length > productName.length + 10 ? productDesc : richDesc;
     const desc = baseDesc.slice(0, 5000);
     const merchantDesc = buildSeoProductDescription(p, categories, 5000);
+    const cleanLink = productSeoUrl(SITE, p);
+    const merchantLink = withUtm(cleanLink, {
+      utm_source: "google",
+      utm_medium: "merchant_free",
+      utm_campaign: "merchant_feed",
+      utm_content: p.cat || "product",
+    });
     const additionalImages = Array.isArray(p.images)
       ? p.images
           .filter(Boolean)
@@ -363,9 +382,9 @@ function buildMerchantFeed(products, categories) {
       `<g:id>${xmlEscape(p.id)}</g:id>` +
       `<g:title>${xmlEscape(merchantTitle)}</g:title>` +
       `<g:description>${xmlEscape(merchantDesc || desc)}</g:description>` +
-      `<g:link>${xmlEscape(productSeoUrl(SITE, p))}</g:link>` +
-      `<g:mobile_link>${xmlEscape(productSeoUrl(SITE, p))}</g:mobile_link>` +
-      `<g:canonical_link>${xmlEscape(productSeoUrl(SITE, p))}</g:canonical_link>` +
+      `<g:link>${xmlEscape(merchantLink)}</g:link>` +
+      `<g:mobile_link>${xmlEscape(merchantLink)}</g:mobile_link>` +
+      `<g:canonical_link>${xmlEscape(cleanLink)}</g:canonical_link>` +
       `<g:image_link>${xmlEscape(imgUrl)}</g:image_link>` +
       additionalImages.map(img => `<g:additional_image_link>${xmlEscape(img)}</g:additional_image_link>`).join("") +
       `<g:availability>${availability}</g:availability>` +
@@ -446,6 +465,12 @@ function buildMetaCatalogFeed(products, categories) {
     const title = [productName, shortCode(p.oem), p.sku, catName, brand].filter(Boolean).join(" - ").slice(0, 200);
     const richDesc = `${productName} - ${catName} kategorisinde ${brand} marka orijinal/esdeger agir vasita fren parcasi. ${p.sku ? "Stok kodu: " + p.sku + ". " : ""}${p.oem ? "OEM: " + p.oem + ". " : ""}Kamyon, tir, otobus ve dorse fren sistemleri icin OEM/sase ile uyumluluk teyidi yapilir. Ayni gun kargo, 12 taksit, 14 gun iade.`;
     const desc = buildSeoProductDescription(p, categories, 5000);
+    const metaLink = withUtm(productSeoUrl(SITE, p), {
+      utm_source: "meta",
+      utm_medium: "catalog",
+      utm_campaign: "meta_catalog",
+      utm_content: p.cat || "product",
+    });
 
     rows.push([
       p.id,
@@ -454,7 +479,7 @@ function buildMetaCatalogFeed(products, categories) {
       stock > 0 ? "in stock" : "out of stock",
       "new",
       `${price.toFixed(2)} TRY`,
-      productSeoUrl(SITE, p),
+      metaLink,
       imgUrl,
       brand,
       mpn,
