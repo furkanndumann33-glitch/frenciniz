@@ -189,6 +189,28 @@ export function renderLanding(page, products, categories) {
   </script>
   <script>
     (function () {
+      try {
+        var payload = JSON.stringify({
+          path: window.location.pathname || '/',
+          search: window.location.search || '',
+          ref: document.referrer || ''
+        });
+        if (navigator.sendBeacon) {
+          var blob = new Blob([payload], { type: 'application/json' });
+          if (navigator.sendBeacon('/api/auth/track', blob)) return;
+        }
+        fetch('/api/auth/track', {
+          method: 'POST',
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+          body: payload,
+          keepalive: true
+        }).catch(function () {});
+      } catch (e) {}
+    })();
+  </script>
+  <script>
+    (function () {
       function sendInternalLead(kind, href, link) {
         try {
           var data = link && link.dataset ? link.dataset : {};
