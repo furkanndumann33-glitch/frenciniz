@@ -2161,11 +2161,11 @@ function DesktopSalesDock() {
         </div>
       </div>
       <div style={{display:"flex",gap:8,alignItems:"center"}}>
-        <a href={href} target="_blank" rel="noopener noreferrer" data-lead-source="desktop_sales_dock" onClick={() => metaTrackCustom("WhatsAppLead", { source: "desktop_sales_dock" })}
+        <a href={href} target="_blank" rel="noopener noreferrer" data-lead-source="desktop_sales_dock" onClick={() => { recordLeadEvent("whatsapp", { source:"desktop_sales_dock", href }); metaTrackCustom("WhatsAppLead", { source: "desktop_sales_dock" }); }}
           style={{minHeight:42,padding:"0 14px",borderRadius:7,background:"linear-gradient(135deg,#16a34a,#25D366)",color:"#062813",fontSize:13,fontWeight:950,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center",whiteSpace:"nowrap"}}>
           WhatsApp teklif
         </a>
-        <a href="tel:+905456087008" onClick={() => metaTrackCustom("PhoneLead", { source: "desktop_sales_dock" })}
+        <a href="tel:+905456087008" onClick={() => { recordLeadEvent("phone", { source:"desktop_sales_dock_phone", href:"tel:+905456087008" }); metaTrackCustom("PhoneLead", { source: "desktop_sales_dock" }); }}
           style={{minHeight:42,padding:"0 14px",borderRadius:7,background:"linear-gradient(135deg,#ff6000,#facc15)",color:"#111827",fontSize:13,fontWeight:950,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center",whiteSpace:"nowrap"}}>
           Hemen ara
         </a>
@@ -2276,7 +2276,7 @@ function ReferralSalesBar() {
           </div>
         </div>
         <div style={{display:"flex",gap:8,flexWrap:"wrap",flexShrink:0}}>
-          <a href={href} target="_blank" rel="noopener noreferrer" data-lead-source={`${source}_referral_bar`} onClick={() => metaTrackCustom("WhatsAppLead", { source: `${source}_referral_bar` })} style={{minHeight:40,padding:"10px 14px",borderRadius:8,background:"#25D366",color:"#062813",fontSize:13,fontWeight:950,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center"}}>
+          <a href={href} target="_blank" rel="noopener noreferrer" data-lead-source={`${source}_referral_bar`} onClick={() => { recordLeadEvent("whatsapp", { source:`${source}_referral_bar`, href }); metaTrackCustom("WhatsAppLead", { source: `${source}_referral_bar` }); }} style={{minHeight:40,padding:"10px 14px",borderRadius:8,background:"#25D366",color:"#062813",fontSize:13,fontWeight:950,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center"}}>
             WhatsApp'tan teyit al
           </a>
           <button onClick={() => go("products")} style={{minHeight:40,padding:"10px 14px",borderRadius:8,border:"1px solid rgba(255,255,255,.26)",background:"rgba(255,255,255,.08)",color:"#fff",fontSize:13,fontWeight:900}}>
@@ -2599,7 +2599,7 @@ function ProductCard({p, eager}) {
           </button>
         </div>
         <a href={quoteHref} target="_blank" rel="noopener noreferrer" data-lead-source="product_card_whatsapp" data-lead-product-id={p.id} data-lead-sku={p.sku || ""} data-lead-category={p.cat || ""} data-lead-value={p.price || 0}
-          onClick={e => {e.stopPropagation(); metaTrack("Contact", metaProductPayload(p, 1, p.cat)); metaTrackCustom("WhatsAppLead", { source: "product_card", productId: p.id, category: p.cat });}}
+          onClick={e => {e.stopPropagation(); recordLeadEvent("whatsapp", { source:"product_card_whatsapp", href:quoteHref, productId:p.id, sku:p.sku || "", category:p.cat || "", value:p.price || 0 }); metaTrack("Contact", metaProductPayload(p, 1, p.cat)); metaTrackCustom("WhatsAppLead", { source: "product_card", productId: p.id, category: p.cat });}}
           style={{minHeight:34,borderRadius:6,background:"linear-gradient(135deg,#16a34a,#25D366)",color:"#062813",display:"flex",alignItems:"center",justifyContent:"center",textDecoration:"none",fontSize:isMobile?11:12,fontWeight:950,marginTop:2}}>
           WhatsApp'ta uyumluluk sor
         </a>
@@ -3545,6 +3545,7 @@ function CartPage() {
               <div style={{display:"flex",justifyContent:"space-between",alignItems:"baseline",gap:12}}><span style={{fontSize:16,fontWeight:700}}>{t("total")}</span><span style={{fontSize:isMobile?20:22,fontWeight:800,color:"#ff6000",textAlign:"right"}}>{fp(cartTotal + ship - discount)}</span></div>
             </div>
             <a href={whatsappCartHref} target="_blank" rel="noopener noreferrer" data-lead-source="cart_whatsapp" data-lead-value={cartTotal + ship - discount} data-lead-items={cart.length}
+              onClick={() => recordLeadEvent("whatsapp", { source:"cart_whatsapp", href:whatsappCartHref, value:cartTotal + ship - discount, items:cart.length })}
               style={{width:"100%",padding:"14px",background:"#25D366",color:"#062813",border:"none",borderRadius:6,fontSize:15,fontWeight:950,cursor:"pointer",marginTop:16,textDecoration:"none",display:"flex",alignItems:"center",justifyContent:"center",textAlign:"center",minHeight:46}}>
               WhatsApp ile Siparisi Tamamla
             </a>
