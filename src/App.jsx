@@ -2193,7 +2193,7 @@ function ProductLeadNudge() {
     try {
       if (sessionStorage.getItem(storageKey)) return;
     } catch {}
-    const timer = setTimeout(() => setVisible(true), isMobile ? 5200 : 7400);
+    const timer = setTimeout(() => setVisible(true), isMobile ? 2800 : 3800);
     return () => clearTimeout(timer);
   }, [product?.id, dataLoaded, isMobile]);
 
@@ -2246,13 +2246,16 @@ function ReferralSalesBar() {
     if (typeof window === "undefined") return "";
     const qs = new URLSearchParams(window.location.search || "");
     const utm = String(qs.get("utm_source") || "").toLowerCase();
+    const medium = String(qs.get("utm_medium") || "").toLowerCase();
     const ref = String(document.referrer || "").toLowerCase();
     if (utm.includes("facebook") || ref.includes("facebook.com") || ref.includes("fb.com")) return "facebook";
+    if (utm.includes("meta") || utm.includes("instagram") || medium.includes("catalog") || ref.includes("instagram.com")) return "meta";
     if (utm.includes("google") || ref.includes("google.")) return "google";
     return "";
   }, []);
   if (!source) return null;
   const isFb = source === "facebook";
+  const isMeta = source === "meta";
   const href = waUrl([
     "Merhaba Frenciniz, grup/arama uzerinden geldim.",
     "Parca uyumlulugu ve fiyat teklifi almak istiyorum.",
@@ -2262,11 +2265,11 @@ function ReferralSalesBar() {
     "Eski parca fotosu gonderebilirim.",
   ].join("\n"));
   return (
-    <section style={{background:isFb?"linear-gradient(135deg,#07111f,#0b2a1a 56%,#134e4a)":"linear-gradient(135deg,#07111f,#172554 58%,#1e3a8a)",borderBottom:"1px solid rgba(255,255,255,.12)",color:"#fff"}}>
+    <section style={{background:isFb?"linear-gradient(135deg,#07111f,#0b2a1a 56%,#134e4a)":isMeta?"linear-gradient(135deg,#07111f,#3b0764 58%,#6d28d9)":"linear-gradient(135deg,#07111f,#172554 58%,#1e3a8a)",borderBottom:"1px solid rgba(255,255,255,.12)",color:"#fff"}}>
       <div style={{maxWidth:1220,margin:"0 auto",padding:isMobile?"12px 14px":"12px 24px",display:"flex",flexDirection:isMobile?"column":"row",alignItems:isMobile?"stretch":"center",justifyContent:"space-between",gap:10}}>
         <div style={{minWidth:0}}>
-          <div style={{fontSize:11,fontWeight:950,color:isFb?"#86efac":"#bfdbfe",letterSpacing:.4,textTransform:"uppercase",marginBottom:3}}>
-            {isFb ? "Facebook grubundan gelenlere hizli destek" : "Google aramasindan gelenlere hizli destek"}
+          <div style={{fontSize:11,fontWeight:950,color:isFb?"#86efac":isMeta?"#ddd6fe":"#bfdbfe",letterSpacing:.4,textTransform:"uppercase",marginBottom:3}}>
+            {isFb ? "Facebook grubundan gelenlere hizli destek" : isMeta ? "Katalogdan gelenlere hizli destek" : "Google aramasindan gelenlere hizli destek"}
           </div>
           <div style={{fontSize:isMobile?13:14,lineHeight:1.45,fontWeight:800}}>
             Parca kodu, OEM, sase veya eski parca fotosunu gonderin; uyumluluk ve stok teyidini hizli yapalim.
