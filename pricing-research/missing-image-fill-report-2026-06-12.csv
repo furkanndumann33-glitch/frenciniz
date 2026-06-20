@@ -68,14 +68,14 @@
 612,Süspansiyon Körüğü Volvo FH FH12 FM FL,424713.C,"20554755 , MLF7098 , MLF7098",suspansiyon-korugu,/img/frenciniz-generated/612_frenciniz.webp,911,Pistonsuz Körük 424713 S,424713.S,MLF7098,/img/911_e861753464_320.webp,224
 613,Süspansiyon Körüğü Fruehauf SMB,424156.C,,suspansiyon-korugu,/img/frenciniz-generated/613_frenciniz.webp,617,Süspansiyon Körüğü Fruehauf SMB,424159.S,MLF7015,/img/617_5cb2790303_320.webp,36
 616,Süspansiyon Körüğü DAF XF CF BPW ECOPlus SAF Holland,424881.S,0542941010,suspansiyon-korugu,/img/frenciniz-generated/616_frenciniz.webp,610,Süspansiyon Körüğü MAN TGA,424882.C,"0542941010 , 81436016065 , 81436006036",/img/610_fd955967f3_320.webp,172
-630,Süspansiyon Körüğü 42810 C1,42810.C1,016010,suspansiyon-korugu,/img/frenciniz-generated/630_frenciniz.webp,889,Süspansiyon Körüğü 42810 S,42810.S,016010S,/img/889_0cdc2e593a_320.webp,184
+630,Süspansiyon Körüğü 42810 C1,42810.C1,016010,suspansiyon-korugu,/img/frenciniz-generated/630_frenciniz.webp,889,Pistonsuz Körük 42810 S,42810.S,016010S,/img/889_0cdc2e593a_320.webp,184
 631,Süspansiyon Körüğü BMC Probus Profesyonel Fatih Pro,42722.S,,suspansiyon-korugu,/img/frenciniz-generated/631_frenciniz.webp,887,Pistonsuz Körük 42813 S,42813.S,,/img/887_2684b695ed_320.webp,12
 643,Fren Pabucu Mercedes Actros Axor,EYD 206 14,,fren-pabucu,/img/frenciniz-generated/643_frenciniz.webp,644,Fren Pabucu Mercedes Actros Axor 22 cm,EYD 206 08,624.420.02.19,/img/644_32ca1bda12_320.webp,158
 650,Süspansiyon Körüğü 422211 P02,422211.P02,,suspansiyon-korugu,/img/frenciniz-generated/650_frenciniz.webp,925,Süspansiyon Körüğü 422211 P01,422211.P01,21221395,/img/925_8480fc2dd9_320.webp,52
 662,Fren Körüğü Iveco Eurocargo Stralis Trakker,8115,,fren-korugu,/img/frenciniz-generated/662_frenciniz.webp,972,Fren Körüğü Disk imdatlı körüğü Kampana imdatlı körüğü körüğü 64 mm,8122-1,8682644620299,/img/972_272113c19d_320.webp,12
 663,Fren Körüğü Iveco Eurocargo Stralis Trakker,8114,,fren-korugu,/img/frenciniz-generated/663_frenciniz.webp,972,Fren Körüğü Disk imdatlı körüğü Kampana imdatlı körüğü körüğü 64 mm,8122-1,8682644620299,/img/972_272113c19d_320.webp,12
 664,Fren Körüğü Iveco Eurocargo Stralis Trakker,8113,,fren-korugu,/img/frenciniz-generated/664_frenciniz.webp,972,Fren Körüğü Disk imdatlı körüğü Kampana imdatlı körüğü körüğü 64 mm,8122-1,8682644620299,/img/972_272113c19d_320.webp,12
-704,Süspansiyon Körüğü Renault Premium Magnum Kerax Midlum,424915.S,5001855856,suspansiyon-korugu,/img/frenciniz-generated/704_frenciniz.webp,905,Süspansiyon Körüğü Renault Midlum Premium Magnum,424912.S08,5001832067,/img/905_c696c4639c_320.webp,60
+704,Süspansiyon Körüğü Renault Premium Magnum Kerax Midlum,424915.S,5001855856,suspansiyon-korugu,/img/frenciniz-generated/704_frenciniz.webp,905,Pistonsuz Körük Renault Midlum Premium Magnum,424912.S08,5001832067,/img/905_c696c4639c_320.webp,60
 706,Porya ESP 22 04 02,ESP.22.04.02,,porya,/img/frenciniz-generated/706_frenciniz.webp,749,Porya BPW ECOPlus,ESP.16.04.02,"0327230990, 0980106670",/img/749_0517d2cfd3_320.webp,76
 746,Porya Dorse Treyler,ESP.16.29,,porya,/img/frenciniz-generated/746_frenciniz.webp,655,Porya BPW ECOPlus,ESP.16.16.02,"0327280140, 0327280100, 0327280190",/img/655_0dfdb11859_320.webp,64
 747,Porya ESP 16 25,ESP.16.25,,porya,/img/frenciniz-generated/747_frenciniz.webp,655,Porya BPW ECOPlus,ESP.16.16.02,"0327280140, 0327280100, 0327280190",/img/655_0dfdb11859_320.webp,64
@@ -100,4 +100,4 @@
 954,Fren Körüğü Renault,8131,,fren-korugu,/img/frenciniz-generated/954_frenciniz.webp,962,Fren Körüğü Renault,8109,8682644620022,/img/962_5b1349ed17_320.webp,24
 955,Fren Körüğü Renault,8129,,fren-korugu,/img/frenciniz-generated/955_frenciniz.webp,962,Fren Körüğü Renault,8109,8682644620022,/img/962_5b1349ed17_320.webp,24
 956,Fren Körüğü Ford Cargo,8127,(A) A2,fren-korugu,/img/frenciniz-generated/956_frenciniz.webp,959,Fren Körüğü Ford Cargo,8120,(A) B2,/img/959_006c28fd23_320.webp,36
-1017,Disk Balatası 42325/1 300,42325/1-300,29279,fren-balatasi,/img/frenciniz-generated/1017_frenciniz.webp,720,Fren Balatası MAN,PWR-5020,29279,/img/720_36d6471860_320.webp,184
+1017,Disk Balatası MAN TGA TGS TGX,42325/1-300,29279,fren-balatasi,/img/frenciniz-generated/1017_frenciniz.webp,720,Fren Balatası MAN TGA TGS TGX,PWR-5020,29279,/img/720_36d6471860_320.webp,232

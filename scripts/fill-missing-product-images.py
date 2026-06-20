@@ -253,16 +253,6 @@ def render_product_image(source_path, product, out_path):
     base.alpha_composite(shadow, (x - 30, y - 30))
     base.alpha_composite(src, (x, y))
 
-    product_box = (x, y, x + src.width, y + src.height)
-    add_frenciniz_label(base, product_box)
-
-    draw = ImageDraw.Draw(base)
-    font = find_font(20, bold=True)
-    code = str(product.get("sku") or product.get("oem") or "").strip()[:34]
-    if code:
-        w = draw.textlength(code, font=font)
-        draw.rounded_rectangle((800 - w - 52, 720, 770, 760), radius=13, fill=(255, 255, 255, 230), outline=(220, 224, 230, 255), width=1)
-        draw.text((800 - w - 36, 729), code, font=font, fill=(30, 35, 45, 255))
     out_path.parent.mkdir(parents=True, exist_ok=True)
     base.convert("RGB").save(out_path, "WEBP", quality=88, method=6)
 
