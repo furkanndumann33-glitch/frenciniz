@@ -1,7 +1,9 @@
 {
-  "generatedAt": "2026-06-20T18:40:48.565Z",
+  "generatedAt": "2026-06-20T19:06:42.925Z",
   "products": 1055,
   "output": "pricing-research/google-product-keyword-map.csv",
+  "priorityOutput": "pricing-research/google-first-page-priority-urls.csv",
+  "adsOutput": "pricing-research/google-ads-product-exact-keywords.csv",
   "titleRule": "parca + arac/model + OEM/SKU/olcu + Frenciniz",
   "searchPatterns": [
     "arac model + parca: Axor 1840 fren balatasi",

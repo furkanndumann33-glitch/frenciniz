@@ -6,6 +6,7 @@ import { renderLanding, renderLandingIndex } from "./_lib/landing-render.js";
 import {
   productIdFromRoute,
   productPrimaryCode,
+  productSeoFaqItems,
   productSearchDescription,
   productSearchName,
   productSearchTitle,
@@ -244,11 +245,14 @@ function productJsonLdSeo(product, canonical, image, categories = []) {
   return {
     "@context": "https://schema.org",
     "@type": "Product",
+    "@id": `${canonical}#product`,
     name: seoName || product.name,
     image: [image],
     description: buildSeoProductDescription(product, categories, 500),
     sku: product.sku || String(product.id),
     mpn: product.oem || product.sku || String(product.id),
+    productID: String(product.id || ""),
+    url: canonical,
     brand: { "@type": "Brand", name: product.brand || "Ekersan" },
     category: categoryNameForProduct(product, categories),
     additionalProperty: [
@@ -256,16 +260,108 @@ function productJsonLdSeo(product, canonical, image, categories = []) {
       product.oem ? { "@type": "PropertyValue", name: "OEM / Muadil", value: product.oem } : null,
       vehiclePhrase(product) ? { "@type": "PropertyValue", name: "Uyumluluk Adaylari", value: vehiclePhrase(product) } : null,
     ].filter(Boolean),
+    aggregateRating: Number(product.rating || 0) > 0 ? {
+      "@type": "AggregateRating",
+      ratingValue: Number(product.rating || 4.7).toFixed(1),
+      reviewCount: Math.max(1, Number(product.reviews || 1)),
+      bestRating: "5",
+      worstRating: "1",
+    } : undefined,
     offers: {
       "@type": "Offer",
       url: canonical,
       priceCurrency: "TRY",
       price: price > 0 ? price.toFixed(2) : undefined,
+      priceValidUntil: new Date(Date.now() + 180 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10),
       availability: Number(product.stock || 0) > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
       itemCondition: "https://schema.org/NewCondition",
       seller: { "@type": "Organization", name: "Frenciniz", url: SITE },
+      shippingDetails: {
+        "@type": "OfferShippingDetails",
+        shippingDestination: { "@type": "DefinedRegion", addressCountry: "TR" },
+        shippingRate: {
+          "@type": "MonetaryAmount",
+          value: price >= 3000 ? "0.00" : "150.00",
+          currency: "TRY",
+        },
+      },
+      hasMerchantReturnPolicy: {
+        "@type": "MerchantReturnPolicy",
+        applicableCountry: "TR",
+        returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
+        merchantReturnDays: 14,
+        returnMethod: "https://schema.org/ReturnByMail",
+        returnFees: "https://schema.org/ReturnFeesCustomerResponsibility",
+      },
     },
   };
+}
+
+function productFaqJsonLd(product, categories = []) {
+  const faqItems = productSeoFaqItems(product, categories);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map(item => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+}
+
+function productBreadcrumbJsonLd(product, canonical, categories = []) {
+  const sub = categories.find(category => category.id === product?.cat);
+  const group = sub?.parent ? categories.find(category => category.id === sub.parent) : null;
+  const items = [
+    { name: "Frenciniz", item: SITE },
+    group ? { name: group.name, item: `${SITE}/${group.id}` } : null,
+    sub ? { name: sub.name, item: `${SITE}/${sub.id}` } : null,
+    { name: productSearchName(product, categories, 140) || product?.name || "Urun", item: canonical },
+  ].filter(Boolean);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: item.item,
+    })),
+  };
+}
+
+function productNoScriptHtml(product, categories = [], canonical = "") {
+  const seoName = productSearchName(product, categories, 140) || product?.name || "Frenciniz urunu";
+  const category = categoryNameForProduct(product, categories);
+  const description = buildSeoProductDescription(product, categories, 700);
+  const vehicles = vehiclePhrase(product);
+  const price = Number(product?.price || 0);
+  const stock = Number(product?.stock || 0);
+  return `
+  <noscript>
+    <main>
+      <article itemscope itemtype="https://schema.org/Product">
+        <h1 itemprop="name">${xmlEscape(seoName)}</h1>
+        <p itemprop="description">${xmlEscape(description)}</p>
+        <ul>
+          <li>Kategori: ${xmlEscape(category)}</li>
+          ${product?.sku ? `<li>SKU / stok kodu: ${xmlEscape(product.sku)}</li>` : ""}
+          ${product?.oem ? `<li>OEM / muadil kod: ${xmlEscape(product.oem)}</li>` : ""}
+          ${vehicles ? `<li>Uyumluluk adaylari: ${xmlEscape(vehicles)}</li>` : ""}
+          <li>Stok: ${stock > 0 ? `${Math.floor(stock)} adet` : "stok teyidi gerekli"}</li>
+          ${price > 0 ? `<li>Fiyat: ${xmlEscape(price.toFixed(2))} TRY</li>` : ""}
+        </ul>
+        <p>Kesin uyumluluk icin OEM kodu, sase no veya eski parca fotografi ile Frenciniz WhatsApp hattindan teyit alin.</p>
+        <a href="${xmlEscape(canonical)}">Urun sayfasini ac</a>
+      </article>
+    </main>
+  </noscript>`;
 }
 
 function renderSeoProductHtml(product, categories = []) {
@@ -273,16 +369,47 @@ function renderSeoProductHtml(product, categories = []) {
   const title = buildSeoProductTitle(product, categories);
   const description = buildSeoProductDescription(product, categories, 165);
   const image = absoluteUrl(product.img || (Array.isArray(product.images) && product.images[0]) || "/img/site/frenciniz-logo-real-og.jpg");
-  const jsonLd = `<script type="application/ld+json">${JSON.stringify(productJsonLdSeo(product, canonical, image, categories))}</script>`;
+  const seoName = productSearchName(product, categories, 140) || product.name;
+  const longDescription = buildSeoProductDescription(product, categories, 5000);
+  const keywords = [
+    seoName,
+    product?.sku,
+    product?.oem,
+    categoryNameForProduct(product, categories),
+    vehiclePhrase(product),
+    "agir vasita fren parcasi",
+    "OEM ile uyumluluk",
+    "Frenciniz",
+  ].filter(Boolean).join(", ");
+  const jsonLd = [
+    productJsonLdSeo(product, canonical, image, categories),
+    productFaqJsonLd(product, categories),
+    productBreadcrumbJsonLd(product, canonical, categories),
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      name: title,
+      description: longDescription,
+      url: canonical,
+      primaryImageOfPage: image ? { "@type": "ImageObject", url: image } : undefined,
+      mainEntity: { "@id": `${canonical}#product` },
+      isPartOf: { "@type": "WebSite", name: "Frenciniz", url: SITE },
+    },
+  ].map(item => `<script type="application/ld+json">${JSON.stringify(item)}</script>`).join("\n");
+  const noScript = productNoScriptHtml(product, categories, canonical);
   let html = readIndexHtml();
 
   if (!html) {
-    return `<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${xmlEscape(title)}</title><meta name="description" content="${xmlEscape(description)}"><link rel="canonical" href="${xmlEscape(canonical)}">${jsonLd}</head><body><h1>${xmlEscape(productSearchName(product, categories, 140) || product.name)}</h1><p>${xmlEscape(description)}</p><a href="${xmlEscape(canonical)}">Urunu ac</a></body></html>`;
+    return `<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${xmlEscape(title)}</title><meta name="description" content="${xmlEscape(description)}"><meta name="keywords" content="${xmlEscape(keywords)}"><link rel="canonical" href="${xmlEscape(canonical)}">${jsonLd}</head><body><h1>${xmlEscape(seoName)}</h1><p>${xmlEscape(description)}</p><a href="${xmlEscape(canonical)}">Urunu ac</a>${noScript}</body></html>`;
   }
 
   html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${xmlEscape(title)}</title>`);
   html = replaceOrInject(html, /<meta name="description" content="[^"]*"\s*\/?>/i, `<meta name="description" content="${xmlEscape(description)}" />`);
+  html = replaceOrInject(html, /<meta name="keywords" content="[^"]*"\s*\/?>/i, `<meta name="keywords" content="${xmlEscape(keywords)}" />`);
   html = replaceOrInject(html, /<link rel="canonical" href="[^"]*"\s*\/?>/i, `<link rel="canonical" href="${xmlEscape(canonical)}" />`);
+  if (image) {
+    html = replaceOrInject(html, /<link rel="preload" as="image" href="[^"]*"\s*\/?>/i, `<link rel="preload" as="image" href="${xmlEscape(image)}" />`);
+  }
   html = replaceOrInject(html, /<meta property="og:type" content="[^"]*"\s*\/?>/i, `<meta property="og:type" content="product" />`);
   html = replaceOrInject(html, /<meta property="og:title" content="[^"]*"\s*\/?>/i, `<meta property="og:title" content="${xmlEscape(title)}" />`);
   html = replaceOrInject(html, /<meta property="og:description" content="[^"]*"\s*\/?>/i, `<meta property="og:description" content="${xmlEscape(description)}" />`);
@@ -291,7 +418,7 @@ function renderSeoProductHtml(product, categories = []) {
   html = replaceOrInject(html, /<meta name="twitter:title" content="[^"]*"\s*\/?>/i, `<meta name="twitter:title" content="${xmlEscape(title)}" />`);
   html = replaceOrInject(html, /<meta name="twitter:description" content="[^"]*"\s*\/?>/i, `<meta name="twitter:description" content="${xmlEscape(description)}" />`);
   html = replaceOrInject(html, /<meta name="twitter:image" content="[^"]*"\s*\/?>/i, `<meta name="twitter:image" content="${xmlEscape(image)}" />`);
-  return html.replace("</head>", `${jsonLd}\n</head>`);
+  return html.replace("</head>", `${jsonLd}\n</head>`).replace("</body>", `${noScript}\n</body>`);
 }
 
 function categoryIdsForSeo(category, categories = []) {

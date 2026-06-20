@@ -116,14 +116,14 @@ export function productPartLabel(product, categories = []) {
   return cleanText(category?.name || product?.cat || "Agir Vasita Fren Aksami");
 }
 
-function productVehicleSignals(product) {
+export function productVehicleSignals(product, max = 3) {
   const values = [
     ...(Array.isArray(product?.compat) ? product.compat : []),
     ...(Array.isArray(product?.veh) ? product.veh : []),
   ].map(cleanText).filter(Boolean);
 
   const useful = values.filter(value => !/^(agir vasita|kamyon|tir|otobus|dorse|treyler)$/i.test(normalizeSearchText(value)));
-  if (useful.length) return uniqueParts(useful).slice(0, 3);
+  if (useful.length) return uniqueParts(useful).slice(0, max);
 
   const name = cleanText(product?.name);
   const known = [
@@ -134,7 +134,11 @@ function productVehicleSignals(product) {
     "Isuzu NovoCiti", "Isuzu NPR", "Mitsubishi Canter",
   ];
   const haystack = normalizeSearchText(name);
-  return known.filter(term => haystack.includes(normalizeSearchText(term))).slice(0, 3);
+  return known.filter(term => haystack.includes(normalizeSearchText(term))).slice(0, max);
+}
+
+export function productVehiclePhrase(product, max = 5) {
+  return productVehicleSignals(product, max).join(", ");
 }
 
 function nameHasPart(name, part) {
@@ -175,6 +179,39 @@ export function productSearchDescription(product, categories = [], max = 165) {
     stock > 0 ? "Stokta urun, hizli kargo ve WhatsApp teklif." : "Stok ve fiyat icin WhatsApp teklif alin.",
   ];
   return compactText(pieces.filter(Boolean).join(" "), max);
+}
+
+export function productSeoFaqItems(product, categories = []) {
+  const name = productSearchName(product, categories, 140) || cleanText(product?.name, "Frenciniz urunu");
+  const part = productPartLabel(product, categories);
+  const code = productPrimaryCode(product);
+  const sku = cleanText(product?.sku);
+  const oem = cleanText(product?.oem);
+  const vehicles = productVehiclePhrase(product, 6);
+  const stock = Number(product?.stock || 0);
+
+  return [
+    {
+      question: `${name} aracıma uyar mı?`,
+      answer: `${name} icin kesin uyumluluk OEM/parca kodu, sase no veya eski parca fotografi ile teyit edilir.${vehicles ? ` Aday uyumluluklar: ${vehicles}.` : ""}`,
+    },
+    {
+      question: `${name} OEM veya stok kodu nedir?`,
+      answer: code
+        ? `${name} icin gorunen ana kod: ${code}. Stok kodu: ${sku || "-"}. OEM/muadil kod: ${oem || "-"}.`
+        : `${name} icin OEM veya stok kodu eski parca fotografi ya da sase ile kontrol edilir.`,
+    },
+    {
+      question: `${name} stok ve kargo durumu nedir?`,
+      answer: stock > 0
+        ? `${name} icin stokta ${Math.floor(stock)} adet gorunuyor. Fiyat, kargo ve uyumluluk siparisten once Frenciniz tarafindan teyit edilir.`
+        : `${name} icin stok ve fiyat bilgisi WhatsApp uzerinden teyit edilir.`,
+    },
+    {
+      question: `${part} siparişinde yanlış parça riskini nasıl azaltırım?`,
+      answer: "Siparisten once OEM/parca kodu, arac marka-model, sase no veya eski parca fotografini Frenciniz WhatsApp hattina gondererek uyumluluk teyidi alabilirsiniz.",
+    },
+  ];
 }
 
 export function productSeoSlug(product) {

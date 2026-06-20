@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useMemo, createContext, useContext, useRef } from "react";
-import { productIdFromRoute, productSearchDescription, productSearchName, productSearchTitle, productSeoPath, productSeoUrl } from "../shared/product-seo.js";
+import { productIdFromRoute, productSeoFaqItems, productSearchDescription, productSearchName, productSearchTitle, productSeoPath, productSeoUrl } from "../shared/product-seo.js";
 import { buildOrganizationJsonLd, buildProductJsonLd } from "../shared/structured-data.js";
 
 // ===== TRANSLATIONS =====
@@ -3238,6 +3238,7 @@ function ProductDetailPage() {
   const detailDesc = translateName(prodDesc(p,lang),lang);
   const compatPreview = Array.isArray(p.compat) ? p.compat.filter(Boolean).slice(0, 7) : [];
   const specs = p.specs && typeof p.specs === "object" ? p.specs : {};
+  const seoFaqItems = productSeoFaqItems(p, CATS);
   const checkoutNow = () => {
     if (!p.stock) return;
     addToCart(p, qty);
@@ -3398,6 +3399,17 @@ function ProductDetailPage() {
           <a href={whatsappQuoteHref} target="_blank" rel="noopener noreferrer" onClick={() => metaTrack("Contact", metaProductPayload(p, qty, p.cat))} style={{flex:"1 1 150px",display:"flex",alignItems:"center",justifyContent:"center",gap:8,padding:"12px 20px",background:"#25D366",color:"#fff",borderRadius:8,fontSize:14,fontWeight:700,textDecoration:"none",minHeight:44}}>💬 WhatsApp: 0850 888 7881</a>
           <a href="mailto:info@frenciniz.com" style={{flex:"1 1 150px",display:"flex",alignItems:"center",justifyContent:"center",gap:8,padding:"12px 20px",background:"#fff",color:"#333",border:"1px solid #ddd",borderRadius:8,fontSize:14,fontWeight:600,textDecoration:"none",minHeight:44}}>✉️ E-posta</a>
         </div>
+        <section aria-label="Urun uyumluluk sorulari" style={{marginTop:18,padding:18,background:"#f8fafc",border:"1px solid #e2e8f0",borderRadius:8}}>
+          <h2 style={{fontSize:18,fontWeight:950,color:"#111827",margin:"0 0 12px"}}>{seoDisplayName} uyumluluk ve OEM bilgisi</h2>
+          <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr",gap:10}}>
+            {seoFaqItems.map(item => (
+              <article key={item.question} style={{padding:"13px 14px",background:"#fff",border:"1px solid #e5e7eb",borderRadius:8,boxShadow:"0 8px 20px rgba(15,23,42,.04)"}}>
+                <h3 style={{fontSize:13,fontWeight:950,color:"#111827",margin:"0 0 6px",lineHeight:1.35}}>{item.question}</h3>
+                <p style={{fontSize:12.5,color:"#526070",lineHeight:1.65,margin:0}}>{item.answer}</p>
+              </article>
+            ))}
+          </div>
+        </section>
       </div>}
       {tab==="specs" && <div style={{marginBottom:32}}>{Object.keys(specs).length ? Object.entries(specs).map(([k,v]) => (<div key={k} style={{display:"flex",padding:"10px 0",borderBottom:"1px solid #f0f0f0"}}><span style={{width:200,color:"#999"}}>{k}</span><span style={{fontWeight:500,color:"#333"}}>{v}</span></div>)) : <div style={{color:"#999",fontSize:14}}>Teknik bilgi için SKU/OEM koduyla Frenciniz'den teyit alın.</div>}</div>}
       {tab==="compat" && <div style={{marginBottom:32}}>

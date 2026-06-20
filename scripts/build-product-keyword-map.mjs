@@ -129,6 +129,8 @@ const report = {
   generatedAt: new Date().toISOString(),
   products: rows.length,
   output: "pricing-research/google-product-keyword-map.csv",
+  priorityOutput: "pricing-research/google-first-page-priority-urls.csv",
+  adsOutput: "pricing-research/google-ads-product-exact-keywords.csv",
   titleRule: "parca + arac/model + OEM/SKU/olcu + Frenciniz",
   searchPatterns: [
     "arac model + parca: Axor 1840 fren balatasi",
@@ -145,10 +147,103 @@ fs.writeFileSync(
   `${JSON.stringify(report, null, 2)}\n`
 );
 
+const highIntentCategories = new Set([
+  "Fren Diski",
+  "ABS'li Fren Diski",
+  "Fren Kampanasi",
+  "Fren Balatasi",
+  "Fren Pabucu",
+  "Fren Korugu",
+  "Suspansiyon Korugu",
+  "Otomatik Fren Circiri",
+  "Mekanik Fren Circiri",
+  "Fren Circiri",
+  "Bijon",
+  "Disk Bijonu Civatasi",
+  "Porya",
+  "Kaliper",
+  "Kaliper Tamir Takimi",
+]);
+
+function priorityScore(row) {
+  let score = 0;
+  if (highIntentCategories.has(row.category)) score += 40;
+  if (Number(row.stock || 0) > 0) score += 25;
+  if (Number(row.stock || 0) >= 20) score += 10;
+  if (String(row.oem || "").trim()) score += 20;
+  if (String(row.sku || "").trim()) score += 8;
+  if (Number(row.price || 0) >= 500 && Number(row.price || 0) <= 20000) score += 5;
+  return score;
+}
+
+const priorityRows = rows
+  .map(row => ({ ...row, score: priorityScore(row) }))
+  .sort((a, b) => b.score - a.score || Number(b.stock || 0) - Number(a.stock || 0))
+  .slice(0, 200);
+
+const priorityHeaders = [
+  "score",
+  "id",
+  "category",
+  "primary_query",
+  "secondary_queries",
+  "url",
+  "stock",
+  "price",
+];
+
+fs.writeFileSync(
+  path.join(OUT_DIR, "google-first-page-priority-urls.csv"),
+  `${priorityHeaders.map(csv).join(",")}\n${priorityRows.map(row => priorityHeaders.map(header => csv(row[header])).join(",")).join("\n")}\n`
+);
+
+const adsHeaders = [
+  "campaign",
+  "ad_group",
+  "match_type",
+  "keyword",
+  "final_url",
+  "product_id",
+  "category",
+  "stock",
+  "price",
+];
+
+const adsRows = [];
+for (const row of priorityRows) {
+  const queries = unique([
+    row.primary_query,
+    ...String(row.secondary_queries || "").split("|").map(part => part.trim()),
+  ]).slice(0, 3);
+
+  for (const keyword of queries) {
+    adsRows.push({
+      campaign: "Frenciniz Urun Arama - Exact",
+      ad_group: row.category,
+      match_type: "Exact",
+      keyword,
+      final_url: row.url,
+      product_id: row.id,
+      category: row.category,
+      stock: row.stock,
+      price: row.price,
+    });
+  }
+}
+
+fs.writeFileSync(
+  path.join(OUT_DIR, "google-ads-product-exact-keywords.csv"),
+  `${adsHeaders.map(csv).join(",")}\n${adsRows.map(row => adsHeaders.map(header => csv(row[header])).join(",")).join("\n")}\n`
+);
+
 console.log(JSON.stringify({
   products: rows.length,
   csv: "pricing-research/google-product-keyword-map.csv",
   report: "pricing-research/google-product-keyword-map-report.json",
+  priorityUrls: "pricing-research/google-first-page-priority-urls.csv",
+  adsKeywords: "pricing-research/google-ads-product-exact-keywords.csv",
+  priorityCount: priorityRows.length,
+  adsKeywordCount: adsRows.length,
   examples: rows.slice(0, 5).map(row => ({
     id: row.id,
     primary_query: row.primary_query,
