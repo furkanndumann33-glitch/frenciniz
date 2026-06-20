@@ -1,0 +1,369 @@
+{
+  "generatedAt": "2026-06-20T18:40:48.565Z",
+  "products": 1055,
+  "output": "pricing-research/google-product-keyword-map.csv",
+  "titleRule": "parca + arac/model + OEM/SKU/olcu + Frenciniz",
+  "searchPatterns": [
+    "arac model + parca: Axor 1840 fren balatasi",
+    "OEM/WVA + parca: 29246 fren balatasi",
+    "dingil/dorse + parca + olcu: BPW Tirsan 18 cm dorse fren kampanasi",
+    "stok kodu + parca: ESD 010 27 fren diski",
+    "marka seri + parca: Scania G420 fren diski"
+  ],
+  "categorySummary": [
+    {
+      "category": "Bijon",
+      "products": 145,
+      "stockProducts": 145,
+      "sampleQueries": [
+        "Bijon ROR Meritor 95 mm OEM 21022167 ESB 1315 10",
+        "Bijon Scania P G R 115 mm Arka OEM 1847739 ESB 919 10",
+        "Bijon Mercedes Actros Axor 120 mm Arka SKU ESB 185 10",
+        "Bijon Iveco Eurocargo Stralis Dps OEM 42117459 ESB 670 10",
+        "Bijon Mitsubishi Canter Fuso Isuzu NPR NQR Arka Sol 304 SKU ESB 784 11-L"
+      ]
+    },
+    {
+      "category": "Fren Kampanası",
+      "products": 118,
+      "stockProducts": 118,
+      "sampleQueries": [
+        "Fren Kampanası Mercedes Actros Axor OEM 3014210801 ESK 010 45",
+        "Fren Kampanası BPW ECOPlus OEM 310977340 ESK 230 28",
+        "Fren Kampanası SAF Holland OEM 1064010801-1064012801 ESK 290 03",
+        "Fren Kampanası ESK 160 62",
+        "Fren Kampanası BPW ECOPlus 18 cm OEM 310667620 ESK 160 18-S"
+      ]
+    },
+    {
+      "category": "Süspansiyon Körüğü",
+      "products": 99,
+      "stockProducts": 99,
+      "sampleQueries": [
+        "Süspansiyon Körüğü FT 34810 K04F SKU FT 34810-K04F",
+        "Suspansiyon Korugu Roll Körük Mercedes Travego Tourismo OEM 0003270101 FT 34644",
+        "Süspansiyon Körüğü FT 3498608 KP SKU FT 3498608-KP",
+        "Suspansiyon Korugu Roll Körük Mercedes Travego Tourismo OEM 3873280101 FT 34720",
+        "Süspansiyon Körüğü FT 34220 2P01 SKU FT 34220-2P01"
+      ]
+    },
+    {
+      "category": "Fren Diski",
+      "products": 96,
+      "stockProducts": 96,
+      "sampleQueries": [
+        "Fren Diski Isuzu Novo NovoCiti Life CitiLife 387 061 2600 OEM 387.061.2600.51 ESD 130 09",
+        "Fren Diski Krone Göbekli 430 SKU ESD 220 03",
+        "Fren Diski Renault Midlum Premium Magnum OEM 5010598309 ESD 040 31",
+        "Fren Diski Renault Midlum Premium Magnum OEM 20700508 ESD 040 30",
+        "Fren Diski Volvo FH FM FL 410 OEM 8551042 ESD 110 02"
+      ]
+    },
+    {
+      "category": "Porya",
+      "products": 77,
+      "stockProducts": 77,
+      "sampleQueries": [
+        "Porya Kapağı BPW ECOPlus SKU EYD 700 14-1",
+        "Porya Kapağı EYD 700 06 1 SKU EYD 700 06-1",
+        "Porya BPW ECOPlus OEM 03.272.62.27.0 ESP.16.14.01",
+        "Porya Ford Cargo Ön OEM DC461106 (YENİ ÜRÜN) ESP.08.11",
+        "Porya 200 mm SKU ESP.30.04"
+      ]
+    },
+    {
+      "category": "Fren Körüğü",
+      "products": 71,
+      "stockProducts": 71,
+      "sampleQueries": [
+        "Fren Körüğü Disk imdatlı körüğü Kampana imdatlı körüğü körüğü 57 mm SKU 8106-2",
+        "Fren Körüğü Disk imdatlı körüğü Kampana imdatlı körüğü körüğü SKU EYD 100 67-K",
+        "Fren Körüğü Disk imdatlı körüğü Kampana imdatlı körüğü körüğü SKU EYD 100 66-K",
+        "Fren Körüğü Disk imdatlı körüğü Kampana imdatlı körüğü körüğü SKU EYD 100 65-K",
+        "Fren Körüğü Disk imdatlı körüğü Kampana imdatlı körüğü körüğü SKU EYD 100 51-K"
+      ]
+    },
+    {
+      "category": "Fren Balatası",
+      "products": 58,
+      "stockProducts": 58,
+      "sampleQueries": [
+        "Fren Balatası Mercedes Actros Axor OEM 19487 PWR-K006",
+        "Fren Balatası Ford Cargo 2520-2621 OEM 19921 PWR-K005",
+        "Fren Balatası Mercedes Actros Axor OEM 19488 PWR-K004",
+        "Fren Balatası PWR K003 OEM 19071 PWR-K003",
+        "Fren Balatası BPW ECOPlus OEM 19032 PWR-K002"
+      ]
+    },
+    {
+      "category": "Fren Pabucu",
+      "products": 37,
+      "stockProducts": 37,
+      "sampleQueries": [
+        "Fren Pabucu SAF Holland SKU EYD 075059",
+        "Fren Pabucu BPW ECOPlus Y.M 360 200 OEM 05.091.19.34.0 03.7100.300.031.00",
+        "Fren Pabucu BPW ECOPlus 18 cm SKU EYD 80 24-1",
+        "Fren Pabucu Mercedes Actros Axor SKU EYD 206 14",
+        "Fren Pabucu Mercedes Actros Axor 22 cm OEM 624.420.02.19 EYD 206 08"
+      ]
+    },
+    {
+      "category": "Kaliper Ayar Mekanizması",
+      "products": 34,
+      "stockProducts": 34,
+      "sampleQueries": [
+        "Kaliper Mekanizması Bilyalı YILDIZ BAŞLI SKU 421128-1",
+        "KALİPER MEKANİZMA SETİ Y.M. SKU CH5033",
+        "ARCS KALİPER TAŞIYICI ÖN SOL OEM A0004216506 CH3284",
+        "ARCS KALİPER TAŞIYICI ÖN SAĞ OEM A0004216406 CH3283",
+        "PAN19-1/22-1 AYAR TAŞIYICI MEKANİZMALI SET SKU CH3173"
+      ]
+    },
+    {
+      "category": "Kaliper Tamir Takımı",
+      "products": 34,
+      "stockProducts": 34,
+      "sampleQueries": [
+        "FRENCO KALİPER TM.TK.SAF - SOL SKU FX-3180",
+        "Kaliper Tamir Takimi B.V YENİ SET KOMPLE SAĞ SKU CHS5005",
+        "Kaliper Tamir Takimi MB ARCS SET (SOL) SKU CHS3014",
+        "Kaliper Tamir Takimi MB ARCS SET (SAĞ) SKU CHS3013",
+        "KALİPER MASURA BİLYA YATAĞI TAKIMI (114 MM) SKU CH2039"
+      ]
+    },
+    {
+      "category": "Yay",
+      "products": 32,
+      "stockProducts": 32,
+      "sampleQueries": [
+        "YTE DORSE YAYI SKU EYD 70 67",
+        "TIRSAN DORSE KISA YAY 24 CM OEM (A) B4 EYD 70 04-3",
+        "JUMBO DORSE YAYI BPV SKU EYD 70 66",
+        "JUMBO DORSE YAYI ÖZEL SKU EYD 70 65",
+        "ISUZU NOR FREN YAYI OEM (A) B4 EYD 70 58"
+      ]
+    },
+    {
+      "category": "ABS Sensörü/Modülü/Kablo",
+      "products": 29,
+      "stockProducts": 29,
+      "sampleQueries": [
+        "MAN ABS SENSÖRÜ SAĞ 300CM SKU EF-4410329880",
+        "MAN ABS SENSÖRÜ SOL 300CM SKU EF-4410329870",
+        "MAN ABS SENSÖRÜ ÖN SAĞ 150CM SKU EF-81.271206176",
+        "MAN ABS SENSÖRÜ ÖN SOL 150 CM SKU EF-81.271206177",
+        "ABS SENSÖRÜ ÖN YENİ MODEL ACTROS AROX EURO6 SKU EF-4410321930"
+      ]
+    },
+    {
+      "category": "Somun / Cıvata",
+      "products": 26,
+      "stockProducts": 26,
+      "sampleQueries": [
+        "Bijon Somunu EYD 92 30",
+        "Bijon Somunu BPW ECOPlus E.M SKU EYD 92 28",
+        "Bijon Somunu SAF Holland SAĞ SKU EYD 92 04",
+        "Bijon Somunu SAF Holland Sol SKU EYD 92 03",
+        "Bijon Somunu SAF Holland SAĞ SKU EYD 92 02"
+      ]
+    },
+    {
+      "category": "Kaliper",
+      "products": 24,
+      "stockProducts": 24,
+      "sampleQueries": [
+        "KALİPER PLASTİK TAPA SKU 60-6064",
+        "Kaliper Plastik Tapa Takımı SKU 427141",
+        "Kaliper Tamir Takımı Komple (Pimli) SKU 426147",
+        "KALİPER TAMİR TAKIMI KAŞIKLI SET (TABLALI) SKU 426144-1",
+        "FRENCO KALİPER TAMİR TAKIMI SKU FX-3080"
+      ]
+    },
+    {
+      "category": "Otomatik Fren Cırcırı",
+      "products": 23,
+      "stockProducts": 23,
+      "sampleQueries": [
+        "Otomatik Fren Cırcırı Renault Premium Magnum Kerax Midlum OEM 14632 ESC 79458",
+        "Otomatik Fren Cırcırı Renault Midlum Premium Magnum OEM 5010098861 ESC 79445",
+        "Otomatik Fren Cırcırı Renault Midlum Premium Magnum OEM 5010098860 ESC 79444",
+        "Otomatik Fren Cırcırı Renault Midlum Premium Magnum OEM 72318 ESC 79167",
+        "Otomatik Fren Cırcırı ESC 72675 OEM 42115"
+      ]
+    },
+    {
+      "category": "Fren Cırcırı",
+      "products": 22,
+      "stockProducts": 22,
+      "sampleQueries": [
+        "Fren Cırcırı Mercedes Arocs Ön Sol SKU ESC 80168",
+        "Fren Cırcırı Mercedes Arocs Ön SAĞ SKU ESC 80167",
+        "Fren Cırcırı BMC Probus Profesyonel Fatih Pro Sol OEM 4175020800 ESC 70953",
+        "Fren Cırcırı Mercedes Travego Tourismo Ön R-L OEM 3574200538 ESC 72209",
+        "Fren Cırcırı Fruehauf SMB OEM 352194 ESC 114075"
+      ]
+    },
+    {
+      "category": "Disk Bijonu/Civatası",
+      "products": 16,
+      "stockProducts": 16,
+      "sampleQueries": [
+        "Disk Bijonu Mercedes Atego Arka Y.M SKU ESB 145 10",
+        "Disk Bijonu Knorr WABCO Meritor OEM 31796200 ESB 4000 12",
+        "Disk Bijonu SAF Holland Y.M SKU ESB 4000 15",
+        "Disk Bijonu MAN TGS SKU ESB 242 10",
+        "Disk Bijonu Mercedes Axor SKU ESB 4000 13"
+      ]
+    },
+    {
+      "category": "Kızak",
+      "products": 15,
+      "stockProducts": 15,
+      "sampleQueries": [
+        "Kızak FORD KARGO KIZAĞI SKU KIZAK 30535",
+        "Kızak KIZAK VOLVO OEM 68322778 KIZAK 30505",
+        "Kızak KIZAK RENAULT 420 OEM 68323675 KIZAK 30502",
+        "Kızak KALİPER SEMERİ OEM K004679 KIZAK 10511",
+        "Kızak KALİPER SEMERİ VOLVO FH 12 OEM MCK1319 KIZAK 30512"
+      ]
+    },
+    {
+      "category": "Kaliper Kapak/Conta",
+      "products": 14,
+      "stockProducts": 14,
+      "sampleQueries": [
+        "PAN17-19 KALİPER ÜST KAPAĞI SKU CH3193",
+        "Kaliper Mekanizma Ve Kapak Seti OEM 20-2606 CH2225",
+        "SB5 3 KABLOLU SENSÖRLÜ KAPAK MB SKU CH1078",
+        "SB6-7 SN6/SN7/SK7/NA7/ST7 3 KALOLU SCN TİP SENSÖRLÜ KAPAK MB SKU CH1071",
+        "SB6-7 SN6/SN7/SK7/NA7/ST7 3 KALOLU SENSÖRLÜ KAPAK MB SKU CH1070"
+      ]
+    },
+    {
+      "category": "Kaliper Perno Tamir Takımı",
+      "products": 11,
+      "stockProducts": 11,
+      "sampleQueries": [
+        "SF HDX MODUL T PERNO TM TK OEM SAF 3 434 3861 00 CH6001",
+        "ELSA195-225 PERNO TM TK (TEK ÇİZGİLİ) OEM CMSK.7.1 CH2210",
+        "Perno Tamir Takımı OEM K000472 CH1039",
+        "SB6/SB7 PERNO TAMİR TAKIMI OEM K000132 CH1025",
+        "FRENCO SB6/SB7 PERNO TAMİR TAKIMI OEM K105599K55 10-1294"
+      ]
+    },
+    {
+      "category": "Kaliper Toz Lastiği",
+      "products": 8,
+      "stockProducts": 8,
+      "sampleQueries": [
+        "FRENCOO DUCO TOZ LASTİĞİ TK OEM MCK1139 20-2420",
+        "Ø 410 DUBLEX GRUBU TOZ LASTİĞİ (SİLİKON) İVECO 902 SKU 425245",
+        "522 TOZ LASTİĞİ (SİLİKON) SKU 425224",
+        "TOZ LASTİĞİ (SİLİKON)(110 TOZ LASTİK) SKU 425210",
+        "Kaliper Toz Lastiği Tamir Takımı (Ø 69 mm - 54 mm) SKU 421235"
+      ]
+    },
+    {
+      "category": "Mekanik Fren Cırcırı",
+      "products": 7,
+      "stockProducts": 7,
+      "sampleQueries": [
+        "Mekanik Fren Cırcırı 7 Delik 10 Kanal EUR OEM 517465130 ESC 1760-1",
+        "Mekanik Fren Cırcırı 5 Delik 10 Kanal OEM 46404 ESC 1721",
+        "Mekanik Fren Cırcırı ESC 611",
+        "Mekanik Fren Cırcırı 3 Delik 10 Kanal OEM (A) A3 ESC 102",
+        "Mekanik Fren Cırcırı Mercedes Actros Axor Sol OEM 517454700 ESC 507401"
+      ]
+    },
+    {
+      "category": "Kaliper Tamir Takımı (Wabco)",
+      "products": 7,
+      "stockProducts": 7,
+      "sampleQueries": [
+        "Kaliper Tamir Takımı (Wabco) SN6/SN7/SK7/NA7/ST7/SL7/SM7 MİLSİZ KÖPRÜ BAĞLANTISI SKU CH1042",
+        "Kaliper Tamir Takımı (Wabco) SB5- 3 KABLOLU SENSÖR&KAPAK (12-160 MN TGL İÇİN) SKU 10-1194",
+        "Kaliper Tamir Takımı (Wabco) SN6SK7SL7SM7 PİSTON KAPAĞI SOMUNLU SKU 10-1403",
+        "Kaliper Tamir Takımı (Wabco) SB6-7 SENSÖRLÜ 3 KABLOLU KAPAK SKU 10-1093",
+        "Kaliper Tamir Takımı (Wabco) SB5-6-7 SN6-7 AYAR CİVATASI SKU 10-1080"
+      ]
+    },
+    {
+      "category": "Lastik",
+      "products": 6,
+      "stockProducts": 6,
+      "sampleQueries": [
+        "Lastik Körük Lastiği Mercedes Actros Axor 69 mm OEM K001300 CH1127",
+        "Lastik Körük Lastiği Disk imdatlı körüğü Kampana imdatlı körüğü körüğü Y.M SKU EYD 500 05-2-2",
+        "Lastik Körük Lastiği Disk imdatlı körüğü Kampana imdatlı körüğü körüğü E.M SKU EYD 500 05-2",
+        "Lastik Körük Lastiği Disk imdatlı körüğü Kampana imdatlı körüğü körüğü SKU EYD 205 06",
+        "Lastik Körük Lastiği Disk imdatlı körüğü Kampana imdatlı körüğü körüğü SKU EYD 205 03"
+      ]
+    },
+    {
+      "category": "EBS Modülatör",
+      "products": 6,
+      "stockProducts": 6,
+      "sampleQueries": [
+        "EBS Modulator 24V 15'Lİ EBS KABLOSU SKU EYD 80 34",
+        "EBS Modulator Ebs Dorse Kontrol Ventili Tamir Takimi SKU 303.08.0001.02",
+        "EBS Modulator EBS PARK BUTONU REKORLU 9710029120 SKU 303.16.0006",
+        "EBS Modulator EBS UZATMA SENSÖRÜ KNORR 4 MT SKU EF-0278324000",
+        "EBS Modulator EBS ANA HAT KABLOSU 12 MT. SKU W4491731200"
+      ]
+    },
+    {
+      "category": "Perno",
+      "products": 4,
+      "stockProducts": 4,
+      "sampleQueries": [
+        "MERCEDES PERNO PİMLİ SKU EYD 301 46",
+        "Perno Klips SKU EYD 209 11",
+        "MERCEDES PERNO STANDART SKU EYD 202 06",
+        "Perno Tapası 40x12 mm SKU 429002"
+      ]
+    },
+    {
+      "category": "Sensör",
+      "products": 4,
+      "stockProducts": 4,
+      "sampleQueries": [
+        "ABS Sensoru SCANI ARKA DÜZ SENSÖR SKU EF-1729793",
+        "ABS Sensoru SENSÖRSÜZ SAC KAPAK SKU CH1089",
+        "ABS Sensoru SB/SN 3 KABLOLU SENSÖR&KAPAK (MN TGA İÇİN) SKU 10-1096",
+        "ABS Sensoru PLASTİK SENSÖR KAPAĞI 2 ÇIKIŞLI SKU 421152"
+      ]
+    },
+    {
+      "category": "Kaliper Tamir Takımı (Elsa)",
+      "products": 4,
+      "stockProducts": 4,
+      "sampleQueries": [
+        "Kaliper Tamir Takımı (Elsa) ELSA2 MEKANİZMALI ALÜMİNYUM KAPAK TK SKU CH2224",
+        "Kaliper Tamir Takımı (Elsa) ELSA2-195-225 PERNO TK TAM TEK KANALLI OEM MCK1298 CH2045",
+        "Kaliper Tamir Takımı (Elsa) ELSA-2 RADIAL RNLT 420 - MN TGA SET SOL SKU FX-2030",
+        "Kaliper Tamir Takımı (Elsa) ELSA2 RADIAL ALÜMİNYUM KAPAK TK SKU 20-2609"
+      ]
+    },
+    {
+      "category": "Kaliper Tamir Takımı (Maxx22)",
+      "products": 4,
+      "stockProducts": 4,
+      "sampleQueries": [
+        "FRENCO MAXX 22 SET MAN TGX TGS TAMİR TAKIMI SKU FX-3050",
+        "Kaliper Tamir Takımı (Maxx22) MAXX 22T SET (LEFT) SKU FX-3095",
+        "Kaliper Tamir Takımı (Maxx22) MAXX22 PİSTON KAPAĞI OEM 640 322 650 4 30-3688",
+        "Kaliper Tamir Takımı (Maxx22) MAXX22 RULMAN TK SKU 30-3684"
+      ]
+    },
+    {
+      "category": "Burç / Muylu",
+      "products": 3,
+      "stockProducts": 3,
+      "sampleQueries": [
+        "SERİN/BPW DORSE MAKARA TAKIMI 45 LİK BURÇLU SKU EYD 301 05-2",
+        "420/200 BURÇSUZ SERTEL E.M SKU EYD 300 03",
+        "Kısa Lastikli Burç SKU 421181"
+      ]
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-import { productSeoUrl } from "./product-seo.js";
+import { productSearchDescription, productSearchName, productSeoUrl } from "./product-seo.js";
 
 const DEFAULT_SITE = "https://www.frenciniz.com";
 const DEFAULT_IMAGE = "/img/site/missing-product.webp";
@@ -51,11 +51,13 @@ function sanitizeSku(product) {
 
 export function buildProductDescription(product, categories = [], options = {}) {
   const category = categoryLabel(categories, product, options.categoryName);
-  const name = cleanText(product?.name, "Fren aksami urunu");
+  const name = productSearchName(product, categories, 140) || cleanText(product?.name, "Fren aksami urunu");
   const brand = cleanText(product?.brand, "Ekersan");
   const compat = Array.isArray(product?.compat) ? product.compat.slice(0, 8).join(", ") : "";
 
+  const searchDescription = productSearchDescription(product, categories, 360);
   return cleanText([
+    searchDescription,
     `${name} - ${category} kategorisinde ${brand} marka agir vasita fren parcasi.`,
     product?.sku ? `Stok kodu: ${product.sku}.` : "",
     product?.oem ? `OEM / muadil kod: ${product.oem}.` : "",
@@ -147,11 +149,13 @@ export function buildProductJsonLd(product, categories = [], options = {}) {
   const ratingValue = Number(product?.rating || 0);
   const reviewCount = Number(product?.reviews || 0);
 
+  const searchName = productSearchName(product, categories, 140);
+
   return stripUndefined({
     ...(options.includeContext === false ? {} : { "@context": "https://schema.org" }),
     "@type": "Product",
     "@id": `${url}#product`,
-    name: cleanText(product?.name, "Frenciniz urunu"),
+    name: cleanText(searchName || product?.name, "Frenciniz urunu"),
     image: [...new Set(images)],
     description: buildProductDescription(product, categories, { categoryName: category }),
     sku: sanitizeSku(product),

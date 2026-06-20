@@ -8,7 +8,8 @@
     "preview": "vite preview",
     "seo:rewrites": "node scripts/sync-seo-rewrites.mjs",
     "seo:audit": "node scripts/audit-google-seo.mjs",
-    "sales:assets": "node scripts/build-sales-machine-assets.mjs"
+    "sales:assets": "node scripts/build-sales-machine-assets.mjs",
+    "seo:product-keywords": "node scripts/build-product-keyword-map.mjs"
   },
   "dependencies": {
     "react": "^18.2.0",

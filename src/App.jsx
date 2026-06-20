@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useMemo, createContext, useContext, useRef } from "react";
-import { productIdFromRoute, productSeoPath, productSeoUrl } from "../shared/product-seo.js";
+import { productIdFromRoute, productSearchDescription, productSearchName, productSearchTitle, productSeoPath, productSeoUrl } from "../shared/product-seo.js";
 import { buildOrganizationJsonLd, buildProductJsonLd } from "../shared/structured-data.js";
 
 // ===== TRANSLATIONS =====
@@ -1453,10 +1453,11 @@ export default function App() {
       const p = products.find(x => x.id === params?.id);
       if (p) {
         const sub = cats.find(c => c.id === p.cat);
-        title = `${p.name} ${p.sku ? "(" + p.sku + ")" : ""} - ${p.brand || "Frenciniz"} | Fren Aksamı`;
+        const seoName = productSearchName(p, cats, 140);
+        title = productSearchTitle(p, cats, 74);
         const compatStr = (p.compat || []).slice(0, 4).join(", ");
         const catName = sub ? sub.name : "fren aksamı";
-        desc = `${p.name} - ${catName} kategorisinde ${p.brand || "Ekersan"} marka. ${p.sku ? "Stok: " + p.sku + ". " : ""}${p.oem ? "OEM: " + p.oem + ". " : ""}${compatStr ? "Aday uyumluluk: " + compatStr + ". " : ""}Kesin uyum için OEM/şase teyidi, aynı gün kargo, 12 taksit. ${p.price}₺. Tel: 0545 608 7008.`.slice(0, 300);
+        desc = productSearchDescription(p, cats, 300);
         canonical = productSeoUrl(SITE_URL, p);
         const productImageList = (hasRealImg(p)
           ? (Array.isArray(p.images) && p.images.length ? p.images : [p.img_lg || p.img])
@@ -1468,7 +1469,7 @@ export default function App() {
 
         // Per-product keyword genişletmesi (long-tail için)
         const kwParts = [
-          p.name, p.brand, p.sku, p.oem, catName,
+          seoName, p.name, p.brand, p.sku, p.oem, catName,
           ...(p.compat || []).slice(0, 6),
           "fren aksamı", "ağır vasıta yedek parça", "kamyon", "tır", "otobüs", "dorse",
           "OEM", "şase ile uyumluluk", "Frenciniz", "orijinal", "eşdeğer"
@@ -1490,7 +1491,7 @@ export default function App() {
               value: p.price,
               items: [{
                 item_id: p.sku || p.id,
-                item_name: p.name,
+                item_name: seoName || p.name,
                 item_brand: p.brand || 'Ekersan',
                 item_category: catName,
                 price: p.price
@@ -1507,9 +1508,9 @@ export default function App() {
         setJsonLd("page-product", {
           "@context": "https://schema.org",
           "@type": "Product",
-          "name": p.name,
+          "name": seoName || p.name,
           "image": productImageList,
-          "description": (p.desc || p.name),
+          "description": desc || p.desc || p.name,
           "sku": p.sku,
           "mpn": p.oem || p.sku,
           "gtin": p.gtin || undefined,
@@ -1576,7 +1577,7 @@ export default function App() {
         const crumbs = [{ name: "Ana Sayfa", url: `${SITE_URL}/` }];
         if (grp) crumbs.push({ name: grp.name, url: `${SITE_URL}/${grp.id}` });
         if (sub) crumbs.push({ name: sub.name, url: `${SITE_URL}/${sub.id}` });
-        crumbs.push({ name: p.name, url: canonical });
+        crumbs.push({ name: seoName || p.name, url: canonical });
         setJsonLd("page-breadcrumb", {
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
@@ -2541,6 +2542,7 @@ function ProductCard({p, eager}) {
   const realImage = hasRealImg(p);
   const catName = productCategoryName(p, lang);
   const quoteHref = productWhatsAppUrl(p, 1);
+  const seoCardName = productSearchName(p, CATS, 112) || p.name;
 
   return (
     <div onClick={() => go("product",{id:p.id})}
@@ -2551,7 +2553,7 @@ function ProductCard({p, eager}) {
       <div style={{height:isMobile?176:212,background:`radial-gradient(circle at 78% 18%, ${accentB}33, transparent 32%), linear-gradient(145deg,#0b1020,#161b29 58%,#222835)`,display:"flex",alignItems:"center",justifyContent:"center",position:"relative",overflow:"hidden"}}>
         <div style={{position:"absolute",inset:0,background:"linear-gradient(135deg,rgba(255,255,255,.14),transparent 35%,rgba(255,96,0,.16))",pointerEvents:"none"}} />
         {realImage ? (
-          <OptImg src={prodImg(p)} alt={translateName(p.name,lang)} eager={eager} style={{maxWidth:"82%",maxHeight:"82%",objectFit:"contain",filter:"drop-shadow(0 18px 24px rgba(0,0,0,.38))",transition:"transform .25s ease"}} />
+          <OptImg src={prodImg(p)} alt={lang==="en" ? translateName(p.name,lang) : seoCardName} eager={eager} style={{maxWidth:"82%",maxHeight:"82%",objectFit:"contain",filter:"drop-shadow(0 18px 24px rgba(0,0,0,.38))",transition:"transform .25s ease"}} />
         ) : (
           <RepresentativeProductVisual p={p} lang={lang} />
         )}
@@ -2570,7 +2572,7 @@ function ProductCard({p, eager}) {
           <div style={{fontSize:11,color:accentA,fontWeight:900,textTransform:"uppercase",letterSpacing:.2}}>{p.brand || "Ekersan"}</div>
           <div style={{fontSize:10,color:"#64748b",fontWeight:700,background:"#f1f5f9",padding:"3px 7px",borderRadius:4,whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis",maxWidth:isMobile?72:120}}>{catName}</div>
         </div>
-        <div style={{fontSize:isMobile?13:14,fontWeight:800,color:"#111827",lineHeight:1.32,minHeight:isMobile?34:38,overflowWrap:"anywhere"}}>{translateName(p.name,lang)}</div>
+        <div style={{fontSize:isMobile?13:14,fontWeight:800,color:"#111827",lineHeight:1.32,minHeight:isMobile?34:38,overflowWrap:"anywhere"}}>{lang==="en" ? translateName(p.name,lang) : seoCardName}</div>
         <div style={{display:"flex",flexWrap:"wrap",alignItems:"center",gap:5,fontSize:11,color:"#64748b"}}>
           <span style={{fontWeight:900,color:"#111827",background:"#f8fafc",border:"1px solid #e2e8f0",borderRadius:5,padding:"4px 7px",lineHeight:1}}>SKU {p.sku}</span>
           {p.oem ? (
@@ -3232,6 +3234,7 @@ function ProductDetailPage() {
   const related = productList.filter(x => x.cat === p.cat && x.id !== p.id).slice(0,4);
   const isFav = favs.includes(p.id);
   const whatsappQuoteHref = productWhatsAppUrl(p, qty);
+  const seoDisplayName = productSearchName(p, CATS, 140) || p.name;
   const detailDesc = translateName(prodDesc(p,lang),lang);
   const compatPreview = Array.isArray(p.compat) ? p.compat.filter(Boolean).slice(0, 7) : [];
   const specs = p.specs && typeof p.specs === "object" ? p.specs : {};
@@ -3245,7 +3248,7 @@ function ProductDetailPage() {
   return (
     <div style={{maxWidth:1200,margin:"0 auto",padding:isMobile?"16px 12px 104px":"20px"}}>
       <div style={{fontSize:13,color:"#999",marginBottom:20}}>
-        <span style={{cursor:"pointer"}} onClick={() => go("home")}>{t("home")}</span> / {(() => { const sub = CATS.find(c=>c.id===p.cat); const grp = sub?.parent ? CATS.find(c=>c.id===sub.parent) : null; return <>{grp && <><span style={{cursor:"pointer"}} onClick={() => go("products",{cat:grp.id})}>{translateCat(grp,lang)}</span> / </>}<span style={{cursor:"pointer"}} onClick={() => go("products",{cat:p.cat})}>{sub ? translateCat(sub,lang) : p.cat}</span></>; })()} / <span style={{color:"#555"}}>{translateName(p.name,lang)}</span>
+        <span style={{cursor:"pointer"}} onClick={() => go("home")}>{t("home")}</span> / {(() => { const sub = CATS.find(c=>c.id===p.cat); const grp = sub?.parent ? CATS.find(c=>c.id===sub.parent) : null; return <>{grp && <><span style={{cursor:"pointer"}} onClick={() => go("products",{cat:grp.id})}>{translateCat(grp,lang)}</span> / </>}<span style={{cursor:"pointer"}} onClick={() => go("products",{cat:p.cat})}>{sub ? translateCat(sub,lang) : p.cat}</span></>; })()} / <span style={{color:"#555"}}>{lang==="en" ? translateName(p.name,lang) : seoDisplayName}</span>
       </div>
       <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr",gap:isMobile?20:32,marginBottom:40}}>
         {/* Image Gallery */}
@@ -3260,7 +3263,7 @@ function ProductDetailPage() {
         )}
         <div>
           <div style={{fontSize:13,color:"#ff6000",fontWeight:600,marginBottom:6}}>{p.brand}</div>
-          <h1 style={{fontSize:24,fontWeight:700,marginBottom:8}}>{translateName(p.name,lang)}</h1>
+          <h1 style={{fontSize:24,fontWeight:700,marginBottom:8}}>{lang==="en" ? translateName(p.name,lang) : seoDisplayName}</h1>
           <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
             <span style={{color:"#f5a623"}}>★ {p.rating || 4.5}</span>
             <span style={{color:"#999",fontSize:13}}>{p.reviews || 0} değerlendirme</span>

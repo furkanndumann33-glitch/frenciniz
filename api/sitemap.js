@@ -3,7 +3,14 @@ import fs from "fs";
 import path from "path";
 import { LANDING_PAGES, getLandingBySlug } from "./_lib/seo-landing.js";
 import { renderLanding, renderLandingIndex } from "./_lib/landing-render.js";
-import { productIdFromRoute, productSeoUrl } from "../shared/product-seo.js";
+import {
+  productIdFromRoute,
+  productPrimaryCode,
+  productSearchDescription,
+  productSearchName,
+  productSearchTitle,
+  productSeoUrl,
+} from "../shared/product-seo.js";
 
 const SITE = "https://www.frenciniz.com";
 const GOOGLE_MOTOR_VEHICLE_BRAKING_CATEGORY =
@@ -78,7 +85,7 @@ function cleanSeoText(value) {
 }
 
 function shortCode(value, max = 38) {
-  const first = cleanSeoText(value)
+  const first = productPrimaryCode({ oem: value }) || cleanSeoText(value)
     .split(/[,;/|]+|\s+-\s+/)
     .map(part => part.trim())
     .find(Boolean) || "";
@@ -141,17 +148,11 @@ function salesPriorityLabel(product) {
 }
 
 function buildSeoProductTitle(product, categories = [], max = 74) {
-  const productName = merchantSafeProductText(product?.name || "Agir Vasita Fren Parcasi");
-  const category = categoryNameForProduct(product, categories);
-  const code = shortCode(product?.oem || product?.sku || product?.id);
-  const parts = [productName, category, code ? `OEM/SKU ${code}` : "", "Frenciniz"]
-    .filter(Boolean)
-    .filter((value, index, arr) => arr.findIndex(item => item.toLowerCase() === value.toLowerCase()) === index);
-  return compactText(parts.join(" | "), max);
+  return productSearchTitle(product, categories, max);
 }
 
 function buildSeoProductDescription(product, categories = [], max = 5000) {
-  const productName = merchantSafeProductText(product?.name || "Agir vasita fren parcasi");
+  const productName = productSearchName(product, categories, 140) || merchantSafeProductText(product?.name || "Agir vasita fren parcasi");
   const category = categoryNameForProduct(product, categories);
   const brand = merchantSafeProductText(product?.brand || "Ekersan");
   const sku = cleanSeoText(product?.sku);
@@ -159,6 +160,7 @@ function buildSeoProductDescription(product, categories = [], max = 5000) {
   const vehicles = vehiclePhrase(product);
   const stock = Number(product?.stock || 0);
   const pieces = [
+    productSearchDescription(product, categories, 260),
     `${productName}, ${category} kategorisinde ${brand} marka agir vasita fren parcasi.`,
     sku ? `Stok kodu: ${sku}.` : "",
     oem ? `OEM / muadil kod: ${oem}.` : "",
@@ -238,10 +240,11 @@ function renderProductHtml(product) {
 
 function productJsonLdSeo(product, canonical, image, categories = []) {
   const price = Number(product.price || 0);
+  const seoName = productSearchName(product, categories, 140);
   return {
     "@context": "https://schema.org",
     "@type": "Product",
-    name: product.name,
+    name: seoName || product.name,
     image: [image],
     description: buildSeoProductDescription(product, categories, 500),
     sku: product.sku || String(product.id),
@@ -274,7 +277,7 @@ function renderSeoProductHtml(product, categories = []) {
   let html = readIndexHtml();
 
   if (!html) {
-    return `<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${xmlEscape(title)}</title><meta name="description" content="${xmlEscape(description)}"><link rel="canonical" href="${xmlEscape(canonical)}">${jsonLd}</head><body><h1>${xmlEscape(product.name)}</h1><p>${xmlEscape(description)}</p><a href="${xmlEscape(canonical)}">Urunu ac</a></body></html>`;
+    return `<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${xmlEscape(title)}</title><meta name="description" content="${xmlEscape(description)}"><link rel="canonical" href="${xmlEscape(canonical)}">${jsonLd}</head><body><h1>${xmlEscape(productSearchName(product, categories, 140) || product.name)}</h1><p>${xmlEscape(description)}</p><a href="${xmlEscape(canonical)}">Urunu ac</a></body></html>`;
   }
 
   html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${xmlEscape(title)}</title>`);
@@ -480,7 +483,7 @@ function buildMerchantFeed(products, categories) {
     const catName = merchantSafeProductText(sub ? sub.name : "Fren Aksamı");
     const grp = sub?.parent ? categories.find(c => c.id === sub.parent) : null;
     const fullCat = grp ? `${grp.name} > ${catName}` : catName;
-    const productName = merchantSafeProductText(p.name);
+    const productName = merchantSafeProductText(productSearchName(p, categories, 150) || p.name);
     const productDesc = merchantSafeProductText(p.desc || "");
 
     const hasImg = isRealProductImage(p.img);
@@ -595,7 +598,7 @@ function buildMetaCatalogFeed(products, categories) {
     const catName = merchantSafeProductText(sub ? sub.name : "Fren Aksami");
     const grp = sub?.parent ? categories.find(c => c.id === sub.parent) : null;
     const fullCat = grp ? `${grp.name} > ${catName}` : catName;
-    const productName = merchantSafeProductText(p.name);
+    const productName = merchantSafeProductText(productSearchName(p, categories, 150) || p.name);
     const price = Number(p.price || 0);
     const stock = Number(p.stock || 0);
     const hasImg = isRealProductImage(p.img);
@@ -758,7 +761,7 @@ export default async function handler(req, res) {
         `<lastmod>${today}</lastmod>` +
         `<changefreq>weekly</changefreq>` +
         `<priority>0.7</priority>` +
-        (imgUrl ? `<image:image><image:loc>${xmlEscape(imgUrl)}</image:loc><image:title>${xmlEscape(p.name)}</image:title></image:image>` : "") +
+        (imgUrl ? `<image:image><image:loc>${xmlEscape(imgUrl)}</image:loc><image:title>${xmlEscape(productSearchName(p, categories, 140) || p.name)}</image:title></image:image>` : "") +
         `</url>`
       );
     }
