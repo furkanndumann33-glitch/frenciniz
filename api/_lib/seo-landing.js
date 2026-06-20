@@ -902,7 +902,7 @@ const VEHICLE_LANDING_GROUPS = [
 
 const EXACT_INTENT_PARTS = {
   "balata": {
-    label: "Balata",
+    label: "Fren Balatası",
     part: "fren balatası",
     cats: ["fren-balatasi", "fren-pabucu", "percin"],
     terms: ["balata", "fren balatasi", "pabuc", "pabuç"],
