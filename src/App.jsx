@@ -2039,7 +2039,6 @@ export default function App() {
         )}
 
         {!isAdminPage && page !== "product" && <MobileBottomBar />}
-        {!isAdminPage && !isMobile && <DesktopSalesDock />}
         {!isAdminPage && <ProductLeadNudge />}
 
         {/* FOOTER */}
@@ -2147,34 +2146,6 @@ function MobileBottomBar() {
         {cartCount > 0 && <span style={{position:"absolute",top:-6,right:-4,minWidth:20,height:20,padding:"0 5px",borderRadius:999,background:"#ff6000",color:"#fff",fontSize:11,fontWeight:950,display:"flex",alignItems:"center",justifyContent:"center",border:"2px solid #070a12"}}>{cartCount}</span>}
       </button>
     </nav>
-  );
-}
-
-function DesktopSalesDock() {
-  const {go, lang} = use$();
-  const href = generalWhatsAppUrl("masaustu sabit teklif bari");
-  return (
-    <aside aria-label={lang==="en"?"Fast quote actions":"Hizli teklif aksiyonlari"} style={{position:"fixed",left:"50%",bottom:18,transform:"translateX(-50%)",zIndex:996,width:"min(920px, calc(100vw - 40px))",borderRadius:8,background:"linear-gradient(135deg,#07111f,#111827 56%,#1f2937)",border:"1px solid rgba(255,255,255,.16)",boxShadow:"0 22px 55px rgba(0,0,0,.35)",padding:"10px 12px",display:"grid",gridTemplateColumns:"minmax(0,1fr) auto",gap:12,alignItems:"center"}}>
-      <div style={{minWidth:0,color:"#fff"}}>
-        <div style={{fontSize:12,fontWeight:950,color:"#facc15",textTransform:"uppercase",letterSpacing:.3}}>Satis destek hatti</div>
-        <div style={{fontSize:14,fontWeight:850,lineHeight:1.35,whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}>
-          OEM, sase veya eski parca fotografini gonderin; dogru parcayi ve fiyati hizli teyit edelim.
-        </div>
-      </div>
-      <div style={{display:"flex",gap:8,alignItems:"center"}}>
-        <a href={href} target="_blank" rel="noopener noreferrer" data-lead-source="desktop_sales_dock" onClick={() => { recordLeadEvent("whatsapp", { source:"desktop_sales_dock", href }); metaTrackCustom("WhatsAppLead", { source: "desktop_sales_dock" }); }}
-          style={{minHeight:42,padding:"0 14px",borderRadius:7,background:"linear-gradient(135deg,#16a34a,#25D366)",color:"#062813",fontSize:13,fontWeight:950,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center",whiteSpace:"nowrap"}}>
-          WhatsApp teklif
-        </a>
-        <a href="tel:+905456087008" onClick={() => { recordLeadEvent("phone", { source:"desktop_sales_dock_phone", href:"tel:+905456087008" }); metaTrackCustom("PhoneLead", { source: "desktop_sales_dock" }); }}
-          style={{minHeight:42,padding:"0 14px",borderRadius:7,background:"linear-gradient(135deg,#ff6000,#facc15)",color:"#111827",fontSize:13,fontWeight:950,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center",whiteSpace:"nowrap"}}>
-          Hemen ara
-        </a>
-        <button onClick={() => go("products")} style={{minHeight:42,padding:"0 14px",borderRadius:7,border:"1px solid rgba(255,255,255,.22)",background:"rgba(255,255,255,.08)",color:"#fff",fontSize:13,fontWeight:900,cursor:"pointer",whiteSpace:"nowrap"}}>
-          Urun ara
-        </button>
-      </div>
-    </aside>
   );
 }
 
@@ -3290,9 +3261,6 @@ function ProductDetailPage() {
             </div>
           </div>
           <div style={{fontSize:14,color:"#666",lineHeight:1.7,marginBottom:16,whiteSpace:"pre-line"}}>{linkifyContacts(detailDesc)}</div>
-          <div style={{marginBottom:16}}>
-            <QuickQuoteBox source="product_detail_quote_form" product={p} />
-          </div>
           <div style={{padding:"16px 20px",background:"#f9f9f9",borderRadius:8,marginBottom:20,border:"1px solid #eee"}}>
             <div style={{display:"flex",alignItems:"baseline",gap:10}}>
               <span style={{fontSize:32,fontWeight:800}}>{fp(p.price)}</span>
@@ -3300,44 +3268,6 @@ function ProductDetailPage() {
               <span style={{fontSize:12,color:"#999"}}>+ KDV</span>
             </div>
             <div style={{marginTop:8,fontSize:13,color:p.stock?"#4caf50":"#e53935",fontWeight:600}}>{p.stock ? t("stockXItems").replace("{0}",p.stock) : t("outOfStockFull")}</div>
-          </div>
-          <div style={{padding:"15px 16px",background:"linear-gradient(135deg,#fff7ed,#fff)",border:"1px solid #fed7aa",borderRadius:8,marginBottom:16,boxShadow:"0 12px 28px rgba(249,115,22,.10)"}}>
-            <div style={{display:"flex",gap:12,justifyContent:"space-between",alignItems:isMobile?"stretch":"center",flexDirection:isMobile?"column":"row"}}>
-              <div style={{minWidth:0}}>
-                <div style={{fontSize:15,fontWeight:950,color:"#111827",marginBottom:5}}>Bu parca araciniza uyar mi? Hemen teyit edelim</div>
-                <div style={{fontSize:13,color:"#6b7280",lineHeight:1.55}}>OEM kodu, sase no veya eski parca fotografini gonderin; stok, fiyat ve uyumlulugu siparisten once netlestirelim.</div>
-                <div style={{display:"flex",flexWrap:"wrap",gap:6,marginTop:10}}>
-                  {["14:00'a kadar ayni gun kargo","3000 TL uzeri ucretsiz kargo","14 gun iade"].map(label => (
-                    <span key={label} style={{fontSize:11,fontWeight:850,color:"#9a3412",background:"#ffedd5",border:"1px solid #fed7aa",borderRadius:5,padding:"5px 7px"}}>{label}</span>
-                  ))}
-                </div>
-              </div>
-              <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr 1fr":"1fr",gap:8,minWidth:isMobile?"100%":170}}>
-                <a href={whatsappQuoteHref} target="_blank" rel="noopener noreferrer" onClick={() => metaTrack("Contact", metaProductPayload(p, qty, p.cat))}
-                  style={{minHeight:42,padding:"10px 12px",background:"#25D366",color:"#062813",borderRadius:6,fontSize:13,fontWeight:950,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center",textAlign:"center"}}>
-                  Sase/OEM gonder, fiyat al
-                </a>
-                <a href="tel:+905456087008" onClick={() => metaTrackCustom("PhoneLead", { source: "product_detail_fast_box", product_id: p.id, sku: p.sku })}
-                  style={{minHeight:42,padding:"10px 12px",background:"#111827",color:"#fff",borderRadius:6,fontSize:13,fontWeight:950,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center",textAlign:"center"}}>
-                  Hemen ara, stok sor
-                </a>
-              </div>
-            </div>
-          </div>
-          <div style={{padding:"15px 16px",background:"linear-gradient(135deg,#07111f,#172033)",borderRadius:8,marginBottom:16,border:"1px solid rgba(255,96,0,.25)",color:"#fff",boxShadow:"0 14px 34px rgba(15,23,42,.12)"}}>
-            <div style={{display:"flex",justifyContent:"space-between",gap:12,alignItems:isMobile?"flex-start":"center",flexDirection:isMobile?"column":"row"}}>
-              <div style={{minWidth:0}}>
-                <div style={{fontSize:14,fontWeight:950,marginBottom:6}}>Yanlis parca riski almadan siparis verin</div>
-                <div style={{fontSize:12,color:"#cbd5e1",lineHeight:1.55}}>Kod, sase veya eski parca fotografi ile kontrol edip dogru urunu teyit edelim.</div>
-                <div style={{display:"flex",flexWrap:"wrap",gap:6,marginTop:10}}>
-                  {["Arac modeli","Sase no","Eski parca fotografi"].map(label => <span key={label} style={{fontSize:11,fontWeight:800,color:"#facc15",background:"rgba(250,204,21,.12)",border:"1px solid rgba(250,204,21,.22)",borderRadius:5,padding:"5px 7px"}}>{label}</span>)}
-                </div>
-              </div>
-              <a href={whatsappQuoteHref} target="_blank" rel="noopener noreferrer" onClick={() => metaTrack("Contact", metaProductPayload(p, qty, p.cat))}
-                style={{minHeight:42,padding:"11px 14px",background:"#25D366",color:"#07111f",borderRadius:6,fontSize:13,fontWeight:950,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center",whiteSpace:"nowrap"}}>
-                WhatsApp'tan teyit al
-              </a>
-            </div>
           </div>
           <div style={{display:"flex",gap:10,flexWrap:"wrap",marginBottom:p.stock?20:10}}>
             <div style={{display:"flex",border:"1px solid #ddd",borderRadius:6,overflow:"hidden"}}>
