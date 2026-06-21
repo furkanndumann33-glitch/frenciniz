@@ -740,7 +740,11 @@ function extractBijonLengthMm(product) {
 
 function cleanOem(oem) {
   const raw = String(oem || "").trim();
-  if (!raw || /^fren\s/i.test(raw)) return "";
+  if (!raw) return "";
+  const normalized = normalize(raw).replace(/\s+/g, " ").trim();
+  if (/^(FREN\s*)?(DISK|DISKI|KAMPANA|BALATA|BIJON|PORYA|CIRCIR|KORUK|YAY|PABUC|PARCA)$/i.test(normalized)) {
+    return "";
+  }
   return raw.replace(/\s+/g, " ");
 }
 
@@ -1103,7 +1107,7 @@ function needsSpecificTitleFallback(name) {
   const text = String(name || "").trim();
   if (!text) return false;
   const normalized = normalize(text);
-  return text.length < 8 || /^(bijon|porya|fren diski|fren pabucu|somun|civata)$/i.test(normalized);
+  return text.length < 8 || /^(BIJON|PORYA|FREN DISKI|FREN KAMPANASI|KAMPANA|FREN BALATASI|DISK BALATASI|BALATA|FREN PABUCU|FREN CIRCIRI|OTOMATIK FREN CIRCIRI|MEKANIK FREN CIRCIRI|FREN KORUGU|SUSPANSIYON KORUGU|KALIPER|KALIPER TAMIR TAKIMI|SOMUN|CIVATA)$/i.test(normalized);
 }
 
 function applySkuTitleFallback(product, name) {
@@ -1151,6 +1155,10 @@ function canUseTitleRuleSuffix(product, suffix, compat) {
 
 function makeProductName(product, compat, detection = {}) {
   const currentName = sourceName(product);
+  const canonicalBase = String(currentName || product.name || "").replace(/\s+/g, " ").trim();
+  const mappedCanonicalGeneric = titleCaseBase(canonicalBase);
+  const canonicalFinalName = applySkuTitleFallback(product, mappedCanonicalGeneric || canonicalBase);
+  return canonicalFinalName.length > 90 ? canonicalFinalName.slice(0, 90).trim() : canonicalFinalName;
   const text = sourceText(product);
   const titleRule = detection.confidence === "verified_oem" ? TITLE_RULES.find((rule) => rule.regex.test(text)) : null;
   const compactSuffix = compactTitleSuffix(compat);
@@ -1321,6 +1329,16 @@ function makeDescription(product, compat, notes, confidence) {
   const priority = PRIORITY_GROUPS.has(group);
   const modelText = compat.slice(0, priority ? 12 : 8).join(", ");
   const bijonLengthMm = extractBijonLengthMm(product);
+  const productCode = String(product.sku || "").replace(/\s+/g, " ").trim();
+  const introLine = `${baseName} ${label} ürünüdür.`;
+  const skuLine = productCode ? `Stok kodu: ${productCode}.` : "";
+  const canonicalDetailLine = bijonLengthMm ? `Bijon uzunluğu: ${bijonLengthMm} mm.` : "";
+  const canonicalOemLine = oem
+    ? `OEM / muadil numarası: ${oem}.`
+    : "OEM / muadil numarası: Tedarikçi kaydında net OEM numarası yok; ürün kodu veya eski parça numarasıyla teyit önerilir.";
+  const compatLine = modelText ? `Uyumlu araçlar / sistemler: ${modelText}.` : "";
+  const canonicalSafetyLine = "Kesin uyumluluk araç şasesi, model yılı, aks tipi, ölçü ve mevcut parça numarasına göre değişebilir; sipariş öncesi OEM numarası veya eski parça fotoğrafı ile Frenciniz'den teyit alın.";
+  return [introLine, skuLine, canonicalDetailLine, canonicalOemLine, compatLine, canonicalSafetyLine].filter(Boolean).join("\n");
 
   const confidenceText = {
     verified_oem: "OEM/muadil referans sinyaliyle eslesen aday uyumluluklar",
@@ -1361,7 +1379,8 @@ export function enrichProducts(products, categories, options = {}) {
     const detection = detectCompatibilityStrict(product);
     const { compat, notes, confidence, basis } = detection;
     const name = makeProductName(product, compat, detection);
-    const desc = makeDescription({ ...product, name }, compat, notes, confidence);
+    const oem = cleanOem(product.oem);
+    const desc = makeDescription({ ...product, name, oem }, compat, notes, confidence);
     const bijonLengthMm = extractBijonLengthMm(product);
     const nextSpecs = { ...(product.specs || {}) };
     if (bijonLengthMm) {
@@ -1385,6 +1404,7 @@ export function enrichProducts(products, categories, options = {}) {
     const nextNotes = notes.length ? notes : undefined;
     const before = JSON.stringify({
       name: product.name,
+      oem: product.oem,
       desc: product.desc,
       compat: product.compat,
       compat_notes: product.compat_notes,
@@ -1395,6 +1415,7 @@ export function enrichProducts(products, categories, options = {}) {
     });
     const after = JSON.stringify({
       name,
+      oem,
       desc,
       compat,
       compat_notes: nextNotes,
@@ -1404,6 +1425,7 @@ export function enrichProducts(products, categories, options = {}) {
       specs: nextSpecs,
     });
     product.name = name;
+    product.oem = oem;
     product.desc = desc;
     product.specs = nextSpecs;
     product.compat = compat;

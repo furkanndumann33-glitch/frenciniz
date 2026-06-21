@@ -212,12 +212,21 @@ export function barcodeFor(product, index) {
 }
 
 function imageList(product) {
+  const siteBase = String(process.env.PUBLIC_SITE_URL || process.env.SITE_URL || "https://www.frenciniz.com").replace(/\/+$/, "");
+  const normalizeUrl = (value) => {
+    const url = String(value || "").trim();
+    if (!url) return "";
+    if (/^https:\/\//i.test(url)) return url;
+    if (url.startsWith("/")) return `${siteBase}${url}`;
+    return "";
+  };
   const raw = [
     ...(Array.isArray(product.images) ? product.images : []),
     product.img_lg,
     product.img,
   ].filter(Boolean);
   return Array.from(new Set(raw))
+    .map(normalizeUrl)
     .filter((url) => /^https:\/\//i.test(String(url)))
     .slice(0, 8)
     .map((url) => ({ url: String(url) }));
@@ -258,6 +267,24 @@ function listPriceFor(salePrice, product, settings) {
   const siteOld = toNumber(product.old || product.listPrice || product.piyasa_fiyati, 0);
   const markup = toNumber(settings.listPriceMarkup, 10);
   return money(Math.max(Math.ceil(salePrice * (1 + markup / 100)), Math.ceil(siteOld), Math.ceil(salePrice) + 1));
+}
+
+function marketplaceTitleFor(product) {
+  const title = cleanText(product.name || product.title || product.sku || product.stockCode, 100);
+  return title || cleanText(product.sku || product.id || "", 100);
+}
+
+function marketplaceDescriptionFor(product, title) {
+  const existing = cleanText(product.desc || product.description, 30000);
+  if (existing) return existing;
+  const compat = Array.isArray(product.compat) ? product.compat.filter(Boolean).slice(0, 12).join(", ") : "";
+  return cleanText([
+    `${title} ağır vasıta fren parçasıdır.`,
+    product.sku ? `Stok kodu: ${product.sku}.` : "",
+    product.oem ? `OEM / muadil numarası: ${product.oem}.` : "OEM / muadil numarası: Tedarikçi kaydında net OEM numarası yok; ürün kodu veya eski parça numarasıyla teyit önerilir.",
+    compat ? `Uyumlu araçlar / sistemler: ${compat}.` : "",
+    "Kesin uyumluluk araç şasesi, model yılı, aks tipi, ölçü ve mevcut parça numarasına göre değişebilir; sipariş öncesi OEM numarası veya eski parça fotoğrafı ile Frenciniz'den teyit alın.",
+  ].filter(Boolean).join("\n"), 30000);
 }
 
 export function buildStockPricePayload(products, settings, options = {}) {
@@ -370,13 +397,8 @@ export function buildProductV2Payload(products, settings, options = {}) {
       continue;
     }
 
-    const title = cleanText(`${product.name || ""} ${product.sku || ""}`.trim(), 100);
-    const description = cleanText([
-      product.desc || product.description || product.name || title,
-      product.sku ? `Stok kodu: ${product.sku}` : "",
-      product.oem ? `OEM / muadil referans: ${product.oem}` : "",
-      "Siparis oncesi OEM, sase veya eski parca kodu ile uyumluluk teyidi onerilir.",
-    ].filter(Boolean).join("\n"), 30000);
+    const title = marketplaceTitleFor(product);
+    const description = marketplaceDescriptionFor(product, title);
 
     const item = {
       barcode,
