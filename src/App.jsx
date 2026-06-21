@@ -1233,7 +1233,7 @@ export default function App() {
       return [...prev, {...product, qty}];
     });
     setToast(product.name);
-    setTimeout(() => setToast(null), 2000);
+    setTimeout(() => setToast(null), 4500);
     // Google Ads / GA4 ecommerce event
     try {
       if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
@@ -1886,7 +1886,15 @@ export default function App() {
         `}</style>
 
         {/* Toast */}
-        {toast && <div style={{position:"fixed",top:80,right:20,zIndex:9999,background:"#4caf50",color:"#fff",padding:"12px 20px",borderRadius:8,fontSize:14,fontWeight:500,boxShadow:"0 4px 12px rgba(0,0,0,.15)",animation:"slideUp .3s"}}>✓ {toast} — {t("addedToCart")}</div>}
+        {toast && (
+          <div style={{position:"fixed",top:isMobile?72:80,right:isMobile?12:20,left:isMobile?12:"auto",zIndex:9999,background:"#0f172a",color:"#fff",padding:isMobile?"12px":"13px 14px",borderRadius:8,fontSize:13,fontWeight:700,boxShadow:"0 16px 38px rgba(0,0,0,.24)",animation:"slideUp .3s",maxWidth:isMobile?"none":420,border:"1px solid rgba(255,255,255,.12)"}}>
+            <div style={{lineHeight:1.35,marginBottom:10,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:isMobile?"normal":"nowrap"}}>✓ {toast} — {t("addedToCart")}</div>
+            <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}}>
+              <button onClick={() => go("cart")} style={{minHeight:38,border:"1px solid rgba(255,255,255,.18)",borderRadius:6,background:"rgba(255,255,255,.08)",color:"#fff",fontSize:12,fontWeight:950,cursor:"pointer"}}>Sepete git</button>
+              <button onClick={() => go("checkout")} style={{minHeight:38,border:"none",borderRadius:6,background:"#ff6000",color:"#fff",fontSize:12,fontWeight:950,cursor:"pointer"}}>Ödemeye geç</button>
+            </div>
+          </div>
+        )}
 
         {/* WhatsApp Button */}
         <a href={generalWhatsAppUrl("site genel destek")} target="_blank" rel="noopener noreferrer" onClick={() => metaTrackCustom("WhatsAppLead", { source: "floating" })}
@@ -3214,7 +3222,7 @@ function ProductDetailPage() {
     if (!p.stock) return;
     addToCart(p, qty);
     metaTrackCustom("BuyNowClick", { source: "product_detail", product_id: p.id, sku: p.sku, value: (p.price || 0) * qty });
-    go("cart");
+    go("checkout");
   };
 
   return (
@@ -3275,12 +3283,12 @@ function ProductDetailPage() {
               <span style={{width:48,display:"flex",alignItems:"center",justifyContent:"center",fontWeight:600}}>{qty}</span>
               <button onClick={() => setQty(qty+1)} style={{width:40,height:44,background:"#f5f5f5",border:"none",fontSize:18,color:"#555"}}>+</button>
             </div>
-            <button onClick={() => p.stock && addToCart(p, qty)} style={{flex:"1 1 150px",padding:"12px",background:p.stock?"#ff6000":"#eee",color:p.stock?"#fff":"#999",border:"none",borderRadius:6,fontSize:16,fontWeight:700,cursor:p.stock?"pointer":"default"}}>
+            <button onClick={() => p.stock && addToCart(p, qty)} style={{flex:"1 1 130px",padding:"12px",background:p.stock?"#fff":"#eee",color:p.stock?"#111827":"#999",border:p.stock?"1px solid #d1d5db":"none",borderRadius:6,fontSize:15,fontWeight:800,cursor:p.stock?"pointer":"default"}}>
               {p.stock ? t("addToCart") : t("outOfStockFull")}
             </button>
             {p.stock && (
-              <button onClick={checkoutNow} style={{flex:"1 1 120px",padding:"12px",background:"#111827",color:"#fff",border:"none",borderRadius:6,fontSize:16,fontWeight:900,cursor:"pointer"}}>
-                Hemen Al
+              <button onClick={checkoutNow} style={{flex:"1.25 1 170px",padding:"12px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:16,fontWeight:950,cursor:"pointer",boxShadow:"0 10px 24px rgba(255,96,0,.24)"}}>
+                Hemen Al - Ödemeye Geç
               </button>
             )}
             <button onClick={() => toggleFav(p.id)} style={{width:48,height:48,border:"1px solid #eee",borderRadius:6,background:"#fff",fontSize:22,color:isFav?"#ff6000":"#ccc",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer"}}>
@@ -3365,8 +3373,8 @@ function ProductDetailPage() {
             style={{minHeight:48,borderRadius:8,background:"linear-gradient(135deg,#ff6000,#facc15)",color:"#111827",textDecoration:"none",fontSize:12,fontWeight:950,display:"flex",alignItems:"center",justifyContent:"center",textAlign:"center",padding:"0 8px"}}>
             Ara
           </a>
-          <button onClick={checkoutNow} disabled={!p.stock} style={{minHeight:48,borderRadius:8,border:"1px solid rgba(255,255,255,.14)",background:p.stock?"linear-gradient(135deg,#111827,#263246)":"#1f2937",color:p.stock?"#fff":"#9ca3af",fontSize:12,fontWeight:950,cursor:p.stock?"pointer":"default",padding:"0 8px"}}>
-            {p.stock ? "Hemen Al" : "Tukendi"}
+          <button onClick={checkoutNow} disabled={!p.stock} style={{minHeight:48,borderRadius:8,border:"1px solid rgba(255,255,255,.14)",background:p.stock?"linear-gradient(135deg,#ff6000,#f97316)":"#1f2937",color:p.stock?"#fff":"#9ca3af",fontSize:12,fontWeight:950,cursor:p.stock?"pointer":"default",padding:"0 8px"}}>
+            {p.stock ? "Öde" : "Tukendi"}
           </button>
         </nav>
       )}
@@ -3492,9 +3500,10 @@ function CartPage() {
             <a href={whatsappCartHref} target="_blank" rel="noopener noreferrer" data-lead-source="cart_whatsapp" data-lead-value={cartTotal + ship - discount} data-lead-items={cart.length}
               onClick={() => recordLeadEvent("whatsapp", { source:"cart_whatsapp", href:whatsappCartHref, value:cartTotal + ship - discount, items:cart.length })}
               style={{width:"100%",padding:"14px",background:"#25D366",color:"#062813",border:"none",borderRadius:6,fontSize:15,fontWeight:950,cursor:"pointer",marginTop:16,textDecoration:"none",display:"flex",alignItems:"center",justifyContent:"center",textAlign:"center",minHeight:46}}>
-              WhatsApp ile Siparisi Tamamla
+              WhatsApp ile 30 Saniyede Sipariş Ver
             </a>
-            <button onClick={() => go("checkout")} style={{width:"100%",padding:"14px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:16,fontWeight:700,cursor:"pointer",marginTop:16}}>Siparişi Tamamla</button>
+            <button onClick={() => go("checkout")} style={{width:"100%",padding:"14px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:16,fontWeight:950,cursor:"pointer",marginTop:10,boxShadow:"0 10px 24px rgba(255,96,0,.18)"}}>Kartla Güvenli Ödeme</button>
+            <div style={{fontSize:11,color:"#6b7280",lineHeight:1.45,textAlign:"center",marginTop:9}}>Üyelik zorunlu değil. Kart bilgisi PayTR güvenli sayfasında girilir.</div>
           </div>
         </div>
       )}
@@ -3525,6 +3534,7 @@ function CheckoutPage() {
     phone: user?.phone || defAddr?.phone || "",
     address: defAddr ? `${defAddr.address||""}${defAddr.city?` — ${defAddr.city}`:""}` : "",
   });
+  const [nameInput, setNameInput] = useState(`${defFirst} ${defLast}`.trim());
   // Seçilen adres değişirse form'u güncelle
   const [selectedAddrId, setSelectedAddrId] = useState(defAddr?.id || null);
   useEffect(() => {
@@ -3538,8 +3548,29 @@ function CheckoutPage() {
         phone: addr.phone || f.phone,
         address: `${addr.address||""}${addr.city?` — ${addr.city}`:""}`,
       }));
+      setNameInput((addr.name || user?.name || "").trim());
     }
   }, [selectedAddrId]);
+  const updateFullName = (value) => {
+    setNameInput(value);
+    const parts = String(value || "").trim().split(/\s+/).filter(Boolean);
+    setShipForm(f => ({
+      ...f,
+      first: parts[0] || "",
+      last: parts.slice(1).join(" "),
+    }));
+  };
+  const continueToPayment = () => {
+    setPayError("");
+    if (!ship_form.first || !ship_form.phone || !ship_form.address) {
+      return setPayError("Ad soyad, telefon ve adresi tamamlayın.");
+    }
+    if (!ship_form.email) {
+      return setPayError("PayTR ödeme bağlantısı için e-posta gerekiyor.");
+    }
+    setStep(2);
+    try { window.scrollTo({top:0, behavior:"smooth"}); } catch {}
+  };
 
   if(!cart.length) return <div style={{textAlign:"center",padding:"60px 20px"}}><p style={{color:"#999"}}>Sepetiniz boş.</p></div>;
 
@@ -3557,7 +3588,8 @@ function CheckoutPage() {
       </div>
       <div style={{border:"1px solid #eee",borderRadius:8,padding:isMobile?16:28,minWidth:0,overflow:"hidden"}}>
         {step===1 && <>
-          <h2 style={{fontSize:18,fontWeight:700,marginBottom:20}}>Teslimat Bilgileri</h2>
+          <h2 style={{fontSize:18,fontWeight:800,marginBottom:6}}>2 Dakikada Siparişi Tamamla</h2>
+          <div style={{fontSize:13,color:"#64748b",lineHeight:1.55,marginBottom:18}}>Üyelik zorunlu değil. Teslimat bilgilerini yazın, kart bilgisini PayTR güvenli ödeme sayfasında girin.</div>
           {addresses && addresses.length > 0 && (
             <div style={{marginBottom:16}}>
               <label style={{fontSize:13,color:"#666",display:"block",marginBottom:6}}>Kayıtlı Adreslerim</label>
@@ -3572,13 +3604,13 @@ function CheckoutPage() {
             </div>
           )}
           <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr",gap:isMobile?12:14}}>
-            <div><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>Ad</label><input value={ship_form.first} onChange={e=>setShipForm(f=>({...f,first:e.target.value}))} placeholder="Adınız" style={IS}/></div>
-            <div><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>Soyad</label><input value={ship_form.last} onChange={e=>setShipForm(f=>({...f,last:e.target.value}))} placeholder="Soyadınız" style={IS}/></div>
-            <div><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>E-posta</label><input type="email" value={ship_form.email} onChange={e=>setShipForm(f=>({...f,email:e.target.value}))} placeholder="ornek@email.com" style={IS}/></div>
+            <div style={{gridColumn:isMobile?"auto":"1 / -1"}}><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>Ad Soyad</label><input value={nameInput} onChange={e=>updateFullName(e.target.value)} placeholder="Adınız Soyadınız" style={IS}/></div>
             <div><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>Telefon</label><input value={ship_form.phone} onChange={e=>setShipForm(f=>({...f,phone:e.target.value}))} placeholder="05xx xxx xx xx" style={IS}/></div>
+            <div><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>E-posta</label><input type="email" value={ship_form.email} onChange={e=>setShipForm(f=>({...f,email:e.target.value}))} placeholder="ornek@email.com" style={IS}/></div>
           </div>
           <div style={{marginTop:14}}><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>Adres</label><textarea rows={3} value={ship_form.address} onChange={e=>setShipForm(f=>({...f,address:e.target.value}))} placeholder="Teslimat adresi" style={{...IS,resize:"vertical"}}/></div>
-          <button onClick={() => setStep(2)} style={{padding:"12px 28px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:14,fontWeight:600,cursor:"pointer",marginTop:20}}>Devam Et →</button>
+          {payError && <div style={{marginTop:12,padding:"10px 14px",background:"#fee2e2",borderRadius:6,border:"1px solid #fecaca",fontSize:13,color:"#991b1b"}}>⚠ {payError}</div>}
+          <button onClick={continueToPayment} style={{width:isMobile?"100%":"auto",padding:"13px 30px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:15,fontWeight:950,cursor:"pointer",marginTop:18,boxShadow:"0 10px 24px rgba(255,96,0,.18)"}}>Ödemeye Geç →</button>
         </>}
         {step===2 && <>
           <h2 style={{fontSize:18,fontWeight:700,marginBottom:20}}>Ödeme</h2>
