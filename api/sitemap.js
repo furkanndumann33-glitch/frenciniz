@@ -336,13 +336,52 @@ function productBreadcrumbJsonLd(product, canonical, categories = []) {
   };
 }
 
-function productNoScriptHtml(product, categories = [], canonical = "") {
+function relatedSeoProducts(product, products = [], limit = 12) {
+  if (!product || !Array.isArray(products)) return [];
+  const currentId = String(product.id || "");
+  const productCompat = new Set([
+    ...(Array.isArray(product.compat) ? product.compat : []),
+    ...(Array.isArray(product.veh) ? product.veh : []),
+  ].map(value => cleanSeoText(value).toLowerCase()).filter(Boolean));
+
+  return products
+    .filter(item => item && String(item.id || "") !== currentId)
+    .map(item => {
+      let score = 0;
+      if (item.cat && item.cat === product.cat) score += 8;
+      if (item.brand && product.brand && item.brand === product.brand) score += 2;
+      if (Number(item.stock || 0) > 0) score += 2;
+      if (isRealProductImage(item.img)) score += 1;
+      const compat = [
+        ...(Array.isArray(item.compat) ? item.compat : []),
+        ...(Array.isArray(item.veh) ? item.veh : []),
+      ].map(value => cleanSeoText(value).toLowerCase()).filter(Boolean);
+      if (compat.some(value => productCompat.has(value))) score += 4;
+      return { item, score };
+    })
+    .filter(row => row.score > 0)
+    .sort((a, b) => b.score - a.score || Number(b.item.stock || 0) - Number(a.item.stock || 0))
+    .slice(0, limit)
+    .map(row => row.item);
+}
+
+function productNoScriptHtml(product, categories = [], canonical = "", relatedProducts = []) {
   const seoName = productSearchName(product, categories, 140) || product?.name || "Frenciniz urunu";
   const category = categoryNameForProduct(product, categories);
   const description = buildSeoProductDescription(product, categories, 700);
   const vehicles = vehiclePhrase(product);
   const price = Number(product?.price || 0);
   const stock = Number(product?.stock || 0);
+  const sub = categories.find(item => item.id === product?.cat);
+  const group = sub?.parent ? categories.find(item => item.id === sub.parent) : null;
+  const categoryLinks = [
+    group ? { label: group.name, href: `${SITE}/${group.id}` } : null,
+    sub ? { label: sub.name, href: `${SITE}/${sub.id}` } : null,
+  ].filter(Boolean);
+  const relatedLinks = relatedProducts
+    .slice(0, 12)
+    .map(item => `<li><a href="${xmlEscape(productSeoUrl(SITE, item))}">${xmlEscape(productSearchName(item, categories, 120) || item.name)}</a></li>`)
+    .join("");
   return `
   <noscript>
     <main>
@@ -360,11 +399,13 @@ function productNoScriptHtml(product, categories = [], canonical = "") {
         <p>Kesin uyumluluk icin OEM kodu, sase no veya eski parca fotografi ile Frenciniz WhatsApp hattindan teyit alin.</p>
         <a href="${xmlEscape(canonical)}">Urun sayfasini ac</a>
       </article>
+      ${categoryLinks.length ? `<nav aria-label="Urun kategori baglantilari"><h2>Ilgili kategoriler</h2><ul>${categoryLinks.map(link => `<li><a href="${xmlEscape(link.href)}">${xmlEscape(link.label)}</a></li>`).join("")}</ul></nav>` : ""}
+      ${relatedLinks ? `<section aria-label="Benzer urunler"><h2>Benzer urunler</h2><ul>${relatedLinks}</ul></section>` : ""}
     </main>
   </noscript>`;
 }
 
-function renderSeoProductHtml(product, categories = []) {
+function renderSeoProductHtml(product, categories = [], products = []) {
   const canonical = productSeoUrl(SITE, product);
   const title = buildSeoProductTitle(product, categories);
   const description = buildSeoProductDescription(product, categories, 165);
@@ -396,11 +437,25 @@ function renderSeoProductHtml(product, categories = []) {
       isPartOf: { "@type": "WebSite", name: "Frenciniz", url: SITE },
     },
   ].map(item => `<script type="application/ld+json">${JSON.stringify(item)}</script>`).join("\n");
-  const noScript = productNoScriptHtml(product, categories, canonical);
+  const relatedProducts = relatedSeoProducts(product, products, 12);
+  const relatedItemList = relatedProducts.length
+    ? `<script type="application/ld+json">${JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        name: `${seoName} benzer urunler`,
+        itemListElement: relatedProducts.map((item, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          url: productSeoUrl(SITE, item),
+          name: productSearchName(item, categories, 120) || item.name,
+        })),
+      })}</script>`
+    : "";
+  const noScript = productNoScriptHtml(product, categories, canonical, relatedProducts);
   let html = readIndexHtml();
 
   if (!html) {
-    return `<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${xmlEscape(title)}</title><meta name="description" content="${xmlEscape(description)}"><meta name="keywords" content="${xmlEscape(keywords)}"><link rel="canonical" href="${xmlEscape(canonical)}">${jsonLd}</head><body><h1>${xmlEscape(seoName)}</h1><p>${xmlEscape(description)}</p><a href="${xmlEscape(canonical)}">Urunu ac</a>${noScript}</body></html>`;
+    return `<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${xmlEscape(title)}</title><meta name="description" content="${xmlEscape(description)}"><meta name="keywords" content="${xmlEscape(keywords)}"><link rel="canonical" href="${xmlEscape(canonical)}">${jsonLd}${relatedItemList}</head><body><h1>${xmlEscape(seoName)}</h1><p>${xmlEscape(description)}</p><a href="${xmlEscape(canonical)}">Urunu ac</a>${noScript}</body></html>`;
   }
 
   html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${xmlEscape(title)}</title>`);
@@ -418,7 +473,7 @@ function renderSeoProductHtml(product, categories = []) {
   html = replaceOrInject(html, /<meta name="twitter:title" content="[^"]*"\s*\/?>/i, `<meta name="twitter:title" content="${xmlEscape(title)}" />`);
   html = replaceOrInject(html, /<meta name="twitter:description" content="[^"]*"\s*\/?>/i, `<meta name="twitter:description" content="${xmlEscape(description)}" />`);
   html = replaceOrInject(html, /<meta name="twitter:image" content="[^"]*"\s*\/?>/i, `<meta name="twitter:image" content="${xmlEscape(image)}" />`);
-  return html.replace("</head>", `${jsonLd}\n</head>`).replace("</body>", `${noScript}\n</body>`);
+  return html.replace("</head>", `${jsonLd}\n${relatedItemList}\n</head>`).replace("</body>", `${noScript}\n</body>`);
 }
 
 function categoryIdsForSeo(category, categories = []) {
@@ -815,7 +870,7 @@ export default async function handler(req, res) {
       const product = products.find(p => String(p.id) === String(id));
       if (!product) return res.status(404).send("Product not found");
 
-      const html = renderSeoProductHtml(product, categories);
+      const html = renderSeoProductHtml(product, categories, products);
       res.setHeader("Content-Type", "text/html; charset=utf-8");
       res.setHeader("Cache-Control", "public, max-age=300, s-maxage=3600, stale-while-revalidate=86400");
       return res.status(200).send(html);

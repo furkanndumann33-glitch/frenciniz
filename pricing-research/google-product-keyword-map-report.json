@@ -1,8 +1,9 @@
 {
-  "generatedAt": "2026-06-20T19:06:42.925Z",
+  "generatedAt": "2026-06-21T14:25:24.766Z",
   "products": 1055,
   "output": "pricing-research/google-product-keyword-map.csv",
   "priorityOutput": "pricing-research/google-first-page-priority-urls.csv",
+  "allProductsOutput": "pricing-research/google-first-page-all-products.csv",
   "adsOutput": "pricing-research/google-ads-product-exact-keywords.csv",
   "titleRule": "parca + arac/model + OEM/SKU/olcu + Frenciniz",
   "searchPatterns": [

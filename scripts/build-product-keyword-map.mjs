@@ -130,6 +130,7 @@ const report = {
   products: rows.length,
   output: "pricing-research/google-product-keyword-map.csv",
   priorityOutput: "pricing-research/google-first-page-priority-urls.csv",
+  allProductsOutput: "pricing-research/google-first-page-all-products.csv",
   adsOutput: "pricing-research/google-ads-product-exact-keywords.csv",
   titleRule: "parca + arac/model + OEM/SKU/olcu + Frenciniz",
   searchPatterns: [
@@ -178,8 +179,7 @@ function priorityScore(row) {
 
 const priorityRows = rows
   .map(row => ({ ...row, score: priorityScore(row) }))
-  .sort((a, b) => b.score - a.score || Number(b.stock || 0) - Number(a.stock || 0))
-  .slice(0, 200);
+  .sort((a, b) => b.score - a.score || Number(b.stock || 0) - Number(a.stock || 0));
 
 const priorityHeaders = [
   "score",
@@ -197,6 +197,11 @@ fs.writeFileSync(
   `${priorityHeaders.map(csv).join(",")}\n${priorityRows.map(row => priorityHeaders.map(header => csv(row[header])).join(",")).join("\n")}\n`
 );
 
+fs.writeFileSync(
+  path.join(OUT_DIR, "google-first-page-all-products.csv"),
+  `${priorityHeaders.map(csv).join(",")}\n${priorityRows.map(row => priorityHeaders.map(header => csv(row[header])).join(",")).join("\n")}\n`
+);
+
 const adsHeaders = [
   "campaign",
   "ad_group",
@@ -210,7 +215,8 @@ const adsHeaders = [
 ];
 
 const adsRows = [];
-for (const row of priorityRows) {
+const adsSourceRows = priorityRows.slice(0, 200);
+for (const row of adsSourceRows) {
   const queries = unique([
     row.primary_query,
     ...String(row.secondary_queries || "").split("|").map(part => part.trim()),
@@ -241,8 +247,10 @@ console.log(JSON.stringify({
   csv: "pricing-research/google-product-keyword-map.csv",
   report: "pricing-research/google-product-keyword-map-report.json",
   priorityUrls: "pricing-research/google-first-page-priority-urls.csv",
+  allProducts: "pricing-research/google-first-page-all-products.csv",
   adsKeywords: "pricing-research/google-ads-product-exact-keywords.csv",
   priorityCount: priorityRows.length,
+  adsProductCount: adsSourceRows.length,
   adsKeywordCount: adsRows.length,
   examples: rows.slice(0, 5).map(row => ({
     id: row.id,
