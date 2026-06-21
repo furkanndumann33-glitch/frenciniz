@@ -2776,6 +2776,13 @@ function HomePage() {
     {cat:"fren-korugu", title:lang==="en"?"Brake Chambers":"Fren Korukleri", text:lang==="en"?"24/30, 30/30, disc chambers":"24/30, 30/30, disk korugu", color:"#06b6d4"},
     {cat:"kaliper-tamir-takimi", title:lang==="en"?"Caliper Repair":"Kaliper Tamir", text:lang==="en"?"Knorr, Wabco, ELSA, PAN":"Knorr, Wabco, ELSA, PAN", color:"#8b5cf6"},
   ];
+  const heroIntentChips = [
+    {label:"Axor 1840 balata", href:"/axor-1840-balata"},
+    {label:"Actros Axor fren diski", href:"/mercedes-actros-axor-fren-diski"},
+    {label:"Travego Tourismo fren", href:"/tourismo-fren-diski"},
+    {label:"BPW dorse kampana", href:"/bpw-30k-kampana"},
+    {label:"Krone Kogel dorse disk", href:"/kogel-dorse-fren-diski"},
+  ];
 
   return <>
     {!isMobile && <CategorySidebarV2 go={go} isFixed={true} />}
@@ -2795,6 +2802,14 @@ function HomePage() {
           <div style={{display:"flex",flexDirection:isMobile?"column":"row",flexWrap:isMobile?"nowrap":"wrap",gap:12,alignItems:isMobile?"stretch":"center",maxWidth:isMobile?310:"none"}}>
             <button onClick={() => go("products")} style={{minHeight:48,padding:"14px 22px",borderRadius:8,border:"none",background:"linear-gradient(135deg,#ff6000,#facc15)",color:"#111",fontWeight:950,fontSize:15,boxShadow:"0 18px 45px rgba(255,96,0,.28)",animation:"glowPulse 4s ease-in-out infinite"}}>{lang==="en"?"See in-stock parts":"Stoklu urunlere bak"}</button>
             <a href={generalWhatsAppUrl("parca kodu ile teklif")} target="_blank" rel="noopener noreferrer" onClick={() => metaTrackCustom("WhatsAppLead", { source: "home_hero" })} style={{minHeight:48,padding:"13px 18px",borderRadius:8,border:"1px solid rgba(255,255,255,.28)",background:"rgba(255,255,255,.1)",color:"#fff",fontWeight:850,fontSize:14,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center",textAlign:"center"}}>{lang==="en"?"Get quote on WhatsApp":"WhatsApp'tan hizli teklif al"}</a>
+          </div>
+          <div style={{display:"flex",flexWrap:"wrap",gap:8,marginTop:16,maxWidth:isMobile?330:650}}>
+            {heroIntentChips.map(chip => (
+              <a key={chip.href} href={chip.href} onClick={() => metaTrackCustom("SeoHeroIntentClick", { source: "home_hero_intent", href: chip.href })}
+                style={{display:"inline-flex",alignItems:"center",minHeight:34,padding:"8px 11px",borderRadius:999,border:"1px solid rgba(255,255,255,.2)",background:"rgba(255,255,255,.08)",color:"#fff",textDecoration:"none",fontSize:12,fontWeight:900,lineHeight:1.2}}>
+                {chip.label}
+              </a>
+            ))}
           </div>
           <div style={{marginTop:16,maxWidth:isMobile?340:620}}>
             <QuickQuoteBox source="home_hero_form" dark />
@@ -6563,18 +6578,24 @@ function ADigitalMarketing(){
     {name:"Meta Katalog",...data.feeds?.meta, note:"Facebook/Instagram katalog"},
   ];
   const todayTasks = [
+    "Google Ads'te kampanya bitis tarihi ve toplam butceyi kontrol et; bitmis kampanya trafik getirmez.",
+    "Google Ads panelinde reklam engelleyici uyarisi varsa kapat; panel metrikleri ve kaydetme islemleri aksayabilir.",
     "Search Console'da ilk 20 para getiren landing/product URL icin dizine ekleme iste.",
     "Merchant Center urun sorunlarini kontrol et; reddedilen urun varsa baslik, gorsel, fiyat ve stok alanini duzelt.",
-    "Facebook'ta sadece alakali 2-4 agir vasita/yedek parca grubunda gruba ozel post paylas.",
+    "Facebook'ta sadece alakali 2-4 agir vasita/yedek parca grubunda gruba ozel, tekrar etmeyen post paylas.",
     "WhatsApp'a gelen her kod/foto icin 5 dakika icinde fiyat + uyum teyidi cevabi ver.",
     "Google Ads'te genis esleme yerine Axor, Actros, Tourismo, BPW, SAF, Krone + parca adina odaklan.",
   ];
   const landingLinks = [
+    {label:"Axor 1840 Balata",url:"/axor-1840-balata"},
     {label:"Axor 1840 Fren Diski",url:"/axor-1840-fren-diski"},
     {label:"Axor 3340 Balata",url:"/axor-3340-balata"},
+    {label:"Actros Axor Fren Diski",url:"/mercedes-actros-axor-fren-diski"},
     {label:"Tourismo Fren Diski",url:"/tourismo-fren-diski"},
+    {label:"Travego Balata",url:"/travego-balata"},
     {label:"MAN Fortuna Balata",url:"/man-fortuna-balata"},
     {label:"BPW 30K Bijon",url:"/bpw-30k-bijon"},
+    {label:"BPW 30K Kampana",url:"/bpw-30k-kampana"},
     {label:"Krone Dorse Kampana",url:"/krone-dorse-kampana"},
     {label:"Kogel Dorse Fren Diski",url:"/kogel-dorse-fren-diski"},
   ];
