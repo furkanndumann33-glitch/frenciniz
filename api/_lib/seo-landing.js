@@ -398,6 +398,17 @@ export const LANDING_PAGES = [
     priority: "0.88",
   },
   {
+    slug: "tirsan-dorse-kisa-yay-24-cm",
+    heading: "Tırsan Dorse Kısa Yay 24 CM",
+    title: "Tırsan Dorse Kısa Yay 24 CM | EYD 70 04-3 | Frenciniz",
+    description: "Tırsan dorse kısa yay 24 cm, EYD 70 04-3 ve B4 referanslı fren yayı için stok, fiyat ve dorse dingil uyumluluk teyidi.",
+    cats: ["yay"],
+    terms: ["tirsan", "tırsan", "dorse", "kısa yay", "kisa yay", "24 cm", "EYD 70 04-3", "B4", "treyler"],
+    primaryTerm: "Tırsan Dorse",
+    part: "kısa yay",
+    priority: "0.88",
+  },
+  {
     slug: "360573-1414435-fren-kampanasi",
     heading: "360573 1414435 Fren Kampanası",
     title: "360573 1414435 Fren Kampanası | ESK 090 02 | Frenciniz",

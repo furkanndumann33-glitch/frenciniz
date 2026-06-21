@@ -161,6 +161,10 @@
       "destination": "/api/sitemap?type=landing&slug=tirsan-dorse-orta-yay-27-cm"
     },
     {
+      "source": "/tirsan-dorse-kisa-yay-24-cm",
+      "destination": "/api/sitemap?type=landing&slug=tirsan-dorse-kisa-yay-24-cm"
+    },
+    {
       "source": "/360573-1414435-fren-kampanasi",
       "destination": "/api/sitemap?type=landing&slug=360573-1414435-fren-kampanasi"
     },
