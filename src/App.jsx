@@ -5299,6 +5299,7 @@ function AdminPanel() {
     {id:"customers",label:"Müşteriler",icon:"👥"},{id:"coupons",label:"Kuponlar",icon:"🎟"},
     {id:"stock-alerts",label:"Stok Alarmları",icon:"🔔"},{id:"low-stock",label:"Düşük Stok",icon:"⚠️"},
     {id:"pricing",label:"Toplu Fiyat",icon:"💰"},{id:"import",label:"XML / Excel",icon:"📥"},
+    {id:"trendyol",label:"Trendyol",icon:"TY"},
     {id:"banners",label:"Bannerlar",icon:"🖼"},{id:"pages",label:"Sayfalar",icon:"📄"},
     {id:"seo",label:"SEO Ayarları",icon:"🔍"},{id:"payment",label:"Ödeme Ayarları",icon:"💳"},
     {id:"email",label:"Mail Ayarları",icon:"✉️"},
@@ -5339,6 +5340,7 @@ function AdminPanel() {
         {tab==="low-stock"&&<ALowStock/>}
         {tab==="pricing"&&<APrice/>}
         {tab==="import"&&<AImport/>}
+        {tab==="trendyol"&&<ATrendyol/>}
         {tab==="banners"&&<ABanners/>}
         {tab==="pages"&&<APagesAdmin/>}
         {tab==="seo"&&<ASeo/>}
@@ -5644,6 +5646,506 @@ function AImport(){
       <ABtn onClick={()=>{setOk(true);setTimeout(()=>setOk(false),3000)}}>{ok?"✓ Yüklendi":"Dosya Seç"}</ABtn>
     </div>
   </ACard>;
+}
+
+function ATrendyol(){
+  const [view,setView]=useState("overview");
+  const [status,setStatus]=useState(null);
+  const [settings,setSettings]=useState(null);
+  const [settingsForm,setSettingsForm]=useState({
+    commissionRate:"14",stopajRate:"1",adRate:"3",targetProfit:"750",defaultCargoCost:"250",defaultDesi:"5",listPriceMarkup:"10",brandId:"",cargoCompanyId:"",defaultOrigin:"TR"
+  });
+  const [categoryMapText,setCategoryMapText]=useState("{}");
+  const [stockPreview,setStockPreview]=useState(null);
+  const [productPreview,setProductPreview]=useState(null);
+  const [lookups,setLookups]=useState(null);
+  const [attributes,setAttributes]=useState(null);
+  const [categoryId,setCategoryId]=useState("");
+  const [batchId,setBatchId]=useState("");
+  const [batchResult,setBatchResult]=useState(null);
+  const [marketplace,setMarketplace]=useState(null);
+  const [inventoryPull,setInventoryPull]=useState(null);
+  const [tracking,setTracking]=useState(null);
+  const [marketplacePages,setMarketplacePages]=useState("1");
+  const [marketplaceSize,setMarketplaceSize]=useState("100");
+  const [productStatusBarcode,setProductStatusBarcode]=useState("");
+  const [productStatus,setProductStatus]=useState(null);
+  const [confirmStock,setConfirmStock]=useState("");
+  const [confirmProducts,setConfirmProducts]=useState("");
+  const [liveLimit,setLiveLimit]=useState("");
+  const [busy,setBusy]=useState("");
+  const [msg,setMsg]=useState("");
+  const [err,setErr]=useState("");
+  const [lastResult,setLastResult]=useState(null);
+
+  async function api(action,{method="GET",body}={}){
+    const r=await fetch(`/api/trendyol/${action}`,{
+      method,
+      credentials:"include",
+      headers:body?{"Content-Type":"application/json"}:undefined,
+      body:body?JSON.stringify(body):undefined,
+    });
+    const d=await r.json().catch(()=>({}));
+    if(!r.ok) throw new Error(d.error||"Trendyol islemi tamamlanamadi");
+    return d;
+  }
+
+  function settingsPayload(){
+    let categoryMappings={};
+    try{ categoryMappings=JSON.parse(categoryMapText||"{}"); }
+    catch{ throw new Error("Kategori eslestirme JSON formati hatali"); }
+    return {
+      commissionRate:Number(settingsForm.commissionRate)||0,
+      stopajRate:Number(settingsForm.stopajRate)||0,
+      adRate:Number(settingsForm.adRate)||0,
+      targetProfit:Number(settingsForm.targetProfit)||0,
+      defaultCargoCost:Number(settingsForm.defaultCargoCost)||0,
+      defaultDesi:Number(settingsForm.defaultDesi)||1,
+      listPriceMarkup:Number(settingsForm.listPriceMarkup)||0,
+      brandId:String(settingsForm.brandId||"").trim(),
+      cargoCompanyId:String(settingsForm.cargoCompanyId||"").trim(),
+      defaultOrigin:String(settingsForm.defaultOrigin||"TR").trim()||"TR",
+      categoryMappings,
+    };
+  }
+
+  function applySettingsForm(s){
+    const next=s||{};
+    setSettings(next);
+    setSettingsForm({
+      commissionRate:String(next.commissionRate??14),
+      stopajRate:String(next.stopajRate??1),
+      adRate:String(next.adRate??3),
+      targetProfit:String(next.targetProfit??750),
+      defaultCargoCost:String(next.defaultCargoCost??250),
+      defaultDesi:String(next.defaultDesi??5),
+      listPriceMarkup:String(next.listPriceMarkup??10),
+      brandId:String(next.brandId||""),
+      cargoCompanyId:String(next.cargoCompanyId||""),
+      defaultOrigin:String(next.defaultOrigin||"TR"),
+    });
+    setCategoryMapText(JSON.stringify(next.categoryMappings||{},null,2));
+  }
+
+  async function loadAll(){
+    setBusy("load");setErr("");setMsg("");
+    try{
+      const [st,sg]=await Promise.all([api("status"),api("settings")]);
+      setStatus(st);
+      applySettingsForm(sg.settings);
+      const [stock,products,track]=await Promise.all([
+        api("preview-stock-price",{method:"POST",body:{settings:sg.settings}}),
+        api("preview-products",{method:"POST",body:{settings:sg.settings}}),
+        api("tracking?maxPages=20&size=100").catch(e=>({success:false,error:e.message})),
+      ]);
+      setStockPreview(stock);
+      setProductPreview(products);
+      if(track?.success) {
+        setTracking(track);
+        if(track.comparison) setMarketplace({marketplace:track.marketplace,comparison:track.comparison});
+      }
+    }catch(e){setErr(e.message)}
+    finally{setBusy("")}
+  }
+
+  useEffect(()=>{loadAll()},[]);
+
+  async function saveSettings(){
+    setBusy("settings");setErr("");setMsg("");
+    try{
+      const d=await api("settings",{method:"POST",body:settingsPayload()});
+      applySettingsForm(d.settings);
+      setMsg("Trendyol ayarlari kaydedildi.");
+    }catch(e){setErr(e.message)}
+    finally{setBusy("")}
+  }
+
+  async function refreshStock(){
+    setBusy("stock");setErr("");setMsg("");
+    try{
+      const d=await api("preview-stock-price",{method:"POST",body:{settings:settingsPayload()}});
+      setStockPreview(d);
+      setMsg("Stok/fiyat onizleme yenilendi.");
+    }catch(e){setErr(e.message)}
+    finally{setBusy("")}
+  }
+
+  async function refreshProducts(){
+    setBusy("products");setErr("");setMsg("");
+    try{
+      const d=await api("preview-products",{method:"POST",body:{settings:settingsPayload()}});
+      setProductPreview(d);
+      setMsg("Urun yukleme onizleme yenilendi.");
+    }catch(e){setErr(e.message)}
+    finally{setBusy("")}
+  }
+
+  async function runLookups(){
+    setBusy("lookups");setErr("");setMsg("");
+    try{
+      const d=await api("lookups");
+      setLookups(d);
+      setMsg("Kategori ve marka lookup verisi alindi.");
+    }catch(e){setErr(e.message)}
+    finally{setBusy("")}
+  }
+
+  async function fetchAttributes(){
+    if(!categoryId.trim()) return;
+    setBusy("attributes");setErr("");setMsg("");
+    try{
+      const d=await api(`attributes?categoryId=${encodeURIComponent(categoryId.trim())}`);
+      setAttributes(d);
+      setMsg("Kategori attribute listesi alindi.");
+    }catch(e){setErr(e.message)}
+    finally{setBusy("")}
+  }
+
+  async function liveStock(){
+    setBusy("live-stock");setErr("");setMsg("");setLastResult(null);
+    try{
+      const d=await api("live-stock-price",{method:"POST",body:{settings:settingsPayload(),confirm:confirmStock,limit:Number(liveLimit)||0}});
+      setLastResult(d);
+      setMsg("Canli stok/fiyat gonderimi yapildi. Batch sonucunu kontrol edin.");
+      setConfirmStock("");
+    }catch(e){setErr(e.message)}
+    finally{setBusy("")}
+  }
+
+  async function liveProducts(){
+    setBusy("live-products");setErr("");setMsg("");setLastResult(null);
+    try{
+      const d=await api("live-products",{method:"POST",body:{settings:settingsPayload(),confirm:confirmProducts,limit:Number(liveLimit)||0}});
+      setLastResult(d);
+      setMsg("Canli urun yukleme istegi Trendyol'a gonderildi. Batch sonucunu kontrol edin.");
+      setConfirmProducts("");
+    }catch(e){setErr(e.message)}
+    finally{setBusy("")}
+  }
+
+  async function checkBatch(){
+    if(!batchId.trim()) return;
+    setBusy("batch");setErr("");setMsg("");
+    try{
+      const d=await api(`batch?batchRequestId=${encodeURIComponent(batchId.trim())}`);
+      setBatchResult(d.data);
+    }catch(e){setErr(e.message)}
+    finally{setBusy("")}
+  }
+
+  async function pullMarketplace(){
+    setBusy("marketplace");setErr("");setMsg("");
+    try{
+      const qs=new URLSearchParams({maxPages:String(Number(marketplacePages)||1),size:String(Number(marketplaceSize)||100)});
+      const d=await api(`approved-products?${qs.toString()}`);
+      setMarketplace(d);
+      setMsg("Trendyol onayli urun listesi cekildi.");
+    }catch(e){setErr(e.message)}
+    finally{setBusy("")}
+  }
+
+  async function pullInventory(){
+    setBusy("inventory");setErr("");setMsg("");
+    try{
+      const qs=new URLSearchParams({maxPages:String(Number(marketplacePages)||1),size:String(Number(marketplaceSize)||100)});
+      const d=await api(`inventory-products?${qs.toString()}`);
+      setInventoryPull(d);
+      setMsg("Trendyol stok/fiyat listesi cekildi.");
+    }catch(e){setErr(e.message)}
+    finally{setBusy("")}
+  }
+
+  async function refreshTracking(){
+    setBusy("tracking");setErr("");setMsg("");
+    try{
+      const d=await api("tracking?maxPages=20&size=100");
+      setTracking(d);
+      if(d.comparison) setMarketplace({marketplace:d.marketplace,comparison:d.comparison});
+      setMsg("Trendyol takip verisi yenilendi.");
+    }catch(e){setErr(e.message)}
+    finally{setBusy("")}
+  }
+
+  async function checkProductStatus(){
+    if(!productStatusBarcode.trim()) return;
+    setBusy("product-status");setErr("");setMsg("");setProductStatus(null);
+    try{
+      const d=await api(`product-status?barcode=${encodeURIComponent(productStatusBarcode.trim())}`);
+      setProductStatus(d.data);
+      setMsg("Barkod durumu alindi.");
+    }catch(e){setErr(e.message)}
+    finally{setBusy("")}
+  }
+
+  const Stat=({label,value,muted,color})=><div style={{background:"#fff",border:"1px solid #e5e7eb",borderRadius:8,padding:16,minHeight:92}}>
+    <div style={{fontSize:12,color:"#6b7280",marginBottom:8}}>{label}</div>
+    <div style={{fontSize:24,fontWeight:800,color:color||"#111827",lineHeight:1.1}}>{value}</div>
+    {muted&&<div style={{fontSize:11,color:"#9ca3af",marginTop:8}}>{muted}</div>}
+  </div>;
+  const Pill=({ok,text})=><span style={{display:"inline-flex",alignItems:"center",minHeight:24,padding:"3px 9px",borderRadius:999,fontSize:12,fontWeight:700,background:ok?"#dcfce7":"#fee2e2",color:ok?"#15803d":"#b91c1c"}}>{text}</span>;
+  const TextBtn=({id,label})=><button onClick={()=>setView(id)} style={{minHeight:36,padding:"8px 13px",border:"1px solid "+(view===id?"#ff6000":"#ddd"),borderRadius:6,background:view===id?"#fff5f0":"#fff",color:view===id?"#ff6000":"#555",fontSize:13,fontWeight:700,cursor:"pointer"}}>{label}</button>;
+  const RowTable=({rows,columns,empty})=>{
+    const list=Array.isArray(rows)?rows:[];
+    if(!list.length) return <div style={{fontSize:13,color:"#999",padding:"10px 0"}}>{empty||"Kayit yok."}</div>;
+    return <div style={{overflowX:"auto"}}><table style={{width:"100%",borderCollapse:"collapse",fontSize:12}}>
+      <thead><tr style={{borderBottom:"2px solid #eee"}}>{columns.map(c=><th key={c.k} style={{padding:"8px",textAlign:c.align||"left",color:"#777",whiteSpace:"nowrap"}}>{c.l}</th>)}</tr></thead>
+      <tbody>{list.map((row,i)=><tr key={i} style={{borderBottom:"1px solid #f0f0f0"}}>{columns.map(c=>{const val=c.render?c.render(row):row[c.k];return <td key={c.k} style={{padding:"8px",textAlign:c.align||"left",maxWidth:c.maxWidth||280,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:c.wrap?"normal":"nowrap"}} title={String(val??"")}>{val}</td>})}</tr>)}</tbody>
+    </table></div>;
+  };
+
+  const stockSummary=stockPreview?.summary||{};
+  const productSummary=productPreview?.summary||{};
+  const attrs=attributes?.data?.categoryAttributes||attributes?.data?.attributes||[];
+  const requiredAttrs=Array.isArray(attrs)?attrs.filter(a=>a.required||a.isRequired||a.varianter||a.slicer):[];
+  const resultBatches=lastResult?.results||[];
+  const marketSummary=marketplace?.comparison?.summary||{};
+  const inventorySummary=inventoryPull?.marketplace?.summary||{};
+  const trackingSummary=tracking?.summary||{};
+  const trackingBatches=tracking?.batchSummaries||[];
+  const trackingProducts=tracking?.productStatuses||[];
+  const fmtDate=(value)=>{
+    if(!value) return "-";
+    try{return new Date(value).toLocaleString("tr-TR")}
+    catch{return value}
+  };
+  const TrackingPanel=({compact=false})=><>
+    <ACard title="Trendyol Canli Takip" action={<ABtn onClick={refreshTracking} color="#111827" disabled={busy==="tracking"}>{busy==="tracking"?"Yenileniyor":"Takibi Yenile"}</ABtn>}>
+      <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(150px,1fr))",gap:10,marginBottom:14}}>
+        <Stat label="Onayli Urun" value={trackingSummary.approvedVariantCount??"-"} muted={`${trackingSummary.matchedCount??0} eslesen`}/>
+        <Stat label="Onay Bekleyen" value={trackingSummary.missingOnTrendyolCount??"-"} muted="TY onayli listede yok" color="#b45309"/>
+        <Stat label="Batch Basarili" value={trackingSummary.batchSuccessCount??"-"} muted={`${trackingSummary.batchFailedItemCount??0} hata` } color="#15803d"/>
+        <Stat label="Ornek Onay" value={`${trackingSummary.sampleApprovedCount??0}/${trackingSummary.sampleCount??0}`} muted={`${trackingSummary.samplePendingCount??0} bekliyor`}/>
+        <Stat label="Son Kontrol" value={tracking?.checkedAt?fmtDate(tracking.checkedAt).split(" ")[1]:"-"} muted={tracking?.checkedAt?fmtDate(tracking.checkedAt).split(" ")[0]:""}/>
+      </div>
+      {tracking?.marketplaceError&&<div style={{fontSize:12,color:"#92400e",background:"#fffbeb",border:"1px solid #fde68a",borderRadius:6,padding:10,marginBottom:12}}>{tracking.marketplaceError}</div>}
+      <RowTable rows={trackingProducts} empty="Takip verisi henuz alinmadi." columns={[
+        {k:"barcode",l:"Barkod"},{k:"approved",l:"Onay",render:r=>r.ok?(r.approved?"Onayli":"Onayda"):"Hata"},{k:"status",l:"Durum"},{k:"stockCode",l:"Stok Kodu"},{k:"contentId",l:"Content ID"},{k:"listingId",l:"Listing ID",maxWidth:260}
+      ]}/>
+    </ACard>
+    {!compact&&<ACard title="Yukleme Batchleri">
+      <RowTable rows={trackingBatches} empty="Batch takibi henuz alinmadi." columns={[
+        {k:"batchRequestId",l:"Batch ID",maxWidth:360},{k:"status",l:"Durum"},{k:"itemCount",l:"Toplam",align:"right"},{k:"successCount",l:"Basarili",align:"right"},{k:"failedItemCount",l:"Hata",align:"right"},{k:"failureReasons",l:"Ilk Hatalar",maxWidth:420,render:r=>(r.failureReasons||[]).map(x=>`${x.count}x ${x.reason}`).join(" | ")||r.error||"-",wrap:true}
+      ]}/>
+    </ACard>}
+    {!compact&&<ACard title="Onayli Listede Henuz Gorunmeyenler">
+      <RowTable rows={tracking?.comparison?.missingOnTrendyol||[]} empty="Eksik/onay bekleyen urun yok veya takip cekilmedi." columns={[
+        {k:"sku",l:"SKU"},{k:"name",l:"Urun",maxWidth:360},{k:"barcode",l:"Barkod"},{k:"sitePrice",l:"Site Fiyat",align:"right"},{k:"stock",l:"Stok",align:"right"},{k:"category",l:"Kategori"}
+      ]}/>
+    </ACard>}
+  </>;
+
+  return <div style={{display:"flex",flexDirection:"column",gap:16}}>
+    <div style={{display:"flex",justifyContent:"space-between",gap:12,alignItems:"flex-start",flexWrap:"wrap"}}>
+      <div>
+        <h1 style={{fontSize:24,fontWeight:800,margin:"0 0 6px"}}>Trendyol Yonetimi</h1>
+        <div style={{fontSize:13,color:"#666"}}>Frenciniz katalogundan Trendyol stok/fiyat, urun yukleme ve kategori eslestirme yonetimi.</div>
+      </div>
+      <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
+        <ABtn onClick={loadAll} color="#111827">{busy==="load"?"Yukleniyor":"Tumunu Yenile"}</ABtn>
+        <ABtn onClick={()=>setView("settings")} color="#475569">Ayarlar</ABtn>
+      </div>
+    </div>
+
+    {err&&<div style={{padding:12,border:"1px solid #fecaca",borderRadius:8,background:"#fef2f2",color:"#b91c1c",fontSize:13,fontWeight:700}}>{err}</div>}
+    {msg&&<div style={{padding:12,border:"1px solid #bbf7d0",borderRadius:8,background:"#f0fdf4",color:"#15803d",fontSize:13,fontWeight:700}}>{msg}</div>}
+
+    <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(170px,1fr))",gap:12}}>
+      <Stat label="API Durumu" value={status?.authOk?"Bagli":"Kontrol"} muted={status?.config?.userAgent||status?.authError||"Durum bekleniyor"} color={status?.authOk?"#15803d":"#b45309"}/>
+      <Stat label="Frenciniz Urun" value={status?.productCount??"-"} muted="Katalogdaki urun sayisi"/>
+      <Stat label="Stok/Fiyat Hazir" value={stockSummary.itemCount??"-"} muted={`${stockSummary.chunkCount||0} parca, ${stockSummary.skippedCount||0} atlanan`}/>
+      <Stat label="Urun V2 Hazir" value={productSummary.itemCount??"-"} muted={`${productSummary.mappingNeededCount||0} kategori eslesmesi bekliyor`}/>
+      <Stat label="TY Onayli" value={trackingSummary.approvedVariantCount??marketSummary.trendyolVariantCount??"-"} muted={`${trackingSummary.matchedCount??marketSummary.matchedCount??0} eslesen, ${trackingSummary.missingOnTrendyolCount??marketSummary.missingOnTrendyolCount??0} bekleyen`}/>
+    </div>
+
+    <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
+      <TextBtn id="overview" label="Ozet"/>
+      <TextBtn id="tracking" label="Canli Takip"/>
+      <TextBtn id="settings" label="Fiyat Politikasi"/>
+      <TextBtn id="stock" label="Stok / Fiyat"/>
+      <TextBtn id="marketplace" label="Trendyol'daki Urunler"/>
+      <TextBtn id="products" label="Urun Yukleme"/>
+      <TextBtn id="lookups" label="Kategori / Attribute"/>
+      <TextBtn id="batch" label="Batch Kontrol"/>
+    </div>
+
+    {view==="overview"&&<>
+      <TrackingPanel compact/>
+      <ACard title="Trendyol Baglanti Ozeti" action={<ABtn onClick={loadAll}>{busy==="load"?"...":"Yenile"}</ABtn>}>
+        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))",gap:12}}>
+          <div style={{fontSize:13,lineHeight:1.8}}>
+            <div><strong>Supplier ID:</strong> {status?.config?.supplierId||"-"}</div>
+            <div><strong>User-Agent:</strong> {status?.config?.userAgent||"-"}</div>
+            <div><strong>API Key:</strong> <Pill ok={status?.config?.hasApiKey} text={status?.config?.hasApiKey?"Tanimli":"Eksik"}/></div>
+            <div><strong>API Secret:</strong> <Pill ok={status?.config?.hasApiSecret} text={status?.config?.hasApiSecret?"Tanimli":"Eksik"}/></div>
+          </div>
+          <div style={{fontSize:13,lineHeight:1.8}}>
+            <div><strong>Kategori kok sayisi:</strong> {status?.categoryRootCount??"-"}</div>
+            <div><strong>Ekersan marka sonucu:</strong> {status?.brandMatches?.length||0}</div>
+            <div><strong>Brand ID:</strong> {settings?.brandId||"Eksik"}</div>
+            <div><strong>Canli durum:</strong> <Pill ok={status?.authOk} text={status?.authOk?"Hazir":"Hazir degil"}/></div>
+          </div>
+        </div>
+      </ACard>
+      <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))",gap:16}}>
+        <ACard title="Acil Yapilacaklar">
+          <div style={{display:"flex",flexDirection:"column",gap:8,fontSize:13,color:"#444"}}>
+            {!settings?.brandId&&<div style={{padding:10,border:"1px solid #fed7aa",borderRadius:6,background:"#fff7ed"}}>1. Trendyol marka ID eksik. Ekersan aramasi sonuc vermezse panelden marka acilmasi gerekir.</div>}
+            {productSummary.mappingNeededCount>0&&<div style={{padding:10,border:"1px solid #bfdbfe",borderRadius:6,background:"#eff6ff"}}>2. {productSummary.mappingNeededCount} kategori icin category-map eslestirmesi gerekiyor.</div>}
+            {stockSummary.itemCount>0&&<div style={{padding:10,border:"1px solid #bbf7d0",borderRadius:6,background:"#f0fdf4"}}>3. Stok/fiyat icin {stockSummary.itemCount} urun hazir. Urunler Trendyol'da onaylandiktan sonra canli gonderim yapilabilir.</div>}
+            {!marketplace&&<div style={{padding:10,border:"1px solid #e5e7eb",borderRadius:6,background:"#f9fafb"}}>4. Once Trendyol'daki onayli urunleri cekip Frenciniz katalogu ile karsilastirin.</div>}
+          </div>
+        </ACard>
+        <ACard title="Son Canli Sonuc">
+          {!resultBatches.length?<div style={{fontSize:13,color:"#999"}}>Bu oturumda canli gonderim yok.</div>:<RowTable rows={resultBatches} columns={[
+            {k:"chunk",l:"Parca"},{k:"itemCount",l:"Urun"},{k:"batch",l:"Batch",render:r=>r.response?.batchRequestId||"-",maxWidth:360}
+          ]}/>}
+        </ACard>
+      </div>
+    </>}
+
+    {view==="tracking"&&<TrackingPanel/>}
+
+    {view==="settings"&&<ACard title="Fiyat Politikasi ve Eslestirme" action={<ABtn onClick={saveSettings}>{busy==="settings"?"Kaydediliyor":"Kaydet"}</ABtn>}>
+      <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(160px,1fr))",gap:10,marginBottom:14}}>
+        {[
+          ["commissionRate","Komisyon %"],["stopajRate","Stopaj %"],["adRate","Reklam %"],["targetProfit","Hedef Kar TL"],["defaultCargoCost","Kargo TL"],["defaultDesi","Varsayilan Desi"],["listPriceMarkup","Liste Fiyat Artis %"],["brandId","Trendyol Brand ID"],["cargoCompanyId","Kargo Firma ID"],["defaultOrigin","Mensei"]
+        ].map(([k,l])=><label key={k} style={{fontSize:12,color:"#666",fontWeight:700}}>{l}<AIn value={settingsForm[k]||""} onChange={e=>setSettingsForm({...settingsForm,[k]:e.target.value})} style={{marginTop:4}}/></label>)}
+      </div>
+      <div style={{fontSize:12,color:"#666",fontWeight:700,marginBottom:6}}>Kategori eslestirme JSON</div>
+      <textarea value={categoryMapText} onChange={e=>setCategoryMapText(e.target.value)} rows={12} style={{width:"100%",fontFamily:"Consolas, monospace",fontSize:12,border:"1px solid #ddd",borderRadius:6,padding:12,resize:"vertical"}}/>
+      <div style={{fontSize:11,color:"#888",marginTop:8}}>Ornek key: urunun Frenciniz kategori slug'i veya kategori adi. Attribute icin customAttributeValueFrom kullanilabilir: oem, sku, name.</div>
+    </ACard>}
+
+    {view==="stock"&&<>
+      <ACard title="Stok / Fiyat Onizleme" action={<ABtn onClick={refreshStock}>{busy==="stock"?"...":"Onizle"}</ABtn>}>
+        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(150px,1fr))",gap:10,marginBottom:14}}>
+          <Stat label="Hazir SKU" value={stockSummary.itemCount??"-"}/>
+          <Stat label="Atlanan" value={stockSummary.skippedCount??"-"}/>
+          <Stat label="Batch Parca" value={stockSummary.chunkCount??"-"}/>
+          <Stat label="Uretilen Barkod" value={stockSummary.generatedBarcodes??"-"}/>
+        </div>
+        {!stockSummary.hasCostData&&<div style={{fontSize:12,color:"#92400e",background:"#fffbeb",border:"1px solid #fde68a",borderRadius:6,padding:10,marginBottom:12}}>Katalogda alis maliyeti olmadigi icin kar hesabi tum urunlerde gorunmeyebilir; fiyat olarak site fiyati esas alinir.</div>}
+        <RowTable rows={stockPreview?.sample||[]} columns={[
+          {k:"sku",l:"SKU"},{k:"name",l:"Urun",maxWidth:360},{k:"barcode",l:"Barkod"},{k:"quantity",l:"Stok",align:"right"},{k:"salePrice",l:"Satis",align:"right"},{k:"listPrice",l:"Liste",align:"right"},{k:"expectedProfit",l:"Kar",align:"right",render:r=>r.expectedProfit??"-"}
+        ]}/>
+      </ACard>
+      <ACard title="Canli Stok / Fiyat Gonderimi">
+        <div style={{display:"grid",gridTemplateColumns:"minmax(180px,1fr) minmax(180px,1fr) auto",gap:10,alignItems:"end"}}>
+          <label style={{fontSize:12,color:"#666",fontWeight:700}}>Test limiti bos olursa tum hazir urunler<AIn value={liveLimit} onChange={e=>setLiveLimit(e.target.value)} placeholder="Orn: 5"/></label>
+          <label style={{fontSize:12,color:"#666",fontWeight:700}}>Onay metni: CANLI GONDER<AIn value={confirmStock} onChange={e=>setConfirmStock(e.target.value)} placeholder="CANLI GONDER"/></label>
+          <ABtn color="#dc2626" disabled={busy==="live-stock"} onClick={liveStock}>{busy==="live-stock"?"Gonderiliyor":"Canli Gonder"}</ABtn>
+        </div>
+      </ACard>
+    </>}
+
+    {view==="marketplace"&&<>
+      <ACard title="Trendyol'dan Urunleri Cek" action={<div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
+        <ABtn onClick={pullMarketplace} color="#111827" disabled={busy==="marketplace"}>{busy==="marketplace"?"Cekiliyor":"Onayli Urunleri Cek"}</ABtn>
+        <ABtn onClick={pullInventory} color="#475569" disabled={busy==="inventory"}>{busy==="inventory"?"Cekiliyor":"Stok/Fiyat Cek"}</ABtn>
+      </div>}>
+        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(150px,1fr))",gap:10,alignItems:"end",marginBottom:14}}>
+          <label style={{fontSize:12,color:"#666",fontWeight:700}}>Sayfa adedi<AIn value={marketplacePages} type="number" min="1" max="50" onChange={e=>setMarketplacePages(e.target.value)} style={{marginTop:4}}/></label>
+          <label style={{fontSize:12,color:"#666",fontWeight:700}}>Sayfa boyutu<AIn value={marketplaceSize} type="number" min="1" max="100" onChange={e=>setMarketplaceSize(e.target.value)} style={{marginTop:4}}/></label>
+          <div style={{fontSize:12,color:"#777",lineHeight:1.55}}>Trendyol API tek istekte en fazla 100 kayit dondurur. Fazla urun icin sayfa adedini artirin.</div>
+        </div>
+        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(150px,1fr))",gap:10,marginBottom:14}}>
+          <Stat label="TY Varyant" value={marketSummary.trendyolVariantCount??"-"} muted={`${marketplace?.marketplace?.summary?.pagesFetched||0} sayfa cekildi`}/>
+          <Stat label="Eslesen" value={marketSummary.matchedCount??"-"} color="#15803d"/>
+          <Stat label="TY'de Eksik" value={marketSummary.missingOnTrendyolCount??"-"} color="#b45309"/>
+          <Stat label="TY Fazla" value={marketSummary.extraOnTrendyolCount??"-"} color="#475569"/>
+        </div>
+        <RowTable rows={marketplace?.comparison?.trendyolSample||[]} empty="Henuz Trendyol'dan onayli urun cekilmedi." columns={[
+          {k:"barcode",l:"Barkod"},{k:"stockCode",l:"Stok Kodu"},{k:"title",l:"Trendyol Urun",maxWidth:420},{k:"quantity",l:"Stok",align:"right"},{k:"salePrice",l:"Satis",align:"right"},{k:"listPrice",l:"Liste",align:"right"},{k:"status",l:"Durum"}
+        ]}/>
+      </ACard>
+
+      <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(320px,1fr))",gap:16}}>
+        <ACard title="Trendyol'da Eksik Olan Frenciniz Urunleri">
+          <RowTable rows={marketplace?.comparison?.missingOnTrendyol||[]} empty="Karsilastirma icin once onayli urunleri cekin." columns={[
+            {k:"sku",l:"SKU"},{k:"name",l:"Urun",maxWidth:360},{k:"barcode",l:"Barkod"},{k:"sitePrice",l:"Site Fiyat",align:"right"},{k:"stock",l:"Stok",align:"right"},{k:"category",l:"Kategori"}
+          ]}/>
+        </ACard>
+        <ACard title="Frenciniz ile Eslesenler">
+          <RowTable rows={marketplace?.comparison?.matched||[]} empty="Eslesen urun yok veya liste cekilmedi." columns={[
+            {k:"sku",l:"SKU"},{k:"name",l:"Urun",maxWidth:320},{k:"matchType",l:"Eslesme"},{k:"trendyolSalePrice",l:"TY Satis",align:"right"},{k:"trendyolQuantity",l:"TY Stok",align:"right"},{k:"trendyolStatus",l:"Durum"}
+          ]}/>
+        </ACard>
+      </div>
+
+      <ACard title="Trendyol Stok / Fiyat Cekilen Kayitlar">
+        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(150px,1fr))",gap:10,marginBottom:14}}>
+          <Stat label="Cekilen Kayit" value={inventorySummary.variantCount??"-"} muted={`${inventorySummary.pagesFetched||0} sayfa`}/>
+          <Stat label="Toplam Bilinen" value={inventorySummary.totalElements??"-"}/>
+          <Stat label="Sonraki Token" value={inventorySummary.nextPageToken?"Var":"Yok"}/>
+        </div>
+        <RowTable rows={inventoryPull?.marketplace?.variants||[]} empty="Stok/fiyat listesi henuz cekilmedi." columns={[
+          {k:"barcode",l:"Barkod"},{k:"stockCode",l:"Stok Kodu"},{k:"title",l:"Urun",maxWidth:420},{k:"quantity",l:"Stok",align:"right"},{k:"salePrice",l:"Satis",align:"right"},{k:"listPrice",l:"Liste",align:"right"}
+        ]}/>
+      </ACard>
+
+      <ACard title="Tek Barkod Durumu">
+        <div style={{display:"flex",gap:8,alignItems:"end",flexWrap:"wrap",marginBottom:12}}>
+          <label style={{fontSize:12,color:"#666",fontWeight:700,minWidth:280}}>Barkod<AIn value={productStatusBarcode} onChange={e=>setProductStatusBarcode(e.target.value)} placeholder="Trendyol barkodu"/></label>
+          <ABtn onClick={checkProductStatus} color="#111827" disabled={busy==="product-status"}>{busy==="product-status"?"...":"Sorgula"}</ABtn>
+        </div>
+        {productStatus&&<pre style={{maxHeight:360,overflow:"auto",background:"#111827",color:"#e5e7eb",borderRadius:8,padding:14,fontSize:12,whiteSpace:"pre-wrap"}}>{JSON.stringify(productStatus,null,2)}</pre>}
+      </ACard>
+    </>}
+
+    {view==="products"&&<>
+      <ACard title="Product V2 Urun Yukleme Onizleme" action={<ABtn onClick={refreshProducts}>{busy==="products"?"...":"Onizle"}</ABtn>}>
+        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(150px,1fr))",gap:10,marginBottom:14}}>
+          <Stat label="Yuklemeye Hazir" value={productSummary.itemCount??"-"}/>
+          <Stat label="Atlanan" value={productSummary.skippedCount??"-"}/>
+          <Stat label="Kategori Eksigi" value={productSummary.mappingNeededCount??"-"}/>
+          <Stat label="Brand Hazir" value={productSummary.brandReady?"Evet":"Hayir"} color={productSummary.brandReady?"#15803d":"#b91c1c"}/>
+        </div>
+        {productPreview?.mappingNeeded?.length>0&&<div style={{marginBottom:14}}>
+          <div style={{fontSize:13,fontWeight:800,marginBottom:8}}>Kategori eslestirmesi gerekenler</div>
+          <RowTable rows={productPreview.mappingNeeded.slice(0,40)} columns={[
+            {k:"category",l:"Kategori"},{k:"productCat",l:"Slug"},{k:"count",l:"Adet",align:"right"},{k:"sampleSku",l:"Ornek SKU"}
+          ]}/>
+        </div>}
+        <RowTable rows={productPreview?.sample||[]} empty="Brand ID ve kategori map tamamlaninca urun adaylari burada gorunecek." columns={[
+          {k:"sku",l:"SKU"},{k:"title",l:"Baslik",maxWidth:360},{k:"barcode",l:"Barkod"},{k:"categoryId",l:"Kategori"},{k:"salePrice",l:"Satis",align:"right"}
+        ]}/>
+      </ACard>
+      <ACard title="Canli Urun Yukleme">
+        <div style={{fontSize:12,color:"#92400e",background:"#fffbeb",border:"1px solid #fde68a",borderRadius:6,padding:10,marginBottom:12}}>Urun yukleme Trendyol onay surecine sokar. Brand ID, kategori ID ve zorunlu attribute eslesmeleri tamamlanmadan canli yukleme yapmayin.</div>
+        <div style={{display:"grid",gridTemplateColumns:"minmax(180px,1fr) minmax(180px,1fr) auto",gap:10,alignItems:"end"}}>
+          <label style={{fontSize:12,color:"#666",fontWeight:700}}>Test limiti<AIn value={liveLimit} onChange={e=>setLiveLimit(e.target.value)} placeholder="Orn: 5"/></label>
+          <label style={{fontSize:12,color:"#666",fontWeight:700}}>Onay metni: URUN YUKLE<AIn value={confirmProducts} onChange={e=>setConfirmProducts(e.target.value)} placeholder="URUN YUKLE"/></label>
+          <ABtn color="#dc2626" disabled={busy==="live-products"} onClick={liveProducts}>{busy==="live-products"?"Yukleniyor":"Urun Yukle"}</ABtn>
+        </div>
+      </ACard>
+    </>}
+
+    {view==="lookups"&&<>
+      <ACard title="Trendyol Kategori ve Marka Lookup" action={<ABtn onClick={runLookups}>{busy==="lookups"?"...":"Lookup Al"}</ABtn>}>
+        <div style={{fontSize:13,color:"#666",marginBottom:12}}>Kategori adayi, Frenciniz urun kategorilerine gore otomatik siralanir. Canli yukleme oncesi elle kontrol edin.</div>
+        <RowTable rows={lookups?.categoryCandidates?.slice(0,60)||[]} empty="Lookup henuz alinmadi." columns={[
+          {k:"category",l:"Frenciniz Kategori"},{k:"count",l:"Adet",align:"right"},{k:"candidateId",l:"TY ID"},{k:"candidatePath",l:"Trendyol Kategori",maxWidth:520},{k:"score",l:"Puan",align:"right"}
+        ]}/>
+      </ACard>
+      <ACard title="Kategori Attribute Sorgula">
+        <div style={{display:"flex",gap:8,alignItems:"end",flexWrap:"wrap",marginBottom:12}}>
+          <label style={{fontSize:12,color:"#666",fontWeight:700,minWidth:180}}>Kategori ID<AIn value={categoryId} onChange={e=>setCategoryId(e.target.value)} placeholder="Orn: 4232"/></label>
+          <ABtn onClick={fetchAttributes}>{busy==="attributes"?"...":"Attribute Al"}</ABtn>
+        </div>
+        <RowTable rows={requiredAttrs.slice(0,40)} empty="Kategori ID girip attribute alin." columns={[
+          {k:"attributeId",l:"ID"},{k:"attributeName",l:"Attribute"},{k:"required",l:"Zorunlu",render:r=>r.required?"Evet":"-"},{k:"allowCustom",l:"Ozel Deger",render:r=>r.allowCustom?"Evet":"Hayir"},{k:"valueCount",l:"Deger",align:"right",render:r=>(r.attributeValues||[]).length}
+        ]}/>
+      </ACard>
+    </>}
+
+    {view==="batch"&&<ACard title="Batch Sonucu Kontrol">
+      <div style={{display:"flex",gap:8,alignItems:"end",flexWrap:"wrap",marginBottom:14}}>
+        <label style={{fontSize:12,color:"#666",fontWeight:700,minWidth:320}}>Batch Request ID<AIn value={batchId} onChange={e=>setBatchId(e.target.value)} placeholder="batchRequestId"/></label>
+        <ABtn onClick={checkBatch}>{busy==="batch"?"...":"Sorgula"}</ABtn>
+      </div>
+      {batchResult&&<pre style={{maxHeight:420,overflow:"auto",background:"#111827",color:"#e5e7eb",borderRadius:8,padding:14,fontSize:12,whiteSpace:"pre-wrap"}}>{JSON.stringify(batchResult,null,2)}</pre>}
+    </ACard>}
+  </div>;
 }
 
 function ABanners(){
