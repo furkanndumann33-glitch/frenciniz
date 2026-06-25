@@ -480,7 +480,8 @@ function generalWhatsAppUrl(topic = "agir vasita fren parcasi") {
 
 function productWhatsAppUrl(product, qty = 1) {
   return waUrl([
-    "Merhaba Frenciniz, bu urun aracima uyar mi? Stok, fiyat ve kargo teyidi rica ederim.",
+    "Merhaba Frenciniz, bu urun icin hizli teyit ve fiyat almak istiyorum.",
+    "Talebim: Aracima uyumluluk, stok, fiyat ve kargo teyidi",
     `Urun: ${product?.name || "-"}`,
     `SKU: ${product?.sku || "-"}`,
     `OEM / muadil: ${product?.oem || "-"}`,
@@ -530,16 +531,17 @@ function quickQuoteWhatsAppUrl({product, code, vehicle, phone, note} = {}) {
 
 function recordLeadEvent(type = "whatsapp", data = {}) {
   if (typeof window === "undefined") return;
+  const product = data.product || null;
   const payload = {
     type,
     path: window.location.pathname || "/",
     ref: document.referrer || "",
     source: data.source || type,
     href: data.href || "",
-    productId: data.productId || "",
-    sku: data.sku || "",
-    category: data.category || "",
-    value: Number(data.value || 0) || 0,
+    productId: data.productId || product?.id || "",
+    sku: data.sku || product?.sku || "",
+    category: data.category || product?.cat || "",
+    value: Number(data.value || product?.price || 0) || 0,
     items: Number(data.items || 0) || 0,
     contactName: data.contactName || "",
     contactPhone: data.contactPhone || "",
@@ -3209,6 +3211,60 @@ function ProductsPage() {
   );
 }
 
+function ProductConversionPanel({p, qty, href, isMobile, fp}) {
+  const stockCount = Number(p?.stock || 0);
+  const partCode = p?.oem || p?.sku || "OEM / parca kodu";
+  const trustItems = [
+    {k:"Kod otomatik gider", v:`SKU: ${p?.sku || "-"}${p?.oem ? ` | OEM: ${String(p.oem).slice(0, 42)}` : ""}`},
+    {k:"Stok ve kargo teyidi", v:stockCount > 0 ? `${Math.floor(stockCount)} adet stok gorunuyor` : "Stok durumu hizli teyit edilir"},
+    {k:"Yanlis parca riskini azalt", v:"Sase, OEM veya eski parca fotosu ile kontrol"},
+  ];
+  const leadPayload = { source:"product_detail_primary_whatsapp", href, product:p, value:(Number(p?.price || 0) * Number(qty || 1)) };
+  return (
+    <section aria-label="Hizli teklif ve uyumluluk" style={{
+      marginBottom:18,
+      padding:isMobile?14:16,
+      borderRadius:8,
+      background:"linear-gradient(135deg,#07111f,#111827 58%,#172033)",
+      color:"#fff",
+      border:"1px solid rgba(37,211,102,.28)",
+      boxShadow:"0 16px 34px rgba(15,23,42,.16)"
+    }}>
+      <div style={{display:"flex",alignItems:isMobile?"stretch":"center",justifyContent:"space-between",gap:14,flexDirection:isMobile?"column":"row"}}>
+        <div style={{minWidth:0}}>
+          <div style={{fontSize:11,fontWeight:950,color:"#facc15",textTransform:"uppercase",letterSpacing:.2,marginBottom:5}}>30 saniyede netlestir</div>
+          <h2 style={{fontSize:isMobile?18:20,lineHeight:1.2,margin:"0 0 7px",fontWeight:950}}>Bu parca aracina uyar mi? Mesaj hazir.</h2>
+          <p style={{fontSize:13,lineHeight:1.55,color:"#d1d5db",margin:"0 0 11px"}}>WhatsApp'a tiklayinca urun, SKU, OEM, adet ve link otomatik gider. Sadece arac modelini veya eski parca fotografini eklemen yeterli.</p>
+          <div style={{fontSize:11,color:"#a7f3d0",background:"rgba(37,211,102,.1)",border:"1px solid rgba(37,211,102,.22)",borderRadius:6,padding:"7px 8px",overflowWrap:"anywhere"}}>Kod: {partCode}</div>
+        </div>
+        <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr",gap:8,minWidth:isMobile?0:210}}>
+          <a href={href} target="_blank" rel="noopener noreferrer" data-lead-source="product_detail_primary_whatsapp" data-lead-product-id={p?.id} data-lead-sku={p?.sku || ""} data-lead-category={p?.cat || ""} data-lead-value={(Number(p?.price || 0) * Number(qty || 1)) || 0}
+            onClick={() => { recordLeadEvent("whatsapp", leadPayload); metaTrack("Contact", metaProductPayload(p, qty, p?.cat)); metaTrackCustom("WhatsAppLead", { source:"product_detail_primary", productId:p?.id, sku:p?.sku }); }}
+            style={{minHeight:50,borderRadius:7,background:"linear-gradient(135deg,#16a34a,#25D366)",color:"#062813",textDecoration:"none",fontSize:15,fontWeight:950,display:"flex",alignItems:"center",justifyContent:"center",textAlign:"center",padding:"0 16px",boxShadow:"0 12px 22px rgba(37,211,102,.22)"}}>
+            WhatsApp'tan hemen teyit al
+          </a>
+          <a href="tel:+905456087008" data-lead-source="product_detail_primary_phone" onClick={() => { recordLeadEvent("phone", { source:"product_detail_primary_phone", product:p, value:p?.price || 0 }); metaTrackCustom("PhoneLead", { source:"product_detail_primary", productId:p?.id }); }}
+            style={{minHeight:42,borderRadius:7,background:"rgba(255,255,255,.08)",border:"1px solid rgba(255,255,255,.18)",color:"#fff",textDecoration:"none",fontSize:13,fontWeight:900,display:"flex",alignItems:"center",justifyContent:"center",textAlign:"center",padding:"0 14px"}}>
+            Telefonla sor
+          </a>
+        </div>
+      </div>
+      <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"repeat(3,minmax(0,1fr))",gap:8,marginTop:12}}>
+        {trustItems.map(item => (
+          <div key={item.k} style={{background:"rgba(255,255,255,.06)",border:"1px solid rgba(255,255,255,.1)",borderRadius:7,padding:"9px 10px",minWidth:0}}>
+            <div style={{fontSize:11,fontWeight:950,color:"#fff",marginBottom:4}}>{item.k}</div>
+            <div style={{fontSize:11,color:"#cbd5e1",lineHeight:1.35,overflowWrap:"anywhere"}}>{item.v}</div>
+          </div>
+        ))}
+      </div>
+      <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:10,marginTop:12,flexWrap:"wrap",fontSize:12,color:"#cbd5e1"}}>
+        <span>Fiyat: <strong style={{color:"#fff"}}>{fp(p?.price || 0)}</strong></span>
+        <span>14:00'a kadar stoklu urunde hizli kargo</span>
+      </div>
+    </section>
+  );
+}
+
 // ===== PRODUCT DETAIL =====
 function ProductDetailPage() {
   const {params, go, addToCart, addViewed, favs, toggleFav, addStockAlert, isMobile, t, fp, lang, products, dataLoaded} = use$();
@@ -3283,6 +3339,7 @@ function ProductDetailPage() {
               <div style={{fontSize:12,color:"#a7b0c0",marginTop:8,lineHeight:1.45}}>Siparişten önce eski parça fotoğrafı veya şase ile kontrol önerilir.</div>
             </div>
           </div>
+          <ProductConversionPanel p={p} qty={qty} href={whatsappQuoteHref} isMobile={isMobile} fp={fp} />
           <div style={{fontSize:14,color:"#666",lineHeight:1.7,marginBottom:16,whiteSpace:"pre-line"}}>{linkifyContacts(detailDesc)}</div>
           <div style={{padding:"16px 20px",background:"#f9f9f9",borderRadius:8,marginBottom:20,border:"1px solid #eee"}}>
             <div style={{display:"flex",alignItems:"baseline",gap:10}}>
@@ -3349,7 +3406,7 @@ function ProductDetailPage() {
         <div style={{display:"flex",flexWrap:"wrap",gap:10,padding:16,background:"#fff8f0",borderRadius:10,border:"1px solid #ffd9b3"}}>
           <div style={{width:"100%",fontSize:13,fontWeight:700,color:"#c05200",marginBottom:4}}>{lang==="en"?"Contact us for stock & compatibility":"Stok ve uyumluluk için bize ulaşın"}</div>
           <a href="tel:+905456087008" style={{flex:"1 1 150px",display:"flex",alignItems:"center",justifyContent:"center",gap:8,padding:"12px 20px",background:"#ff6000",color:"#fff",borderRadius:8,fontSize:14,fontWeight:700,textDecoration:"none",minHeight:44}}>📞 {lang==="en"?"Call":"Ara"}: 0545 608 7008</a>
-          <a href={whatsappQuoteHref} target="_blank" rel="noopener noreferrer" onClick={() => metaTrack("Contact", metaProductPayload(p, qty, p.cat))} style={{flex:"1 1 150px",display:"flex",alignItems:"center",justifyContent:"center",gap:8,padding:"12px 20px",background:"#25D366",color:"#fff",borderRadius:8,fontSize:14,fontWeight:700,textDecoration:"none",minHeight:44}}>💬 WhatsApp: 0850 888 7881</a>
+          <a href={whatsappQuoteHref} target="_blank" rel="noopener noreferrer" onClick={() => { recordLeadEvent("whatsapp", { source:"product_desc_whatsapp", href:whatsappQuoteHref, product:p, value:(p.price || 0) * qty }); metaTrack("Contact", metaProductPayload(p, qty, p.cat)); }} style={{flex:"1 1 150px",display:"flex",alignItems:"center",justifyContent:"center",gap:8,padding:"12px 20px",background:"#25D366",color:"#fff",borderRadius:8,fontSize:14,fontWeight:700,textDecoration:"none",minHeight:44}}>💬 WhatsApp: 0850 888 7881</a>
           <a href="mailto:info@frenciniz.com" style={{flex:"1 1 150px",display:"flex",alignItems:"center",justifyContent:"center",gap:8,padding:"12px 20px",background:"#fff",color:"#333",border:"1px solid #ddd",borderRadius:8,fontSize:14,fontWeight:600,textDecoration:"none",minHeight:44}}>✉️ E-posta</a>
         </div>
         <section aria-label="Urun uyumluluk sorulari" style={{marginTop:18,padding:18,background:"#f8fafc",border:"1px solid #e2e8f0",borderRadius:8}}>
@@ -3380,11 +3437,11 @@ function ProductDetailPage() {
             <span style={{fontSize:10,color:"#a7b0c0",fontWeight:800}}>Fiyat</span>
             <strong style={{fontSize:14,whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}>{fp(p.price)}</strong>
           </div>
-          <a href={whatsappQuoteHref} target="_blank" rel="noopener noreferrer" onClick={() => metaTrack("Contact", metaProductPayload(p, qty, p.cat))}
+          <a href={whatsappQuoteHref} target="_blank" rel="noopener noreferrer" onClick={() => { recordLeadEvent("whatsapp", { source:"product_mobile_sticky_whatsapp", href:whatsappQuoteHref, product:p, value:(p.price || 0) * qty }); metaTrack("Contact", metaProductPayload(p, qty, p.cat)); }}
             style={{minHeight:48,borderRadius:8,background:"linear-gradient(135deg,#16a34a,#25D366)",color:"#062813",textDecoration:"none",fontSize:12,fontWeight:950,display:"flex",alignItems:"center",justifyContent:"center",textAlign:"center",padding:"0 8px"}}>
             WhatsApp
           </a>
-          <a href="tel:+905456087008" onClick={() => metaTrackCustom("PhoneLead", { source: "product_sticky_bar", product_id: p.id, sku: p.sku })}
+          <a href="tel:+905456087008" onClick={() => { recordLeadEvent("phone", { source:"product_mobile_sticky_phone", product:p, value:p.price || 0 }); metaTrackCustom("PhoneLead", { source: "product_sticky_bar", product_id: p.id, sku: p.sku }); }}
             style={{minHeight:48,borderRadius:8,background:"linear-gradient(135deg,#ff6000,#facc15)",color:"#111827",textDecoration:"none",fontSize:12,fontWeight:950,display:"flex",alignItems:"center",justifyContent:"center",textAlign:"center",padding:"0 8px"}}>
             Ara
           </a>
