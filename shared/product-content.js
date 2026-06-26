@@ -484,7 +484,12 @@ function detailCandidates(product = {}) {
     else add(value.replace(/\s*[xX]\s*/g, "/").replace(/\s*\/\s*/g, "/"));
   }
   for (const match of raw.matchAll(/\b\d{1,3}\s*(?:L[ÜU]K|LİK|LIK)\b/gi)) add(match[0]);
+  if (/\bD\/P\b/i.test(raw)) add("D/P");
+  if (/\bD\/D\b/i.test(raw)) add("D/D");
   for (const match of raw.matchAll(/\bM\d{1,3}(?:[,.]\d{1,2})?\s*(?:x|\*)\s*\d{1,3}(?:[,.]\d+)?\b/gi)) add(match[0]);
+  for (const match of raw.matchAll(/\bM\d{1,3}\b/gi)) {
+    if (group === "fren-korukleri" || group === "susp-korugu" || group === "kaliper-urunleri") add(match[0]);
+  }
   for (const match of raw.matchAll(/\b\d{2,4}(?:[,.]\d{1,2})?\s*MM\b/gi)) add(match[0]);
   for (const match of raw.matchAll(/\b\d{1,2}\s*CM\b/gi)) add(match[0]);
   for (const match of raw.matchAll(/\b\d+\s*DEL[İI]K\b/gi)) add(match[0]);
@@ -567,13 +572,17 @@ export function buildSeoProductTitle(product = {}, compat = product.compat || []
   const sizeDetail = details.find((detail) => /\d+\s*[\/xX]\s*\d+|\d+\s*(?:Lük|Lik|Lık|LİK|LÜK)/i.test(detail));
   const rest = removeDuplicateDetailWords(`${vehicle} ${part} ${sizeDetail || ""}`, details.filter((detail) => detail !== sizeDetail));
 
+  const chamberTypeDetail = group === "fren-korukleri" ? rest.find((detail) => /^D\/[PD]$/i.test(detail)) : "";
+  const displaySizeDetail = sizeDetail && chamberTypeDetail ? `${sizeDetail} ${chamberTypeDetail}` : sizeDetail;
+  const orderedRest = chamberTypeDetail ? rest.filter((detail) => detail !== chamberTypeDetail) : rest;
+
   let pieces;
   if (group === "fren-korukleri" && sizeDetail) {
-    pieces = [vehicle, sizeDetail, part, ...rest.slice(0, 3)];
+    pieces = [vehicle, displaySizeDetail, part, ...orderedRest.slice(0, 3)];
   } else if (group === "susp-korugu" && sizeDetail) {
-    pieces = [vehicle, sizeDetail, part, ...rest.slice(0, 3)];
+    pieces = [vehicle, displaySizeDetail, part, ...orderedRest.slice(0, 3)];
   } else {
-    pieces = [vehicle, part, sizeDetail, ...rest.slice(0, 3)];
+    pieces = [vehicle, part, displaySizeDetail, ...orderedRest.slice(0, 3)];
   }
 
   let title = cleanProductText(uniqParts(pieces).join(" "));
