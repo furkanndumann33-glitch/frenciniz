@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { buildSeoProductDescription, buildSeoProductTitle } from "../shared/product-content.js";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const PRODUCTS_PATH = path.join(ROOT, "public", "data", "products.json");
@@ -1154,11 +1155,10 @@ function canUseTitleRuleSuffix(product, suffix, compat) {
 }
 
 function makeProductName(product, compat, detection = {}) {
-  const currentName = sourceName(product);
-  const canonicalBase = String(currentName || product.name || "").replace(/\s+/g, " ").trim();
-  const mappedCanonicalGeneric = titleCaseBase(canonicalBase);
-  const canonicalFinalName = applySkuTitleFallback(product, mappedCanonicalGeneric || canonicalBase);
-  return canonicalFinalName.length > 90 ? canonicalFinalName.slice(0, 90).trim() : canonicalFinalName;
+  return buildSeoProductTitle({
+    ...product,
+    sourceName: sourceName(product),
+  }, compat, { max: 100, marketplace: true });
   const text = sourceText(product);
   const titleRule = detection.confidence === "verified_oem" ? TITLE_RULES.find((rule) => rule.regex.test(text)) : null;
   const compactSuffix = compactTitleSuffix(compat);
@@ -1322,23 +1322,10 @@ function detectCompatibilityStrict(product) {
 }
 
 function makeDescription(product, compat, notes, confidence) {
-  const group = groupId(product);
-  const label = categoryLabel(product);
-  const oem = cleanOem(product.oem);
-  const baseName = String(product.name || "").trim();
-  const priority = PRIORITY_GROUPS.has(group);
-  const modelText = compat.slice(0, priority ? 12 : 8).join(", ");
-  const bijonLengthMm = extractBijonLengthMm(product);
-  const productCode = String(product.sku || "").replace(/\s+/g, " ").trim();
-  const introLine = `${baseName} ${label} ürünüdür.`;
-  const skuLine = productCode ? `Stok kodu: ${productCode}.` : "";
-  const canonicalDetailLine = bijonLengthMm ? `Bijon uzunluğu: ${bijonLengthMm} mm.` : "";
-  const canonicalOemLine = oem
-    ? `OEM / muadil numarası: ${oem}.`
-    : "OEM / muadil numarası: Tedarikçi kaydında net OEM numarası yok; ürün kodu veya eski parça numarasıyla teyit önerilir.";
-  const compatLine = modelText ? `Uyumlu araçlar / sistemler: ${modelText}.` : "";
-  const canonicalSafetyLine = "Kesin uyumluluk araç şasesi, model yılı, aks tipi, ölçü ve mevcut parça numarasına göre değişebilir; sipariş öncesi OEM numarası veya eski parça fotoğrafı ile Frenciniz'den teyit alın.";
-  return [introLine, skuLine, canonicalDetailLine, canonicalOemLine, compatLine, canonicalSafetyLine].filter(Boolean).join("\n");
+  return buildSeoProductDescription({
+    ...product,
+    sourceName: sourceName(product),
+  }, compat, { max: 30000, marketplace: true });
 
   const confidenceText = {
     verified_oem: "OEM/muadil referans sinyaliyle eslesen aday uyumluluklar",
@@ -1357,6 +1344,50 @@ function makeDescription(product, compat, notes, confidence) {
   const safetyLine = "Kesin uyumluluk model, aks tipi, olcu, uretim yili ve saseye gore degisir; siparis oncesi sase numarasi, eski parca fotografi veya OEM numarasiyla Frenciniz'den teyit alin.";
 
   return [intro, detailLine, oemLine, noteLine, safetyLine].filter(Boolean).join("\n");
+}
+
+function appendSkuToTitle(product) {
+  const sku = String(product.sku || "").replace(/\s+/g, " ").trim();
+  const current = String(product.name || "").replace(/\s+/g, " ").trim();
+  if (!sku || !current || normalize(current).includes(normalize(sku))) return current;
+  const maxBase = Math.max(35, 100 - sku.length - 1);
+  const base = current.length <= maxBase
+    ? current
+    : current.slice(0, maxBase).replace(/\s+\S*$/, "").trim();
+  return `${base} ${sku}`.replace(/\s+/g, " ").trim().slice(0, 100).trim();
+}
+
+function makeDuplicateTitlesUnique(products) {
+  const byTitle = new Map();
+  for (const product of products) {
+    const key = normalize(product.name);
+    if (!key) continue;
+    const rows = byTitle.get(key) || [];
+    rows.push(product);
+    byTitle.set(key, rows);
+  }
+
+  let groups = 0;
+  let adjusted = 0;
+  for (const rows of byTitle.values()) {
+    if (rows.length < 2) continue;
+    groups += 1;
+    for (const product of rows) {
+      const nextName = appendSkuToTitle(product);
+      if (!nextName || nextName === product.name) continue;
+      product.name = nextName;
+      product.desc = buildSeoProductDescription({
+        ...product,
+        sourceName: sourceName(product),
+      }, product.compat || [], {
+        title: nextName,
+        max: 30000,
+        marketplace: true,
+      });
+      adjusted += 1;
+    }
+  }
+  return { groups, adjusted };
 }
 
 export function enrichProducts(products, categories, options = {}) {
@@ -1457,6 +1488,10 @@ export function enrichProducts(products, categories, options = {}) {
       summary.byGroup[group].changed += 1;
     }
   }
+
+  const duplicateTitleSummary = makeDuplicateTitlesUnique(products);
+  summary.duplicateTitleGroups = duplicateTitleSummary.groups;
+  summary.duplicateTitleAdjusted = duplicateTitleSummary.adjusted;
 
   return { products, categories, summary };
 }

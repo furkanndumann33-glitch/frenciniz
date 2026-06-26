@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { kv } from "@vercel/kv";
+import { buildSeoProductDescription, buildSeoProductTitle } from "../../shared/product-content.js";
 
 const DEFAULT_SETTINGS = {
   commissionRate: 14,
@@ -270,21 +271,16 @@ function listPriceFor(salePrice, product, settings) {
 }
 
 function marketplaceTitleFor(product) {
-  const title = cleanText(product.name || product.title || product.sku || product.stockCode, 100);
-  return title || cleanText(product.sku || product.id || "", 100);
+  const title = buildSeoProductTitle(product, product.compat || [], { max: 100, marketplace: true });
+  return title || cleanText(product.name || product.title || product.sku || product.stockCode, 100);
 }
 
 function marketplaceDescriptionFor(product, title) {
-  const existing = cleanText(product.desc || product.description, 30000);
-  if (existing) return existing;
-  const compat = Array.isArray(product.compat) ? product.compat.filter(Boolean).slice(0, 12).join(", ") : "";
-  return cleanText([
-    `${title} ağır vasıta fren parçasıdır.`,
-    product.sku ? `Stok kodu: ${product.sku}.` : "",
-    product.oem ? `OEM / muadil numarası: ${product.oem}.` : "OEM / muadil numarası: Tedarikçi kaydında net OEM numarası yok; ürün kodu veya eski parça numarasıyla teyit önerilir.",
-    compat ? `Uyumlu araçlar / sistemler: ${compat}.` : "",
-    "Kesin uyumluluk araç şasesi, model yılı, aks tipi, ölçü ve mevcut parça numarasına göre değişebilir; sipariş öncesi OEM numarası veya eski parça fotoğrafı ile Frenciniz'den teyit alın.",
-  ].filter(Boolean).join("\n"), 30000);
+  return buildSeoProductDescription(product, product.compat || [], {
+    title,
+    max: 30000,
+    marketplace: true,
+  });
 }
 
 export function buildStockPricePayload(products, settings, options = {}) {

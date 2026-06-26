@@ -152,13 +152,7 @@ export function productSearchName(product, categories = [], max = 128) {
   const original = cleanText(product?.name || "Agir Vasita Fren Parcasi");
   const part = productPartLabel(product, categories);
   const base = nameHasPart(original, part) ? original : `${part} ${original}`;
-  const code = productPrimaryCode(product);
-  const codeLabel = productPrimaryCodeLabel(product);
-  const sku = cleanText(product?.sku);
-  const pieces = [base];
-  if (code && !normalizeSearchText(base).includes(normalizeSearchText(code))) pieces.push(`${codeLabel} ${code}`);
-  if (sku && !normalizeSearchText(pieces.join(" ")).includes(normalizeSearchText(sku))) pieces.push(sku);
-  return compactText(uniqueParts(pieces).join(" "), max);
+  return compactText(uniqueParts([base]).join(" "), max);
 }
 
 export function productSearchTitle(product, categories = [], max = 74) {
