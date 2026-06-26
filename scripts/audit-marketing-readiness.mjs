@@ -18,7 +18,11 @@ function csvEscape(value) {
 
 function hasRealImage(product) {
   const img = String(product?.img || "").toLowerCase();
-  return !!img && !img.includes("placehold") && !img.includes("/logo") && !img.includes("logo.");
+  if (img && !img.includes("placehold") && !img.includes("missing-product") && !img.includes("/logo") && !img.includes("logo.")) {
+    return true;
+  }
+  const id = String(product?.id || "").replace(/[^0-9A-Za-z_-]/g, "");
+  return Boolean(id && fs.existsSync(path.join(ROOT, "public", "img", "frenciniz-generated", `${id}_frenciniz.webp`)));
 }
 
 function topValues(values, limit = 8) {

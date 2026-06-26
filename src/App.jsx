@@ -331,14 +331,28 @@ function productGroupId(p) {
 }
 function hasRealImg(p){
   const img = String(p?.img || "").toLowerCase();
-  return !!(p && img && !img.includes("placehold") && !img.includes("/logo") && !img.includes("logo."));
+  return !!(p && img && !img.includes("placehold") && !img.includes("missing-product") && !img.includes("/logo") && !img.includes("logo."));
+}
+function generatedProductImg(p){
+  const id = String(p?.id || "").replace(/[^0-9A-Za-z_-]/g, "");
+  return id ? `/img/frenciniz-generated/${id}_frenciniz.webp` : "";
+}
+function productGalleryImages(p){
+  if (hasRealImg(p)) {
+    return (Array.isArray(p.images) && p.images.length ? p.images : [p.img_lg || p.img]).filter(Boolean);
+  }
+  const generated = generatedProductImg(p);
+  return generated ? [generated] : [];
 }
 function prodImg(p){
-  return hasRealImg(p) ? p.img : SITE_IMAGES.missingProduct;
+  return productGalleryImages(p)[0] || SITE_IMAGES.missingProduct;
+}
+function hasDisplayImg(p){
+  return Boolean(productGalleryImages(p).length);
 }
 function prodDesc(p, lang){
   const base = p?.desc || "";
-  if (!hasRealImg(p)) {
+  if (!hasDisplayImg(p)) {
     const prefix = lang === "en" ? "📸 Image coming soon\n\n" : "📸 Görsel hazırlanıyor\n\n";
     return prefix + base;
   }
@@ -821,12 +835,12 @@ function categoryProductImage(cat) {
   const ids = new Set(id === "all" ? [] : [id]);
   if (id !== "all") CATS.filter(c => c.parent === id).forEach(c => ids.add(c.id));
   const matches = (p) => {
-    if (!hasRealImg(p)) return false;
+    if (!hasDisplayImg(p)) return false;
     if (id === "all") return true;
     return ids.has(String(p.cat || "").toLowerCase());
   };
   const found = (PRODUCTS || []).find(p => p.stock > 0 && matches(p)) || (PRODUCTS || []).find(matches);
-  return found ? (found.img || found.img_lg) : "";
+  return found ? prodImg(found) : "";
 }
 function categoryVisual(cat) {
   const id = String(cat?.id || cat || "").toLowerCase();
@@ -889,7 +903,7 @@ function categorySalesInfo(catId, catName, items, productList, catList, lang) {
   const productsInScope = Array.isArray(selected) ? selected : [];
   const itemCount = productsInScope.length;
   const stockCount = productsInScope.filter(p => Number(p.stock || 0) > 0).length;
-  const missingImages = productsInScope.filter(p => !hasRealImg(p)).length;
+  const missingImages = productsInScope.filter(p => !hasDisplayImg(p)).length;
   const compat = topValues(productsInScope.map(p => p.compat || []), 6);
   const brands = topValues(productsInScope.map(p => p.brand ? [p.brand] : []), 4);
   const chips = [...new Set([...(copy.chips || []), ...compat, ...brands])].slice(0, 8);
@@ -1413,7 +1427,7 @@ export default function App() {
               "item": buildProductJsonLd(p, cats, {
                 site: SITE_URL,
                 url: productSeoUrl(SITE_URL, p),
-                images: [absoluteSiteUrl(hasRealImg(p) ? cdnImg(p.img, 400) : SITE_IMAGES.missingProduct)],
+                images: [absoluteSiteUrl(cdnImg(prodImg(p), 400))],
                 categoryName: catName,
                 includeContext: false,
               }),
@@ -1461,9 +1475,7 @@ export default function App() {
         const catName = sub ? sub.name : "fren aksamı";
         desc = productSearchDescription(p, cats, 300);
         canonical = productSeoUrl(SITE_URL, p);
-        const productImageList = (hasRealImg(p)
-          ? (Array.isArray(p.images) && p.images.length ? p.images : [p.img_lg || p.img])
-          : [SITE_IMAGES.missingProduct])
+        const productImageList = (productGalleryImages(p).length ? productGalleryImages(p) : [SITE_IMAGES.missingProduct])
           .filter(Boolean)
           .map(src => absoluteSiteUrl(cdnImg(src, 800)));
         const productImg = productImageList[0] || baseImg;
@@ -2521,6 +2533,7 @@ function ProductCard({p, eager}) {
   const isFav = favs.includes(p.id);
   const [accentA, accentB] = productAccent(p);
   const realImage = hasRealImg(p);
+  const displayImage = Boolean(productGalleryImages(p).length);
   const catName = productCategoryName(p, lang);
   const quoteHref = productWhatsAppUrl(p, 1);
   const seoCardName = productSearchName(p, CATS, 112) || p.name;
@@ -2533,12 +2546,12 @@ function ProductCard({p, eager}) {
       onMouseLeave={e => {e.currentTarget.style.boxShadow="0 12px 34px rgba(15,23,42,.08)";e.currentTarget.style.borderColor="rgba(15,23,42,.08)";}}>
       <div style={{height:isMobile?176:212,background:`radial-gradient(circle at 78% 18%, ${accentB}33, transparent 32%), linear-gradient(145deg,#0b1020,#161b29 58%,#222835)`,display:"flex",alignItems:"center",justifyContent:"center",position:"relative",overflow:"hidden"}}>
         <div style={{position:"absolute",inset:0,background:"linear-gradient(135deg,rgba(255,255,255,.14),transparent 35%,rgba(255,96,0,.16))",pointerEvents:"none"}} />
-        {realImage ? (
+        {displayImage ? (
           <OptImg src={prodImg(p)} alt={lang==="en" ? translateName(p.name,lang) : seoCardName} eager={eager} style={{maxWidth:"82%",maxHeight:"82%",objectFit:"contain",filter:"drop-shadow(0 18px 24px rgba(0,0,0,.38))",transition:"transform .25s ease"}} />
         ) : (
           <RepresentativeProductVisual p={p} lang={lang} />
         )}
-        {!realImage && <span style={{position:"absolute",left:10,top:10,background:"rgba(255,255,255,.92)",color:"#111",fontSize:10,fontWeight:900,padding:"4px 8px",borderRadius:4,letterSpacing:0}}>{lang==="en"?"Representative":"Temsili gorsel"}</span>}
+        {!realImage && displayImage && <span style={{position:"absolute",left:10,top:10,background:"rgba(255,255,255,.92)",color:"#111",fontSize:10,fontWeight:900,padding:"4px 8px",borderRadius:4,letterSpacing:0}}>{lang==="en"?"Representative":"Temsili gorsel"}</span>}
         {disc > 0 && <span style={{position:"absolute",top:10,left:10,background:"linear-gradient(135deg,#ff6000,#facc15)",color:"#111",fontSize:12,fontWeight:900,padding:"4px 9px",borderRadius:4}}>%{disc}</span>}
         {p.stock > 0 && <span style={{position:"absolute",top:10,right:48,background:"rgba(34,197,94,.95)",color:"#fff",fontSize:11,fontWeight:800,padding:"4px 8px",borderRadius:4}}>{lang==="en"?"In stock":"Stokta"}</span>}
         <button onClick={e => {e.stopPropagation(); toggleFav(p.id)}}
@@ -2913,7 +2926,7 @@ function HomePageLegacy() {
   const {go, isMobile, t, lang, products} = use$();
   const popular = useMemo(() => {
     const targetCats = ["fren-diski","fren-diski-abs-li","fren-kampanasi","fren-balatasi"];
-    const pool = (products||[]).filter(p => targetCats.includes(p.cat) && hasRealImg(p) && p.stock > 0);
+    const pool = (products||[]).filter(p => targetCats.includes(p.cat) && hasDisplayImg(p) && p.stock > 0);
     const perCat = {};
     targetCats.forEach(c => { perCat[c] = pool.filter(p => p.cat === c).slice(0, 2); });
     const balanced = [...(perCat["fren-diski"]||[]), ...(perCat["fren-kampanasi"]||[]), ...(perCat["fren-balatasi"]||[]), ...(perCat["fren-diski-abs-li"]||[])];
@@ -2921,7 +2934,7 @@ function HomePageLegacy() {
   }, [products]);
   // Öne Çıkanlar — farklı kategorilerden 25 karışık ürün (oturum başına stabil)
   const featured = useMemo(() => {
-    const pool = (products||[]).filter(p => hasRealImg(p) && p.stock > 0);
+    const pool = (products||[]).filter(p => hasDisplayImg(p) && p.stock > 0);
     const byCat = {};
     pool.forEach(p => { (byCat[p.cat] ||= []).push(p); });
     const sample = [];
@@ -3289,6 +3302,7 @@ function ProductDetailPage() {
   const compatPreview = Array.isArray(p.compat) ? p.compat.filter(Boolean).slice(0, 7) : [];
   const specs = p.specs && typeof p.specs === "object" ? p.specs : {};
   const seoFaqItems = productSeoFaqItems(p, CATS);
+  const galleryImages = productGalleryImages(p);
   const checkoutNow = () => {
     if (!p.stock) return;
     addToCart(p, qty);
@@ -3303,8 +3317,8 @@ function ProductDetailPage() {
       </div>
       <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr",gap:isMobile?20:32,marginBottom:40}}>
         {/* Image Gallery */}
-        {hasRealImg(p) ? (
-          <ImageGallery images={p.images && p.images.length ? p.images : [p.img_lg || p.img]} discount={disc} />
+        {galleryImages.length ? (
+          <ImageGallery images={galleryImages} discount={disc} />
         ) : (
           <div style={{position:"relative",height:isMobile?330:520,borderRadius:8,overflow:"hidden",background:"#0b1020",boxShadow:"0 18px 46px rgba(15,23,42,.18)"}}>
             <RepresentativeProductVisual p={p} lang={lang} large />
@@ -3527,7 +3541,7 @@ function CartPage() {
             <div style={{border:"1px solid #eee",borderRadius:8,overflow:"hidden",minWidth:0}}>
               {cart.map((item,i) => (
                 <div key={item.id} style={{display:"flex",gap:isMobile?10:16,padding:isMobile?"12px":"16px",borderBottom:i<cart.length-1?"1px solid #f0f0f0":"none",alignItems:isMobile?"flex-start":"center",flexWrap:isMobile?"wrap":"nowrap",minWidth:0}}>
-                  <img src={item.img && !String(item.img).toLowerCase().includes("placehold") && !String(item.img).toLowerCase().includes("logo") ? cdnImg(item.img,100) : SITE_IMAGES.missingProduct} alt={item.name||""} loading="lazy" decoding="async" width={isMobile?62:72} height={isMobile?62:72} onClick={()=>go("product",{id:item.id})} style={{width:isMobile?62:72,height:isMobile?62:72,objectFit:"contain",borderRadius:6,background:"#101624",cursor:"pointer",flex:"0 0 auto"}} onError={e=>{e.target.src=SITE_IMAGES.missingProduct}}/>
+                  <img src={cdnImg(prodImg(item),100)} alt={item.name||""} loading="lazy" decoding="async" width={isMobile?62:72} height={isMobile?62:72} onClick={()=>go("product",{id:item.id})} style={{width:isMobile?62:72,height:isMobile?62:72,objectFit:"contain",borderRadius:6,background:"#101624",cursor:"pointer",flex:"0 0 auto"}} onError={e=>{e.target.src=SITE_IMAGES.missingProduct}}/>
                   <div style={{flex:"1 1 0",minWidth:0,cursor:"pointer",paddingRight:isMobile?4:0}} onClick={()=>go("product",{id:item.id})}>
                     <div style={{fontSize:isMobile?13:14,fontWeight:700,lineHeight:1.35,color:"#111827",overflowWrap:"anywhere"}}>{translateName(item.name,lang)}</div>
                     <div style={{fontSize:12,color:"#999",marginTop:3,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{item.brand} · {item.sku}</div>
@@ -4023,7 +4037,7 @@ function AccountPage() {
           <div style={{border:"1px solid #eee",borderRadius:8,overflow:"hidden"}}>
             {frequentItems.map((item, i) => (
               <div key={item.id} style={{display:"flex",gap:14,padding:"14px 16px",borderBottom:i<frequentItems.length-1?"1px solid #f0f0f0":"none",alignItems:"center"}}>
-                <img src={item.img && !String(item.img).toLowerCase().includes("placehold") && !String(item.img).toLowerCase().includes("logo") ? cdnImg(item.img,80) : SITE_IMAGES.missingProduct} alt={item.name||""} loading="lazy" decoding="async" width={52} height={52} style={{width:52,height:52,objectFit:"contain",borderRadius:6,background:"#101624"}} onError={e=>{e.target.src=SITE_IMAGES.missingProduct}}/>
+                <img src={cdnImg(prodImg(item),80)} alt={item.name||""} loading="lazy" decoding="async" width={52} height={52} style={{width:52,height:52,objectFit:"contain",borderRadius:6,background:"#101624"}} onError={e=>{e.target.src=SITE_IMAGES.missingProduct}}/>
                 <div style={{flex:1}}>
                   <div style={{fontSize:14,fontWeight:600}}>{translateName(item.name,lang)}</div>
                   <div style={{fontSize:12,color:"#999"}}>{item.brand} · {item.sku}</div>

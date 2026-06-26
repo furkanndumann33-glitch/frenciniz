@@ -56,6 +56,31 @@ function isRealProductImage(value) {
   return !!img && !img.includes("placehold") && !img.includes("missing-product") && !img.includes("/logo") && !img.includes("logo.");
 }
 
+function generatedProductImagePath(product) {
+  const id = String(product?.id || "").replace(/[^0-9A-Za-z_-]/g, "");
+  if (!id) return "";
+  const rel = `/img/frenciniz-generated/${id}_frenciniz.webp`;
+  try {
+    const localPath = path.join(process.cwd(), "public", rel.replace(/^\//, ""));
+    if (fs.existsSync(localPath)) return rel;
+  } catch {}
+  return "";
+}
+
+function productPrimaryImage(product, fallback = "/img/site/missing-product.webp") {
+  if (isRealProductImage(product?.img)) return String(product.img);
+  if (isRealProductImage(product?.img_lg)) return String(product.img_lg);
+  if (Array.isArray(product?.images)) {
+    const galleryImage = product.images.find(isRealProductImage);
+    if (galleryImage) return String(galleryImage);
+  }
+  return generatedProductImagePath(product) || fallback;
+}
+
+function hasProductDisplayImage(product) {
+  return isRealProductImage(productPrimaryImage(product, ""));
+}
+
 function absoluteUrl(value) {
   const raw = String(value || "").trim();
   if (!raw) return "";
@@ -512,7 +537,7 @@ function categoryWhatsAppUrl(category, count) {
 
 function renderCategoryProductCard(product, categories = []) {
   const href = productSeoUrl(SITE, product);
-  const img = absoluteUrl(product.img || (Array.isArray(product.images) && product.images[0]) || "/img/site/missing-product.webp");
+  const img = absoluteUrl(productPrimaryImage(product));
   const price = Number(product.price || 0);
   const stock = Number(product.stock || 0);
   return `
@@ -535,7 +560,7 @@ function renderSeoCategoryHtml(category, products = [], categories = []) {
   const parent = category.parent ? categories.find(item => item.id === category.parent) : null;
   const title = compactText(`${cleanName} Fiyatlari ve Stok | Agir Vasita Yedek Parca | Frenciniz`, 72);
   const description = compactText(`${cleanName} kategorisinde ${matched.length} agir vasita fren parcasi. Kamyon, tir, otobus ve dorse icin OEM kodu, sase veya eski parca fotografi ile uyumluluk teyidi, WhatsApp hizli teklif ve kargo.`, 165);
-  const firstImage = absoluteUrl((matched.find(item => isRealProductImage(item.img)) || matched[0] || {}).img || "/img/site/frenciniz-logo-real-og.jpg");
+  const firstImage = absoluteUrl(productPrimaryImage(matched.find(hasProductDisplayImage) || matched[0] || {}, "/img/site/frenciniz-logo-real-og.jpg"));
   const itemList = matched.slice(0, 24).map((product, index) => ({
     "@type": "ListItem",
     position: index + 1,
@@ -668,8 +693,8 @@ function buildMerchantFeed(products, categories) {
     const productName = merchantSafeProductText(productSearchName(p, categories, 150) || p.name);
     const productDesc = merchantSafeProductText(p.desc || "");
 
-    const hasImg = isRealProductImage(p.img);
-    const rawImg = hasImg ? String(p.img) : "/img/site/missing-product.webp";
+    const rawImg = productPrimaryImage(p);
+    const hasImg = isRealProductImage(rawImg);
     const imgUrl = absoluteUrl(rawImg);
 
     const availability = p.stock > 0 ? "in_stock" : "out_of_stock";
@@ -783,8 +808,8 @@ function buildMetaCatalogFeed(products, categories) {
     const productName = merchantSafeProductText(productSearchName(p, categories, 150) || p.name);
     const price = Number(p.price || 0);
     const stock = Number(p.stock || 0);
-    const hasImg = isRealProductImage(p.img);
-    const rawImg = hasImg ? String(p.img) : "/img/site/missing-product.webp";
+    const rawImg = productPrimaryImage(p);
+    const hasImg = isRealProductImage(rawImg);
     const imgUrl = absoluteUrl(rawImg);
     const brand = p.brand || "Ekersan";
     const mpn = p.oem || p.sku || p.id;
@@ -930,12 +955,12 @@ export default async function handler(req, res) {
     // Ürünler
     for (const p of products) {
       if (!p.id) continue;
-      const hasImg = isRealProductImage(p.img);
+      const rawImg = productPrimaryImage(p, "");
+      const hasImg = isRealProductImage(rawImg);
       // Image URL absolute olmalı (sitemap protokolü gereği) — relative ise SITE prefix ekle
       let imgUrl = null;
       if (hasImg) {
-        const raw = String(p.img);
-        imgUrl = absoluteUrl(raw);
+        imgUrl = absoluteUrl(rawImg);
       }
       urls.push(
         `<url>` +
