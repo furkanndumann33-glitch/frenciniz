@@ -185,12 +185,13 @@ function buildSeoProductDescription(product, categories = [], max = 5000) {
   const oem = cleanSeoText(product?.oem);
   const vehicles = vehiclePhrase(product);
   const stock = Number(product?.stock || 0);
+  const catalogDescription = merchantSafeProductText(product?.desc || "");
   const pieces = [
-    productSearchDescription(product, categories, 260),
-    `${productName}, ${category} kategorisinde ${brand} marka agir vasita fren parcasi.`,
-    sku ? `Stok kodu: ${sku}.` : "",
-    oem ? `OEM / muadil kod: ${oem}.` : "",
-    vehicles ? `Uyumluluk adaylari: ${vehicles}.` : "",
+    catalogDescription || productSearchDescription(product, categories, 260),
+    catalogDescription ? "" : `${productName}, ${category} kategorisinde ${brand} marka agir vasita fren parcasi.`,
+    catalogDescription || !sku ? "" : `Stok kodu: ${sku}.`,
+    catalogDescription || !oem ? "" : `OEM / muadil kod: ${oem}.`,
+    catalogDescription || !vehicles ? "" : `Uyumluluk adaylari: ${vehicles}.`,
     "Kamyon, tir, otobus ve dorse fren sistemleri icin OEM kodu, sase no veya eski parca fotografi ile uyumluluk teyidi yapilir.",
     stock > 0 ? `Stokta ${Math.floor(stock)} adet gorunuyor; fiyat ve kargo icin teklif alabilirsiniz.` : "Stok ve fiyat icin WhatsApp uzerinden teyit alabilirsiniz.",
     "Ayni gun kargo, 12 taksit ve 14 gun iade destegi vardir.",

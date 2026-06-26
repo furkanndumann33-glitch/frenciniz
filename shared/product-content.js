@@ -324,6 +324,137 @@ function compactPhrase(phrases, product) {
   return phrase || list[0];
 }
 
+const MODEL_EXAMPLE_RULES = [
+  {
+    regex: /\bACTROS\b|MERCEDES-BENZ ACTROS|MERCEDES ACTROS|MERCEDES-BENZ ACTROS\/AXOR|MERCEDES-BENZ ACTROS AXOR/,
+    examples: ["Actros 1840", "Actros 1841", "Actros 1844", "Actros 1848", "Actros 3340", "Actros 4140"],
+  },
+  {
+    regex: /\bAXOR\b|MERCEDES-BENZ AXOR|MERCEDES AXOR|MERCEDES-BENZ ACTROS\/AXOR|MERCEDES-BENZ ACTROS AXOR/,
+    examples: ["Axor 1840", "Axor 1843", "Axor 2528", "Axor 3228", "Axor 3340", "Axor 4140"],
+  },
+  {
+    regex: /\bAROCS\b|\bAROX\b|MERCEDES-BENZ AROCS/,
+    examples: ["Arocs 1842", "Arocs 2636", "Arocs 3342", "Arocs 4142", "Arocs 4145"],
+  },
+  {
+    regex: /\bATEGO\b|\bATECO\b|MERCEDES-BENZ ATEGO/,
+    examples: ["Atego 815", "Atego 818", "Atego 1218", "Atego 1518", "Atego 1524", "Atego 2528"],
+  },
+  {
+    regex: /TRAVEGO|TOURISMO|TOURINO|INTOURO|O ?403|O ?404|O ?500|SETRA/,
+    examples: ["Travego 15", "Travego 17", "Tourismo", "Tourino", "O403", "O500"],
+  },
+  {
+    regex: /\bMAN\b|\bTGA\b|\bTGS\b|\bTGX\b|\bTGM\b|\bTGL\b|MAN TGA\/TGS\/TGX/,
+    examples: ["MAN TGA 18.430", "MAN TGA 18.460", "MAN TGS 18.440", "MAN TGS 40.360", "MAN TGX 40.460", "MAN TGM"],
+  },
+  {
+    regex: /\bSCANIA\b|SCANIA P\/G\/R|SCANIA 4\/P\/G\/R|\bG420\b|\bR420\b|\bR440\b|\bR450\b/,
+    examples: ["Scania P serisi", "Scania G420", "Scania G440", "Scania R420", "Scania R440", "Scania R450"],
+  },
+  {
+    regex: /\bVOLVO\b|\bFH\b|\bFH12\b|\bFH13\b|\bFM\b|\bFL\b|VOLVO FH\/FM/,
+    examples: ["Volvo FH12", "Volvo FH13", "Volvo FH460", "Volvo FM", "Volvo FMX", "Volvo FL"],
+  },
+  {
+    regex: /\bRENAULT\b|RENAULT TRUCKS|PREMIUM|MAGNUM|KERAX|MIDLUM/,
+    examples: ["Renault Premium 420", "Renault Premium 450", "Renault Magnum", "Renault Kerax", "Renault Midlum", "Renault D Serisi"],
+  },
+  {
+    regex: /\bFORD\b|\bCARGO\b|F-MAX|FMAX/,
+    examples: ["Ford Cargo 1846", "Ford Cargo 3230", "Ford Cargo 3238", "Ford Cargo 3542", "Ford Cargo 4142", "Ford F-Max"],
+  },
+  {
+    regex: /\bDAF\b|\bCF\b|\bXF\b|DAF CF\/XF/,
+    examples: ["DAF CF85", "DAF CF", "DAF XF95", "DAF XF105", "DAF XF106", "DAF XF460"],
+  },
+  {
+    regex: /\bIVECO\b|EUROCARGO|EUROTECH|STRALIS|TRAKKER/,
+    examples: ["Iveco Eurocargo", "Iveco Stralis 430", "Iveco Stralis 450", "Iveco Stralis 480", "Iveco Trakker", "Iveco Eurotech"],
+  },
+  {
+    regex: /\bISUZU\b|NOVO|NOVOCITI|CITILIFE|CITYBUS|NPR|NQR/,
+    examples: ["Isuzu Novo", "Isuzu NovoCiti", "Isuzu NovoCiti Life", "Isuzu CitiLife", "Isuzu NPR", "Isuzu NQR"],
+  },
+  {
+    regex: /\bBMC\b|FATIH|PROFESYONEL|PROBUS|\bPRO ?522\b|\bPRO ?827\b|DODGE|ASKAM/,
+    examples: ["BMC Fatih", "BMC Profesyonel", "BMC Pro 522", "BMC Pro 827", "BMC Probus", "Askam/Dodge"],
+  },
+  {
+    regex: /MITSUBISHI|CANTER|FUSO/,
+    examples: ["Mitsubishi Canter", "Mitsubishi Fuso", "Fuso FE", "Fuso Canter"],
+  },
+  {
+    regex: /OTOKAR|DORUK|SULTAN|KARSAN|ATAK/,
+    examples: ["Otokar Sultan", "Otokar Doruk", "Karsan Atak"],
+  },
+  {
+    regex: /\bBPW\b|BPW DORSE|ECOPLUS|ECO PLUS/,
+    examples: ["BPW ECOPlus", "BPW 9 ton", "BPW 12 ton", "BPW 30K", "BPW dorse/treyler"],
+  },
+  {
+    regex: /\bSAF\b|SAF HOLLAND|INTRADISC|INTRAX|SAF DORSE/,
+    examples: ["SAF Holland", "SAF Intradisc", "SAF Intrax", "SAF SK RS", "SAF dorse/treyler"],
+  },
+  {
+    regex: /\bROR\b|MERITOR|ROR MERITOR|GIGANT/,
+    examples: ["ROR dorse", "Meritor/ROR", "Gigant aks", "Dorse disk fren", "Treyler aks grubu"],
+  },
+  {
+    regex: /KRONE|KOGEL|KÖGEL|SCHMITZ|TIRSAN|TIRŞAN|FRUEHAUF|SMB|DORSE|TREYLER|TRAILER/,
+    examples: ["Krone dorse", "Kögel dorse", "Schmitz Cargobull", "Tırsan treyler", "Fruehauf SMB", "Dorse/treyler"],
+  },
+  {
+    regex: /KNORR|SB6|SB7|SN6|SN7|SK7|WABCO|PAN ?17|PAN ?19|PAN ?22|MAXX ?22|MERITOR|ELSA|DUCO|HALDEX|MODULX/,
+    examples: ["Knorr SB6/SB7", "Knorr SN6/SN7/SK7", "WABCO PAN19/PAN22", "WABCO MAXX22T", "Meritor ELSA/DUCO", "Haldex ModulX"],
+  },
+];
+
+const GROUP_MODEL_EXAMPLES = {
+  disk: ["Actros/Axor 1840", "Actros/Axor 3340", "Actros/Axor 4140", "MAN TGA/TGS/TGX", "Volvo FH/FM", "Dorse/treyler"],
+  kampana: ["Actros/Axor 1840", "Actros/Axor 3340", "Actros/Axor 4140", "Ford Cargo 3230/4142", "BPW/SAF dorse", "ROR/Meritor"],
+  balata: ["Actros/Axor 1840", "MAN TGA/TGS/TGX", "Scania G/R serisi", "DAF CF/XF", "Volvo FH/FM", "BPW/SAF dorse"],
+  circir: ["Mercedes Axor/Actros", "Renault Premium/Magnum/Kerax", "MAN TGA/TGS", "Volvo FH/FM", "DAF CF/XF"],
+  "bijon-grup": ["Actros/Axor 1840", "Actros/Axor 3340", "DAF CF/XF", "MAN TGA/TGS", "SAF/BPW dorse", "ROR/Meritor"],
+  "porya-grup": ["BPW ECOPlus", "SAF Holland", "ROR/Meritor", "Ford Cargo", "DAF CF/XF", "Dorse/treyler"],
+  "fren-pabuclari": ["BPW dorse", "SAF dorse", "ROR/Meritor", "Tırsan/Krone/Schmitz dorse", "Kampana fren sistemi"],
+  "fren-yaylari": ["BPW dorse", "SAF dorse", "Dorse/treyler", "Ford Cargo", "BMC", "Kampana fren sistemi"],
+  "fren-korukleri": ["24/30 imdatlı körük", "30/30 imdatlı körük", "24/24 servis körüğü", "Dorse/treyler", "Kamyon/çekici", "Otobüs"],
+  "susp-korugu": ["BPW ECOPlus", "SAF Holland", "Krone dorse", "Kögel dorse", "Schmitz dorse", "Kamyon/otobüs hava süspansiyonu"],
+  "kaliper-urunleri": ["Knorr SB6/SB7", "Knorr SN6/SN7/SK7", "WABCO PAN19/PAN22", "WABCO MAXX22T", "Meritor ELSA/DUCO", "Haldex ModulX"],
+  "sensor-uzatma": ["WABCO ABS/EBS", "Dorse EBS sistemi", "Kamyon ABS sensör hattı", "Treyler ABS sensör hattı"],
+};
+
+function modelExampleCandidates(product = {}, compat = []) {
+  const source = normalizeProductText([
+    ...(Array.isArray(compat) ? compat : []),
+    ...(Array.isArray(product.compat) ? product.compat : []),
+    rawProductName(product),
+    product.name,
+    product.sku,
+    product.oem,
+    product.categoryName,
+    product.frenciniz_kategori,
+  ].filter(Boolean).join(" "));
+  const examples = [];
+
+  for (const rule of MODEL_EXAMPLE_RULES) {
+    if (rule.regex.test(source)) examples.push(...rule.examples);
+  }
+
+  if (!examples.length) {
+    examples.push(...(GROUP_MODEL_EXAMPLES[productGroup(product)] || ["Kamyon", "Tır / çekici", "Otobüs", "Dorse / treyler"]));
+  }
+  return uniqParts(examples).slice(0, 12);
+}
+
+function modelExamplesLine(product = {}, compat = []) {
+  const examples = modelExampleCandidates(product, compat);
+  if (!examples.length) return "";
+  return `Model / seri örnekleri: ${examples.join(", ")}.`;
+}
+
 function detailCandidates(product = {}) {
   const raw = sourceText(product).replace(/[()]/g, " ");
   const normalized = normalizeProductText(raw);
@@ -486,6 +617,7 @@ export function buildSeoProductDescription(product = {}, compat = product.compat
   const modelLine = compatible.length
     ? `Uyumlu araçlar / sistemler: ${compatible.slice(0, 16).join(", ")}.`
     : "Uyumluluk: Ağır vasıta araç grubu için OEM, şase ve ölçü kontrolü önerilir.";
+  const examplesLine = modelExamplesLine(product, compatible);
   const originalLine = rawName && compactKey(rawName) !== compactKey(title)
     ? `Tedarikçi ürün adı: ${rawName}.`
     : "";
@@ -494,6 +626,7 @@ export function buildSeoProductDescription(product = {}, compat = product.compat
     sku ? `Stok kodu: ${sku}.` : "",
     oem ? `OEM / muadil numarası: ${oem}.` : "OEM / muadil numarası: Tedarikçi kaydında net OEM yok; stok kodu, şase veya eski parça numarasıyla teyit önerilir.",
     modelLine,
+    examplesLine,
     originalLine,
     "Kesin uyumluluk araç şasesi, model yılı, aks tipi, ölçü ve mevcut parça numarasına göre değişebilir; sipariş öncesi OEM numarası veya eski parça fotoğrafı ile Frenciniz'den teyit alın.",
   ].filter(Boolean);
