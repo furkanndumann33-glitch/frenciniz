@@ -3268,7 +3268,14 @@ function ProductsPage() {
             </div>
           </div>
           {items.length === 0 ? (
-            <div style={{textAlign:"center",padding:"60px 0",color:"#999"}}><div style={{fontSize:48,marginBottom:12}}>🔍</div><div style={{fontSize:16,fontWeight:600}}>{t("noResults")}</div></div>
+            <div style={{textAlign:"center",padding:"60px 18px",color:"#64748b",border:"1px solid #e5e7eb",borderRadius:8,background:"#fff"}}>
+              <div style={{fontSize:13,fontWeight:950,letterSpacing:.5,color:"#ff6000",textTransform:"uppercase",marginBottom:12}}>Parca bulunamadi</div>
+              <div style={{fontSize:18,fontWeight:900,color:"#111827",marginBottom:8}}>{t("noResults")}</div>
+              <div style={{fontSize:13,lineHeight:1.6,maxWidth:440,margin:"0 auto 18px"}}>Aradiginiz OEM, SKU veya arac modelini WhatsApp'tan gonderin; stok ve muadil parcayi hizli teyit edelim.</div>
+              <a href={generalWhatsAppUrl(`aranan urun: ${term || catName}`)} target="_blank" rel="noopener noreferrer" onClick={() => { const href = generalWhatsAppUrl(`aranan urun: ${term || catName}`); recordLeadEvent("whatsapp", { source:"no_results_whatsapp", href, search:term || "", category:catName }); metaTrackCustom("WhatsAppLead", { source:"no_results", search:term || "", category:catName }); }} style={{minHeight:44,padding:"12px 18px",borderRadius:8,background:"#25D366",color:"#062813",fontSize:14,fontWeight:950,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center"}}>
+                WhatsApp'tan urunu sor
+              </a>
+            </div>
           ) : (
             <div style={{display:"grid",gridTemplateColumns:isMobile?"repeat(2,1fr)":"repeat(3,1fr)",gap:isMobile?10:16}}>{items.map((p,i) => <ProductCard key={p.id} p={p} eager={i<6} />)}</div>
           )}
