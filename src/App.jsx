@@ -1949,9 +1949,13 @@ export default function App() {
 
         {/* WhatsApp Button */}
         <a href={generalWhatsAppUrl("site genel destek")} target="_blank" rel="noopener noreferrer" onClick={() => { recordLeadEvent("whatsapp", { source:"floating_whatsapp", href:generalWhatsAppUrl("site genel destek") }); metaTrackCustom("WhatsAppLead", { source: "floating" }); }}
-          style={{position:"fixed",bottom:24,right:24,zIndex:998,width:64,height:64,borderRadius:"50%",background:"#25D366",display:(isMobile||isAdminPage)?"none":"flex",alignItems:"center",justifyContent:"center",boxShadow:"0 4px 16px rgba(37,211,102,.4)",textDecoration:"none"}}
+          style={{position:"fixed",bottom:24,right:24,zIndex:998,minWidth:218,height:64,borderRadius:999,background:"#25D366",display:(isMobile||isAdminPage)?"none":"flex",alignItems:"center",justifyContent:"center",gap:10,boxShadow:"0 12px 30px rgba(37,211,102,.36)",textDecoration:"none",padding:"0 18px",color:"#062813"}}
           title="WhatsApp ile yazın">
-          <svg viewBox="0 0 32 32" width="36" height="36" fill="#fff"><path d="M16.01 2.93A13.07 13.07 0 0 0 2.93 16a12.94 12.94 0 0 0 1.75 6.53L2.93 29.07l6.72-1.76A13.07 13.07 0 1 0 16.01 2.93Zm0 23.9a10.8 10.8 0 0 1-5.52-1.51l-.4-.23-3.98 1.04 1.06-3.88-.26-.41a10.83 10.83 0 1 1 9.1 5Z"/><path d="M22.36 18.76c-.35-.17-2.05-1.01-2.37-1.13-.32-.11-.55-.17-.78.17-.23.35-.9 1.13-1.1 1.36-.2.23-.41.26-.76.09-.35-.18-1.47-.54-2.8-1.73-1.04-.92-1.73-2.06-1.94-2.41-.2-.35-.02-.54.15-.71.16-.16.35-.41.53-.61.17-.21.23-.35.35-.59.12-.23.06-.44-.03-.61-.09-.17-.78-1.88-1.07-2.57-.28-.68-.57-.59-.78-.6h-.67a1.28 1.28 0 0 0-.93.44 3.93 3.93 0 0 0-1.22 2.92c0 1.72 1.25 3.38 1.43 3.61.17.24 2.47 3.77 5.98 5.28.84.36 1.49.58 2 .74.84.27 1.6.23 2.2.14.67-.1 2.05-.84 2.34-1.65.29-.81.29-1.5.2-1.65-.08-.14-.32-.23-.67-.4Z"/></svg>
+          <svg viewBox="0 0 32 32" width="34" height="34" fill="#fff"><path d="M16.01 2.93A13.07 13.07 0 0 0 2.93 16a12.94 12.94 0 0 0 1.75 6.53L2.93 29.07l6.72-1.76A13.07 13.07 0 1 0 16.01 2.93Zm0 23.9a10.8 10.8 0 0 1-5.52-1.51l-.4-.23-3.98 1.04 1.06-3.88-.26-.41a10.83 10.83 0 1 1 9.1 5Z"/><path d="M22.36 18.76c-.35-.17-2.05-1.01-2.37-1.13-.32-.11-.55-.17-.78.17-.23.35-.9 1.13-1.1 1.36-.2.23-.41.26-.76.09-.35-.18-1.47-.54-2.8-1.73-1.04-.92-1.73-2.06-1.94-2.41-.2-.35-.02-.54.15-.71.16-.16.35-.41.53-.61.17-.21.23-.35.35-.59.12-.23.06-.44-.03-.61-.09-.17-.78-1.88-1.07-2.57-.28-.68-.57-.59-.78-.6h-.67a1.28 1.28 0 0 0-.93.44 3.93 3.93 0 0 0-1.22 2.92c0 1.72 1.25 3.38 1.43 3.61.17.24 2.47 3.77 5.98 5.28.84.36 1.49.58 2 .74.84.27 1.6.23 2.2.14.67-.1 2.05-.84 2.34-1.65.29-.81.29-1.5.2-1.65-.08-.14-.32-.23-.67-.4Z"/></svg>
+          <span style={{display:"flex",flexDirection:"column",lineHeight:1.05}}>
+            <strong style={{fontSize:15,fontWeight:950}}>WhatsApp teklif al</strong>
+            <span style={{fontSize:11,fontWeight:800,opacity:.86}}>Kod/foto gonder</span>
+          </span>
         </a>
 
         {/* Scroll to Top */}
@@ -2049,6 +2053,7 @@ export default function App() {
         {!isAdminPage && mobileFilterOpen && <MobileFilterDrawer />}
         <div style={{marginLeft: ((page==="home" || page==="products") && !isMobile) ? 220 : 0}}>
         <main style={{minHeight:isAdminPage?"100vh":"60vh"}}>
+          {!isAdminPage && <WhatsAppTrustStrip />}
           {!isAdminPage && <ReferralSalesBar />}
           {page==="home"&&<HomePage/>}
           {page==="products"&&<ProductsPage/>}
@@ -2215,6 +2220,29 @@ function MobileBottomBar() {
   );
 }
 
+function WhatsAppTrustStrip() {
+  const {isMobile, page, lang} = use$();
+  if (page === "checkout" || page === "cart") return null;
+  const href = generalWhatsAppUrl("OEM sase foto ile hizli teklif");
+  return (
+    <section style={{background:"linear-gradient(135deg,#052e1a,#064e3b)",borderBottom:"1px solid rgba(34,197,94,.24)",color:"#fff"}}>
+      <div style={{maxWidth:1220,margin:"0 auto",padding:isMobile?"10px 14px":"10px 24px",display:"flex",alignItems:isMobile?"stretch":"center",justifyContent:"space-between",gap:10,flexDirection:isMobile?"column":"row"}}>
+        <div style={{minWidth:0}}>
+          <div style={{fontSize:11,fontWeight:950,color:"#86efac",textTransform:"uppercase",letterSpacing:.4,marginBottom:2}}>
+            {lang==="en"?"Fast fitment check":"Yanlis parca riski almadan"}
+          </div>
+          <div style={{fontSize:isMobile?13:14,fontWeight:900,lineHeight:1.45}}>
+            {lang==="en"?"Send OEM, chassis number or old part photo on WhatsApp; get stock, price and fitment confirmation.":"OEM kodu, sase no veya eski parca fotosunu WhatsApp'tan gonder; stok, fiyat ve uyumlulugu hemen teyit edelim."}
+          </div>
+        </div>
+        <a href={href} target="_blank" rel="noopener noreferrer" onClick={() => { recordLeadEvent("whatsapp", { source:"trust_strip", href }); metaTrackCustom("WhatsAppLead", { source:"trust_strip" }); }} style={{minHeight:42,padding:"10px 16px",borderRadius:8,background:"#25D366",color:"#062813",fontSize:13,fontWeight:950,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center",whiteSpace:isMobile?"normal":"nowrap",textAlign:"center",boxShadow:"0 10px 22px rgba(37,211,102,.24)"}}>
+          {lang==="en"?"WhatsApp quote":"WhatsApp'tan teklif al"}
+        </a>
+      </div>
+    </section>
+  );
+}
+
 function ProductLeadNudge() {
   const {page, params, products, isMobile, dataLoaded} = use$();
   const productList = (products && products.length) ? products : PRODUCTS;
@@ -2231,7 +2259,7 @@ function ProductLeadNudge() {
     try {
       if (sessionStorage.getItem(storageKey)) return;
     } catch {}
-    const timer = setTimeout(() => setVisible(true), isMobile ? 2800 : 3800);
+    const timer = setTimeout(() => setVisible(true), isMobile ? 1600 : 2400);
     return () => clearTimeout(timer);
   }, [product?.id, dataLoaded, isMobile]);
 
