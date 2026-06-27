@@ -2950,8 +2950,6 @@ function HomePage() {
       </div>
     </section>}
 
-    <HomeIntentLinks isMobile={isMobile} lang={lang} />
-
     <section style={{background:"#111827",color:"#fff",padding:isMobile?"26px 18px":"32px 24px"}}>
       <div style={{maxWidth:1220,margin:"0 auto",display:"grid",gridTemplateColumns:isMobile?"repeat(2,1fr)":"repeat(4,1fr)",gap:12}}>
         {[{title:t("sameDay"),desc:t("sameDayDesc"),color:"#ff6000"},{title:t("origGuarantee"),desc:t("origDesc"),color:"#22c55e"},{title:t("installment"),desc:t("installmentDesc"),color:"#0ea5e9"},{title:t("returnPolicy"),desc:t("returnDesc"),color:"#facc15"}].map((f,i) => (
