@@ -1948,7 +1948,7 @@ export default function App() {
         )}
 
         {/* WhatsApp Button */}
-        <a href={generalWhatsAppUrl("site genel destek")} target="_blank" rel="noopener noreferrer" onClick={() => metaTrackCustom("WhatsAppLead", { source: "floating" })}
+        <a href={generalWhatsAppUrl("site genel destek")} target="_blank" rel="noopener noreferrer" onClick={() => { recordLeadEvent("whatsapp", { source:"floating_whatsapp", href:generalWhatsAppUrl("site genel destek") }); metaTrackCustom("WhatsAppLead", { source: "floating" }); }}
           style={{position:"fixed",bottom:24,right:24,zIndex:998,width:64,height:64,borderRadius:"50%",background:"#25D366",display:(isMobile||isAdminPage)?"none":"flex",alignItems:"center",justifyContent:"center",boxShadow:"0 4px 16px rgba(37,211,102,.4)",textDecoration:"none"}}
           title="WhatsApp ile yazın">
           <svg viewBox="0 0 32 32" width="36" height="36" fill="#fff"><path d="M16.01 2.93A13.07 13.07 0 0 0 2.93 16a12.94 12.94 0 0 0 1.75 6.53L2.93 29.07l6.72-1.76A13.07 13.07 0 1 0 16.01 2.93Zm0 23.9a10.8 10.8 0 0 1-5.52-1.51l-.4-.23-3.98 1.04 1.06-3.88-.26-.41a10.83 10.83 0 1 1 9.1 5Z"/><path d="M22.36 18.76c-.35-.17-2.05-1.01-2.37-1.13-.32-.11-.55-.17-.78.17-.23.35-.9 1.13-1.1 1.36-.2.23-.41.26-.76.09-.35-.18-1.47-.54-2.8-1.73-1.04-.92-1.73-2.06-1.94-2.41-.2-.35-.02-.54.15-.71.16-.16.35-.41.53-.61.17-.21.23-.35.35-.59.12-.23.06-.44-.03-.61-.09-.17-.78-1.88-1.07-2.57-.28-.68-.57-.59-.78-.6h-.67a1.28 1.28 0 0 0-.93.44 3.93 3.93 0 0 0-1.22 2.92c0 1.72 1.25 3.38 1.43 3.61.17.24 2.47 3.77 5.98 5.28.84.36 1.49.58 2 .74.84.27 1.6.23 2.2.14.67-.1 2.05-.84 2.34-1.65.29-.81.29-1.5.2-1.65-.08-.14-.32-.23-.67-.4Z"/></svg>
@@ -1968,8 +1968,8 @@ export default function App() {
               </div>
               {!isMobile && <div style={{display:"flex",gap:12,alignItems:"center"}}>
                 <>
-                  <a href="tel:+905456087008" style={{color:"#ccc",fontSize:12,textDecoration:"none"}} onMouseEnter={e=>e.currentTarget.style.color="#ff6000"} onMouseLeave={e=>e.currentTarget.style.color="#ccc"}>📞 0545 608 7008</a>
-                  <a href={generalWhatsAppUrl("ust bar")} target="_blank" rel="noopener noreferrer" onClick={() => metaTrackCustom("WhatsAppLead", { source: "header" })} style={{color:"#25D366",fontSize:12,textDecoration:"none",fontWeight:600}} onMouseEnter={e=>e.currentTarget.style.color="#4ade80"} onMouseLeave={e=>e.currentTarget.style.color="#25D366"}>💬 WhatsApp</a>
+                  <a href="tel:+905456087008" onClick={() => recordLeadEvent("phone", { source:"header_phone" })} style={{color:"#ccc",fontSize:12,textDecoration:"none"}} onMouseEnter={e=>e.currentTarget.style.color="#ff6000"} onMouseLeave={e=>e.currentTarget.style.color="#ccc"}>📞 0545 608 7008</a>
+                  <a href={generalWhatsAppUrl("ust bar")} target="_blank" rel="noopener noreferrer" onClick={() => { recordLeadEvent("whatsapp", { source:"header_whatsapp", href:generalWhatsAppUrl("ust bar") }); metaTrackCustom("WhatsAppLead", { source: "header" }); }} style={{color:"#25D366",fontSize:12,textDecoration:"none",fontWeight:600}} onMouseEnter={e=>e.currentTarget.style.color="#4ade80"} onMouseLeave={e=>e.currentTarget.style.color="#25D366"}>💬 WhatsApp</a>
                 </>
                 {/* Social media in header */}
                 {(socialMedia.facebook||socialMedia.instagram) && <div style={{display:"flex",gap:6,marginLeft:4}}>
@@ -2198,11 +2198,11 @@ function MobileBottomBar() {
   };
   return (
     <nav aria-label={lang==="en"?"Quick actions":"Hizli islemler"} style={{position:"fixed",left:0,right:0,bottom:0,zIndex:997,padding:"8px 12px calc(8px + env(safe-area-inset-bottom))",background:"linear-gradient(180deg,rgba(7,10,18,.92),#070a12)",borderTop:"1px solid rgba(255,255,255,.12)",boxShadow:"0 -14px 38px rgba(0,0,0,.34)",display:"grid",gridTemplateColumns:"repeat(3,minmax(0,1fr))",gap:8}}>
-      <a href={generalWhatsAppUrl("mobil alt bar")} target="_blank" rel="noopener noreferrer" onClick={() => metaTrackCustom("WhatsAppLead", { source: "mobile_bottom_bar" })} style={{...itemStyle,background:"linear-gradient(135deg,#16a34a,#25D366)",color:"#062813"}}>
+      <a href={generalWhatsAppUrl("mobil alt bar")} target="_blank" rel="noopener noreferrer" onClick={() => { recordLeadEvent("whatsapp", { source:"mobile_bottom_bar", href:generalWhatsAppUrl("mobil alt bar") }); metaTrackCustom("WhatsAppLead", { source: "mobile_bottom_bar" }); }} style={{...itemStyle,background:"linear-gradient(135deg,#16a34a,#25D366)",color:"#062813"}}>
         <span style={{fontSize:10,letterSpacing:.3}}>WhatsApp</span>
         <strong style={{fontSize:13,lineHeight:1}}>Teklif Al</strong>
       </a>
-      <a href="tel:+905456087008" onClick={() => metaTrackCustom("PhoneLead", { source: "mobile_bottom_bar" })} style={{...itemStyle,background:"linear-gradient(135deg,#ff6000,#facc15)",color:"#111827"}}>
+      <a href="tel:+905456087008" onClick={() => { recordLeadEvent("phone", { source:"mobile_bottom_bar" }); metaTrackCustom("PhoneLead", { source: "mobile_bottom_bar" }); }} style={{...itemStyle,background:"linear-gradient(135deg,#ff6000,#facc15)",color:"#111827"}}>
         <span style={{fontSize:10,letterSpacing:.3}}>Telefon</span>
         <strong style={{fontSize:13,lineHeight:1}}>Ara</strong>
       </a>
@@ -2860,7 +2860,7 @@ function HomePage() {
           </p>
           <div style={{display:"flex",flexDirection:isMobile?"column":"row",flexWrap:isMobile?"nowrap":"wrap",gap:12,alignItems:isMobile?"stretch":"center",maxWidth:isMobile?310:"none"}}>
             <button onClick={() => go("products")} style={{minHeight:48,padding:"14px 22px",borderRadius:8,border:"none",background:"linear-gradient(135deg,#ff6000,#facc15)",color:"#111",fontWeight:950,fontSize:15,boxShadow:"0 18px 45px rgba(255,96,0,.28)",animation:"glowPulse 4s ease-in-out infinite"}}>{lang==="en"?"See in-stock parts":"Stoklu urunlere bak"}</button>
-            <a href={generalWhatsAppUrl("parca kodu ile teklif")} target="_blank" rel="noopener noreferrer" onClick={() => metaTrackCustom("WhatsAppLead", { source: "home_hero" })} style={{minHeight:48,padding:"13px 18px",borderRadius:8,border:"1px solid rgba(255,255,255,.28)",background:"rgba(255,255,255,.1)",color:"#fff",fontWeight:850,fontSize:14,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center",textAlign:"center"}}>{lang==="en"?"Get quote on WhatsApp":"WhatsApp'tan hizli teklif al"}</a>
+            <a href={generalWhatsAppUrl("parca kodu ile teklif")} target="_blank" rel="noopener noreferrer" onClick={() => { recordLeadEvent("whatsapp", { source:"home_hero", href:generalWhatsAppUrl("parca kodu ile teklif") }); metaTrackCustom("WhatsAppLead", { source: "home_hero" }); }} style={{minHeight:48,padding:"13px 18px",borderRadius:8,border:"1px solid rgba(255,255,255,.28)",background:"rgba(255,255,255,.1)",color:"#fff",fontWeight:850,fontSize:14,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center",textAlign:"center"}}>{lang==="en"?"Get quote on WhatsApp":"WhatsApp'tan hizli teklif al"}</a>
           </div>
           <div style={{display:"flex",flexWrap:"wrap",gap:8,marginTop:16,maxWidth:isMobile?330:650}}>
             {heroIntentChips.map(chip => (
