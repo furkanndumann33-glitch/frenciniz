@@ -139,10 +139,38 @@ export default async function handler(req, res) {
         unique: dailyUnique[d],
       }));
 
+      const productActionTypes = ["add_to_cart", "favorite"];
+      const productActions = {
+        totals: { add_to_cart: 0, favorite: 0 },
+        recent: [],
+        topProducts: { add_to_cart: [], favorite: [] },
+      };
+      for (const type of productActionTypes) {
+        for (const day of days) {
+          productActions.totals[type] += Number(await kv.get(`product_action:${type}:${day}`)) || 0;
+        }
+        const productCounts = {};
+        for (const day of last7) {
+          const ids = (await kv.smembers(`product_action:${type}:products:${day}`)) || [];
+          for (const id of ids) {
+            const c = await kv.get(`product_action:${type}:product:${day}:${id}`);
+            productCounts[id] = (productCounts[id] || 0) + (Number(c) || 0);
+          }
+        }
+        productActions.topProducts[type] = Object.entries(productCounts)
+          .sort((a, b) => b[1] - a[1])
+          .slice(0, 10)
+          .map(([productId, count]) => ({ productId, count }));
+      }
+      const rawProductActions = (await kv.lrange("product_action:log", 0, 99)) || [];
+      productActions.recent = rawProductActions.map(r => {
+        try { return typeof r === "string" ? JSON.parse(r) : r; } catch { return null; }
+      }).filter(Boolean);
+
       return res.status(200).json({
         success: true,
         totalViews, totalUnique,
-        chart, topPaths, topReferrers,
+        chart, topPaths, topReferrers, productActions,
       });
     }
 

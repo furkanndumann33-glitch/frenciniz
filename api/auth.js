@@ -33,6 +33,11 @@ function cleanLeadType(value) {
   return type || "lead";
 }
 
+function cleanProductAction(value) {
+  const action = String(value || "").toLowerCase().replace(/[^a-z0-9_-]/g, "").slice(0, 24);
+  return ["add_to_cart", "favorite"].includes(action) ? action : "product_action";
+}
+
 export default async function handler(req, res) {
   const action = String(req.query.action || "").toLowerCase();
 
@@ -293,6 +298,44 @@ export default async function handler(req, res) {
         };
         await kv.lpush("lead:log", JSON.stringify(logEntry));
         await kv.ltrim("lead:log", 0, 499);
+      } catch {}
+      return res.status(200).json({ ok: true });
+    }
+
+    if (action === "product-action" && req.method === "POST") {
+      try {
+        const body = req.body || {};
+        const type = cleanProductAction(body.type || body.action);
+        const day = new Date().toISOString().slice(0, 10);
+        const pathClean = cleanLeadText(body.path || "/", 140).replace(/[?#].*$/, "") || "/";
+        const productId = cleanLeadText(body.productId || body.product_id || body.id || "", 60);
+        const sku = cleanLeadText(body.sku || "", 80);
+        const name = cleanLeadText(body.name || body.productName || "", 180);
+        const category = cleanLeadText(body.category || "", 80);
+        const qty = Math.max(1, Number(body.qty || 1) || 1);
+        const value = Number(body.value || 0) || 0;
+        const ip = (req.headers["x-forwarded-for"] || "").split(",")[0].trim() || req.headers["x-real-ip"] || "unknown";
+        const ua = String(req.headers["user-agent"] || "").slice(0, 180);
+        const city = decodeURIComponent(String(req.headers["x-vercel-ip-city"] || "")).replace(/\+/g, " ");
+        const country = String(req.headers["x-vercel-ip-country"] || "");
+
+        await Promise.all([
+          kv.incr(`product_action:${type}:${day}`),
+          kv.incr(`product_action:${type}:product:${day}:${productId || sku || "unknown"}`),
+          kv.sadd(`product_action:${type}:products:${day}`, productId || sku || "unknown"),
+        ]);
+        await Promise.all([
+          kv.expire(`product_action:${type}:${day}`, 60 * 60 * 24 * 120),
+          kv.expire(`product_action:${type}:product:${day}:${productId || sku || "unknown"}`, 60 * 60 * 24 * 120),
+          kv.expire(`product_action:${type}:products:${day}`, 60 * 60 * 24 * 120),
+        ]);
+
+        const logEntry = {
+          type, path: pathClean, productId, sku, name, category,
+          qty, value, city, country, ip, ua, at: new Date().toISOString(),
+        };
+        await kv.lpush("product_action:log", JSON.stringify(logEntry));
+        await kv.ltrim("product_action:log", 0, 499);
       } catch {}
       return res.status(200).json({ ok: true });
     }

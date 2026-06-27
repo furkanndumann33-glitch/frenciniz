@@ -605,6 +605,34 @@ function recordLeadEvent(type = "whatsapp", data = {}) {
   } catch {}
 }
 
+function recordProductAction(type = "add_to_cart", product = {}, data = {}) {
+  if (typeof window === "undefined" || !product) return;
+  const qty = Math.max(1, Number(data.qty || 1) || 1);
+  const payload = {
+    type,
+    path: window.location.pathname || "/",
+    productId: product.id || data.productId || "",
+    sku: product.sku || data.sku || "",
+    name: productSearchName(product, CATS, 160) || product.name || "",
+    category: product.cat || data.category || "",
+    qty,
+    value: Number(data.value || ((product.price || 0) * qty) || 0) || 0,
+  };
+  try {
+    const body = JSON.stringify(payload);
+    if (navigator.sendBeacon) {
+      const blob = new Blob([body], { type: "application/json" });
+      if (navigator.sendBeacon("/api/auth/product-action", blob)) return;
+    }
+    fetch("/api/auth/product-action", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body,
+      keepalive: true,
+    }).catch(() => {});
+  } catch {}
+}
+
 const HOME_INTENT_LINKS = [
   { href: "/ford-cargo-9c46-1125-ab-fren-kampanasi", title: "Ford Cargo 9C46 Kampana", desc: "9C46-1125-AB / ESK 040 12 Ford Cargo kampana" },
   { href: "/daf-cf-xf-99717-bijon", title: "DAF CF XF 99717 Bijon", desc: "DAF CF / XF bijon, somun ve disk civatasi teyidi" },
@@ -1268,11 +1296,17 @@ export default function App() {
       }
     } catch(e) {}
     metaTrack('AddToCart', metaProductPayload(product, qty));
+    recordProductAction("add_to_cart", product, { qty, value: (product.price || 0) * qty });
   }, []);
 
   const updateQty = useCallback((id, qty) => setCart(prev => qty < 1 ? prev.filter(c => c.id !== id) : prev.map(c => c.id === id ? {...c, qty} : c)), []);
   const removeItem = useCallback((id) => setCart(prev => prev.filter(c => c.id !== id)), []);
-  const toggleFav = useCallback((id) => setFavs(prev => prev.includes(id) ? prev.filter(f => f !== id) : [...prev, id]), []);
+  const toggleFav = useCallback((id, productHint) => setFavs(prev => {
+    if (prev.includes(id)) return prev.filter(f => f !== id);
+    const product = productHint || products.find(p => p.id === id) || PRODUCTS.find(p => p.id === id);
+    if (product) recordProductAction("favorite", product, { qty: 1, value: product.price || 0 });
+    return [...prev, id];
+  }), [products]);
   const addViewed = useCallback((id) => setViewed(prev => [id, ...prev.filter(v => v !== id)].slice(0, 8)), []);
   const addStockAlert = useCallback((productId, contact) => {
     setStockAlerts(prev => [...prev, {productId, contact, date: new Date()}]);
@@ -6456,6 +6490,9 @@ function ATraffic(){
   const whatsappLeads = leadData?.totals?.whatsapp || 0;
   const phoneLeads = leadData?.totals?.phone || 0;
   const emailLeads = leadData?.totals?.email || 0;
+  const productActions = data.productActions || {};
+  const cartAdds = productActions.totals?.add_to_cart || 0;
+  const favoriteAdds = productActions.totals?.favorite || 0;
 
   return <div style={{display:"flex",flexDirection:"column",gap:16}}>
     {/* Stats cards */}
@@ -6468,6 +6505,8 @@ function ATraffic(){
         {label:"WhatsApp Lead (30g)",val:whatsappLeads,icon:"WA"},
         {label:"Telefon Lead (30g)",val:phoneLeads,icon:"TEL"},
         {label:"E-posta Lead (30g)",val:emailLeads,icon:"MAIL"},
+        {label:"Sepete Eklenen Urun (30g)",val:cartAdds,icon:"CART"},
+        {label:"Favoriye Eklenen Urun (30g)",val:favoriteAdds,icon:"FAV"},
       ].map((s,i)=>(
         <div key={i} style={{padding:16,background:"#fff",border:"1px solid #eee",borderRadius:10}}>
           <div style={{fontSize:12,color:"#888",marginBottom:6}}>{s.label}</div>
@@ -6499,6 +6538,57 @@ function ATraffic(){
         <span><span style={{display:"inline-block",width:10,height:10,background:"#ffd699",marginRight:4,borderRadius:2,verticalAlign:"middle"}}/>Tekil ziyaretçi</span>
       </div>
     </ACard>
+
+    {productActions && <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(300px,1fr))",gap:16}}>
+      <ACard title="Sepete / Favoriye Eklenen Urunler">
+        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))",gap:12}}>
+          {[
+            {title:"En Cok Sepete Eklenen",rows:productActions.topProducts?.add_to_cart || [],color:"#ff6000"},
+            {title:"En Cok Favoriye Eklenen",rows:productActions.topProducts?.favorite || [],color:"#e11d48"},
+          ].map(section=>(
+            <div key={section.title} style={{border:"1px solid #eef0f3",borderRadius:8,overflow:"hidden"}}>
+              <div style={{padding:"10px 12px",background:"#f8fafc",fontSize:12,fontWeight:900,color:section.color}}>{section.title}</div>
+              {!section.rows.length ? <div style={{padding:12,color:"#999",fontSize:12}}>Henuz kayit yok.</div> :
+              <table style={{width:"100%",borderCollapse:"collapse",fontSize:12}}>
+                <tbody>{section.rows.slice(0,8).map((row,i)=>(
+                  <tr key={`${section.title}-${row.productId}-${i}`} style={{borderTop:"1px solid #f1f5f9"}}>
+                    <td style={{padding:"8px",fontFamily:"monospace",fontSize:11,overflowWrap:"anywhere"}}>{row.productId || "-"}</td>
+                    <td style={{padding:"8px",textAlign:"right",fontWeight:900,color:section.color}}>{Number(row.count||0).toLocaleString("tr-TR")}</td>
+                  </tr>
+                ))}</tbody>
+              </table>}
+            </div>
+          ))}
+        </div>
+      </ACard>
+      <ACard title="Son Sepet / Favori Hareketleri">
+        {!productActions.recent?.length ? <div style={{color:"#999",fontSize:13}}>Henuz sepet veya favori kaydi yok.</div> :
+        <div style={{maxHeight:300,overflow:"auto"}}>
+          <table style={{width:"100%",borderCollapse:"collapse",fontSize:12}}>
+            <thead><tr style={{borderBottom:"2px solid #eee"}}>
+              <th style={{padding:"8px",textAlign:"left",color:"#999"}}>Zaman</th>
+              <th style={{padding:"8px",textAlign:"left",color:"#999"}}>Islem</th>
+              <th style={{padding:"8px",textAlign:"left",color:"#999"}}>Urun</th>
+              <th style={{padding:"8px",textAlign:"right",color:"#999"}}>Adet</th>
+              <th style={{padding:"8px",textAlign:"right",color:"#999"}}>Tutar</th>
+            </tr></thead>
+            <tbody>{productActions.recent.slice(0,30).map((row,i)=>{
+              const d = row.at ? new Date(row.at) : null;
+              const when = d ? d.toLocaleString("tr-TR",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}) : "-";
+              const productLabel = [row.name, row.sku && `SKU: ${row.sku}`].filter(Boolean).join(" | ") || row.productId || "-";
+              const typeLabel = row.type === "favorite" ? "Favori" : row.type === "add_to_cart" ? "Sepet" : row.type;
+              return <tr key={i} style={{borderBottom:"1px solid #f0f0f0"}}>
+                <td style={{padding:"8px",whiteSpace:"nowrap",color:"#666"}}>{when}</td>
+                <td style={{padding:"8px",fontWeight:900,color:row.type==="favorite"?"#e11d48":"#ff6000"}}>{typeLabel}</td>
+                <td style={{padding:"8px",maxWidth:360,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}} title={productLabel}>{productLabel}</td>
+                <td style={{padding:"8px",textAlign:"right",fontWeight:700}}>{Number(row.qty||1).toLocaleString("tr-TR")}</td>
+                <td style={{padding:"8px",textAlign:"right",fontWeight:700}}>{Number(row.value||0).toLocaleString("tr-TR")} TL</td>
+              </tr>;
+            })}</tbody>
+          </table>
+        </div>}
+      </ACard>
+    </div>}
 
     {leadData && <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))",gap:16}}>
       <ACard title="Lead Kaynaklari (son 7 gun)">
