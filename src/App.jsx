@@ -471,6 +471,9 @@ function directImg(url) {
 // ===== SEO HELPERS =====
 const SITE_URL = "https://www.frenciniz.com";
 const WHATSAPP_NUMBER = "908508887881";
+const ETBIS_SITE_ID = "5a35ae3c-78e1-4f1a-8eec-8884decd2730";
+const ETBIS_VERIFY_URL = `https://etbis.ticaret.gov.tr/tr/SiteSorgulamaSonuc?siteId=${ETBIS_SITE_ID}`;
+const ETBIS_QR = "/img/site/etbis-qr.png";
 
 function absoluteSiteUrl(value) {
   const raw = String(value || "").trim();
@@ -2127,6 +2130,13 @@ export default function App() {
                   </a>
                 </div>
                 <div style={{marginTop:16,fontSize:13,color:"#888",lineHeight:2}}>📍 Hızırbey Mah. 1509 Sok. No:24, Isparta<br/>📞 <a href="tel:+905456087008" style={{color:"#888",textDecoration:"none"}} onMouseEnter={e=>e.currentTarget.style.color="#ff6000"} onMouseLeave={e=>e.currentTarget.style.color="#888"}>0545 608 7008</a> – <a href="https://wa.me/908508887881" target="_blank" rel="noopener noreferrer" style={{color:"#888",textDecoration:"none"}} onMouseEnter={e=>e.currentTarget.style.color="#25D366"} onMouseLeave={e=>e.currentTarget.style.color="#888"}>💬 WhatsApp</a><br/>✉ <a href="mailto:info@frenciniz.com" style={{color:"#888",textDecoration:"none"}} onMouseEnter={e=>e.currentTarget.style.color="#ff6000"} onMouseLeave={e=>e.currentTarget.style.color="#888"}>info@frenciniz.com</a></div>
+                <a href={ETBIS_VERIFY_URL} target="_blank" rel="noopener noreferrer" style={{marginTop:16,display:"inline-flex",alignItems:"center",gap:12,padding:"10px 12px",border:"1px solid rgba(255,255,255,.14)",borderRadius:8,background:"rgba(255,255,255,.04)",color:"#fff",textDecoration:"none",maxWidth:310}}>
+                  <img src={ETBIS_QR} alt="ETBIS dogrulama karekodu" width={68} height={68} loading="lazy" decoding="async" style={{width:68,height:68,borderRadius:6,background:"#fff",padding:3,flexShrink:0}}/>
+                  <span style={{display:"block"}}>
+                    <strong style={{display:"block",fontSize:13,color:"#fff",marginBottom:4}}>ETBIS Dogrulama</strong>
+                    <span style={{display:"block",fontSize:12,color:"#aaa",lineHeight:1.45}}>Ticaret Bakanligi kaydini sorgula</span>
+                  </span>
+                </a>
               </div>
               {/* Kategoriler */}
               <div>
@@ -4553,6 +4563,14 @@ function CompanyPage() {
         </div>
       ))}
     </div>
+    <a href={ETBIS_VERIFY_URL} target="_blank" rel="noopener noreferrer" style={{marginTop:18,display:"flex",alignItems:"center",gap:16,padding:16,border:"1px solid #e8eef7",borderRadius:8,background:"#f8fbff",textDecoration:"none",color:"#172033"}}>
+      <img src={ETBIS_QR} alt="ETBIS dogrulama karekodu" width={96} height={96} loading="lazy" decoding="async" style={{width:96,height:96,borderRadius:8,background:"#fff",padding:4,border:"1px solid #d8e2f0",flexShrink:0}}/>
+      <span>
+        <strong style={{display:"block",fontSize:16,marginBottom:6,color:"#0b1b33"}}>{en?"ETBIS Verification":"ETBIS Dogrulama"}</strong>
+        <span style={{display:"block",fontSize:14,lineHeight:1.6,color:"#4f5f73"}}>{en?"Query Frenciniz's Ministry of Trade registration record.":"Frenciniz Ticaret Bakanligi kayit sorgulamasini acin."}</span>
+        <span style={{display:"block",fontSize:12,color:"#7a8797",marginTop:6,overflowWrap:"anywhere"}}>{ETBIS_SITE_ID}</span>
+      </span>
+    </a>
   </div>;
 }
 
