@@ -2848,6 +2848,28 @@ function HomePage() {
       </div>
     </section>
 
+    <section style={{maxWidth:1220,margin:"0 auto",padding:isMobile?"26px 18px 12px":"34px 24px 16px"}}>
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"end",gap:16,marginBottom:16}}>
+        <div>
+          <div style={{fontSize:12,color:"#ff6000",fontWeight:950,textTransform:"uppercase",letterSpacing:.5}}>{lang==="en"?"Showcase":"Vitrin"}</div>
+          <h2 style={{fontSize:isMobile?24:30,fontWeight:950,color:"#111827",letterSpacing:0}}>{t("featured")}</h2>
+        </div>
+        <button onClick={() => go("products")} style={{background:"#111827",border:"none",color:"#fff",fontSize:13,fontWeight:900,cursor:"pointer",borderRadius:8,padding:"10px 14px"}}>{t("seeAll")}</button>
+      </div>
+      <div style={{display:"grid",gridTemplateColumns:isMobile?"repeat(2,minmax(0,1fr))":"repeat(4,minmax(0,1fr))",gap:isMobile?10:16}}>{featured.map((p,i) => <ProductCard key={p.id} p={p} eager={i<6} />)}</div>
+    </section>
+
+    <section style={{maxWidth:1220,margin:"0 auto",padding:isMobile?"14px 18px 28px":"8px 24px 34px"}}>
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"end",gap:16,marginBottom:16}}>
+        <div>
+          <div style={{fontSize:12,color:"#0ea5e9",fontWeight:950,textTransform:"uppercase",letterSpacing:.5}}>{lang==="en"?"Best sellers":"Cok satan urunler"}</div>
+          <h2 style={{fontSize:isMobile?24:30,fontWeight:950,color:"#111827"}}>{t("bestSellers")}</h2>
+        </div>
+        <button onClick={() => go("products")} style={{background:"transparent",border:"1px solid #cbd5e1",color:"#111827",fontSize:13,fontWeight:900,cursor:"pointer",borderRadius:8,padding:"10px 14px"}}>{t("seeAll")}</button>
+      </div>
+      <div style={{display:"grid",gridTemplateColumns:isMobile?"repeat(2,minmax(0,1fr))":"repeat(4,minmax(0,1fr))",gap:isMobile?10:16}}>{popular.slice(0,8).map((p,i) => <ProductCard key={p.id} p={p} eager={false} />)}</div>
+    </section>
+
     <section style={{background:"#0b1020",padding:isMobile?"18px 0":"24px 0",borderTop:"1px solid rgba(255,255,255,.08)",borderBottom:"1px solid rgba(255,255,255,.08)"}}>
       <div style={{maxWidth:1220,margin:"0 auto",padding:"0 20px",display:"grid",gridTemplateColumns:isMobile?"repeat(2,1fr)":"repeat(4,1fr)",gap:12}}>
         {vehicleCards.map(v => (
@@ -2874,19 +2896,6 @@ function HomePage() {
       </div>
     </section>
 
-    <HomeIntentLinks isMobile={isMobile} lang={lang} />
-
-    <section style={{maxWidth:1220,margin:"0 auto",padding:isMobile?"22px 18px":"26px 24px 36px"}}>
-      <div style={{display:"flex",justifyContent:"space-between",alignItems:"end",gap:16,marginBottom:16}}>
-        <div>
-          <div style={{fontSize:12,color:"#ff6000",fontWeight:950,textTransform:"uppercase",letterSpacing:.5}}>{lang==="en"?"Showcase":"Vitrin"}</div>
-          <h2 style={{fontSize:isMobile?24:30,fontWeight:950,color:"#111827",letterSpacing:0}}>{t("featured")}</h2>
-        </div>
-        <button onClick={() => go("products")} style={{background:"#111827",border:"none",color:"#fff",fontSize:13,fontWeight:900,cursor:"pointer",borderRadius:8,padding:"10px 14px"}}>{t("seeAll")}</button>
-      </div>
-      <div style={{display:"grid",gridTemplateColumns:isMobile?"repeat(2,minmax(0,1fr))":"repeat(4,minmax(0,1fr))",gap:isMobile?10:16}}>{featured.map((p,i) => <ProductCard key={p.id} p={p} eager={i<6} />)}</div>
-    </section>
-
     {discounted.length > 0 && <section style={{background:"linear-gradient(135deg,#fff7ed,#eef6ff)",padding:isMobile?"28px 0":"34px 0",borderTop:"1px solid rgba(255,96,0,.12)",borderBottom:"1px solid rgba(14,165,233,.12)"}}>
       <div style={{maxWidth:1220,margin:"0 auto",padding:"0 24px"}}>
         <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:16}}>
@@ -2897,16 +2906,7 @@ function HomePage() {
       </div>
     </section>}
 
-    <section style={{maxWidth:1220,margin:"0 auto",padding:isMobile?"28px 18px 42px":"34px 24px 54px"}}>
-      <div style={{display:"flex",justifyContent:"space-between",alignItems:"end",gap:16,marginBottom:16}}>
-        <div>
-          <div style={{fontSize:12,color:"#0ea5e9",fontWeight:950,textTransform:"uppercase",letterSpacing:.5}}>{lang==="en"?"Most searched":"En cok aranan"}</div>
-          <h2 style={{fontSize:isMobile?24:30,fontWeight:950,color:"#111827"}}>{t("bestSellers")}</h2>
-        </div>
-        <button onClick={() => go("products")} style={{background:"transparent",border:"1px solid #cbd5e1",color:"#111827",fontSize:13,fontWeight:900,cursor:"pointer",borderRadius:8,padding:"10px 14px"}}>{t("seeAll")}</button>
-      </div>
-      <div style={{display:"grid",gridTemplateColumns:isMobile?"repeat(2,minmax(0,1fr))":"repeat(4,minmax(0,1fr))",gap:isMobile?10:16}}>{popular.slice(0,8).map((p,i) => <ProductCard key={p.id} p={p} eager={false} />)}</div>
-    </section>
+    <HomeIntentLinks isMobile={isMobile} lang={lang} />
 
     <section style={{background:"#111827",color:"#fff",padding:isMobile?"26px 18px":"32px 24px"}}>
       <div style={{maxWidth:1220,margin:"0 auto",display:"grid",gridTemplateColumns:isMobile?"repeat(2,1fr)":"repeat(4,1fr)",gap:12}}>
