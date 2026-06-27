@@ -3350,6 +3350,30 @@ function ProductDetailPage() {
             <div style={{padding:"14px 15px",background:"linear-gradient(135deg,#07111f,#172033)",border:"1px solid rgba(255,96,0,.2)",borderRadius:8,color:"#fff",boxShadow:"0 12px 26px rgba(15,23,42,.12)"}}>
               <div style={{fontSize:12,fontWeight:900,color:"#facc15",textTransform:"uppercase",letterSpacing:0,marginBottom:8}}>OEM / parça kodu</div>
               <div style={{fontSize:13,lineHeight:1.6,color:"#e5e7eb",overflowWrap:"anywhere"}}>{p.oem || p.sku || "Kod ile teyit"}</div>
+              <div style={{marginTop:12,paddingTop:12,borderTop:"1px solid rgba(255,255,255,.12)"}}>
+                <div style={{display:"flex",alignItems:"baseline",justifyContent:"space-between",gap:10,marginBottom:8}}>
+                  <div>
+                    <div style={{fontSize:11,fontWeight:900,color:"#a7b0c0",textTransform:"uppercase",marginBottom:3}}>Fiyat</div>
+                    <div style={{fontSize:24,fontWeight:950,color:"#fff",lineHeight:1}}>{fp(p.price)}</div>
+                  </div>
+                  <div style={{fontSize:11,fontWeight:900,color:p.stock?"#86efac":"#fecaca",background:p.stock?"rgba(34,197,94,.12)":"rgba(239,68,68,.12)",border:`1px solid ${p.stock?"rgba(34,197,94,.24)":"rgba(239,68,68,.24)"}`,borderRadius:999,padding:"5px 8px",whiteSpace:"nowrap"}}>
+                    {p.stock ? `${p.stock} stok` : "Stok yok"}
+                  </div>
+                </div>
+                <div style={{display:"grid",gridTemplateColumns:"104px 1fr",gap:8,alignItems:"stretch"}}>
+                  <div style={{display:"grid",gridTemplateColumns:"32px 40px 32px",border:"1px solid rgba(255,255,255,.18)",borderRadius:7,overflow:"hidden",background:"rgba(255,255,255,.06)",minHeight:40}}>
+                    <button onClick={() => setQty(Math.max(1,qty-1))} style={{border:"none",background:"rgba(255,255,255,.08)",color:"#fff",fontSize:16,fontWeight:900,cursor:"pointer"}}>-</button>
+                    <span style={{display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,fontWeight:950,color:"#fff"}}>{qty}</span>
+                    <button onClick={() => setQty(qty+1)} style={{border:"none",background:"rgba(255,255,255,.08)",color:"#fff",fontSize:16,fontWeight:900,cursor:"pointer"}}>+</button>
+                  </div>
+                  <button onClick={() => p.stock && addToCart(p, qty)} disabled={!p.stock} style={{minHeight:40,borderRadius:7,border:"1px solid rgba(255,255,255,.16)",background:p.stock?"#fff":"rgba(255,255,255,.08)",color:p.stock?"#111827":"#94a3b8",fontSize:12,fontWeight:950,cursor:p.stock?"pointer":"default",padding:"0 10px"}}>
+                    Sepete ekle
+                  </button>
+                </div>
+                <button onClick={checkoutNow} disabled={!p.stock} style={{width:"100%",minHeight:42,marginTop:8,borderRadius:7,border:"none",background:p.stock?"linear-gradient(135deg,#ff6000,#f97316)":"#1f2937",color:p.stock?"#fff":"#94a3b8",fontSize:13,fontWeight:950,cursor:p.stock?"pointer":"default",boxShadow:p.stock?"0 10px 22px rgba(255,96,0,.24)":"none"}}>
+                  Ödemeye geç
+                </button>
+              </div>
               <div style={{fontSize:12,color:"#a7b0c0",marginTop:8,lineHeight:1.45}}>Siparişten önce eski parça fotoğrafı veya şase ile kontrol önerilir.</div>
             </div>
           </div>
