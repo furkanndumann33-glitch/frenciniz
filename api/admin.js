@@ -157,10 +157,16 @@ export default async function handler(req, res) {
             productCounts[id] = (productCounts[id] || 0) + (Number(c) || 0);
           }
         }
-        productActions.topProducts[type] = Object.entries(productCounts)
+        const topEntries = Object.entries(productCounts)
           .sort((a, b) => b[1] - a[1])
-          .slice(0, 10)
-          .map(([productId, count]) => ({ productId, count }));
+          .slice(0, 10);
+        productActions.topProducts[type] = [];
+        for (const [productId, count] of topEntries) {
+          const rawMeta = await kv.get(`product_action:product_meta:${productId}`);
+          let meta = {};
+          try { meta = typeof rawMeta === "string" ? JSON.parse(rawMeta) : (rawMeta || {}); } catch {}
+          productActions.topProducts[type].push({ productId, count, ...meta });
+        }
       }
       const rawProductActions = (await kv.lrange("product_action:log", 0, 99)) || [];
       productActions.recent = rawProductActions.map(r => {

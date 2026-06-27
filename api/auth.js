@@ -314,6 +314,7 @@ export default async function handler(req, res) {
         const category = cleanLeadText(body.category || "", 80);
         const qty = Math.max(1, Number(body.qty || 1) || 1);
         const value = Number(body.value || 0) || 0;
+        const productKey = productId || sku || "unknown";
         const ip = (req.headers["x-forwarded-for"] || "").split(",")[0].trim() || req.headers["x-real-ip"] || "unknown";
         const ua = String(req.headers["user-agent"] || "").slice(0, 180);
         const city = decodeURIComponent(String(req.headers["x-vercel-ip-city"] || "")).replace(/\+/g, " ");
@@ -321,13 +322,15 @@ export default async function handler(req, res) {
 
         await Promise.all([
           kv.incr(`product_action:${type}:${day}`),
-          kv.incr(`product_action:${type}:product:${day}:${productId || sku || "unknown"}`),
-          kv.sadd(`product_action:${type}:products:${day}`, productId || sku || "unknown"),
+          kv.incr(`product_action:${type}:product:${day}:${productKey}`),
+          kv.sadd(`product_action:${type}:products:${day}`, productKey),
+          kv.set(`product_action:product_meta:${productKey}`, JSON.stringify({ productId, sku, name, category })),
         ]);
         await Promise.all([
           kv.expire(`product_action:${type}:${day}`, 60 * 60 * 24 * 120),
-          kv.expire(`product_action:${type}:product:${day}:${productId || sku || "unknown"}`, 60 * 60 * 24 * 120),
+          kv.expire(`product_action:${type}:product:${day}:${productKey}`, 60 * 60 * 24 * 120),
           kv.expire(`product_action:${type}:products:${day}`, 60 * 60 * 24 * 120),
+          kv.expire(`product_action:product_meta:${productKey}`, 60 * 60 * 24 * 180),
         ]);
 
         const logEntry = {

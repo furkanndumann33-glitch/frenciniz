@@ -6552,7 +6552,10 @@ function ATraffic(){
               <table style={{width:"100%",borderCollapse:"collapse",fontSize:12}}>
                 <tbody>{section.rows.slice(0,8).map((row,i)=>(
                   <tr key={`${section.title}-${row.productId}-${i}`} style={{borderTop:"1px solid #f1f5f9"}}>
-                    <td style={{padding:"8px",fontFamily:"monospace",fontSize:11,overflowWrap:"anywhere"}}>{row.productId || "-"}</td>
+                    <td style={{padding:"8px",fontSize:11,overflowWrap:"anywhere"}}>
+                      <div style={{fontWeight:800,color:"#111827"}}>{row.name || row.productId || "-"}</div>
+                      <div style={{fontFamily:"monospace",color:"#64748b",marginTop:2}}>{row.sku || row.productId || "-"}</div>
+                    </td>
                     <td style={{padding:"8px",textAlign:"right",fontWeight:900,color:section.color}}>{Number(row.count||0).toLocaleString("tr-TR")}</td>
                   </tr>
                 ))}</tbody>
