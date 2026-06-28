@@ -1,8 +1,8 @@
 {
-  "submittedAt": "2026-06-28T08:48:26.098Z",
+  "submittedAt": "2026-06-28T08:50:11.853Z",
   "engine": "IndexNow",
   "keyLocation": "https://www.frenciniz.com/indexnow-key.txt",
-  "urlCount": 5,
+  "urlCount": 180,
   "result": {
     "status": 202,
     "ok": true,
@@ -13,6 +13,13 @@
     "https://www.frenciniz.com/9424212112-mercedes-axor-actros-fren-diski",
     "https://www.frenciniz.com/29087-mercedes-axor-actros-scania-fren-balatasi",
     "https://www.frenciniz.com/29279-man-tga-tgs-tgx-fren-balatasi",
-    "https://www.frenciniz.com/0308835057-bpw-kogel-krone-dorse-fren-diski"
+    "https://www.frenciniz.com/0308835057-bpw-kogel-krone-dorse-fren-diski",
+    "https://www.frenciniz.com/axor-1840-balata",
+    "https://www.frenciniz.com/axor-1840-fren-diski",
+    "https://www.frenciniz.com/axor-1840-kampana",
+    "https://www.frenciniz.com/axor-1840-bijon",
+    "https://www.frenciniz.com/axor-1840-fren-pabucu",
+    "https://www.frenciniz.com/axor-1840-fren-korugu",
+    "https://www.frenciniz.com/axor-1840-kaliper-tamir-takimi"
   ]
 }
