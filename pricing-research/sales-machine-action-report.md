@@ -1,6 +1,6 @@
 # Frenciniz Satis Makinesi Aksiyon Raporu
 
-Olusturma: 2026-06-28T07:33:11.471Z
+Olusturma: 2026-06-28T09:01:34.955Z
 
 ## Cikti dosyalari
 
@@ -12,6 +12,7 @@ Olusturma: 2026-06-28T07:33:11.471Z
 - meta-product-sets.csv: Meta katalog urun seti kurallari.
 - whatsapp-business-quick-replies.csv: WhatsApp Business hizli cevaplari.
 - organic-social-posts.md: Facebook/Instagram organik post metinleri.
+- traffic-boost-posts.md/csv: Facebook grup ve WhatsApp durum icin takip kodlu post linkleri.
 
 ## Ana sayilar
 

@@ -385,6 +385,74 @@ WhatsApp: 0850 888 7881
 `;
 fs.writeFileSync(path.join(OUT_DIR, "organic-social-posts.md"), socialPost, "utf8");
 
+const trafficBoostPosts = [
+  {
+    title: "Mercedes Axor Actros balata",
+    url: "https://www.frenciniz.com/29246-mercedes-axor-actros-fren-balatasi?utm_source=facebook&utm_medium=group_post&utm_campaign=today_sales",
+    text: "Mercedes Axor / Actros fren balatasi arayanlar: 29246, 0064201420, 0064205220 kodlari icin stok, fiyat ve uyumluluk teyidi alabilirsiniz. Eski parca fotografi veya sase ile kontrol ediyoruz.",
+  },
+  {
+    title: "Mercedes Axor Actros disk",
+    url: "https://www.frenciniz.com/9424212112-mercedes-axor-actros-fren-diski?utm_source=facebook&utm_medium=group_post&utm_campaign=today_sales",
+    text: "Mercedes Axor / Actros fren diski icin 9424212112 ve muadil kodlarda stok/fiyat sorabilirsiniz. OEM kodu veya eski parca fotosu ile dogru parca teyidi yapiyoruz.",
+  },
+  {
+    title: "BPW Kogel Krone dorse disk",
+    url: "https://www.frenciniz.com/0308835057-bpw-kogel-krone-dorse-fren-diski?utm_source=facebook&utm_medium=group_post&utm_campaign=today_sales",
+    text: "BPW, Kogel, Krone dorse fren diski icin 0308835057 ve muadil kodlarda stok/fiyat teyidi. Dorse/Treyler parcalarinda eski parca koduyla hizli teklif.",
+  },
+  {
+    title: "MAN TGA TGS TGX balata",
+    url: "https://www.frenciniz.com/29279-man-tga-tgs-tgx-fren-balatasi?utm_source=facebook&utm_medium=group_post&utm_campaign=today_sales",
+    text: "MAN TGA / TGS / TGX fren balatasi 29279 ve muadil kodlarda fiyat/stok sorabilirsiniz. Uyum icin OEM, sase veya eski parca fotografi yeterli.",
+  },
+  {
+    title: "Scania suspansiyon korugu",
+    url: "https://www.frenciniz.com/1903608-scania-pgr-suspansiyon-korugu?utm_source=facebook&utm_medium=group_post&utm_campaign=today_sales",
+    text: "Scania P/G/R suspansiyon korugu 1903608, 1774804, 2198915 kodlari icin stok ve fiyat teyidi. Eski parca fotografiyla uyum kontrolu yapilir.",
+  },
+  {
+    title: "Axor 1840 balata",
+    url: "https://www.frenciniz.com/axor-1840-balata?utm_source=facebook&utm_medium=group_post&utm_campaign=today_sales",
+    text: "Axor 1840 fren balatasi arayanlar icin stoklu urun ve muadil secenekler. Kod, sase veya fotograf gonderin; dogru parcayi teyit edelim.",
+  },
+  {
+    title: "Axor 1840 disk",
+    url: "https://www.frenciniz.com/axor-1840-fren-diski?utm_source=facebook&utm_medium=group_post&utm_campaign=today_sales",
+    text: "Axor 1840 fren diski icin fiyat/stok ve uyumluluk teyidi. OEM kodu veya eski parca fotografi ile hizli kontrol.",
+  },
+  {
+    title: "Dorse kampana",
+    url: "https://www.frenciniz.com/bpw-dorse-fren-kampanasi?utm_source=facebook&utm_medium=group_post&utm_campaign=today_sales",
+    text: "BPW / SAF / Krone / Kogel / Tirsan dorse fren kampanasi icin stok ve fiyat sorabilirsiniz. Olcu ve kodla dogru parca teyidi.",
+  },
+  {
+    title: "Fren diskleri genel",
+    url: "https://www.frenciniz.com/fren-diski?utm_source=facebook&utm_medium=group_post&utm_campaign=today_sales",
+    text: "Kamyon, tir, otobus ve dorse fren diski gruplarinda OEM kodu, sase veya eski parca fotografiyla fiyat/stok/uyumluluk teyidi.",
+  },
+  {
+    title: "Fren balatalari genel",
+    url: "https://www.frenciniz.com/fren-balatasi?utm_source=facebook&utm_medium=group_post&utm_campaign=today_sales",
+    text: "Agir vasita fren balatalarinda Mercedes, MAN, Scania, Volvo, BPW, SAF ve dorse gruplari icin kodla hizli teklif.",
+  },
+];
+
+const trafficBoostText = `# Frenciniz Trafik Cekme Post Paketi
+
+Kullanim: Her postu yalnizca alakali grupta, gruba gore kisa bir giris ekleyerek paylas. Ayni metni arka arkaya cok grupta tekrarlama.
+
+${trafficBoostPosts.map((post, index) => `## ${index + 1}. ${post.title}
+
+${post.text}
+
+WhatsApp: 0850 888 7881
+${post.url}
+`).join("\n")}`;
+
+fs.writeFileSync(path.join(OUT_DIR, "traffic-boost-posts.md"), trafficBoostText, "utf8");
+writeCsv("traffic-boost-posts.csv", trafficBoostPosts);
+
 const report = `# Frenciniz Satis Makinesi Aksiyon Raporu
 
 Olusturma: ${new Date().toISOString()}
@@ -399,6 +467,7 @@ Olusturma: ${new Date().toISOString()}
 - meta-product-sets.csv: Meta katalog urun seti kurallari.
 - whatsapp-business-quick-replies.csv: WhatsApp Business hizli cevaplari.
 - organic-social-posts.md: Facebook/Instagram organik post metinleri.
+- traffic-boost-posts.md/csv: Facebook grup ve WhatsApp durum icin takip kodlu post linkleri.
 
 ## Ana sayilar
 
