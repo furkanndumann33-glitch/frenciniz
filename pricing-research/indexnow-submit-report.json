@@ -1,0 +1,18 @@
+{
+  "submittedAt": "2026-06-28T08:48:26.098Z",
+  "engine": "IndexNow",
+  "keyLocation": "https://www.frenciniz.com/indexnow-key.txt",
+  "urlCount": 5,
+  "result": {
+    "status": 202,
+    "ok": true,
+    "body": ""
+  },
+  "sampleUrls": [
+    "https://www.frenciniz.com/29246-mercedes-axor-actros-fren-balatasi",
+    "https://www.frenciniz.com/9424212112-mercedes-axor-actros-fren-diski",
+    "https://www.frenciniz.com/29087-mercedes-axor-actros-scania-fren-balatasi",
+    "https://www.frenciniz.com/29279-man-tga-tgs-tgx-fren-balatasi",
+    "https://www.frenciniz.com/0308835057-bpw-kogel-krone-dorse-fren-diski"
+  ]
+}
