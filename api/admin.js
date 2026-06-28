@@ -142,12 +142,18 @@ export default async function handler(req, res) {
       const productActionTypes = ["add_to_cart", "favorite"];
       const productActions = {
         totals: { add_to_cart: 0, favorite: 0 },
+        today: { add_to_cart: 0, favorite: 0 },
+        last7: { add_to_cart: 0, favorite: 0 },
         recent: [],
         topProducts: { add_to_cart: [], favorite: [] },
       };
+      const todayKey = days[days.length - 1];
       for (const type of productActionTypes) {
         for (const day of days) {
-          productActions.totals[type] += Number(await kv.get(`product_action:${type}:${day}`)) || 0;
+          const count = Number(await kv.get(`product_action:${type}:${day}`)) || 0;
+          productActions.totals[type] += count;
+          if (day === todayKey) productActions.today[type] += count;
+          if (last7.includes(day)) productActions.last7[type] += count;
         }
         const productCounts = {};
         for (const day of last7) {
