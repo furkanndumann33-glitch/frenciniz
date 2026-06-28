@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-08T19:42:31.812Z",
+  "generatedAt": "2026-06-26T15:28:10.967Z",
   "site": "https://www.frenciniz.com",
   "feedUrls": {
     "googleMerchant": "https://www.frenciniz.com/google-merchant-feed.xml",
@@ -12,10 +12,10 @@
     "categoryGroups": 12,
     "inStock": 1055,
     "outOfStock": 0,
-    "realImages": 953,
-    "missingImages": 102,
+    "realImages": 1055,
+    "missingImages": 0,
     "missingSku": 0,
-    "missingOem": 351,
+    "missingOem": 356,
     "missingDescription": 0,
     "missingPrice": 0,
     "merchantRows": 1055,
@@ -34,98 +34,98 @@
       "name": "BİJON",
       "productCount": 187,
       "inStockCount": 187,
-      "missingImageCount": 9,
-      "realImageRate": 0.952,
+      "missingImageCount": 0,
+      "realImageRate": 1,
       "topCompatibility": [
         {
+          "value": "Mercedes-Benz Axor",
+          "count": 29
+        },
+        {
           "value": "Kamyon",
-          "count": 40
+          "count": 29
         },
         {
           "value": "Tır / çekici",
-          "count": 40
+          "count": 29
         },
         {
           "value": "Dorse",
-          "count": 40
+          "count": 29
         },
         {
-          "value": "Mercedes-Benz Axor",
-          "count": 32
+          "value": "Mercedes-Benz Actros",
+          "count": 25
         },
         {
-          "value": "Mercedes-Benz Axor 1840",
-          "count": 32
-        },
-        {
-          "value": "Mercedes-Benz Axor 2528",
-          "count": 32
+          "value": "Dorse / treyler",
+          "count": 21
         }
       ],
       "topStockProducts": [
         {
           "id": 945,
           "sku": "ESS 020 10",
-          "name": "Bijon Somunu ESS 020 10",
+          "name": "Dorse Bijon Somunu ESS 020 10",
           "stock": 100000,
           "price": 74.09,
-          "url": "https://www.frenciniz.com/urun/945/bijon-somunu-ess-020-10-ess-020-10-ekersan"
+          "url": "https://www.frenciniz.com/urun/945/dorse-bijon-somunu-ess-020-10-ekersan"
         },
         {
           "id": 941,
           "sku": "ESS 025 20",
-          "name": "Döner Pullu Somun MAN TGA TGS TGX 40.360 40.460",
+          "name": "MAN Bijon Somunu",
           "stock": 91042,
           "price": 74.09,
-          "url": "https://www.frenciniz.com/urun/941/doner-pullu-somun-man-tga-tgs-tgx-40-360-40-460-ess-025-20-ekersan"
+          "url": "https://www.frenciniz.com/urun/941/man-bijon-somunu-ekersan"
         },
         {
           "id": 842,
           "sku": "EYD 209 02",
-          "name": "Disk Bijonu EYD 209 02",
+          "name": "Dorse Disk Bijonu",
           "stock": 68549,
           "price": 50.82,
-          "url": "https://www.frenciniz.com/urun/842/disk-bijonu-eyd-209-02-eyd-209-02-ekersan"
+          "url": "https://www.frenciniz.com/urun/842/dorse-disk-bijonu-ekersan"
         },
         {
           "id": 940,
           "sku": "ESS 025 20-3",
-          "name": "Bijon Somunu ESS 025 20 3",
+          "name": "Dorse Bijon Somunu Dakromatlı Kısa",
           "stock": 55436,
           "price": 73.37,
-          "url": "https://www.frenciniz.com/urun/940/bijon-somunu-ess-025-20-3-ess-025-20-3-ekersan"
+          "url": "https://www.frenciniz.com/urun/940/dorse-bijon-somunu-dakromatli-kisa-ekersan"
         },
         {
           "id": 364,
           "sku": "ESB 2032 10",
-          "name": "Bijon ESB 2032 10",
+          "name": "Dorse Bijon DPS ESB 2032 10",
           "stock": 30700,
           "price": 199.31,
-          "url": "https://www.frenciniz.com/urun/364/bijon-esb-2032-10-esb-2032-10-ekersan"
+          "url": "https://www.frenciniz.com/urun/364/dorse-bijon-dps-esb-2032-10-ekersan"
         },
         {
           "id": 932,
           "sku": "ESS 171 10",
-          "name": "Bijon Somunu ESS 171 10",
+          "name": "Dorse Bijon Somunu ESS 171 10",
           "stock": 24994,
           "price": 78.76,
-          "url": "https://www.frenciniz.com/urun/932/bijon-somunu-ess-171-10-ess-171-10-ekersan"
+          "url": "https://www.frenciniz.com/urun/932/dorse-bijon-somunu-ess-171-10-ekersan"
         },
         {
           "id": 939,
           "sku": "ESS 028 10",
-          "name": "Bijon Somunu ESS 028 10",
+          "name": "Dorse Bijon Somunu ESS 028 10",
           "stock": 14995,
           "price": 74.09,
-          "url": "https://www.frenciniz.com/urun/939/bijon-somunu-ess-028-10-ess-028-10-ekersan"
+          "url": "https://www.frenciniz.com/urun/939/dorse-bijon-somunu-ess-028-10-ekersan"
         },
         {
           "id": 938,
           "sku": "ESS 029 10",
-          "name": "Bijon Somunu ESS 029 10",
+          "name": "Dorse Bijon Somunu 18x1",
           "stock": 12133,
           "price": 74.09,
-          "url": "https://www.frenciniz.com/urun/938/bijon-somunu-ess-029-10-ess-029-10-ekersan"
+          "url": "https://www.frenciniz.com/urun/938/dorse-bijon-somunu-18x1-ekersan"
         }
       ]
     },
@@ -134,8 +134,8 @@
       "name": "KALİPER ÜRÜNLERİ",
       "productCount": 169,
       "inStockCount": 169,
-      "missingImageCount": 2,
-      "realImageRate": 0.988,
+      "missingImageCount": 0,
+      "realImageRate": 1,
       "topCompatibility": [
         {
           "value": "Knorr / WABCO / Meritor kaliper uygulamaları",
@@ -147,18 +147,18 @@
         },
         {
           "value": "Disk fren montaj sistemi",
-          "count": 89
+          "count": 90
         },
         {
           "value": "DAF CF/XF",
           "count": 50
         },
         {
-          "value": "Knorr-Bremse SB/SN/SK kaliper sistemi",
-          "count": 27
+          "value": "Scania 4/P/G/R serisi",
+          "count": 28
         },
         {
-          "value": "MAN TGA/TGS/TGX",
+          "value": "Knorr-Bremse SB/SN/SK kaliper sistemi",
           "count": 27
         }
       ],
@@ -166,66 +166,66 @@
         {
           "id": 863,
           "sku": "EYD 202 06",
-          "name": "MERCEDES PERNO STANDART",
+          "name": "Mercedes Axor Actros Perno EYD 202 06",
           "stock": 4916,
           "price": 191.4,
-          "url": "https://www.frenciniz.com/urun/863/mercedes-perno-standart-eyd-202-06-ekersan"
+          "url": "https://www.frenciniz.com/urun/863/mercedes-axor-actros-perno-eyd-202-06-ekersan"
         },
         {
           "id": 1007,
           "sku": "421138",
-          "name": "Kaliper Ayar Civatası",
+          "name": "ROR Meritor Knorr WABCO Kaliper Ayar Mekanizması 421138",
           "stock": 3873,
           "price": 158.4,
-          "url": "https://www.frenciniz.com/urun/1007/kaliper-ayar-civatasi-421138-ekersan"
+          "url": "https://www.frenciniz.com/urun/1007/ror-meritor-knorr-wabco-kaliper-ayar-mekanizmasi-421138-ekersan"
         },
         {
           "id": 1016,
           "sku": "421100",
-          "name": "Kaliper Toz Lastiği Tamir Takımı (Ø 69 mm)",
+          "name": "ROR Meritor Knorr WABCO Kaliper Toz Lastiği 69 mm 421100",
           "stock": 1890,
           "price": 369.6,
-          "url": "https://www.frenciniz.com/urun/1016/kaliper-toz-lastigi-tamir-takimi-69-mm-421100-ekersan"
+          "url": "https://www.frenciniz.com/urun/1016/ror-meritor-knorr-wabco-kaliper-toz-lastigi-69-mm-421100-ekersan"
         },
         {
           "id": 992,
           "sku": "421236",
-          "name": "KLİPER AYAR CİVATASI (AXOR YM 3 YİVLİ CİVATA)",
+          "name": "Mercedes Axor Kaliper Ayar Mekanizması Y.M.",
           "stock": 1770,
           "price": 158.4,
-          "url": "https://www.frenciniz.com/urun/992/kliper-ayar-civatasi-axor-ym-3-yivli-civata-421236-ekersan"
+          "url": "https://www.frenciniz.com/urun/992/mercedes-axor-kaliper-ayar-mekanizmasi-y-m-ekersan"
         },
         {
           "id": 840,
           "sku": "EYD 209 11",
-          "name": "Perno Klips",
+          "name": "Dorse Perno",
           "stock": 1161,
           "price": 25.08,
-          "url": "https://www.frenciniz.com/urun/840/perno-klips-eyd-209-11-ekersan"
+          "url": "https://www.frenciniz.com/urun/840/dorse-perno-ekersan"
         },
         {
           "id": 973,
           "sku": "429002",
-          "name": "Perno Tapası 40x12 mm",
+          "name": "Dorse Perno 40x12 mm",
           "stock": 703,
           "price": 22.44,
-          "url": "https://www.frenciniz.com/urun/973/perno-tapasi-40x12-mm-429002-ekersan"
+          "url": "https://www.frenciniz.com/urun/973/dorse-perno-40x12-mm-ekersan"
         },
         {
           "id": 1012,
           "sku": "421127",
-          "name": "Kaliper Ayar Mekanizması (Yaylı)",
+          "name": "ROR Meritor Knorr WABCO Kaliper Ayar Mekanizması 421127",
           "stock": 641,
           "price": 178.2,
-          "url": "https://www.frenciniz.com/urun/1012/kaliper-ayar-mekanizmasi-yayli-421127-ekersan"
+          "url": "https://www.frenciniz.com/urun/1012/ror-meritor-knorr-wabco-kaliper-ayar-mekanizmasi-421127-ekersan"
         },
         {
           "id": 977,
           "sku": "426123",
-          "name": "Kaliper Perno Tamir Takımı Knorr WABCO Meritor",
+          "name": "ROR Meritor Knorr WABCO Kaliper Perno Tamir Takımı 426123",
           "stock": 436,
           "price": 1254,
-          "url": "https://www.frenciniz.com/urun/977/kaliper-perno-tamir-takimi-knorr-wabco-meritor-426123-ekersan"
+          "url": "https://www.frenciniz.com/urun/977/ror-meritor-knorr-wabco-kaliper-perno-tamir-takimi-426123-ekersan"
         }
       ]
     },
@@ -239,26 +239,26 @@
       "topCompatibility": [
         {
           "value": "Kamyon",
-          "count": 33
+          "count": 24
         },
         {
           "value": "Tır / çekici",
-          "count": 33
+          "count": 24
         },
         {
           "value": "Otobüs",
-          "count": 33
+          "count": 24
         },
         {
           "value": "Dorse",
-          "count": 33
+          "count": 24
+        },
+        {
+          "value": "Dorse / treyler",
+          "count": 17
         },
         {
           "value": "BMC Probus",
-          "count": 14
-        },
-        {
-          "value": "BMC Profesyonel",
           "count": 14
         }
       ],
@@ -266,66 +266,66 @@
         {
           "id": 97,
           "sku": "ESK 160 29-S",
-          "name": "Fren Kampanası ESK 160 29 S",
+          "name": "Dorse Fren Kampanası ESK 160 29-S",
           "stock": 1278,
           "price": 4950.09,
-          "url": "https://www.frenciniz.com/urun/97/fren-kampanasi-esk-160-29-s-esk-160-29-s-ekersan"
+          "url": "https://www.frenciniz.com/urun/97/dorse-fren-kampanasi-esk-160-29-s-ekersan"
         },
         {
           "id": 133,
           "sku": "ESK 040 12",
-          "name": "Fren Kampanası Ford Cargo 1833 1846 2532 3232",
+          "name": "Ford Cargo Fren Kampanası ESK 040 12",
           "stock": 1180,
           "price": 6678.75,
-          "url": "https://www.frenciniz.com/urun/133/fren-kampanasi-ford-cargo-1833-1846-2532-3232-esk-040-12-ekersan"
+          "url": "https://www.frenciniz.com/urun/133/ford-cargo-fren-kampanasi-esk-040-12-ekersan"
         },
         {
           "id": 151,
           "sku": "ESK 020 05",
-          "name": "Fren Kampanası MAN TGA TGS TGX 40.360 40.460",
+          "name": "MAN Fren Kampanası ESK 020 05",
           "stock": 1087,
           "price": 5360.02,
-          "url": "https://www.frenciniz.com/urun/151/fren-kampanasi-man-tga-tgs-tgx-40-360-40-460-esk-020-05-ekersan"
+          "url": "https://www.frenciniz.com/urun/151/man-fren-kampanasi-esk-020-05-ekersan"
         },
         {
           "id": 152,
           "sku": "ESK 020 03",
-          "name": "Fren Kampanası MAN TGA TGS TGX 40.360 40.460",
+          "name": "MAN Fren Kampanası ESK 020 03",
           "stock": 837,
           "price": 5508.91,
-          "url": "https://www.frenciniz.com/urun/152/fren-kampanasi-man-tga-tgs-tgx-40-360-40-460-esk-020-03-ekersan"
+          "url": "https://www.frenciniz.com/urun/152/man-fren-kampanasi-esk-020-03-ekersan"
         },
         {
           "id": 145,
           "sku": "ESK 030 08",
-          "name": "Fren Kampanası BMC Probus Profesyonel Fatih Pro 20 cm 220 822 827",
+          "name": "BMC Fren Kampanası 20 cm",
           "stock": 537,
           "price": 6083.19,
-          "url": "https://www.frenciniz.com/urun/145/fren-kampanasi-bmc-probus-profesyonel-fatih-pro-20-cm-220-822-827-esk-030-08-ekersan"
+          "url": "https://www.frenciniz.com/urun/145/bmc-fren-kampanasi-20-cm-ekersan"
         },
         {
           "id": 91,
           "sku": "ESK 160 87",
-          "name": "Fren Kampanası 420 200 246 687",
+          "name": "Dorse Fren Kampanası ESK 160 87",
           "stock": 381,
           "price": 5346.48,
-          "url": "https://www.frenciniz.com/urun/91/fren-kampanasi-420-200-246-687-esk-160-87-ekersan"
+          "url": "https://www.frenciniz.com/urun/91/dorse-fren-kampanasi-esk-160-87-ekersan"
         },
         {
           "id": 135,
           "sku": "ESK 040 09",
-          "name": "Fren Kampanası Ford Cargo 1833 1846 2532 3232 Ön Arka 2524-3227-3230",
+          "name": "Ford Cargo Fren Kampanası Ön Arka",
           "stock": 363,
           "price": 5370.65,
-          "url": "https://www.frenciniz.com/urun/135/fren-kampanasi-ford-cargo-1833-1846-2532-3232-on-arka-2524-3227-3230-esk-040-09-ekersan"
+          "url": "https://www.frenciniz.com/urun/135/ford-cargo-fren-kampanasi-on-arka-ekersan"
         },
         {
           "id": 269,
           "sku": "ESK 160 29",
-          "name": "Fren Kampanası ESK 160 29",
+          "name": "WABCO Fren Kampanası ABS'li ESK 160 29",
           "stock": 324,
           "price": 4950.09,
-          "url": "https://www.frenciniz.com/urun/269/fren-kampanasi-esk-160-29-esk-160-29-ekersan"
+          "url": "https://www.frenciniz.com/urun/269/wabco-fren-kampanasi-abs-li-esk-160-29-ekersan"
         }
       ]
     },
@@ -334,98 +334,98 @@
       "name": "SÜSP. KÖRÜĞÜ",
       "productCount": 105,
       "inStockCount": 105,
-      "missingImageCount": 28,
-      "realImageRate": 0.733,
+      "missingImageCount": 0,
+      "realImageRate": 1,
       "topCompatibility": [
         {
           "value": "Dorse",
-          "count": 56
+          "count": 39
         },
         {
           "value": "Treyler",
-          "count": 56
+          "count": 39
         },
         {
           "value": "Kamyon",
-          "count": 56
+          "count": 39
         },
         {
           "value": "Tır / çekici",
-          "count": 56
+          "count": 39
         },
         {
           "value": "Volvo FH",
-          "count": 12
+          "count": 18
         },
         {
           "value": "Volvo FM",
-          "count": 12
+          "count": 18
         }
       ],
       "topStockProducts": [
         {
           "id": 461,
           "sku": "EYD 301 05-2",
-          "name": "SERİN/BPW DORSE MAKARA TAKIMI 45 LİK  BURÇLU",
+          "name": "BPW Dorse 45 Lik Burç Muylu Makarası",
           "stock": 2838,
           "price": 231,
-          "url": "https://www.frenciniz.com/urun/461/serin-bpw-dorse-makara-takimi-45-lik-burclu-eyd-301-05-2-ekersan"
+          "url": "https://www.frenciniz.com/urun/461/burc-muylu-bpw-dorse-45-lik-burc-muylu-makarasi-ekersan"
         },
         {
           "id": 887,
           "sku": "42813.S",
-          "name": "Süspansiyon Körüğü 42813 S",
+          "name": "Dorse Süspansiyon Körüğü 42813.S",
           "stock": 667,
           "price": 1815,
-          "url": "https://www.frenciniz.com/urun/887/suspansiyon-korugu-42813-s-42813-s-ekersan"
+          "url": "https://www.frenciniz.com/urun/887/dorse-suspansiyon-korugu-42813-s-ekersan"
         },
         {
           "id": 879,
           "sku": "42941.C",
-          "name": "Komple Körük Metal Piston SAF Holland",
+          "name": "SAF Dorse Süspansiyon Körüğü 42941.C",
           "stock": 293,
           "price": 3498,
-          "url": "https://www.frenciniz.com/urun/879/komple-koruk-metal-piston-saf-holland-42941-c-ekersan"
+          "url": "https://www.frenciniz.com/urun/879/saf-dorse-suspansiyon-korugu-42941-c-ekersan"
         },
         {
           "id": 661,
           "sku": "424183.S1",
-          "name": "Süspansiyon Körüğü 424183 S1",
+          "name": "Dorse Süspansiyon Körüğü 424183.S1",
           "stock": 288,
           "price": 1947,
-          "url": "https://www.frenciniz.com/urun/661/suspansiyon-korugu-424183-s1-424183-s1-ekersan"
+          "url": "https://www.frenciniz.com/urun/661/dorse-suspansiyon-korugu-424183-s1-ekersan"
         },
         {
           "id": 885,
           "sku": "42836.C1",
-          "name": "Süspansiyon Körüğü 42836 C1",
+          "name": "DAF Cf Xf Süspansiyon Körüğü 42836.C1",
           "stock": 279,
           "price": 2772,
-          "url": "https://www.frenciniz.com/urun/885/suspansiyon-korugu-42836-c1-42836-c1-ekersan"
+          "url": "https://www.frenciniz.com/urun/885/daf-cf-xf-suspansiyon-korugu-42836-c1-ekersan"
         },
         {
           "id": 446,
           "sku": "FT 34220-2P01",
-          "name": "Süspansiyon Körüğü FT 34220 2P01",
+          "name": "Dorse Süspansiyon Körüğü FT 34220-2P01",
           "stock": 221,
           "price": 726,
-          "url": "https://www.frenciniz.com/urun/446/suspansiyon-korugu-ft-34220-2p01-ft-34220-2p01-ekersan"
+          "url": "https://www.frenciniz.com/urun/446/dorse-suspansiyon-korugu-ft-34220-2p01-ekersan"
         },
         {
           "id": 925,
           "sku": "422211.P01",
-          "name": "Süspansiyon Körüğü 422211 P01",
+          "name": "Dorse Süspansiyon Körüğü 422211.P01",
           "stock": 213,
           "price": 1056,
-          "url": "https://www.frenciniz.com/urun/925/suspansiyon-korugu-422211-p01-422211-p01-ekersan"
+          "url": "https://www.frenciniz.com/urun/925/dorse-suspansiyon-korugu-422211-p01-ekersan"
         },
         {
           "id": 924,
           "sku": "423608.C",
-          "name": "Süspansiyon Körüğü 423608 C",
+          "name": "Scania P G R Süspansiyon Körüğü Y.M. 423608.C",
           "stock": 191,
           "price": 3610.2,
-          "url": "https://www.frenciniz.com/urun/924/suspansiyon-korugu-423608-c-423608-c-ekersan"
+          "url": "https://www.frenciniz.com/urun/924/scania-p-g-r-suspansiyon-korugu-y-m-423608-c-ekersan"
         }
       ]
     },
@@ -434,8 +434,8 @@
       "name": "DİSK",
       "productCount": 97,
       "inStockCount": 97,
-      "missingImageCount": 2,
-      "realImageRate": 0.979,
+      "missingImageCount": 0,
+      "realImageRate": 1,
       "topCompatibility": [
         {
           "value": "Iveco Eurocargo",
@@ -446,19 +446,19 @@
           "count": 12
         },
         {
-          "value": "Mercedes-Benz Atego",
+          "value": "WABCO ABS/EBS sistemi",
+          "count": 10
+        },
+        {
+          "value": "Dorse EBS sistemi",
+          "count": 10
+        },
+        {
+          "value": "Kamyon / treyler ABS sensör hattı",
           "count": 10
         },
         {
           "value": "BPW dorse dingili",
-          "count": 10
-        },
-        {
-          "value": "BPW ECOPlus dingil",
-          "count": 10
-        },
-        {
-          "value": "BPW treyler",
           "count": 10
         }
       ],
@@ -466,66 +466,66 @@
         {
           "id": 231,
           "sku": "ESD 010 12",
-          "name": "Fren Diski Mercedes Actros Axor 1840 3340 4140",
+          "name": "Mercedes Axor Actros Fren Diski ESD 010 12",
           "stock": 1291,
           "price": 3857.59,
-          "url": "https://www.frenciniz.com/urun/231/fren-diski-mercedes-actros-axor-1840-3340-4140-esd-010-12-ekersan"
+          "url": "https://www.frenciniz.com/urun/231/mercedes-axor-actros-fren-diski-esd-010-12-ekersan"
         },
         {
           "id": 234,
           "sku": "ESD 010 02",
-          "name": "Fren Diski Mercedes Actros Axor 1840 3340 4140",
+          "name": "Mercedes Axor Actros Fren Diski ESD 010 02",
           "stock": 1286,
           "price": 3857.59,
-          "url": "https://www.frenciniz.com/urun/234/fren-diski-mercedes-actros-axor-1840-3340-4140-esd-010-02-ekersan"
+          "url": "https://www.frenciniz.com/urun/234/mercedes-axor-actros-fren-diski-esd-010-02-ekersan"
         },
         {
           "id": 186,
           "sku": "ESD 070 23",
-          "name": "Fren Diski BPW ECOPlus",
+          "name": "BPW Dorse Fren Diski ESD 070 23",
           "stock": 1244,
           "price": 4126.36,
-          "url": "https://www.frenciniz.com/urun/186/fren-diski-bpw-ecoplus-esd-070-23-ekersan"
+          "url": "https://www.frenciniz.com/urun/186/bpw-dorse-fren-diski-esd-070-23-ekersan"
         },
         {
           "id": 843,
           "sku": "EYD 209 01",
-          "name": "Fren Diski EYD 209 01",
+          "name": "ROR Meritor Knorr WABCO Fren Diski EYD 209 01",
           "stock": 862,
           "price": 396,
-          "url": "https://www.frenciniz.com/urun/843/fren-diski-eyd-209-01-eyd-209-01-ekersan"
+          "url": "https://www.frenciniz.com/urun/843/ror-meritor-knorr-wabco-fren-diski-eyd-209-01-ekersan"
         },
         {
           "id": 216,
           "sku": "ESD 030 09",
-          "name": "Fren Diski Iveco Eurocargo Stralis",
+          "name": "Ford Cargo Iveco Eurocargo Eurotech Stralis Fren Diski ESD 030 09",
           "stock": 534,
           "price": 4849.54,
-          "url": "https://www.frenciniz.com/urun/216/fren-diski-iveco-eurocargo-stralis-esd-030-09-ekersan"
+          "url": "https://www.frenciniz.com/urun/216/ford-cargo-iveco-eurocargo-eurotech-stralis-fren-diski-esd-030-09-ekersan"
         },
         {
           "id": 679,
           "sku": "EYD 91 21",
-          "name": "Fren Diski EYD 91 21",
+          "name": "ROR Meritor Knorr WABCO Fren Diski EYD 91 21",
           "stock": 469,
           "price": 455.4,
-          "url": "https://www.frenciniz.com/urun/679/fren-diski-eyd-91-21-eyd-91-21-ekersan"
+          "url": "https://www.frenciniz.com/urun/679/ror-meritor-knorr-wabco-fren-diski-eyd-91-21-ekersan"
         },
         {
           "id": 227,
           "sku": "ESD 010 27",
-          "name": "Fren Diski Mercedes Actros Axor 1840 3340 4140",
+          "name": "Mercedes Axor Actros Arocs Fren Diski",
           "stock": 442,
           "price": 4273.32,
-          "url": "https://www.frenciniz.com/urun/227/fren-diski-mercedes-actros-axor-1840-3340-4140-esd-010-27-ekersan"
+          "url": "https://www.frenciniz.com/urun/227/mercedes-axor-actros-arocs-fren-diski-ekersan"
         },
         {
           "id": 224,
           "sku": "ESD 020 09",
-          "name": "Fren Diski MAN TGA TGS TGX 40.360 40.460",
+          "name": "MAN Fortuna Otobüs Fren Diski ESD 020 09",
           "stock": 437,
           "price": 4137.96,
-          "url": "https://www.frenciniz.com/urun/224/fren-diski-man-tga-tgs-tgx-40-360-40-460-esd-020-09-ekersan"
+          "url": "https://www.frenciniz.com/urun/224/man-fortuna-otobus-fren-diski-esd-020-09-ekersan"
         }
       ]
     },
@@ -534,98 +534,98 @@
       "name": "PORYA",
       "productCount": 79,
       "inStockCount": 79,
-      "missingImageCount": 13,
-      "realImageRate": 0.835,
+      "missingImageCount": 0,
+      "realImageRate": 1,
       "topCompatibility": [
         {
-          "value": "Dorse",
-          "count": 42
+          "value": "Dorse / treyler",
+          "count": 33
         },
         {
-          "value": "Treyler",
-          "count": 42
+          "value": "Ağır vasıta dorse dingili",
+          "count": 33
         },
         {
-          "value": "Kamyon",
-          "count": 42
+          "value": "Yerel dorse dingil grubu",
+          "count": 28
         },
         {
           "value": "BPW dorse dingili",
-          "count": 8
+          "count": 11
         },
         {
           "value": "BPW ECOPlus dingil",
-          "count": 8
+          "count": 11
         },
         {
           "value": "BPW treyler",
-          "count": 8
+          "count": 11
         }
       ],
       "topStockProducts": [
         {
           "id": 1053,
           "sku": "EYD.075099",
-          "name": "Porya EYD 075099",
+          "name": "SAF Dorse Porya Kapağı EYD.075099",
           "stock": 1623,
           "price": 224.4,
-          "url": "https://www.frenciniz.com/urun/1053/porya-eyd-075099-eyd-075099-ekersan"
+          "url": "https://www.frenciniz.com/urun/1053/saf-dorse-porya-kapagi-eyd-075099-ekersan"
         },
         {
           "id": 811,
           "sku": "EYD 700 06",
-          "name": "Porya Kapağı EYD 700 06",
+          "name": "Dorse Porya Kapağı EYD 700 06",
           "stock": 396,
           "price": 528,
-          "url": "https://www.frenciniz.com/urun/811/porya-kapagi-eyd-700-06-eyd-700-06-ekersan"
+          "url": "https://www.frenciniz.com/urun/811/dorse-porya-kapagi-eyd-700-06-ekersan"
         },
         {
           "id": 596,
           "sku": "CDF-88149",
-          "name": "Porya Arka",
+          "name": "Dorse Porya Arka",
           "stock": 332,
           "price": 4.92,
-          "url": "https://www.frenciniz.com/urun/596/porya-arka-cdf-88149-ekersan"
+          "url": "https://www.frenciniz.com/urun/596/dorse-porya-arka-ekersan"
         },
         {
           "id": 810,
           "sku": "EYD 700 07",
-          "name": "Porya Kapağı EYD 700 07",
+          "name": "Dorse Porya Kapağı EYD 700 07",
           "stock": 124,
           "price": 528,
-          "url": "https://www.frenciniz.com/urun/810/porya-kapagi-eyd-700-07-eyd-700-07-ekersan"
+          "url": "https://www.frenciniz.com/urun/810/dorse-porya-kapagi-eyd-700-07-ekersan"
         },
         {
           "id": 813,
           "sku": "EYD 700 03",
-          "name": "Porya Kapağı EYD 700 03",
+          "name": "Dorse Porya Kapağı EYD 700 03",
           "stock": 74,
           "price": 528,
-          "url": "https://www.frenciniz.com/urun/813/porya-kapagi-eyd-700-03-eyd-700-03-ekersan"
+          "url": "https://www.frenciniz.com/urun/813/dorse-porya-kapagi-eyd-700-03-ekersan"
         },
         {
           "id": 808,
           "sku": "EYD 700 28",
-          "name": "Porya Kapağı EYD 700 28",
+          "name": "Dorse Porya Kapağı EYD 700 28",
           "stock": 71,
           "price": 528,
-          "url": "https://www.frenciniz.com/urun/808/porya-kapagi-eyd-700-28-eyd-700-28-ekersan"
+          "url": "https://www.frenciniz.com/urun/808/dorse-porya-kapagi-eyd-700-28-ekersan"
         },
         {
           "id": 802,
           "sku": "EYD 700 51",
-          "name": "Porya Kapağı EYD 700 51",
+          "name": "Dorse Porya Kapağı EYD 700 51",
           "stock": 70,
           "price": 528,
-          "url": "https://www.frenciniz.com/urun/802/porya-kapagi-eyd-700-51-eyd-700-51-ekersan"
+          "url": "https://www.frenciniz.com/urun/802/dorse-porya-kapagi-eyd-700-51-ekersan"
         },
         {
           "id": 805,
           "sku": "EYD 700 33",
-          "name": "Porya Kapağı EYD 700 33",
+          "name": "Dorse Porya Kapağı EYD 700 33",
           "stock": 70,
           "price": 528,
-          "url": "https://www.frenciniz.com/urun/805/porya-kapagi-eyd-700-33-eyd-700-33-ekersan"
+          "url": "https://www.frenciniz.com/urun/805/dorse-porya-kapagi-eyd-700-33-ekersan"
         }
       ]
     },
@@ -634,98 +634,98 @@
       "name": "FREN KÖRÜKLERİ",
       "productCount": 77,
       "inStockCount": 77,
-      "missingImageCount": 28,
-      "realImageRate": 0.636,
+      "missingImageCount": 0,
+      "realImageRate": 1,
       "topCompatibility": [
         {
           "value": "Disk fren imdatlı fren körüğü",
-          "count": 75
+          "count": 64
         },
         {
           "value": "Kampana fren imdatlı fren körüğü",
-          "count": 75
+          "count": 64
         },
         {
           "value": "Dorse fren körüğü",
-          "count": 75
+          "count": 64
         },
         {
-          "value": "SAF dorse dingili",
-          "count": 7
+          "value": "Kamyon",
+          "count": 10
         },
         {
-          "value": "SAF Holland treyler",
-          "count": 7
+          "value": "Tır / çekici",
+          "count": 10
         },
         {
-          "value": "Ford Cargo",
-          "count": 2
+          "value": "Dorse",
+          "count": 10
         }
       ],
       "topStockProducts": [
         {
           "id": 833,
           "sku": "EYD 500 05-2",
-          "name": "Körük Lastiği Disk imdatlı körüğü Kampana imdatlı körüğü körüğü E.M",
+          "name": "Dorse Körük Lastiği İmdatlı E.M.",
           "stock": 3080,
           "price": 13.2,
-          "url": "https://www.frenciniz.com/urun/833/koruk-lastigi-disk-imdatli-korugu-kampana-imdatli-korugu-korugu-e-m-eyd-500-05-2-ekersan"
+          "url": "https://www.frenciniz.com/urun/833/lastik-dorse-koruk-lastigi-imdatli-e-m-ekersan"
         },
         {
           "id": 972,
           "sku": "8122-1",
-          "name": "Fren Körüğü Disk imdatlı körüğü Kampana imdatlı körüğü körüğü 64 mm",
+          "name": "Dorse 16/24 İmdatlı Fren Körüğü 64 mm Disk Tipi",
           "stock": 1985,
           "price": 3300,
-          "url": "https://www.frenciniz.com/urun/972/fren-korugu-disk-imdatli-korugu-kampana-imdatli-korugu-korugu-64-mm-8122-1-ekersan"
+          "url": "https://www.frenciniz.com/urun/972/dorse-16-24-imdatli-fren-korugu-64-mm-disk-tipi-ekersan"
         },
         {
           "id": 967,
           "sku": "8104",
-          "name": "Fren Körüğü Disk imdatlı körüğü Kampana imdatlı körüğü körüğü",
+          "name": "Dorse 30/30 İmdatlı Fren Körüğü Disk Tipi 8104",
           "stock": 1946,
           "price": 3432,
-          "url": "https://www.frenciniz.com/urun/967/fren-korugu-disk-imdatli-korugu-kampana-imdatli-korugu-korugu-8104-ekersan"
+          "url": "https://www.frenciniz.com/urun/967/dorse-30-30-imdatli-fren-korugu-disk-tipi-8104-ekersan"
         },
         {
           "id": 954,
           "sku": "8131",
-          "name": "Fren Körüğü Disk imdatlı körüğü Kampana imdatlı körüğü körüğü",
+          "name": "Renault İmdatlı Fren Körüğü Servis 8131",
           "stock": 1351,
           "price": 1320,
-          "url": "https://www.frenciniz.com/urun/954/fren-korugu-disk-imdatli-korugu-kampana-imdatli-korugu-korugu-8131-ekersan"
+          "url": "https://www.frenciniz.com/urun/954/renault-imdatli-fren-korugu-servis-8131-ekersan"
         },
         {
           "id": 962,
           "sku": "8109",
-          "name": "Fren Körüğü Disk imdatlı körüğü Kampana imdatlı körüğü körüğü",
+          "name": "Renault İmdatlı Fren Körüğü Servis 8109",
           "stock": 1251,
           "price": 1267.2,
-          "url": "https://www.frenciniz.com/urun/962/fren-korugu-disk-imdatli-korugu-kampana-imdatli-korugu-korugu-8109-ekersan"
+          "url": "https://www.frenciniz.com/urun/962/renault-imdatli-fren-korugu-servis-8109-ekersan"
         },
         {
           "id": 557,
           "sku": "8108",
-          "name": "Fren Körüğü Disk imdatlı körüğü Kampana imdatlı körüğü körüğü",
+          "name": "Renault İmdatlı Fren Körüğü 30 Luk Servis",
           "stock": 1238,
           "price": 1267.2,
-          "url": "https://www.frenciniz.com/urun/557/fren-korugu-disk-imdatli-korugu-kampana-imdatli-korugu-korugu-8108-ekersan"
+          "url": "https://www.frenciniz.com/urun/557/renault-imdatli-fren-korugu-30-luk-servis-ekersan"
         },
         {
           "id": 953,
           "sku": "8132",
-          "name": "Fren Körüğü Disk imdatlı körüğü Kampana imdatlı körüğü körüğü 64 mm",
+          "name": "Dorse 20/24 İmdatlı Fren Körüğü 64 mm Disk Tipi",
           "stock": 1170,
           "price": 3432,
-          "url": "https://www.frenciniz.com/urun/953/fren-korugu-disk-imdatli-korugu-kampana-imdatli-korugu-korugu-64-mm-8132-ekersan"
+          "url": "https://www.frenciniz.com/urun/953/dorse-20-24-imdatli-fren-korugu-64-mm-disk-tipi-ekersan"
         },
         {
           "id": 961,
           "sku": "8110",
-          "name": "Fren Körüğü Disk imdatlı körüğü Kampana imdatlı körüğü körüğü",
+          "name": "Renault İmdatlı Fren Körüğü Servis 8110",
           "stock": 1075,
           "price": 1320,
-          "url": "https://www.frenciniz.com/urun/961/fren-korugu-disk-imdatli-korugu-kampana-imdatli-korugu-korugu-8110-ekersan"
+          "url": "https://www.frenciniz.com/urun/961/renault-imdatli-fren-korugu-servis-8110-ekersan"
         }
       ]
     },
@@ -734,98 +734,98 @@
       "name": "BALATA",
       "productCount": 58,
       "inStockCount": 58,
-      "missingImageCount": 1,
-      "realImageRate": 0.983,
+      "missingImageCount": 0,
+      "realImageRate": 1,
       "topCompatibility": [
         {
+          "value": "Ağır vasıta disk fren balata sistemi",
+          "count": 22
+        },
+        {
+          "value": "Knorr / WABCO / Meritor kaliper uygulamaları",
+          "count": 22
+        },
+        {
+          "value": "Kamyon / tır / otobüs",
+          "count": 15
+        },
+        {
+          "value": "BPW dorse dingili",
+          "count": 11
+        },
+        {
+          "value": "Mercedes-Benz Actros/Axor",
+          "count": 10
+        },
+        {
           "value": "Mercedes-Benz Axor",
-          "count": 21
-        },
-        {
-          "value": "Mercedes-Benz Axor 1840",
-          "count": 21
-        },
-        {
-          "value": "Mercedes-Benz Axor 2528",
-          "count": 21
-        },
-        {
-          "value": "Mercedes-Benz Axor 3228",
-          "count": 21
-        },
-        {
-          "value": "Mercedes-Benz Axor 3340",
-          "count": 21
-        },
-        {
-          "value": "Mercedes-Benz Axor 4140",
-          "count": 21
+          "count": 8
         }
       ],
       "topStockProducts": [
         {
           "id": 657,
           "sku": "42182/1-300",
-          "name": "Disk Balatası Mercedes Actros Axor 1840 3340 4140",
+          "name": "Mercedes Axor Actros Scania P G R Iveco Stralis Disk Fren Balatası 42182/1-300",
           "stock": 343,
           "price": 2059.2,
-          "url": "https://www.frenciniz.com/urun/657/disk-balatasi-mercedes-actros-axor-1840-3340-4140-42182-1-300-ekersan"
+          "url": "https://www.frenciniz.com/urun/657/mercedes-axor-actros-scania-p-g-r-iveco-stralis-disk-fren-balatasi-42182-1-300-ekersan"
         },
         {
           "id": 481,
           "sku": "PWR-K004",
-          "name": "Fren Balatası Mercedes Actros Axor 1840 3340 4140",
+          "name": "Mercedes Axor Actros MAN Fren Balatası 22 Lik",
           "stock": 228,
           "price": 1295.71,
-          "url": "https://www.frenciniz.com/urun/481/fren-balatasi-mercedes-actros-axor-1840-3340-4140-pwr-k004-ekersan"
+          "url": "https://www.frenciniz.com/urun/481/mercedes-axor-actros-man-fren-balatasi-22-lik-ekersan"
         },
         {
           "id": 641,
           "sku": "42322/1-300",
-          "name": "Disk Balatası Knorr WABCO Meritor",
+          "name": "ROR Meritor Knorr WABCO Disk Fren Balatası 42322/1-300",
           "stock": 204,
           "price": 2059.2,
-          "url": "https://www.frenciniz.com/urun/641/disk-balatasi-knorr-wabco-meritor-42322-1-300-ekersan"
+          "url": "https://www.frenciniz.com/urun/641/ror-meritor-knorr-wabco-disk-fren-balatasi-42322-1-300-ekersan"
         },
         {
           "id": 1026,
           "sku": "42200/7-290",
-          "name": "Disk Balatası BPW",
+          "name": "BPW Dorse Disk Fren Balatası 42200/7-290",
           "stock": 196,
           "price": 1900.8,
-          "url": "https://www.frenciniz.com/urun/1026/disk-balatasi-bpw-42200-7-290-ekersan"
+          "url": "https://www.frenciniz.com/urun/1026/bpw-dorse-disk-fren-balatasi-42200-7-290-ekersan"
         },
         {
           "id": 479,
           "sku": "PWR-K006",
-          "name": "Fren Balatası Mercedes Actros Axor 1840 3340 4140",
+          "name": "Mercedes Axor Actros MAN Fren Balatası 18 Lik",
           "stock": 180,
           "price": 1122,
-          "url": "https://www.frenciniz.com/urun/479/fren-balatasi-mercedes-actros-axor-1840-3340-4140-pwr-k006-ekersan"
+          "url": "https://www.frenciniz.com/urun/479/mercedes-axor-actros-man-fren-balatasi-18-lik-ekersan"
         },
         {
           "id": 483,
           "sku": "PWR-K002",
-          "name": "Fren Balatası PWR K002",
+          "name": "BPW Dorse Fren Balatası PWR-K002",
           "stock": 171,
           "price": 1210.31,
-          "url": "https://www.frenciniz.com/urun/483/fren-balatasi-pwr-k002-pwr-k002-ekersan"
+          "url": "https://www.frenciniz.com/urun/483/bpw-dorse-fren-balatasi-pwr-k002-ekersan"
         },
         {
           "id": 727,
           "sku": "PWR-5013",
-          "name": "Fren Balatası Knorr WABCO Meritor",
+          "name": "BPW Dorse Disk Fren Balatası PWR-5013",
           "stock": 165,
           "price": 2501.66,
-          "url": "https://www.frenciniz.com/urun/727/fren-balatasi-knorr-wabco-meritor-pwr-5013-ekersan"
+          "url": "https://www.frenciniz.com/urun/727/bpw-dorse-disk-fren-balatasi-pwr-5013-ekersan"
         },
         {
           "id": 670,
           "sku": "42310/2-292",
-          "name": "Disk Balatası Mercedes Actros Axor 1840 3340 4140",
+          "name": "Mercedes Axor Actros Renault Premium Magnum Disk Fren Balatası 42310/2-292",
           "stock": 152,
           "price": 2138.4,
-          "url": "https://www.frenciniz.com/urun/670/disk-balatasi-mercedes-actros-axor-1840-3340-4140-42310-2-292-ekersan"
+          "url": "https://www.frenciniz.com/urun/670/mercedes-axor-actros-renault-premium-magnum-disk-fren-balatasi-42310-2-292-ekersan"
         }
       ]
     },
@@ -834,79 +834,79 @@
       "name": "CIRCIR",
       "productCount": 52,
       "inStockCount": 52,
-      "missingImageCount": 4,
-      "realImageRate": 0.923,
+      "missingImageCount": 0,
+      "realImageRate": 1,
       "topCompatibility": [
         {
-          "value": "Mercedes-Benz Axor",
-          "count": 10
+          "value": "Renault Trucks Premium",
+          "count": 14
         },
         {
-          "value": "Mercedes-Benz Axor 1840",
-          "count": 10
+          "value": "Renault Trucks Magnum",
+          "count": 14
         },
         {
-          "value": "Mercedes-Benz Axor 3340",
-          "count": 10
+          "value": "Renault Trucks Kerax",
+          "count": 14
         },
         {
-          "value": "Mercedes-Benz Axor 4140",
-          "count": 10
+          "value": "Renault Trucks Midlum",
+          "count": 14
         },
         {
           "value": "Mercedes-Benz Actros",
-          "count": 10
+          "count": 7
         },
         {
-          "value": "Mercedes-Benz Actros 1840",
-          "count": 10
+          "value": "Mercedes-Benz Axor",
+          "count": 6
         }
       ],
       "topStockProducts": [
         {
           "id": 1,
           "sku": "ESC 1760-1",
-          "name": "Mekanik Fren Cırcırı 7 Delik 10 Kanal EUR",
+          "name": "Mekanik Fren Cırcırı 7 Delik 10 Kanal ESC 1760-1",
           "stock": 600,
           "price": 1082.4,
-          "url": "https://www.frenciniz.com/urun/1/mekanik-fren-circiri-7-delik-10-kanal-eur-esc-1760-1-ekersan"
+          "url": "https://www.frenciniz.com/urun/1/mekanik-fren-circiri-7-delik-10-kanal-esc-1760-1-ekersan"
         },
         {
           "id": 51,
           "sku": "ESC 80159",
-          "name": "Otomatik Fren Cırcırı Mercedes Actros Axor 1840 3340 4140",
+          "name": "Mercedes Axor Actros Otomatik Fren Cırcırı ESC 80159",
           "stock": 362,
           "price": 1452,
-          "url": "https://www.frenciniz.com/urun/51/otomatik-fren-circiri-mercedes-actros-axor-1840-3340-4140-esc-80159-ekersan"
+          "url": "https://www.frenciniz.com/urun/51/mercedes-axor-actros-otomatik-fren-circiri-esc-80159-ekersan"
         },
         {
           "id": 52,
           "sku": "ESC 80158",
-          "name": "Otomatik Fren Cırcırı Mercedes Actros Axor 1840 3340 4140",
+          "name": "Mercedes Axor Actros Otomatik Fren Cırcırı ESC 80158",
           "stock": 300,
           "price": 1452,
-          "url": "https://www.frenciniz.com/urun/52/otomatik-fren-circiri-mercedes-actros-axor-1840-3340-4140-esc-80158-ekersan"
+          "url": "https://www.frenciniz.com/urun/52/mercedes-axor-actros-otomatik-fren-circiri-esc-80158-ekersan"
         },
         {
           "id": 60,
           "sku": "ESC 114075",
-          "name": "Fren Cırcırı Fruehauf SMB",
+          "name": "Fruehauf SMB Fren Cırcırı",
           "stock": 204,
           "price": 1082.4,
-          "url": "https://www.frenciniz.com/urun/60/fren-circiri-fruehauf-smb-esc-114075-ekersan"
+          "url": "https://www.frenciniz.com/urun/60/fruehauf-smb-fren-circiri-ekersan"
         },
         {
           "id": 62,
           "sku": "ESC 80331",
-          "name": "Otomatik Fren Cırcırı MAN TGA TGS TGX 40.360 40.460",
+          "name": "MAN Otomatik Fren Cırcırı ESC 80331",
           "stock": 114,
           "price": 1452,
-          "url": "https://www.frenciniz.com/urun/62/otomatik-fren-circiri-man-tga-tgs-tgx-40-360-40-460-esc-80331-ekersan"
+          "url": "https://www.frenciniz.com/urun/62/man-otomatik-fren-circiri-esc-80331-ekersan"
         },
         {
           "id": 420,
           "sku": "ESC 1760",
-          "name": "Mekanik Fren Cırcırı 7 Delik 10 Kanal",
+          "name": "Mekanik Fren Cırcırı 7 Delik 10 Kanal ESC 1760",
           "stock": 113,
           "price": 1082.4,
           "url": "https://www.frenciniz.com/urun/420/mekanik-fren-circiri-7-delik-10-kanal-esc-1760-ekersan"
@@ -914,18 +914,18 @@
         {
           "id": 419,
           "sku": "ESC 1815",
-          "name": "Fren Cırcırı ESC 1815",
+          "name": "Fren Cırcırı Cırcır Tamir Takım",
           "stock": 95,
           "price": 759,
-          "url": "https://www.frenciniz.com/urun/419/fren-circiri-esc-1815-esc-1815-ekersan"
+          "url": "https://www.frenciniz.com/urun/419/fren-circiri-circir-tamir-takim-ekersan"
         },
         {
           "id": 55,
           "sku": "ESC 79360",
-          "name": "Otomatik Fren Cırcırı MAN TGA TGS TGX 40.360 40.460",
+          "name": "MAN Otomatik Fren Cırcırı ESC 79360",
           "stock": 92,
           "price": 1452,
-          "url": "https://www.frenciniz.com/urun/55/otomatik-fren-circiri-man-tga-tgs-tgx-40-360-40-460-esc-79360-ekersan"
+          "url": "https://www.frenciniz.com/urun/55/man-otomatik-fren-circiri-esc-79360-ekersan"
         }
       ]
     },
@@ -934,8 +934,8 @@
       "name": "SENSÖR VE UZATMALAR",
       "productCount": 41,
       "inStockCount": 41,
-      "missingImageCount": 5,
-      "realImageRate": 0.878,
+      "missingImageCount": 0,
+      "realImageRate": 1,
       "topCompatibility": [
         {
           "value": "WABCO ABS/EBS sistemi",
@@ -950,82 +950,82 @@
           "count": 35
         },
         {
-          "value": "MAN TGA",
-          "count": 5
+          "value": "MAN ağır vasıta",
+          "count": 4
         },
         {
-          "value": "MAN TGA 18.430",
-          "count": 5
+          "value": "Mercedes-Benz Axor",
+          "count": 4
         },
         {
-          "value": "MAN TGA 18.460",
-          "count": 5
+          "value": "Kamyon",
+          "count": 4
         }
       ],
       "topStockProducts": [
         {
           "id": 500,
           "sku": "EF-4410328080",
-          "name": "ABS SENSÖR L 40 CM",
+          "name": "WABCO ABS Sensörü 40 cm ABS'li EF-4410328080",
           "stock": 316,
           "price": 462,
-          "url": "https://www.frenciniz.com/urun/500/abs-sensor-l-40-cm-ef-4410328080-ekersan"
+          "url": "https://www.frenciniz.com/urun/500/wabco-abs-sensoru-40-cm-abs-li-ef-4410328080-ekersan"
         },
         {
           "id": 787,
           "sku": "EYD 91 10",
-          "name": "AXOR ABS DİŞLİSİ E.M / ARKA",
+          "name": "Mercedes Axor ABS Sensörü ABS'li Arka E.M.",
           "stock": 293,
           "price": 303.6,
-          "url": "https://www.frenciniz.com/urun/787/axor-abs-dislisi-e-m-arka-eyd-91-10-ekersan"
+          "url": "https://www.frenciniz.com/urun/787/mercedes-axor-abs-sensoru-abs-li-arka-e-m-ekersan"
         },
         {
           "id": 474,
           "sku": "EF-4410325730",
-          "name": "ABS SENSÖRÜ DÜZ 100 CM",
+          "name": "WABCO ABS Sensörü ABS'li EF-4410325730",
           "stock": 229,
           "price": 580.8,
-          "url": "https://www.frenciniz.com/urun/474/abs-sensoru-duz-100-cm-ef-4410325730-ekersan"
+          "url": "https://www.frenciniz.com/urun/474/wabco-abs-sensoru-abs-li-ef-4410325730-ekersan"
         },
         {
           "id": 499,
           "sku": "EF-4410329050",
-          "name": "ABS SENSÖR DÜZ 40 CM",
+          "name": "WABCO ABS Sensörü 40 cm ABS'li EF-4410329050",
           "stock": 169,
           "price": 462,
-          "url": "https://www.frenciniz.com/urun/499/abs-sensor-duz-40-cm-ef-4410329050-ekersan"
+          "url": "https://www.frenciniz.com/urun/499/wabco-abs-sensoru-40-cm-abs-li-ef-4410329050-ekersan"
         },
         {
           "id": 782,
           "sku": "EYD 91 15",
-          "name": "VOLVO RENAULT 440 ABS DİŞLİSİ / ARKA",
+          "name": "Renault Premium Magnum Kerax Midlum ABS Sensörü ABS'li Arka",
           "stock": 159,
           "price": 475.2,
-          "url": "https://www.frenciniz.com/urun/782/volvo-renault-440-abs-dislisi-arka-eyd-91-15-ekersan"
+          "url": "https://www.frenciniz.com/urun/782/renault-premium-magnum-kerax-midlum-abs-sensoru-abs-li-arka-ekersan"
         },
         {
           "id": 792,
           "sku": "EYD 91 01",
-          "name": "126*156.5*7.8 BPW ABS DİŞLİSİ ÇELİK",
+          "name": "BPW Dorse ABS Sensörü ABS'li",
           "stock": 155,
           "price": 488.4,
-          "url": "https://www.frenciniz.com/urun/792/126-156-5-7-8-bpw-abs-dislisi-celik-eyd-91-01-ekersan"
+          "url": "https://www.frenciniz.com/urun/792/bpw-dorse-abs-sensoru-abs-li-ekersan"
         },
         {
           "id": 600,
           "sku": "EF-0278324000",
-          "name": "EBS UZATMA SENSÖRÜ KNORR  4 MT",
+          "name": "Scania P G R Ford Cargo Iveco Eurocargo Stralis EBS Modülatör ABS'li",
           "stock": 105,
           "price": 653.4,
-          "url": "https://www.frenciniz.com/urun/600/ebs-uzatma-sensoru-knorr-4-mt-ef-0278324000-ekersan"
+          "url": "https://www.frenciniz.com/urun/600/scania-p-g-r-ford-cargo-iveco-eurocargo-stralis-ebs-modulator-abs-li-ekersan"
         },
         {
           "id": 789,
           "sku": "EYD 91 06",
-          "name": "DAF ABS DİŞLİSİ / ÖN",
+          "name": "DAF Cf Xf ABS Sensörü ABS'li Ön",
           "stock": 79,
           "price": 217.8,
-          "url": "https://www.frenciniz.com/urun/789/daf-abs-dislisi-on-eyd-91-06-ekersan"
+          "url": "https://www.frenciniz.com/urun/789/daf-cf-xf-abs-sensoru-abs-li-on-ekersan"
         }
       ]
     },
@@ -1034,8 +1034,8 @@
       "name": "FREN PABUÇLARI",
       "productCount": 40,
       "inStockCount": 40,
-      "missingImageCount": 7,
-      "realImageRate": 0.825,
+      "missingImageCount": 0,
+      "realImageRate": 1,
       "topCompatibility": [
         {
           "value": "BPW dorse dingili",
@@ -1050,82 +1050,82 @@
           "count": 9
         },
         {
-          "value": "Volvo FH",
-          "count": 8
+          "value": "BMC Probus",
+          "count": 9
         },
         {
-          "value": "Volvo FH12",
-          "count": 8
+          "value": "BMC Profesyonel",
+          "count": 9
         },
         {
-          "value": "Volvo FM",
-          "count": 8
+          "value": "BMC Fatih",
+          "count": 9
         }
       ],
       "topStockProducts": [
         {
           "id": 834,
           "sku": "EYD 301 08",
-          "name": "Fren Pabucu 5 cm",
+          "name": "Dorse Fren Pabucu 5 cm Makarası",
           "stock": 2872,
           "price": 231,
-          "url": "https://www.frenciniz.com/urun/834/fren-pabucu-5-cm-eyd-301-08-ekersan"
+          "url": "https://www.frenciniz.com/urun/834/dorse-fren-pabucu-5-cm-makarasi-ekersan"
         },
         {
           "id": 801,
           "sku": "EYD 80 03",
-          "name": "Fren Pabucu BPW ECOPlus 20 cm",
+          "name": "BPW Dorse Fren Pabucu 20 cm EYD 80 03",
           "stock": 1521,
           "price": 1141.8,
-          "url": "https://www.frenciniz.com/urun/801/fren-pabucu-bpw-ecoplus-20-cm-eyd-80-03-ekersan"
+          "url": "https://www.frenciniz.com/urun/801/bpw-dorse-fren-pabucu-20-cm-eyd-80-03-ekersan"
         },
         {
           "id": 841,
           "sku": "EYD 209 03",
-          "name": "Fren Pabucu EYD 209 03",
+          "name": "Dorse Fren Pabucu EYD 209 03",
           "stock": 1218,
           "price": 633.6,
-          "url": "https://www.frenciniz.com/urun/841/fren-pabucu-eyd-209-03-eyd-209-03-ekersan"
+          "url": "https://www.frenciniz.com/urun/841/dorse-fren-pabucu-eyd-209-03-ekersan"
         },
         {
           "id": 772,
           "sku": "H-24327",
-          "name": "Fren Pabucu BPW ECOPlus",
+          "name": "BPW Dorse Fren Pabucu H-24327",
           "stock": 389,
           "price": 42.24,
-          "url": "https://www.frenciniz.com/urun/772/fren-pabucu-bpw-ecoplus-h-24327-ekersan"
+          "url": "https://www.frenciniz.com/urun/772/bpw-dorse-fren-pabucu-h-24327-ekersan"
         },
         {
           "id": 771,
           "sku": "H-24328",
-          "name": "Fren Pabucu BPW ECOPlus",
+          "name": "BPW Dorse Fren Pabucu H-24328",
           "stock": 382,
           "price": 42.24,
-          "url": "https://www.frenciniz.com/urun/771/fren-pabucu-bpw-ecoplus-h-24328-ekersan"
+          "url": "https://www.frenciniz.com/urun/771/bpw-dorse-fren-pabucu-h-24328-ekersan"
         },
         {
           "id": 846,
           "sku": "EYD 206 38",
-          "name": "Fren Pabucu Renault Premium Magnum Kerax Midlum Volvo FH FH12 FM FL BMC Probus Profesyonel",
+          "name": "Renault Premium Magnum Kerax Midlum Fren Pabucu EYD 206 38",
           "stock": 301,
           "price": 1102.2,
-          "url": "https://www.frenciniz.com/urun/846/fren-pabucu-renault-premium-magnum-kerax-midlum-volvo-fh-fh12-fm-fl-bmc-probus-profesyonel-eyd"
+          "url": "https://www.frenciniz.com/urun/846/renault-premium-magnum-kerax-midlum-fren-pabucu-eyd-206-38-ekersan"
         },
         {
           "id": 847,
           "sku": "EYD 206 37",
-          "name": "Fren Pabucu Renault Premium Magnum Kerax Midlum Volvo FH FH12 FM FL BMC Probus Profesyonel",
+          "name": "Renault Premium Magnum Kerax Midlum Fren Pabucu EYD 206 37",
           "stock": 287,
           "price": 1102.2,
-          "url": "https://www.frenciniz.com/urun/847/fren-pabucu-renault-premium-magnum-kerax-midlum-volvo-fh-fh12-fm-fl-bmc-probus-profesyonel-eyd"
+          "url": "https://www.frenciniz.com/urun/847/renault-premium-magnum-kerax-midlum-fren-pabucu-eyd-206-37-ekersan"
         },
         {
           "id": 835,
           "sku": "EYD 300 34",
-          "name": "Fren Pabucu EYD 300 34",
+          "name": "Dorse Fren Pabucu EYD 300 34",
           "stock": 286,
           "price": 3300,
-          "url": "https://www.frenciniz.com/urun/835/fren-pabucu-eyd-300-34-eyd-300-34-ekersan"
+          "url": "https://www.frenciniz.com/urun/835/dorse-fren-pabucu-eyd-300-34-ekersan"
         }
       ]
     },
@@ -1134,8 +1134,8 @@
       "name": "FREN YAYLARI",
       "productCount": 32,
       "inStockCount": 32,
-      "missingImageCount": 3,
-      "realImageRate": 0.906,
+      "missingImageCount": 0,
+      "realImageRate": 1,
       "topCompatibility": [
         {
           "value": "Dorse / treyler",
@@ -1166,400 +1166,69 @@
         {
           "id": 876,
           "sku": "EYD 10 02",
-          "name": "MERCEDES V6-V8 ÖN FREN YAYI",
+          "name": "Mercedes Axor Actros Fren Yayı Ön",
           "stock": 3090,
           "price": 52.8,
-          "url": "https://www.frenciniz.com/urun/876/mercedes-v6-v8-on-fren-yayi-eyd-10-02-ekersan"
+          "url": "https://www.frenciniz.com/urun/876/dorse-yayi-mercedes-axor-actros-fren-yayi-on-ekersan"
         },
         {
           "id": 873,
           "sku": "EYD 10 07",
-          "name": "Kol Yayı Standart - ORTA",
+          "name": "Dorse Fren Yayı EYD 10 07",
           "stock": 2057,
           "price": 52.8,
-          "url": "https://www.frenciniz.com/urun/873/kol-yayi-standart-orta-eyd-10-07-ekersan"
+          "url": "https://www.frenciniz.com/urun/873/dorse-fren-yayi-eyd-10-07-ekersan"
         },
         {
           "id": 826,
           "sku": "EYD 70 05",
-          "name": "TIRSAN DORSE BÜYÜK YAY 29 CM",
+          "name": "Tırsan Dorse Fren Yayı 29 cm",
           "stock": 1480,
           "price": 85.8,
-          "url": "https://www.frenciniz.com/urun/826/tirsan-dorse-buyuk-yay-29-cm-eyd-70-05-ekersan"
+          "url": "https://www.frenciniz.com/urun/826/tirsan-dorse-fren-yayi-29-cm-ekersan"
         },
         {
           "id": 877,
           "sku": "EYD 10 01",
-          "name": "FREN YAYI",
+          "name": "Dorse Fren Yayı EYD 10 01",
           "stock": 1390,
           "price": 52.8,
-          "url": "https://www.frenciniz.com/urun/877/fren-yayi-eyd-10-01-ekersan"
+          "url": "https://www.frenciniz.com/urun/877/dorse-fren-yayi-eyd-10-01-ekersan"
         },
         {
           "id": 874,
           "sku": "EYD 10 06",
-          "name": "Kol Yayı Uzun",
+          "name": "Dorse Fren Yayı Uzun",
           "stock": 1243,
           "price": 52.8,
-          "url": "https://www.frenciniz.com/urun/874/kol-yayi-uzun-eyd-10-06-ekersan"
+          "url": "https://www.frenciniz.com/urun/874/dorse-fren-yayi-uzun-ekersan"
         },
         {
           "id": 828,
           "sku": "EYD 70 04-1",
-          "name": "TIRSAN DORSE ORTA YAY (SERTEL) 27 CM",
+          "name": "Tırsan Dorse Fren Yayı 27 cm",
           "stock": 973,
           "price": 85.8,
-          "url": "https://www.frenciniz.com/urun/828/tirsan-dorse-orta-yay-sertel-27-cm-eyd-70-04-1-ekersan"
+          "url": "https://www.frenciniz.com/urun/828/tirsan-dorse-fren-yayi-27-cm-ekersan"
         },
         {
           "id": 872,
           "sku": "EYD 10 08",
-          "name": "KOL YAYI KISA",
+          "name": "Dorse Fren Yayı Kısa",
           "stock": 610,
           "price": 52.8,
-          "url": "https://www.frenciniz.com/urun/872/kol-yayi-kisa-eyd-10-08-ekersan"
+          "url": "https://www.frenciniz.com/urun/872/dorse-fren-yayi-kisa-ekersan"
         },
         {
           "id": 818,
           "sku": "EYD 70 48",
-          "name": "ISUZU NPR FREN YAYI",
+          "name": "Isuzu NPR NQR Mitsubishi Canter Fuso Fren Yayı",
           "stock": 420,
           "price": 46.2,
-          "url": "https://www.frenciniz.com/urun/818/isuzu-npr-fren-yayi-eyd-70-48-ekersan"
+          "url": "https://www.frenciniz.com/urun/818/dorse-yayi-isuzu-npr-nqr-mitsubishi-canter-fuso-fren-yayi-ekersan"
         }
       ]
     }
   ],
-  "missingImageSample": [
-    {
-      "id": 1,
-      "sku": "ESC 1760-1",
-      "name": "Mekanik Fren Cırcırı 7 Delik 10 Kanal EUR",
-      "category": "Mekanik Fren Cırcırı",
-      "group": "CIRCIR",
-      "stock": 600,
-      "price": 1082.4,
-      "oem": "517465130-517465130-517465220-100001760-24490-A3450",
-      "url": "https://www.frenciniz.com/urun/1/mekanik-fren-circiri-7-delik-10-kanal-eur-esc-1760-1-ekersan"
-    },
-    {
-      "id": 2,
-      "sku": "ESB 1315 10",
-      "name": "Bijon ROR Meritor 95 mm",
-      "category": "Bijon",
-      "group": "BİJON",
-      "stock": 155,
-      "price": 218.55,
-      "oem": "21022167",
-      "url": "https://www.frenciniz.com/urun/2/bijon-ror-meritor-95-mm-esb-1315-10-ekersan"
-    },
-    {
-      "id": 3,
-      "sku": "ESC 79458",
-      "name": "Otomatik Fren Cırcırı ESC 79458",
-      "category": "Otomatik Fren Cırcırı",
-      "group": "CIRCIR",
-      "stock": 25,
-      "price": 1452,
-      "oem": "14632, 79308, 79075, 79308, 5010260115, 79308, 4W3055",
-      "url": "https://www.frenciniz.com/urun/3/otomatik-fren-circiri-esc-79458-esc-79458-ekersan"
-    },
-    {
-      "id": 4,
-      "sku": "ESC 79445",
-      "name": "Otomatik Fren Cırcırı Renault Midlum Premium Magnum",
-      "category": "Otomatik Fren Cırcırı",
-      "group": "CIRCIR",
-      "stock": 29,
-      "price": 1452,
-      "oem": "5010098861, 50010098861, 14634, 79295, 72799, 05010098861, 4W2925, KB2925",
-      "url": "https://www.frenciniz.com/urun/4/otomatik-fren-circiri-renault-midlum-premium-magnum-esc-79445-ekersan"
-    },
-    {
-      "id": 5,
-      "sku": "ESC 79444",
-      "name": "Otomatik Fren Cırcırı Renault Midlum Premium Magnum",
-      "category": "Otomatik Fren Cırcırı",
-      "group": "CIRCIR",
-      "stock": 14,
-      "price": 1452,
-      "oem": "5010098860, 50010098860, 14633, 79294, 72798, 05010098860, 4W2920, 4W2920, KB2920",
-      "url": "https://www.frenciniz.com/urun/5/otomatik-fren-circiri-renault-midlum-premium-magnum-esc-79444-ekersan"
-    },
-    {
-      "id": 7,
-      "sku": "ESD 220 03",
-      "name": "Fren Diski Krone Göbekli 430",
-      "category": "Fren Diski",
-      "group": "DİSK",
-      "stock": 179,
-      "price": 4918.32,
-      "oem": "",
-      "url": "https://www.frenciniz.com/urun/7/fren-diski-krone-gobekli-430-esd-220-03-ekersan"
-    },
-    {
-      "id": 252,
-      "sku": "ESB 112 20-1",
-      "name": "Bijon Mercedes Actros Axor 1840 3340 4140 84 mm",
-      "category": "Bijon",
-      "group": "BİJON",
-      "stock": 2298,
-      "price": 178.69,
-      "oem": "3814011271-3814010071",
-      "url": "https://www.frenciniz.com/urun/252/bijon-mercedes-actros-axor-1840-3340-4140-84-mm-esb-112-20-1-ekersan"
-    },
-    {
-      "id": 282,
-      "sku": "ESD 030 25",
-      "name": "Fren Diski Iveco Eurocargo Stralis Trakker Ön",
-      "category": "Fren Diski",
-      "group": "DİSK",
-      "stock": 54,
-      "price": 4945.25,
-      "oem": "5802234113",
-      "url": "https://www.frenciniz.com/urun/282/fren-diski-iveco-eurocargo-stralis-trakker-on-esd-030-25-ekersan"
-    },
-    {
-      "id": 364,
-      "sku": "ESB 2032 10",
-      "name": "Bijon ESB 2032 10",
-      "category": "Bijon",
-      "group": "BİJON",
-      "stock": 30700,
-      "price": 199.31,
-      "oem": "",
-      "url": "https://www.frenciniz.com/urun/364/bijon-esb-2032-10-esb-2032-10-ekersan"
-    },
-    {
-      "id": 421,
-      "sku": "EYD 700 14-1",
-      "name": "Porya EYD 700 14 1",
-      "category": "Porya",
-      "group": "PORYA",
-      "stock": 6,
-      "price": 699.6,
-      "oem": "",
-      "url": "https://www.frenciniz.com/urun/421/porya-eyd-700-14-1-eyd-700-14-1-ekersan"
-    },
-    {
-      "id": 422,
-      "sku": "FT 34810-K04F",
-      "name": "Süspansiyon Körüğü FT 34810 K04F",
-      "category": "Süspansiyon Körüğü",
-      "group": "SÜSP. KÖRÜĞÜ",
-      "stock": 22,
-      "price": 3300,
-      "oem": "",
-      "url": "https://www.frenciniz.com/urun/422/suspansiyon-korugu-ft-34810-k04f-ft-34810-k04f-ekersan"
-    },
-    {
-      "id": 423,
-      "sku": "421128-1",
-      "name": "Kaliper Mekanizması Bilyalı YILDIZ BAŞLI",
-      "category": "Kaliper Ayar Mekanizması",
-      "group": "KALİPER ÜRÜNLERİ",
-      "stock": 250,
-      "price": 726,
-      "oem": "",
-      "url": "https://www.frenciniz.com/urun/423/kaliper-mekanizmasi-bilyali-yildiz-basli-421128-1-ekersan"
-    },
-    {
-      "id": 424,
-      "sku": "EYD 92 30",
-      "name": "Bijon Somunu EYD 92 30",
-      "category": "Somun / Cıvata",
-      "group": "BİJON",
-      "stock": 186,
-      "price": 1056,
-      "oem": "",
-      "url": "https://www.frenciniz.com/urun/424/bijon-somunu-eyd-92-30-eyd-92-30-ekersan"
-    },
-    {
-      "id": 425,
-      "sku": "EYD 70 67",
-      "name": "YTE DORSE YAYI",
-      "category": "Yay",
-      "group": "FREN YAYLARI",
-      "stock": 76,
-      "price": 66,
-      "oem": "",
-      "url": "https://www.frenciniz.com/urun/425/yte-dorse-yayi-eyd-70-67-ekersan"
-    },
-    {
-      "id": 427,
-      "sku": "EYD 700 06-1",
-      "name": "Porya Kapağı EYD 700 06 1",
-      "category": "Porya",
-      "group": "PORYA",
-      "stock": 2,
-      "price": 462,
-      "oem": "",
-      "url": "https://www.frenciniz.com/urun/427/porya-kapagi-eyd-700-06-1-eyd-700-06-1-ekersan"
-    },
-    {
-      "id": 428,
-      "sku": "FT 34644",
-      "name": "Roll Körük Mercedes Travego Tourismo",
-      "category": "Süspansiyon Körüğü",
-      "group": "SÜSP. KÖRÜĞÜ",
-      "stock": 22,
-      "price": 1320,
-      "oem": "0003270101 , 0003270201 , 3073270101 ,1134445",
-      "url": "https://www.frenciniz.com/urun/428/roll-koruk-mercedes-travego-tourismo-ft-34644-ekersan"
-    },
-    {
-      "id": 429,
-      "sku": "FT 3498608-KP",
-      "name": "Süspansiyon Körüğü FT 3498608 KP",
-      "category": "Süspansiyon Körüğü",
-      "group": "SÜSP. KÖRÜĞÜ",
-      "stock": 13,
-      "price": 2970,
-      "oem": "",
-      "url": "https://www.frenciniz.com/urun/429/suspansiyon-korugu-ft-3498608-kp-ft-3498608-kp-ekersan"
-    },
-    {
-      "id": 430,
-      "sku": "FT 34720",
-      "name": "Roll Körük MAN TGA TGS TGX 40.360 40.460",
-      "category": "Süspansiyon Körüğü",
-      "group": "SÜSP. KÖRÜĞÜ",
-      "stock": 74,
-      "price": 1320,
-      "oem": "3873280101 , 81436010033 , 1629193 , 0220024100",
-      "url": "https://www.frenciniz.com/urun/430/roll-koruk-man-tga-tgs-tgx-40-360-40-460-ft-34720-ekersan"
-    },
-    {
-      "id": 431,
-      "sku": "EYD 92 28",
-      "name": "Bijon Somunu EYD 92 28",
-      "category": "Somun / Cıvata",
-      "group": "BİJON",
-      "stock": 169,
-      "price": 1056,
-      "oem": "",
-      "url": "https://www.frenciniz.com/urun/431/bijon-somunu-eyd-92-28-eyd-92-28-ekersan"
-    },
-    {
-      "id": 432,
-      "sku": "EYD 70 04-3",
-      "name": "TIRSAN DORSE KISA YAY 24 CM",
-      "category": "Yay",
-      "group": "FREN YAYLARI",
-      "stock": 300,
-      "price": 72.6,
-      "oem": "(A) B4",
-      "url": "https://www.frenciniz.com/urun/432/tirsan-dorse-kisa-yay-24-cm-eyd-70-04-3-ekersan"
-    },
-    {
-      "id": 433,
-      "sku": "EF-4410329880",
-      "name": "MAN ABS SENSÖRÜ SAĞ 300CM",
-      "category": "ABS Sensörü/Modülü/Kablo",
-      "group": "SENSÖR VE UZATMALAR",
-      "stock": 20,
-      "price": 831.6,
-      "oem": "",
-      "url": "https://www.frenciniz.com/urun/433/man-abs-sensoru-sag-300cm-ef-4410329880-ekersan"
-    },
-    {
-      "id": 434,
-      "sku": "EF-4410329870",
-      "name": "MAN ABS SENSÖRÜ SOL 300CM",
-      "category": "ABS Sensörü/Modülü/Kablo",
-      "group": "SENSÖR VE UZATMALAR",
-      "stock": 20,
-      "price": 831.6,
-      "oem": "",
-      "url": "https://www.frenciniz.com/urun/434/man-abs-sensoru-sol-300cm-ef-4410329870-ekersan"
-    },
-    {
-      "id": 435,
-      "sku": "EYD 70 66",
-      "name": "JUMBO DORSE YAYI BPV",
-      "category": "Yay",
-      "group": "FREN YAYLARI",
-      "stock": 30,
-      "price": 66,
-      "oem": "",
-      "url": "https://www.frenciniz.com/urun/435/jumbo-dorse-yayi-bpv-eyd-70-66-ekersan"
-    },
-    {
-      "id": 436,
-      "sku": "8106-2",
-      "name": "Fren Körüğü Disk imdatlı körüğü Kampana imdatlı körüğü körüğü 57 mm",
-      "category": "Fren Körüğü",
-      "group": "FREN KÖRÜKLERİ",
-      "stock": 120,
-      "price": 3168,
-      "oem": "",
-      "url": "https://www.frenciniz.com/urun/436/fren-korugu-disk-imdatli-korugu-kampana-imdatli-korugu-korugu-57-mm-8106-2-ekersan"
-    },
-    {
-      "id": 437,
-      "sku": "EYD 100 67-K",
-      "name": "Fren Körüğü Disk imdatlı körüğü Kampana imdatlı körüğü körüğü",
-      "category": "Fren Körüğü",
-      "group": "FREN KÖRÜKLERİ",
-      "stock": 50,
-      "price": 188.76,
-      "oem": "",
-      "url": "https://www.frenciniz.com/urun/437/fren-korugu-disk-imdatli-korugu-kampana-imdatli-korugu-korugu-eyd-100-67-k-ekersan"
-    },
-    {
-      "id": 438,
-      "sku": "EYD 100 66-K",
-      "name": "Fren Körüğü Disk imdatlı körüğü Kampana imdatlı körüğü körüğü",
-      "category": "Fren Körüğü",
-      "group": "FREN KÖRÜKLERİ",
-      "stock": 52,
-      "price": 181.5,
-      "oem": "",
-      "url": "https://www.frenciniz.com/urun/438/fren-korugu-disk-imdatli-korugu-kampana-imdatli-korugu-korugu-eyd-100-66-k-ekersan"
-    },
-    {
-      "id": 439,
-      "sku": "EYD 100 65-K",
-      "name": "Fren Körüğü Disk imdatlı körüğü Kampana imdatlı körüğü körüğü",
-      "category": "Fren Körüğü",
-      "group": "FREN KÖRÜKLERİ",
-      "stock": 10,
-      "price": 236.28,
-      "oem": "",
-      "url": "https://www.frenciniz.com/urun/439/fren-korugu-disk-imdatli-korugu-kampana-imdatli-korugu-korugu-eyd-100-65-k-ekersan"
-    },
-    {
-      "id": 440,
-      "sku": "EYD 100 51-K",
-      "name": "Fren Körüğü Disk imdatlı körüğü Kampana imdatlı körüğü körüğü",
-      "category": "Fren Körüğü",
-      "group": "FREN KÖRÜKLERİ",
-      "stock": 15,
-      "price": 166.98,
-      "oem": "",
-      "url": "https://www.frenciniz.com/urun/440/fren-korugu-disk-imdatli-korugu-kampana-imdatli-korugu-korugu-eyd-100-51-k-ekersan"
-    },
-    {
-      "id": 441,
-      "sku": "EYD 100 63-K",
-      "name": "Fren Körüğü Disk imdatlı körüğü Kampana imdatlı körüğü körüğü",
-      "category": "Fren Körüğü",
-      "group": "FREN KÖRÜKLERİ",
-      "stock": 30,
-      "price": 216.48,
-      "oem": "",
-      "url": "https://www.frenciniz.com/urun/441/fren-korugu-disk-imdatli-korugu-kampana-imdatli-korugu-korugu-eyd-100-63-k-ekersan"
-    },
-    {
-      "id": 442,
-      "sku": "EYD 100 62-K",
-      "name": "Fren Körüğü Disk imdatlı körüğü Kampana imdatlı körüğü körüğü",
-      "category": "Fren Körüğü",
-      "group": "FREN KÖRÜKLERİ",
-      "stock": 20,
-      "price": 204.6,
-      "oem": "",
-      "url": "https://www.frenciniz.com/urun/442/fren-korugu-disk-imdatli-korugu-kampana-imdatli-korugu-korugu-eyd-100-62-k-ekersan"
-    }
-  ]
+  "missingImageSample": []
 }

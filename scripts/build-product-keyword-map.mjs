@@ -7,6 +7,7 @@ import {
   productSearchTitle,
   productSeoUrl,
 } from "../shared/product-seo.js";
+import { demandLandingUrl, matchOemDemandGroup } from "../shared/oem-demand-priority.js";
 
 const ROOT = process.cwd();
 const OUT_DIR = path.join(ROOT, "pricing-research");
@@ -60,13 +61,16 @@ function unique(list) {
 }
 
 function keywordSet(product) {
+  const demandGroup = matchOemDemandGroup(product);
   const seoName = productSearchName(product, categories, 140);
   const code = productPrimaryCode(product);
   const vehicle = firstVehicle(product);
   const category = categoryName(product);
   const sku = product.sku || "";
   return unique([
+    ...(demandGroup?.adKeywords || []),
     seoName,
+    ...(demandGroup?.codes || []).map(value => `${value} ${demandGroup.part}`),
     vehicle && category ? `${vehicle} ${category}` : "",
     vehicle && code ? `${vehicle} ${code}` : "",
     code && category ? `${code} ${category}` : "",
@@ -76,12 +80,16 @@ function keywordSet(product) {
 }
 
 const rows = products.map(product => {
+  const demandGroup = matchOemDemandGroup(product);
   const keywords = keywordSet(product);
   return {
     id: product.id,
     category: categoryName(product),
     sku: product.sku || "",
     oem: product.oem || "",
+    demand_group: demandGroup ? demandGroup.slug : "",
+    demand_rank: demandGroup ? demandGroup.rank : "",
+    demand_add_on: demandGroup?.addOnOnly ? "yes" : "no",
     old_name: product.name || "",
     seo_name: productSearchName(product, categories, 140),
     seo_title: productSearchTitle(product, categories, 74),
@@ -89,6 +97,7 @@ const rows = products.map(product => {
     primary_query: keywords[0] || "",
     secondary_queries: keywords.slice(1).join(" | "),
     url: productSeoUrl(SITE, product),
+    demand_landing: demandGroup && !demandGroup.addOnOnly ? demandLandingUrl(SITE, demandGroup) : "",
     stock: product.stock || 0,
     price: product.price || 0,
   };
@@ -99,6 +108,9 @@ const headers = [
   "category",
   "sku",
   "oem",
+  "demand_group",
+  "demand_rank",
+  "demand_add_on",
   "old_name",
   "seo_name",
   "seo_title",
@@ -106,6 +118,7 @@ const headers = [
   "primary_query",
   "secondary_queries",
   "url",
+  "demand_landing",
   "stock",
   "price",
 ];
@@ -168,6 +181,8 @@ const highIntentCategories = new Set([
 
 function priorityScore(row) {
   let score = 0;
+  if (row.demand_group && row.demand_add_on !== "yes") score += 70;
+  else if (row.demand_group) score += 25;
   if (highIntentCategories.has(row.category)) score += 40;
   if (Number(row.stock || 0) > 0) score += 25;
   if (Number(row.stock || 0) >= 20) score += 10;
@@ -185,21 +200,23 @@ const priorityHeaders = [
   "score",
   "id",
   "category",
+  "demand_group",
+  "demand_rank",
   "primary_query",
   "secondary_queries",
-  "url",
+  "final_url",
   "stock",
   "price",
 ];
 
 fs.writeFileSync(
   path.join(OUT_DIR, "google-first-page-priority-urls.csv"),
-  `${priorityHeaders.map(csv).join(",")}\n${priorityRows.map(row => priorityHeaders.map(header => csv(row[header])).join(",")).join("\n")}\n`
+  `${priorityHeaders.map(csv).join(",")}\n${priorityRows.map(row => priorityHeaders.map(header => csv(header === "final_url" ? (row.demand_landing || row.url) : row[header])).join(",")).join("\n")}\n`
 );
 
 fs.writeFileSync(
   path.join(OUT_DIR, "google-first-page-all-products.csv"),
-  `${priorityHeaders.map(csv).join(",")}\n${priorityRows.map(row => priorityHeaders.map(header => csv(row[header])).join(",")).join("\n")}\n`
+  `${priorityHeaders.map(csv).join(",")}\n${priorityRows.map(row => priorityHeaders.map(header => csv(header === "final_url" ? (row.demand_landing || row.url) : row[header])).join(",")).join("\n")}\n`
 );
 
 const adsHeaders = [
@@ -210,6 +227,7 @@ const adsHeaders = [
   "final_url",
   "product_id",
   "category",
+  "demand_group",
   "stock",
   "price",
 ];
@@ -228,9 +246,10 @@ for (const row of adsSourceRows) {
       ad_group: row.category,
       match_type: "Exact",
       keyword,
-      final_url: row.url,
+      final_url: row.demand_landing || row.url,
       product_id: row.id,
       category: row.category,
+      demand_group: row.demand_group,
       stock: row.stock,
       price: row.price,
     });

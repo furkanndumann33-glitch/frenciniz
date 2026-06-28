@@ -1,3 +1,5 @@
+import { prioritySeoProductName } from "./oem-demand-priority.js";
+
 const TR_MAP = {
   "ı": "i",
   "İ": "i",
@@ -149,10 +151,16 @@ function nameHasPart(name, part) {
 }
 
 export function productSearchName(product, categories = [], max = 128) {
+  const priorityName = prioritySeoProductName(product, max);
+  if (priorityName) return compactText(priorityName, max);
   const original = cleanText(product?.name || "Agir Vasita Fren Parcasi");
   const part = productPartLabel(product, categories);
   const base = nameHasPart(original, part) ? original : `${part} ${original}`;
-  return compactText(uniqueParts([base]).join(" "), max);
+  const code = firstUsefulCode(product?.oem) || firstUsefulCode(product?.sku);
+  const codeFirstBase = code && !normalizeSearchText(base).includes(normalizeSearchText(code))
+    ? `${code} ${base}`
+    : base;
+  return compactText(uniqueParts([codeFirstBase]).join(" "), max);
 }
 
 export function productSearchTitle(product, categories = [], max = 74) {

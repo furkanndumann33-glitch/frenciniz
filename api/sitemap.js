@@ -3,6 +3,7 @@ import fs from "fs";
 import path from "path";
 import { LANDING_PAGES, getLandingBySlug } from "./_lib/seo-landing.js";
 import { renderLanding, renderLandingIndex } from "./_lib/landing-render.js";
+import { matchOemDemandGroup } from "../shared/oem-demand-priority.js";
 import {
   productIdFromRoute,
   productPrimaryCode,
@@ -158,6 +159,8 @@ const SALES_PRIORITY_CATEGORIES = new Set([
 ]);
 
 function salesPriorityLabel(product) {
+  const demandGroup = matchOemDemandGroup(product);
+  if (demandGroup && !demandGroup.addOnOnly) return "sales-priority-1";
   const price = Number(product?.price || 0);
   const stock = Number(product?.stock || 0);
   let score = 0;
@@ -541,11 +544,12 @@ function renderCategoryProductCard(product, categories = []) {
   const img = absoluteUrl(productPrimaryImage(product));
   const price = Number(product.price || 0);
   const stock = Number(product.stock || 0);
+  const displayName = productSearchName(product, categories, 140) || product.name;
   return `
     <article class="product-card">
-      <a class="image" href="${xmlEscape(href)}"><img src="${xmlEscape(img)}" alt="${xmlEscape(product.name)}" loading="lazy" decoding="async"></a>
+      <a class="image" href="${xmlEscape(href)}"><img src="${xmlEscape(img)}" alt="${xmlEscape(displayName)}" loading="lazy" decoding="async"></a>
       <div class="body">
-        <a class="title" href="${xmlEscape(href)}">${xmlEscape(product.name)}</a>
+        <a class="title" href="${xmlEscape(href)}">${xmlEscape(displayName)}</a>
         <div class="meta">${xmlEscape(product.brand || "Ekersan")} · ${xmlEscape(product.sku || product.id || "")}</div>
         ${product.oem ? `<div class="muted">OEM: ${xmlEscape(String(product.oem).slice(0, 96))}</div>` : ""}
         <div class="row"><strong>${price ? `${price.toLocaleString("tr-TR")} TL` : "Fiyat sorunuz"}</strong><span>${stock > 0 ? `Stokta ${Math.floor(stock)}` : "Stok sorunuz"}</span></div>

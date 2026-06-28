@@ -1,3 +1,5 @@
+import { OEM_DEMAND_GROUPS } from "../../shared/oem-demand-priority.js";
+
 export const SITE = "https://www.frenciniz.com";
 
 export const LANDING_PAGES = [
@@ -1161,6 +1163,28 @@ function registerExactIntentLandingPages() {
   }
 }
 
+function registerOemDemandLandingPages() {
+  const seen = new Set(LANDING_PAGES.map(page => page.slug));
+
+  for (const group of OEM_DEMAND_GROUPS) {
+    if (seen.has(group.slug)) continue;
+    LANDING_PAGES.push({
+      slug: group.slug,
+      heading: group.heading,
+      title: `${group.heading} | Stok Fiyat OEM Teyit | Frenciniz`,
+      description: `${group.heading} icin stok, fiyat ve arac uyumluluk teyidi. OEM/WVA kodu, eski parca fotografi veya sase ile dogru urunu hizli bulun.`,
+      cats: group.cats,
+      terms: [...new Set([...(group.terms || []), ...(group.codes || []), ...(group.adKeywords || [])])],
+      primaryTerm: group.codes?.[0] || group.vehicle,
+      part: group.part,
+      priority: group.priority || "0.9",
+      demandCodes: group.codes || [],
+      demandRank: group.rank,
+    });
+    seen.add(group.slug);
+  }
+}
+
 function exactPartsForVehicle(vehicle) {
   const parts = new Set(vehicle.parts || []);
   const text = normalize([vehicle.base, vehicle.full, ...(vehicle.terms || [])].join(" "));
@@ -1186,6 +1210,7 @@ function exactPartsForVehicle(vehicle) {
   return [...parts];
 }
 
+registerOemDemandLandingPages();
 registerGeneratedLandingPages();
 registerExactIntentLandingPages();
 
@@ -1300,6 +1325,9 @@ export function scoreProductForLanding(product, page) {
   const text = productText(product);
   let score = 0;
   if (page.cats?.includes(product.cat)) score += 80;
+  for (const code of page.demandCodes || []) {
+    if (code && text.includes(normalize(code))) score += 160;
+  }
   for (const term of page.terms || []) {
     if (text.includes(normalize(term))) score += 18;
   }
@@ -1329,6 +1357,7 @@ export function filterProductsForLanding(products, page, limit = 24) {
 }
 
 export function landingWhatsappUrl(page) {
-  const text = `${page.heading} için stok, fiyat ve araç uyumluluğu teklifi almak istiyorum.`;
+  const codeLine = page.demandCodes?.length ? ` OEM/WVA: ${page.demandCodes[0]}.` : "";
+  const text = `${page.heading} icin stok, fiyat ve arac uyumlulugu teklifi almak istiyorum.${codeLine}`;
   return `https://wa.me/908508887881?text=${encodeURIComponent(text)}`;
 }

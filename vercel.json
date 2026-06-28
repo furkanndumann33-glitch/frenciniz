@@ -169,6 +169,66 @@
       "destination": "/api/sitemap?type=landing&slug=360573-1414435-fren-kampanasi"
     },
     {
+      "source": "/29246-mercedes-axor-actros-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=29246-mercedes-axor-actros-fren-balatasi"
+    },
+    {
+      "source": "/29087-mercedes-axor-actros-scania-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=29087-mercedes-axor-actros-scania-fren-balatasi"
+    },
+    {
+      "source": "/29279-man-tga-tgs-tgx-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=29279-man-tga-tgs-tgx-fren-balatasi"
+    },
+    {
+      "source": "/29159-29126-saf-dorse-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=29159-29126-saf-dorse-fren-balatasi"
+    },
+    {
+      "source": "/29165-29215-bpw-atego-dorse-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=29165-29215-bpw-atego-dorse-fren-balatasi"
+    },
+    {
+      "source": "/9424212112-mercedes-axor-actros-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=9424212112-mercedes-axor-actros-fren-diski"
+    },
+    {
+      "source": "/0308835057-bpw-kogel-krone-dorse-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=0308835057-bpw-kogel-krone-dorse-fren-diski"
+    },
+    {
+      "source": "/1386686-scania-pgr-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=1386686-scania-pgr-fren-diski"
+    },
+    {
+      "source": "/29244-mercedes-axor-actros-arka-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=29244-mercedes-axor-actros-arka-fren-balatasi"
+    },
+    {
+      "source": "/29195-saf-dorse-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=29195-saf-dorse-fren-balatasi"
+    },
+    {
+      "source": "/29171-bpw-kogel-dorse-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=29171-bpw-kogel-dorse-fren-balatasi"
+    },
+    {
+      "source": "/81508030042-man-tgl-tgm-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=81508030042-man-tgl-tgm-fren-diski"
+    },
+    {
+      "source": "/1903608-scania-pgr-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=1903608-scania-pgr-suspansiyon-korugu"
+    },
+    {
+      "source": "/21022167-ror-meritor-bijon",
+      "destination": "/api/sitemap?type=landing&slug=21022167-ror-meritor-bijon"
+    },
+    {
+      "source": "/31796200-ror-meritor-knorr-wabco-disk-bijonu",
+      "destination": "/api/sitemap?type=landing&slug=31796200-ror-meritor-knorr-wabco-disk-bijonu"
+    },
+    {
       "source": "/mercedes-actros-fren-kampanasi",
       "destination": "/api/sitemap?type=landing&slug=mercedes-actros-fren-kampanasi"
     },

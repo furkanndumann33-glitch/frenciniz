@@ -1,6 +1,6 @@
 # Frenciniz Satis Makinesi Aksiyon Raporu
 
-Olusturma: 2026-06-18T09:21:26.103Z
+Olusturma: 2026-06-28T07:33:11.471Z
 
 ## Cikti dosyalari
 
@@ -17,7 +17,7 @@ Olusturma: 2026-06-18T09:21:26.103Z
 
 - Stoklu urun: 1055
 - Ilk 100 urunde sales-priority-1: 100
-- Google Ads keyword: 246
+- Google Ads keyword: 192
 - Search Console URL: 180
 
 ## Uygulama sirasi

@@ -1,3 +1,5 @@
+import { prioritySeoProductName } from "./oem-demand-priority.js";
+
 const CATEGORY_TITLE_BASES = {
   "fren-diski": "Fren Diski",
   "fren-diski-abs-li": "ABS'li Fren Diski",
@@ -283,7 +285,7 @@ function modelPhraseFromSignals(product = {}, compat = []) {
   if (hasAny(text, [/BMC|FATIH|PROFESYONEL|PROBUS|DODGE|ASKAM/])) push("BMC");
   if (hasAny(text, [/OTOKAR|DORUK|SULTAN/])) push("Otokar Sultan Doruk");
 
-  if (hasAny(text, [/BPW|\bBP\b|ECOPLUS|03\.?27|0327|3109|3296/])) push("BPW Dorse");
+  if (hasAny(text, [/BPW|\bBP\b|ECOPLUS|03\.?272|03\.?0883|3109|3296/])) push("BPW Dorse");
   if (hasAny(text, [/SAF|HOLLAND|10640|407900|054294|343438|SFK/])) push("SAF Dorse");
   if (hasAny(text, [/ROR|MERITOR|GIGANT|2102|2120|2222|MBR/])) push("ROR Meritor");
   if (hasAny(text, [/KRONE/])) push("Krone Dorse");
@@ -426,7 +428,7 @@ const GROUP_MODEL_EXAMPLES = {
   "sensor-uzatma": ["WABCO ABS/EBS", "Dorse EBS sistemi", "Kamyon ABS sensör hattı", "Treyler ABS sensör hattı"],
 };
 
-function modelExampleCandidates(product = {}, compat = []) {
+export function modelExampleCandidates(product = {}, compat = [], options = {}) {
   const source = normalizeProductText([
     ...(Array.isArray(compat) ? compat : []),
     ...(Array.isArray(product.compat) ? product.compat : []),
@@ -443,10 +445,11 @@ function modelExampleCandidates(product = {}, compat = []) {
     if (rule.regex.test(source)) examples.push(...rule.examples);
   }
 
-  if (!examples.length) {
+  if (!examples.length && options.fallback !== false) {
     examples.push(...(GROUP_MODEL_EXAMPLES[productGroup(product)] || ["Kamyon", "Tır / çekici", "Otobüs", "Dorse / treyler"]));
   }
-  return uniqParts(examples).slice(0, 12);
+  const limit = Number(options.limit || 24);
+  return uniqParts(examples).slice(0, Math.max(6, limit));
 }
 
 function modelExamplesLine(product = {}, compat = []) {
@@ -565,6 +568,8 @@ function sanitizePolicyText(value) {
 export function buildSeoProductTitle(product = {}, compat = product.compat || [], options = {}) {
   const max = Math.max(40, Number(options.max) || 100);
   const marketplace = options.marketplace !== false;
+  const priorityName = prioritySeoProductName(product, max);
+  if (priorityName) return marketplace ? sanitizePolicyText(priorityName) : priorityName;
   const vehicle = modelPhraseFromSignals(product, compat);
   const part = productPartTitle(product);
   const details = detailCandidates(product);
@@ -624,7 +629,7 @@ export function buildSeoProductDescription(product = {}, compat = product.compat
     ...(Array.isArray(product.compat) ? product.compat : []),
   ]).filter((value) => !GENERIC_COMPAT.has(value.toLocaleLowerCase("tr-TR")) || /dorse|treyler/i.test(value));
   const modelLine = compatible.length
-    ? `Uyumlu araçlar / sistemler: ${compatible.slice(0, 16).join(", ")}.`
+    ? `Uyumlu araçlar / sistemler: ${compatible.slice(0, 32).join(", ")}.`
     : "Uyumluluk: Ağır vasıta araç grubu için OEM, şase ve ölçü kontrolü önerilir.";
   const examplesLine = modelExamplesLine(product, compatible);
   const originalLine = rawName && compactKey(rawName) !== compactKey(title)

@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
-import { productSeoUrl } from "../shared/product-seo.js";
+import { demandLandingUrl, OEM_DEMAND_GROUPS, matchOemDemandGroup } from "../shared/oem-demand-priority.js";
+import { productSearchName, productSeoUrl } from "../shared/product-seo.js";
 import { LANDING_PAGES } from "../api/_lib/seo-landing.js";
 
 const SITE = "https://www.frenciniz.com";
@@ -123,9 +124,12 @@ function usefulCompat(product) {
 }
 
 function scoreProduct(product) {
+  const demandGroup = matchOemDemandGroup(product);
   const price = Number(product.price || 0);
   const stock = Number(product.stock || 0);
   let score = MONEY_CATS.get(product.cat) || 2;
+  if (demandGroup && !demandGroup.addOnOnly) score += 14;
+  else if (demandGroup) score += 5;
   if (isRealImage(product)) score += 4;
   if (clean(product.oem)) score += 4;
   if (usefulCompat(product).length) score += 3;
@@ -138,6 +142,8 @@ function scoreProduct(product) {
 }
 
 function salesPriority(product) {
+  const demandGroup = matchOemDemandGroup(product);
+  if (demandGroup && !demandGroup.addOnOnly) return "sales-priority-1";
   const score = scoreProduct(product);
   if (score >= 18) return "sales-priority-1";
   if (score >= 13) return "sales-priority-2";
@@ -145,13 +151,14 @@ function salesPriority(product) {
 }
 
 function productRow(product, rank) {
+  const demandGroup = matchOemDemandGroup(product);
   return {
     rank,
     score: scoreProduct(product),
     priority: salesPriority(product),
     id: product.id,
     sku: product.sku || "",
-    name: product.name || "",
+    name: productSearchName(product, categories, 140) || product.name || "",
     category: categoryName(product),
     group: groupId(product),
     part: partLabel(product),
@@ -160,6 +167,8 @@ function productRow(product, rank) {
     oem: product.oem || "",
     compat: usefulCompat(product).join(" | "),
     image: isRealImage(product) ? "yes" : "no",
+    demand_group: demandGroup ? demandGroup.slug : "",
+    demand_rank: demandGroup ? demandGroup.rank : "",
     url: productSeoUrl(SITE, product),
   };
 }
@@ -181,6 +190,15 @@ const ranked = products
 
 const picked = [];
 const pickedIds = new Set();
+for (const product of ranked.filter(p => matchOemDemandGroup(p)).sort((a, b) => {
+  const ga = matchOemDemandGroup(a);
+  const gb = matchOemDemandGroup(b);
+  return Number(ga?.rank || 999) - Number(gb?.rank || 999) || Number(b.stock || 0) - Number(a.stock || 0);
+})) {
+  if (pickedIds.has(product.id)) continue;
+  picked.push(product);
+  pickedIds.add(product.id);
+}
 for (const { group, quota } of TOP100_GROUP_QUOTAS) {
   for (const product of ranked.filter(p => groupId(p) === group)) {
     if (pickedIds.has(product.id)) continue;
@@ -224,10 +242,12 @@ const campaign = "FRN-Search-HighIntent-OEM-Lead";
 const usedKeywords = new Set();
 for (const row of top100) {
   const product = products.find(p => String(p.id) === String(row.id));
+  const demandGroup = matchOemDemandGroup(product);
   const part = row.part;
   const oem = firstOem(product);
   const compat = usefulCompat(product);
   const baseTerms = [
+    ...(demandGroup?.adKeywords || []),
     ...compat.map(model => `${model} ${part}`),
     oem ? `${oem} ${part}` : "",
     product?.sku ? `${product.sku} ${part}` : "",
@@ -242,7 +262,7 @@ for (const row of top100) {
       ad_group: compact(`${compat[0] || row.group} ${part}`, 45),
       keyword,
       match_type: "Exact",
-      final_url: row.url,
+      final_url: demandGroup && !demandGroup.addOnOnly ? demandLandingUrl(SITE, demandGroup) : row.url,
       max_cpc_try: "6.00",
       priority: row.priority,
     });
@@ -253,6 +273,18 @@ for (const row of top100) {
 writeCsv("google-ads-high-intent-keywords.csv", keywordRows);
 
 const ads = [
+  ...OEM_DEMAND_GROUPS.filter(group => !group.addOnOnly).slice(0, 8).map(group => ({
+    campaign,
+    ad_group: compact(group.heading, 45),
+    final_url: demandLandingUrl(SITE, group),
+    headline_1: compact(group.heading, 30),
+    headline_2: "OEM Koduyla Teyit",
+    headline_3: "WhatsApp Fiyat Al",
+    headline_4: "Stok ve Uyum Kontrol",
+    headline_5: "Frenciniz Fren Parcasi",
+    description_1: `${group.heading} icin OEM/WVA kodu, sase veya eski parca fotografi ile stok ve uyumluluk teyidi alin.`,
+    description_2: "Yanlis parca riskini azaltin. WhatsApp'tan hizli teklif, ayni gun kargo ve taksit secenekleri.",
+  })),
   {
     campaign,
     ad_group: "Mercedes Axor Actros",
@@ -300,6 +332,7 @@ const groupCounts = top100.reduce((acc, row) => {
   return acc;
 }, {});
 const metaSets = [
+  { set_name: "OEM Talep Ilk 13", rule: "custom_label_4 equals sales-priority-1 AND title contains OEM/WVA demand codes", product_count_top100: top100.filter(row => row.demand_group && !/21022167|31796200/.test(row.demand_group)).length, use: "Google Merchant ve Meta katalogda en once test edilecek urunler" },
   { set_name: "Satis Onceligi 1", rule: "custom_label_4 equals sales-priority-1", product_count_top100: groupCounts["sales-priority-1"] || 0, use: "Remarketing ve katalog reklaminda ilk secilecek set" },
   { set_name: "Disk Balata Kampana", rule: "custom_label_0 in disk,balata,kampana", product_count_top100: (groupCounts["disk"] || 0) + (groupCounts["balata"] || 0) + (groupCounts["kampana"] || 0), use: "Google/Meta en yuksek niyetli fren grubu" },
   { set_name: "Dorse Fren Grubu", rule: "title/description contains BPW, SAF, Krone, Kogel, Schmitz", product_count_top100: top100.filter(row => /bpw|saf|krone|kogel|schmitz/i.test(`${row.name} ${row.compat} ${row.oem}`)).length, use: "Dorse ve treyler hedefli reklamlar" },

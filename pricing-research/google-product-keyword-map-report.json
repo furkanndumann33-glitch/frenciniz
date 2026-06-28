@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-21T14:25:24.766Z",
+  "generatedAt": "2026-06-28T07:30:19.472Z",
   "products": 1055,
   "output": "pricing-research/google-product-keyword-map.csv",
   "priorityOutput": "pricing-research/google-first-page-priority-urls.csv",
@@ -19,11 +19,11 @@
       "products": 145,
       "stockProducts": 145,
       "sampleQueries": [
-        "Bijon ROR Meritor 95 mm OEM 21022167 ESB 1315 10",
-        "Bijon Scania P G R 115 mm Arka OEM 1847739 ESB 919 10",
-        "Bijon Mercedes Actros Axor 120 mm Arka SKU ESB 185 10",
-        "Bijon Iveco Eurocargo Stralis Dps OEM 42117459 ESB 670 10",
-        "Bijon Mitsubishi Canter Fuso Isuzu NPR NQR Arka Sol 304 SKU ESB 784 11-L"
+        "21022167 bijon",
+        "1847739 Scania P G R Bijon 115 mm Özel Arka",
+        "ESB 185 10 Mercedes Axor Actros Bijon 120 mm Arka",
+        "42117459 Ford Cargo Bijon DPS ESB 670 10",
+        "Isuzu NPR NQR Mitsubishi Canter Fuso Bijon Sol Arka ESB 784 11-L"
       ]
     },
     {
@@ -31,11 +31,11 @@
       "products": 118,
       "stockProducts": 118,
       "sampleQueries": [
-        "Fren Kampanası Mercedes Actros Axor OEM 3014210801 ESK 010 45",
-        "Fren Kampanası BPW ECOPlus OEM 310977340 ESK 230 28",
-        "Fren Kampanası SAF Holland OEM 1064010801-1064012801 ESK 290 03",
-        "Fren Kampanası ESK 160 62",
-        "Fren Kampanası BPW ECOPlus 18 cm OEM 310667620 ESK 160 18-S"
+        "3014210801 Mercedes Axor Actros Fren Kampanası ESK 010 45",
+        "310977340 Ford Cargo BPW Dorse Krone Dorse Kögel Dorse Fren Kampanası ESK 230 28",
+        "1064010801-1064012801 Ford Cargo SAF Dorse Krone Dorse Kögel Dorse Fren Kampanası ESK 290 03",
+        "Ford Cargo Krone Dorse Kögel Dorse Fren Kampanası ESK 160 62",
+        "310667620 Ford Cargo BPW Dorse Krone Dorse Kögel Dorse Fren Kampanası 18 cm"
       ]
     },
     {
@@ -43,11 +43,11 @@
       "products": 99,
       "stockProducts": 99,
       "sampleQueries": [
-        "Süspansiyon Körüğü FT 34810 K04F SKU FT 34810-K04F",
-        "Suspansiyon Korugu Roll Körük Mercedes Travego Tourismo OEM 0003270101 FT 34644",
-        "Süspansiyon Körüğü FT 3498608 KP SKU FT 3498608-KP",
-        "Suspansiyon Korugu Roll Körük Mercedes Travego Tourismo OEM 3873280101 FT 34720",
-        "Süspansiyon Körüğü FT 34220 2P01 SKU FT 34220-2P01"
+        "Ford Cargo Krone Dorse Kögel Dorse Süspansiyon Körüğü FT 34810-K04F",
+        "0003270101 Mercedes Travego Tourismo Süspansiyon Körüğü",
+        "Ford Cargo Krone Dorse Kögel Dorse Süspansiyon Körüğü FT 3498608-KP",
+        "3873280101 Mercedes Travego Tourismo MAN Fortuna Otobüs Süspansiyon Körüğü FT 34720",
+        "Ford Cargo Krone Dorse Kögel Dorse Süspansiyon Körüğü FT 34220-2P01"
       ]
     },
     {
@@ -55,11 +55,11 @@
       "products": 96,
       "stockProducts": 96,
       "sampleQueries": [
-        "Fren Diski Isuzu Novo NovoCiti Life CitiLife 387 061 2600 OEM 387.061.2600.51 ESD 130 09",
-        "Fren Diski Krone Göbekli 430 SKU ESD 220 03",
-        "Fren Diski Renault Midlum Premium Magnum OEM 5010598309 ESD 040 31",
-        "Fren Diski Renault Midlum Premium Magnum OEM 20700508 ESD 040 30",
-        "Fren Diski Volvo FH FM FL 410 OEM 8551042 ESD 110 02"
+        "387.061.2600.51 Isuzu NPR NQR Fren Diski",
+        "ESD 220 03 Ford Cargo Krone Dorse Kögel Dorse Fren Diski Göbekli",
+        "5010598309 Renault Premium Magnum Kerax Midlum D Serisi Fren Diski ESD 040 31",
+        "20700508 Renault Premium Magnum Kerax Midlum D Serisi Fren Diski ESD 040 30",
+        "8551042 Volvo FH12 FM FL Fren Diski Maçasız Dolu 410 Çap"
       ]
     },
     {
@@ -67,11 +67,11 @@
       "products": 77,
       "stockProducts": 77,
       "sampleQueries": [
-        "Porya Kapağı BPW ECOPlus SKU EYD 700 14-1",
-        "Porya Kapağı EYD 700 06 1 SKU EYD 700 06-1",
-        "Porya BPW ECOPlus OEM 03.272.62.27.0 ESP.16.14.01",
-        "Porya Ford Cargo Ön OEM DC461106 (YENİ ÜRÜN) ESP.08.11",
-        "Porya 200 mm SKU ESP.30.04"
+        "Ford Cargo BPW Dorse Krone Dorse Kögel Dorse Porya Kapağı EYD 700 14-1",
+        "Ford Cargo Krone Dorse Kögel Dorse Porya Kapağı EYD 700 06-1",
+        "03.272.62.27.0 Ford Cargo BPW Dorse Krone Dorse Kögel Dorse Porya ESP.16.14.01",
+        "DC461106 (YENİ ÜRÜN) Ford Cargo Porya Ön ESP.08.11",
+        "ESP.30.04 Ford Cargo Krone Dorse Kögel Dorse Porya 200 mm"
       ]
     },
     {
@@ -79,11 +79,11 @@
       "products": 71,
       "stockProducts": 71,
       "sampleQueries": [
-        "Fren Körüğü Disk imdatlı körüğü Kampana imdatlı körüğü körüğü 57 mm SKU 8106-2",
-        "Fren Körüğü Disk imdatlı körüğü Kampana imdatlı körüğü körüğü SKU EYD 100 67-K",
-        "Fren Körüğü Disk imdatlı körüğü Kampana imdatlı körüğü körüğü SKU EYD 100 66-K",
-        "Fren Körüğü Disk imdatlı körüğü Kampana imdatlı körüğü körüğü SKU EYD 100 65-K",
-        "Fren Körüğü Disk imdatlı körüğü Kampana imdatlı körüğü körüğü SKU EYD 100 51-K"
+        "8106-2 Ford Cargo Krone Dorse Kögel Dorse 24/24 D/P İmdatlı Fren Körüğü M22 57 mm Disk Tipi",
+        "Ford Cargo Krone Dorse Kögel Dorse İmdatlı Fren Körüğü EYD 100 67-K",
+        "Ford Cargo Krone Dorse Kögel Dorse İmdatlı Fren Körüğü EYD 100 66-K",
+        "Ford Cargo Krone Dorse Kögel Dorse İmdatlı Fren Körüğü EYD 100 65-K",
+        "Ford Cargo Krone Dorse Kögel Dorse İmdatlı Fren Körüğü EYD 100 51-K"
       ]
     },
     {
@@ -91,11 +91,11 @@
       "products": 58,
       "stockProducts": 58,
       "sampleQueries": [
-        "Fren Balatası Mercedes Actros Axor OEM 19487 PWR-K006",
-        "Fren Balatası Ford Cargo 2520-2621 OEM 19921 PWR-K005",
-        "Fren Balatası Mercedes Actros Axor OEM 19488 PWR-K004",
-        "Fren Balatası PWR K003 OEM 19071 PWR-K003",
-        "Fren Balatası BPW ECOPlus OEM 19032 PWR-K002"
+        "19487 Mercedes Axor Actros MAN TGA TGS TGX TGM Fren Balatası 18 Lik",
+        "19921 Ford Cargo Fren Balatası",
+        "19488 Mercedes Axor Actros MAN TGA TGS TGX TGM Fren Balatası 22 Lik",
+        "19071 Ford Cargo Krone Dorse Kögel Dorse Fren Balatası",
+        "19032 Ford Cargo BPW Dorse Krone Dorse Kögel Dorse Fren Balatası PWR-K002"
       ]
     },
     {
@@ -103,11 +103,11 @@
       "products": 37,
       "stockProducts": 37,
       "sampleQueries": [
-        "Fren Pabucu SAF Holland SKU EYD 075059",
-        "Fren Pabucu BPW ECOPlus Y.M 360 200 OEM 05.091.19.34.0 03.7100.300.031.00",
-        "Fren Pabucu BPW ECOPlus 18 cm SKU EYD 80 24-1",
-        "Fren Pabucu Mercedes Actros Axor SKU EYD 206 14",
-        "Fren Pabucu Mercedes Actros Axor 22 cm OEM 624.420.02.19 EYD 206 08"
+        "EYD 075059 Ford Cargo SAF Dorse Krone Dorse Kögel Dorse Fren Pabucu Makarası",
+        "05.091.19.34.0 Ford Cargo BPW Dorse Krone Dorse Kögel Dorse Fren Pabucu Makarası Y.M.",
+        "Ford Cargo BPW Dorse Krone Dorse Kögel Dorse Fren Pabucu 18 cm EYD 80 24-1",
+        "EYD 206 14 Mercedes Axor Actros Fren Pabucu Makarası",
+        "624.420.02.19 Mercedes Axor Actros Fren Pabucu 22CM"
       ]
     },
     {
@@ -115,11 +115,11 @@
       "products": 34,
       "stockProducts": 34,
       "sampleQueries": [
-        "Kaliper Mekanizması Bilyalı YILDIZ BAŞLI SKU 421128-1",
-        "KALİPER MEKANİZMA SETİ Y.M. SKU CH5033",
-        "ARCS KALİPER TAŞIYICI ÖN SOL OEM A0004216506 CH3284",
-        "ARCS KALİPER TAŞIYICI ÖN SAĞ OEM A0004216406 CH3283",
-        "PAN19-1/22-1 AYAR TAŞIYICI MEKANİZMALI SET SKU CH3173"
+        "ROR Meritor Knorr WABCO Kaliper Ayar Mekanizması 421128-1",
+        "CH5033 ROR Meritor Knorr WABCO Kaliper Ayar Mekanizması Y.M.",
+        "A0004216506 ROR Meritor Knorr WABCO Kaliper Ayar Mekanizması Sol Ön",
+        "A0004216406 ROR Meritor Knorr WABCO Kaliper Ayar Mekanizması Sağ Ön",
+        "CH3173 ROR Meritor Knorr WABCO Kaliper Ayar Mekanizması 1/22"
       ]
     },
     {
@@ -127,11 +127,11 @@
       "products": 34,
       "stockProducts": 34,
       "sampleQueries": [
-        "FRENCO KALİPER TM.TK.SAF - SOL SKU FX-3180",
-        "Kaliper Tamir Takimi B.V YENİ SET KOMPLE SAĞ SKU CHS5005",
-        "Kaliper Tamir Takimi MB ARCS SET (SOL) SKU CHS3014",
-        "Kaliper Tamir Takimi MB ARCS SET (SAĞ) SKU CHS3013",
-        "KALİPER MASURA BİLYA YATAĞI TAKIMI (114 MM) SKU CH2039"
+        "FX-3180 ROR Meritor Knorr WABCO Kaliper Tamir Takımı Sol",
+        "CHS5005 Ford Cargo Krone Dorse Kögel Dorse Kaliper Tamir Takımı Sağ",
+        "CHS3014 Mercedes Axor Actros Kaliper Tamir Takımı Sol",
+        "CHS3013 Mercedes Axor Actros Kaliper Tamir Takımı Sağ",
+        "CH2039 ROR Meritor Knorr WABCO Kaliper Tamir Takımı 114 mm"
       ]
     },
     {
@@ -139,11 +139,11 @@
       "products": 32,
       "stockProducts": 32,
       "sampleQueries": [
-        "YTE DORSE YAYI SKU EYD 70 67",
-        "TIRSAN DORSE KISA YAY 24 CM OEM (A) B4 EYD 70 04-3",
-        "JUMBO DORSE YAYI BPV SKU EYD 70 66",
-        "JUMBO DORSE YAYI ÖZEL SKU EYD 70 65",
-        "ISUZU NOR FREN YAYI OEM (A) B4 EYD 70 58"
+        "Ford Cargo Krone Dorse Kögel Dorse Fren Yayı EYD 70 67",
+        "(A) B4 Ford Cargo Krone Dorse Kögel Dorse Fren Yayı 24 cm Kısa",
+        "EYD 70 66 Ford Cargo BPW Dorse Krone Dorse Kögel Dorse Fren Yayı",
+        "EYD 70 65 Ford Cargo Krone Dorse Kögel Dorse Fren Yayı Özel",
+        "(A) B4 Dorse Yayi Isuzu NPR NQR Fren Yayı EYD 70 58"
       ]
     },
     {
@@ -151,11 +151,11 @@
       "products": 29,
       "stockProducts": 29,
       "sampleQueries": [
-        "MAN ABS SENSÖRÜ SAĞ 300CM SKU EF-4410329880",
-        "MAN ABS SENSÖRÜ SOL 300CM SKU EF-4410329870",
-        "MAN ABS SENSÖRÜ ÖN SAĞ 150CM SKU EF-81.271206176",
-        "MAN ABS SENSÖRÜ ÖN SOL 150 CM SKU EF-81.271206177",
-        "ABS SENSÖRÜ ÖN YENİ MODEL ACTROS AROX EURO6 SKU EF-4410321930"
+        "MAN TGA TGS TGX TGM Ford Cargo Krone Dorse ABS Sensörü ABS'li Sağ EF-4410329880",
+        "MAN TGA TGS TGX TGM Ford Cargo Krone Dorse ABS Sensörü ABS'li Sol EF-4410329870",
+        "MAN TGA TGS TGX TGM Ford Cargo Krone Dorse ABS Sensörü ABS'li Sağ EF-81.271206176",
+        "MAN TGA TGS TGX TGM Ford Cargo Krone Dorse ABS Sensörü ABS'li Sol EF-81.271206177",
+        "EF-4410321930 Mercedes Actros Arocs Ford Cargo Krone Dorse ABS Sensörü ABS'li"
       ]
     },
     {
@@ -163,11 +163,11 @@
       "products": 26,
       "stockProducts": 26,
       "sampleQueries": [
-        "Bijon Somunu EYD 92 30",
-        "Bijon Somunu BPW ECOPlus E.M SKU EYD 92 28",
-        "Bijon Somunu SAF Holland SAĞ SKU EYD 92 04",
-        "Bijon Somunu SAF Holland Sol SKU EYD 92 03",
-        "Bijon Somunu SAF Holland SAĞ SKU EYD 92 02"
+        "Ford Cargo Krone Dorse Kögel Dorse Bijon Somunu EYD 92 30",
+        "EYD 92 28 Ford Cargo BPW Dorse Krone Dorse Kögel Dorse Bijon Somunu E.M.",
+        "Ford Cargo SAF Dorse Krone Dorse Kögel Dorse Bijon Somunu Sağ EYD 92 04",
+        "Ford Cargo SAF Dorse Krone Dorse Kögel Dorse Bijon Somunu Sol EYD 92 03",
+        "Ford Cargo SAF Dorse Krone Dorse Kögel Dorse Bijon Somunu Sağ EYD 92 02"
       ]
     },
     {
@@ -175,11 +175,11 @@
       "products": 24,
       "stockProducts": 24,
       "sampleQueries": [
-        "KALİPER PLASTİK TAPA SKU 60-6064",
-        "Kaliper Plastik Tapa Takımı SKU 427141",
-        "Kaliper Tamir Takımı Komple (Pimli) SKU 426147",
-        "KALİPER TAMİR TAKIMI KAŞIKLI SET (TABLALI) SKU 426144-1",
-        "FRENCO KALİPER TAMİR TAKIMI SKU FX-3080"
+        "ROR Meritor Knorr WABCO Kaliper 60-6064",
+        "ROR Meritor Knorr WABCO Kaliper 427141",
+        "ROR Meritor Knorr WABCO Kaliper 426147",
+        "ROR Meritor Knorr WABCO Kaliper 426144-1",
+        "ROR Meritor Knorr WABCO Kaliper FX-3080"
       ]
     },
     {
@@ -187,11 +187,11 @@
       "products": 23,
       "stockProducts": 23,
       "sampleQueries": [
-        "Otomatik Fren Cırcırı Renault Premium Magnum Kerax Midlum OEM 14632 ESC 79458",
-        "Otomatik Fren Cırcırı Renault Midlum Premium Magnum OEM 5010098861 ESC 79445",
-        "Otomatik Fren Cırcırı Renault Midlum Premium Magnum OEM 5010098860 ESC 79444",
-        "Otomatik Fren Cırcırı Renault Midlum Premium Magnum OEM 72318 ESC 79167",
-        "Otomatik Fren Cırcırı ESC 72675 OEM 42115"
+        "14632 Renault Premium Magnum Kerax Midlum D Serisi Otomatik Fren Cırcırı ESC 79458",
+        "5010098861 Renault Premium Magnum Kerax Midlum D Serisi Otomatik Fren Cırcırı ESC 79445",
+        "5010098860 Renault Premium Magnum Kerax Midlum D Serisi Otomatik Fren Cırcırı ESC 79444",
+        "72318 Renault Premium Magnum Kerax Midlum D Serisi Otomatik Fren Cırcırı ESC 79167",
+        "42115 Otomatik Fren Cırcırı Otomatik Fren Cırcırı ESC 72675"
       ]
     },
     {
@@ -199,11 +199,11 @@
       "products": 22,
       "stockProducts": 22,
       "sampleQueries": [
-        "Fren Cırcırı Mercedes Arocs Ön Sol SKU ESC 80168",
-        "Fren Cırcırı Mercedes Arocs Ön SAĞ SKU ESC 80167",
-        "Fren Cırcırı BMC Probus Profesyonel Fatih Pro Sol OEM 4175020800 ESC 70953",
-        "Fren Cırcırı Mercedes Travego Tourismo Ön R-L OEM 3574200538 ESC 72209",
-        "Fren Cırcırı Fruehauf SMB OEM 352194 ESC 114075"
+        "ESC 80168 Mercedes Arocs Fren Cırcırı Sol Ön",
+        "ESC 80167 Mercedes Arocs Fren Cırcırı Sağ Ön",
+        "4175020800 BMC Fren Cırcırı Sol",
+        "3574200538 Mercedes Travego Tourismo Fren Cırcırı Ön R-l",
+        "352194 Ford Cargo Krone Dorse Kögel Dorse Fren Cırcırı"
       ]
     },
     {
@@ -211,11 +211,11 @@
       "products": 16,
       "stockProducts": 16,
       "sampleQueries": [
-        "Disk Bijonu Mercedes Atego Arka Y.M SKU ESB 145 10",
-        "Disk Bijonu Knorr WABCO Meritor OEM 31796200 ESB 4000 12",
-        "Disk Bijonu SAF Holland Y.M SKU ESB 4000 15",
-        "Disk Bijonu MAN TGS SKU ESB 242 10",
-        "Disk Bijonu Mercedes Axor SKU ESB 4000 13"
+        "ESB 145 10 Mercedes Atego Disk Bijonu Arka Y.M.",
+        "31796200 disk bijonu",
+        "ESB 4000 15 Ford Cargo SAF Dorse Krone Dorse Kögel Dorse Disk Bijonu Y.M.",
+        "ESB 242 10 MAN TGA TGS TGX TGM Disk Bijonu",
+        "ESB 4000 13 Mercedes Axor Disk Bijonu"
       ]
     },
     {
@@ -223,11 +223,11 @@
       "products": 15,
       "stockProducts": 15,
       "sampleQueries": [
-        "Kızak FORD KARGO KIZAĞI SKU KIZAK 30535",
-        "Kızak KIZAK VOLVO OEM 68322778 KIZAK 30505",
-        "Kızak KIZAK RENAULT 420 OEM 68323675 KIZAK 30502",
-        "Kızak KALİPER SEMERİ OEM K004679 KIZAK 10511",
-        "Kızak KALİPER SEMERİ VOLVO FH 12 OEM MCK1319 KIZAK 30512"
+        "KIZAK 30535 Ford Cargo Kaliper Kızak",
+        "68322778 Volvo FH12 FM FL Kaliper Kızak",
+        "68323675 Renault Premium Magnum Kerax Midlum D Serisi Kaliper Kızak",
+        "K004679 ROR Meritor Knorr WABCO Kaliper Kızak KIZAK 10511",
+        "MCK1319 ROR Meritor Knorr WABCO Kaliper Kızak KIZAK 30512"
       ]
     },
     {
@@ -235,11 +235,11 @@
       "products": 14,
       "stockProducts": 14,
       "sampleQueries": [
-        "PAN17-19 KALİPER ÜST KAPAĞI SKU CH3193",
-        "Kaliper Mekanizma Ve Kapak Seti OEM 20-2606 CH2225",
-        "SB5 3 KABLOLU SENSÖRLÜ KAPAK MB SKU CH1078",
-        "SB6-7 SN6/SN7/SK7/NA7/ST7 3 KALOLU SCN TİP SENSÖRLÜ KAPAK MB SKU CH1071",
-        "SB6-7 SN6/SN7/SK7/NA7/ST7 3 KALOLU SENSÖRLÜ KAPAK MB SKU CH1070"
+        "ROR Meritor Knorr WABCO Kaliper Kapak Conta CH3193",
+        "20-2606 ROR Meritor Knorr WABCO Kaliper Kapak Conta CH2225",
+        "ROR Meritor Knorr WABCO Kaliper Kapak Conta CH1078",
+        "ROR Meritor Knorr WABCO Kaliper Kapak Conta CH1071",
+        "ROR Meritor Knorr WABCO Kaliper Kapak Conta CH1070"
       ]
     },
     {
@@ -247,11 +247,11 @@
       "products": 11,
       "stockProducts": 11,
       "sampleQueries": [
-        "SF HDX MODUL T PERNO TM TK OEM SAF 3 434 3861 00 CH6001",
-        "ELSA195-225 PERNO TM TK (TEK ÇİZGİLİ) OEM CMSK.7.1 CH2210",
-        "Perno Tamir Takımı OEM K000472 CH1039",
-        "SB6/SB7 PERNO TAMİR TAKIMI OEM K000132 CH1025",
-        "FRENCO SB6/SB7 PERNO TAMİR TAKIMI OEM K105599K55 10-1294"
+        "SAF 3 434 3861 00 ROR Meritor Knorr WABCO Kaliper Perno Tamir Takımı CH6001",
+        "CMSK.7.1 ROR Meritor Knorr Meritor Kaliper Perno Tamir Takımı",
+        "K000472 Knorr Kaliper Perno Tamir Takımı CH1039",
+        "K000132 Knorr Kaliper Perno Tamir Takımı CH1025",
+        "K105599K55 ROR Meritor Knorr WABCO Kaliper Perno Tamir Takımı 10-1294"
       ]
     },
     {
@@ -259,11 +259,11 @@
       "products": 8,
       "stockProducts": 8,
       "sampleQueries": [
-        "FRENCOO DUCO TOZ LASTİĞİ TK OEM MCK1139 20-2420",
-        "Ø 410 DUBLEX GRUBU TOZ LASTİĞİ (SİLİKON) İVECO 902 SKU 425245",
-        "522 TOZ LASTİĞİ (SİLİKON) SKU 425224",
-        "TOZ LASTİĞİ (SİLİKON)(110 TOZ LASTİK) SKU 425210",
-        "Kaliper Toz Lastiği Tamir Takımı (Ø 69 mm - 54 mm) SKU 421235"
+        "MCK1139 ROR Meritor Knorr Meritor Kaliper Toz Lastiği",
+        "425245 Ford Cargo Kaliper Toz Lastiği",
+        "Ford Cargo Krone Dorse Kögel Dorse Kaliper Toz Lastiği 425224",
+        "Ford Cargo Krone Dorse Kögel Dorse Kaliper Toz Lastiği 425210",
+        "421235 ROR Meritor Knorr WABCO Kaliper Toz Lastiği 69 mm 54 mm"
       ]
     },
     {
@@ -271,11 +271,11 @@
       "products": 7,
       "stockProducts": 7,
       "sampleQueries": [
-        "Mekanik Fren Cırcırı 7 Delik 10 Kanal EUR OEM 517465130 ESC 1760-1",
-        "Mekanik Fren Cırcırı 5 Delik 10 Kanal OEM 46404 ESC 1721",
-        "Mekanik Fren Cırcırı ESC 611",
-        "Mekanik Fren Cırcırı 3 Delik 10 Kanal OEM (A) A3 ESC 102",
-        "Mekanik Fren Cırcırı Mercedes Actros Axor Sol OEM 517454700 ESC 507401"
+        "517465130 Mekanik Fren Cırcırı 7 Delik 10 Kanal ESC 1760-1",
+        "46404 Mekanik Fren Cırcırı 5 Delik 10 Kanal",
+        "ESC 611 Mekanik Fren Cırcırı Mekanik Fren Cırcırı",
+        "(A) A3 Mekanik Fren Cırcırı 3 Delik 10 Kanal",
+        "517454700 Mercedes Axor Actros Mekanik Fren Cırcırı Sol"
       ]
     },
     {
@@ -283,11 +283,11 @@
       "products": 7,
       "stockProducts": 7,
       "sampleQueries": [
-        "Kaliper Tamir Takımı (Wabco) SN6/SN7/SK7/NA7/ST7/SL7/SM7 MİLSİZ KÖPRÜ BAĞLANTISI SKU CH1042",
-        "Kaliper Tamir Takımı (Wabco) SB5- 3 KABLOLU SENSÖR&KAPAK (12-160 MN TGL İÇİN) SKU 10-1194",
-        "Kaliper Tamir Takımı (Wabco) SN6SK7SL7SM7 PİSTON KAPAĞI SOMUNLU SKU 10-1403",
-        "Kaliper Tamir Takımı (Wabco) SB6-7 SENSÖRLÜ 3 KABLOLU KAPAK SKU 10-1093",
-        "Kaliper Tamir Takımı (Wabco) SB5-6-7 SN6-7 AYAR CİVATASI SKU 10-1080"
+        "ROR Meritor Knorr WABCO WABCO Kaliper Tamir Takımı CH1042",
+        "10-1194 Knorr WABCO Kaliper Tamir Takımı",
+        "ROR Meritor Knorr WABCO WABCO Kaliper Tamir Takımı 10-1403",
+        "ROR Meritor Knorr WABCO WABCO Kaliper Tamir Takımı 10-1093",
+        "ROR Meritor Knorr WABCO WABCO Kaliper Tamir Takımı 10-1080"
       ]
     },
     {
@@ -295,11 +295,11 @@
       "products": 6,
       "stockProducts": 6,
       "sampleQueries": [
-        "Lastik Körük Lastiği Mercedes Actros Axor 69 mm OEM K001300 CH1127",
-        "Lastik Körük Lastiği Disk imdatlı körüğü Kampana imdatlı körüğü körüğü Y.M SKU EYD 500 05-2-2",
-        "Lastik Körük Lastiği Disk imdatlı körüğü Kampana imdatlı körüğü körüğü E.M SKU EYD 500 05-2",
-        "Lastik Körük Lastiği Disk imdatlı körüğü Kampana imdatlı körüğü körüğü SKU EYD 205 06",
-        "Lastik Körük Lastiği Disk imdatlı körüğü Kampana imdatlı körüğü körüğü SKU EYD 205 03"
+        "K001300 Lastik Mercedes Axor Actros Körük Lastiği 69 mm",
+        "EYD 500 05-2-2 Lastik Ford Cargo Krone Dorse Kögel Dorse Körük Lastiği İmdatlı Y.M.",
+        "EYD 500 05-2 Lastik Ford Cargo Krone Dorse Kögel Dorse Körük Lastiği İmdatlı E.M.",
+        "Lastik Ford Cargo Krone Dorse Kögel Dorse Körük Lastiği İmdatlı EYD 205 06",
+        "Lastik Ford Cargo Krone Dorse Kögel Dorse Körük Lastiği İmdatlı EYD 205 03"
       ]
     },
     {
@@ -307,11 +307,11 @@
       "products": 6,
       "stockProducts": 6,
       "sampleQueries": [
-        "EBS Modulator 24V 15'Lİ EBS KABLOSU SKU EYD 80 34",
-        "EBS Modulator Ebs Dorse Kontrol Ventili Tamir Takimi SKU 303.08.0001.02",
-        "EBS Modulator EBS PARK BUTONU REKORLU 9710029120 SKU 303.16.0006",
-        "EBS Modulator EBS UZATMA SENSÖRÜ KNORR 4 MT SKU EF-0278324000",
-        "EBS Modulator EBS ANA HAT KABLOSU 12 MT. SKU W4491731200"
+        "Ford Cargo Krone Dorse Kögel Dorse EBS Modülatör ABS'li EYD 80 34",
+        "Ford Cargo Krone Dorse Kögel Dorse EBS Modülatör ABS'li 303.08.0001.02",
+        "Ford Cargo Krone Dorse Kögel Dorse EBS Modülatör ABS'li 303.16.0006",
+        "EF-0278324000 Scania P G R Ford Cargo EBS Modülatör ABS'li",
+        "Ford Cargo Krone Dorse Kögel Dorse EBS Modülatör ABS'li W4491731200"
       ]
     },
     {
@@ -319,10 +319,10 @@
       "products": 4,
       "stockProducts": 4,
       "sampleQueries": [
-        "MERCEDES PERNO PİMLİ SKU EYD 301 46",
-        "Perno Klips SKU EYD 209 11",
-        "MERCEDES PERNO STANDART SKU EYD 202 06",
-        "Perno Tapası 40x12 mm SKU 429002"
+        "Mercedes Axor Actros Perno EYD 301 46",
+        "EYD 209 11 Ford Cargo Krone Dorse Kögel Dorse Perno",
+        "Mercedes Axor Actros Perno EYD 202 06",
+        "429002 Ford Cargo Krone Dorse Kögel Dorse Perno 40x12 mm"
       ]
     },
     {
@@ -330,10 +330,10 @@
       "products": 4,
       "stockProducts": 4,
       "sampleQueries": [
-        "ABS Sensoru SCANI ARKA DÜZ SENSÖR SKU EF-1729793",
-        "ABS Sensoru SENSÖRSÜZ SAC KAPAK SKU CH1089",
-        "ABS Sensoru SB/SN 3 KABLOLU SENSÖR&KAPAK (MN TGA İÇİN) SKU 10-1096",
-        "ABS Sensoru PLASTİK SENSÖR KAPAĞI 2 ÇIKIŞLI SKU 421152"
+        "EF-1729793 ABS Sensoru Scania P G R Sensör Arka",
+        "ABS Sensoru Ford Cargo Krone Dorse Kögel Dorse Sensör CH1089",
+        "10-1096 ABS Sensoru MAN TGA TGS TGX TGM Sensör",
+        "ABS Sensoru Ford Cargo Krone Dorse Kögel Dorse Sensör 421152"
       ]
     },
     {
@@ -341,10 +341,10 @@
       "products": 4,
       "stockProducts": 4,
       "sampleQueries": [
-        "Kaliper Tamir Takımı (Elsa) ELSA2 MEKANİZMALI ALÜMİNYUM KAPAK TK SKU CH2224",
-        "Kaliper Tamir Takımı (Elsa) ELSA2-195-225 PERNO TK TAM TEK KANALLI OEM MCK1298 CH2045",
-        "Kaliper Tamir Takımı (Elsa) ELSA-2 RADIAL RNLT 420 - MN TGA SET SOL SKU FX-2030",
-        "Kaliper Tamir Takımı (Elsa) ELSA2 RADIAL ALÜMİNYUM KAPAK TK SKU 20-2609"
+        "ROR Meritor Knorr Meritor ELSA Kaliper Tamir Takımı CH2224",
+        "MCK1298 ROR Meritor Knorr Meritor ELSA Kaliper Tamir Takımı CH2045",
+        "FX-2030 ROR Meritor Meritor ELSA Kaliper Tamir Takımı Sol",
+        "ROR Meritor Knorr Meritor ELSA Kaliper Tamir Takımı 20-2609"
       ]
     },
     {
@@ -352,10 +352,10 @@
       "products": 4,
       "stockProducts": 4,
       "sampleQueries": [
-        "FRENCO MAXX 22 SET MAN TGX TGS TAMİR TAKIMI SKU FX-3050",
-        "Kaliper Tamir Takımı (Maxx22) MAXX 22T SET (LEFT) SKU FX-3095",
-        "Kaliper Tamir Takımı (Maxx22) MAXX22 PİSTON KAPAĞI OEM 640 322 650 4 30-3688",
-        "Kaliper Tamir Takımı (Maxx22) MAXX22 RULMAN TK SKU 30-3684"
+        "ROR Meritor Knorr WABCO MAXX22 Kaliper Tamir Takımı FX-3050",
+        "ROR Meritor Knorr WABCO MAXX22 Kaliper Tamir Takımı FX-3095",
+        "640 322 650 4 ROR Meritor Knorr WABCO MAXX22 Kaliper Tamir Takımı 30-3688",
+        "ROR Meritor Knorr WABCO MAXX22 Kaliper Tamir Takımı 30-3684"
       ]
     },
     {
@@ -363,9 +363,9 @@
       "products": 3,
       "stockProducts": 3,
       "sampleQueries": [
-        "SERİN/BPW DORSE MAKARA TAKIMI 45 LİK BURÇLU SKU EYD 301 05-2",
-        "420/200 BURÇSUZ SERTEL E.M SKU EYD 300 03",
-        "Kısa Lastikli Burç SKU 421181"
+        "EYD 301 05-2 Ford Cargo BPW Dorse Krone Dorse Kögel Dorse 45 Lik Burç Muylu Makarası",
+        "EYD 300 03 Ford Cargo Krone Dorse Kögel Dorse Burç Muylu E.M.",
+        "421181 Ford Cargo Krone Dorse Kögel Dorse Burç Muylu Kısa"
       ]
     }
   ]

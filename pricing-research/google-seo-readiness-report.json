@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-06-18T09:23:32.953Z",
+  "generatedAt": "2026-06-28T07:31:37.231Z",
   "site": "https://www.frenciniz.com",
   "totals": {
     "products": 1055,
     "categories": 53,
     "categoryPages": 52,
-    "landingPages": 1171,
-    "sitemapUrlEstimate": 2294
+    "landingPages": 1187,
+    "sitemapUrlEstimate": 2310
   },
   "productReadiness": {
     "productsWithImage": 953,
-    "productsWithOem": 704,
+    "productsWithOem": 699,
     "productsWithDescription": 1055,
     "stockProducts": 1055,
     "imageCoveragePercent": 90.33,
-    "oemCoveragePercent": 66.73,
+    "oemCoveragePercent": 66.26,
     "descriptionCoveragePercent": 100
   },
   "seoAssets": {
@@ -33,7 +33,7 @@
       "priority": "0.86",
       "matchedProducts": 24,
       "categories": "fren-diski|fren-diski-abs-li",
-      "topProducts": "231:Fren Diski Mercedes Actros Axor | 234:Fren Diski Mercedes Actros Axor | 227:Fren Diski Mercedes Actros Arocs Axor | 233:Fren Diski Mercedes Actros Axor | 235:Fren Diski Mercedes Actros Axor"
+      "topProducts": "231:Mercedes Axor Actros Fren Diski ESD 010 12 | 234:9424212112 Mercedes Axor Actros Fren Diski ESD 010 02 | 227:Mercedes Axor Actros Arocs Fren Diski | 233:Mercedes Axor Actros Fren Diski ESD 010 03 | 235:Mercedes Axor Actros Fren Diski ESD 010 01"
     },
     {
       "slug": "mercedes-actros-axor-fren-diski",
@@ -43,7 +43,7 @@
       "priority": "0.88",
       "matchedProducts": 24,
       "categories": "fren-diski|fren-diski-abs-li",
-      "topProducts": "231:Fren Diski Mercedes Actros Axor | 234:Fren Diski Mercedes Actros Axor | 233:Fren Diski Mercedes Actros Axor | 235:Fren Diski Mercedes Actros Axor | 228:Fren Diski Mercedes Actros Axor"
+      "topProducts": "231:Mercedes Axor Actros Fren Diski ESD 010 12 | 234:9424212112 Mercedes Axor Actros Fren Diski ESD 010 02 | 227:Mercedes Axor Actros Arocs Fren Diski | 233:Mercedes Axor Actros Fren Diski ESD 010 03 | 235:Mercedes Axor Actros Fren Diski ESD 010 01"
     },
     {
       "slug": "mercedes-axor-fren-diski",
@@ -53,7 +53,7 @@
       "priority": "0.84",
       "matchedProducts": 24,
       "categories": "fren-diski|fren-diski-abs-li",
-      "topProducts": "231:Fren Diski Mercedes Actros Axor | 234:Fren Diski Mercedes Actros Axor | 227:Fren Diski Mercedes Actros Arocs Axor | 233:Fren Diski Mercedes Actros Axor | 235:Fren Diski Mercedes Actros Axor"
+      "topProducts": "231:Mercedes Axor Actros Fren Diski ESD 010 12 | 234:9424212112 Mercedes Axor Actros Fren Diski ESD 010 02 | 227:Mercedes Axor Actros Arocs Fren Diski | 233:Mercedes Axor Actros Fren Diski ESD 010 03 | 235:Mercedes Axor Actros Fren Diski ESD 010 01"
     },
     {
       "slug": "mercedes-atego-fren-diski",
@@ -63,7 +63,7 @@
       "priority": "0.82",
       "matchedProducts": 24,
       "categories": "fren-diski|fren-diski-abs-li",
-      "topProducts": "232:Fren Diski Mercedes Atego Tourino | 183:Fren Diski Mercedes Atego | 231:Fren Diski Mercedes Actros Axor | 234:Fren Diski Mercedes Actros Axor | 227:Fren Diski Mercedes Actros Arocs Axor"
+      "topProducts": "232:Mercedes Travego Tourismo MAN Fortuna Otobüs Fren Diski ESD 010 04 | 183:Mercedes Atego Fren Diski | 231:Mercedes Axor Actros Fren Diski ESD 010 12 | 234:9424212112 Mercedes Axor Actros Fren Diski ESD 010 02 | 227:Mercedes Axor Actros Arocs Fren Diski"
     },
     {
       "slug": "man-tga-fren-diski",
@@ -73,7 +73,7 @@
       "priority": "0.86",
       "matchedProducts": 24,
       "categories": "fren-diski|fren-diski-abs-li",
-      "topProducts": "224:Fren Diski MAN TGA TGM TGS TGX | 223:Fren Diski MAN TGA TGM TGS TGX | 44:Fren Diski MAN TGA Arka | 42:Fren Diski MAN TGA Ön | 169:Fren Diski Mercedes Travego Tourismo"
+      "topProducts": "224:MAN Fortuna Otobüs Fren Diski ESD 020 09 | 169:Mercedes Travego Tourismo MAN Fortuna Otobüs Fren Diski ESD 140 01 | 223:MAN Fortuna Otobüs Fren Diski ESD 020 10 | 226:MAN TGA TGS TGX TGM Fren Diski ESD 020 04 | 225:MAN TGA TGS TGX TGM Fren Diski ESD 020 05"
     },
     {
       "slug": "man-tgs-tgx-fren-diski",
@@ -83,7 +83,7 @@
       "priority": "0.82",
       "matchedProducts": 24,
       "categories": "fren-diski|fren-diski-abs-li|disk-bijonu-civatasi|kaliper",
-      "topProducts": "224:Fren Diski MAN TGA TGM TGS TGX | 223:Fren Diski MAN TGA TGM TGS TGX | 11:Disk Bijonu MAN TGS | 169:Fren Diski Mercedes Travego Tourismo | 226:Fren Diski MAN L2000 M2000"
+      "topProducts": "224:MAN Fortuna Otobüs Fren Diski ESD 020 09 | 169:Mercedes Travego Tourismo MAN Fortuna Otobüs Fren Diski ESD 140 01 | 223:MAN Fortuna Otobüs Fren Diski ESD 020 10 | 226:MAN TGA TGS TGX TGM Fren Diski ESD 020 04 | 11:MAN TGA TGS TGX TGM Disk Bijonu"
     },
     {
       "slug": "volvo-fh-fren-diski",
@@ -93,7 +93,7 @@
       "priority": "0.84",
       "matchedProducts": 24,
       "categories": "fren-diski|fren-diski-abs-li",
-      "topProducts": "175:Fren Diski Volvo FH FM FL | 280:Fren Diski Volvo FH FM FL | 279:Fren Diski Volvo FH FM FL | 84:Fren Diski Volvo FH FM FL | 41:Fren Diski Volvo FH FM FL 410"
+      "topProducts": "169:Mercedes Travego Tourismo MAN Fortuna Otobüs Fren Diski ESD 140 01 | 175:Volvo FH12 FM FL Fren Diski ESD 110 01 | 280:Volvo FH12 FM FL Fren Diski ESD 110 01-1 | 279:Volvo FH12 FM FL Fren Diski ESD 110 01-3 | 84:Volvo FH12 FM FL Fren Diski ESD 110 05"
     },
     {
       "slug": "scania-bijon",
@@ -103,7 +103,7 @@
       "priority": "0.84",
       "matchedProducts": 24,
       "categories": "bijon|disk-bijonu-civatasi|somun-civata",
-      "topProducts": "384:Bijon Scania P G R Dps | 288:Bijon Scania P G R Dps | 286:Bijon Scania P G R Dps | 287:Bijon Scania P G R Dps | 54:Bijon Scania P G R Dps"
+      "topProducts": "384:Volvo FH12 FM FL Scania P G R Bijon DPS ESB 1426 10 | 288:Scania P G R Bijon DPS ESB 911 20-R | 286:Volvo FH12 FM FL Scania P G R Bijon DPS ESB 912 20-R | 287:Scania P G R Bijon DPS ESB 912 10-R | 54:Scania P G R Bijon DPS ESB 915 10-R"
     },
     {
       "slug": "ford-cargo-fren-kampanasi",
@@ -113,7 +113,7 @@
       "priority": "0.82",
       "matchedProducts": 24,
       "categories": "fren-kampanasi|bijon|fren-diski",
-      "topProducts": "322:Bijon Ford Cargo Dps | 133:Fren Kampanası Ford Cargo | 352:Bijon Renault Premium Magnum Kerax Midlum Volvo FH FM FL Ford Cargo 114 mm Arka 370 420 | 31:Bijon Ford Cargo 115 mm | 135:Fren Kampanası Ford Cargo Ön Arka 2524-3227-3230"
+      "topProducts": "373:Ford Cargo Bijon 73 mm | 377:Ford Cargo BPW Dorse Krone Dorse Kögel Dorse Bijon DPS ESB 1722 10 | 371:Ford Cargo SAF Dorse Krone Dorse Kögel Dorse Bijon DPS ESB 1816 10 | 310:Ford Cargo Bijon DPS ESB 621 10 | 325:Ford Cargo Krone Dorse Kögel Dorse Bijon DPS ESB 420 10"
     },
     {
       "slug": "renault-premium-fren-parcalari",
@@ -123,7 +123,7 @@
       "priority": "0.8",
       "matchedProducts": 24,
       "categories": "fren-diski|fren-kampanasi|otomatik-fren-circiri|fren-circiri",
-      "topProducts": "108:Fren Kampanası Renault Midlum Premium Magnum | 37:Fren Kampanası Renault Premium Magnum Kerax Midlum | 64:Fren Cırcırı Renault Premium Magnum Kerax Midlum | 63:Fren Cırcırı Renault Premium Magnum Kerax Midlum | 207:Fren Diski Renault Premium Magnum Kerax Midlum 10 Delik Ön 220"
+      "topProducts": "108:Renault Premium Magnum Kerax Midlum D Serisi Fren Kampanası ESK 140 03 | 209:Renault Premium Magnum Kerax Midlum D Serisi Fren Diski ESD 040 02 | 37:Renault Premium Magnum Kerax Midlum D Serisi Fren Kampanası ESK 140 05 | 64:Renault Premium Magnum Kerax Midlum D Serisi Fren Cırcırı ESC 79447 | 12:Renault Premium Magnum Kerax Midlum D Serisi Fren Diski ESD 040 31"
     },
     {
       "slug": "bpw-dorse-fren-kampanasi",
@@ -133,7 +133,7 @@
       "priority": "0.88",
       "matchedProducts": 24,
       "categories": "fren-kampanasi|porya|bijon",
-      "topProducts": "377:Bijon BPW ECOPlus Dps | 375:Bijon BPW ECOPlus Dps | 379:Bijon BPW ECOPlus Dps | 376:Bijon BPW ECOPlus Dps | 378:Bijon BPW ECOPlus Dps"
+      "topProducts": "377:Ford Cargo BPW Dorse Krone Dorse Kögel Dorse Bijon DPS ESB 1722 10 | 375:Ford Cargo BPW Dorse Krone Dorse Kögel Dorse Bijon DPS ESB 1725 10 | 379:Ford Cargo BPW Dorse Krone Dorse Kögel Dorse Bijon DPS ESB 1714 10 | 376:Ford Cargo BPW Dorse Krone Dorse Kögel Dorse Bijon DPS ESB 1723 10 | 378:Ford Cargo BPW Dorse Krone Dorse Kögel Dorse Bijon DPS ESB 1719 10"
     },
     {
       "slug": "saf-dorse-porya-kapagi",
@@ -143,7 +143,7 @@
       "priority": "0.86",
       "matchedProducts": 24,
       "categories": "porya|fren-diski|fren-kampanasi|bijon",
-      "topProducts": "373:Bijon SAF Holland 73 mm | 371:Bijon SAF Holland Dps | 372:Bijon SAF Holland Dps | 374:Bijon SAF Holland 83 mm YM | 369:Bijon SAF Holland Dps"
+      "topProducts": "373:Ford Cargo Bijon 73 mm | 371:Ford Cargo SAF Dorse Krone Dorse Kögel Dorse Bijon DPS ESB 1816 10 | 372:Ford Cargo SAF Dorse Krone Dorse Kögel Dorse Bijon DPS ESB 1815 10 | 374:Ford Cargo SAF Dorse Krone Dorse Kögel Dorse Bijon 83 mm Y.M. | 369:Ford Cargo SAF Dorse Krone Dorse Kögel Dorse Bijon DPS ESB 1818 10"
     },
     {
       "slug": "krone-dorse-fren-parcalari",
@@ -153,7 +153,7 @@
       "priority": "0.78",
       "matchedProducts": 24,
       "categories": "fren-diski|fren-kampanasi|bijon|porya",
-      "topProducts": "161:Fren Diski Kögel Krone | 7:Fren Diski Krone Göbekli 430 | 56:Bijon Mercedes Actros Axor Dps | 373:Bijon SAF Holland 73 mm | 351:Bijon Renault Premium Magnum Kerax Midlum DPS Arka 440"
+      "topProducts": "373:Ford Cargo Bijon 73 mm | 377:Ford Cargo BPW Dorse Krone Dorse Kögel Dorse Bijon DPS ESB 1722 10 | 371:Ford Cargo SAF Dorse Krone Dorse Kögel Dorse Bijon DPS ESB 1816 10 | 325:Ford Cargo Krone Dorse Kögel Dorse Bijon DPS ESB 420 10 | 375:Ford Cargo BPW Dorse Krone Dorse Kögel Dorse Bijon DPS ESB 1725 10"
     },
     {
       "slug": "agir-vasita-otomatik-fren-circiri",
@@ -163,7 +163,7 @@
       "priority": "0.86",
       "matchedProducts": 23,
       "categories": "otomatik-fren-circiri",
-      "topProducts": "51:Otomatik Fren Cırcırı Mercedes Actros Axor | 52:Otomatik Fren Cırcırı Mercedes Actros Axor | 62:Otomatik Fren Cırcırı ESC 80331 | 55:Otomatik Fren Cırcırı ESC 79360 | 66:Otomatik Fren Cırcırı ESC 79359"
+      "topProducts": "51:Mercedes Axor Actros Otomatik Fren Cırcırı ESC 80159 | 52:Mercedes Axor Actros Otomatik Fren Cırcırı ESC 80158 | 62:MAN Otomatik Fren Cırcırı ESC 80331 | 55:MAN Otomatik Fren Cırcırı ESC 79360 | 66:MAN Otomatik Fren Cırcırı ESC 79359"
     },
     {
       "slug": "agir-vasita-mekanik-fren-circiri",
@@ -173,7 +173,7 @@
       "priority": "0.8",
       "matchedProducts": 24,
       "categories": "mekanik-fren-circiri|fren-circiri",
-      "topProducts": "1:Mekanik Fren Cırcırı 7 Delik 10 Kanal EUR | 420:Mekanik Fren Cırcırı 7 Delik 10 Kanal | 283:Mekanik Fren Cırcırı 3 Delik 10 Kanal | 418:Mekanik Fren Cırcırı Mercedes Actros Axor Sağ | 417:Mekanik Fren Cırcırı Mercedes Actros Axor Sol"
+      "topProducts": "1:Mekanik Fren Cırcırı 7 Delik 10 Kanal ESC 1760-1 | 420:Mekanik Fren Cırcırı 7 Delik 10 Kanal ESC 1760 | 283:Mekanik Fren Cırcırı 3 Delik 10 Kanal | 418:Mercedes Axor Actros Mekanik Fren Cırcırı Sağ | 417:Mercedes Axor Actros Mekanik Fren Cırcırı Sol"
     },
     {
       "slug": "agir-vasita-kaliper-tamir-takimi",
@@ -183,7 +183,7 @@
       "priority": "0.88",
       "matchedProducts": 24,
       "categories": "kaliper-tamir-takimi|kaliper-perno-tamir-takimi|kaliper-toz-lastigi|kaliper-kapak-conta|kaliper-ayar-mekanizmasi",
-      "topProducts": "1007:Kaliper Ayar Civatası | 1016:Kaliper Toz Lastiği Tamir Takımı (Ø 69 mm) | 992:KLİPER AYAR CİVATASI (AXOR YM 3 YİVLİ CİVATA) | 1012:Kaliper Ayar Mekanizması (Yaylı) | 975:Kaliper Perno Tamir Takımı Knorr WABCO Meritor"
+      "topProducts": "1007:ROR Meritor Knorr WABCO Kaliper Ayar Mekanizması 421138 | 1016:ROR Meritor Knorr WABCO Kaliper Toz Lastiği 69 mm 421100 | 992:Mercedes Axor Kaliper Ayar Mekanizması Y.M. | 1012:ROR Meritor Knorr WABCO Kaliper Ayar Mekanizması 421127 | 975:ROR Meritor Knorr WABCO Kaliper Perno Tamir Takımı 427120"
     },
     {
       "slug": "knorr-wabco-kaliper-tamir-takimi",
@@ -193,7 +193,7 @@
       "priority": "0.82",
       "matchedProducts": 24,
       "categories": "kaliper-tamir-takimi|kaliper-tamir-takimi-wabco|kaliper-kapak-conta|kaliper-ayar-mekanizmasi",
-      "topProducts": "1005:Kaliper Masura Bilya Takımı Knorr WABCO Meritor | 994:Kaliper Masura Bilya Yatağı Knorr WABCO Meritor | 991:Kaliper Masura Bilya Yatağı Knorr WABCO Meritor | 1004:Kaliper Masura Bilya Takımı Knorr WABCO Meritor | 1040:Kaliper Masura Bilya Yatağı Knorr WABCO Meritor"
+      "topProducts": "1007:ROR Meritor Knorr WABCO Kaliper Ayar Mekanizması 421138 | 1012:ROR Meritor Knorr WABCO Kaliper Ayar Mekanizması 421127 | 1005:ROR Meritor Knorr WABCO Kaliper Tamir Takımı 421146 | 1006:ROR Meritor Knorr WABCO Kaliper Ayar Mekanizması 421139 | 994:ROR Meritor Knorr WABCO Kaliper Tamir Takımı 421225"
     },
     {
       "slug": "abs-sensoru-ebs-modulator",
@@ -203,7 +203,7 @@
       "priority": "0.86",
       "matchedProducts": 24,
       "categories": "abs-sensoru-modulu-kablo|ebs-modulator|sensor|elektrik-kablosu",
-      "topProducts": "600:EBS UZATMA SENSÖRÜ KNORR  4 MT | 677:EBS UZATMA KABLOSU WABCO 3 MT | 645:EBS ANA HAT KABLOSU 12 MT. | 537:24V 15'Lİ EBS KABLOSU | 574:EBS PARK BUTONU REKORLU 9710029120"
+      "topProducts": "600:Scania P G R Ford Cargo EBS Modülatör ABS'li | 677:Ford Cargo Krone Dorse Kögel Dorse EBS Modülatör ABS'li EF-4497230300 | 645:Ford Cargo Krone Dorse Kögel Dorse EBS Modülatör ABS'li W4491731200 | 537:Ford Cargo Krone Dorse Kögel Dorse EBS Modülatör ABS'li EYD 80 34 | 574:Ford Cargo Krone Dorse Kögel Dorse EBS Modülatör ABS'li 303.16.0006"
     },
     {
       "slug": "agir-vasita-fren-korugu",
@@ -213,7 +213,7 @@
       "priority": "0.86",
       "matchedProducts": 24,
       "categories": "fren-korugu",
-      "topProducts": "972:Fren Körüğü Disk imdatlı körüğü Kampana imdatlı körüğü körüğü 64 mm | 962:Fren Körüğü Renault | 557:Fren Körüğü Renault | 953:Fren Körüğü Disk imdatlı körüğü Kampana imdatlı körüğü körüğü 64 mm | 961:Fren Körüğü Renault"
+      "topProducts": "972:Ford Cargo Krone Dorse Kögel Dorse 16/24 D/P İmdatlı Fren Körüğü 64 mm Disk Tipi | 962:Renault Premium Magnum Kerax Midlum D Serisi İmdatlı Fren Körüğü Servis 8109 | 557:Renault Premium Magnum Kerax Midlum D Serisi İmdatlı Fren Körüğü 30 Luk Servis | 953:Ford Cargo Krone Dorse Kögel Dorse 20/24 D/P İmdatlı Fren Körüğü 64 mm Disk Tipi | 961:Renault Premium Magnum Kerax Midlum D Serisi İmdatlı Fren Körüğü Servis 8110"
     },
     {
       "slug": "agir-vasita-suspansiyon-korugu",
@@ -223,7 +223,7 @@
       "priority": "0.84",
       "matchedProducts": 24,
       "categories": "suspansiyon-korugu",
-      "topProducts": "887:Pistonsuz Körük 42813 S | 879:Komple Körük Metal Piston SAF Holland | 661:Pistonsuz Körük 424183 S1 | 916:Pistonsuz Körük 424158 S02 | 883:Pistonsuz Körük SAF Holland"
+      "topProducts": "887:Ford Cargo Krone Dorse Kögel Dorse Süspansiyon Körüğü 42813.S | 879:Ford Cargo SAF Dorse Krone Dorse Kögel Dorse Süspansiyon Körüğü 42941.C | 661:Ford Cargo Krone Dorse Kögel Dorse Süspansiyon Körüğü 424183.S1 | 885:DAF Cf Xf Süspansiyon Körüğü 42836.C1 | 925:Ford Cargo Krone Dorse Kögel Dorse Süspansiyon Körüğü 422211.P01"
     },
     {
       "slug": "agir-vasita-fren-balatasi",
@@ -233,7 +233,7 @@
       "priority": "0.88",
       "matchedProducts": 24,
       "categories": "fren-balatasi|fren-pabucu|percin",
-      "topProducts": "801:Fren Pabucu BPW ECOPlus 20 cm | 657:Disk Balatası Mercedes Actros Axor | 481:Fren Balatası Mercedes Actros Axor | 641:Disk Balatası Knorr WABCO Meritor | 834:Fren Pabucu 5 cm"
+      "topProducts": "801:Ford Cargo BPW Dorse Krone Dorse Kögel Dorse Fren Pabucu 20 cm EYD 80 03 | 657:29087 Mercedes Axor Actros Scania Disk Fren Balatasi 42182/1-300 | 481:Mercedes Axor Actros MAN TGA TGS TGX TGM Fren Balatası 22 Lik | 641:29195 SAF Dorse Disk Fren Balatasi 42322/1-300 | 834:Ford Cargo Krone Dorse Kögel Dorse Fren Pabucu 5 cm Makarası"
     },
     {
       "slug": "dorse-bijon-somun",
@@ -243,7 +243,7 @@
       "priority": "0.84",
       "matchedProducts": 24,
       "categories": "bijon|somun-civata|disk-bijonu-civatasi",
-      "topProducts": "373:Bijon SAF Holland 73 mm | 377:Bijon BPW ECOPlus Dps | 329:Disk Bijonu Mercedes Axor | 371:Bijon SAF Holland Dps | 375:Bijon BPW ECOPlus Dps"
+      "topProducts": "373:Ford Cargo Bijon 73 mm | 377:Ford Cargo BPW Dorse Krone Dorse Kögel Dorse Bijon DPS ESB 1722 10 | 329:Mercedes Axor Ford Cargo SAF Dorse Disk Bijonu | 371:Ford Cargo SAF Dorse Krone Dorse Kögel Dorse Bijon DPS ESB 1816 10 | 375:Ford Cargo BPW Dorse Krone Dorse Kögel Dorse Bijon DPS ESB 1725 10"
     },
     {
       "slug": "ekersan-fren-diski",
@@ -253,7 +253,7 @@
       "priority": "0.88",
       "matchedProducts": 24,
       "categories": "fren-diski|fren-diski-abs-li",
-      "topProducts": "231:Fren Diski Mercedes Actros Axor | 234:Fren Diski Mercedes Actros Axor | 186:Fren Diski BPW ECOPlus | 843:Fren Diski Knorr WABCO Meritor | 216:Fren Diski Iveco Eurocargo Stralis"
+      "topProducts": "231:Mercedes Axor Actros Fren Diski ESD 010 12 | 234:9424212112 Mercedes Axor Actros Fren Diski ESD 010 02 | 186:0308835057 BPW Kogel Krone Dorse Fren Diski ESD 070 23 | 843:ROR Meritor Knorr WABCO Meritor Haldex Fren Diski EYD 209 01 | 216:Ford Cargo Fren Diski ESD 030 09"
     },
     {
       "slug": "porya-kapagi",
@@ -263,7 +263,7 @@
       "priority": "0.82",
       "matchedProducts": 24,
       "categories": "porya|kece",
-      "topProducts": "1053:Porya Kapağı SAF Holland | 655:Porya BPW ECOPlus | 743:Porya SAF Holland | 744:Porya SAF Holland | 565:Porya BPW ECOPlus"
+      "topProducts": "1053:Ford Cargo SAF Dorse Krone Dorse Kögel Dorse Porya Kapağı EYD.075099 | 655:Ford Cargo BPW Dorse Krone Dorse Kögel Dorse Porya ESP.16.16.02 | 743:Ford Cargo SAF Dorse Krone Dorse Kögel Dorse Porya ESP.18.13 | 744:Ford Cargo SAF Dorse Krone Dorse Kögel Dorse Porya ESP.18.10 | 565:Ford Cargo BPW Dorse Krone Dorse Kögel Dorse Porya ESP.16.12.17"
     },
     {
       "slug": "man-81508030027-fren-diski",
@@ -273,7 +273,7 @@
       "priority": "0.9",
       "matchedProducts": 24,
       "categories": "fren-diski|fren-diski-abs-li",
-      "topProducts": "43:Fren Diski MAN L2000 M2000 TGM | 224:Fren Diski MAN TGA TGM TGS TGX | 223:Fren Diski MAN TGA TGM TGS TGX | 226:Fren Diski MAN L2000 M2000 | 225:Fren Diski MAN L2000 M2000"
+      "topProducts": "43:MAN TGA TGS TGX TGM Fren Diski ESD 020 17 | 224:MAN Fortuna Otobüs Fren Diski ESD 020 09 | 223:MAN Fortuna Otobüs Fren Diski ESD 020 10 | 226:MAN TGA TGS TGX TGM Fren Diski ESD 020 04 | 225:MAN TGA TGS TGX TGM Fren Diski ESD 020 05"
     },
     {
       "slug": "man-81508030042-fren-diski",
@@ -283,7 +283,7 @@
       "priority": "0.9",
       "matchedProducts": 24,
       "categories": "fren-diski|fren-diski-abs-li",
-      "topProducts": "72:Fren Diski MAN L2000 TGL TGM | 224:Fren Diski MAN TGA TGM TGS TGX | 223:Fren Diski MAN TGA TGM TGS TGX | 43:Fren Diski MAN L2000 M2000 TGM | 226:Fren Diski MAN L2000 M2000"
+      "topProducts": "72:81508030042 MAN TGL TGM Fren Diski ESD 020 12 | 224:MAN Fortuna Otobüs Fren Diski ESD 020 09 | 223:MAN Fortuna Otobüs Fren Diski ESD 020 10 | 226:MAN TGA TGS TGX TGM Fren Diski ESD 020 04 | 225:MAN TGA TGS TGX TGM Fren Diski ESD 020 05"
     },
     {
       "slug": "man-81508030063-fren-diski",
@@ -293,7 +293,7 @@
       "priority": "0.9",
       "matchedProducts": 24,
       "categories": "fren-diski|fren-diski-abs-li",
-      "topProducts": "222:Fren Diski MAN TGL | 224:Fren Diski MAN TGA TGM TGS TGX | 223:Fren Diski MAN TGA TGM TGS TGX | 72:Fren Diski MAN L2000 TGL TGM | 169:Fren Diski Mercedes Travego Tourismo"
+      "topProducts": "222:MAN TGA TGS TGX TGM TGL Fren Diski | 224:MAN Fortuna Otobüs Fren Diski ESD 020 09 | 223:MAN Fortuna Otobüs Fren Diski ESD 020 10 | 72:81508030042 MAN TGL TGM Fren Diski ESD 020 12 | 169:Mercedes Travego Tourismo MAN Fortuna Otobüs Fren Diski ESD 140 01"
     },
     {
       "slug": "man-81508030024-fren-diski",
@@ -303,7 +303,7 @@
       "priority": "0.9",
       "matchedProducts": 24,
       "categories": "fren-diski|fren-diski-abs-li",
-      "topProducts": "226:Fren Diski MAN L2000 M2000 | 225:Fren Diski MAN L2000 M2000 | 224:Fren Diski MAN TGA TGM TGS TGX | 223:Fren Diski MAN TGA TGM TGS TGX | 43:Fren Diski MAN L2000 M2000 TGM"
+      "topProducts": "226:MAN TGA TGS TGX TGM Fren Diski ESD 020 04 | 225:MAN TGA TGS TGX TGM Fren Diski ESD 020 05 | 224:MAN Fortuna Otobüs Fren Diski ESD 020 09 | 223:MAN Fortuna Otobüs Fren Diski ESD 020 10 | 43:MAN TGA TGS TGX TGM Fren Diski ESD 020 17"
     },
     {
       "slug": "man-81508030041-fren-diski",
@@ -313,7 +313,7 @@
       "priority": "0.9",
       "matchedProducts": 24,
       "categories": "fren-diski|fren-diski-abs-li",
-      "topProducts": "223:Fren Diski MAN TGA TGM TGS TGX | 224:Fren Diski MAN TGA TGM TGS TGX | 72:Fren Diski MAN L2000 TGL TGM | 43:Fren Diski MAN L2000 M2000 TGM | 44:Fren Diski MAN TGA Arka"
+      "topProducts": "223:MAN Fortuna Otobüs Fren Diski ESD 020 10 | 224:MAN Fortuna Otobüs Fren Diski ESD 020 09 | 169:Mercedes Travego Tourismo MAN Fortuna Otobüs Fren Diski ESD 140 01 | 226:MAN TGA TGS TGX TGM Fren Diski ESD 020 04 | 225:MAN TGA TGS TGX TGM Fren Diski ESD 020 05"
     },
     {
       "slug": "mercedes-9754210212-fren-diski",
@@ -323,7 +323,7 @@
       "priority": "0.9",
       "matchedProducts": 24,
       "categories": "fren-diski|fren-diski-abs-li",
-      "topProducts": "232:Fren Diski Mercedes Atego Tourino | 183:Fren Diski Mercedes Atego | 231:Fren Diski Mercedes Actros Axor | 234:Fren Diski Mercedes Actros Axor | 227:Fren Diski Mercedes Actros Arocs Axor"
+      "topProducts": "232:Mercedes Travego Tourismo MAN Fortuna Otobüs Fren Diski ESD 010 04 | 169:Mercedes Travego Tourismo MAN Fortuna Otobüs Fren Diski ESD 140 01 | 183:Mercedes Atego Fren Diski | 231:Mercedes Axor Actros Fren Diski ESD 010 12 | 234:9424212112 Mercedes Axor Actros Fren Diski ESD 010 02"
     },
     {
       "slug": "man-29279-fren-balatasi",
@@ -333,7 +333,7 @@
       "priority": "0.9",
       "matchedProducts": 24,
       "categories": "fren-balatasi",
-      "topProducts": "720:Fren Balatası MAN TGA TGS TGX | 1017:Disk Balatası MAN TGA TGS TGX | 481:Fren Balatası Mercedes Actros Axor | 479:Fren Balatası Mercedes Actros Axor | 723:Fren Balatası Iveco Eurocargo Stralis Trakker MAN Otokar Doruk Sultan"
+      "topProducts": "720:29279 MAN TGA TGS TGX Disk Fren Balatasi PWR-5020 | 1017:29279 MAN TGA TGS TGX Disk Fren Balatasi 42325/1-300 | 481:Mercedes Axor Actros MAN TGA TGS TGX TGM Fren Balatası 22 Lik | 479:Mercedes Axor Actros MAN TGA TGS TGX TGM Fren Balatası 18 Lik | 723:MAN TGA TGS TGX TGM Ford Cargo Fren Balatası"
     },
     {
       "slug": "man-81436010163-roll-koruk",
@@ -343,7 +343,7 @@
       "priority": "0.9",
       "matchedProducts": 24,
       "categories": "suspansiyon-korugu",
-      "topProducts": "447:Roll Körük MAN TGA TGS TGX | 896:Roll Körük Mercedes Travego Tourismo | 430:Roll Körük Mercedes Travego Tourismo | 428:Roll Körük Mercedes Travego Tourismo | 887:Pistonsuz Körük 42813 S"
+      "topProducts": "447:MAN TGA TGS TGX TGM Süspansiyon Körüğü FT 341888 | 615:MAN TGA TGS TGX TGM Süspansiyon Körüğü 424884.S02 | 610:MAN TGA TGS TGX TGM Ford Cargo SAF Dorse Süspansiyon Körüğü | 896:Mercedes Travego Tourismo MAN Fortuna Otobüs Süspansiyon Körüğü 42720.R | 609:MAN TGA TGS TGX TGM Süspansiyon Körüğü 424884.C"
     },
     {
       "slug": "ford-cargo-9c46-1125-ab-fren-kampanasi",
@@ -353,7 +353,7 @@
       "priority": "0.91",
       "matchedProducts": 24,
       "categories": "fren-kampanasi",
-      "topProducts": "133:Fren Kampanası Ford Cargo | 135:Fren Kampanası Ford Cargo Ön Arka 2524-3227-3230 | 134:Fren Kampanası Ford Cargo Ön 2524-2530-3230 3235 3430 | 137:Fren Kampanası Ford Cargo Arka 2520 | 136:Fren Kampanası Ford Cargo Ön 2520"
+      "topProducts": "133:Ford Cargo Fren Kampanası ESK 040 12 | 97:Ford Cargo Krone Dorse Kögel Dorse Fren Kampanası ESK 160 29-S | 151:MAN Ford Cargo Krone Dorse Kögel Dorse Fren Kampanası ESK 020 05 | 152:MAN Ford Cargo Krone Dorse Kögel Dorse Fren Kampanası ESK 020 03 | 91:Ford Cargo Krone Dorse Kögel Dorse Fren Kampanası ESK 160 87"
     },
     {
       "slug": "daf-cf-xf-99717-bijon",
@@ -363,7 +363,7 @@
       "priority": "0.9",
       "matchedProducts": 24,
       "categories": "bijon|disk-bijonu-civatasi|somun-civata",
-      "topProducts": "398:Bijon DAF CF XF Dps | 395:Bijon DAF CF XF Dps | 394:Bijon DAF CF XF Dps | 396:Bijon DAF CF XF Dps | 397:Bijon DAF CF XF Dps"
+      "topProducts": "398:DAF Cf Xf Bijon DPS ESB 1010 10 | 395:DAF Cf Xf Bijon DPS ESB 1013 10 | 394:DAF Cf Xf Bijon DPS ESB 1014 10 | 396:DAF Cf Xf Bijon DPS ESB 1012 10 | 397:DAF Cf Xf Bijon DPS ESB 1010 20"
     },
     {
       "slug": "wabco-4630840410-ebs-dingil-kaldirma-bobini",
@@ -373,7 +373,7 @@
       "priority": "0.88",
       "matchedProducts": 24,
       "categories": "dingil|ebs-modulator|abs-sensoru-modulu-kablo",
-      "topProducts": "551:EBS DİNGİL KALDIRMA BOBİNİ REKORSUZ 4630840410 | 792:126*156.5*7.8 BPW ABS DİŞLİSİ ÇELİK | 785:SAF DORSE ABS DİŞLİSİ | 790:BPW ABS DİŞLİSİ Y.M SAÇ | 654:SAF ABS DİŞLİSİ YENİ MODEL 100 DİŞ SAÇ BÜYÜK"
+      "topProducts": "551:Ford Cargo Krone Dorse Kögel Dorse Dingil Parçası ABS'li | 792:Ford Cargo BPW Dorse Krone Dorse Kögel Dorse ABS Sensörü ABS'li | 785:Ford Cargo SAF Dorse Krone Dorse Kögel Dorse ABS Sensörü ABS'li EYD 91 11 | 790:Ford Cargo BPW Dorse Krone Dorse Kögel Dorse ABS Sensörü ABS'li Y.M. | 654:Ford Cargo SAF Dorse Krone Dorse Kögel Dorse ABS Sensörü ABS'li EYD 91 22"
     },
     {
       "slug": "tirsan-dorse-orta-yay-27-cm",
@@ -383,7 +383,17 @@
       "priority": "0.88",
       "matchedProducts": 24,
       "categories": "yay",
-      "topProducts": "828:TIRSAN DORSE ORTA YAY (SERTEL) 27 CM | 827:TIRSAN DORSE ORTA YAY 28 CM | 432:TIRSAN DORSE KISA YAY 24 CM | 826:TIRSAN DORSE BÜYÜK YAY 29 CM | 829:TIRSAN DORSE KÜÇÜK YAY 25 CM"
+      "topProducts": "828:Ford Cargo Krone Dorse Kögel Dorse Fren Yayı 27 cm | 827:Ford Cargo Krone Dorse Kögel Dorse Fren Yayı 28 cm | 432:Ford Cargo Krone Dorse Kögel Dorse Fren Yayı 24 cm Kısa | 826:Ford Cargo Krone Dorse Kögel Dorse Fren Yayı 29 cm | 874:Ford Cargo Krone Dorse Kögel Dorse Fren Yayı Uzun"
+    },
+    {
+      "slug": "tirsan-dorse-kisa-yay-24-cm",
+      "heading": "Tırsan Dorse Kısa Yay 24 CM",
+      "title": "Tırsan Dorse Kısa Yay 24 CM | EYD 70 04-3 | Frenciniz",
+      "description": "Tırsan Dorse Kısa Yay 24 CM icin kısa yay urunlerinde stok ve fiyat secenekleri. OEM/parca kodu, eski parca fotografi veya sase ile uyumluluk teyidi, ayni gun kargo ve WhatsApp teklif.",
+      "priority": "0.88",
+      "matchedProducts": 24,
+      "categories": "yay",
+      "topProducts": "432:Ford Cargo Krone Dorse Kögel Dorse Fren Yayı 24 cm Kısa | 828:Ford Cargo Krone Dorse Kögel Dorse Fren Yayı 27 cm | 827:Ford Cargo Krone Dorse Kögel Dorse Fren Yayı 28 cm | 826:Ford Cargo Krone Dorse Kögel Dorse Fren Yayı 29 cm | 874:Ford Cargo Krone Dorse Kögel Dorse Fren Yayı Uzun"
     },
     {
       "slug": "360573-1414435-fren-kampanasi",
@@ -393,37 +403,27 @@
       "priority": "0.88",
       "matchedProducts": 24,
       "categories": "fren-kampanasi",
-      "topProducts": "114:Fren Kampanası ESK 090 02 | 97:Fren Kampanası ESK 160 29 S | 151:Fren Kampanası ESK 020 05 | 152:Fren Kampanası ESK 020 03 | 91:Fren Kampanası 420 200 246 687"
+      "topProducts": "114:Ford Cargo Krone Dorse Kögel Dorse Fren Kampanası ESK 090 02 | 97:Ford Cargo Krone Dorse Kögel Dorse Fren Kampanası ESK 160 29-S | 151:MAN Ford Cargo Krone Dorse Kögel Dorse Fren Kampanası ESK 020 05 | 152:MAN Ford Cargo Krone Dorse Kögel Dorse Fren Kampanası ESK 020 03 | 91:Ford Cargo Krone Dorse Kögel Dorse Fren Kampanası ESK 160 87"
     },
     {
-      "slug": "mercedes-actros-fren-kampanasi",
-      "heading": "Mercedes Actros Fren Kampanası",
-      "title": "Mercedes Actros Fren Kampanası | Fiyat ve Stok | Frenciniz",
-      "description": "Mercedes Actros Fren Kampanası icin fren kampanası urunlerinde stok ve fiyat secenekleri. OEM/parca kodu, eski parca fotografi veya sase ile uyumluluk teyidi, ayni gun kargo ve WhatsApp teklif.",
-      "priority": "0.88",
+      "slug": "29246-mercedes-axor-actros-fren-balatasi",
+      "heading": "29246 Mercedes Axor Actros Fren Balatasi",
+      "title": "29246 Mercedes Axor Actros Fren Balatasi | Stok Fiyat OEM Teyit | Frenciniz",
+      "description": "29246 Mercedes Axor Actros Fren Balatasi icin fren balatasi urunlerinde stok ve fiyat secenekleri. OEM/parca kodu, eski parca fotografi veya sase ile uyumluluk teyidi, ayni gun kargo ve WhatsApp teklif.",
+      "priority": "0.94",
       "matchedProducts": 24,
-      "categories": "fren-kampanasi",
-      "topProducts": "153:Fren Kampanası Mercedes Actros Axor | 18:Fren Kampanası Mercedes Actros Axor | 156:Fren Kampanası Mercedes Actros Axor 18 cm Ön 2521-2524-3031 | 157:Fren Kampanası Mercedes Actros Axor 22 cm Arka 2517-2521 | 82:Fren Kampanası Mercedes Actros Axor"
+      "categories": "fren-balatasi",
+      "topProducts": "1018:29246 Mercedes Axor Actros On Disk Fren Balatasi 42313/2-300 | 735:29246 Mercedes Axor Actros On Disk Fren Balatasi PWR-5005 | 657:29087 Mercedes Axor Actros Scania Disk Fren Balatasi 42182/1-300 | 481:Mercedes Axor Actros MAN TGA TGS TGX TGM Fren Balatası 22 Lik | 479:Mercedes Axor Actros MAN TGA TGS TGX TGM Fren Balatası 18 Lik"
     },
     {
-      "slug": "mercedes-actros-fren-balatasi",
-      "heading": "Mercedes Actros Fren Balatası",
-      "title": "Mercedes Actros Fren Balatası | Fiyat ve Stok | Frenciniz",
-      "description": "Mercedes Actros Fren Balatası icin fren balatası urunlerinde stok ve fiyat secenekleri. OEM/parca kodu, eski parca fotografi veya sase ile uyumluluk teyidi, ayni gun kargo ve WhatsApp teklif.",
-      "priority": "0.88",
+      "slug": "29087-mercedes-axor-actros-scania-fren-balatasi",
+      "heading": "29087 Mercedes Axor Actros Scania Fren Balatasi",
+      "title": "29087 Mercedes Axor Actros Scania Fren Balatasi | Stok Fiyat OEM Teyit | Frenciniz",
+      "description": "29087 Mercedes Axor Actros Scania Fren Balatasi icin fren balatasi urunlerinde stok ve fiyat secenekleri. OEM/parca kodu, eski parca fotografi veya sase ile uyumluluk teyidi, ayni gun kargo ve WhatsApp teklif.",
+      "priority": "0.93",
       "matchedProducts": 24,
-      "categories": "fren-balatasi|fren-pabucu|percin",
-      "topProducts": "481:Fren Balatası Mercedes Actros Axor | 479:Fren Balatası Mercedes Actros Axor | 644:Fren Pabucu Mercedes Actros Axor 22 cm | 733:Fren Balatası Mercedes Actros Axor 430 440 450 460 | 724:Fren Balatası Mercedes Actros Axor"
-    },
-    {
-      "slug": "mercedes-actros-fren-korugu",
-      "heading": "Mercedes Actros Fren Körüğü",
-      "title": "Mercedes Actros Fren Körüğü | Fiyat ve Stok | Frenciniz",
-      "description": "Mercedes Actros Fren Körüğü icin fren körüğü urunlerinde stok ve fiyat secenekleri. OEM/parca kodu, eski parca fotografi veya sase ile uyumluluk teyidi, ayni gun kargo ve WhatsApp teklif.",
-      "priority": "0.87",
-      "matchedProducts": 24,
-      "categories": "fren-korugu",
-      "topProducts": "957:Fren Körüğü Mercedes Travego Tourismo | 972:Fren Körüğü Disk imdatlı körüğü Kampana imdatlı körüğü körüğü 64 mm | 962:Fren Körüğü Renault | 557:Fren Körüğü Renault | 953:Fren Körüğü Disk imdatlı körüğü Kampana imdatlı körüğü körüğü 64 mm"
+      "categories": "fren-balatasi",
+      "topProducts": "657:29087 Mercedes Axor Actros Scania Disk Fren Balatasi 42182/1-300 | 736:29087 Mercedes Axor Actros Scania Disk Fren Balatasi PWR-5004 | 658:29087 Mercedes Axor Actros Scania Disk Fren Balatasi 42182/2-300 | 690:Mercedes Axor Actros Scania P G R Ford Cargo Fren Balatası | 1041:Mercedes Axor Actros Scania P G R Ford Cargo Disk Fren Balatası"
     }
   ],
   "landingPagesNeedingMoreSpecificProducts": [],

@@ -9,7 +9,7 @@ import {
   landingSearchPhrases,
   landingWhatsappUrl,
 } from "./seo-landing.js";
-import { productSeoUrl } from "../../shared/product-seo.js";
+import { productSearchName, productSeoUrl } from "../../shared/product-seo.js";
 import { buildOrganizationJsonLd, buildProductJsonLd } from "../../shared/structured-data.js";
 
 function productUrl(product) {
@@ -24,10 +24,11 @@ function renderProductCard(product, categories) {
   const img = absoluteImage(product);
   const cat = categoryName(categories, product.cat);
   const stock = Number(product.stock || 0);
+  const displayName = productSearchName(product, categories, 140) || product.name;
   const oem = product.oem ? `<div class="muted">OEM: ${htmlEscape(String(product.oem).slice(0, 90))}</div>` : "";
   const quoteText = [
     "Merhaba Frenciniz, bu landing sayfasindaki urun icin fiyat, stok ve uyumluluk teyidi istiyorum.",
-    `Urun: ${product.name || "-"}`,
+    `Urun: ${displayName || product.name || "-"}`,
     `SKU: ${product.sku || "-"}`,
     `OEM: ${product.oem || "-"}`,
     `Link: ${productUrl(product)}`,
@@ -37,11 +38,11 @@ function renderProductCard(product, categories) {
   const quoteUrl = `https://wa.me/908508887881?text=${encodeURIComponent(quoteText)}`;
   return `
     <article class="product-card">
-      <a href="${productUrl(product)}" class="image-link" aria-label="${htmlEscape(product.name)}">
-        <img src="${htmlEscape(img)}" alt="${htmlEscape(product.name)}" loading="lazy" decoding="async">
+      <a href="${productUrl(product)}" class="image-link" aria-label="${htmlEscape(displayName)}">
+        <img src="${htmlEscape(img)}" alt="${htmlEscape(displayName)}" loading="lazy" decoding="async">
       </a>
       <div class="product-body">
-        <a href="${productUrl(product)}" class="product-title">${htmlEscape(product.name)}</a>
+        <a href="${productUrl(product)}" class="product-title">${htmlEscape(displayName)}</a>
         <div class="meta">${htmlEscape(product.brand || "Ekersan")} · ${htmlEscape(product.sku || "")}</div>
         <div class="muted">${htmlEscape(cat)}</div>
         ${oem}
