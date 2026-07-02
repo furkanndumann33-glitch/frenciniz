@@ -54,7 +54,7 @@ function socialCaption(groupName, productCount, topCompat) {
   return [
     `${groupName} grubunda ${productCount} urun: OEM kodu, sase veya eski parca fotosu ile hizli uyumluluk teyidi.`,
     `Uyum odagi: ${compatText}.`,
-    "WhatsApp: 0850 888 7881 | www.frenciniz.com",
+    "WhatsApp: 0545 608 7008 | www.frenciniz.com",
     "#frenciniz #agirvasita #kamyon #tir #otobus #dorse #frenaksami",
   ].join("\n");
 }
@@ -177,7 +177,7 @@ const socialPlan = {
     productCount: group.productCount,
     recommendedFormat: "Story + kare post",
     caption: socialCaption(group.name, group.productCount, group.topCompatibility),
-    storyText: `${group.name}: ${group.productCount} urun | OEM kodu ile hizli teklif | WhatsApp 0850 888 7881`,
+    storyText: `${group.name}: ${group.productCount} urun | OEM kodu ile hizli teklif | WhatsApp 0545 608 7008`,
   })),
 };
 

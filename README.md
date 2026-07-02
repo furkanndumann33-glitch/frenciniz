@@ -74,9 +74,9 @@ Erişim: `/admin-login` — Demo şifre: `admin123`
 
 - **Şirket:** Dumanlar Ticaret
 - **Adres:** Hızırbey Mahallesi, 1509 Sokak, No:24, Isparta Merkez
-- **Telefon:** 0850 888 7881 – 0545 608 7008
+- **Telefon:** 0545 608 7008
 - **E-posta:** info@frenciniz.com
-- **WhatsApp:** 0850 888 7881
+- **WhatsApp:** 0545 608 7008
 
 ## Lisans
 
