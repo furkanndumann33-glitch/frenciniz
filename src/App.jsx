@@ -2377,7 +2377,7 @@ function ProductLeadNudge() {
 }
 
 function ReferralSalesBar() {
-  const {isMobile, go, lang} = use$();
+  const {isMobile, go, lang, page, params, products} = use$();
   const source = useMemo(() => {
     if (typeof window === "undefined") return "";
     const qs = new URLSearchParams(window.location.search || "");
@@ -2390,9 +2390,11 @@ function ReferralSalesBar() {
     return "";
   }, []);
   if (!source) return null;
+  const productList = (products && products.length) ? products : PRODUCTS;
+  const product = page === "product" ? productList.find(item => item.id === params?.id) : null;
   const isFb = source === "facebook";
   const isMeta = source === "meta";
-  const href = waUrl([
+  const href = product ? productWhatsAppUrl(product, 1) : waUrl([
     "Merhaba Frenciniz, grup/arama uzerinden geldim.",
     "Parca uyumlulugu ve fiyat teklifi almak istiyorum.",
     "OEM / SKU / parca kodu:",
@@ -2400,20 +2402,26 @@ function ReferralSalesBar() {
     "Sase no:",
     "Eski parca fotosu gonderebilirim.",
   ].join("\n"));
+  const title = product
+    ? "Bu urun icin hizli teklif"
+    : (isFb ? "Facebook grubundan gelenlere hizli destek" : isMeta ? "Katalogdan gelenlere hizli destek" : "Google aramasindan gelenlere hizli destek");
+  const detail = product
+    ? "WhatsApp'a tiklayinca urun, SKU, OEM ve link otomatik gider. Arac modelini veya eski parca fotografini ekleyin; stok ve uyumlulugu hizli teyit edelim."
+    : "Parca kodu, OEM, sase veya eski parca fotosunu gonderin; uyumluluk ve stok teyidini hizli yapalim.";
   return (
     <section style={{background:isFb?"linear-gradient(135deg,#07111f,#0b2a1a 56%,#134e4a)":isMeta?"linear-gradient(135deg,#07111f,#3b0764 58%,#6d28d9)":"linear-gradient(135deg,#07111f,#172554 58%,#1e3a8a)",borderBottom:"1px solid rgba(255,255,255,.12)",color:"#fff"}}>
       <div style={{maxWidth:1220,margin:"0 auto",padding:isMobile?"12px 14px":"12px 24px",display:"flex",flexDirection:isMobile?"column":"row",alignItems:isMobile?"stretch":"center",justifyContent:"space-between",gap:10}}>
         <div style={{minWidth:0}}>
           <div style={{fontSize:11,fontWeight:950,color:isFb?"#86efac":isMeta?"#ddd6fe":"#bfdbfe",letterSpacing:.4,textTransform:"uppercase",marginBottom:3}}>
-            {isFb ? "Facebook grubundan gelenlere hizli destek" : isMeta ? "Katalogdan gelenlere hizli destek" : "Google aramasindan gelenlere hizli destek"}
+            {title}
           </div>
           <div style={{fontSize:isMobile?13:14,lineHeight:1.45,fontWeight:800}}>
-            Parca kodu, OEM, sase veya eski parca fotosunu gonderin; uyumluluk ve stok teyidini hizli yapalim.
+            {detail}
           </div>
         </div>
         <div style={{display:"flex",gap:8,flexWrap:"wrap",flexShrink:0}}>
-          <a href={href} target="_blank" rel="noopener noreferrer" data-lead-source={`${source}_referral_bar`} onClick={() => { recordLeadEvent("whatsapp", { source:`${source}_referral_bar`, href }); metaTrackCustom("WhatsAppLead", { source: `${source}_referral_bar` }); }} style={{minHeight:40,padding:"10px 14px",borderRadius:8,background:"#25D366",color:"#062813",fontSize:13,fontWeight:950,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center"}}>
-            WhatsApp'tan teyit al
+          <a href={href} target="_blank" rel="noopener noreferrer" data-lead-source={`${source}_referral_bar`} data-lead-product-id={product?.id || ""} data-lead-sku={product?.sku || ""} data-lead-category={product?.cat || ""} data-lead-value={product?.price || 0} onClick={() => { recordLeadEvent("whatsapp", { source:`${source}_referral_bar`, href, product, value:product?.price || 0 }); metaTrackCustom("WhatsAppLead", { source: `${source}_referral_bar`, productId: product?.id || "", sku: product?.sku || "" }); }} style={{minHeight:40,padding:"10px 14px",borderRadius:8,background:"#25D366",color:"#062813",fontSize:13,fontWeight:950,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center"}}>
+            {product ? "Bu urune teklif al" : "WhatsApp'tan teyit al"}
           </a>
           <button onClick={() => go("products")} style={{minHeight:40,padding:"10px 14px",borderRadius:8,border:"1px solid rgba(255,255,255,.26)",background:"rgba(255,255,255,.08)",color:"#fff",fontSize:13,fontWeight:900}}>
             Urunleri incele
