@@ -470,7 +470,7 @@ function directImg(url) {
 
 // ===== SEO HELPERS =====
 const SITE_URL = "https://www.frenciniz.com";
-const WHATSAPP_NUMBER = "905456087008";
+const WHATSAPP_NUMBER = "908508887881";
 const ETBIS_SITE_ID = "5a35ae3c-78e1-4f1a-8eec-8884decd2730";
 const ETBIS_VERIFY_URL = `https://etbis.ticaret.gov.tr/tr/SiteSorgulamaSonuc?siteId=${ETBIS_SITE_ID}`;
 const ETBIS_QR = "/img/site/etbis-qr.png";
@@ -1410,7 +1410,7 @@ export default function App() {
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const baseTitle = "Frenciniz - Ağır Vasıta Fren Aksamı | 0545 608 7008";
-    const baseDesc = "Kamyon, tır, otobüs ve dorse için fren diski, balata, kampana, kaliper, EBS modülatör ve ABS sensörü. 1000+ ürün, OEM/şase ile uyumluluk teyidi, aynı gün kargo, 12 taksit, 14 gün iade. Tel: 0545 608 7008 · WhatsApp: 0545 608 7008.";
+    const baseDesc = "Kamyon, tır, otobüs ve dorse için fren diski, balata, kampana, kaliper, EBS modülatör ve ABS sensörü. 1000+ ürün, OEM/şase ile uyumluluk teyidi, aynı gün kargo, 12 taksit, 14 gün iade. Tel: 0545 608 7008 · WhatsApp: 0850 888 7881.";
     const baseImg = `${SITE_URL}/img/site/frenciniz-logo-real-og.jpg`;
 
     // Önceki sayfa-spesifik JSON-LD'yi temizle
@@ -1683,7 +1683,7 @@ export default function App() {
           }))
         });
       }
-    } else if (page === "contact") { title = "İletişim - Frenciniz"; desc = "Frenciniz iletişim: 0545 608 7008 (Tel), 0545 608 7008 (WhatsApp), info@frenciniz.com. Isparta merkez."; canonical = `${SITE_URL}/contact`; }
+    } else if (page === "contact") { title = "İletişim - Frenciniz"; desc = "Frenciniz iletişim: 0545 608 7008 (Tel), 0850 888 7881 (WhatsApp), info@frenciniz.com. Isparta merkez."; canonical = `${SITE_URL}/contact`; }
     else if (page === "about") {
       title = "Hakkımızda — Frenciniz Dumanlar Ticaret | Isparta Fren Aksamı";
       desc = "Frenciniz (Dumanlar Ticaret) — Isparta merkezli ağır vasıta fren aksamı uzmanı. Ekersan ve muadil ürünlerde OEM/şase ile uyumluluk teyidi, 1000+ stoklu ürün, aynı gün kargo, 12 taksit, 14 gün iade.";
@@ -1715,7 +1715,7 @@ export default function App() {
     }
     else if (page === "faq") {
       title = "Sıkça Sorulan Sorular - Frenciniz | Tel: 0545 608 7008";
-      desc = "Kargo süresi, ödeme, iade, garanti, taksit ve ürün uyumluluğu hakkında sıkça sorulan sorular. Tel: 0545 608 7008 · WhatsApp: 0545 608 7008.";
+      desc = "Kargo süresi, ödeme, iade, garanti, taksit ve ürün uyumluluğu hakkında sıkça sorulan sorular. Tel: 0545 608 7008 · WhatsApp: 0850 888 7881.";
       canonical = `${SITE_URL}/faq`;
       const faqList = [
         {q:"Kargo süresi nedir?",a:"14:00'a kadar verilen siparişler aynı gün kargoya verilir. Aras Kargo ile gönderim yapılır."},
@@ -2178,7 +2178,7 @@ export default function App() {
                     <img src="/instagram.png" alt="Instagram" width={40} height={40} loading="lazy" decoding="async" style={{width:40,height:40,display:"block",borderRadius:8}}/>
                   </a>
                 </div>
-                <div style={{marginTop:16,fontSize:13,color:"#888",lineHeight:2}}>📍 Hızırbey Mah. 1509 Sok. No:24, Isparta<br/>📞 <a href="tel:+905456087008" style={{color:"#888",textDecoration:"none"}} onMouseEnter={e=>e.currentTarget.style.color="#ff6000"} onMouseLeave={e=>e.currentTarget.style.color="#888"}>0545 608 7008</a> – <a href="https://wa.me/905456087008" target="_blank" rel="noopener noreferrer" style={{color:"#888",textDecoration:"none"}} onMouseEnter={e=>e.currentTarget.style.color="#25D366"} onMouseLeave={e=>e.currentTarget.style.color="#888"}>💬 WhatsApp</a><br/>✉ <a href="mailto:info@frenciniz.com" style={{color:"#888",textDecoration:"none"}} onMouseEnter={e=>e.currentTarget.style.color="#ff6000"} onMouseLeave={e=>e.currentTarget.style.color="#888"}>info@frenciniz.com</a></div>
+                <div style={{marginTop:16,fontSize:13,color:"#888",lineHeight:2}}>📍 Hızırbey Mah. 1509 Sok. No:24, Isparta<br/>📞 <a href="tel:+905456087008" style={{color:"#888",textDecoration:"none"}} onMouseEnter={e=>e.currentTarget.style.color="#ff6000"} onMouseLeave={e=>e.currentTarget.style.color="#888"}>0545 608 7008</a> – <a href="https://wa.me/908508887881" target="_blank" rel="noopener noreferrer" style={{color:"#888",textDecoration:"none"}} onMouseEnter={e=>e.currentTarget.style.color="#25D366"} onMouseLeave={e=>e.currentTarget.style.color="#888"}>💬 WhatsApp</a><br/>✉ <a href="mailto:info@frenciniz.com" style={{color:"#888",textDecoration:"none"}} onMouseEnter={e=>e.currentTarget.style.color="#ff6000"} onMouseLeave={e=>e.currentTarget.style.color="#888"}>info@frenciniz.com</a></div>
                 <a href={ETBIS_VERIFY_URL} target="_blank" rel="noopener noreferrer" style={{marginTop:16,display:"inline-flex",alignItems:"center",gap:12,padding:"10px 12px",border:"1px solid rgba(255,255,255,.14)",borderRadius:8,background:"rgba(255,255,255,.04)",color:"#fff",textDecoration:"none",maxWidth:310}}>
                   <img src={ETBIS_QR} alt="ETBIS dogrulama karekodu" width={68} height={68} loading="lazy" decoding="async" style={{width:68,height:68,borderRadius:6,background:"#fff",padding:3,flexShrink:0}}/>
                   <span style={{display:"block"}}>
@@ -2604,8 +2604,9 @@ function CategorySidebarV2({go, activeCat, onSelect, isFixed}) {
 // ===== Text içindeki telefon/mail'leri tıklanabilir link yapar =====
 function linkifyContacts(text) {
   if (!text) return null;
-  return text.split(/(0545\s?608\s?7008|info@frenciniz\.com)/g).map((part, i) => {
+  return text.split(/(0850\s?888\s?7881|0545\s?608\s?7008|info@frenciniz\.com)/g).map((part, i) => {
     const clean = (part||"").replace(/\s+/g," ");
+    if (clean === "0850 888 7881" || clean === "08508887881") return <a key={i} href="https://wa.me/908508887881" target="_blank" rel="noopener noreferrer" style={{color:"#25D366",fontWeight:700,textDecoration:"underline"}}>{part}</a>;
     if (clean === "0545 608 7008" || clean === "05456087008") return <a key={i} href="tel:+905456087008" style={{color:"#ff6000",fontWeight:700,textDecoration:"underline"}}>{part}</a>;
     if (clean === "info@frenciniz.com") return <a key={i} href="mailto:info@frenciniz.com" style={{color:"#ff6000",textDecoration:"underline"}}>{part}</a>;
     return part;
@@ -2615,7 +2616,7 @@ function linkifyContacts(text) {
 // ===== Chat mesajlarındaki URL/telefon/mail'leri tıklanabilir yapar =====
 function formatChatText(text) {
   if (!text) return null;
-  const URL_RE = /(https?:\/\/[^\s)]+|0545\s?608\s?7008|info@frenciniz\.com)/g;
+  const URL_RE = /(https?:\/\/[^\s)]+|0850\s?888\s?7881|0545\s?608\s?7008|info@frenciniz\.com)/g;
   const parts = text.split(URL_RE);
   return parts.map((part, i) => {
     if (!part) return null;
@@ -2624,6 +2625,7 @@ function formatChatText(text) {
       return <a key={i} href={trimmed} target="_blank" rel="noopener noreferrer" style={{color:"inherit",textDecoration:"underline",wordBreak:"break-all"}}>{trimmed}</a>;
     }
     const clean = trimmed.replace(/\s+/g, " ");
+    if (clean === "0850 888 7881") return <a key={i} href="https://wa.me/908508887881" target="_blank" rel="noopener noreferrer" style={{color:"inherit",textDecoration:"underline",fontWeight:600}}>{part}</a>;
     if (clean === "0545 608 7008") return <a key={i} href="tel:+905456087008" style={{color:"inherit",textDecoration:"underline",fontWeight:600}}>{part}</a>;
     if (clean === "info@frenciniz.com") return <a key={i} href="mailto:info@frenciniz.com" style={{color:"inherit",textDecoration:"underline"}}>{part}</a>;
     return part;
@@ -3651,7 +3653,7 @@ function ProductDetailPage() {
         <div style={{display:"flex",flexWrap:"wrap",gap:10,padding:16,background:"#fff8f0",borderRadius:10,border:"1px solid #ffd9b3"}}>
           <div style={{width:"100%",fontSize:13,fontWeight:700,color:"#c05200",marginBottom:4}}>{lang==="en"?"Contact us for stock & compatibility":"Stok ve uyumluluk için bize ulaşın"}</div>
           <a href="tel:+905456087008" style={{flex:"1 1 150px",display:"flex",alignItems:"center",justifyContent:"center",gap:8,padding:"12px 20px",background:"#ff6000",color:"#fff",borderRadius:8,fontSize:14,fontWeight:700,textDecoration:"none",minHeight:44}}>📞 {lang==="en"?"Call":"Ara"}: 0545 608 7008</a>
-          <a href={whatsappQuoteHref} target="_blank" rel="noopener noreferrer" onClick={() => { recordLeadEvent("whatsapp", { source:"product_desc_whatsapp", href:whatsappQuoteHref, product:p, value:(p.price || 0) * qty }); metaTrack("Contact", metaProductPayload(p, qty, p.cat)); }} style={{flex:"1 1 150px",display:"flex",alignItems:"center",justifyContent:"center",gap:8,padding:"12px 20px",background:"#25D366",color:"#fff",borderRadius:8,fontSize:14,fontWeight:700,textDecoration:"none",minHeight:44}}>💬 WhatsApp: 0545 608 7008</a>
+          <a href={whatsappQuoteHref} target="_blank" rel="noopener noreferrer" onClick={() => { recordLeadEvent("whatsapp", { source:"product_desc_whatsapp", href:whatsappQuoteHref, product:p, value:(p.price || 0) * qty }); metaTrack("Contact", metaProductPayload(p, qty, p.cat)); }} style={{flex:"1 1 150px",display:"flex",alignItems:"center",justifyContent:"center",gap:8,padding:"12px 20px",background:"#25D366",color:"#fff",borderRadius:8,fontSize:14,fontWeight:700,textDecoration:"none",minHeight:44}}>💬 WhatsApp: 0850 888 7881</a>
           <a href="mailto:info@frenciniz.com" style={{flex:"1 1 150px",display:"flex",alignItems:"center",justifyContent:"center",gap:8,padding:"12px 20px",background:"#fff",color:"#333",border:"1px solid #ddd",borderRadius:8,fontSize:14,fontWeight:600,textDecoration:"none",minHeight:44}}>✉️ E-posta</a>
         </div>
         <section aria-label="Urun uyumluluk sorulari" style={{marginTop:18,padding:18,background:"#f8fafc",border:"1px solid #e2e8f0",borderRadius:8}}>
@@ -4703,7 +4705,7 @@ function AccessibilityPage() {
 
       <div style={{marginTop:24,padding:"16px 20px",background:"#f9f9f9",borderRadius:8,border:"1px solid #eee",fontSize:13,color:"#888",lineHeight:2}}>
         📍 Hızırbey Mah. 1509 Sok. No:24, Isparta Merkez<br/>
-        📞 <a href="tel:+905456087008" style={{color:"#ff6000",textDecoration:"none"}}>0545 608 7008</a> – <a href="https://wa.me/905456087008" target="_blank" rel="noopener noreferrer" style={{color:"#25D366",textDecoration:"none"}}>💬 WhatsApp</a><br/>
+        📞 <a href="tel:+905456087008" style={{color:"#ff6000",textDecoration:"none"}}>0545 608 7008</a> – <a href="https://wa.me/908508887881" target="_blank" rel="noopener noreferrer" style={{color:"#25D366",textDecoration:"none"}}>💬 WhatsApp</a><br/>
         ✉ info@frenciniz.com
       </div>
     </div>
@@ -4724,7 +4726,7 @@ function CompanyPage() {
         {label:en?"KEP Address":"KEP Adresi",value:"tarkan.duman.2@hs01.kep.tr"},
         {label:en?"Corporate Email":"Kurumsal E-posta",value:"info@frenciniz.com"},
         {label:en?"Phone":"Telefon",value:"0545 608 7008"},
-        {label:"WhatsApp",value:"0545 608 7008"},
+        {label:"WhatsApp",value:"0850 888 7881"},
       ].map((row,i,arr) => (
         <div key={i} style={{display:"flex",padding:"14px 20px",borderBottom:i<arr.length-1?"1px solid #f0f0f0":"none",background:i%2===0?"#fafafa":"#fff"}}>
           <span style={{width:180,flexShrink:0,fontSize:14,fontWeight:600,color:"#1a1a1a"}}>{row.label}</span>
@@ -4821,7 +4823,7 @@ function KvkkPage() {
 
       <div style={{marginTop:24,padding:"16px 20px",background:"#f9f9f9",borderRadius:8,border:"1px solid #eee",fontSize:13,color:"#888",lineHeight:2}}>
         📍 Hızırbey Mah. 1509 Sok. No:24, Isparta Merkez<br/>
-        📞 <a href="tel:+905456087008" style={{color:"#ff6000",textDecoration:"none"}}>0545 608 7008</a> – <a href="https://wa.me/905456087008" target="_blank" rel="noopener noreferrer" style={{color:"#25D366",textDecoration:"none"}}>💬 WhatsApp</a><br/>
+        📞 <a href="tel:+905456087008" style={{color:"#ff6000",textDecoration:"none"}}>0545 608 7008</a> – <a href="https://wa.me/908508887881" target="_blank" rel="noopener noreferrer" style={{color:"#25D366",textDecoration:"none"}}>💬 WhatsApp</a><br/>
         ✉ info@frenciniz.com
       </div>
     </div>
@@ -4906,7 +4908,7 @@ function ReturnPolicyPage() {
 
       <div style={{marginTop:24,padding:"16px 20px",background:"#f9f9f9",borderRadius:8,border:"1px solid #eee",fontSize:13,color:"#888",lineHeight:2}}>
         📍 Hızırbey Mah. 1509 Sok. No:24, Isparta Merkez<br/>
-        📞 <a href="tel:+905456087008" style={{color:"#ff6000",textDecoration:"none"}}>0545 608 7008</a> – <a href="https://wa.me/905456087008" target="_blank" rel="noopener noreferrer" style={{color:"#25D366",textDecoration:"none"}}>💬 WhatsApp</a><br/>
+        📞 <a href="tel:+905456087008" style={{color:"#ff6000",textDecoration:"none"}}>0545 608 7008</a> – <a href="https://wa.me/908508887881" target="_blank" rel="noopener noreferrer" style={{color:"#25D366",textDecoration:"none"}}>💬 WhatsApp</a><br/>
         ✉ info@frenciniz.com
       </div>
     </div>
@@ -5092,7 +5094,7 @@ function ShippingPolicyPage() {
 
       <div style={{marginTop:24,padding:"16px 20px",background:"#f9f9f9",borderRadius:8,border:"1px solid #eee",fontSize:13,color:"#888",lineHeight:2}}>
         📍 Hızırbey Mah. 1509 Sok. No:24, Isparta Merkez<br/>
-        📞 <a href="tel:+905456087008" style={{color:"#ff6000",textDecoration:"none"}}>0545 608 7008</a> – <a href="https://wa.me/905456087008" target="_blank" rel="noopener noreferrer" style={{color:"#25D366",textDecoration:"none"}}>💬 WhatsApp</a><br/>
+        📞 <a href="tel:+905456087008" style={{color:"#ff6000",textDecoration:"none"}}>0545 608 7008</a> – <a href="https://wa.me/908508887881" target="_blank" rel="noopener noreferrer" style={{color:"#25D366",textDecoration:"none"}}>💬 WhatsApp</a><br/>
         ✉ info@frenciniz.com
       </div>
     </div>
@@ -5143,7 +5145,7 @@ function PrivacyPage() {
 
       <div style={{marginTop:24,padding:"16px 20px",background:"#f9f9f9",borderRadius:8,border:"1px solid #eee",fontSize:13,color:"#888",lineHeight:2}}>
         📍 Hızırbey Mah. 1509 Sok. No:24, Isparta Merkez<br/>
-        📞 <a href="tel:+905456087008" style={{color:"#ff6000",textDecoration:"none"}}>0545 608 7008</a> – <a href="https://wa.me/905456087008" target="_blank" rel="noopener noreferrer" style={{color:"#25D366",textDecoration:"none"}}>💬 WhatsApp</a><br/>
+        📞 <a href="tel:+905456087008" style={{color:"#ff6000",textDecoration:"none"}}>0545 608 7008</a> – <a href="https://wa.me/908508887881" target="_blank" rel="noopener noreferrer" style={{color:"#25D366",textDecoration:"none"}}>💬 WhatsApp</a><br/>
         ✉ info@frenciniz.com
       </div>
     </div>
@@ -5177,7 +5179,7 @@ function ContactPage() {
         {[
           {icon:"📍",label:en?"Address":"Adres",value:"Hızırbey Mah. 1509 Sok. No:24, Isparta Merkez",href:"https://maps.google.com/?q=Hızırbey+Mah+1509+Sok+24+Isparta"},
           {icon:"📞",label:en?"Phone":"Telefon",value:"0545 608 7008",href:"tel:+905456087008"},
-          {icon:"💬",label:"WhatsApp",value:"0545 608 7008",href:"https://wa.me/905456087008",color:"#25D366"},
+          {icon:"💬",label:"WhatsApp",value:"0850 888 7881",href:"https://wa.me/908508887881",color:"#25D366"},
           {icon:"✉️",label:en?"Email":"E-posta",value:"info@frenciniz.com",href:"mailto:info@frenciniz.com"},
           {icon:"⏰",label:en?"Working Hours":"Çalışma",value:en?"Mon–Sat 08:00–18:00":"Pzt–Cmt 08:00–18:00"},
         ].map((c,i) => {
@@ -5460,7 +5462,7 @@ function ChatWidget() {
         setChatMessages(prev => [...prev, data.botReply]);
       }
     } catch {
-      setChatMessages(prev => [...prev, {from:"bot", text:"Bağlantı hatası. Lütfen tekrar deneyin veya WhatsApp'tan ulaşın: 0545 608 7008", time:new Date().toISOString()}]);
+      setChatMessages(prev => [...prev, {from:"bot", text:"Bağlantı hatası. Lütfen tekrar deneyin veya WhatsApp'tan ulaşın: 0850 888 7881", time:new Date().toISOString()}]);
     }
     setTyping(false);
   };

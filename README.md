@@ -76,7 +76,7 @@ Erişim: `/admin-login` — Demo şifre: `admin123`
 - **Adres:** Hızırbey Mahallesi, 1509 Sokak, No:24, Isparta Merkez
 - **Telefon:** 0545 608 7008
 - **E-posta:** info@frenciniz.com
-- **WhatsApp:** 0545 608 7008
+- **WhatsApp:** 0850 888 7881
 
 ## Lisans
 

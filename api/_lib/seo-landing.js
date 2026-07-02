@@ -1359,5 +1359,5 @@ export function filterProductsForLanding(products, page, limit = 24) {
 export function landingWhatsappUrl(page) {
   const codeLine = page.demandCodes?.length ? ` OEM/WVA: ${page.demandCodes[0]}.` : "";
   const text = `${page.heading} icin stok, fiyat ve arac uyumlulugu teklifi almak istiyorum.${codeLine}`;
-  return `https://wa.me/905456087008?text=${encodeURIComponent(text)}`;
+  return `https://wa.me/908508887881?text=${encodeURIComponent(text)}`;
 }

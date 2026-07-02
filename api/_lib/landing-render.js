@@ -35,7 +35,7 @@ function renderProductCard(product, categories) {
     "Arac marka/model:",
     "Sase no:",
   ].join("\n");
-  const quoteUrl = `https://wa.me/905456087008?text=${encodeURIComponent(quoteText)}`;
+  const quoteUrl = `https://wa.me/908508887881?text=${encodeURIComponent(quoteText)}`;
   return `
     <article class="product-card">
       <a href="${productUrl(product)}" class="image-link" aria-label="${htmlEscape(displayName)}">
@@ -343,7 +343,7 @@ export function renderLanding(page, products, categories) {
       <a class="brand" href="${SITE}"><img src="${SITE}/img/site/frenciniz-logo-real.webp?v=1" alt="Frenciniz"></a>
       <div class="bar-actions">
         <a href="tel:+905456087008">0545 608 7008</a>
-        <a href="https://wa.me/905456087008">WhatsApp</a>
+        <a href="https://wa.me/908508887881">WhatsApp</a>
       </div>
     </div>
   </header>

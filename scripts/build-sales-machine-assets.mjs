@@ -361,7 +361,7 @@ Agir vasita fren parcasinda yanlis parca riski almayin.
 
 Fren diski, kampana, balata, bijon, porya, fren circiri, kaliper, ABS/EBS ve koruk gruplarinda OEM kodu, sase veya eski parca fotografiyla hizli uyumluluk teyidi yapiyoruz.
 
-WhatsApp: 0545 608 7008
+WhatsApp: 0850 888 7881
 Site: https://www.frenciniz.com/
 
 ## Post 2 - Mercedes
@@ -381,7 +381,7 @@ https://www.frenciniz.com/bpw-dorse-fren-kampanasi
 ## Story metni
 OEM kodunu gonder, dogru fren parcasini bulalim.
 Fren diski | Balata | Kampana | Bijon | Porya | Koruk
-WhatsApp: 0545 608 7008
+WhatsApp: 0850 888 7881
 `;
 fs.writeFileSync(path.join(OUT_DIR, "organic-social-posts.md"), socialPost, "utf8");
 
@@ -446,7 +446,7 @@ ${trafficBoostPosts.map((post, index) => `## ${index + 1}. ${post.title}
 
 ${post.text}
 
-WhatsApp: 0545 608 7008
+WhatsApp: 0850 888 7881
 ${post.url}
 `).join("\n")}`;
 
