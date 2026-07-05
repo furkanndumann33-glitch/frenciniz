@@ -159,3 +159,13 @@
 - Urun aksiyonlari: bugun sepete ekleme 0, favori 0; son 7 gunde sepete ekleme 5, favori 0.
 - Canli dogrulama: ana sayfa, /fren-diski, /fren-balatasi, urun 227, katalog, sitemap, robots, Merchant/Meta feed ve /feeds aliaslari 200; katalog 1055 urun.
 - Aksiyon: yeni kod degisikligi yapilmadi; yeni form eklendikten sonra davranis izleniyor. Bu saat itibariyle gece yeni satis sinyali yok.
+
+## Heartbeat Trafik Kontrolu - 02:03
+- Onceki UTC gun (2026-07-04): 110 goruntuleme / 48 tekil; Facebook 0, Google 31, tiklama W/T/E 0/0/0.
+- Yeni UTC gun (2026-07-05): 51 goruntuleme / 25 tekil; raw log 51 satir.
+- Bot filtreli insan trafigi: 47 goruntuleme / 20 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 9; Google Ads isaretli 5.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
