@@ -5021,6 +5021,10 @@
       "destination": "/raporlar/$1"
     },
     {
+      "source": "/feeds/(.*)",
+      "destination": "/feeds/$1"
+    },
+    {
       "source": "/assets/(.*)",
       "destination": "/assets/$1"
     },
