@@ -93,3 +93,29 @@
 - Teknik SEO/feed: sitemap, robots, Merchant feed, Meta feed ve /feeds alias URL'leri 200 ve dogru XML/CSV donuyor.
 - Aksiyon: Urun detayina tek adimli geri arama formu eklendi. Form telefon, OEM/parca kodu ve arac/sase notunu /api/auth/lead uzerinden phone lead olarak admin panele kaydeder; WhatsApp mesaji gelmese bile istek yakalanacak. Build basarili.
 - Satis icin sonraki somut adim: Yeni formdan lead gelirse 5 dakika icinde arama; lead gelmezse Ads hedefini dogrudan son 7 gunde sepete giren urunlere ve telefon birakma formuna yonlendirmek.
+
+## Heartbeat Trafik Kontrolu - 17:56
+- Onceki UTC gun (2026-07-04): 110 goruntuleme / 48 tekil; Facebook 0, Google 31, tiklama W/T/E 0/0/0.
+- Yeni UTC gun (2026-07-05): 40 goruntuleme / 17 tekil; raw log 40 satir.
+- Bot filtreli insan trafigi: 39 goruntuleme / 16 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 9; Google Ads isaretli 5.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Urun aksiyonlari: bugun sepete ekleme 0, favori 0; son 7 gunde sepete ekleme 5, favori 0. Son sepet sinyalleri: EYD 206 37, ESB 786 11-L, PWR-K005, 42200/7-290; cogu Storebot/Google kaynakli.
+- En cok gorulen yollar: ana sayfa 21, urun 71 otomatik fren circiri 6, /fren-diski 3, urun 227 Mercedes Axor Actros Arocs fren diski 2, urun 179 Ford Cargo fren diski 2.
+- Canli dogrulama: ana sayfa ve urun 227'de WhatsApp 0850 888 7881 / 908508887881 ve telefon 0545 608 7008 / 905456087008 gorunuyor; /api/products ve /data/products.json 1055 urun donuyor; /feeds/google-merchant.xml ve /feeds/meta-catalog.csv 200.
+- Aksiyon: 15:54'te eklenen product_callback_form canli JS asset icinde dogrulandi. Yeni kod degisikligi yapilmadi; bu turda once formun lead uretip uretmeyecegi izleniyor.
+- Satis icin sonraki somut adim: Google Ads isaretli trafik 5'e cikti ama lead 0; bir sonraki optimizasyon Ads'i ana sayfa yerine dogrudan /fren-diski, /fren-balatasi ve urun 227 gibi yuksek niyetli sayfalara yonlendirmek ve telefon birakma formu sonucunu izlemek.
+
+## Heartbeat Trafik Kontrolu - 18:01
+- Onceki UTC gun (2026-07-04): 110 goruntuleme / 48 tekil; Facebook 0, Google 31, tiklama W/T/E 0/0/0.
+- Yeni UTC gun (2026-07-05): 41 goruntuleme / 18 tekil; raw log 41 satir.
+- Bot filtreli insan trafigi: 39 goruntuleme / 16 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 9; Google Ads isaretli 5.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Aksiyon: Ana sayfadaki hizli teklif formuna WhatsApp acmadan phone lead birakan "Beni arayin" akisi eklendi. Telefon girilirse /api/auth/lead icinde phone tipiyle admin panele kaydolacak.

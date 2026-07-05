@@ -2837,6 +2837,8 @@ function QuickQuoteBox({source = "quick_quote", product = null, dark = false}) {
     note: "",
   });
   const [sent, setSent] = useState(false);
+  const [callbackSent, setCallbackSent] = useState(false);
+  const [callbackStatus, setCallbackStatus] = useState("");
   const bg = dark ? "rgba(4,8,15,.72)" : "#fff";
   const border = dark ? "1px solid rgba(255,255,255,.18)" : "1px solid #dbeafe";
   const text = dark ? "#fff" : "#111827";
@@ -2855,6 +2857,8 @@ function QuickQuoteBox({source = "quick_quote", product = null, dark = false}) {
     boxSizing: "border-box",
   };
   const href = quickQuoteWhatsAppUrl({ product, ...form });
+  const cleanPhone = form.phone.replace(/\D/g, "");
+  const canRequestCallback = cleanPhone.length >= 10;
   function submit(e) {
     e.preventDefault();
     const payload = {
@@ -2873,6 +2877,27 @@ function QuickQuoteBox({source = "quick_quote", product = null, dark = false}) {
     metaTrackCustom("QuickQuoteLead", payload);
     setSent(true);
     if (typeof window !== "undefined") window.open(href, "_blank", "noopener,noreferrer");
+  }
+  function requestCallback() {
+    if (!canRequestCallback) {
+      setCallbackStatus("Arama icin telefon numarasi gerekli.");
+      return;
+    }
+    const payload = {
+      source: `${source}_callback`,
+      productId: product?.id || "",
+      sku: product?.sku || "",
+      category: product?.cat || "",
+      value: product?.price || 0,
+      code: form.code,
+      vehicle: form.vehicle,
+      contactPhone: form.phone,
+      note: form.note || "Hizli teklif formundan geri arama talebi",
+    };
+    recordLeadEvent("phone", payload);
+    metaTrackCustom("CallbackLead", payload);
+    setCallbackSent(true);
+    setCallbackStatus("Arama talebi kaydedildi.");
   }
   return (
     <form onSubmit={submit} style={{padding:isMobile?12:14,borderRadius:8,background:bg,border,boxShadow:dark?"0 16px 44px rgba(0,0,0,.22)":"0 14px 34px rgba(37,99,235,.08)"}}>
@@ -2894,12 +2919,16 @@ function QuickQuoteBox({source = "quick_quote", product = null, dark = false}) {
         <input value={form.note} onChange={e=>setForm(f=>({...f,note:e.target.value}))} placeholder="Not: on/arka, olcu, adet..." style={inputStyle} />
       </div>
       <div style={{display:"flex",flexDirection:isMobile?"column":"row",gap:8,alignItems:isMobile?"stretch":"center",marginTop:10}}>
+        <button type="button" onClick={requestCallback}
+          style={{minHeight:44,border:"none",borderRadius:7,background:canRequestCallback?"linear-gradient(135deg,#ff6000,#f97316)":"#cbd5e1",color:canRequestCallback?"#fff":"#64748b",fontSize:13,fontWeight:950,padding:"0 14px",cursor:canRequestCallback?"pointer":"default"}}>
+          Beni arayin
+        </button>
         <button type="submit" data-lead-source={source} data-lead-product-id={product?.id || ""} data-lead-sku={product?.sku || ""} data-lead-category={product?.cat || ""} data-lead-value={product?.price || 0}
           style={{minHeight:44,border:"none",borderRadius:7,background:"linear-gradient(135deg,#16a34a,#25D366)",color:"#062813",fontSize:13,fontWeight:950,padding:"0 14px",cursor:"pointer"}}>
-          Talebi kaydet ve WhatsApp'a gec
+          WhatsApp'a gec
         </button>
         <div style={{fontSize:12,color:muted,lineHeight:1.45}}>
-          {sent ? "Talep kaydedildi; WhatsApp acildi." : "Yanlis parca riskini almadan once uyumlulugu teyit ederiz."}
+          {callbackStatus || (sent ? "Talep kaydedildi; WhatsApp acildi." : callbackSent ? "Arama talebi kaydedildi." : "Telefon yazarsaniz WhatsApp acmadan da sizi arayabiliriz.")}
         </div>
       </div>
     </form>
