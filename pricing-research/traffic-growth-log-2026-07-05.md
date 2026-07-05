@@ -129,3 +129,18 @@
 - Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL; yeni siparis yok.
 - Aksiyon: Ads'in dustugu statik kategori SEO sayfalarina WhatsApp acmadan phone lead birakan "Beni arayin" formu eklendi. /fren-diski ve /fren-balatasi ziyaretleri artik telefon, OEM/parca kodu ve arac/sase notu birakabilecek.
 - Dogrulama: api/sitemap.js syntax kontrolu ve npm build basarili.
+
+## Heartbeat Trafik Kontrolu - 21:59
+- Onceki UTC gun (2026-07-04): 110 goruntuleme / 48 tekil; Facebook 0, Google 31, tiklama W/T/E 0/0/0.
+- Yeni UTC gun (2026-07-05): 49 goruntuleme / 23 tekil; raw log 49 satir.
+- Bot filtreli insan trafigi: 47 goruntuleme / 20 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 9; Google Ads isaretli 5.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Daha gercekci kalite filtresi: TR ve bot olmayan gorunum yaklasik 28 goruntuleme / 8 tekil IP; supheli US/CN/DE Linux/tarayici gorunumleri 21 satir.
+- En yakin satis yolları: ana sayfa 17, /fren-diski 3, urun 227 Mercedes Axor/Actros/Arocs fren diski 2, urun 179 Ford Cargo fren diski 2, /fren-balatasi 1.
+- Ads yolları degismedi: /fren-diski 3, /fren-balatasi 1, ana sayfa 1. Yeni eklenen kategori geri arama formlari canlıda duruyor; henuz lead uretmedi.
+- Canli dogrulama: /, /fren-diski, /fren-balatasi, /api/products, /data/products.json, sitemap, robots, Merchant feed, Meta feed ve /feeds aliaslari 200; katalog 1055 urun.
+- Satis icin sonraki somut adim: Ads panelinde mumkunse ana sayfa hedefini azaltip /fren-diski ve /fren-balatasi icindeki "Beni arayin" formunu test etmek; bu gece yeni teknik degisiklik yerine lead davranisini izlemek.
