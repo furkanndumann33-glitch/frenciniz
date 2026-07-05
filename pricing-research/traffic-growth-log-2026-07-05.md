@@ -119,3 +119,13 @@
 - Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
 - Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
 - Aksiyon: Ana sayfadaki hizli teklif formuna WhatsApp acmadan phone lead birakan "Beni arayin" akisi eklendi. Telefon girilirse /api/auth/lead icinde phone tipiyle admin panele kaydolacak.
+
+## Heartbeat Trafik Kontrolu - 19:58
+- Onceki UTC gun (2026-07-04): 110 goruntuleme / 48 tekil; WhatsApp/telefon/e-posta tiklamasi 0/0/0.
+- Yeni UTC gun (2026-07-05): 47 goruntuleme / 21 tekil; bot filtreli yaklasik 45 goruntuleme / 18 tekil IP.
+- Kaynaklar: Google referrer 9, Google Ads isaretli 5, Facebook 0. Ads kaynakli yollar: /fren-diski 3, /fren-balatasi 1, ana sayfa 1.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Urun aksiyonlari: bugun sepete ekleme 0, favori 0; son 7 gunde sepete ekleme 5, favori 0.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL; yeni siparis yok.
+- Aksiyon: Ads'in dustugu statik kategori SEO sayfalarina WhatsApp acmadan phone lead birakan "Beni arayin" formu eklendi. /fren-diski ve /fren-balatasi ziyaretleri artik telefon, OEM/parca kodu ve arac/sase notu birakabilecek.
+- Dogrulama: api/sitemap.js syntax kontrolu ve npm build basarili.
