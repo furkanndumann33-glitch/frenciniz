@@ -144,3 +144,18 @@
 - Ads yolları degismedi: /fren-diski 3, /fren-balatasi 1, ana sayfa 1. Yeni eklenen kategori geri arama formlari canlıda duruyor; henuz lead uretmedi.
 - Canli dogrulama: /, /fren-diski, /fren-balatasi, /api/products, /data/products.json, sitemap, robots, Merchant feed, Meta feed ve /feeds aliaslari 200; katalog 1055 urun.
 - Satis icin sonraki somut adim: Ads panelinde mumkunse ana sayfa hedefini azaltip /fren-diski ve /fren-balatasi icindeki "Beni arayin" formunu test etmek; bu gece yeni teknik degisiklik yerine lead davranisini izlemek.
+
+## Heartbeat Trafik Kontrolu - 00:01
+- Onceki UTC gun (2026-07-04): 110 goruntuleme / 48 tekil; Facebook 0, Google 31, tiklama W/T/E 0/0/0.
+- Yeni UTC gun (2026-07-05): 49 goruntuleme / 23 tekil; raw log 49 satir.
+- Bot filtreli insan trafigi: 47 goruntuleme / 20 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 9; Google Ads isaretli 5.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Kalite filtresi: TR ve bot olmayan gorunum yaklasik 28 goruntuleme / 8 tekil IP; supheli US/CN/DE tarama 21 satir. Son satisa yakin TR insan ziyareti 13:28 UTC'de urun 227 sayfasindaydi.
+- Ads yolları: /fren-diski 3, /fren-balatasi 1, ana sayfa 1. Bu sayfalardaki geri arama formlari canlida duruyor; yeni lead uretmedi.
+- Urun aksiyonlari: bugun sepete ekleme 0, favori 0; son 7 gunde sepete ekleme 5, favori 0.
+- Canli dogrulama: ana sayfa, /fren-diski, /fren-balatasi, urun 227, katalog, sitemap, robots, Merchant/Meta feed ve /feeds aliaslari 200; katalog 1055 urun.
+- Aksiyon: yeni kod degisikligi yapilmadi; yeni form eklendikten sonra davranis izleniyor. Bu saat itibariyle gece yeni satis sinyali yok.
