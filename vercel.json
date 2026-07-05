@@ -17,6 +17,26 @@
       "destination": "/api/sitemap?type=meta"
     },
     {
+      "source": "/feeds/google-merchant.xml",
+      "destination": "/api/sitemap?type=merchant"
+    },
+    {
+      "source": "/feeds/google-merchant-feed.xml",
+      "destination": "/api/sitemap?type=merchant"
+    },
+    {
+      "source": "/feeds/meta-catalog.csv",
+      "destination": "/api/sitemap?type=meta"
+    },
+    {
+      "source": "/feeds/meta-catalog-feed.csv",
+      "destination": "/api/sitemap?type=meta"
+    },
+    {
+      "source": "/feeds/facebook-catalog-feed.csv",
+      "destination": "/api/sitemap?type=meta"
+    },
+    {
       "source": "/mercedes-actros-fren-diski",
       "destination": "/api/sitemap?type=landing&slug=mercedes-actros-fren-diski"
     },
