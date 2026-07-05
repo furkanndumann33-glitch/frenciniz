@@ -3299,7 +3299,7 @@ function ProductsPage() {
                 {salesInfo.chips.length > 0 && <div style={{display:"flex",flexWrap:"wrap",gap:8,marginBottom:16}}>
                   {salesInfo.chips.map(chip => <button key={chip} onClick={() => go("products",{q:chip})} style={{border:"1px solid rgba(255,255,255,.2)",background:"rgba(255,255,255,.1)",color:"#fff",borderRadius:6,padding:"7px 10px",fontSize:12,fontWeight:800,cursor:"pointer"}}>{chip}</button>)}
                 </div>}
-                <a href={salesInfo.whatsappHref} target="_blank" rel="noopener noreferrer" onClick={() => metaTrackCustom("WhatsAppCategoryLead", { category: cat, name: salesInfo.title })}
+                <a href={salesInfo.whatsappHref} target="_blank" rel="noopener noreferrer" onClick={() => { recordLeadEvent("whatsapp", { source:"category_hero_whatsapp", href:salesInfo.whatsappHref, category:catName }); metaTrackCustom("WhatsAppCategoryLead", { category: cat, name: salesInfo.title }); }}
                   style={{display:"inline-flex",alignItems:"center",justifyContent:"center",gap:8,minHeight:44,padding:"12px 16px",background:"#25D366",color:"#07111f",borderRadius:6,textDecoration:"none",fontSize:14,fontWeight:950,boxShadow:"0 14px 28px rgba(37,211,102,.22)"}}>
                   WhatsApp'tan teklif al
                 </a>
@@ -3319,7 +3319,7 @@ function ProductsPage() {
                 <div style={{fontSize:12,color:"#ff6000",fontWeight:950,textTransform:"uppercase",letterSpacing:.4}}>{lang==="en"?"Popular compatibility":"Sik aranan uyumluluklar"}</div>
                 <div style={{fontSize:isMobile?16:18,fontWeight:950,color:"#111827",marginTop:3}}>{catName} icin marka-model hizli arama</div>
               </div>
-              {!isMobile && <a href={generalWhatsAppUrl(`${catName} uyumluluk teyidi`)} target="_blank" rel="noopener noreferrer" onClick={() => metaTrackCustom("WhatsAppCategoryLead", { source: "model_block", category: cat })} style={{fontSize:12,fontWeight:900,color:"#25D366",textDecoration:"none",whiteSpace:"nowrap"}}>Modelimi sor</a>}
+              {!isMobile && <a href={generalWhatsAppUrl(`${catName} uyumluluk teyidi`)} target="_blank" rel="noopener noreferrer" onClick={() => { const href = generalWhatsAppUrl(`${catName} uyumluluk teyidi`); recordLeadEvent("whatsapp", { source:"category_model_whatsapp", href, category:catName }); metaTrackCustom("WhatsAppCategoryLead", { source: "model_block", category: cat }); }} style={{fontSize:12,fontWeight:900,color:"#25D366",textDecoration:"none",whiteSpace:"nowrap"}}>Modelimi sor</a>}
             </div>
             <div style={{display:"grid",gridTemplateColumns:isMobile?"repeat(2,minmax(0,1fr))":"repeat(4,minmax(0,1fr))",gap:8}}>
               {modelBlocks.map(item => (
