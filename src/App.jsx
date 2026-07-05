@@ -3433,6 +3433,86 @@ function ProductConversionPanel({p, qty, href, isMobile, fp}) {
   );
 }
 
+function ProductCallbackLeadForm({p, qty, isMobile}) {
+  const [phone, setPhone] = useState("");
+  const [code, setCode] = useState(p?.oem || p?.sku || "");
+  const [vehicle, setVehicle] = useState("");
+  const [status, setStatus] = useState("");
+  const [sending, setSending] = useState(false);
+  const cleanPhone = phone.replace(/[^\d+]/g, "");
+  const canSubmit = cleanPhone.replace(/\D/g, "").length >= 10 && !sending;
+  const value = (Number(p?.price || 0) * Number(qty || 1)) || Number(p?.price || 0) || 0;
+
+  const submit = async (event) => {
+    event.preventDefault();
+    if (!canSubmit) {
+      setStatus("Telefon numarasini yazin.");
+      return;
+    }
+    setSending(true);
+    setStatus("Kaydediliyor...");
+    const payload = {
+      source: "product_callback_form",
+      product: p,
+      value,
+      contactPhone: phone.trim(),
+      code: code.trim(),
+      vehicle: vehicle.trim(),
+      note: "Urun sayfasindan geri arama talebi",
+    };
+    recordLeadEvent("phone", payload);
+    metaTrackCustom("CallbackLead", { source: "product_callback_form", productId: p?.id, sku: p?.sku, value });
+    setStatus("Talep kaydedildi. Admin panelde lead olarak gorunecek.");
+    setPhone("");
+    setVehicle("");
+    setSending(false);
+  };
+
+  const inputStyle = {
+    width: "100%",
+    minHeight: 42,
+    borderRadius: 7,
+    border: "1px solid #d7dee8",
+    background: "#fff",
+    color: "#111827",
+    fontSize: 13,
+    fontWeight: 700,
+    padding: "0 11px",
+    outline: "none",
+  };
+
+  return (
+    <section aria-label="Geri arama talebi" style={{
+      marginBottom:18,
+      padding:isMobile?14:16,
+      borderRadius:8,
+      background:"#fff",
+      border:"1px solid #dbe3ef",
+      boxShadow:"0 12px 26px rgba(15,23,42,.06)"
+    }}>
+      <div style={{display:"flex",alignItems:isMobile?"stretch":"center",justifyContent:"space-between",gap:12,flexDirection:isMobile?"column":"row",marginBottom:12}}>
+        <div style={{minWidth:0}}>
+          <div style={{fontSize:11,fontWeight:950,color:"#ff6000",textTransform:"uppercase",letterSpacing:0,marginBottom:4}}>Geri arama</div>
+          <h2 style={{fontSize:isMobile?17:19,lineHeight:1.25,margin:"0 0 5px",fontWeight:950,color:"#111827"}}>Telefonunuzu birakin, bu urun icin sizi arayalim.</h2>
+          <p style={{fontSize:12.5,lineHeight:1.5,color:"#526070",margin:0}}>Parca kodu, arac veya sase bilgisini ekleyin; fiyat, stok ve uyumlulugu netlestirelim.</p>
+        </div>
+        <div style={{fontSize:12,fontWeight:950,color:"#087f3d",background:"#dcfce7",border:"1px solid #bbf7d0",borderRadius:999,padding:"7px 10px",alignSelf:isMobile?"flex-start":"center",whiteSpace:"nowrap"}}>
+          Tek adim
+        </div>
+      </div>
+      <form onSubmit={submit} style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1.05fr 1fr 1fr auto",gap:8,alignItems:"stretch"}}>
+        <input value={phone} onChange={event => setPhone(event.target.value)} inputMode="tel" autoComplete="tel" placeholder="Telefon: 05xx xxx xx xx" aria-label="Telefon numarasi" style={inputStyle} />
+        <input value={code} onChange={event => setCode(event.target.value)} placeholder="OEM / parca kodu" aria-label="OEM veya parca kodu" style={inputStyle} />
+        <input value={vehicle} onChange={event => setVehicle(event.target.value)} placeholder="Arac / sase notu" aria-label="Arac veya sase notu" style={inputStyle} />
+        <button type="submit" disabled={!canSubmit} style={{minHeight:42,borderRadius:7,border:"none",background:canSubmit?"#ff6000":"#cbd5e1",color:canSubmit?"#fff":"#64748b",fontSize:13,fontWeight:950,cursor:canSubmit?"pointer":"default",padding:"0 16px",whiteSpace:"nowrap"}}>
+          Beni arayin
+        </button>
+      </form>
+      {status && <div style={{marginTop:9,fontSize:12,color:status.includes("kaydedildi")?"#15803d":"#64748b",fontWeight:800}}>{status}</div>}
+    </section>
+  );
+}
+
 function ProductShareTrafficPanel({p, isMobile}) {
   const [copied, setCopied] = useState(false);
   const facebookHref = shareToFacebookUrl(p);
@@ -3594,6 +3674,7 @@ function ProductDetailPage() {
             </div>
           </div>
                   <ProductConversionPanel p={p} qty={qty} href={whatsappQuoteHref} isMobile={isMobile} fp={fp} />
+                  <ProductCallbackLeadForm p={p} qty={qty} isMobile={isMobile} />
                   <ProductShareTrafficPanel p={p} isMobile={isMobile} />
           <div style={{fontSize:14,color:"#666",lineHeight:1.7,marginBottom:16,whiteSpace:"pre-line"}}>{linkifyContacts(detailDesc)}</div>
           <div style={{padding:"16px 20px",background:"#f9f9f9",borderRadius:8,marginBottom:20,border:"1px solid #eee"}}>
