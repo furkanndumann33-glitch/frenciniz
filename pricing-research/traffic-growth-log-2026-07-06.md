@@ -8,6 +8,8 @@
 - Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
 - Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
 - Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Trafik kirilimi: TR insan trafigi yaklasik 36 goruntuleme / 17 tekil IP. En cok urun 853, urun 341, urun 331, urun 155 ve Actros 1844 kaliper tamir takimi goruldu; bugun sepet/favori/lead 0.
+- Aksiyon: Urun detayinda telefon birakma formu fiyat/uyumluluk blogundan hemen sonraya alindi; ziyaretci WhatsApp acmadan telefon, OEM ve arac notu birakabilecek. Build basarili.
 
 ## Heartbeat Trafik Kontrolu - 06:06
 - Onceki UTC gun (2026-07-05): 51 goruntuleme / 25 tekil; Facebook 0, Google 9, tiklama W/T/E 0/0/0.
@@ -52,3 +54,13 @@
 - Trafik kirilimi: en cok girilen yollar urun 853 Ford Cargo fren pabucu 8, urun 341 MAN/Ford/Dorse bijon 4, /brands 3, ana sayfa 2, urun 169 otobus fren diski 2, urun 1038 kaliper mil kece 2. Sehirler Istanbul 17, Ankara 2, Cerkezkoy 2, Balikesir 2, Erzurum 1.
 - Ads yollari: urun 341 4, urun 853 4, /brands 3, urun 169 2, ana sayfa 1, /fren-balatasi 1, /fren-diski 1. Bugun sepete ekleme 0, favori 0; son 7 gun gercek sepet/favori sinyali 0.
 - Canli form kontrolu: SEO landing formlari /ford-cargo-fren-korugu ve /axor-1840-balata icinde aktif; urun sayfalarinda product_callback_form canli JS asset icinde aktif. Yeni kod degisikligi yapilmadi; son eklenen formun davranisi izleniyor.
+
+## Heartbeat Trafik Kontrolu - 14:11
+- Onceki UTC gun (2026-07-05): 51 goruntuleme / 25 tekil; Facebook 0, Google 9, tiklama W/T/E 0/0/0.
+- Yeni UTC gun (2026-07-06): 44 goruntuleme / 21 tekil; raw log 44 satir.
+- Bot filtreli insan trafigi: 44 goruntuleme / 21 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 32; Google Ads isaretli 16.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
