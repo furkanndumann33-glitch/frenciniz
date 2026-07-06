@@ -104,3 +104,20 @@
 - Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0. Bu nedenle ziyaretci niyeti var ama satin alma davranisi henuz olusmuyor.
 - Canli dogrulama: ana sayfa ve urun sayfalari /assets/index-Hpvte1qw.js ile aktif; 0850 888 7881 WhatsApp ve 0545 608 7008 telefon canli HTML'de dogru. /api/products ve /data/products.json 1055 urun.
 - WhatsApp link testi: wa.me/908508887881 api.whatsapp.com/send sayfasina 302 ile gidiyor, invalid numara hatasi gorulmedi. Mesaj gelmemesinin en olasi nedeni kullanicinin WhatsApp ekranini acip gondermeden cikmasi veya 0850 hesabi tarafinda manuel is akisi.
+
+## Heartbeat Trafik Kontrolu - 20:16
+- Onceki UTC gun (2026-07-05): 51 goruntuleme / 25 tekil; Facebook 0, Google 9, tiklama W/T/E 0/0/0.
+- Yeni UTC gun (2026-07-06): 113 goruntuleme / 41 tekil; raw log 113 satir.
+- Bot filtreli insan trafigi: 108 goruntuleme / 36 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 56; Google Ads isaretli 16.
+- Iletisim tiklamalari: WhatsApp 4, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Trafik kirilimi: ana sayfa 14, urun 459 Ford Cargo/Krone/Kogel koruk 12, urun 853 Ford Cargo fren pabucu 8, urun 811 porya kapagi 7, /brands 4, urun 331 bijon 4, urun 341 bijon 4. Son iki saatin yeni agirligi porya/dorse grubu.
+- TR insan trafigi detayli filtrede 96 goruntuleme / 29 tekil IP; supheli/yurtdisi agirlikli trafik 17 goruntuleme. Sehirler: Istanbul 25, Kusadasi 7, Izmir 5, Bursa 2, Kosekoy 2, Ankara 2, Cerkezkoy 2, Balikesir 2.
+- Google organik yollari: urun 853 4, /brands 3, urun 427 porya kapagi 2, urun 806 dorse porya kapagi 2, Renault/Volvo fren pabucu 2, Ford Cargo 3542 kampana 2, Kogel/Krone fren diski 2 ve diger uzun kuyruk urunler.
+- Google Ads yollari degismedi: urun 341 4, urun 853 4, /brands 3, urun 169 otobus fren diski 2, ana sayfa 1, /fren-balatasi 1, /fren-diski 1. Google Ads panel/API bu turda acilmadi; sadece site tracking verisi.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0. WhatsApp tiklamasi 4'te kaldi; yeni telefon/e-posta tiklamasi yok.
+- Canli dogrulama: ana sayfa/urun sayfalari /assets/index-Hpvte1qw.js ile aktif; 0850 888 7881 WhatsApp ve 0545 608 7008 telefon dogru. /api/products ve /data/products.json 1055 urun.
+- Porya satis akisi: /porya-grup sayfasinda data-category-callback geri arama formu ve submit script'i canli. Bu yuzden bu turda kod degisikligi yapilmadi; porya/dorse ziyaretlerinin form veya WhatsApp'a donmesi izlenecek.
