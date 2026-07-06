@@ -497,6 +497,15 @@ function generalWhatsAppUrl(topic = "agir vasita fren parcasi") {
   ].join("\n"));
 }
 
+function discountCouponWhatsAppUrl() {
+  return waUrl([
+    "Merhaba Frenciniz, indirim kuponu almak istiyorum.",
+    "Ilgilendigim urun / OEM kodu:",
+    "Arac marka-model / sase:",
+    "Bugun siparis icin uygun kupon ve fiyat rica ederim.",
+  ].join("\n"));
+}
+
 function productWhatsAppUrl(product, qty = 1) {
   const seoName = productSearchName(product, CATS, 140) || product?.name || "-";
   return waUrl([
@@ -2097,6 +2106,7 @@ export default function App() {
         <div style={{marginLeft: ((page==="home" || page==="products") && !isMobile) ? 220 : 0}}>
         <main style={{minHeight:isAdminPage?"100vh":"60vh"}}>
           {!isAdminPage && <TodaySalesStrip />}
+          {!isAdminPage && <DiscountCouponBanner />}
           {!isAdminPage && <WhatsAppTrustStrip />}
           {!isAdminPage && <ReferralSalesBar />}
           {page==="home"&&<HomePage/>}
@@ -2308,6 +2318,29 @@ function TodaySalesStrip() {
             0545 608 7008
           </a>
         </div>
+      </div>
+    </section>
+  );
+}
+
+function DiscountCouponBanner() {
+  const {isMobile, page, lang} = use$();
+  if (page === "admin") return null;
+  const href = discountCouponWhatsAppUrl();
+  return (
+    <section style={{background:"linear-gradient(90deg,#fff7ed,#fef3c7 54%,#dcfce7)",borderBottom:"1px solid #fed7aa",color:"#111827"}}>
+      <div style={{maxWidth:1220,margin:"0 auto",padding:isMobile?"10px 14px":"10px 24px",display:"flex",alignItems:isMobile?"stretch":"center",justifyContent:"space-between",gap:10,flexDirection:isMobile?"column":"row"}}>
+        <div style={{display:"flex",alignItems:isMobile?"flex-start":"center",gap:10,minWidth:0,flexDirection:isMobile?"column":"row"}}>
+          <span style={{background:"#ff6000",color:"#fff",fontSize:11,fontWeight:950,padding:"5px 8px",borderRadius:999,whiteSpace:"nowrap"}}>
+            {lang==="en"?"DISCOUNT COUPON":"INDIRIM KUPONU"}
+          </span>
+          <strong style={{fontSize:isMobile?13:14,lineHeight:1.4}}>
+            {lang==="en"?"Contact us on WhatsApp for a discount coupon before ordering.":"Indirim kuponu icin WhatsApp ile iletisime gecin; urun kodunu yazin, uygun kuponu netlestirelim."}
+          </strong>
+        </div>
+        <a href={href} target="_blank" rel="noopener noreferrer" onClick={() => { recordLeadEvent("whatsapp", { source:"coupon_banner_whatsapp", href }); metaTrackCustom("WhatsAppCouponLead", { source:"coupon_banner" }); }} style={{minHeight:38,padding:"9px 14px",borderRadius:8,background:"#25D366",color:"#062813",fontSize:13,fontWeight:950,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center",whiteSpace:isMobile?"normal":"nowrap",textAlign:"center",boxShadow:"0 10px 22px rgba(37,211,102,.2)"}}>
+          {lang==="en"?"Ask on WhatsApp":"WhatsApp'tan kupon iste"}
+        </a>
       </div>
     </section>
   );

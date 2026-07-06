@@ -20,6 +20,17 @@ function money(value) {
   return `₺${Number(value || 0).toLocaleString("tr-TR", { maximumFractionDigits: 0 })}`;
 }
 
+function landingCouponWhatsAppUrl(page) {
+  const text = [
+    "Merhaba Frenciniz, indirim kuponu almak istiyorum.",
+    `Sayfa: ${page?.heading || page?.slug || "Fren aksami"}`,
+    "Ilgilendigim urun / OEM kodu:",
+    "Arac marka-model / sase:",
+    "Bugun siparis icin uygun kupon ve fiyat rica ederim.",
+  ].join("\n");
+  return `https://wa.me/908508887881?text=${encodeURIComponent(text)}`;
+}
+
 function renderProductCard(product, categories) {
   const img = absoluteImage(product);
   const cat = categoryName(categories, product.cat);
@@ -65,6 +76,7 @@ export function renderLanding(page, products, categories) {
   const categoryLinks = [...new Set(page.cats || [])]
     .map(cat => `<a href="${SITE}/${cat}">${htmlEscape(categoryName(categories, cat))}</a>`)
     .join("");
+  const couponHref = landingCouponWhatsAppUrl(page);
   const relatedLinks = relatedPages
     .map(related => `<a href="${SITE}/${related.slug}">${htmlEscape(related.heading)}</a>`)
     .join("");
@@ -359,6 +371,10 @@ export function renderLanding(page, products, categories) {
     .stock{font-size:12px;color:#087f3d;font-weight:700}.nostock{font-size:12px;color:#a33;font-weight:700}
     .mini-cta{display:block;text-align:center;text-decoration:none;margin-top:8px;border:1px solid var(--orange);color:var(--orange);border-radius:6px;padding:8px;font-size:13px;font-weight:800}
     .mini-cta.wa{border-color:#16a34a;background:#16a34a;color:#fff}
+    .coupon-strip{background:linear-gradient(90deg,#fff7ed,#fef3c7 54%,#dcfce7);border-bottom:1px solid #fed7aa;color:#111827}
+    .coupon-inner{max-width:1180px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .coupon-copy{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:900}.coupon-badge{background:var(--orange);color:#fff;font-size:11px;font-weight:950;padding:5px 8px;border-radius:999px;white-space:nowrap}
+    .coupon-strip a{min-height:38px;padding:9px 14px;border-radius:8px;background:#16a34a;color:#fff;text-decoration:none;font-size:13px;font-weight:950;display:inline-flex;align-items:center;justify-content:center}
     .callback-box{grid-column:1/-1;margin:0 0 18px;padding:15px;border:1px solid #dbe3ef;border-radius:8px;background:#fff;box-shadow:0 10px 24px rgba(15,23,42,.05)}
     .callback-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:10px}
     .callback-head strong{display:block;color:#111;font-size:16px}.callback-badge{font-size:12px;font-weight:900;color:#087f3d;background:#dcfce7;border:1px solid #bbf7d0;border-radius:999px;padding:6px 9px}
@@ -374,7 +390,7 @@ export function renderLanding(page, products, categories) {
     .sticky-copy{font-size:13px;color:#ddd}.sticky-copy strong{display:block;color:#fff;font-size:15px}
     .sticky-actions{display:flex;gap:8px;align-items:center;flex-shrink:0}.sticky-actions a{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:10px 14px;border-radius:6px;text-decoration:none;font-weight:850;font-size:13px}.sticky-wa{background:#16a34a;color:#fff}.sticky-phone{background:#fff;color:#111}
     @media(max-width:900px){.hero-inner{grid-template-columns:1fr}.products{grid-template-columns:repeat(2,minmax(0,1fr))}.content{grid-template-columns:1fr}h1{font-size:30px}.trust{grid-template-columns:1fr 1fr}}
-    @media(max-width:560px){body{padding-bottom:118px}.bar{align-items:flex-start;flex-direction:column}.hero-inner{padding-top:28px}.products{grid-template-columns:1fr}.trust{grid-template-columns:1fr}.lead{font-size:16px}.sticky-lead-inner{align-items:stretch;flex-direction:column;padding:10px 12px}.sticky-actions{display:grid;grid-template-columns:1fr 1fr}.sticky-actions a{width:100%}}
+    @media(max-width:560px){body{padding-bottom:118px}.bar{align-items:flex-start;flex-direction:column}.coupon-inner{align-items:stretch;flex-direction:column}.coupon-copy{align-items:flex-start;flex-direction:column}.coupon-strip a{text-align:center}.hero-inner{padding-top:28px}.products{grid-template-columns:1fr}.trust{grid-template-columns:1fr}.lead{font-size:16px}.sticky-lead-inner{align-items:stretch;flex-direction:column;padding:10px 12px}.sticky-actions{display:grid;grid-template-columns:1fr 1fr}.sticky-actions a{width:100%}}
   </style>
 </head>
 <body>
@@ -388,6 +404,7 @@ export function renderLanding(page, products, categories) {
       </div>
     </div>
   </header>
+  <section class="coupon-strip"><div class="coupon-inner"><div class="coupon-copy"><span class="coupon-badge">INDIRIM KUPONU</span><strong>Indirim kuponu icin WhatsApp ile iletisime gecin; urun kodunu yazin, uygun kuponu netlestirelim.</strong></div><a href="${htmlEscape(couponHref)}" data-lead-source="landing_coupon_banner" data-lead-category="${htmlEscape(page.slug)}">WhatsApp'tan kupon iste</a></div></section>
   <section class="hero">
     <div class="hero-inner">
       <div>
