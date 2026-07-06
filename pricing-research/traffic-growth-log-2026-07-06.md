@@ -88,3 +88,19 @@
 - Sehir/IP: TR insan trafigi detayli filtrede 54 goruntuleme / 21 tekil IP; Istanbul 23, Kusadasi 7, Kalecik 2, Ankara 2, Cerkezkoy 2, Balikesir 2. Supheli/bot veya yurtdisi agirlikli trafik 10 goruntuleme.
 - Google Ads yollari: urun 341 4, urun 853 4, /brands 3, urun 169 otobus fren diski 2, ana sayfa 1, /fren-balatasi 1, /fren-diski 1. Bugun ve son 7 gunde sepete ekleme 0, favori 0.
 - Canli dogrulama: ana sayfa ve urun sayfalari /assets/index-Hpvte1qw.js ile servis ediliyor; 0850 888 7881 WhatsApp, 0545 608 7008 telefon, /api/products ve /data/products.json 1055 urunle aktif.
+
+## Heartbeat Trafik Kontrolu - 18:14
+- Onceki UTC gun (2026-07-05): 51 goruntuleme / 25 tekil; Facebook 0, Google 9, tiklama W/T/E 0/0/0.
+- Yeni UTC gun (2026-07-06): 94 goruntuleme / 35 tekil; raw log 94 satir.
+- Bot filtreli insan trafigi: 92 goruntuleme / 32 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 50; Google Ads isaretli 16.
+- Iletisim tiklamalari: WhatsApp 4, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Trafik kirilimi: ana sayfa 13, urun 459 Ford Cargo/Krone/Kogel koruk 10, urun 853 Ford Cargo fren pabucu 8, urun 341 bijon 4, urun 811 porya kapagi 3, /brands 3. Ford Cargo/dorse grubu son iki saatte one cikti.
+- TR insan trafigi detayli filtrede 85 goruntuleme / 28 tekil IP; supheli/yurtdisi agirlikli trafik 10 goruntuleme. Sehirler: Istanbul 25, Kusadasi 7, Izmir 5, Bursa 2, Kosekoy 2, Ankara 2, Cerkezkoy 2, Balikesir 2.
+- Google organik yollari daginik: urun 853 4, /brands 3, Ford Cargo 3542 kampana 2, Kogel/Krone fren diski 2, porya grubu 2, Axor balata 2 ve diger urunler. Google Ads yollari hala urun 341 4, urun 853 4, /brands 3, urun 169 2.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0. Bu nedenle ziyaretci niyeti var ama satin alma davranisi henuz olusmuyor.
+- Canli dogrulama: ana sayfa ve urun sayfalari /assets/index-Hpvte1qw.js ile aktif; 0850 888 7881 WhatsApp ve 0545 608 7008 telefon canli HTML'de dogru. /api/products ve /data/products.json 1055 urun.
+- WhatsApp link testi: wa.me/908508887881 api.whatsapp.com/send sayfasina 302 ile gidiyor, invalid numara hatasi gorulmedi. Mesaj gelmemesinin en olasi nedeni kullanicinin WhatsApp ekranini acip gondermeden cikmasi veya 0850 hesabi tarafinda manuel is akisi.
