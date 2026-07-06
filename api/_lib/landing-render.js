@@ -212,23 +212,8 @@ export function renderLanding(page, products, categories) {
   </script>
   <script>
     (function () {
-      function sendInternalLead(kind, href, link) {
+      function sendLeadPayload(payload) {
         try {
-          var data = link && link.dataset ? link.dataset : {};
-          var path = window.location.pathname || '/';
-          var inferredSource = data.leadSource || (path.indexOf('/urun/') === 0 ? 'product_detail' : (path === '/cart' ? 'cart' : (path === '/contact' ? 'contact' : kind + '_site')));
-          var payload = {
-            type: kind,
-            source: inferredSource,
-            href: href || '',
-            path: path,
-            ref: document.referrer || '',
-            productId: data.leadProductId || '',
-            sku: data.leadSku || '',
-            category: data.leadCategory || '',
-            value: Number(data.leadValue || 0) || 0,
-            items: Number(data.leadItems || 0) || 0
-          };
           var json = JSON.stringify(payload);
           if (navigator.sendBeacon) {
             var blob = new Blob([json], { type: 'application/json' });
@@ -241,6 +226,26 @@ export function renderLanding(page, products, categories) {
             body: json,
             keepalive: true
           }).catch(function () {});
+        } catch (e) {}
+      }
+
+      function sendInternalLead(kind, href, link) {
+        try {
+          var data = link && link.dataset ? link.dataset : {};
+          var path = window.location.pathname || '/';
+          var inferredSource = data.leadSource || (path.indexOf('/urun/') === 0 ? 'product_detail' : (path === '/cart' ? 'cart' : (path === '/contact' ? 'contact' : kind + '_site')));
+          sendLeadPayload({
+            type: kind,
+            source: inferredSource,
+            href: href || '',
+            path: path,
+            ref: document.referrer || '',
+            productId: data.leadProductId || '',
+            sku: data.leadSku || '',
+            category: data.leadCategory || '',
+            value: Number(data.leadValue || 0) || 0,
+            items: Number(data.leadItems || 0) || 0
+          });
         } catch (e) {}
       }
 
@@ -282,6 +287,38 @@ export function renderLanding(page, products, categories) {
         else if (normalized.indexOf('tel:') === 0) trackLead('phone', href, link);
         else if (normalized.indexOf('mailto:') === 0) trackLead('email', href, link);
       }, true);
+
+      document.addEventListener('submit', function (event) {
+        var form = event.target && event.target.closest ? event.target.closest('form[data-landing-callback]') : null;
+        if (!form) return;
+        event.preventDefault();
+        var phone = form.elements.phone ? String(form.elements.phone.value || '').trim() : '';
+        var status = form.querySelector('[data-callback-status]');
+        if (phone.replace(/\\D/g, '').length < 10) {
+          if (status) status.textContent = 'Arama icin telefon numarasi gerekli.';
+          return;
+        }
+        sendLeadPayload({
+          type: 'phone',
+          source: form.dataset.leadSource || 'landing_callback_form',
+          href: '',
+          path: window.location.pathname || '/',
+          ref: document.referrer || '',
+          category: form.dataset.leadCategory || '',
+          contactPhone: phone,
+          code: form.elements.code ? String(form.elements.code.value || '').trim() : '',
+          vehicle: form.elements.vehicle ? String(form.elements.vehicle.value || '').trim() : '',
+          note: form.elements.note ? String(form.elements.note.value || '').trim() : 'SEO landing sayfasindan geri arama talebi'
+        });
+        if (window.frencinizTrackAdsConversion) {
+          window.frencinizTrackAdsConversion('phone', { kind: 'phone', label: 'landing_callback_form', value: 1 });
+        }
+        if (window.fbq) {
+          window.fbq('track', 'Contact', { content_name: 'landing_callback_form', content_category: 'lead' });
+        }
+        if (status) status.textContent = 'Arama talebi kaydedildi.';
+        form.reset();
+      }, true);
     })();
   </script>
   <script type="application/ld+json">${JSON.stringify(schema)}</script>
@@ -322,6 +359,10 @@ export function renderLanding(page, products, categories) {
     .stock{font-size:12px;color:#087f3d;font-weight:700}.nostock{font-size:12px;color:#a33;font-weight:700}
     .mini-cta{display:block;text-align:center;text-decoration:none;margin-top:8px;border:1px solid var(--orange);color:var(--orange);border-radius:6px;padding:8px;font-size:13px;font-weight:800}
     .mini-cta.wa{border-color:#16a34a;background:#16a34a;color:#fff}
+    .callback-box{grid-column:1/-1;margin:0 0 18px;padding:15px;border:1px solid #dbe3ef;border-radius:8px;background:#fff;box-shadow:0 10px 24px rgba(15,23,42,.05)}
+    .callback-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+    .callback-head strong{display:block;color:#111;font-size:16px}.callback-badge{font-size:12px;font-weight:900;color:#087f3d;background:#dcfce7;border:1px solid #bbf7d0;border-radius:999px;padding:6px 9px}
+    .callback-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;align-items:stretch}.callback-grid input{width:100%;min-height:42px;border:1px solid #d1d5db;border-radius:7px;padding:0 11px;font-size:13px;font-weight:700}.callback-grid button{min-height:42px;border:none;border-radius:7px;background:var(--orange);color:#fff;font-size:13px;font-weight:950;padding:0 14px;white-space:nowrap}.callback-status{margin-top:8px;font-size:12px;font-weight:800;color:#15803d}
     .content{display:grid;grid-template-columns:2fr 1fr;gap:24px;margin-top:34px}
     .panel{background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:20px}
     .links{display:flex;flex-wrap:wrap;gap:8px}.links a{padding:8px 10px;background:#fff;border:1px solid var(--line);border-radius:6px;text-decoration:none;font-size:13px}
@@ -374,6 +415,20 @@ export function renderLanding(page, products, categories) {
       </div>
     </div>
     <section class="products">
+      <form class="callback-box" data-landing-callback data-lead-source="landing_callback_form" data-lead-category="${htmlEscape(page.slug)}">
+        <div class="callback-head">
+          <div><strong>Telefonunuzu birakin, ${htmlEscape(page.heading)} icin sizi arayalim.</strong><span class="muted">OEM/parca kodu ve arac bilgisini yazin; stok, fiyat ve uyumlulugu netlestirelim.</span></div>
+          <span class="callback-badge">WhatsApp sart degil</span>
+        </div>
+        <div class="callback-grid">
+          <input name="phone" inputmode="tel" autocomplete="tel" placeholder="Telefon: 05xx xxx xx xx">
+          <input name="code" placeholder="OEM / parca kodu">
+          <input name="vehicle" placeholder="Arac / sase notu">
+          <input name="note" placeholder="Not / adet">
+          <button type="submit">Beni arayin</button>
+        </div>
+        <div class="callback-status" data-callback-status></div>
+      </form>
       ${matched.map(product => renderProductCard(product, categories)).join("\n")}
     </section>
     <section class="content">
