@@ -38,3 +38,4 @@
 - Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
 - Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
 - Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Aksiyon: Google/Ads trafigi /ford-cargo-fren-korugu, /axor-1840-balata ve urun 853 tarafina gelmeye basladi ama lead 0. Bu nedenle tum SEO landing sayfalarina WhatsApp acmadan telefon birakan geri arama formu eklendi. Build basarili; /ford-cargo-fren-korugu ve /axor-1840-balata canlida data-landing-callback ile dogrulandi.
