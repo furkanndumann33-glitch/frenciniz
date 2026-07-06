@@ -137,3 +137,20 @@
 - Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0. WhatsApp tiklamasi 4'te kaldi; kupon banner sonrasi henuz yeni WhatsApp/telefon/e-posta tiklamasi yok.
 - Canli dogrulama: ana sayfa yeni /assets/index-DulfO1nk.js asset'i ile aktif; bu JS icinde coupon_banner_whatsapp var. /porya-grup, /ford-cargo-fren-korugu, /fren-diski ve /fren-balatasi sayfalarinda INDIRIM KUPONU banneri canli. 0850 888 7881 WhatsApp, 0545 608 7008 telefon, /api/products ve /data/products.json 1055 urunle aktif.
 - Satis adimi: kupon bannerindan gelecek ilk WhatsApp tiklamasina "OEM/urun kodu + arac bilgisi + bugune ozel fiyat" cevabi 5 dakika icinde verilmeli; tiklama var ama mesaj yoksa kupon metni telefon birakma formuna da tasinacak.
+
+## Heartbeat Trafik Kontrolu - 00:20
+- Onceki UTC gun (2026-07-05): 51 goruntuleme / 25 tekil; Facebook 0, Google 9, tiklama W/T/E 0/0/0.
+- Yeni UTC gun (2026-07-06): 127 goruntuleme / 46 tekil; raw log 127 satir.
+- Bot filtreli insan trafigi: 117 goruntuleme / 38 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 58; Google Ads isaretli 16.
+- Iletisim tiklamalari: WhatsApp 4, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Trafik kirilimi: ana sayfa 15, urun 459 Ford Cargo/Krone/Kogel suspansiyon korugu 12, urun 811 porya kapagi 9, urun 853 Ford Cargo fren pabucu 8, urun 341 bijon 6, urun 169 otobus fren diski 4, /brands 4, urun 331 BMC bijon 4.
+- TR insan trafigi detayli filtrede 100 goruntuleme / 30 tekil IP; supheli/bot veya yurtdisi agirlikli trafik 27 goruntuleme. Sehirler: TR/bos 45, Istanbul 27, Kusadasi 7, Izmir 5, Bursa 2, Kosekoy 2, Kalecik 2, Ankara 2, Cerkezkoy 2, Balikesir 2.
+- Google organik yollarinda urun 853 Ford Cargo fren pabucu 4 ve /brands 3 one cikiyor; porya, kampana, Kogel/Krone fren diski, Axor balata ve diger uzun kuyruk urunlerde 2'ser goruntuleme var.
+- Google Ads isaretli yollar: urun 341 bijon 4, urun 853 Ford Cargo fren pabucu 4, /brands 3, urun 169 otobus fren diski 2, ana sayfa 1, /fren-balatasi 1, /fren-diski 1. Google Ads/Merchant/Meta paneli bu turda acilmadi; rapor site tracking ve canli feed verisine dayaniyor.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0. WhatsApp tiklamasi 4'te sabit; kupon bannerindan sonra henuz yeni WhatsApp/telefon/e-posta tiklamasi gorunmuyor.
+- Canli dogrulama: ana sayfa /assets/index-DulfO1nk.js ile servis ediliyor; bu JS icinde coupon_banner_whatsapp ve 0850 888 7881 WhatsApp dogru. /porya-grup, /ford-cargo-fren-korugu, /fren-diski ve /fren-balatasi sayfalarinda INDIRIM KUPONU banneri canli. Telefon 0545 608 7008 dogru. /api/products ve /data/products.json 1055 urun.
+- Satis adimi: su anda asil darbogaz trafik degil, temas/guven ve fiyat teyidi. Ilk aksiyon olarak en cok bakan 459 koruk, 811 porya kapagi, 853 fren pabucu ve 341 bijon icin WhatsApp'ta "bugune ozel kupon + arac uyum teyidi + kargo dahil net fiyat" hazir cevapla 5 dakika icinde donulmeli.
