@@ -8,10 +8,12 @@ import {
   productIdFromRoute,
   productPrimaryCode,
   productSeoFaqItems,
+  productSeoSearchPhrases,
   productSearchDescription,
   productSearchName,
   productSearchTitle,
   productSeoUrl,
+  productVehicleSignals,
 } from "../shared/product-seo.js";
 
 const SITE = "https://www.frenciniz.com";
@@ -125,6 +127,9 @@ function categoryNameForProduct(product, categories = []) {
 }
 
 function vehiclePhrase(product) {
+  const signals = productVehicleSignals(product, 6).map(cleanSeoText).filter(Boolean);
+  if (signals.length) return signals.join(", ");
+
   const values = [
     ...(Array.isArray(product?.compat) ? product.compat : []),
     ...(Array.isArray(product?.veh) ? product.veh : []),
@@ -211,12 +216,17 @@ function buildSeoProductDescription(product, categories = [], max = 5000) {
   const vehicles = vehiclePhrase(product);
   const stock = Number(product?.stock || 0);
   const catalogDescription = merchantSafeProductText(product?.desc || "");
+  const catalogHaystack = catalogDescription.toLowerCase();
+  const searchPhrases = productSeoSearchPhrases(product, categories, 8)
+    .filter(phrase => phrase && phrase !== productName)
+    .join("; ");
   const pieces = [
     catalogDescription || productSearchDescription(product, categories, 260),
-    catalogDescription ? "" : `${productName}, ${category} kategorisinde ${brand} marka agir vasita fren parcasi.`,
-    catalogDescription || !sku ? "" : `Stok kodu: ${sku}.`,
-    catalogDescription || !oem ? "" : `OEM / muadil kod: ${oem}.`,
-    catalogDescription || !vehicles ? "" : `Uyumluluk adaylari: ${vehicles}.`,
+    catalogDescription && catalogHaystack.includes(productName.toLowerCase()) ? "" : `${productName}, ${category} kategorisinde ${brand} marka agir vasita fren parcasi.`,
+    sku && !catalogHaystack.includes(sku.toLowerCase()) ? `Stok kodu: ${sku}.` : "",
+    oem && !catalogHaystack.includes(oem.toLowerCase()) ? `OEM / muadil kod: ${oem}.` : "",
+    vehicles && !catalogHaystack.includes(vehicles.toLowerCase()) ? `Uyumluluk adaylari: ${vehicles}.` : "",
+    searchPhrases ? `Sik aranan parca ifadeleri: ${searchPhrases}.` : "",
     "Kamyon, tir, otobus ve dorse fren sistemleri icin OEM kodu, sase no veya eski parca fotografi ile uyumluluk teyidi yapilir.",
     stock > 0 ? `Stokta ${Math.floor(stock)} adet gorunuyor; fiyat ve kargo icin teklif alabilirsiniz.` : "Stok ve fiyat icin WhatsApp uzerinden teyit alabilirsiniz.",
     "Ayni gun kargo, 12 taksit ve 14 gun iade destegi vardir.",
@@ -485,6 +495,8 @@ function productSeoFallbackHtml(product, categories = [], canonical = "", relate
   const price = Number(product?.price || 0);
   const stock = Number(product?.stock || 0);
   const image = absoluteUrl(productPrimaryImage(product, "/img/site/frenciniz-logo-real-og.jpg"));
+  const searchPhrases = productSeoSearchPhrases(product, categories, 10)
+    .filter(phrase => phrase && phrase !== seoName);
   const whatsappText = [
     "Merhaba Frenciniz, Google urun sayfasindan geldim; fiyat, stok ve uyumluluk teyidi istiyorum.",
     `Urun: ${seoName}`,
@@ -500,6 +512,7 @@ function productSeoFallbackHtml(product, categories = [], canonical = "", relate
     .map(item => `<li><a href="${xmlEscape(productSeoUrl(SITE, item))}">${xmlEscape(productSearchName(item, categories, 125) || item.name)}</a></li>`)
     .join("");
   const vehicleLinks = vehicles.map(value => `<li>${xmlEscape(value)}</li>`).join("");
+  const searchPhraseLinks = searchPhrases.map(value => `<li>${xmlEscape(value)}</li>`).join("");
   return `
     <main data-frenciniz-seo-product style="font-family:Arial,system-ui,sans-serif;line-height:1.55;color:#111827;background:#fff;max-width:1120px;margin:0 auto;padding:24px 16px">
       <nav aria-label="Breadcrumb" style="font-size:13px;margin-bottom:14px">
@@ -522,6 +535,7 @@ function productSeoFallbackHtml(product, categories = [], canonical = "", relate
           <a href="${xmlEscape(whatsappHref)}" data-lead-source="product_seo_fallback" style="display:inline-block;background:#16a34a;color:#fff;text-decoration:none;font-weight:800;border-radius:8px;padding:12px 16px">WhatsApp ile fiyat ve uyumluluk teyidi al</a>
         </div>
       </article>
+      ${searchPhraseLinks ? `<section style="margin-top:22px"><h2 style="font-size:22px;margin:0 0 10px">Sik aranan parca ifadeleri</h2><ul style="columns:2;margin:0;padding-left:20px">${searchPhraseLinks}</ul></section>` : ""}
       ${vehicleLinks ? `<section style="margin-top:22px"><h2 style="font-size:22px;margin:0 0 10px">Uyumluluk adaylari</h2><ul style="columns:2;margin:0;padding-left:20px">${vehicleLinks}</ul><p style="color:#475569">Kesin uyumluluk icin OEM/parca kodu, sase no veya eski parca fotografi ile teyit alin.</p></section>` : ""}
       ${relatedLinks ? `<section style="margin-top:22px"><h2 style="font-size:22px;margin:0 0 10px">Benzer ve muadil urunler</h2><ul style="columns:2;margin:0;padding-left:20px">${relatedLinks}</ul></section>` : ""}
     </main>`;

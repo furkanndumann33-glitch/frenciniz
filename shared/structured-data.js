@@ -1,4 +1,4 @@
-import { productSearchDescription, productSearchName, productSeoUrl } from "./product-seo.js";
+import { productSeoSearchPhrases, productSearchDescription, productSearchName, productSeoUrl } from "./product-seo.js";
 
 const DEFAULT_SITE = "https://www.frenciniz.com";
 const DEFAULT_IMAGE = "/img/site/missing-product.webp";
@@ -54,6 +54,7 @@ export function buildProductDescription(product, categories = [], options = {}) 
   const name = productSearchName(product, categories, 140) || cleanText(product?.name, "Fren aksami urunu");
   const brand = cleanText(product?.brand, "Ekersan");
   const compat = Array.isArray(product?.compat) ? product.compat.slice(0, 8).join(", ") : "";
+  const searchPhrases = productSeoSearchPhrases(product, categories, 6).join(", ");
 
   const searchDescription = productSearchDescription(product, categories, 360);
   return cleanText([
@@ -62,6 +63,7 @@ export function buildProductDescription(product, categories = [], options = {}) 
     product?.sku ? `Stok kodu: ${product.sku}.` : "",
     product?.oem ? `OEM / muadil kod: ${product.oem}.` : "",
     compat ? `Uyumlu araclar: ${compat}.` : "",
+    searchPhrases ? `Parca arama ifadeleri: ${searchPhrases}.` : "",
     "Kamyon, tir, otobus ve dorse icin parca kodu ile uyumluluk teyidi yapilir.",
     "Stoklu urunlerde hizli kargo, 12 taksit ve 14 gun iade destegi vardir.",
   ].filter(Boolean).join(" ")).slice(0, 5000);

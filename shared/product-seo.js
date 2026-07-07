@@ -143,6 +143,31 @@ export function productVehiclePhrase(product, max = 5) {
   return productVehicleSignals(product, max).join(", ");
 }
 
+export function productSeoSearchPhrases(product, categories = [], max = 8) {
+  const name = productSearchName(product, categories, 130);
+  const part = productPartLabel(product, categories);
+  const code = productPrimaryCode(product);
+  const sku = firstUsefulCode(product?.sku);
+  const oem = firstUsefulCode(product?.oem);
+  const vehicles = productVehicleSignals(product, 4);
+  const vehiclePhrases = vehicles.flatMap(vehicle => [
+    `${vehicle} ${part}`,
+    code ? `${vehicle} ${code}` : "",
+    sku ? `${vehicle} ${sku}` : "",
+  ]);
+
+  return uniqueParts([
+    name,
+    ...vehiclePhrases,
+    code ? `${code} ${part}` : "",
+    sku ? `${sku} ${part}` : "",
+    oem ? `${oem} ${part}` : "",
+    `${part} fiyat`,
+    `${part} stok`,
+    `${part} uyumluluk`,
+  ]).slice(0, max);
+}
+
 function nameHasPart(name, part) {
   const haystack = normalizeSearchText(name);
   const needle = normalizeSearchText(part);
@@ -165,8 +190,8 @@ export function productSearchName(product, categories = [], max = 128) {
 
 export function productSearchTitle(product, categories = [], max = 74) {
   const name = productSearchName(product, categories, 116);
-  const suffix = " | Frenciniz";
-  return `${compactText(name, Math.max(24, max - suffix.length))}${suffix}`;
+  const suffix = " | Fiyat Stok | Frenciniz";
+  return `${compactText(name, Math.max(28, max - suffix.length))}${suffix}`;
 }
 
 export function productSearchDescription(product, categories = [], max = 165) {
@@ -174,10 +199,14 @@ export function productSearchDescription(product, categories = [], max = 165) {
   const vehicles = productVehicleSignals(product).join(", ");
   const code = productPrimaryCode(product);
   const stock = Number(product?.stock || 0);
+  const searchPhrases = productSeoSearchPhrases(product, categories, 4)
+    .filter(phrase => normalizeSearchText(phrase) !== normalizeSearchText(name))
+    .join("; ");
   const pieces = [
-    `${name} icin stok, fiyat ve uyumluluk teyidi.`,
+    `${name} fiyat, stok ve uyumluluk teyidi.`,
     vehicles ? `Uygunluk adaylari: ${vehicles}.` : "",
     code ? `OEM/SKU: ${code}.` : "",
+    searchPhrases ? `Arama ifadeleri: ${searchPhrases}.` : "",
     stock > 0 ? "Stokta urun, hizli kargo ve WhatsApp teklif." : "Stok ve fiyat icin WhatsApp teklif alin.",
   ];
   return compactText(pieces.filter(Boolean).join(" "), max);
@@ -191,6 +220,7 @@ export function productSeoFaqItems(product, categories = []) {
   const oem = cleanText(product?.oem);
   const vehicles = productVehiclePhrase(product, 6);
   const stock = Number(product?.stock || 0);
+  const searchPhrases = productSeoSearchPhrases(product, categories, 6).join(", ");
 
   return [
     {
@@ -208,6 +238,12 @@ export function productSeoFaqItems(product, categories = []) {
       answer: stock > 0
         ? `${name} icin stokta ${Math.floor(stock)} adet gorunuyor. Fiyat, kargo ve uyumluluk siparisten once Frenciniz tarafindan teyit edilir.`
         : `${name} icin stok ve fiyat bilgisi WhatsApp uzerinden teyit edilir.`,
+    },
+    {
+      question: `${name} hangi parca aramalarinda kontrol edilir?`,
+      answer: searchPhrases
+        ? `${name} icin kontrol edilen baslica arama ifadeleri: ${searchPhrases}. Kesin siparis oncesi OEM, sase veya eski parca fotografi ile teyit alin.`
+        : `${name} icin arama ve uyumluluk OEM/parca kodu, arac modeli ve eski parca fotografi ile kontrol edilir.`,
     },
     {
       question: `${part} siparişinde yanlış parça riskini nasıl azaltırım?`,

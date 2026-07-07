@@ -168,3 +168,10 @@
 - Urun aciklamasindan Bayi Ekersan ve B2B stokta gorunmuyor ifadesi kaldirildi; specs icindeki B2B stok alani temizlendi.
 - Build basarili; commit e490257 push edildi. Canli /data/products.json ve urun sayfasi stok 1, in stock ve Bayi Ekersan/B2B metni yok seklinde dogrulandi.
 - Satis adimi: Bu urun icin gelen talepte eski parca fotosu/OEM 425027 teyidiyle WhatsApp uzerinden kargo dahil kuponlu net fiyat verilmeli.
+
+## Saatlik Google SEO Aksiyonu - 23:55
+- Otomasyon 60 dakikada bir calisacak sekilde guncellendi; her turda trafik, lead, siparis, sitemap/feed ve urun SEO kontrolu yapilacak.
+- Google 1. sayfa garanti edilemez; kontrol edilebilir aksiyon olarak 1056 urunun ortak SEO title/aciklama/schema/fallback HTML metni daha yuksek niyetli hale getirildi.
+- Urun title kurali: urun/model/OEM adi + "Fiyat Stok" + Frenciniz. Meta aciklama ve schema tarafina OEM/SKU, uyumluluk adaylari, sik aranan parca ifadeleri ve WhatsApp teklif niyeti eklendi.
+- Build basarili; seo:audit 1056 urun, 1187 landing, 2311 tahmini sitemap URL; seo:product-keywords 1056 urun ve 600 Google Ads exact keyword cikisi uretildi.
+- Satis adimi: Search Console'da sitemap yeniden gonderilmeli; en sicak 10 landing/urun URL icin URL Denetimi ile dizine ekleme istenmeli.
