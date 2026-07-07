@@ -144,3 +144,21 @@
 - Canli dogrulama: ana sayfa, urun 174/640/767/63 ve /suspansiyon-korugu sayfalari 200. JS asset /assets/index-BjOp7orH.js; urun karti CTA'si, 0850 888 7881 WhatsApp, 0545 608 7008 telefon, 1055 urun, sitemap 2310 URL, Merchant/Meta feed 200.
 - Uygulanan aksiyon: yeni frontend degisikligi yapilmadi; bir onceki urun karti CTA degisikligi canli oldugu icin etkisi izlenecek. Bu turda takip/log ve sicak urun kirilimi guncellendi.
 - Satis adimi: bugunun en yakin niyeti Renault fren circiri, Mercedes fren diski, Scania disk balata, Mercedes Axor on porya, Sertel fren pabucu ve suspansiyon korugu. Bu urunler icin kargo dahil kuponlu net fiyat ve uyum cevabi hazirlanmali; Google Ads tarafinda urun 767 GB tiklamasi maliyet/niyet acisindan panelde kontrol edilmeli.
+
+## Heartbeat Trafik Kontrolu - 22:33
+- Onceki UTC gun (2026-07-06): 132 goruntuleme / 48 tekil; Facebook 0, Google 63, tiklama W/T/E 4/0/0.
+- Yeni UTC gun (2026-07-07): 104 goruntuleme / 36 tekil; raw log 104 satir.
+- Bot filtreli insan trafigi: 102 goruntuleme / 34 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 71; Google Ads isaretli 13.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Detayli filtre: TR insan trafigi 90 goruntuleme / 27 tekil IP; supheli/yurtdisi agirlikli insan trafigi 12 goruntuleme / 7 tekil IP. Sehirler: TR/bos 55, Istanbul 13, Izmir 5, Saray 3, Mersin 2, Samsun 2, Cukurova 2, Bursa 2, Kalecik 2, Sehitkamil 2; yurtdisi US 9, GB 2, CA 1.
+- Sicak yollar: ana sayfa 24, urun 459 Ford Cargo/Krone/Dorse/Kogel suspansiyon korugu 6, urun 887 suspansiyon korugu 4, urun 63 Renault fren circiri 4, urun 174 Ford Cargo/Krone/Dorse fren diski 4, /suspansiyon-korugu 3, urun 60 dorse fren circiri 2, /otomatik-fren-circiri 2, urun 420/49 mekanik fren circiri 2'ser.
+- Google sicak yollar: ana sayfa 20, urun 887 suspansiyon korugu 4, urun 63 Renault fren circiri 4, urun 174 fren diski 4, /otomatik-fren-circiri 2, urun 420/49 mekanik fren circiri 2'ser.
+- Google Ads isaretli trafik: ana sayfa 6, urun 174 fren diski 4, urun 767 Mercedes Axor on porya 2, /fren-balatasi 1. Google Ads paneli bu turda acilmadi; bu kirilim site tracking verisine dayaniyor.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0. Lead tiklamasi da 0; trafik artmis olsa da teklif/siparis aksiyonu uretilmiyor.
+- Canli dogrulama: ana sayfa 200, JS asset /assets/index-BjOp7orH.js, 0850 888 7881 WhatsApp ve 0545 608 7008 telefon mevcut. /data/products.json ve /api/products 1055 urun; sitemap 2310 URL; Merchant/Meta feed 200.
+- Ek urun analizi: Ekersan B2B karsilastirmasinda 85 satilabilir eksik SKU bulundu; 47'si oncelikli satis kategorilerinde. Onay gelmeden kataloga yukleme yapilmadi.
+- Satis adimi: sicak trafik bugun suspansiyon korugu ve fren circiri tarafina kaydi. Ilk aksiyon onayla 47 oncelikli eksik SKU'yu eklemek; paralelde urun 459/887/63/174 icin kargo dahil kuponlu net fiyat ve uyum cevabini hazir tutmak.

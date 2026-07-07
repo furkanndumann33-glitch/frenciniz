@@ -1,0 +1,86 @@
+﻿sku,name,category_id,category_name,stock,b2b_price,site_price_est,sales_count,oem,has_image,image_count,path,source_id
+42940.C,KOMPLE KÖRÜK METAL PİSTON,suspansiyon-korugu,Süspansiyon Körüğü,228,2860.0,3775.2,25.0,"0542942411 , 0542940931",True,1,/komple-koruk-metal-piston-p5207,5207
+50-5320,FRENCOO KALİPER MEKANİZMA SETİ Y.M.,kaliper-ayar-mekanizmasi,Kaliper Ayar Mekanizması,55,5250.0,6930.0,6.0,,True,1,/frencoo-kaliper-mekanizma-seti-y-m-p15197,15197
+ESB 696 10,Bijon Dps,bijon,Bijon,2380,166.0945,219.24,0.0,42117456,True,4,/bijon-dps-p4375,4375
+ESB 622 10,BİJON İVECO ARKA-90 MM,bijon,Bijon,730,166.0903451708,219.24,0.0,42117451,True,1,/bijon-iveco-arka-90-mm-p15520,15520
+ESB 341 10,BİJON FATİH İNT./PROF.ARKA-117 MM FREZELİ,bijon,Bijon,590,166.0903451708,219.24,0.0,760177,True,4,/bijon-fatih-int-prof-arka-117-mm-frezeli-p4321,4321
+EYD 209 02-1,DİSK CİVATASI YILDIZ BAŞLI,disk-bijonu-civatasi,Disk Bijonu/Civatası,550,38.5,50.82,0.0,,False,0,/disk-civatasi-yildiz-basli-p33021,33021
+ESB 273 20,TGA Man Ön Disk Bijonu,disk-bijonu-civatasi,Disk Bijonu/Civatası,530,155.7812892636,205.63,0.0,81455010129.0,True,8,/tga-man-on-disk-bijonu-p4303,4303
+ESB 10236 30,Güleryüz Cobra Ön Disk,fren-diski,Fren Diski,520,158.0721905763,208.66,0.0,,True,4,/guleryuz-cobra-on-disk-p4199,4199
+42881.C,Komple Körük Metal Piston,suspansiyon-korugu,Süspansiyon Körüğü,344,3245.0,4283.4,0.0,"0542940611 , 0542941421",True,1,/komple-koruk-metal-piston-p5198,5198
+1000 620,6/20 Aliminyum Perçin,percin,Perçin,334,450.0,594.0,0.0,(A) C4,True,3,/6-20-aliminyum-percin-p1107,1107
+ESB 2012 10,Serin Dorse Kısa 90 mm,bijon,Bijon,220,166.0903451708,219.24,0.0,,True,4,/serin-dorse-kisa-90-mm-p4259,4259
+42644.R,Roll Körük,suspansiyon-korugu,Süspansiyon Körüğü,180,925.0,1221.0,0.0,"0003270101 , 0003270201 , 3073270101 ,1134445",True,1,/roll-koruk-p5175,5175
+1000 822,8*22 ALUMİNYUM PERÇİN,percin,Perçin,167,450.0,594.0,0.0,(A) D4,True,3,/8-22-aluminyum-percin-p1115,1115
+ESK 010 06,KAMPANA O303-O302S MERCEDES ÖN (V6 ÖN),fren-kampanasi,Fren Kampanası,150,4910.6104575,6482.01,0.0,"3054210001 , 3834230201",True,2,/kampana-o303-o302s-mercedes-on-v6-on-p4999,4999
+424881.C,Komple Körük Metal Piston KISA,suspansiyon-korugu,Süspansiyon Körüğü,146,3110.0,4105.2,0.0,"0542941311 , 0542941311",True,1,/komple-koruk-metal-piston-kisa-p14145,14145
+422211.P19,Katlı Körük Çapraz,suspansiyon-korugu,Süspansiyon Körüğü,128,880.0,1161.6,0.0,,False,0,/katli-koruk-capraz-p5106,5106
+EYD 700 01,ÖZKOÇ TRAX 4711 PORYA KAPAĞI 12T,porya,Porya,114,450.0,594.0,0.0,,True,3,/ozkoc-trax-4711-porya-kapagi-12t-p5468,5468
+ESK 161 25,KAMPANA CAM DORSE KAM14062,fren-kampanasi,Fren Kampanası,112,5281.2225675,6971.21,0.0,Fren Kampanası,True,1,/kampana-cam-dorse-kam14062-p15185,15185
+422924.KP,SAF DORSE KÖRÜĞÜ KOMPLE PLASTİK PİSTON,suspansiyon-korugu,Süspansiyon Körüğü,95,2750.0,3630.0,0.0,,False,0,/saf-dorse-korugu-komple-plastik-piston-p33179,33179
+EYD 91 09,AXOR ABS DİŞLİSİ / ÖN E.M,abs-sensoru-modulu-kablo,ABS Sensörü/Modülü/Kablo,77,220.0,290.4,0.0,9423340015,True,3,/axor-abs-dislisi-on-e-m-p5535,5535
+30-3475,PAN17 AYAR TAŞIYICI MEKANİZMALI SET(MAN),kaliper-ayar-mekanizmasi,Kaliper Ayar Mekanizması,59,1600.0,2112.0,0.0,,True,1,/pan17-ayar-tasiyici-mekanizmali-set-man-p1489,1489
+PWR-5003,BALATA MAN 12-153 / 12-164 (29088-29091-29144),fren-balatasi,Fren Balatası,56,1490.38,1967.3,0.0,29088,True,1,/balata-man-12-153-12-164-29088-29091-29144-p7087,7087
+ESC 72811,Otomatik Fren Cırcırı,otomatik-fren-circiri,Otomatik Fren Cırcırı,50,1265.0,1669.8,0.0,9760-9750-394182-1789562-2009820-1112834-1112834-2260-1001-42260-14582-14582-278738-70879-72661-72625-72950-72492-70265600-7026,True,4,/otomatik-fren-circiri-p3485,3485
+426173.S,MERCEDES AROCS LASTİK TEK GİRİŞ,suspansiyon-korugu,Süspansiyon Körüğü,50,1750.0,2310.0,0.0,MERCEDES,False,0,/mercedes-arocs-lastik-tek-giris-p33178,33178
+ESK 160 95,KAMPANA YTE DİNGİL ÖZTREYLER 420/180,fren-kampanasi,Fren Kampanası,48,5253.42665925,6934.52,0.0,786108,True,2,/kampana-yte-dingil-oztreyler-420-180-p15410,15410
+ESK 050 06,KAMPANA AS 26235-32260 ARKA,fren-kampanasi,Fren Kampanası,44,5225.630751,6897.83,0.0,23799 T,True,2,/kampana-as-26235-32260-arka-p5035,5035
+ESC 72810,Otomatik Fren Cırcırı,otomatik-fren-circiri,Otomatik Fren Cırcırı,42,1265.0,1669.8,0.0,72660-72624-72949-72491-82460300-82460300-64502-70878-278737-14581-42220-1005-2220-9759-394181-1789561-2009819-1112833-,True,4,/otomatik-fren-circiri-p3484,3484
+EYD 91 07,DAF CF ABS DİŞLİSİ / ARKA,abs-sensoru-modulu-kablo,ABS Sensörü/Modülü/Kablo,38,295.0,389.4,0.0,1805824,True,1,/daf-cf-abs-dislisi-arka-p5533,5533
+EYD 100 39-K,24 Nolu Körük Lastiği DÜZ KÖRÜKSAN,fren-korugu,Fren Körüğü,37,130.0,171.6,0.0,,False,0,/24-nolu-koruk-lastigi-duz-koruksan-p31961,31961
+BK 3 3030,TİP 30/30 D/D İMDAT FREN KÖRÜĞÜ,fren-korugu,Fren Körüğü,30,2500.0,3300.0,0.0,8682644620428,True,1,/tip-30-30-d-d-imdat-fren-korugu-p16099,16099
+ESD 090 03,Fren Diski,fren-diski,Fren Diski,29,3001.958091,3962.58,0.0,13C3508390BA,True,2,/fren-diski-p4972,4972
+ESC 72812,Otomatik Fren Cırcırı 3226 gövde scanıa,otomatik-fren-circiri,Otomatik Fren Cırcırı,28,1265.0,1669.8,0.0,1112831-394419-384419-14537-14538-2250-42250-278739-70864-64506-72662-72622-72467-72963,True,5,/otomatik-fren-circiri-3226-govde-scania-p3486,3486
+EYD 700 14,BPW PORYA KAPAĞI GEÇMELİ - TIRNAKLI,porya,Porya,28,440.0,580.8,0.0,,True,3,/bpw-porya-kapagi-gecmeli-tirnakli-p26146,26146
+20-2606,KALİPER MEKANİZMA DİŞLİ KAPAK,kaliper-kapak-conta,Kaliper Kapak/Conta,27,3950.0,5214.0,0.0,,True,1,/kaliper-mekanizma-disli-kapak-p1362,1362
+ESK 160 06,KAMPANA SERTEL 42'LİK UZUN,fren-kampanasi,Fren Kampanası,22,6263.344659,8267.61,0.0,2803,True,2,/kampana-sertel-42-lik-uzun-p5069,5069
+EYD 700 05,SERTEL PORYA KAPAĞI 153 ALÜMİNYUM,porya,Porya,21,440.0,580.8,0.0,,True,3,/sertel-porya-kapagi-153-aluminyum-p5472,5472
+PWR-5021,BALATA ATECO DİSK (29093),fren-balatasi,Fren Balatası,20,1753.2175,2314.25,0.0,29093,True,1,/balata-ateco-disk-29093-p7105,7105
+EYD 70 28,522 PRO FREN YAYI (KÜÇÜK),yay,Yay,20,40.0,52.8,0.0,,True,1,/522-pro-fren-yayi-kucuk-p5462,5462
+421248,KALİPER TAMİR TAKIMI KOMPLE (Ø69 MM),kaliper,Kaliper,20,3400.0,4488.0,0.0,,True,1,/kaliper-tamir-takimi-komple-o69-mm-p2099,2099
+CHS5006,B.V YENİ SET KOMPLE SOL,kaliper-tamir-takimi,Kaliper Tamir Takımı,19,8470.0,11180.4,0.0,,True,1,/b-v-yeni-set-komple-sol-p28178,28178
+30-3490,PAN17-19-22 RULMAN TK,rulman,Rulman,19,275.0,363.0,0.0,,True,1,/pan17-19-22-rulman-tk-p1491,1491
+EYD 100 69-K,9 Nolu Körük Lastiği DERİN KÖRÜKSAN,fren-korugu,Fren Körüğü,19,110.0,145.2,0.0,,False,0,/9-nolu-koruk-lastigi-derin-koruksan-p31974,31974
+ESB 840 11-L,BİJON MITSUBISHI ARKA/SOL/ÇAKMALI-102 MM,bijon,Bijon,18,240.5446378335,317.52,0.0,,True,3,/bijon-mitsubishi-arka-sol-cakmali-102-mm-p4411,4411
+CDF-88430,"135*156,7*8/10,5 NBR ARKA AKS PORYA BPW İLAVE",porya,Porya,18,8.25,10.89,0.0,,True,1,/135-156-7-8-10-5-nbr-arka-aks-porya-bpw-ilave-p24708,24708
+PWR-5023,BALATA PWR (29211),fren-balatasi,Fren Balatası,18,2222.25,2933.37,0.0,29211,True,1,/balata-pwr-29211-p7107,7107
+20-2581,KALİPER MİL KEÇE TM.TK.,kaliper-tamir-takimi,Kaliper Tamir Takımı,14,1980.0,2613.6,0.0,CMKS.7.1,True,1,/kaliper-mil-kece-tm-tk-p1357,1357
+ESD 010 20,Fren Diski,fren-diski,Fren Diski,13,3594.937467,4745.32,0.0,"9704230412, 9704231212",True,2,/fren-diski-p4910,4910
+CH1163,Kaliper Köprü Bağlantı Ve Cıvata Tk.,kaliper,Kaliper,12,1419.0,1873.08,0.0,,True,2,/kaliper-kopru-baglanti-ve-civata-tk-p33191,33191
+CH1190,SB7 RULMAN YATAĞI (OTOBÜS TİPİ),kaliper-tamir-takimi,Kaliper Tamir Takımı,12,1950.0,2574.0,0.0,BUS CITARO - BUS LIONS CITY A25 A26 A39 - A308 A309 A330 AG330 AGG330 - CENTROLINER N4516 N4520 - EVOBUS CITYBUS A20 S3,True,1,/sb7-rulman-yatagi-otobus-tipi-p27377,27377
+CH1168,SB5/SB6/SB7 TIRNAKSIZ RULMAN TAKIMI,kaliper-tamir-takimi-wabco,Kaliper Tamir Takımı (Wabco),12,400.0,528.0,0.0,CKSK.14,True,1,/sb5-sb6-sb7-tirnaksiz-rulman-takimi-p27356,27356
+CH1016,Piston Tapet & Lastik Tamir Takımı 74 mm,lastik,Lastik,12,630.0,831.6,0.0,K000944 - K010604 - 000 420 0682 - 000 420 3982 - 000 420 4882 - 81.50822.6007 - 81.50822.6022 - 81.50822.6032 - 93162050,True,1,/piston-tapet-lastik-tamir-takimi-74-mm-p27244,27244
+10-1282,FREENCO KALİPER,kaliper,Kaliper,12,820.0,1082.4,0.0,,True,1,/freenco-kaliper-p16245,16245
+10-1055,SL7 SM7 TEK TIRNAKLI RULMAN,kaliper-tamir-takimi-wabco,Kaliper Tamir Takımı (Wabco),12,320.0,422.4,0.0,,True,1,/sl7-sm7-tek-tirnakli-rulman-p950,950
+03.6005.300.021.00,PABUÇ 420/220 BURÇLU 275 - ÖZK,fren-pabucu,Fren Pabucu,12,1850.0,2442.0,0.0,4320,True,2,/pabuc-420-220-burclu-275-ozk-p564,564
+CH2140,ELSA2-195-225 RULMAN YATAGI DÖKÜM,kaliper-tamir-takimi,Kaliper Tamir Takımı,10,678.0,894.96,0.0,,True,1,/elsa2-195-225-rulman-yatagi-dokum-p27577,27577
+60-6064 (80-8064),KALİPER PLASTİK TAPA,kaliper,Kaliper,10,400.0,528.0,0.0,,True,1,/kaliper-plastik-tapa-p23377,23377
+60-6090 (80-8090),FRENCOO SF HDX MODUL T AYAR CİVATA DİŞLİSİ,kaliper-tamir-takimi-frenco,Kaliper Tamir Takımı (Frenco),10,550.0,726.0,0.0,,True,1,/frencoo-sf-hdx-modul-t-ayar-civata-dislisi-p12179,12179
+60-6078 (80-8078),FRENCOO KALİPER İPAT TUTUCU TAMİR TAKIMI,kaliper,Kaliper,10,205.0,270.6,0.0,,True,1,/frencoo-kaliper-ipat-tutucu-tamir-takimi-p11335,11335
+425292,GERİ GETİRME YAYI (CARGO YAY 124),yay,Yay,10,90.0,118.8,0.0,,True,1,/geri-getirme-yayi-cargo-yay-124-p2682,2682
+KIZAK 10507,MERSEDES AXOR ARKA KIZAK 29167 BALATA,kizak,Kızak,8,3000.0,3960.0,0.0,"K000027 , 000423060",True,1,/mersedes-axor-arka-kizak-29167-balata-p17132,17132
+42284/1-293,Disk Balatası,fren-balatasi,Fren Balatası,8,1620.0,2138.4,0.0,681381001000 - 29174,True,1,/disk-balatasi-p14312,14312
+ESP.22.02.01,PORYA ÖZKOÇ TRAX 4629,porya,Porya,8,4715.0,6223.8,0.0,,False,0,/porya-ozkoc-trax-4629-p4578,4578
+425240,Körük Boğaz Somunu (Uzun),suspansiyon-korugu,Süspansiyon Körüğü,5,795.0,1049.4,0.0,93163852,True,1,/koruk-bogaz-somunu-uzun-p2643,2643
+BK 08 2424,BAYKAR TİP 24/24 D/P DİSK İMDAT FREN KÖRÜĞÜ SOL,fren-korugu,Fren Körüğü,4,4500.0,5940.0,0.0,,True,1,/baykar-tip-24-24-d-p-disk-imdat-fren-korugu-sol-p15007,15007
+60-6081 (80-8081),FRENCOO SF HDX MODUL T RULMAN TK ( ÜST),kaliper-tamir-takimi-frenco,Kaliper Tamir Takımı (Frenco),4,250.0,330.0,0.0,,True,1,/frencoo-sf-hdx-modul-t-rulman-tk-ust-p12181,12181
+8121,24/24 D/P DİSK FREN KÖRÜK 57 MM,fren-korugu,Fren Körüğü,4,2750.0,3630.0,0.0,8682644620411-8682644620558-8682644620565,True,1,/24-24-d-p-disk-fren-koruk-57-mm-p3771,3771
+FX-5070,KOMPLE KALİPER MEKANİZMA SETİ Y.M.SAĞ,kaliper-ayar-mekanizmasi,Kaliper Ayar Mekanizması,3,7605.0,10038.6,0.0,,True,1,/komple-kaliper-mekanizma-seti-y-m-sag-p17203,17203
+ESP.16.02.04,BPW 12 TON JUMBO PORYA,porya,Porya,3,4025.0,5313.0,0.0,0327244400,True,1,/bpw-12-ton-jumbo-porya-p6615,6615
+ESP.01.53,KOGEL DİSKLİ DİNGİL PORYASI,porya,Porya,2,5290.0,6982.8,0.0,000 350 2335,True,1,/kogel-diskli-dingil-poryasi-p30266,30266
+ESP.01.58.01,MERSEDES AROX PORYA FLANŞI,porya,Porya,2,4715.0,6223.8,0.0,"9603340545, 9603341145, 9433341045",True,1,/mersedes-arox-porya-flansi-p19127,19127
+SAF5387003118,Rulman Gress Yağı 18 Kg Saf,rulman,Rulman,2,286.0,377.52,0.0,,True,1,/rulman-gress-yagi-18-kg-saf-p14327,14327
+60-6063 (80-8063),FRENCO SF HDX MODUL T KALİPER TAPASI SİYAH,kaliper,Kaliper,2,400.0,528.0,0.0,,True,1,/frenco-sf-hdx-modul-t-kaliper-tapasi-siyah-p13709,13709
+423301.P01,KATLI KÖRÜK ÜÇ KATLI PRO-BMC,suspansiyon-korugu,Süspansiyon Körüğü,2,2915.0,3847.8,0.0,57RS3066424,True,1,/katli-koruk-uc-katli-pro-bmc-p5112,5112
+10-1275,KALİPER MASURA BİLYA YATAĞI,kaliper-tamir-takimi,Kaliper Tamir Takımı,2,750.0,990.0,0.0,,True,1,/kaliper-masura-bilya-yatagi-p980,980
+10-1274,KALİPER MASURA BİLYA YATAĞI,kaliper-tamir-takimi,Kaliper Tamir Takımı,2,750.0,990.0,0.0,,True,1,/kaliper-masura-bilya-yatagi-p979,979
+ESP.22.06.02,AKKAR DİNGİL PORYA A1 KAMPANALI (150 bilya),porya,Porya,2,4887.5,6451.5,0.0,,False,0,/akkar-dingil-porya-a1-kampanali-150-bilya-p4587,4587
+CH3282,ARCS KALİPER TAŞIYICI ARKA SOL,kaliper-ayar-mekanizmasi,Kaliper Ayar Mekanizması,1,6050.0,7986.0,0.0,000 423 2306 - 640 915 744 4,True,1,/arcs-kaliper-tasiyici-arka-sol-p27995,27995
+CH3281,ARCS KALİPER TAŞIYICI ARKA SAĞ,kaliper-ayar-mekanizmasi,Kaliper Ayar Mekanizması,1,6050.0,7986.0,0.0,000 423 2206 - 640 915 745 4,True,1,/arcs-kaliper-tasiyici-arka-sag-p27994,27994
+FX-2040,ELSA-2 RADIAL RNLT 420 - MN TGA SET SAĞ,kaliper-tamir-takimi-elsa,Kaliper Tamir Takımı (Elsa),1,7800.0,10296.0,0.0,,True,1,/elsa-2-radial-rnlt-420-mn-tga-set-sag-p19538,19538
+FX-5080,KOMPLE KALİPER MEKANİZMA SETİ YENİ MODEL SOL,kaliper-ayar-mekanizmasi,Kaliper Ayar Mekanizması,1,7605.0,10038.6,0.0,,True,1,/komple-kaliper-mekanizma-seti-yeni-model-sol-p17204,17204
+20-2510,DUCO MEKANİZMA SABİTLEME SACI,kaliper-tamir-takimi-duco,Kaliper Tamir Takımı (Duco),1,170.0,224.4,0.0,68322900,True,1,/duco-mekanizma-sabitleme-saci-p13351,13351
+20-2486,ELSA195 RULMAN YATAĞI,kaliper-tamir-takimi,Kaliper Tamir Takımı,1,1335.0,1762.2,0.0,,True,1,/elsa195-rulman-yatagi-p12895,12895
+ESP.01.10,PORYA 2622-2517 MERS. DİNGİL,porya,Porya,1,6555.0,8652.6,0.0,"3713567001, 3713560001",True,1,/porya-2622-2517-mers-dingil-p6436,6436
+ESP.01.09,PORYA 2521-2524 CERLİ ÇEKİÇİ,porya,Porya,1,6325.0,8349.0,0.0,"3553563601, 6173560501, 3553563901, 3553563501, 3463560401",True,1,/porya-2521-2524-cerli-cekici-p6434,6434
+60-6310 (80-8310),KALİPER TAMİR TAKIMI,kaliper,Kaliper,1,4800.0,6336.0,0.0,,True,1,/kaliper-tamir-takimi-p3307,3307

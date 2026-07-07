@@ -1,0 +1,117 @@
+﻿id,sku,name,category_id,stock,site_price,oem
+32,ESB 180 10-3,Mercedes Axor Actros Bijon 92 mm Dakromatlı Arka,bijon,100,196.28,9424010371
+35,ESK 160 18-S,Ford Cargo BPW Dorse Krone Dorse Kögel Dorse Fren Kampanası 18 cm,fren-kampanasi,6,4998.43,310667620-310967820-310967130
+40,ESK 040 17,Ford Cargo Fren Kampanası Ön ESK 040 17,fren-kampanasi,2,6678.75,
+59,ESB 194 20,Mercedes Axor Actros MAN Bijon 80 mm DPS,bijon,1590,183.64,3894010071-81455010114-81455010133-81455010163
+98,ESK 160 27,Ford Cargo Krone Dorse Kögel Dorse Fren Kampanası ESK 160 27,fren-kampanasi,87,4083.82,OK-JK-19.5(2806)
+102,ESK 160 17,Ford Cargo BPW Dorse Krone Dorse Kögel Dorse Fren Kampanası ESK 160 17,fren-kampanasi,123,4998.42,310967190
+109,ESK 140 01,Ford Cargo Krone Dorse Kögel Dorse Fren Kampanası ESK 140 01,fren-kampanasi,39,6147,194435-189937
+115,ESK 080 10,Isuzu NPR NQR Mitsubishi Canter Fuso Fren Kampanası Ön Arka ESK 080 10,fren-kampanasi,24,2807.63,MC 838284
+116,ESK 080 06,Isuzu NPR NQR Mitsubishi Canter Fuso Fren Kampanası Ön Arka ESK 080 06,fren-kampanasi,12,3020.33,MC 112024
+139,ESK 040 02,Ford Cargo Fren Kampanası 18 cm Arka,fren-kampanasi,2,4892.08,6119230
+140,ESK 030 16,BMC Fren Kampanası ESK 030 16,fren-kampanasi,2,3137.31,51RS401276A
+141,ESK 030 15,BMC Fren Kampanası Ön Arka ESK 030 15,fren-kampanasi,6,3030.96,566346
+180,ESD 090 04,Otokar Sultan Doruk Fren Diski Ön ESD 090 04,fren-diski,157,4636.84,
+182,ESD 080 01,1386686 Scania P G R Fren Diski ESD 080 01,fren-diski,301,3817.95,"1386686, 1402272, 1852817, K000510, K000810"
+186,ESD 070 23,0308835057 BPW Kogel Krone Dorse Fren Diski ESD 070 23,fren-diski,1244,4126.36,"0308835050, 0308835057"
+189,ESD 070 18,Ford Cargo SAF Dorse Krone Dorse Kögel Dorse Fren Diski ESD 070 18,fren-diski,15,4636.84,"407001800, 4079001801"
+202,ESD 070 01,Ford Cargo BPW Dorse Krone Dorse Kögel Dorse Fren Diski ESD 070 01,fren-diski,6,4892.08,0308835010
+218,ESD 030 04,Ford Cargo Fren Diski ESD 030 04,fren-diski,7,4211.44,"7182682, 7182772-Y"
+230,ESD 010 18,Mercedes Axor Fren Diski Maçasız Dolu E.M.,fren-diski,74,4870.81,204566
+257,ESK 290 10,Ford Cargo SAF Dorse Krone Dorse Kögel Dorse Fren Kampanası ESK 290 10,fren-kampanasi,7,4724.32,1064027000-1064027001-1064027010
+258,ESK 290 04,Ford Cargo SAF Dorse Krone Dorse Kögel Dorse Fren Kampanası ESK 290 04,fren-kampanasi,6,3717.16,1064019700
+282,ESD 030 25,Ford Cargo Fren Diski Ön ESD 030 25,fren-diski,54,4945.25,5802234113
+284,ESB 918 10-R,Scania P G R Disk Bijonu 96 mm Arka Y.M.,disk-bijonu-civatasi,250,218.55,
+302,ESB 783 10-R,Isuzu NPR NQR Mitsubishi Canter Fuso Bijon Sağ Arka ESB 783 10-R,bijon,6,240.54,MITSUBİSHİ 444 ARKA SAĞ/ TEK PARÇA
+308,ESB 640 10,Ford Cargo Disk Bijonu Arka,disk-bijonu-civatasi,168,164.94,"42117435 , 42064829"
+320,ESB 460 10,Volvo FH12 FM FL Scania P G R Bijon DPS ESB 460 10,bijon,510,199.31,20515519
+321,ESB 440 10,Ford Cargo Krone Dorse Kögel Dorse Bijon DPS ESB 440 10,bijon,3382,199.31,
+338,ESB 310 21-L,BMC Bijon 77 mm Sol,bijon,10,186.94,K5C1051
+340,ESB 273 10,MAN TGA TGS TGX TGM Bijon Arka ESB 273 10,bijon,8,199.31,
+386,ESB 1413 10,Volvo FH12 FM FL Bijon 110 mm Arka,bijon,80,199.31,1573083-1589010-1589009
+400,ESC 79460,Renault Premium Magnum Kerax Midlum D Serisi Otomatik Fren Cırcırı ESC 79460,otomatik-fren-circiri,14,1452,5010260117-79077
+404,ESC 79335,Otomatik Fren Cırcırı Otomatik Fren Cırcırı ESC 79335,otomatik-fren-circiri,62,1452,43365-3714200038
+420,ESC 1760,Mekanik Fren Cırcırı 7 Delik 10 Kanal ESC 1760,mekanik-fren-circiri,113,1082.4,517465130-517465130-517465220-100001760-24490-A3450
+427,EYD 700 06-1,Ford Cargo Krone Dorse Kögel Dorse Porya Kapağı EYD 700 06-1,porya,2,462,
+428,FT 34644,Mercedes Travego Tourismo Süspansiyon Körüğü,suspansiyon-korugu,22,1320,"0003270101 , 0003270201 , 3073270101 ,1134445"
+435,EYD 70 66,Ford Cargo BPW Dorse Krone Dorse Kögel Dorse Fren Yayı,yay,30,66,
+443,EYD 100 61-K,Ford Cargo Krone Dorse Kögel Dorse İmdatlı Fren Körüğü EYD 100 61-K,fren-korugu,15,181.5,
+444,EYD 100 60-K,Ford Cargo Krone Dorse Kögel Dorse İmdatlı Fren Körüğü EYD 100 60-K,fren-korugu,10,174.24,
+451,FT 344022,Ford Cargo SAF Dorse Krone Dorse Kögel Dorse Süspansiyon Körüğü FT 344022,suspansiyon-korugu,20,1518,
+452,FT 344183,Ford Cargo Krone Dorse Kögel Dorse Süspansiyon Körüğü FT 344183,suspansiyon-korugu,25,1518,
+455,EF-1729793,Scania P G R Sensör Arka,sensor,7,792,
+456,FT 34813-K,Ford Cargo Krone Dorse Kögel Dorse Süspansiyon Körüğü FT 34813-K,suspansiyon-korugu,55,2178,
+501,CH6001,ROR Meritor Knorr WABCO Kaliper Perno Tamir Takımı CH6001,kaliper-perno-tamir-takimi,3,2007.72,SAF 3 434 3861 00 - HALDEX 95397
+511,CH2225,ROR Meritor Knorr WABCO Kaliper Kapak Conta CH2225,kaliper-kapak-conta,16,5718.24,20-2606
+512,CH2224,ROR Meritor Knorr Meritor ELSA Kaliper Tamir Takımı CH2224,kaliper-tamir-takimi-elsa,4,5718.24,
+519,CH1127,Mercedes Axor Actros Körük Lastiği 69 mm,lastik,12,831.6,K001300 - K010603 - K000366 - K092079 - 000 420 2382 - 000 420 4082 - 000 420 4982 - 81.50822.6020 - 81.50822.6031 - 1723417
+524,CH1070,ROR Meritor Knorr WABCO Kaliper Kapak Conta CH1070,kaliper-kapak-conta,6,1454.64,
+526,CH1042,ROR Meritor Knorr WABCO WABCO Kaliper Tamir Takımı CH1042,kaliper-tamir-takimi-wabco,6,1437.48,
+546,CDF-88171,Scania P G R Porya Keçesi 10/13 Arka,kece,8,9.39,
+547,CDF-88029,Ford Cargo BPW Dorse Krone Dorse Kögel Dorse Dingil Parçası Y.M.,dingil,40,17.49,0256647400
+548,60-6064,ROR Meritor Knorr WABCO Kaliper 60-6064,kaliper,10,580.8,
+551,303.04.0013,Ford Cargo Krone Dorse Kögel Dorse Dingil Parçası ABS'li,dingil,10,58.87,4630840410
+560,BK 00 0036,Ford Cargo Krone Dorse Kögel Dorse Süspansiyon Körüğü BK 00 0036,suspansiyon-korugu,6,2970,8682644620381
+567,ESP.03.16,Scania P G R Porya Y.M.,porya,1,7741.8,"2290525, 1822615, 2603319"
+574,303.16.0006,Ford Cargo Krone Dorse Kögel Dorse EBS Modülatör ABS'li 303.16.0006,ebs-modulator,2,113.65,
+577,FX-3030,Ford Cargo SAF Dorse Krone Dorse Kögel Dorse PAN Kaliper Tamir Takımı Sağ,kaliper-tamir-takimi-pan,1,5674.68,
+591,KIZAK 10502,ROR Meritor Knorr WABCO Kaliper Kızak Ön,kizak,4,3960,"K000026, Z007541, 2121591"
+592,10-1089,ROR Meritor Knorr WABCO Kaliper Kapak Conta 10-1089,kaliper-kapak-conta,15,546.48,
+597,20-2380,ROR Meritor Knorr WABCO Kaliper Tamir Takımı 20-2380,kaliper-tamir-takimi,4,1878.36,"MCK1118, 85102092"
+609,424884.C,MAN TGA TGS TGX TGM Süspansiyon Körüğü 424884.C,suspansiyon-korugu,70,3168,"81436006035 , 81436006055"
+616,424881.S,Ford Cargo DAF Cf Xf BPW Dorse SAF Dorse Süspansiyon Körüğü Kısa,suspansiyon-korugu,97,2145,0542941010
+622,EYD 80 24-1,Ford Cargo BPW Dorse Krone Dorse Kögel Dorse Fren Pabucu 18 cm EYD 80 24-1,fren-pabucu,1,1287,
+625,EYD 100 66,Ford Cargo Krone Dorse Kögel Dorse Fren Körüğü EYD 100 66,fren-korugu,597,144.21,
+626,FX-3095,ROR Meritor Knorr WABCO MAXX22 Kaliper Tamir Takımı FX-3095,kaliper-tamir-takimi-maxx22,2,7638.84,
+627,FX-1021,ROR Meritor Knorr WABCO Kaliper FX-1021,kaliper,2,6547.2,
+629,EYD 100 62,Ford Cargo Krone Dorse Kögel Dorse Fren Körüğü EYD 100 62,fren-korugu,66,170.28,
+638,FX-2050,ROR Meritor Knorr WABCO Kaliper FX-2050,kaliper,4,8948.28,
+642,20-2420,ROR Meritor Knorr Meritor Kaliper Toz Lastiği,kaliper-toz-lastigi,10,286.44,"MCK1139, 1487339, 85107913"
+644,EYD 206 08,Mercedes Axor Actros Fren Pabucu 22CM,fren-pabucu,116,2145,624.420.02.19
+654,EYD 91 22,Ford Cargo SAF Dorse Krone Dorse Kögel Dorse ABS Sensörü ABS'li EYD 91 22,abs-sensoru-modulu-kablo,30,237.6,4029108100
+664,8113,Ford Cargo 16/24 D/P İmdatlı Fren Körüğü Disk Tipi,fren-korugu,4,3630,
+675,20-2589,ROR Meritor Knorr WABCO Kaliper 20-2589,kaliper,3,2180.64,"MCK1289, 81.50802.6026"
+678,60-6063,ROR Meritor Knorr WABCO Kaliper 60-6063,kaliper,10,504.24,
+696,20-2621,ROR Meritor Knorr Meritor Kaliper Ayar Mekanizması Sağ 20-2621,kaliper-ayar-mekanizmasi,2,591.36,
+698,20-2488,ROR Meritor Knorr WABCO Kaliper Tamir Takımı 20-2488,kaliper-tamir-takimi,1,1813.68,
+699,20-2489,ROR Meritor Knorr WABCO Kaliper Tamir Takımı Ön,kaliper-tamir-takimi,1,2094.84,
+700,20-2640,ROR Meritor Knorr WABCO Kaliper Tamir Takımı 20-2640,kaliper-tamir-takimi,10,722.04,
+703,10-1096,MAN TGA TGS TGX TGM Sensör,sensor,5,1082.4,
+705,10-1169,ROR Meritor Knorr WABCO Kaliper Tamir Takımı 69 Luk Y.M.,kaliper-tamir-takimi,5,514.8,
+708,60-6081,Ford Cargo SAF Dorse Krone Dorse Kögel Dorse Frenco Kaliper Tamir Takımı 60-6081,kaliper-tamir-takimi-frenco,4,417.12,
+709,60-6090,Ford Cargo SAF Dorse Krone Dorse Kögel Dorse Frenco Kaliper Tamir Takımı 60-6090,kaliper-tamir-takimi-frenco,10,612.48,
+713,30-3583,Ford Cargo Krone Dorse Kögel Dorse Disk Fren Balatası Sol 30-3583,fren-balatasi,1,843.48,
+715,EYD 91 30,Ford Cargo Krone Dorse Kögel Dorse ABS Sensörü ABS'li Y.M.,abs-sensoru-modulu-kablo,13,607.2,
+740,ESP.30.02,Ford Cargo Krone Dorse Kögel Dorse Porya ESP.30.02,porya,1,6375.6,
+741,ESP.23.01,Ford Cargo Krone Dorse Kögel Dorse Porya ESP.23.01,porya,5,5313,
+747,ESP.16.25,Ford Cargo Krone Dorse Kögel Dorse Porya ESP.16.25,porya,1,8045.4,
+748,ESP.16.12.15,Ford Cargo BPW Dorse Krone Dorse Kögel Dorse Porya ESP.16.12.15,porya,1,6679.2,"0327243290, 0980107350"
+752,ESP.08.10,Ford Cargo Porya Ön ESP.08.10,porya,7,7438.2,"9C461106AA, RF8C46, 1106AB"
+759,ESP.03.11,Scania P G R Porya ESP.03.11,porya,2,9259.8,"1800283, 2290542"
+760,ESP.03.03,Scania P G R Porya ESP.03.03,porya,1,9259.8,1724790
+761,ESP.03.02,Scania P G R Porya ESP.03.02,porya,2,8956.2,1800283 - 1382884
+763,ESP.02.21,Ford Cargo Krone Dorse Kögel Dorse Porya ESP.02.21,porya,1,4857.6,81443010182
+769,ESP.01.27,Mercedes Axor Actros Porya ESP.01.27,porya,1,11536.8,9463560701
+771,H-24328,Ford Cargo BPW Dorse Krone Dorse Kögel Dorse Fren Pabucu H-24328,fren-pabucu,382,42.24,(A) A4
+772,H-24327,Ford Cargo BPW Dorse Krone Dorse Kögel Dorse Fren Pabucu H-24327,fren-pabucu,389,42.24,(A) A4
+791,EYD 91 02,Ford Cargo BPW Dorse Krone Dorse Kögel Dorse Fren Diski ABS'li Y.M.,fren-diski,70,264,0331008510 - 0331008530
+794,EYD 80 24,Ford Cargo BPW Dorse Krone Dorse Kögel Dorse Fren Pabucu 20 cm EYD 80 24,fren-pabucu,26,1287,(A) D3
+795,EYD 80 07,Ford Cargo SAF Dorse Krone Dorse Kögel Dorse Fren Pabucu 18 cm,fren-pabucu,30,1518,(A) G4 - 3054.0120.00
+814,EYD 70 65,Ford Cargo Krone Dorse Kögel Dorse Fren Yayı Özel,yay,26,66,
+827,EYD 70 04-2,Ford Cargo Krone Dorse Kögel Dorse Fren Yayı 28 cm,yay,184,85.8,(A) B4
+829,EYD 70 04,Ford Cargo Krone Dorse Kögel Dorse Fren Yayı 25 cm,yay,22,85.8,(A) C4
+848,EYD 206 23,Ford Cargo Fren Pabucu 20 cm EYD 206 23,fren-pabucu,12,1062.6,
+869,EYD 100 41,Ford Cargo Krone Dorse Kögel Dorse Fren Körüğü EYD 100 41,fren-korugu,1,120.45,
+875,EYD 10 05,MAN TGA TGS TGX TGM Fren Yayı,yay,11,85.8,(A) C4
+885,42836.C1,DAF Cf Xf Süspansiyon Körüğü 42836.C1,suspansiyon-korugu,279,2772,"1697678 , 0388165"
+909,424881.CP,Ford Cargo SAF Dorse Krone Dorse Kögel Dorse Süspansiyon Körüğü Kısa,suspansiyon-korugu,4,3564,0542943410
+951,KIZAK 10503,29171 BPW Kogel Dorse Disk Fren Balatasi KIZAK 10503,kizak,3,3960,"K012619, 2379697"
+952,8138,Ford Cargo Krone Dorse Kögel Dorse 16/24 D/D İmdatlı Fren Körüğü Disk Tipi 8138,fren-korugu,797,2772,
+963,8106-1,Ford Cargo Krone Dorse Kögel Dorse 24/24 D/P İmdatlı Fren Körüğü M22 64 mm Disk Tipi,fren-korugu,1,3300,
+971,60-6310,ROR Meritor Knorr WABCO Kaliper 60-6310,kaliper,1,5237.76,
+974,427138,ROR Meritor Knorr WABCO Kaliper Ayar Mekanizması 427138,kaliper-ayar-mekanizmasi,21,3762,
+983,425210,Ford Cargo Krone Dorse Kögel Dorse Kaliper Toz Lastiği 425210,kaliper-toz-lastigi,61,92.4,
+1017,42325/1-300,29279 MAN TGA TGS TGX Disk Fren Balatasi 42325/1-300,fren-balatasi,16,2059.2,29279
+1043,10-1160,ROR Meritor Knorr WABCO Kaliper Tamir Takımı 10-1160,kaliper-tamir-takimi,18,471.24,"II179320065, II304130065, 1746824, 1759811, 0980102630, 81508226007, 81508226022, 0004200682, 0004203982, 3434380400, 1390429,"
+1045,10-1153,ROR Meritor Knorr WABCO Kaliper 10-1153,kaliper,1,917.4,
+1051,10-1071,ROR Meritor Knorr WABCO WABCO Kaliper Tamir Takımı 10-1071,kaliper-tamir-takimi-wabco,20,231,

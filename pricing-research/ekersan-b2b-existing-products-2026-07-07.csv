@@ -1,0 +1,938 @@
+﻿sku,name,category_id,category_name,stock,b2b_price,site_price_est,sales_count,oem,has_image,image_count,path,source_id
+ESC 1760-1,Mekanik Fren Cırcırı 7 Delik 10 Kanal (EUR),mekanik-fren-circiri,Mekanik Fren Cırcırı,600,943.0,1244.76,0.0,517465130-517465130-517465220-100001760-24490-A3450,False,0,/mekanik-fren-circiri-7-delik-10-kanal-eur-p32165,32165
+ESB 1315 10,BİJON ROR DORSE-95 MM,bijon,Bijon,155,190.4051386487,251.33,0.0,21022167,False,0,/bijon-ror-dorse-95-mm-p32126,32126
+ESC 79458,RENAULT OTOMOTİK FREN CIRCIRI 3717 GÖVDE,otomatik-fren-circiri,Otomatik Fren Cırcırı,25,1265.0,1669.8,0.0,"14632, 79308, 79075, 79308, 5010260115, 79308, 4W3055",False,0,/renault-otomotik-fren-circiri-3717-govde-p31537,31537
+ESC 79445,Otomatik Fren Cırcırı,otomatik-fren-circiri,Otomatik Fren Cırcırı,29,1265.0,1669.8,0.0,"5010098861, 50010098861, 14634, 79295, 72799, 05010098861, 4W2925, KB2925",False,0,/otomatik-fren-circiri-p31533,31533
+ESC 79444,Otomatik Fren Cırcırı,otomatik-fren-circiri,Otomatik Fren Cırcırı,14,1265.0,1669.8,0.0,"5010098860, 50010098860, 14633, 79294, 72798, 05010098860, 4W2920, 4W2920, KB2920",False,0,/otomatik-fren-circiri-p31532,31532
+ESD 130 09,DİSK ISUZU 25 NOVO CITILIFE OTOBÜS (387.061.2600.51),fren-diski,Fren Diski,34,2825.91733875,3730.21,0.0,387.061.2600.51,True,2,/disk-isuzu-25-novo-citilife-otobus-387-061-2600-51-p29805,29805
+ESD 220 03,KRONE 430 GÖBEKLİ DİSK,fren-diski,Fren Diski,138,4284.9,5656.07,0.0,550027458,True,1,/krone-430-gobekli-disk-p29216,29216
+ESB 145 10,ATEGO Y.M. ARKA DISK BIJONU,disk-bijonu-civatasi,Disk Bijonu/Civatası,630,142.0342,187.49,0.0,,True,4,/atego-y-m-arka-disk-bijonu-p27174,27174
+ESB 4000 12,KALİPER DİSK CİVATASI,disk-bijonu-civatasi,Disk Bijonu/Civatası,3890,66.78,88.15,40.0,31796200,True,3,/kaliper-disk-civatasi-p19745,19745
+ESB 4000 15,YILDIZ BAŞLI SAF Y.M. DİSK CİVATASI,disk-bijonu-civatasi,Disk Bijonu/Civatası,3108,83.4,110.09,0.0,,True,3,/yildiz-basli-saf-y-m-disk-civatasi-p19726,19726
+ESB 242 10,TGS Man Ön Disk Bijonu,disk-bijonu-civatasi,Disk Bijonu/Civatası,240,155.7721,205.62,50.0,,True,3,/tgs-man-on-disk-bijonu-p19713,19713
+ESD 040 31,Fren Diski,fren-diski,Fren Diski,49,4761.0,6284.52,0.0,5010598309 - 20763234,True,2,/fren-diski-p19696,19696
+ESD 040 30,Fren Diski,fren-diski,Fren Diski,32,4562.625,6022.66,0.0,20700508 - 5010598308,True,2,/fren-diski-p19695,19695
+ESC 80168,MERSEDES AROX öN CIRCIR SOL,fren-circiri,Fren Cırcırı,19,1265.0,1669.8,0.0,,True,4,/mersedes-arox-on-circir-sol-p19228,19228
+ESC 80167,MERSEDES AROX ÖN CIRCIR SAĞ,fren-circiri,Fren Cırcırı,25,1265.0,1669.8,0.0,,True,4,/mersedes-arox-on-circir-sag-p19227,19227
+ESB 919 10,BİJON SCANIA ARKA ÖZEL 115 MM,bijon,Bijon,280,182.12205,240.4,0.0,1847739,True,4,/bijon-scania-arka-ozel-115-mm-p17084,17084
+ESB 185 10,Axor-Actros Yeni Model Arka 120 mm,bijon,Bijon,120,168.18175,222.0,0.0,,True,3,/axor-actros-yeni-model-arka-120-mm-p17035,17035
+ESK 010 45,Fren Kampanası,fren-kampanasi,Fren Kampanası,118,4669.707825,6164.01,0.0,3014210801,True,2,/fren-kampanasi-p16520,16520
+ESC 79167,Otomatik Fren Cırcırı,otomatik-fren-circiri,Otomatik Fren Cırcırı,15,1265.0,1669.8,0.0,72318-44092-42795-2795-5000791212,True,4,/otomatik-fren-circiri-p16327,16327
+ESB 670 10,Bijon Dps,bijon,Bijon,60,166.0945,219.24,0.0,42117459,True,4,/bijon-dps-p16291,16291
+ESB 784 11-L,BİJON MITSUBISHI 304 ARKA SOL,bijon,Bijon,1086,153.290975,202.34,0.0,,True,4,/bijon-mitsubishi-304-arka-sol-p16114,16114
+ESB 784 10-R,BİJON MITSUBISHI 304 ARKA SAĞ,bijon,Bijon,1586,153.290975,202.34,0.0,,True,4,/bijon-mitsubishi-304-arka-sag-p16113,16113
+ESK 230 28,Fren Kampanası,fren-kampanasi,Fren Kampanası,12,5231.281,6905.29,0.0,310977340,True,2,/fren-kampanasi-p15965,15965
+ESB 4000 13,AXOR DİSK CİVATASI YILDIZ BAŞLI,disk-bijonu-civatasi,Disk Bijonu/Civatası,2036,66.78,88.15,40.0,,True,3,/axor-disk-civatasi-yildiz-basli-p15809,15809
+ESK 290 03,Fren Kampanası,fren-kampanasi,Fren Kampanası,4,4115.8845,5432.97,0.0,1064010801-1064012801,True,2,/fren-kampanasi-p15803,15803
+ESC 70953,EKERSAN DODGE AKILLI CIRCIR SOL,fren-circiri,Fren Cırcırı,1,1265.0,1669.8,0.0,4175020800-44015520-21229251-21222874-41120-16104-9251-96-1120-52305,True,4,/ekersan-dodge-akilli-circir-sol-p15776,15776
+ESC 72675,Otomatik Fren Cırcırı,otomatik-fren-circiri,Otomatik Fren Cırcırı,37,1265.0,1669.8,0.0,42115-2115-72109-281090-159558,True,4,/otomatik-fren-circiri-p15752,15752
+ESC 72209,MERCEDES V-8 OTOBÜS ÖN CIRCIR R-L,fren-circiri,Fren Cırcırı,30,1265.0,1669.8,0.0,3574200538-72059-42040-14707-14708-2040-4731188,True,4,/mercedes-v-8-otobus-on-circir-r-l-p15725,15725
+ESB 3100 10,Yte Dingil (Öztreyler),bijon,Bijon,670,166.0903451708,219.24,0.0,Yte Dingil (Öztreyler),True,4,/yte-dingil-oztreyler-p15575,15575
+ESB 612 10,Bijon Dps,bijon,Bijon,344,112.2541643223,148.18,0.0,7168333,True,4,/bijon-dps-p15517,15517
+ESB 425 10,Cargo 115 mm Frezeli,bijon,Bijon,840,182.1266543597,240.41,0.0,,True,4,/cargo-115-mm-frezeli-p15504,15504
+ESB 112 10-1,BİJON MERCEDES ARKA-105 MM DPS Lİ,bijon,Bijon,200,148.3845,195.87,0.0,3554010071-3814010671,True,2,/bijon-mercedes-arka-105-mm-dps-li-p15446,15446
+ESK 160 62,KAMPANA SERTEL T-3,fren-kampanasi,Fren Kampanası,11,4336.161687,5723.73,0.0,Fren Kampanası,True,2,/kampana-sertel-t-3-p15430,15430
+ESK 160 57,KAMPANA ROR DORSE,fren-kampanasi,Fren Kampanası,36,5225.630751,6897.83,0.0,21018986-6041810-21018986V,True,2,/kampana-ror-dorse-p15421,15421
+ESK 140 05,KAMPANA RENAULT KERAX,fren-kampanasi,Fren Kampanası,49,5540.6510445,7313.66,0.0,5010260663,True,2,/kampana-renault-kerax-p15392,15392
+ESK 140 04,Fren Kampanası,fren-kampanasi,Fren Kampanası,204,5355.3449895,7069.06,0.0,189923,True,2,/fren-kampanasi-p15391,15391
+ESK 080 08,KAMPANA MITSUBISHI 304-515 ARKA,fren-kampanasi,Fren Kampanası,14,2112.489027,2788.49,0.0,MB 060500,True,1,/kampana-mitsubishi-304-515-arka-p15376,15376
+ESD 110 02,VOLVO KÜÇÜK FH 12 (410 ÇAP) MAÇASIZ DOLU FREN DİSKİ,fren-diski,Fren Diski,44,3689.275095,4869.84,0.0,"8551042, 3092710",True,1,/volvo-kucuk-fh-12-410-cap-macasiz-dolu-fren-diski-p15296,15296
+ESD 020 20,DİSK MAN TGA ÖN MAÇASIZ,fren-diski,Fren Diski,9,4669.712586,6164.02,0.0,Fren Diski,True,1,/disk-man-tga-on-macasiz-p15253,15253
+ESD 020 17,Fren Diski,fren-diski,Fren Diski,50,3937.75366875,5197.83,0.0,"81508030027, 81508030020, 81508030057, II39290F",True,1,/fren-diski-p15252,15252
+ESD 020 06,DİSK TGA MAN ARKA DOLU,fren-diski,Fren Diski,15,4780.896219,6310.78,0.0,Fren Diski,True,1,/disk-tga-man-arka-dolu-p15247,15247
+ESC 79164,Otomatik Fren Cırcırı Renault,otomatik-fren-circiri,Otomatik Fren Cırcırı,13,1265.0,1669.8,0.0,4W2230-KB2230-RV 44059-5010056686-5010056686-5000789893-6310025-6310025- 72161-14544-14607,True,4,/otomatik-fren-circiri-renault-p15157,15157
+ESC 79163,Otomatik Fren Cırcırı Renault,otomatik-fren-circiri,Otomatik Fren Cırcırı,13,1265.0,1669.8,0.0,14608-14543-72160-6310024-6310024-5000789892-5010056685-5010056685-RV 44058-KB2240- 4W2240,True,4,/otomatik-fren-circiri-renault-p15156,15156
+ESC 79439,EKERSAN OTOMATİK FREN CIRCIRI,otomatik-fren-circiri,Otomatik Fren Cırcırı,18,1265.0,1669.8,0.0,5010098832-2910-14816-42910-72741,True,4,/ekersan-otomatik-fren-circiri-p15155,15155
+ESC 79438,Otomatik Fren Cırcırı,otomatik-fren-circiri,Otomatik Fren Cırcırı,16,1265.0,1669.8,0.0,72740-14815-2905-5010098831,True,4,/otomatik-fren-circiri-p15154,15154
+ESC 1721,Mekanik Fren Cırcırı 5 Delik 10 Kanal,mekanik-fren-circiri,Mekanik Fren Cırcırı,26,943.0,1244.76,0.0,46404-201- 5968-24090-713930-9319019-106001721-517452610-2100200701-1041010068-4335010290,True,4,/mekanik-fren-circiri-5-delik-10-kanal-p15061,15061
+ESB 230 20,12-153 Man Ön 58 MM,bijon,Bijon,2327,136.3086281057,179.93,0.0,81455010116-81455010152,True,3,/12-153-man-on-58-mm-p14912,14912
+ESC 80159,Otomatik Fren Cırcırı,otomatik-fren-circiri,Otomatik Fren Cırcırı,189,1265.0,1669.8,2.0,6234201538-6234201338-6194200338-6194200138-1662201-4731204-4731337-4731790-4731303-10644-2145-2050-14718-42145-42050-42990-7223,True,4,/otomatik-fren-circiri-p14765,14765
+ESC 80158,Otomatik Fren Cırcırı,otomatik-fren-circiri,Otomatik Fren Cırcırı,123,1265.0,1669.8,2.0,4731329-4731196-1662200-6194200038-6194200238-6234201238-6234201438-6584200238-6524200038-4335767100-4335767120-4335767240-94242,True,4,/otomatik-fren-circiri-p14764,14764
+ESK 030 14,KAMPANA 935 BMC PROFESYONEL BOY 30 CM,fren-kampanasi,Fren Kampanası,21,6809.99752125,8989.2,0.0,5K60512-1W,True,2,/kampana-935-bmc-profesyonel-boy-30-cm-p14649,14649
+ESB 915 10-R,Scanıa Arka Disk Bijonu 102 mm Y.M. Yuvarlak Kafa,disk-bijonu-civatasi,Disk Bijonu/Civatası,2316,190.400325,251.33,0.0,1528655,True,4,/scania-arka-disk-bijonu-102-mm-y-m-yuvarlak-kafa-p14644,14644
+ESC 79360,Otomatik Fren Cırcırı,otomatik-fren-circiri,Otomatik Fren Cırcırı,92,1265.0,1669.8,0.0,4731634-14721-42095-2095-70722-72320-72970-79210-81506106213-81506106153-81506106083,True,4,/otomatik-fren-circiri-p14627,14627
+ESB 180 20,Bijon Dps,bijon,Bijon,12827,153.0322076884,202.0,0.0,9424010271-4012371,True,4,/bijon-dps-p14624,14624
+ESK 160 02,KAMPANA OTOYOL YORK SERİN UZUN KAM 14002,fren-kampanasi,Fren Kampanası,37,5485.059228,7240.28,0.0,786450,True,2,/kampana-otoyol-york-serin-uzun-kam-14002-p14389,14389
+ESB 180 10,Bijon Dps,bijon,Bijon,14696,153.0322076884,202.0,0.0,9424010371-4014171,True,4,/bijon-dps-p14367,14367
+ESC 114075,FRUEHAUF,fren-circiri,Fren Cırcırı,204,943.0,1244.76,0.0,352194-31561-18883-8047-77743-100114075,True,3,/fruehauf-p14290,14290
+ESC 611,Mekanik Fren Cırcırı,mekanik-fren-circiri,Mekanik Fren Cırcırı,6,943.0,1244.76,0.0,,True,4,/mekanik-fren-circiri-p14288,14288
+ESC 80331,Otomatik Fren Cırcırı,otomatik-fren-circiri,Otomatik Fren Cırcırı,100,1265.0,1669.8,0.0,80092-81506106252-81506106262,True,4,/otomatik-fren-circiri-p14285,14285
+ESC 79446,RENAULT OTOMATİK CIRCIR 3717 GÖVDE,fren-circiri,Fren Cırcırı,36,1265.0,1669.8,0.0,5010098862-79296-72813-4W2630-KB2630,True,4,/renault-otomatik-circir-3717-govde-p14284,14284
+ESC 79447,RENAULT OTOMATİK CIRCIR 3718 GÖVDE,fren-circiri,Fren Cırcırı,44,1265.0,1669.8,0.0,KB2635-4W2635-72814- 79297-5010098863,True,4,/renault-otomatik-circir-3718-govde-p14283,14283
+ESC 79358,Otomatik Fren Cırcırı,otomatik-fren-circiri,Otomatik Fren Cırcırı,73,1265.0,1669.8,0.0,4731618-14702-42070-2070-60003-72968-79208-72303-79514-81506106211-81506106235-81998033225,True,4,/otomatik-fren-circiri-p14282,14282
+ESC 79359,Otomatik Fren Cırcırı,otomatik-fren-circiri,Otomatik Fren Cırcırı,74,1265.0,1669.8,0.0,81998033226-81506106166-81506106234-81506106210-79515-72304-79209-72969- 60004-2075-42075-14701-4731626,True,4,/otomatik-fren-circiri-p14281,14281
+ESB 116 10-1,BİJON MERCEDES ARKA/ÖZEL-128 MM,bijon,Bijon,359,161.65435,213.38,20.0,3814011471-81455010099,True,3,/bijon-mercedes-arka-ozel-128-mm-p14279,14279
+ESK 160 30,Fren Kampanası,fren-kampanasi,Fren Kampanası,3,5485.059228,7240.28,0.0,310677560-125779409,True,2,/fren-kampanasi-p14166,14166
+ESK 160 43,KAMPANA SERİN ROR JUMBO 8 DELİK 360*230 TIRTILLI,fren-kampanasi,Fren Kampanası,30,3845.10064125,5075.53,0.0,Fren Kampanası,True,2,/kampana-serin-ror-jumbo-8-delik-360-230-tirtilli-p14140,14140
+ESK 160 42,KAMPANA ROR JUMBO ÇAKMA 360 ÇAP,fren-kampanasi,Fren Kampanası,5,3928.488366,5185.6,1.0,Fren Kampanası,True,2,/kampana-ror-jumbo-cakma-360-cap-p14090,14090
+ESC 80350,Otomatik Fren Cırcırı 427257,otomatik-fren-circiri,Otomatik Fren Cırcırı,9,1265.0,1669.8,0.0,"80200, 3777729320, 80200C",True,4,/otomatik-fren-circiri-427257-p13871,13871
+ESD 020 12,Fren Diski,fren-diski,Fren Diski,112,2529.42765075,3338.84,0.0,81508030042,True,2,/fren-diski-p13870,13870
+ESK 090 15,Fren Kampanası,fren-kampanasi,Fren Kampanası,266,5892.732549,7778.41,6.0,"360571 , 2378715 , 1414153",True,2,/fren-kampanasi-p13869,13869
+ESD 120 03-1,FORD CARGO 1846 ÖN-ARKA ABS'Lİ FREN DİSKİ,fren-diski,Fren Diski,235,4095.2638155,5405.75,0.0,DC462A315AA,True,2,/ford-cargo-1846-on-arka-abs-li-fren-diski-p13727,13727
+ESC 79455,Otomatik Fren Cırcırı,otomatik-fren-circiri,Otomatik Fren Cırcırı,9,1265.0,1669.8,0.0,14739- 4W3490- 5010260028- 72998,True,4,/otomatik-fren-circiri-p13656,13656
+ESD 040 04,Fren Diski,fren-diski,Fren Diski,18,5892.732549,7778.41,0.0,5010525326,True,2,/fren-diski-p13654,13654
+ESK 040 16,Fren Kampanası,fren-kampanasi,Fren Kampanası,8,6337.467081,8365.46,0.0,9C46-1126-AG,True,2,/fren-kampanasi-p13653,13653
+ESK 161 01,Fren Kampanası,fren-kampanasi,Fren Kampanası,38,3845.10064125,5075.53,6.0,310946060-310946070,True,2,/fren-kampanasi-p13652,13652
+ESK 160 24,Fren Kampanası,fren-kampanasi,Fren Kampanası,230,4624.2283725,6103.98,0.0,1064026001-1064026002-1064026000,True,2,/fren-kampanasi-p13651,13651
+ESK 160 10,Fren Kampanası,fren-kampanasi,Fren Kampanası,30,5355.3449895,7069.06,0.0,AJB0465002-M003176-465002-449628-462869-7000085-3176,True,2,/fren-kampanasi-p13650,13650
+ESK 100 02,Fren Kampanası,fren-kampanasi,Fren Kampanası,71,5170.0389345,6824.45,0.0,"284620 , 1233462 , 094903 , 595225",True,2,/fren-kampanasi-p13649,13649
+ESK 010 31,Fren Kampanası,fren-kampanasi,Fren Kampanası,256,4817.95743,6359.7,0.0,3054230401,True,2,/fren-kampanasi-p13648,13648
+ESB 461 10,Bijon Dps,bijon,Bijon,1260,166.0945,219.24,0.0,,True,4,/bijon-dps-p13621,13621
+ESD 110 05,Fren Diski,fren-diski,Fren Diski,79,3857.735145,5092.21,0.0,"8551042, 3092710",True,1,/fren-diski-p13610,13610
+ESC 80423,EKERSAN AROX-ACTROS FREN CIRCIRI 5017 GÖVDE SAĞ,fren-circiri,Fren Cırcırı,75,1265.0,1669.8,0.0,,True,4,/ekersan-arox-actros-fren-circiri-5017-govde-sag-p13590,13590
+ESC 80422,EKERSAN AROX-ACTROST FREN CIRCIRI 5018 GÖVDE SOL,fren-circiri,Fren Cırcırı,54,1265.0,1669.8,0.0,,True,4,/ekersan-arox-actrost-fren-circiri-5018-govde-sol-p13589,13589
+ESD 080 02,SCANİA 420 ÖN-ARKA FREN DİSKİ MAÇASIZ DOLU,fren-diski,Fren Diski,4,4123.05972375,5442.44,0.0,"1386686, 1402272, 1852817, K000510, K000810",True,2,/scania-420-on-arka-fren-diski-macasiz-dolu-p13537,13537
+ESD 130 06,DİSK ISUZU N-SERİE NQR ÖN 70/75/ EURO 6,fren-diski,Fren Diski,2,2974.16218275,3925.89,0.0,8971686321 - 8982488950,True,2,/disk-isuzu-n-serie-nqr-on-70-75-euro-6-p11718,11718
+ESK 161 07,Fren Kampanası,fren-kampanasi,Fren Kampanası,174,4299.100476,5674.81,2.0,Fren Kampanası,True,2,/fren-kampanasi-p5093,5093
+ESK 161 02,KAMPANA SERTEL L4 JUMBO G18-B26,fren-kampanasi,Fren Kampanası,11,3845.10064125,5075.53,0.0,Fren Kampanası,True,2,/kampana-sertel-l4-jumbo-g18-b26-p5092,5092
+ESK 160 87,KAMPANA SERTEL K-4 420-200-246 ÇAKMA 687 (PORYA T-4),fren-kampanasi,Fren Kampanası,149,4657.9203825,6148.45,0.0,Fren Kampanası,True,2,/kampana-sertel-k-4-420-200-246-cakma-687-porya-t-4-p5091,5091
+ESK 160 82,KAMPANA OSMAN KOÇ K-1 (10 DELİK),fren-kampanasi,Fren Kampanası,177,5373.875595,7093.52,0.0,K01,True,2,/kampana-osman-koc-k-1-10-delik-p5090,5090
+ESK 160 74,KAMPANA BPW 20 CM SIKMA SOMUNLU,fren-kampanasi,Fren Kampanası,20,4892.079852,6457.55,0.0,310677570-310977160-310977770,True,2,/kampana-bpw-20-cm-sikma-somunlu-p5089,5089
+ESK 160 61,Fren Kampanası,fren-kampanasi,Fren Kampanası,57,5299.753173,6995.67,0.0,Fren Kampanası,True,2,/fren-kampanasi-p5086,5086
+ESK 160 53,KAMPANA 42*22 DORSE SIKMA SERTEL T-5 EM G28-B28,fren-kampanasi,Fren Kampanası,195,5373.875595,7093.52,0.0,2812,True,2,/kampana-42-22-dorse-sikma-sertel-t-5-em-g28-b28-p5084,5084
+ESK 160 32,KAMPANA ALTINORDU JUMBO G180 10 DELİK ALTI DÜZ,fren-kampanasi,Fren Kampanası,22,3557.876256,4696.4,0.0,Fren Kampanası,True,2,/kampana-altinordu-jumbo-g180-10-delik-alti-duz-p5080,5080
+ESK 160 29-S,Fren Kampanası,fren-kampanasi,Fren Kampanası,1242,4312.57728,5692.6,20.0,52809,True,2,/fren-kampanasi-p5079,5079
+ESK 160 22,Fren Kampanası,fren-kampanasi,Fren Kampanası,8,4901.34515475,6469.78,0.0,21220183-22222978-22224179,True,2,/fren-kampanasi-p5077,5077
+ESK 160 21,KAMPANA 360 ÇAP ROR JUMBO SOMUNLU,fren-kampanasi,Fren Kampanası,31,3928.488366,5185.6,0.0,Fren Kampanası,True,2,/kampana-360-cap-ror-jumbo-somunlu-p5076,5076
+ESK 160 18,Fren Kampanası,fren-kampanasi,Fren Kampanası,38,4354.688325,5748.19,0.0,"310967820 , 310967130",True,2,/fren-kampanasi-p5075,5075
+ESK 160 15,KAMPANA BPW ORJINAL (290) 6 DELİK,fren-kampanasi,Fren Kampanası,10,4614.1207695,6090.64,0.0,Fren Kampanası,True,2,/kampana-bpw-orjinal-290-6-delik-p5073,5073
+ESK 160 12,Fren Kampanası,fren-kampanasi,Fren Kampanası,59,5559.18165,7338.12,0.0,A1561800-AJA0489001-AJA0489002-1014079-1561800-3127017189-489002-489001-AJA0595001-21419,True,2,/fren-kampanasi-p5072,5072
+ESK 150 05,KAMPANA OTOKAR SULTAN E.M. ÖN,fren-kampanasi,Fren Kampanası,40,3826.57003575,5051.07,0.0,13C0521 AD - 13C25 - 05109AA - 132505109,True,2,/kampana-otokar-sultan-e-m-on-p5066,5066
+ESK 150 04,KAMPANA OTOKAR SULTAN Y.M.ÖN-ARKA,fren-kampanasi,Fren Kampanası,45,3706.1211,4892.08,1.0,13C00 050021 AD,True,2,/kampana-otokar-sultan-y-m-on-arka-p5065,5065
+ESK 140 03-K,Fren Kampanası,fren-kampanasi,Fren Kampanası,66,5855.671338,7729.49,0.0,5010098949,True,2,/fren-kampanasi-p5063,5063
+ESK 140 03,Fren Kampanası,fren-kampanasi,Fren Kampanası,242,5855.671338,7729.49,0.0,5010098949,True,2,/fren-kampanasi-p5062,5062
+ESK 110 25,Fren Kampanası,fren-kampanasi,Fren Kampanası,745,5781.548916,7631.64,0.0,"1075306 , 21451966",True,2,/fren-kampanasi-p5060,5060
+ESK 110 23,Fren Kampanası,fren-kampanasi,Fren Kampanası,209,6930.446457,9148.19,0.0,1075310,True,2,/fren-kampanasi-p5059,5059
+ESK 110 22,Fren Kampanası BMC NO: 5205P42706M-1,fren-kampanasi,Fren Kampanası,285,6522.773136,8610.06,0.0,7421451973-7420713927-20713927-21508812-21451967-21094123-3171747-1075309,True,2,/fren-kampanasi-bmc-no-5205p42706m-1-p5058,5058
+ESK 100 01,Fren Kampanası,fren-kampanasi,Fren Kampanası,136,7152.813723,9441.71,0.0,365579,True,2,/fren-kampanasi-p5057,5057
+ESK 090 02,Fren Kampanası,fren-kampanasi,Fren Kampanası,124,7894.037943,10420.13,0.0,360573-1414435,True,2,/fren-kampanasi-p5055,5055
+ESK 080 05,Fren Kampanası,fren-kampanasi,Fren Kampanası,166,2631.345981,3473.38,0.0,MK 321338,True,2,/fren-kampanasi-p5050,5050
+ESK 080 04,Fren Kampanası,fren-kampanasi,Fren Kampanası,24,4817.95743,6359.7,0.0,MC 828885,True,2,/fren-kampanasi-p5049,5049
+ESK 080 03,Fren Kampanası,fren-kampanasi,Fren Kampanası,44,5225.630751,6897.83,0.0,MC 828296,True,2,/fren-kampanasi-p5048,5048
+ESK 070 05,Fren Kampanası,fren-kampanasi,Fren Kampanası,128,3261.386568,4305.03,0.0,"27777258002, 277772158001, 277.772.158.0-01",True,2,/fren-kampanasi-p5047,5047
+ESK 070 03,KAMPANA ISUZU NQR NOR TURKUAZ ÖN-ARKA EM,fren-kampanasi,Fren Kampanası,314,3023.8578975,3991.49,0.0,8971020011-51,True,2,/kampana-isuzu-nqr-nor-turkuaz-on-arka-em-p5046,5046
+ESK 070 02,Fren Kampanası,fren-kampanasi,Fren Kampanası,135,2686.9377975,3546.76,0.0,894121376107,True,2,/fren-kampanasi-p5045,5045
+ESK 060 32,Fren Kampanası,fren-kampanasi,Fren Kampanası,392,6522.773136,8610.06,0.0,7183050,True,2,/fren-kampanasi-p5042,5042
+ESK 060 08,Fren Kampanası,fren-kampanasi,Fren Kampanası,32,5855.671338,7729.49,0.0,7172079,True,2,/fren-kampanasi-p5041,5041
+ESK 060 07,Fren Kampanası,fren-kampanasi,Fren Kampanası,40,5781.548916,7631.64,0.0,7172329,True,2,/fren-kampanasi-p5040,5040
+ESK 060 06,Fren Kampanası,fren-kampanasi,Fren Kampanası,47,5855.671338,7729.49,0.0,42118427,True,2,/fren-kampanasi-p5039,5039
+ESK 060 02,KAMPANA 35-9 65-9-M23-M24 İVECO,fren-kampanasi,Fren Kampanası,35,2446.039926,3228.77,2.0,7160035,True,2,/kampana-35-9-65-9-m23-m24-iveco-p5038,5038
+ESK 060 01,KAMPANA 85-12 75-12 M29 İVECO,fren-kampanasi,Fren Kampanası,65,2501.6317425,3302.15,2.0,4715419,True,2,/kampana-85-12-75-12-m29-iveco-p5037,5037
+ESK 050 07,KAMPANA AS26200-26235-32260 ÖN,fren-kampanasi,Fren Kampanası,2,5003.263485,6604.31,0.0,18345T,True,2,/kampana-as26200-26235-32260-on-p5036,5036
+ESK 050 03,KAMPANA AS 950-26200 ARKA,fren-kampanasi,Fren Kampanası,16,4864.28394375,6420.85,0.0,23504 T,True,2,/kampana-as-950-26200-arka-p5033,5033
+ESK 050 01,KAMPANA AS 900 ARKA,fren-kampanasi,Fren Kampanası,31,4864.28394375,6420.85,0.0,4833T,True,2,/kampana-as-900-arka-p5031,5031
+ESK 040 13,KAMPANA CARGO 4142-4136-4139-3936-3536 ARKA CERLİ ÇİFT ÇEKER,fren-kampanasi,Fren Kampanası,169,6467.1813195,8536.68,0.0,9C461126AD,True,2,/kampana-cargo-4142-4136-4139-3936-3536-arka-cerli-cift-ceker-p5030,5030
+ESK 040 12,Fren Kampanası,fren-kampanasi,Fren Kampanası,385,5818.610127,7680.57,2.0,9C46-1125-AB,True,2,/fren-kampanasi-p5029,5029
+ESK 040 11,KAMPANA CARGO 2524-2530-3230 3235 SERİ TIRTIRLI 3430 ÖN,fren-kampanasi,Fren Kampanası,122,6096.5692095,8047.47,0.0,6C46 1126-AC,True,2,/kampana-cargo-2524-2530-3230-3235-seri-tirtirli-3430-on-p5028,5028
+ESK 040 09,KAMPANA 2524-3227-3230 ÖN-ARKA,fren-kampanasi,Fren Kampanası,384,4678.97788875,6176.25,0.0,7C46 1125 AA,True,2,/kampana-2524-3227-3230-on-arka-p5027,5027
+ESK 040 06,KAMPANA 2520 İNTERCOLL ÖN,fren-kampanasi,Fren Kampanası,137,4678.97788875,6176.25,0.0,85DB1125AB,True,2,/kampana-2520-intercoll-on-p5026,5026
+ESK 040 05,KAMPANA 2520 İNTERCOLL ARKA,fren-kampanasi,Fren Kampanası,29,4678.97788875,6176.25,0.0,85DB1126AA,True,2,/kampana-2520-intercoll-arka-p5025,5025
+ESK 040 04,KAMPANA TURBO CARGO ÖN,fren-kampanasi,Fren Kampanası,2,4678.97788875,6176.25,0.0,82DB1125AA,True,2,/kampana-turbo-cargo-on-p5024,5024
+ESK 030 13,KAMPANA 522 PROFESYONEL F-R,fren-kampanasi,Fren Kampanası,105,4586.32486125,6053.95,0.0,57RS302616UB,True,2,/kampana-522-profesyonel-f-r-p5020,5020
+ESK 030 12,KAMPANA PRO 940/270 FATİH F-R SOĞUTMALI 22 CM,fren-kampanasi,Fren Kampanası,83,5892.732549,7778.41,0.0,5K 60512,True,2,/kampana-pro-940-270-fatih-f-r-sogutmali-22-cm-p5019,5019
+ESK 030 11,KAMPANA 170 FATİH F-R,fren-kampanasi,Fren Kampanası,10,5466.5286225,7215.82,0.0,5K 56770,True,2,/kampana-170-fatih-f-r-p5018,5018
+ESK 030 08,KAMPANA 220.26 DEV-822-827 PRO 20 CM,fren-kampanasi,Fren Kampanası,422,5299.753173,6995.67,6.0,5K 16448,True,2,/kampana-220-26-dev-822-827-pro-20-cm-p5016,5016
+ESK 030 05,Fren Kampanası BMC NO: 5K88968M,fren-kampanasi,Fren Kampanası,35,5355.3449895,7069.06,0.0,518782 - 5K88962M - 5K88968 - 5K59690,True,2,/fren-kampanasi-bmc-no-5k88968m-p5014,5014
+ESK 030 04,KAMPANA 200.26 İNT.İNCE FLANŞ,fren-kampanasi,Fren Kampanası,9,5466.5286225,7215.82,0.0,5K 18782,True,2,/kampana-200-26-int-ince-flans-p5013,5013
+ESK 030 01,KAMPANA 162.22-162.25 ÖN-ARKA,fren-kampanasi,Fren Kampanası,5,4706.773797,6212.94,0.0,K8C1008,True,2,/kampana-162-22-162-25-on-arka-p5012,5012
+ESK 020 09,KAMPANA 12-153 MAN DİNGİL,fren-kampanasi,Fren Kampanası,13,4262.039265,5625.89,0.0,,True,2,/kampana-12-153-man-dingil-p5011,5011
+ESK 020 07,Fren Kampanası,fren-kampanasi,Fren Kampanası,30,5355.3449895,7069.06,0.0,"81501100118 , 81501100213 , 81501100242",True,2,/fren-kampanasi-p5010,5010
+ESK 020 05,Fren Kampanası,fren-kampanasi,Fren Kampanası,1266,4669.712586,6164.02,0.0,81501100232,True,2,/fren-kampanasi-p5009,5009
+ESK 020 03,Fren Kampanası,fren-kampanasi,Fren Kampanası,484,4799.4268245,6335.24,6.0,81501100144,True,2,/fren-kampanasi-p5008,5008
+ESK 010 41,Fren Kampanası,fren-kampanasi,Fren Kampanası,848,5077.385907,6702.15,0.0,6584210001,True,2,/fren-kampanasi-p5006,5006
+ESK 010 22,KAMPANA 1517 ATEGO DİNGİL,fren-kampanasi,Fren Kampanası,17,4262.039265,5625.89,0.0,Fren Kampanası,True,2,/kampana-1517-atego-dingil-p5005,5005
+ESK 010 12,KAMPANA 2521-2524 KAMYON İLAVE DİNGİL,fren-kampanasi,Fren Kampanası,121,4669.712586,6164.02,0.0,6174230201,True,2,/kampana-2521-2524-kamyon-ilave-dingil-p5004,5004
+ESK 010 11,KAMPANA 2521-2524-3031 KAMYON ÖN 18 CM,fren-kampanasi,Fren Kampanası,16,4669.712586,6164.02,0.0,6244210201,True,2,/kampana-2521-2524-3031-kamyon-on-18-cm-p5003,5003
+ESK 010 09,KAMPANA 2517-2521 KAMYON ARKA (ÖZEL) 22 CM AXL G30-B28,fren-kampanasi,Fren Kampanası,46,5485.059228,7240.28,2.0,3604230101,True,2,/kampana-2517-2521-kamyon-arka-ozel-22-cm-axl-g30-b28-p5001,5001
+ESK 010 08,Fren Kampanası 2622 -2517 Kamyon ÖN,fren-kampanasi,Fren Kampanası,170,4141.59032925,5466.9,0.0,"3054210401 , 3054210101",True,2,/fren-kampanasi-2622-2517-kamyon-on-p5000,5000
+ESK 010 05,Fren Kampanası,fren-kampanasi,Fren Kampanası,94,6096.5692095,8047.47,0.0,"3014230001 , 3014231201",True,2,/fren-kampanasi-p4998,4998
+ESK 010 01,Fren Kampanası,fren-kampanasi,Fren Kampanası,186,5346.07968675,7056.83,0.0,3464230501,True,2,/fren-kampanasi-p4996,4996
+ESD 220 02,Fren Diski,fren-diski,Fren Diski,18,4669.712586,6164.02,0.0,9267086 - 6604261,True,2,/fren-diski-p4995,4995
+ESD 220 01,VALX DİNGİL TREYLER FREN DİSKİ,fren-diski,Fren Diski,8,4669.712586,6164.02,0.0,50390001,True,2,/valx-dingil-treyler-fren-diski-p4994,4994
+ESD 170 04,MITSUBISHI EURO 5 ÖN FREN DİSKİ,fren-diski,Fren Diski,6,2825.91733875,3730.21,0.0,MK584503Y,True,2,/mitsubishi-euro-5-on-fren-diski-p4993,4993
+ESD 170 01,MITSUBISHI METROPOL ARKA/OTOKAR DORUK ARKA ABS'Lİ FREN DİSKİ (090 17) (NP-0613),fren-diski,Fren Diski,50,3937.75366875,5197.83,0.0,16F00-05-248AA,True,2,/mitsubishi-metropol-arka-otokar-doruk-arka-abs-li-fren-diski-090-17-np-0613-p4992,4992
+ESD 160 06,Fren Diski ABS'li ( BMC NO: 57RS305298-1),fren-diski-abs-li,Fren Diski ABS'li,21,5255.95356,6937.86,0.0,Fren Diski,True,1,/fren-diski-abs-li-bmc-no-57rs305298-1-p4991,4991
+ESD 160 05,BMC ÖN FREN DİSKİ 16 DELİK BMC NO: 57RS307931-1,fren-diski,Fren Diski,18,4910.6104575,6482.01,0.0,57RS307931M,True,2,/bmc-on-fren-diski-16-delik-bmc-no-57rs307931-1-p4990,4990
+ESD 160 01,BMC PROBÜS Y.M. ABS'Lİ FREN DİSKİ 57RS305716,fren-diski,Fren Diski,5,3965.549577,5234.53,0.0,57RS305716,True,2,/bmc-probus-y-m-abs-li-fren-diski-57rs305716-p4988,4988
+ESD 150 04,Fren Diski,fren-diski,Fren Diski,35,4132.3250265,5454.67,0.0,MBR9018 - 21227349,True,2,/fren-diski-p4987,4987
+ESD 140 01,Fren Diski,fren-diski,Fren Diski,723,4011.88,5295.68,32.0,82135830 - 501315228 - 501316953 - 4200172 - 1415147 - 234110 - II371910061,True,2,/fren-diski-p4986,4986
+ESD 130 02,FREN DİSKİ ISUZU CITYBUS ÖN,fren-diski,Fren Diski,109,2816.652036,3717.98,0.0,377777391054,True,2,/fren-diski-isuzu-citybus-on-p4984,4984
+ESD 130 01,FREN DİSKİ ISUZU CITYBUS ARKA,fren-diski,Fren Diski,46,3001.958091,3962.58,0.0,"3870143170, 13C3508390BA",True,1,/fren-diski-isuzu-citybus-arka-p4983,4983
+ESD 120 03,FORD CARGO 1846 ÖN-ARKA FREN DİSKİ,fren-diski,Fren Diski,9,3937.75366875,5197.83,0.0,DC462A315AA,True,2,/ford-cargo-1846-on-arka-fren-diski-p4982,4982
+ESD 110 03,Fren Diski,fren-diski,Fren Diski,88,3242.8559625,4280.57,0.0,"85103804, 85110495",True,2,/fren-diski-p4981,4981
+ESD 110 01-2,Fren Diski,fren-diski,Fren Diski,53,3520.815045,4647.48,0.0,Fren Diski,True,1,/fren-diski-p4980,4980
+ESD 110 01,Fren Diski,fren-diski,Fren Diski,205,3242.8559625,4280.57,0.0,"85103803, 20515093, 5001864498",True,2,/fren-diski-p4979,4979
+ESD 100 01,Fren Diski,fren-diski,Fren Diski,62,4558.528953,6017.26,0.0,68323825 - MBR5124 - MBR9004,True,2,/fren-diski-p4978,4978
+ESD 090 08,KARSAN ATAK ÖN FREN DİSKİ (KARSAN NO:3050037AB ),fren-diski,Fren Diski,80,3854.365944,5087.76,0.0,3050037 - OK01037A - 3050037AA,True,2,/karsan-atak-on-fren-diski-karsan-no-3050037ab-p4977,4977
+ESD 090 07,OTOKAR DORUK ÖN FREN DİSK,fren-diski,Fren Diski,51,3854.365944,5087.76,0.0,16H00-05 - 464AA,True,2,/otokar-doruk-on-fren-disk-p4976,4976
+ESD 090 05,FREN DİSKİ,fren-diski,Fren Diski,158,3261.386568,4305.03,0.0,13C33 - 0557,True,2,/fren-diski-p4974,4974
+ESD 090 02,OTOKAR SULTAN ÖN FREN DİSKİ,fren-diski,Fren Diski,126,3001.958091,3962.58,1.0,13C2505572BA,True,2,/otokar-sultan-on-fren-diski-p4971,4971
+ESD 070 27,Fren Diski,fren-diski,Fren Diski,132,4039.671999,5332.37,0.0,6754210012,True,2,/fren-diski-p4968,4968
+ESD 070 25,Fren Diski,fren-diski,Fren Diski,151,4410.284109,5821.58,0.0,1176816 - 17870 - MBR5143,True,2,/fren-diski-p4967,4967
+ESD 070 24,Fren Diski,fren-diski,Fren Diski,53,4312.57728,5692.6,0.0,1088133,True,2,/fren-diski-p4966,4966
+ESD 070 22,Fren Diski,fren-diski,Fren Diski,40,4224.978054,5576.97,0.0,"4079001700, 4079001701",True,2,/fren-diski-p4964,4964
+ESD 070 20,Fren Diski,fren-diski,Fren Diski,76,3594.937467,4745.32,0.0,"0308835030, 0308835037",True,2,/fren-diski-p4963,4963
+ESD 070 15,Fren Diski,fren-diski,Fren Diski,286,3057.5499075,4035.97,6.0,"4079001300, 4079001301",True,2,/fren-diski-p4960,4960
+ESD 070 14,Fren Diski,fren-diski,Fren Diski,106,3224.325357,4256.11,6.0,"4079001001, 4079001000, 4079001002",True,2,/fren-diski-p4959,4959
+ESD 070 13,SAF KÜÇÜK YILDIZ 8 DELİK FREN DİSKİ,fren-diski,Fren Diski,3,4299.100476,5674.81,0.0,4079000400,True,2,/saf-kucuk-yildiz-8-delik-fren-diski-p4958,4958
+ESD 070 12,Fren Diski,fren-diski,Fren Diski,283,3451.7464245,4556.31,12.0,"407000500, 407000501, 4079000502",True,2,/fren-diski-p4957,4957
+ESD 070 10-1,BPW-SERİN KÜÇÜK 8 DELİK 160 BOY 230 GÖBEK ABS'Lİ FREN DİSKİ,fren-diski,Fren Diski,24,4039.671999,5332.37,0.0,"0308834010, 0308834017, 0308834030",True,2,/bpw-serin-kucuk-8-delik-160-boy-230-gobek-abs-li-fren-diski-p4955,4955
+ESD 070 10,Fren Diski,fren-diski,Fren Diski,16,3965.549577,5234.53,0.0,"0308834010, 0308834017, 0308834030",True,2,/fren-diski-p4954,4954
+ESD 070 07,Fren Diski,fren-diski,Fren Diski,183,3984.0801825,5258.99,0.0,"0308834100, 0308834107",True,2,/fren-diski-p4953,4953
+ESD 070 06,Fren Diski,fren-diski,Fren Diski,23,3984.0801825,5258.99,0.0,"0308834080, 0308834087",True,2,/fren-diski-p4952,4952
+ESD 070 05,Fren Diski,fren-diski,Fren Diski,67,3984.0801825,5258.99,0.0,"0308834040, 0308834047, 0300224093",True,2,/fren-diski-p4951,4951
+ESD 070 04,Fren Diski,fren-diski,Fren Diski,39,4539.9983475,5992.8,0.0,"M069018, 13162025, 103696449445, CF103696, M200135, MBR9007, M069018",True,2,/fren-diski-p4950,4950
+ESD 070 03,Fren Diski,fren-diski,Fren Diski,102,3631.998678,4794.24,0.0,"4079000410, 4079000700, 4079000701",True,2,/fren-diski-p4949,4949
+ESD 070 02,Fren Diski,fren-diski,Fren Diski,226,4039.671999,5332.37,0.0,"308834020, 308834060, 0308834067, 103784, 104085",True,2,/fren-diski-p4948,4948
+ESD 060 02,Fren Diski,fren-diski,Fren Diski,138,3131.6723295,4133.81,0.0,"1387439, 1640561, 1726138, II39112F, II39541F, II39112F, IL39541F, K004322, Z0009911",True,2,/fren-diski-p4946,4946
+ESD 040 21,Fren Diski,fren-diski,Fren Diski,215,4039.671999,5332.37,0.0,5010598305,True,2,/fren-diski-p4944,4944
+ESD 040 07,DİSK RENAULT 150/10 ÖN,fren-diski,Fren Diski,18,3669.059889,4843.16,0.0,"5010422262, 5010525308, 5010598303",True,2,/disk-renault-150-10-on-p4941,4941
+ESD 040 06,Fren Diski,fren-diski,Fren Diski,19,3669.059889,4843.16,0.0,"5010525362, 5010525015",True,2,/fren-diski-p4940,4940
+ESD 040 05,DİSK RENAULT MİDLUM 220 ÖN (10 DELİK KISA GÖBEK),fren-diski,Fren Diski,19,3669.059889,4843.16,0.0,5010525014,True,2,/disk-renault-midlum-220-on-10-delik-kisa-gobek-p4939,4939
+ESD 040 03,Fren Diski,fren-diski,Fren Diski,226,4002.610788,5283.45,0.0,"5010422593, 5010216437, 5010422363, 5006172150, 504134958",True,2,/fren-diski-p4938,4938
+ESD 040 02,Fren Diski,fren-diski,Fren Diski,32,3669.059889,4843.16,0.0,5010260218,True,2,/fren-diski-p4937,4937
+ESD 030 20,DİSK İVECO EUROCARGO 110 E 18 ARKA ABS Lİ 7189456,fren-diski,Fren Diski,55,3567.14155875,4708.63,0.0,7189456,True,2,/disk-iveco-eurocargo-110-e-18-arka-abs-li-7189456-p4934,4934
+ESD 030 19,DİSK IVECO EUROCARGO E5 100 E 18 ÖN 7189265,fren-diski,Fren Diski,90,3567.14155875,4708.63,0.0,"7189265, 2996418, 2996419",True,2,/disk-iveco-eurocargo-e5-100-e-18-on-7189265-p4933,4933
+ESD 030 17,DİSK İVECO EUROCARGO 220 E 21 ARKA BİJONLU ABS,fren-diski,Fren Diski,14,4224.978054,5576.97,0.0,"2992636, 7184078, 7189863,",True,2,/disk-iveco-eurocargo-220-e-21-arka-bijonlu-abs-p4932,4932
+ESD 030 15,DİSK İVECO 120 E21 EURO CARGO ABS'Lİ 2997450-01906466,fren-diski,Fren Diski,20,4002.610788,5283.45,0.0,"1906466, 7183632, 2997450, 01906466",True,1,/disk-iveco-120-e21-euro-cargo-abs-li-2997450-01906466-p4930,4930
+ESD 030 13,DİSK 85 E 13 EURO CARGO BİJONL,fren-diski,Fren Diski,15,3316.9783845,4378.41,0.0,60260,True,2,/disk-85-e-13-euro-cargo-bijonl-p4929,4929
+ESD 030 10,DİSK İVECO EUROCARGO 220 E 21 ÖN (14 DELİK-KAFA 6CM),fren-diski,Fren Diski,114,3418.89671475,4512.94,0.0,"7187541, 2995894, 2995702",True,2,/disk-iveco-eurocargo-220-e-21-on-14-delik-kafa-6cm-p4928,4928
+ESD 030 09,Fren Diski,fren-diski,Fren Diski,744,4224.978054,5576.97,0.0,"2995812, 2996328, 7189476, 7185503",True,2,/fren-diski-p4927,4927
+ESD 030 05,DİSK İVECO EUROBUS ARKA (030 04) 8 DELİK,fren-diski,Fren Diski,57,3669.059889,4843.16,0.0,"52226, 1907726, 1907526, 1907527, 1907530, 7172018, 7182770-Y",True,2,/disk-iveco-eurobus-arka-030-04-8-delik-p4926,4926
+ESD 030 03,DİSK İVECO 85-12 120-14 79-14,fren-diski,Fren Diski,26,3316.9783845,4378.41,0.0,"7182305, 7179778, 7171274, 1904532, 7168368, 01904532",True,1,/disk-iveco-85-12-120-14-79-14-p4924,4924
+ESD 030 02,Fren Diski,fren-diski,Fren Diski,727,4011.87609075,5295.68,0.0,"1906461, 1906438, 7182305, 7179778, 2992470, 2996329, 7192305",True,2,/fren-diski-p4923,4923
+ESD 030 01,Fren Diski,fren-diski,Fren Diski,33,4039.671999,5332.37,0.0,"1907631, 1908614, 1908729, 7173317, 718111, 2991979",True,2,/fren-diski-p4922,4922
+ESD 020 13,Fren Diski,fren-diski,Fren Diski,47,2529.42765075,3338.84,0.0,"81508030063, 81508030054",True,2,/fren-diski-p4921,4921
+ESD 020 10,Fren Diski,fren-diski,Fren Diski,77,3605.04507,4758.66,0.0,"81508030041, 81508030021",True,3,/fren-diski-p4920,4920
+ESD 020 09,Fren Diski,fren-diski,Fren Diski,525,3605.04507,4758.66,0.0,"81508030040, 81508030031",True,2,/fren-diski-p4919,4919
+ESD 020 05,Fren Diski,fren-diski,Fren Diski,123,2446.039926,3228.77,3.0,"81508030024, 81508030022",True,2,/fren-diski-p4918,4918
+ESD 020 04,Fren Diski,fren-diski,Fren Diski,176,2334.856293,3082.01,0.0,"81508030026, 81508030024",True,2,/fren-diski-p4917,4917
+ESD 010 27,Fren Diski,fren-diski,Fren Diski,39,3722.967105,4914.32,0.0,"9604210412, 9604210312, 9604210512",True,2,/fren-diski-p4913,4913
+ESD 010 22,Fren Diski,fren-diski,Fren Diski,48,3594.937467,4745.32,0.0,9704210112,True,2,/fren-diski-p4911,4911
+ESD 010 19,Fren Diski,fren-diski,Fren Diski,85,4011.87609075,5295.68,0.0,9704230412,True,2,/fren-diski-p4909,4909
+ESD 010 12,Fren Diski,fren-diski,Fren Diski,213,3360.7779975,4436.23,0.0,9434210312,True,2,/fren-diski-p4906,4906
+ESD 010 04,Fren Diski,fren-diski,Fren Diski,19,3301.81698,4358.4,0.0,"9754210212, 9754210012, 9754210112",True,2,/fren-diski-p4905,4905
+ESD 010 03,Fren Diski,fren-diski,Fren Diski,16,3301.81698,4358.4,4.0,"9754230612, 9754230012, 9754230312",True,2,/fren-diski-p4904,4904
+ESD 010 02,Fren Diski,fren-diski,Fren Diski,1117,3360.7779975,4436.23,12.0,"9424211212, 9424212112, 9424210912, 9424211012, 9424211112, 9424200212",True,2,/fren-diski-p4903,4903
+ESD 010 01,Fren Diski,fren-diski,Fren Diski,280,4011.87609075,5295.68,0.0,"3564211012, 3564210312, 3564211212, 3054210312",True,2,/fren-diski-p4902,4902
+ESB 231 10,12-153 Man Arka 73 MM,bijon,Bijon,2715,136.3086281057,179.93,0.0,81455010123,True,3,/12-153-man-arka-73-mm-p4900,4900
+ESB 230 10,BİJON MAN 12.153 İLAVE DİNGİL/FREZELİ-90 MM,bijon,Bijon,804,148.9085853255,196.56,0.0,,True,3,/bijon-man-12-153-ilave-dingil-frezeli-90-mm-p4899,4899
+ESB 192 10-1,BİJON MERCEDES 2517-2521 ARKA/FREZ.128MM DPS'Lİ,bijon,Bijon,518,165.5379,218.51,20.0,3814011471,True,3,/bijon-mercedes-2517-2521-arka-frez-128mm-dps-li-p4897,4897
+ESB 187 10,Axor-Actros Yeni Model Arka 92 mm,bijon,Bijon,18406,153.0322076884,202.0,0.0,4014171,True,3,/axor-actros-yeni-model-arka-92-mm-p4896,4896
+ESB 184 20,Axor-Actros Yeni Model Ön,bijon,Bijon,9533,153.0322076884,202.0,40.0,,True,3,/axor-actros-yeni-model-on-p4894,4894
+ESB 184 10,Axor-Actros Yeni Model Arka 86 mm,bijon,Bijon,1104,153.0322076884,202.0,0.0,Axor-Actoros Yeni Model Arka 86 mm,True,4,/axor-actros-yeni-model-arka-86-mm-p4893,4893
+ESB 182 10,Bijon,bijon,Bijon,4006,155.3231090011,205.03,0.0,3814010771-3464010071,True,5,/bijon-p4892,4892
+ESB 170 20,BİJON MERCEDES MB 800 ÖN-73 MM,bijon,Bijon,180,136.3086281057,179.93,0.0,3714017071,True,4,/bijon-mercedes-mb-800-on-73-mm-p4890,4890
+ESB 170 10,BİJON MERCEDES MB 800 ARKA-86 MM,bijon,Bijon,710,136.3086281057,179.93,0.0,3714027071,True,4,/bijon-mercedes-mb-800-arka-86-mm-p4889,4889
+ESB 142 10,Atego 1517 Mercedes Arka,bijon,Bijon,1037,142.0358813874,187.49,50.0,3524020071,True,4,/atego-1517-mercedes-arka-p4886,4886
+ESB 140 20,Atego 1517 Mercedes Ön 66 MM,bijon,Bijon,800,136.3086281057,179.93,0.0,3184020271-3274010071-3124011171,True,2,/atego-1517-mercedes-on-66-mm-p4885,4885
+ESB 140 10,Atego 1517 Mercedes İlave Dingil,bijon,Bijon,570,152.3449372945,201.1,20.0,,True,3,/atego-1517-mercedes-ilave-dingil-p4884,4884
+ESB 131 10-1,BİJON MERS AXOR ARKA 92 MM FREZELİ,bijon,Bijon,1820,148.9,196.55,0.0,,True,4,/bijon-mers-axor-arka-92-mm-frezeli-p4883,4883
+ESB 115 10-1,Mercedes Dingil Bijon 100 mm Frezeli D.P.S.'Li,bijon,Bijon,1862,148.9085853255,196.56,0.0,3814011171-3814010571-3814010471,True,3,/mercedes-dingil-bijon-100-mm-frezeli-d-p-s-li-p4882,4882
+ESB 114 10-1,Mercedes Dingil Bijon 100 mm D.P.S.Li,bijon,Bijon,2571,148.9085853255,196.56,0.0,4013971-3814010471-3814010571,True,3,/mercedes-dingil-bijon-100-mm-d-p-s-li-p4881,4881
+ESB 113 20-1,Mercedes Ön Bijon 84 mm Frezeli D.P.S.Li,bijon,Bijon,590,148.9085853255,196.56,0.0,3814011271,True,3,/mercedes-on-bijon-84-mm-frezeli-d-p-s-li-p4879,4879
+ESB 112 20-1,Mercedes Ön Bijon 84 mm D.P.S.Li,bijon,Bijon,1378,148.9085853255,196.56,0.0,3814011271-3814010071,False,0,/mercedes-on-bijon-84-mm-d-p-s-li-p4878,4878
+ESB 111 10-1,Mercedes Arka Bijon 110 mm Frezeli D.P.S.'Lİ,bijon,Bijon,1855,151.4385853255,199.9,0.0,3274020471,True,3,/mercedes-arka-bijon-110-mm-frezeli-d-p-s-li-p4877,4877
+ESB 110 20-1,BİJON MERCEDES ÖN-77 MM DPS Lİ,bijon,Bijon,1892,148.3592,195.83,0.0,3274010471-3174010371-3054010071-3814010171,True,3,/bijon-mercedes-on-77-mm-dps-li-p4876,4876
+ESB 110 10-1,BİJON MERCEDES ARKA-110 MM DPS Lİ,bijon,Bijon,2409,146.6176840128,193.54,0.0,3464010071-3814010771-4013771,True,3,/bijon-mercedes-arka-110-mm-dps-li-p4874,4874
+ESK 290 15,Fren Kampanası,fren-kampanasi,Fren Kampanası,41,3982.81455,5257.32,0.0,1064027300-1064027310-322052J,True,2,/fren-kampanasi-p4521,4521
+ESK 280 10,Fren Kampanası,fren-kampanasi,Fren Kampanası,112,4115.8845,5432.97,0.0,21021114A-21021114AV-320654J-21021164-21021114,True,2,/fren-kampanasi-p4518,4518
+ESK 280 08,Fren Kampanası,fren-kampanasi,Fren Kampanası,23,3295.603875,4350.2,0.0,21209701-21211030-21211030S,True,2,/fren-kampanasi-p4517,4517
+ESK 280 03,Fren Kampanası,fren-kampanasi,Fren Kampanası,32,3982.81455,5257.32,0.0,21023036 - 21018963 - 21209723,True,1,/fren-kampanasi-p4516,4516
+ESK 250 04,KAMPANA SMB AXLE 419X178,fren-kampanasi,Fren Kampanası,14,4364.25,5760.81,0.0,6166-465001-449555-M006166-AJB0465001-A5121-A1216C-A15597-MO06166-MO68445,True,2,/kampana-smb-axle-419x178-p4515,4515
+ESK 230 26,Fren Kampanası,fren-kampanasi,Fren Kampanası,3,5276.37825,6964.82,0.0,310977180-310977230,True,2,/fren-kampanasi-p4513,4513
+ESK 230 05,Fren Kampanası,fren-kampanasi,Fren Kampanası,167,5307.986,7006.54,0.0,310677530-2821,True,2,/fren-kampanasi-p4508,4508
+ESK 161 16,Fren Kampanası,fren-kampanasi,Fren Kampanası,3,4455.7683225,5881.61,0.0,3020-1713-9380037-Y00006429,True,2,/fren-kampanasi-p4507,4507
+ESK 161 15,Fren Kampanası,fren-kampanasi,Fren Kampanası,1,5095.5925,6726.18,0.0,301010414,True,2,/fren-kampanasi-p4506,4506
+ESK 161 08,Fren Kampanası,fren-kampanasi,Fren Kampanası,6,5307.986,7006.54,0.0,310677630-310977460,True,2,/fren-kampanasi-p4500,4500
+ESK 160 73,Fren Kampanası,fren-kampanasi,Fren Kampanası,3,5484.4075,7239.42,0.0,310677590,True,2,/fren-kampanasi-p4499,4499
+ESK 160 29,Fren Kampanası,fren-kampanasi,Fren Kampanası,358,4312.57728,5692.6,0.0,,True,2,/fren-kampanasi-p4497,4497
+ESK 140 07,Fren Kampanası,fren-kampanasi,Fren Kampanası,34,3879.5273,5120.98,0.0,5000737342-5000737768-194456-192371,True,2,/fren-kampanasi-p4492,4492
+ESK 070 12,Fren Kampanası,fren-kampanasi,Fren Kampanası,269,2484.7857375,3279.92,0.0,478,True,1,/fren-kampanasi-p4487,4487
+ESK 070 11,Fren Kampanası,fren-kampanasi,Fren Kampanası,213,2383.7097075,3146.5,0.0,477,True,1,/fren-kampanasi-p4486,4486
+ESK 060 52,Fren Kampanası,fren-kampanasi,Fren Kampanası,78,7024.784085,9272.71,0.0,7183048,True,2,/fren-kampanasi-p4484,4484
+ESK 060 14,Fren Kampanası,fren-kampanasi,Fren Kampanası,14,4734.3384,6249.33,0.0,2479852-2479853-597516,True,2,/fren-kampanasi-p4482,4482
+ESK 030 17,Fren Kampanası ( BMC NO: E72012027-1 ),fren-kampanasi,Fren Kampanası,2,5892.732549,7778.41,0.0,Fren Kampanası,True,1,/fren-kampanasi-bmc-no-e72012027-1-p4481,4481
+ESK 010 71,KAMPANA MERC.ACTROS ATECO AXOR,fren-kampanasi,Fren Kampanası,23,5474.951625,7226.94,0.0,6584210301,True,2,/kampana-merc-actros-ateco-axor-p4480,4480
+ESK 010 61,Fren Kampanası,fren-kampanasi,Fren Kampanası,14,5474.951625,7226.94,0.0,3874210201 - A3874210201 - A6584210301,True,2,/fren-kampanasi-p4479,4479
+ESD 210 01,FREN DİSKİ,fren-diski,Fren Diski,16,2570.411,3392.94,0.0,93221314005,True,2,/fren-diski-p4462,4462
+ESD 110 01-3,Fren Diski,fren-diski,Fren Diski,57,3345.925,4416.62,0.0,85103803 - 85110496 - 7421575117 - 21575071 - 20515093,True,1,/fren-diski-p4459,4459
+ESD 110 01-1,Fren Diski,fren-diski,Fren Diski,104,3242.862575,4280.58,0.0,85103803,True,1,/fren-diski-p4458,4458
+ESD 090 09,KARSAN ATAK ARKA ABS'Lİ FREN DİSKİ,fren-diski,Fren Diski,60,3428.1620175,4525.17,22.0,3010097AA,True,2,/karsan-atak-arka-abs-li-fren-diski-p4457,4457
+ESC 102,Mekanik Fren Cırcırı 3 Delik 10 Kanal,mekanik-fren-circiri,Mekanik Fren Cırcırı,58,943.0,1244.76,0.0,(A) A3,True,4,/mekanik-fren-circiri-3-delik-10-kanal-p4430,4430
+ESB 914 10-R,BİJON SCANIA 96 MM,bijon,Bijon,1460,175.2531,231.33,0.0,1868668,True,4,/bijon-scania-96-mm-p4424,4424
+ESB 912 20-R,Bijon Dps,bijon,Bijon,6293,175.2539504215,231.34,0.0,2285275-1868665,True,4,/bijon-dps-p4421,4421
+ESB 912 10-R,SCANIA ARKA SAĞ DİSK 85 MM YUVARLAK KAFA,fren-diski,Fren Diski,5320,175.2539504215,231.34,0.0,1528712,True,4,/scania-arka-sag-disk-85-mm-yuvarlak-kafa-p4420,4420
+ESB 911 20-R,Bijon Dps,bijon,Bijon,3768,179.74385,237.26,30.0,1368690-397266-290062,True,5,/bijon-dps-p4419,4419
+ESB 911 10-R,Scanıa Axl Cerli ARKA DİSK 86 MM -KARE KAFA,fren-diski,Fren Diski,1835,175.2539504215,231.34,0.0,1368693,True,4,/scania-axl-cerli-arka-disk-86-mm-kare-kafa-p4418,4418
+ESB 910 20-R,Scanıa Ön SAĞ 80 MM KARE KAFA,bijon,Bijon,362,166.0903451708,219.24,0.0,1368692-1411980-337559,True,4,/scania-on-sag-80-mm-kare-kafa-p4417,4417
+ESB 910 10-R,BİJON SCANİA ARKA-100 MM KARE KAFA KAMPANALI,bijon,Bijon,934,175.2539504215,231.34,0.0,272853 - 1368694-SCWB0001-295953-210295953,True,4,/bijon-scania-arka-100-mm-kare-kafa-kampanali-p4416,4416
+ESB 830 21-L,BİJON MITSUBISHI ÖN/SOL-66 MM,bijon,Bijon,838,174.1084997652,229.82,0.0,,True,3,/bijon-mitsubishi-on-sol-66-mm-p4409,4409
+ESB 830 20-R,BİJON MITSUBISHI ÖN/SAĞ-66 MM,bijon,Bijon,908,174.1084997652,229.82,0.0,,True,3,/bijon-mitsubishi-on-sag-66-mm-p4408,4408
+ESB 830 11-L,BİJON MITSUBISHI (SET) L,bijon,Bijon,958,263.4536509605,347.76,0.0,,True,4,/bijon-mitsubishi-set-l-p4407,4407
+ESB 830 10-R,BİJON MITSUBISHI (SET) R,bijon,Bijon,970,263.4536509605,347.76,0.0,,True,4,/bijon-mitsubishi-set-r-p4406,4406
+ESB 810 20,BİJON MARATON ÖN-97 MM,bijon,Bijon,420,178.6903023906,235.87,0.0,MC808846,True,4,/bijon-maraton-on-97-mm-p4405,4405
+ESB 787 11-L,"ISUZU NOVA ARKA 92,5 MM M20*1,5 DİŞ",bijon,Bijon,846,240.5446378335,317.52,0.0,"ISUZU NOVA ARKA 92,5 MM M20*1,5 DİŞ",True,1,/isuzu-nova-arka-92-5-mm-m20-1-5-dis-p4397,4397
+ESB 787 10-R,"ISUZU NOVA ARKA 92,5 MM M20*1,5 DİŞ",bijon,Bijon,778,240.5446378335,317.52,0.0,"ISUZU NOVA ARKA 92,5 MM M20*1,5 DİŞ",True,1,/isuzu-nova-arka-92-5-mm-m20-1-5-dis-p4396,4396
+ESB 786 11-L,ISUZU CITIBUS ARKA SOL,bijon,Bijon,1388,240.5446378335,317.52,0.0,ISUZU CITIBUS ARKA SOL,True,3,/isuzu-citibus-arka-sol-p4395,4395
+ESB 786 10-R,ISUZU CITIBUS ARKA SAĞ,bijon,Bijon,1465,240.5446378335,317.52,0.0,ISUZU CITIBUS ARKA SAĞ,True,4,/isuzu-citibus-arka-sag-p4394,4394
+ESB 783 11-L,BİJON MITSUBISHI 444 ARKA/SOL/KOMPLE/TEK PARÇA,bijon,Bijon,6,209.56335,276.62,0.0,,True,4,/bijon-mitsubishi-444-arka-sol-komple-tek-parca-p4393,4393
+ESB 730 10-R,BİJON ISUZU NPR ARKA/SAĞ/Y.M.-96 MM,bijon,Bijon,10,174.1084997652,229.82,0.0,,True,3,/bijon-isuzu-npr-arka-sag-y-m-96-mm-p4380,4380
+ESB 693 10,Bijon Dps,bijon,Bijon,1130,166.0903451708,219.24,0.0,42117447,True,4,/bijon-dps-p4374,4374
+ESB 691 10,TIR ÖN DİSK BİJONU 65 MM,disk-bijonu-civatasi,Disk Bijonu/Civatası,1119,155.7812892636,205.63,0.0,42117445,True,4,/tir-on-disk-bijonu-65-mm-p4373,4373
+ESB 650 10,85-12 İveco Disk Bijonu,disk-bijonu-civatasi,Disk Bijonu/Civatası,36,101.9451084152,134.57,0.0,,True,4,/85-12-iveco-disk-bijonu-p4372,4372
+ESB 640 20,Eurubüs Ön Disk Bijonu,disk-bijonu-civatasi,Disk Bijonu/Civatası,430,137.454078762,181.44,0.0,42117433-7168838,True,1,/eurubus-on-disk-bijonu-p4370,4370
+ESB 621 20,Bijon Dps,bijon,Bijon,2301,155.7812892636,205.63,0.0,2476077-7168580-42117449-42101338,True,4,/bijon-dps-p4367,4367
+ESB 621 10,Bijon Dps,bijon,Bijon,3592,166.0903451708,219.24,0.0,42117455-42064826,True,4,/bijon-dps-p4366,4366
+ESB 620 20,Bijon Dps,bijon,Bijon,1761,155.7812892636,205.63,0.0,42117452-2475870,True,4,/bijon-dps-p4364,4364
+ESB 620 10,Bijon Dps,bijon,Bijon,2767,166.0903451708,219.24,0.0,42117457,True,4,/bijon-dps-p4363,4363
+ESB 611 10,BİJON 50 NC ARKA/FARKLI-64 MM,bijon,Bijon,166,112.2541643223,148.18,0.0,7168257,True,4,/bijon-50-nc-arka-farkli-64-mm-p4361,4361
+ESB 610 20,50 NC Ön,bijon,Bijon,34,100.7996577588,133.06,0.0,7168346 - 7161201,True,4,/50-nc-on-p4359,4359
+ESB 610 10,Bijon Dps,bijon,Bijon,930,100.7996577588,133.06,0.0,46390478-42117463-7168257,True,4,/bijon-dps-p4357,4357
+ESB 532 10,As 26 200 - As 26 235 - As 32 260 Dingil,bijon,Bijon,210,166.0903451708,219.24,0.0,21022167,True,4,/as-26-200-as-26-235-as-32-260-dingil-p4355,4355
+ESB 530 20,As 26 200 - As 26 235 - As 32 260 Ön,bijon,Bijon,1710,166.0903451708,219.24,0.0,15033-T,True,4,/as-26-200-as-26-235-as-32-260-on-p4354,4354
+ESB 530 10,As 26 200 - As 26 235 - As 32 260 Arka,bijon,Bijon,2285,166.0903451708,219.24,60.0,15034,True,4,/as-26-200-as-26-235-as-32-260-arka-p4353,4353
+ESB 461 20,Bijon Dps,bijon,Bijon,972,166.0903451708,219.24,0.0,,True,4,/bijon-dps-p4346,4346
+ESB 422 10,Bijon Dps,bijon,Bijon,1040,177.5448517343,234.36,0.0,FC461118CA,True,4,/bijon-dps-p4341,4341
+ESB 421 20,Bijon Dps,bijon,Bijon,2177,166.0903451708,219.24,0.0,20515515,True,4,/bijon-dps-p4340,4340
+ESB 420 20,Bijon Dps,bijon,Bijon,530,166.0903451708,219.24,0.0,,True,4,/bijon-dps-p4339,4339
+ESB 420 10,Bijon Dps,bijon,Bijon,3323,166.0903451708,219.24,0.0,81DB118CA,True,5,/bijon-dps-p4338,4338
+ESB 4000 25,AXOR YM DİSK CİVATASI,disk-bijonu-civatasi,Disk Bijonu/Civatası,2385,83.4,110.09,40.0,,True,2,/axor-ym-disk-civatasi-p4336,4336
+ESB 4000 14,ALYAN BAŞLIKLI DİSK CİVATASI,disk-bijonu-civatasi,Disk Bijonu/Civatası,4852,66.78,88.15,0.0,9429900004-9429902804,True,3,/alyan-baslikli-disk-civatasi-p4335,4335
+ESB 4000 11,DİSK CİVATASI DENGELEYİCİ,disk-bijonu-civatasi,Disk Bijonu/Civatası,1961,66.78,88.15,0.0,SFAX0049-4375100410,True,3,/disk-civatasi-dengeleyici-p4334,4334
+ESB 4000 10,AXOR ANAHTAR BAŞLI DİSK CİVATASI,disk-bijonu-civatasi,Disk Bijonu/Civatası,4780,66.78,88.15,40.0,4343291410 - SFAX0050,True,4,/axor-anahtar-basli-disk-civatasi-p4333,4333
+ESB 3912 20,BİJON OTOKAR KENT ÖN DİSK (KARSAN NO: 4472 336 520),bijon,Bijon,380,165.03535,217.85,0.0,,True,4,/bijon-otokar-kent-on-disk-karsan-no-4472-336-520-p4332,4332
+ESB 351 10-R,BİJON BMC ARKA/SAĞ (FRZ.ÇAPI:24 MM)-110 MM,bijon,Bijon,350,166.0903451708,219.24,0.0,,True,4,/bijon-bmc-arka-sag-frz-capi-24-mm-110-mm-p4327,4327
+ESB 345 10,BİJON 935 Profesyonel Arka Bijon (145 MM),bijon,Bijon,370,197.0175128922,260.06,0.0,,True,4,/bijon-935-profesyonel-arka-bijon-145-mm-p4324,4324
+ESB 344 10,BİJON 270 FATİH / 827 PROF. ARKA (132 MM),bijon,Bijon,420,197.0175128922,260.06,0.0,,True,4,/bijon-270-fatih-827-prof-arka-132-mm-p4323,4323
+ESB 342 10,BİJON FATİH İNT./PROF.ARKA-117 MM TAKVİYELİ,bijon,Bijon,8826,166.0903451708,219.24,60.0,,True,4,/bijon-fatih-int-prof-arka-117-mm-takviyeli-p4322,4322
+ESB 340 20,BİJON FATİH İNT./PROF.ÖN,bijon,Bijon,3606,166.0903451708,219.24,60.0,7K60192,True,4,/bijon-fatih-int-prof-on-p4319,4319
+ESB 340 10,BİJON FATİH İNT./PROF.ARKA-117 MM,bijon,Bijon,3989,166.0903451708,219.24,0.0,7K60177KOM-760177,True,4,/bijon-fatih-int-prof-arka-117-mm-p4316,4316
+ESB 330 20,BİJON 214.26 DEV FATİH ÖN/E.M.-82 MM,bijon,Bijon,80,166.0903451708,219.24,0.0,7K13123,True,4,/bijon-214-26-dev-fatih-on-e-m-82-mm-p4315,4315
+ESB 310 10-R,BİJON 162 FATİH ARKA/SAĞ-110 MM,bijon,Bijon,10,155.7812892636,205.63,0.0,K5C2150,True,1,/bijon-162-fatih-arka-sag-110-mm-p4306,4306
+ESB 272 10,Bijon Dps,bijon,Bijon,259,155.7812892636,205.63,0.0,81455010174,True,3,/bijon-dps-p4300,4300
+ESB 261 10,TGA Man Arka Frezeli,bijon,Bijon,150,155.7812892636,205.63,0.0,TGA Man Arka Frezeli,True,3,/tga-man-arka-frezeli-p4297,4297
+ESB 260 20,Bijon TGA Man Ön Frezeli,bijon,Bijon,914,155.7812892636,205.63,20.0,81455010133 - 81455010129,True,3,/bijon-tga-man-on-frezeli-p4296,4296
+ESB 260 10,Bijon Dps,bijon,Bijon,2093,155.7812892636,205.63,0.0,81455010131-81455010176,True,3,/bijon-dps-p4295,4295
+ESB 2413 10,BİJON GİGANT DİNGİL-95 MM,bijon,Bijon,480,188.0079225,248.17,0.0,9713579,True,4,/bijon-gigant-dingil-95-mm-p4294,4294
+ESB 2412 20,BİJON OTOKAR SULTAN DİSK ÖN,bijon,Bijon,520,130.58595,172.37,0.0,,True,4,/bijon-otokar-sultan-disk-on-p4293,4293
+ESB 2412 10,BİJON OTOKAR SULTAN ARKA DİSK,bijon,Bijon,210,130.5813748239,172.37,0.0,,True,4,/bijon-otokar-sultan-arka-disk-p4292,4292
+ESB 2321 10,Renault 210 Disk Bijonu,disk-bijonu-civatasi,Disk Bijonu/Civatası,970,146.6176840128,193.54,0.0,,True,4,/renault-210-disk-bijonu-p4285,4285
+ESB 2318 10,Renault Magnum 114 mm,bijon,Bijon,200,166.0903451708,219.24,0.0,5010241892,True,1,/renault-magnum-114-mm-p4282,4282
+ESB 2317 20,"BİJON RENAULT 440 ÖN DİSK-79,50 MM (YUVARLAK KAFA) 25MM (2311-20)",bijon,Bijon,1392,166.0903451708,219.24,0.0,20515514-7420515514,True,4,/bijon-renault-440-on-disk-79-50-mm-yuvarlak-kafa-25mm-2311-20-p4281,4281
+ESB 2316 20,BİJON DPS RENAULT 440 ARKA DİSK,bijon,Bijon,4747,166.0903451708,219.24,30.0,20515517-7420515517,True,4,/bijon-dps-renault-440-arka-disk-p4280,4280
+ESB 2316 10,BİJON RENAULT 370-420-440 ARKA DİSK -114 MM CARGO 3238,bijon,Bijon,350,166.0903451708,219.24,0.0,20524942-21147687-7421147687,True,4,/bijon-renault-370-420-440-arka-disk-114-mm-cargo-3238-p4278,4278
+ESB 2313 10,BİJON RENAULT 370-420 DİSK ÖN-70 MM,bijon,Bijon,429,166.0903451708,219.24,0.0,5000737601,True,4,/bijon-renault-370-420-disk-on-70-mm-p4277,4277
+ESB 2312 10,BİJON RENAULT 370-420 DİSK ARKA-95 MM (FLANŞLI),bijon,Bijon,1405,179.835753047,237.38,0.0,5010566244,True,4,/bijon-renault-370-420-disk-arka-95-mm-flansli-p4276,4276
+ESB 2311 20,BİJON RENAULT 370 ÖN KAMPANALI -79 MM (2317 20),bijon,Bijon,150,166.0903451708,219.24,0.0,5010319141-190221,True,1,/bijon-renault-370-on-kampanali-79-mm-2317-20-p4275,4275
+ESB 2311 10,BİJON DPS RENO 370-420 ÇEKER,bijon,Bijon,330,179.835753047,237.38,0.0,5010439317-5010439406,True,4,/bijon-dps-reno-370-420-ceker-p4274,4274
+ESB 2310 10,BİJON RENAULT 370-420-430 ARKA-103 MM KAMPANALI,bijon,Bijon,807,166.0903451708,219.24,0.0,0000190220-190513,True,4,/bijon-renault-370-420-430-arka-103-mm-kampanali-p4273,4273
+ESB 2240 10,Efe Dorse Dipten Frezeli Bijon (100 mm),bijon,Bijon,160,213.0538220811,281.23,0.0,Efe Dorse Dipten Frezeli Bijon (100 mm),True,4,/efe-dorse-dipten-frezeli-bijon-100-mm-p4271,4271
+ESB 2117 10,BİJON DPS FRUEHAUF- SMB,bijon,Bijon,330,176.40425,232.85,0.0,M069131-M200048-M69131-M069123,True,4,/bijon-dps-fruehauf-smb-p4270,4270
+ESB 2112 10,Fruehauf Dorse 106 mm,bijon,Bijon,570,176.3994010779,232.85,0.0,A-FA0230,True,4,/fruehauf-dorse-106-mm-p4268,4268
+ESB 2111 10,Bijon Dps,bijon,Bijon,380,176.3994010779,232.85,0.0,AJA0491001-AJB11623A-M006891-15613-11623- 6891,True,1,/bijon-dps-p4267,4267
+ESB 2110 10,Bijon Dps,bijon,Bijon,420,176.3994010779,232.85,0.0,20630-AJA491002-AJA0491002-M003133-17328- 3133-491002,True,4,/bijon-dps-p4266,4266
+ESB 2033 10,Sertel Dingil Bijonu 100 mm,bijon,Bijon,639,166.0903451708,219.24,0.0,,True,4,/sertel-dingil-bijonu-100-mm-p4265,4265
+ESB 2032 10,Bijon Dps,bijon,Bijon,27690,166.0903451708,219.24,0.0,,False,0,/bijon-dps-p4263,4263
+ESB 2030 10,Bijon Dps,bijon,Bijon,2401,166.0903451708,219.24,30.0,,True,4,/bijon-dps-p4262,4262
+ESB 2010 10,Pilot Dorse,bijon,Bijon,3080,166.0903451708,219.24,30.0,,True,4,/pilot-dorse-p4258,4258
+ESB 1915 10,Bijon Dps,bijon,Bijon,1331,176.3994010779,232.85,60.0,,True,4,/bijon-dps-p4255,4255
+ESB 1914 10,Tır Dorse 22X1.5,bijon,Bijon,1943,176.3994010779,232.85,0.0,,True,4,/tir-dorse-22x1-5-p4254,4254
+ESB 1818 10,Bijon Dps,bijon,Bijon,105,166.0903451708,219.24,0.0,1303111811-3302115600,True,4,/bijon-dps-p4249,4249
+ESB 1817 20,"BİJON SAF DORSE ÖN/DİSK/FREZELİ 65,50 MM",bijon,Bijon,4049,166.0903451708,219.24,20.0,,True,4,/bijon-saf-dorse-on-disk-frezeli-65-50-mm-p4248,4248
+ESB 1816 10,Bijon Dps,bijon,Bijon,3468,166.0903451708,219.24,60.0,1303112010-3302115700,True,4,/bijon-dps-p4246,4246
+ESB 1815 10,Bijon Dps,bijon,Bijon,3112,166.0903451708,219.24,0.0,1303107511-1303107510-3302107600-A5446,True,4,/bijon-dps-p4245,4245
+ESB 1813 10,BİJON SAF DORSE İVECO FREZELİ-73 MM DİSK,bijon,Bijon,10223,166.0903451708,219.24,0.0,1303111810 - 13031117410,True,4,/bijon-saf-dorse-iveco-frezeli-73-mm-disk-p4244,4244
+ESB 1811 10,BiJON SAF DORSE 83 MM SAFİR YM,bijon,Bijon,1944,166.0903451708,219.24,50.0,1303107412-3302107800-1303107413-1303107411-1303107410,True,4,/bijon-saf-dorse-83-mm-safir-ym-p4242,4242
+ESB 1725 10,Bijon Dps,bijon,Bijon,2130,166.0903451708,219.24,0.0,329633120- 329633121,True,1,/bijon-dps-p4238,4238
+ESB 1723 10,Bijon Dps,bijon,Bijon,261,166.0903451708,219.24,60.0,0329633141,True,4,/bijon-dps-p4236,4236
+ESB 1722 10,Bijon Dps,bijon,Bijon,21126,166.0903451708,219.24,40.0,329633110,True,4,/bijon-dps-p4234,4234
+ESB 1719 10,Bijon Dps,bijon,Bijon,1650,182.1266543597,240.41,0.0,329623150-980623270,True,1,/bijon-dps-p4232,4232
+ESB 1714 10,Bijon Dps,bijon,Bijon,1428,182.1266543597,240.41,0.0,329623170-980623220-8241000989,True,4,/bijon-dps-p4231,4231
+ESB 1711 10,Bpw Dorse Takviyeli,bijon,Bijon,1019,182.1266543597,240.41,0.0,329613170,True,4,/bpw-dorse-takviyeli-p4229,4229
+ESB 160 20-1,BİJON MERCEDES 403 ÖN BİJON (DPS),bijon,Bijon,220,148.3845,195.87,0.0,3384015071,True,4,/bijon-mercedes-403-on-bijon-dps-p4227,4227
+ESB 1511 10,BİJON VOLVO İSPİT T ARKA-100 MM,bijon,Bijon,60,148.9085853255,196.56,0.0,272740-288799-250708600-659112611,True,2,/bijon-volvo-ispit-t-arka-100-mm-p4224,4224
+ESB 1426 20,Bijon Dps,bijon,Bijon,1995,166.0903451708,219.24,0.0,7420515515-20515515,True,4,/bijon-dps-p4222,4222
+ESB 1426 10,Bijon Dps,bijon,Bijon,4956,175.2539504215,231.34,0.0,20515519-7420515519,True,4,/bijon-dps-p4221,4221
+ESB 1414 10,Bijon Dps,bijon,Bijon,1074,166.0903451708,219.24,0.0,20524942-7421147687,True,4,/bijon-dps-p4219,4219
+ESB 1412 10,Bijon Dps,bijon,Bijon,1690,175.2539504215,231.34,0.0,3963997,True,1,/bijon-dps-p4216,4216
+ESB 1411 10,BİJON VOLVO ARKA UZUN-117 MM ÇAP 27 MM BÜYÜK KAFA,bijon,Bijon,1452,182.1266543597,240.41,0.0,20428545-15890088,True,4,/bijon-volvo-arka-uzun-117-mm-cap-27-mm-buyuk-kafa-p4215,4215
+ESB 1410 20,Bijon Dps,bijon,Bijon,1997,166.0903451708,219.24,0.0,1573081,True,4,/bijon-dps-p4214,4214
+ESB 1410 10,Bijon Dps,bijon,Bijon,1404,166.0903451708,219.24,0.0,1573082,True,4,/bijon-dps-p4213,4213
+ESB 1313 10,BİJON ROR DORSE-85 MM,bijon,Bijon,280,182.1266543597,240.41,0.0,21022167,True,2,/bijon-ror-dorse-85-mm-p4211,4211
+ESB 1312 10,Bijon Dps,bijon,Bijon,130,182.1266543597,240.41,0.0,21020977-21020997,True,2,/bijon-dps-p4210,4210
+ESB 111 20-1,Bijon Dps,bijon,Bijon,80,150.6615,198.87,0.0,3814010171-3174010371-3274010471-3054010071,True,3,/bijon-dps-p4204,4204
+ESB 1014 10,Bijon Dps,bijon,Bijon,635,166.0903451708,219.24,0.0,620646 - 1309191 - 99730,True,4,/bijon-dps-p4196,4196
+ESB 1013 10,Bijon Dps,bijon,Bijon,1136,166.0903451708,219.24,0.0,99720-1337020,True,4,/bijon-dps-p4195,4195
+ESB 1012 10,Bijon Dps,bijon,Bijon,905,166.0945,219.24,0.0,99731-1309190-1356736-890763,True,4,/bijon-dps-p4194,4194
+ESB 1010 20,Bijon Dps,bijon,Bijon,967,166.0903451708,219.24,0.0,99730-1309191-620646,True,4,/bijon-dps-p4193,4193
+ESB 1010 10,Bijon Dps,bijon,Bijon,1272,175.2539504215,231.34,0.0,99717-1373007-1308038-620649,True,4,/bijon-dps-p4192,4192
+ESC 80328,Otomatik Fren Cırcırı,otomatik-fren-circiri,Otomatik Fren Cırcırı,3,1265.0,1669.8,0.0,81506106255-81506106259-80087,True,4,/otomatik-fren-circiri-p3754,3754
+ESC 79374,EKERSAN 423071 MAN 26-281 CIRCIR SOL,fren-circiri,Fren Cırcırı,38,1265.0,1669.8,0.0,81506106077-81506106129-81506106187-81506106221-815061033187-4731733-70731-60501-70965-72986-72509-2625- 42625,True,4,/ekersan-423071-man-26-281-circir-sol-p3677,3677
+ESC 79373,423070 MAN 26-281 CIRCIR SAĞ,fren-circiri,Fren Cırcırı,50,1265.0,1669.8,0.0,42620-2620-6001-72508-72985-70964-70730-60001-4731725-1004000-815061032188-81506106220-81506106188-81506106128-81506106078,True,4,/423070-man-26-281-circir-sag-p3676,3676
+ESC 79361,Otomatik Fren Cırcırı Man Ön Sağ,otomatik-fren-circiri,Otomatik Fren Cırcırı,74,1265.0,1669.8,0.0,81506106084-81506106154-81506106212-81506107154-79211-72971-72321-70723-2090-42090-14722-4731642,True,4,/otomatik-fren-circiri-man-on-sag-p3671,3671
+ESC 78198,EKERSAN SCANIA 4020 FREN CIRCIRI SAĞ,fren-circiri,Fren Cırcırı,19,1265.0,1669.8,0.0,,True,4,/ekersan-scania-4020-fren-circiri-sag-p3616,3616
+ESC 78197,EKERSAN SCANIA 4021 FREN CIRCIRI SOL,fren-circiri,Fren Cırcırı,17,1265.0,1669.8,0.0,,True,4,/ekersan-scania-4021-fren-circiri-sol-p3615,3615
+ESC 72878,FREN CIRCIRI SCANIA 2771,fren-circiri,Fren Cırcırı,23,1265.0,1669.8,0.0,72728,True,4,/fren-circiri-scania-2771-p3498,3498
+ESC 72877,FREN CIRCIRI SCANIA 2772,fren-circiri,Fren Cırcırı,22,1265.0,1669.8,0.0,72727,True,4,/fren-circiri-scania-2772-p3497,3497
+ESC 72855,EKERSAN 424078 FREN CIRCIR DAF,fren-circiri,Fren Cırcırı,16,1265.0,1669.8,0.0,755617,True,4,/ekersan-424078-fren-circir-daf-p3495,3495
+ESC 72854,EKERSAN 424077 FREN CIRCIR DAF,fren-circiri,Fren Cırcırı,16,1265.0,1669.8,0.0,755616,True,4,/ekersan-424077-fren-circir-daf-p3494,3494
+ESC 72735,EKERSAN 3226 MARATON CIRCIR ARKA,fren-circiri,Fren Cırcırı,6,1265.0,1669.8,0.0,807632,True,4,/ekersan-3226-maraton-circir-arka-p3469,3469
+ESC 72695,DAF,fren-circiri,Fren Cırcırı,4,1265.0,1669.8,0.0,43660-72313-297172-159564,True,5,/daf-p3461,3461
+ESC 72694,DAF,fren-circiri,Fren Cırcırı,4,1265.0,1669.8,0.0,159563-297173-72312-43655,True,4,/daf-p3460,3460
+ESC 72689,Otomatik Fren Cırcırı,otomatik-fren-circiri,Otomatik Fren Cırcırı,2,1265.0,1669.8,0.0,105016001-12103631-361543-2025- 42025-72301-46036-159590,True,4,/otomatik-fren-circiri-p3457,3457
+ESC 72688,Otomatik Fren Cırcırı,otomatik-fren-circiri,Otomatik Fren Cırcırı,11,1265.0,1669.8,0.0,159589-46035-72302-42020-2020-361544-12103554-105015001,True,4,/otomatik-fren-circiri-p3456,3456
+ESC 72363,MERCEDES V-8 OTOBÜS ARKA CIRCIR R-L,fren-circiri,Fren Cırcırı,1,1265.0,1669.8,0.0,72213-42130-14693-14694-2130-4731287-3014201138,True,1,/mercedes-v-8-otobus-arka-circir-r-l-p3421,3421
+ESC 507401,Mekanik Fren Cırcırı Mercedes Sol,mekanik-fren-circiri,Mekanik Fren Cırcırı,28,943.0,1244.76,0.0,517454700-2100212902-3464201838-3484201838-5021172204,True,4,/mekanik-fren-circiri-mercedes-sol-p3249,3249
+ESC 407401,Mekanik Fren Cırcırı Mercedes Sağ,mekanik-fren-circiri,Mekanik Fren Cırcırı,32,943.0,1244.76,0.0,517454690-2100212903-3464201738-5021172197-878712,True,4,/mekanik-fren-circiri-mercedes-sag-p1777,1777
+ESC 1815,CIRCIR TAMİR TAKIM,fren-circiri,Fren Cırcırı,95,575.0,759.0,0.0,,True,4,/circir-tamir-takim-p1303,1303
+EYD 700 14-1,BPW PORYA KAPAĞI GEÇMELİ - TIRNAKLI ORJİNAL YAZILI,porya,Porya,309,530.0,699.6,0.0,,False,0,/bpw-porya-kapagi-gecmeli-tirnakli-orjinal-yazili-p32956,32956
+FT 34810-K04F,DORSE KÖRÜĞÜ KOMPLE KÖRÜK,suspansiyon-korugu,Süspansiyon Körüğü,22,2500.0,3300.0,0.0,,False,0,/dorse-korugu-komple-koruk-p32921,32921
+421128-1,Kaliper Mekanizması Bilyalı YILDIZ BAŞLI,kaliper-ayar-mekanizmasi,Kaliper Ayar Mekanizması,466,550.0,726.0,0.0,,False,0,/kaliper-mekanizmasi-bilyali-yildiz-basli-p32908,32908
+EYD 92 30,AKS SOMUN BÜYüK YENİ MODEL VİDALI,somun-civata,Somun / Cıvata,150,800.0,1056.0,0.0,,False,0,/aks-somun-buyuk-yeni-model-vidali-p32612,32612
+EYD 70 67,YTE DORSE YAYI,yay,Yay,76,50.0,66.0,0.0,,False,0,/yte-dorse-yayi-p32291,32291
+EYD 301 46,MERCEDES PERNO PİMLİ,perno,Perno,50,250.0,330.0,6.0,,True,1,/mercedes-perno-pimli-p32135,32135
+FT 3498608-KP,PİSTONLU KOMPLE KÖRÜK,suspansiyon-korugu,Süspansiyon Körüğü,13,2250.0,2970.0,0.0,,False,0,/pistonlu-komple-koruk-p32090,32090
+FT 34720,Roll Körük,suspansiyon-korugu,Süspansiyon Körüğü,68,1250.0,1650.0,0.0,"3873280101 , 81436010033 , 1629193 , 0220024100",False,0,/roll-koruk-p32088,32088
+EYD 92 28,AKS SOMUN BP E.M BÜYÜK,somun-civata,Somun / Cıvata,156,800.0,1056.0,0.0,,False,0,/aks-somun-bp-e-m-buyuk-p32071,32071
+EF-4410329880,MAN ABS SENSÖRÜ SAĞ 300CM,abs-sensoru-modulu-kablo,ABS Sensörü/Modülü/Kablo,20,700.0,924.0,0.0,,False,0,/man-abs-sensoru-sag-300cm-p32027,32027
+EF-4410329870,MAN ABS SENSÖRÜ SOL 300CM,abs-sensoru-modulu-kablo,ABS Sensörü/Modülü/Kablo,20,700.0,924.0,0.0,,False,0,/man-abs-sensoru-sol-300cm-p32026,32026
+8106-2,24/24 D/P İMD.FREN KÖRÜĞÜ M22 57 mm,fren-korugu,Fren Körüğü,120,2650.0,3498.0,0.0,,False,0,/24-24-d-p-imd-fren-korugu-m22-57-mm-p31981,31981
+EYD 100 67-K,20 Nolu Körük Lastiği DERİN KÖRÜKSAN,fren-korugu,Fren Körüğü,36,130.0,171.6,0.0,,False,0,/20-nolu-koruk-lastigi-derin-koruksan-p31973,31973
+EYD 100 66-K,16 Nolu Körük Lastiği DERİN KÖRÜKSAN,fren-korugu,Fren Körüğü,40,125.0,165.0,0.0,,False,0,/16-nolu-koruk-lastigi-derin-koruksan-p31972,31972
+EYD 100 65-K,36 Nolu Körük Lastiği DERİN KÖRÜKSAN,fren-korugu,Fren Körüğü,10,165.0,217.8,0.0,,False,0,/36-nolu-koruk-lastigi-derin-koruksan-p31971,31971
+EYD 100 51-K,12 Nolu Körük Lastiği DERİN KÖRÜKSAN,fren-korugu,Fren Körüğü,35,115.0,151.8,0.0,,False,0,/12-nolu-koruk-lastigi-derin-koruksan-p31970,31970
+EYD 100 63-K,30 Nolu Körük Lastiği DERİN KÖRÜKSAN,fren-korugu,Fren Körüğü,50,150.0,198.0,0.0,,False,0,/30-nolu-koruk-lastigi-derin-koruksan-p31969,31969
+EYD 100 62-K,24 Nolu Körük Lastiği DERİN KÖRÜKSAN,fren-korugu,Fren Körüğü,56,140.0,184.8,0.0,,False,0,/24-nolu-koruk-lastigi-derin-koruksan-p31968,31968
+EYD 100 40-K,30 Nolu Körük Lastiği DÜZ KÖRÜKSAN,fren-korugu,Fren Körüğü,25,145.0,191.4,0.0,,False,0,/30-nolu-koruk-lastigi-duz-koruksan-p31962,31962
+FT 34220-2P01,İKİ KATLI KÖRÜK ÇAPRAZ,suspansiyon-korugu,Süspansiyon Körüğü,211,750.0,990.0,0.0,,False,0,/iki-katli-koruk-capraz-p31940,31940
+FT 341888,ROLL KÖRÜK,suspansiyon-korugu,Süspansiyon Körüğü,20,950.0,1254.0,0.0,81436010163 - 81436010163 - 81436010162,True,1,/roll-koruk-p31808,31808
+424705.S01,Pistonsuz Körük,suspansiyon-korugu,Süspansiyon Körüğü,19,1900.0,2508.0,0.0,81436010155,False,0,/pistonsuz-koruk-p31702,31702
+ARF 16/24 D/D - L,ARFESAN 16/24 D/D DİSK TİPİ DORSE İMDATLI KÖRÜK SOL,fren-korugu,Fren Körüğü,90,2250.0,2970.0,62.0,03.130.00.40 - 03.130.00.41,True,1,/arfesan-16-24-d-d-disk-tipi-dorse-imdatli-koruk-sol-p31689,31689
+ARF 16/24 D/D - R,ARFESAN 16/24 D/D DİSK TİPİ DORSE İMDATLI KÖRÜK SAĞ,fren-korugu,Fren Körüğü,90,2250.0,2970.0,62.0,03.130.00.40 - 03.130.00.41,True,1,/arfesan-16-24-d-d-disk-tipi-dorse-imdatli-koruk-sag-p31688,31688
+FX-3180,FRENCO KALİPER TM.TK.SAF - SOL,kaliper-tamir-takimi,Kaliper Tamir Takımı,1,4750.0,6270.0,0.0,,False,0,/frenco-kaliper-tm-tk-saf-sol-p31678,31678
+EYD 075059,SAF JUMBO PABUÇ MAKARASI,fren-pabucu,Fren Pabucu,1,110.0,145.2,0.0,,False,0,/saf-jumbo-pabuc-makarasi-p31649,31649
+EF-81.271206176,MAN ABS SENSÖRÜ ÖN SAĞ 150CM,abs-sensoru-modulu-kablo,ABS Sensörü/Modülü/Kablo,19,615.0,811.8,0.0,,True,1,/man-abs-sensoru-on-sag-150cm-p31444,31444
+EF-81.271206177,MAN ABS SENSÖRÜ ÖN SOL 150 CM,abs-sensoru-modulu-kablo,ABS Sensörü/Modülü/Kablo,19,615.0,811.8,0.0,,True,1,/man-abs-sensoru-on-sol-150-cm-p31443,31443
+FT 34881,DORSE KÖRÜĞÜ PİSTONSUZ,suspansiyon-korugu,Süspansiyon Körüğü,40,1350.0,1782.0,0.0,,True,1,/dorse-korugu-pistonsuz-p31185,31185
+ARF 16/24 D/P - R,ARFESAN 16/24 D/P DİSK TİPİ İMDATLI KÖRÜK SAĞ,fren-korugu,Fren Körüğü,82,4250.0,5610.0,0.0,23.616.24.63,False,0,/arfesan-16-24-d-p-disk-tipi-imdatli-koruk-sag-p30830,30830
+EYD 301 05-2,SERİN/BPW DORSE MAKARA TAKIMI 45 LİK BURÇLU,burc-muylu,Burç / Muylu,4778,175.0,231.0,12.0,,True,1,/serin-bpw-dorse-makara-takimi-45-lik-burclu-p30632,30632
+ARF 24 SFK D - L,ARFESAN 24 LÜK SFK DiSK FREN KÖRÜĞÜ SOL,fren-korugu,Fren Körüğü,53,1500.0,1980.0,0.0,01.124.00.08,False,0,/arfesan-24-luk-sfk-disk-fren-korugu-sol-p30621,30621
+EF-4410321930,ABS SENSÖRÜ ÖN YENİ MODEL ACTROS AROX EURO6,abs-sensoru-modulu-kablo,ABS Sensörü/Modülü/Kablo,23,675.0,891.0,0.0,,True,1,/abs-sensoru-on-yeni-model-actros-arox-euro6-p30471,30471
+ARF 20 SFK D - R,ARFESAN 20 LİK SFK DiSK FREN KÖRÜĞÜ SAĞ,fren-korugu,Fren Körüğü,36,1500.0,1980.0,0.0,01.120.00.93,False,0,/arfesan-20-lik-sfk-disk-fren-korugu-sag-p30444,30444
+ARF 30/30 D/P- K,ARFESAN 30/30 D/P KAMPANA TİPİ İMDATLI KÖRÜK,fren-korugu,Fren Körüğü,114,4750.0,6270.0,0.0,23.730.30.06,False,0,/arfesan-30-30-d-p-kampana-tipi-imdatli-koruk-p30386,30386
+ARF 24/24 D/P- K,ARFESAN 24/24 D/P KAMPANA TİPİ İMDATLI KÖRÜK,fren-korugu,Fren Körüğü,3,4750.0,6270.0,0.0,23.724.24.158,False,0,/arfesan-24-24-d-p-kampana-tipi-imdatli-koruk-p30385,30385
+ARF 24/24 D/P,ARFESAN 24/24 D/P DİSK TİPİ İMDATLI KÖRÜK,fren-korugu,Fren Körüğü,111,4250.0,5610.0,0.0,23.624.24.22,True,1,/arfesan-24-24-d-p-disk-tipi-imdatli-koruk-p30384,30384
+ARF 20/24 D/P,ARFESAN 20/24 D/P DİSK TİPİ İMDATLI KÖRÜK,fren-korugu,Fren Körüğü,223,4250.0,5610.0,0.0,30.620.24.09 - 30.620.24.08 - 23.620.24.42,False,0,/arfesan-20-24-d-p-disk-tipi-imdatli-koruk-p30383,30383
+ARF 16/24 D/P - L,ARFESAN 16/24 D/P DİSK TİPİ İMDATLI KÖRÜK SOL,fren-korugu,Fren Körüğü,97,4250.0,5610.0,0.0,23.616.24.62,False,0,/arfesan-16-24-d-p-disk-tipi-imdatli-koruk-sol-p30382,30382
+ARF 20 SFK D - L,ARFESAN 20 LİK SFK DiSK FREN KÖRÜĞÜ SOL,fren-korugu,Fren Körüğü,36,1500.0,1980.0,0.0,01.120.00.92,False,0,/arfesan-20-lik-sfk-disk-fren-korugu-sol-p30375,30375
+ARF 24 SFK D - R,ARFESAN 24 LÜK SFK DiSK FREN KÖRÜĞÜ SAĞ,fren-korugu,Fren Körüğü,73,1500.0,1980.0,2.0,01.124.00.07,True,1,/arfesan-24-luk-sfk-disk-fren-korugu-sag-p30374,30374
+EF-4410323970,ABS SENSÖRÜ DÜZ ARKA SOL YENİ MODEL ACTROS AROX EURO6,abs-sensoru-modulu-kablo,ABS Sensörü/Modülü/Kablo,24,675.0,891.0,0.0,0075422118,True,1,/abs-sensoru-duz-arka-sol-yeni-model-actros-arox-euro6-p30371,30371
+EF-4410323960,ABS SENSÖRÜ DÜZ ARKA SAĞ YENİ MODEL ACTROS AROX EURO6,abs-sensoru-modulu-kablo,ABS Sensörü/Modülü/Kablo,19,675.0,891.0,0.0,0075422018,True,1,/abs-sensoru-duz-arka-sag-yeni-model-actros-arox-euro6-p30370,30370
+EF-4410325730,ABS SENSÖRÜ DÜZ 100 CM,abs-sensoru-modulu-kablo,ABS Sensörü/Modülü/Kablo,219,490.0,646.8,0.0,,True,1,/abs-sensoru-duz-100-cm-p30369,30369
+EF-4410328480,SENSÖR L 200 CM KAMPANA,fren-kampanasi,Fren Kampanası,37,580.0,765.6,0.0,,True,1,/sensor-l-200-cm-kampana-p30368,30368
+EF-4497120400,ABS UZATMA KABLOSU E.M 4MT,abs-sensoru-modulu-kablo,ABS Sensörü/Modülü/Kablo,35,550.0,726.0,0.0,4497120380,True,1,/abs-uzatma-kablosu-e-m-4mt-p30367,30367
+ESP.16.14.01,14 TON PORYA,porya,Porya,1,5980.0,7893.6,0.0,03.272.62.27.0 - 03.272.62.19.0 - 03.272.62.20.0,True,1,/14-ton-porya-p30338,30338
+ESP.08.11,DİSKLİ ÖN PORYA,porya,Porya,2,6440.0,8500.8,0.0,DC461106 (YENİ ÜRÜN),True,1,/diskli-on-porya-p30321,30321
+PWR-K006,MAN - MERCEDES 18 LİK BALATA (K623),fren-balatasi,Fren Balatası,150,913.75,1206.15,3.0,19487,True,1,/man-mercedes-18-lik-balata-k623-p29936,29936
+PWR-K005,FORD CARGO 2520-2621 20 EN BALATA (K878/20),fren-balatasi,Fren Balatası,161,1027.7,1356.56,0.0,19921,True,1,/ford-cargo-2520-2621-20-en-balata-k878-20-p29935,29935
+PWR-K004,MAN - MERCEDES 22 LİK BALATA (K6268),fren-balatasi,Fren Balatası,226,1055.22,1392.89,0.0,19488,True,1,/man-mercedes-22-lik-balata-k6268-p29934,29934
+PWR-K003,FREN BALATASI 20 EN (K880),fren-balatasi,Fren Balatası,82,943.635,1245.6,0.0,19071 - 19939,True,1,/fren-balatasi-20-en-k880-p29933,29933
+PWR-K002,BPW DORSE KAMPANA BALATASI (K689),fren-balatasi,Fren Balatası,183,985.6675,1301.08,0.0,19032,True,1,/bpw-dorse-kampana-balatasi-k689-p29924,29924
+PWR-K001,BPW DORSE BALATASI KAMPANA (K687),fren-balatasi,Fren Balatası,144,1027.7,1356.56,0.0,19094,True,1,/bpw-dorse-balatasi-kampana-k687-p29922,29922
+427003.S,GİGANT KRONE DORSE PİSTONSUZ -,suspansiyon-korugu,Süspansiyon Körüğü,50,1815.0,2395.8,0.0,"515069174S , 09377003S",False,0,/gigant-krone-dorse-pistonsuz-p29872,29872
+427003.KP,GİGANT KRONE DORSE PLASTİK PİSTONLU -,suspansiyon-korugu,Süspansiyon Körüğü,19,2420.0,3194.4,0.0,"515069174 , 09377003",True,1,/gigant-krone-dorse-plastik-pistonlu-p29871,29871
+425832.CP,FORD F-MAX CEKİCİ PLASTİK PİSTONLU,suspansiyon-korugu,Süspansiyon Körüğü,66,2420.0,3194.4,0.0,,False,0,/ford-f-max-cekici-plastik-pistonlu-p29753,29753
+ESP.30.04,SERTEL DİSKLİ PORYA 200 MM BOY,porya,Porya,3,4715.0,6223.8,0.0,,False,0,/sertel-diskli-porya-200-mm-boy-p29670,29670
+ESP.30.03,SERTEL DİSKLİ PORYA BOY 192 BOY,porya,Porya,1,4485.0,5920.2,0.0,,False,0,/sertel-diskli-porya-boy-192-boy-p29669,29669
+ESP.08.16,FORD F-MAX DİSKLİ DİFERANSİYEL PORYA DC461106-AF (YENİ ÜRÜN),porya,Porya,1,6095.0,8045.4,0.0,DC461106AF,True,1,/ford-f-max-diskli-diferansiyel-porya-dc461106-af-yeni-urun-p29637,29637
+EYD 92 07,AYDIN DİNGİL SOMUNU,bijon,Bijon,36,350.0,462.0,0.0,,False,0,/aydin-dingil-somunu-p29620,29620
+EYD 92 06,MUSTAFA CEYLAN DİNGİL SOMUNU,bijon,Bijon,35,350.0,462.0,0.0,,False,0,/mustafa-ceylan-dingil-somunu-p29619,29619
+ESP.04.05,Porya,porya,Porya,3,8510.0,11233.2,0.0,"1391617, 1388906, 1818003, 2019853, 2120485",True,1,/porya-p29601,29601
+8125-1,16/24 D/P İMD.FREN KÖRÜĞÜ UZUN 64 CM,fren-korugu,Fren Körüğü,60,2860.0,3775.2,0.0,8682644620312,True,1,/16-24-d-p-imd-fren-korugu-uzun-64-cm-p29244,29244
+ESP.08.13,FORD CARGO F-MAX DİSKLİ ÇEKİCİ PORYA,porya,Porya,2,7475.0,9867.0,0.0,"DC461106-AB, FC461116A",True,1,/ford-cargo-f-max-diskli-cekici-porya-p29220,29220
+03.7100.300.031.00,PABUÇ - BP Y.M.ÇENELİ 360/200 - SAÇ MAKARASIZ,fren-pabucu,Fren Pabucu,144,805.0,1062.6,0.0,05.091.19.34.0,True,2,/pabuc-bp-y-m-ceneli-360-200-sac-makarasiz-p29219,29219
+ESP.16.12.08,PORYA,porya,Porya,1,4600.0,6072.0,0.0,0327243120,True,2,/porya-p29195,29195
+EF-4410329200,ABS SENSÖR DİK 250 CM AXOR,abs-sensoru-modulu-kablo,ABS Sensörü/Modülü/Kablo,3,600.0,792.0,0.0,AXOR,True,1,/abs-sensor-dik-250-cm-axor-p29015,29015
+EF-4410329050,ABS SENSÖR DÜZ 40 CM,abs-sensoru-modulu-kablo,ABS Sensörü/Modülü/Kablo,114,400.0,528.0,0.0,,True,1,/abs-sensor-duz-40-cm-p29014,29014
+EF-4410328080,ABS SENSÖR L 40 CM,abs-sensoru-modulu-kablo,ABS Sensörü/Modülü/Kablo,290,400.0,528.0,0.0,,True,1,/abs-sensor-l-40-cm-p29012,29012
+CHS5005,B.V YENİ SET KOMPLE SAĞ,kaliper-tamir-takimi,Kaliper Tamir Takımı,17,8470.0,11180.4,0.0,,True,1,/b-v-yeni-set-komple-sag-p28177,28177
+CH5033,KALİPER MEKANİZMA SETİ Y.M.,kaliper-ayar-mekanizmasi,Kaliper Ayar Mekanizması,81,6250.0,8250.0,50.0,,True,1,/kaliper-mekanizma-seti-y-m-p28150,28150
+CH4035,MODULX GEN-2 MEKANİZMA KOMPLE SET,kaliper-tamir-takimi-modulx,Kaliper Tamir Takımı (Modulx),25,10409.0,13739.88,0.0,,True,1,/modulx-gen-2-mekanizma-komple-set-p28060,28060
+CHS3014,MB ARCS SET (SOL),kaliper-tamir-takimi,Kaliper Tamir Takımı,9,10431.0,13768.92,0.0,,True,1,/mb-arcs-set-sol-p28013,28013
+CHS3013,MB ARCS SET (SAĞ),kaliper-tamir-takimi,Kaliper Tamir Takımı,9,10431.0,13768.92,0.0,,True,1,/mb-arcs-set-sag-p28012,28012
+CH3284,ARCS KALİPER TAŞIYICI ÖN SOL,kaliper-ayar-mekanizmasi,Kaliper Ayar Mekanizması,2,6050.0,7986.0,0.0,A0004216506 - 6409157424,True,1,/arcs-kaliper-tasiyici-on-sol-p27997,27997
+CH3283,ARCS KALİPER TAŞIYICI ÖN SAĞ,kaliper-ayar-mekanizmasi,Kaliper Ayar Mekanizması,1,6050.0,7986.0,0.0,A0004216406 - 6409157434,True,1,/arcs-kaliper-tasiyici-on-sag-p27996,27996
+CH3193,PAN17-19 KALİPER ÜST KAPAĞI,kaliper-kapak-conta,Kaliper Kapak/Conta,2,3509.0,4631.88,0.0,,True,1,/pan17-19-kaliper-ust-kapagi-p27944,27944
+CH3173,PAN19-1/22-1 AYAR TAŞIYICI MEKANİZMALI SET,kaliper-ayar-mekanizmasi,Kaliper Ayar Mekanizması,12,2360.0,3115.2,0.0,,True,1,/pan19-1-22-1-ayar-tasiyici-mekanizmali-set-p27925,27925
+CH2210,ELSA195-225 PERNO TM TK (TEK ÇİZGİLİ),kaliper-perno-tamir-takimi,Kaliper Perno Tamir Takımı,6,2505.0,3306.6,0.0,CMSK.7.1,True,1,/elsa195-225-perno-tm-tk-tek-cizgili-p27647,27647
+CH2188,ELSA195-225 AYAR DİŞLİSİ,kaliper-ayar-mekanizmasi,Kaliper Ayar Mekanizması,2,509.0,671.88,0.0,,True,1,/elsa195-225-ayar-dislisi-p27625,27625
+CH2068,ELSA 225 AYAR DİŞLİSİ,kaliper-ayar-mekanizmasi,Kaliper Ayar Mekanizması,2,763.0,1007.16,0.0,,True,1,/elsa-225-ayar-dislisi-p27509,27509
+CH2045,ELSA2-195-225 PERNO TK TAM TEK KANALLI,kaliper-tamir-takimi-elsa,Kaliper Tamir Takımı (Elsa),3,2662.0,3513.84,0.0,MCK1298 - 85109890 - 9500931 - 5001 866 989,True,1,/elsa2-195-225-perno-tk-tam-tek-kanalli-p27488,27488
+CH2039,KALİPER MASURA BİLYA YATAĞI TAKIMI (114 MM),kaliper-tamir-takimi,Kaliper Tamir Takımı,13,2578.0,3402.96,0.0,,True,1,/kaliper-masura-bilya-yatagi-takimi-114-mm-p27482,27482
+CH1178,Rulman Yatagı Açı 0-113 mm,kaliper-tamir-takimi,Kaliper Tamir Takımı,6,968.0,1277.76,0.0,Z002881,True,1,/rulman-yatagi-aci-0-113-mm-p27365,27365
+CH1101,SL7/SM7 AYAR MEKANİZMASI Y.M. UZUN,kaliper-ayar-mekanizmasi,Kaliper Ayar Mekanizması,32,2770.0,3656.4,0.0,,True,1,/sl7-sm7-ayar-mekanizmasi-y-m-uzun-p27325,27325
+CH1089,SENSÖRSÜZ SAC KAPAK,sensor,Sensör,2,642.0,847.44,0.0,,True,1,/sensorsuz-sac-kapak-p27317,27317
+CH1078,SB5 3 KABLOLU SENSÖRLÜ KAPAK MB,kaliper-kapak-conta,Kaliper Kapak/Conta,10,1186.0,1565.52,0.0,,True,1,/sb5-3-kablolu-sensorlu-kapak-mb-p27306,27306
+CH1071,SB6-7 SN6/SN7/SK7/NA7/ST7 3 KALOLU SCN TİP SENSÖRLÜ KAPAK MB,kaliper-kapak-conta,Kaliper Kapak/Conta,2,1114.0,1470.48,0.0,,True,1,/sb6-7-sn6-sn7-sk7-na7-st7-3-kalolu-scn-tip-sensorlu-kapak-mb-p27299,27299
+CH1044,SN6/SN7/SK7/NA7/ST7 RULMAN YATAĞI AÇI 0-113 mm,kaliper-tamir-takimi,Kaliper Tamir Takımı,6,884.0,1166.88,0.0,Z002881,True,1,/sn6-sn7-sk7-na7-st7-rulman-yatagi-aci-0-113-mm-p27272,27272
+CH1039,Perno Tamir Takımı,kaliper-perno-tamir-takimi,Kaliper Perno Tamir Takımı,44,1319.0,1741.08,0.0,K000472 - K017707 - 000 420 3482 - 81.50822.6019 - 1723416 - 42541412 - 09.801.06.33.0 - 3 434 3812 00,True,1,/perno-tamir-takimi-p27267,27267
+CH1030,Yaylı Sabit Ayar Mekanizması,kaliper-ayar-mekanizmasi,Kaliper Ayar Mekanizması,61,158.0,208.56,0.0,CKSK.10.1,True,1,/yayli-sabit-ayar-mekanizmasi-p27258,27258
+CH1029,Ayar Mekanizması,kaliper-ayar-mekanizmasi,Kaliper Ayar Mekanizması,143,787.0,1038.84,0.0,CKSK.10.30,True,1,/ayar-mekanizmasi-p27257,27257
+CH1025,SB6/SB7 PERNO TAMİR TAKIMI,kaliper-perno-tamir-takimi,Kaliper Perno Tamir Takımı,3,1368.0,1805.76,0.0,K000132 - 000 420 1082 - 000 420 2182 - 1390426 - 1798063 - 2121644,True,1,/sb6-sb7-perno-tamir-takimi-p27253,27253
+CH1019,SB6-7 SN6/SN7/SK7/NA7/ST7 SENSÖRSÜZ KAPAK,kaliper-kapak-conta,Kaliper Kapak/Conta,6,484.0,638.88,0.0,CKSK.16.1,True,1,/sb6-7-sn6-sn7-sk7-na7-st7-sensorsuz-kapak-p27247,27247
+CH1012,SB5 AYAR DİŞLİSİ ALTI KÖŞE,kaliper-ayar-mekanizmasi,Kaliper Ayar Mekanizması,1,194.0,256.08,0.0,,True,1,/sb5-ayar-dislisi-alti-kose-p27240,27240
+421889.S,FORD CARGO ÖN SÜSPANSİYON KÖRÜĞÜ PİSTONSUZ,suspansiyon-korugu,Süspansiyon Körüğü,27,1565.0,2065.8,0.0,9C465580BAS,True,1,/ford-cargo-on-suspansiyon-korugu-pistonsuz-p27179,27179
+421889.C,FORD CARGO ÖN SÜSPANSYON KÖRÜK KOMPLE,suspansiyon-korugu,Süspansiyon Körüğü,5,2465.0,3253.8,4.0,"9C465580BAN , t179769",False,0,/ford-cargo-on-suspansyon-koruk-komple-p27178,27178
+ARF 36 LIK SFK,ARFESAN 36 LIK DİNGİL KALDIRMA KÖRÜĞÜ,suspansiyon-korugu,Süspansiyon Körüğü,70,2850.0,3762.0,0.0,01.14.00.113,True,1,/arfesan-36-lik-dingil-kaldirma-korugu-p27170,27170
+ARF 24 SFK,ARFESAN 24 LUK FREN KÖRÜĞÜ,fren-korugu,Fren Körüğü,144,990.0,1306.8,0.0,01.62.00.250 - 01.62.00.267,True,1,/arfesan-24-luk-fren-korugu-p27169,27169
+EYD 80 34,24V 15'Lİ EBS KABLOSU,ebs-modulator,EBS Modülatör,3,60.0,79.2,0.0,,True,1,/24v-15-li-ebs-kablosu-p26189,26189
+EYD 80 33,24V ELEKTRİK KABLOSU (DİŞİ),elektrik-kablosu,Elektrik Kablosu,5,21.5,28.38,2.0,,False,0,/24v-elektrik-kablosu-disi-p26188,26188
+EYD 80 32,24V ELEKTRİK KABLOSU (ERKEK),elektrik-kablosu,Elektrik Kablosu,3,21.5,28.38,2.0,,False,0,/24v-elektrik-kablosu-erkek-p26187,26187
+EYD 700 43,SEMİ VE NURMEK DİNGİL PORYA KAPAĞI İÇTEN YİVLİ,porya,Porya,21,440.0,580.8,0.0,,True,3,/semi-ve-nurmek-dingil-porya-kapagi-icten-yivli-p26166,26166
+EYD 700 31-1,AXL PORYA KAPAĞI 12 TON (SAÇ) 138*2,porya,Porya,10,440.0,580.8,0.0,,True,3,/axl-porya-kapagi-12-ton-sac-138-2-p26156,26156
+EYD 700 26,VOLVO RENAULT PORYA KAPAĞI,porya,Porya,4,440.0,580.8,0.0,,True,4,/volvo-renault-porya-kapagi-p26153,26153
+EYD 70 13,ALMAN DİNGİL BP DORS KÜÇÜK YAY,dingil,Dingil,120,45.0,59.4,0.0,,True,4,/alman-dingil-bp-dors-kucuk-yay-p26126,26126
+EF-4410328090,SENSÖR L 100 CM KAMPANA,fren-kampanasi,Fren Kampanası,88,425.0,561.0,0.0,ATF 5030,True,1,/sensor-l-100-cm-kampana-p24773,24773
+CDF-88181,145*175/205*9/14 NBR ABSLİ ARKA PORYA ATEGO,porya,Porya,10,13.63,17.99,0.0,,True,1,/145-175-205-9-14-nbr-absli-arka-porya-atego-p24700,24700
+424159.CP,KOMPLE KÖRÜK PLSTİK PİSTON,suspansiyon-korugu,Süspansiyon Körüğü,11,2530.0,3339.6,0.0,"UJA0894001 , MLF7035",False,0,/komple-koruk-plstik-piston-p23293,23293
+303.08.0001.02,Ebs Dorse Kontrol Ventili Tamir Takimi,ebs-modulator,EBS Modülatör,1,22.2,29.3,0.0,,False,0,/ebs-dorse-kontrol-ventili-tamir-takimi-p23064,23064
+ARF 16 SFK,ARFESAN 16 LIK SFK DİSK FREN KÖRÜĞÜ,fren-korugu,Fren Körüğü,239,1250.0,1650.0,2.0,01.116.00.82,True,1,/arfesan-16-lik-sfk-disk-fren-korugu-p19730,19730
+ARF 16/24 D/D,ARFESAN 16/24 D/D DİSK TİPİ DORSE İMDATLI KÖRÜK,fren-korugu,Fren Körüğü,194,2250.0,2970.0,0.0,03.130.00.188,True,1,/arfesan-16-24-d-d-disk-tipi-dorse-imdatli-koruk-p19729,19729
+FX-2030,ELSA-2 RADIAL RNLT 420 - MN TGA SET SOL,kaliper-tamir-takimi-elsa,Kaliper Tamir Takımı (Elsa),1,7800.0,10296.0,0.0,,True,1,/elsa-2-radial-rnlt-420-mn-tga-set-sol-p19537,19537
+10-1294,FRENCO SB6/SB7 PERNO TAMİR TAKIMI,kaliper-perno-tamir-takimi,Kaliper Perno Tamir Takımı,2,1580.0,2085.6,0.0,"K105599K55, 2286677",True,1,/frenco-sb6-sb7-perno-tamir-takimi-p19510,19510
+42230/1-290,Disk Balatası (29171-29158),fren-balatasi,Fren Balatası,73,1520.0,2006.4,0.0,29158 - 29171,True,1,/disk-balatasi-29171-29158-p19418,19418
+8108,30 LUK SERVİS KAMPANA KÖRÜĞÜ,fren-korugu,Fren Körüğü,772,1050.0,1386.0,0.0,8682644620046,True,1,/30-luk-servis-kampana-korugu-p19398,19398
+EYD 100 71-1,BPW ESKOL TM TK YARIM,fren-korugu,Fren Körüğü,296,300.0,396.0,0.0,,False,0,/bpw-eskol-tm-tk-yarim-p19299,19299
+ESP.18.23.01,PORYA FLANŞI DİSKLİ SCB9010/9 - SCHMITZ DORSE FLANŞI,porya,Porya,1,4255.0,5616.6,0.0,1004054,True,1,/porya-flansi-diskli-scb9010-9-schmitz-dorse-flansi-p19286,19286
+BK 01 1624,TİP 16/24 D/P DİSK İMDAT FREN KÖRÜĞÜ,fren-korugu,Fren Körüğü,2,4500.0,5940.0,0.0,8682644620299,True,1,/tip-16-24-d-p-disk-imdat-fren-korugu-p19253,19253
+BK 04 0020,TİP 20 DİSK SERVİS FREN KÖRÜĞÜ,fren-korugu,Fren Körüğü,2,1250.0,1650.0,0.0,8682644620145 8682644620152,True,1,/tip-20-disk-servis-fren-korugu-p19244,19244
+ESP.26.27,PORYA SERİN DORSE PLOT KAMPANALI KISA (804708) SERİN KODU,porya,Porya,1,6095.0,8045.4,0.0,,False,0,/porya-serin-dorse-plot-kampanali-kisa-804708-serin-kodu-p19177,19177
+KIZAK 30535,FORD KARGO KIZAĞI,kizak,Kızak,2,3000.0,3960.0,0.0,,True,1,/ford-kargo-kizagi-p19169,19169
+ESP.16.12.17,PORYA HS.. ECOPLUS - HZ.. ECOPLUS 12 TON PORYA (YENİ ÜRÜN),porya,Porya,2,4370.0,5768.4,0.0,0327243420,True,1,/porya-hs-ecoplus-hz-ecoplus-12-ton-porya-yeni-urun-p19140,19140
+426290.S1,KÖRÜK,suspansiyon-korugu,Süspansiyon Körüğü,4,1520.0,2006.4,0.0,,False,0,/koruk-p19126,19126
+CDF-88170,SCANIA TEKER KEÇESİ YENİ MODEL ARKA İÇ 142/170/15-16,kece,Keçe,6,14.92,19.69,0.0,1740992,True,1,/scania-teker-kecesi-yeni-model-arka-ic-142-170-15-16-p19105,19105
+KIZAK 30505,KIZAK VOLVO,kizak,Kızak,2,3000.0,3960.0,0.0,"68322778 , 3092253",True,1,/kizak-volvo-p19085,19085
+KIZAK 30502,KIZAK RENAULT 420,kizak,Kızak,1,3000.0,3960.0,0.0,"68323675 , 68323673",True,1,/kizak-renault-420-p19083,19083
+ARF 30 SFK,ARFESAN 30 LUK FREN KÖRÜĞÜ,fren-korugu,Fren Körüğü,198,1250.0,1650.0,0.0,01.63.00.125,True,1,/arfesan-30-luk-fren-korugu-p18987,18987
+ARF 24/30 D/D,ARFESAN 24X30 D/D İMDATLI FREN KÖRÜĞÜ,fren-korugu,Fren Körüğü,287,2250.0,2970.0,0.0,03.19.00.160,True,1,/arfesan-24x30-d-d-imdatli-fren-korugu-p18986,18986
+ARF 30/30 D/D,ARFESAN 30X30 D/D İMDATLI FREN KÖRÜĞÜ,fren-korugu,Fren Körüğü,201,2250.0,2970.0,0.0,03.24.00.89,True,1,/arfesan-30x30-d-d-imdatli-fren-korugu-p18985,18985
+427141,Kaliper Plastik Tapa Takımı,kaliper,Kaliper,29,175.0,231.0,0.0,,True,3,/kaliper-plastik-tapa-takimi-p17444,17444
+FX-3040,PAN-19-1 22-1 SF AXLE SET SOL,kaliper-tamir-takimi-pan,Kaliper Tamir Takımı (PAN),1,4450.0,5874.0,0.0,,True,1,/pan-19-1-22-1-sf-axle-set-sol-p17301,17301
+ESP.13.09,RENAULT KERAX 6x4 (ŞANTİYE) CERLİ KAMPANALI ÇEKİCİ PORYA,porya,Porya,2,5750.0,7590.0,0.0,"7420517167, 5001861915, 1026661",True,1,/renault-kerax-6x4-santiye-cerli-kampanali-cekici-porya-p17284,17284
+KIZAK 10511,KALİPER SEMERİ,kizak,Kızak,1,3000.0,3960.0,0.0,"K004679 , 0130388550",True,1,/kaliper-semeri-p17228,17228
+KIZAK 30512,KALİPER SEMERİ VOLVO FH 12,kizak,Kızak,2,3000.0,3960.0,0.0,MCK1319,True,1,/kaliper-semeri-volvo-fh-12-p17226,17226
+KIZAK 10509,KALİPER KIZAK SCANIA,kizak,Kızak,4,3000.0,3960.0,0.0,"K010765 , 1756388",True,1,/kaliper-kizak-scania-p17211,17211
+KIZAK 30500,KALİPER KIZAK VOLVO DUCO 22/5,kizak,Kızak,2,3000.0,3960.0,0.0,68323539,True,1,/kaliper-kizak-volvo-duco-22-5-p17209,17209
+BK 05 0024,TİP 24 DİSK SERVİS FREN KÖRÜĞÜ SOL,fren-korugu,Fren Körüğü,3,1250.0,1650.0,0.0,,True,1,/tip-24-disk-servis-fren-korugu-sol-p17182,17182
+426147,Kaliper Tamir Takımı Komple (Pimli),kaliper,Kaliper,5,2850.0,3762.0,0.0,,True,1,/kaliper-tamir-takimi-komple-pimli-p17170,17170
+KIZAK 10517,KNOR SİMITS DORSE TAŞIYICI KIZAK,kizak,Kızak,1,3000.0,3960.0,0.0,"K007475 ,",True,1,/knor-simits-dorse-tasiyici-kizak-p17149,17149
+KIZAK 10512,KNOR TGA MAN TAŞIYICI KIZAK (ÖN-ARKA AYNI),kizak,Kızak,10,3000.0,3960.0,0.0,K001278,True,1,/knor-tga-man-tasiyici-kizak-on-arka-ayni-p17148,17148
+KIZAK 10504,AXOR MERSEDES YENİ MODEL ARKA TAŞIYICI KIZAK 29244 BALATA,kizak,Kızak,18,3000.0,3960.0,0.0,"0004231006 , K052379K50",True,1,/axor-mersedes-yeni-model-arka-tasiyici-kizak-29244-balata-p17147,17147
+KIZAK 10518,KNORR DORSE BPW KIZAK 3 DELİK 29167 BALATA,kizak,Kızak,3,3000.0,3960.0,0.0,"K004680, 2379696",True,1,/knorr-dorse-bpw-kizak-3-delik-29167-balata-p17143,17143
+KIZAK 10510,SAF DORSE KNORR 2 DELİK KIZAK 29171 BALATA,kizak,Kızak,5,3000.0,3960.0,0.0,K015308,True,1,/saf-dorse-knorr-2-delik-kizak-29171-balata-p17134,17134
+KIZAK 40501,SAF DORSE YENİ MODEL KIZAK,kizak,Kızak,21,3000.0,3960.0,0.0,"94618 , 94619",True,1,/saf-dorse-yeni-model-kizak-p17133,17133
+30-3610,FRENCOO PAN19-2 PİSTON VE PERNO TM TK TAM,kaliper-perno-tamir-takimi,Kaliper Perno Tamir Takımı,5,1696.0,2238.72,0.0,"12 999 746, 5001.858.722",True,1,/frencoo-pan19-2-piston-ve-perno-tm-tk-tam-p17087,17087
+PWR-5042,DİSK BALATASI 29403,fren-balatasi,Fren Balatası,101,2681.3725,3539.41,0.0,29403,True,1,/disk-balatasi-29403-p17031,17031
+BK 01 0024,TİP 24 SERVİS FREN KÖRÜĞÜ KELEPÇELİ,fren-korugu,Fren Körüğü,6,1250.0,1650.0,0.0,,True,1,/tip-24-servis-fren-korugu-kelepceli-p17000,17000
+CDF-88149,"125*152,4*15 NBR ARKA TEKER PORYA KEÇESİ",porya,Porya,90,3.74,4.94,0.0,,True,1,/125-152-4-15-nbr-arka-teker-porya-kecesi-p16995,16995
+426144-1,KALİPER TAMİR TAKIMI KAŞIKLI SET (TABLALI),kaliper,Kaliper,104,3320.0,4382.4,3.0,,True,3,/kaliper-tamir-takimi-kasikli-set-tablali-p16252,16252
+FX-5010,B.V SET KOMPLE,kaliper-tamir-takimi,Kaliper Tamir Takımı,1,6449.0,8512.68,0.0,,True,1,/b-v-set-komple-p16250,16250
+EF-0278324000,EBS UZATMA SENSÖRÜ KNORR 4 MT,ebs-modulator,EBS Modülatör,105,550.0,726.0,0.0,,True,1,/ebs-uzatma-sensoru-knorr-4-mt-p16216,16216
+424930.S,SCANIA Y.M.ÇEKER ÖN SÜSPANSİYON KÖRÜK LASTİK,suspansiyon-korugu,Süspansiyon Körüğü,33,1600.0,2112.0,0.0,,False,0,/scania-y-m-ceker-on-suspansiyon-koruk-lastik-p16112,16112
+424933.S,SCANIA Y.M. ÇEKECİ SÜSPANSİYON KÖRÜK LASTİK,suspansiyon-korugu,Süspansiyon Körüğü,48,1760.0,2323.2,0.0,,False,0,/scania-y-m-cekeci-suspansiyon-koruk-lastik-p16111,16111
+424933.C,SCANIA Y.M (ÇEKER ARKA),suspansiyon-korugu,Süspansiyon Körüğü,16,3190.0,4210.8,2.0,"2617887 , 1434933 , 1434933",False,0,/scania-y-m-ceker-arka-p16078,16078
+424930.CP,SCANİA Y.M (ÇEKER ÖN),suspansiyon-korugu,Süspansiyon Körüğü,23,2200.0,2904.0,0.0,"1434930 , 1932592 ,2617884",False,0,/scania-y-m-ceker-on-p16077,16077
+30-3790,FRENCOO MAXX22T RULMAN YATAĞI,kaliper-tamir-takimi,Kaliper Tamir Takımı,5,1308.0,1726.56,0.0,,True,1,/frencoo-maxx22t-rulman-yatagi-p15929,15929
+FX-3080,FRENCO KALİPER TAMİR TAKIMI,kaliper,Kaliper,1,6850.0,9042.0,0.0,,True,1,/frenco-kaliper-tamir-takimi-p15869,15869
+FX-3050,FRENCO MAXX 22 SET MAN TGX TGS TAMİR TAKIMI,kaliper-tamir-takimi-maxx22,Kaliper Tamir Takımı (Maxx22),1,6850.0,9042.0,0.0,,True,1,/frenco-maxx-22-set-man-tgx-tgs-tamir-takimi-p15868,15868
+426420.C,Komple Körük Metal Piston,suspansiyon-korugu,Süspansiyon Körüğü,3,2255.0,2976.6,0.0,"1076420 , 20582213 ,21961448",True,1,/komple-koruk-metal-piston-p15710,15710
+424882.C,Man Tga,suspansiyon-korugu,Süspansiyon Körüğü,67,2585.0,3412.2,0.0,"0542941010 , 81436016065 , 81436006036",True,1,/man-tga-p15704,15704
+424718.C,Volvo FH,suspansiyon-korugu,Süspansiyon Körüğü,36,2255.0,2976.6,0.0,"20554759 , 1075363 , MLF7145",True,1,/volvo-fh-p15693,15693
+424713.C,VOLVO KOMPLE PİSTONLU KÖRÜK,suspansiyon-korugu,Süspansiyon Körüğü,125,2530.0,3339.6,0.0,"20554755 , MLF7098 , MLF7098",False,0,/volvo-komple-pistonlu-koruk-p15692,15692
+424156.C,Fruehauf,suspansiyon-korugu,Süspansiyon Körüğü,30,2530.0,3339.6,0.0,,False,0,/fruehauf-p15671,15671
+426420.S,Volvo,suspansiyon-korugu,Süspansiyon Körüğü,11,1430.0,1887.6,0.0,"20582213S , 21961448S",True,3,/volvo-p15650,15650
+424884.S02,Man Tga,suspansiyon-korugu,Süspansiyon Körüğü,109,1685.0,2224.2,0.0,"81436006055 , 81436010174",True,1,/man-tga-p15642,15642
+424159.S,Smb / Fruehauf KÖRÜK LASTİK,suspansiyon-korugu,Süspansiyon Körüğü,54,1760.0,2323.2,0.0,MLF7015,True,1,/smb-fruehauf-koruk-lastik-p15631,15631
+FX-3120,FRENCOO TGS KALİPER TM TK FULL SET,kaliper-tamir-takimi,Kaliper Tamir Takımı,2,6850.0,9042.0,0.0,,True,1,/frencoo-tgs-kaliper-tm-tk-full-set-p15236,15236
+FX-3110,FRENCOO MAN TGS KALİPER TM.TK.SET,kaliper-tamir-takimi,Kaliper Tamir Takımı,2,6850.0,9042.0,0.0,,True,1,/frencoo-man-tgs-kaliper-tm-tk-set-p15235,15235
+BK 04 1624,BAYKAR 16/24 D/P DİSK İMDAT FREN KÖRÜĞÜ SOL,fren-korugu,Fren Körüğü,3,4500.0,5940.0,0.0,,True,1,/baykar-16-24-d-p-disk-imdat-fren-korugu-sol-p15234,15234
+BK 12 1624,BAYKAR 16/24 D/P DİSK İMDAT FREN KÖRÜK KISA (SOL),fren-korugu,Fren Körüğü,1,4500.0,5940.0,0.0,,True,1,/baykar-16-24-d-p-disk-imdat-fren-koruk-kisa-sol-p15232,15232
+EYD 100 67,20 Nolu Körük Lastiği Derin,fren-korugu,Fren Körüğü,657,142.2,187.7,0.0,,True,3,/20-nolu-koruk-lastigi-derin-p15164,15164
+EYD 100 61,20 Nolu Körük Lastiği,fren-korugu,Fren Körüğü,330,131.1,173.05,0.0,,True,3,/20-nolu-koruk-lastigi-p15163,15163
+EYD 100 39,24 Nolu Körük Lastiği,fren-korugu,Fren Körüğü,564,136.8,180.58,0.0,,True,3,/24-nolu-koruk-lastigi-p15065,15065
+42810.C1,SÜSP.KÖRÜK KOMPLE 4 SAPLAMALI,suspansiyon-korugu,Süspansiyon Körüğü,3,2640.0,3484.8,0.0,016010,False,0,/susp-koruk-komple-4-saplamali-p15059,15059
+42722.S,LASTİK BMC KÖRÜK,suspansiyon-korugu,Süspansiyon Körüğü,28,1760.0,2323.2,0.0,,False,0,/lastik-bmc-koruk-p15058,15058
+42810.S1,SÜSP.KÖRÜK LASTİK 4 SAPLAMALI,suspansiyon-korugu,Süspansiyon Körüğü,88,1595.0,2105.4,0.0,,True,1,/susp-koruk-lastik-4-saplamali-p15057,15057
+426318.CP,Komple Körük Plastik Piston,suspansiyon-korugu,Süspansiyon Körüğü,6,2255.0,2976.6,4.0,"US06318F , 550025981, 016512 , 1244666",True,1,/komple-koruk-plastik-piston-p15048,15048
+50-5276,Masura Bilya Yatağı Tamir Takımı,kaliper-tamir-takimi,Kaliper Tamir Takımı,4,1250.0,1650.0,0.0,,True,1,/masura-bilya-yatagi-tamir-takimi-p15001,15001
+30-3697,FRENCO MASURA RULMAN YATAĞI,kaliper-tamir-takimi,Kaliper Tamir Takımı,9,1335.0,1762.2,0.0,,True,1,/frenco-masura-rulman-yatagi-p14967,14967
+30-3750,FRENCO KALİPER TAMİR TAKIMI,kaliper,Kaliper,10,1620.0,2138.4,0.0,640 222 928 2,True,1,/frenco-kaliper-tamir-takimi-p14966,14966
+424390.S1,Pistonsuz Körük,suspansiyon-korugu,Süspansiyon Körüğü,97,1405.0,1854.6,0.0,9423280001,True,1,/pistonsuz-koruk-p14952,14952
+FX-2010,FRENCO KALİPER TM.TK.,kaliper-tamir-takimi,Kaliper Tamir Takımı,1,7600.0,10032.0,0.0,,True,1,/frenco-kaliper-tm-tk-p14939,14939
+PWR-5041,PWR DİSK BALATA SCANIA Y.M. (WAV 29331),fren-balatasi,Fren Balatası,28,2014.55,2659.21,0.0,29331,True,1,/pwr-disk-balata-scania-y-m-wav-29331-p14928,14928
+42322/1-300,Disk Balatası (29195),fren-balatasi,Fren Balatası,150,1560.0,2059.2,0.0,29175 - 29195,True,1,/disk-balatasi-29195-p14915,14915
+EYD 206 14,Mercedes Pabuç Makarası,fren-pabucu,Fren Pabucu,90,192.5,254.1,0.0,,False,0,/mercedes-pabuc-makarasi-p14767,14767
+W4491731200,EBS ANA HAT KABLOSU 12 MT.,ebs-modulator,EBS Modülatör,5,4000.0,5280.0,0.0,,True,1,/ebs-ana-hat-kablosu-12-mt-p14741,14741
+10-1099,FRENCOO SENSÖR KAPAĞI,kaliper-tamir-takimi-frenco,Kaliper Tamir Takımı (Frenco),1,900.0,1188.0,0.0,,True,1,/frencoo-sensor-kapagi-p14734,14734
+421167-1,Kaliper Perno Tamir Takımı,kaliper-perno-tamir-takimi,Kaliper Perno Tamir Takımı,6,705.0,930.6,0.0,,True,3,/kaliper-perno-tamir-takimi-p14630,14630
+42197/2-255,Disk Balatası (29088),fren-balatasi,Fren Balatası,1,1440.0,1900.8,0.0,29088,True,1,/disk-balatasi-29088-p14628,14628
+FX-3140,FRENCOO KALİPER TAMİR TAKIMI AROX SOL,kaliper,Kaliper,6,6450.0,8514.0,0.0,,True,1,/frencoo-kaliper-tamir-takimi-arox-sol-p14600,14600
+422211.P02,Katlı Körük Civatalı,suspansiyon-korugu,Süspansiyon Körüğü,261,880.0,1161.6,0.0,,False,0,/katli-koruk-civatali-p14567,14567
+424154.CP05,Komple Körük Plastik Piston,suspansiyon-korugu,Süspansiyon Körüğü,1,2420.0,3194.4,0.0,5010488071,True,1,/komple-koruk-plastik-piston-p14555,14555
+10-1284,FRENCOO KALİPER RULMAN YATAĞI,kaliper-tamir-takimi,Kaliper Tamir Takımı,2,850.0,1122.0,0.0,,True,1,/frencoo-kaliper-rulman-yatagi-p14477,14477
+30.08002,PORYA KAPAĞI SCANIA TAKIM,porya,Porya,31,330.0,435.6,0.0,,True,3,/porya-kapagi-scania-takim-p14473,14473
+ESP.16.16.02,PORYA,porya,Porya,5,8050.0,10626.0,0.0,"0327280140, 0327280100, 0327280190",True,1,/porya-p14370,14370
+42317/1-300,Disk Balatası,fren-balatasi,Fren Balatası,25,1660.0,2191.2,0.0,29228,True,1,/disk-balatasi-p14293,14293
+42182/1-300,Disk Balatası (29087),fren-balatasi,Fren Balatası,141,1560.0,2059.2,0.0,29042 - 29108 - 29087 - 29106 - 29109 - 29163 - 29179 - 29201 - 29202 - 29061,True,1,/disk-balatasi-29087-p14291,14291
+42182/2-300,Disk Balatası,fren-balatasi,Fren Balatası,4,1920.0,2534.4,0.0,29042 - 29108 - 29087 - 29106 - 29109 - 29163 - 29179 - 29201 - 29202 - 29061,True,1,/disk-balatasi-p14269,14269
+424028.C02,TASLI KÖRÜK,suspansiyon-korugu,Süspansiyon Körüğü,30,2150.0,2838.0,0.0,"015323 , MLF8176",True,1,/tasli-koruk-p14254,14254
+424183.C01,Komple Körük Metal Piston,suspansiyon-korugu,Süspansiyon Körüğü,58,2585.0,3412.2,6.0,"9423202221 , 9423206821",True,1,/komple-koruk-metal-piston-p14248,14248
+424183.S1,Pistonsuz Körük,suspansiyon-korugu,Süspansiyon Körüğü,220,1625.0,2145.0,0.0,(B) E1/E2,True,1,/pistonsuz-koruk-p14247,14247
+8115,24/24 D/P DİSK KÖRÜĞÜ İVECO TİPİ,fren-korugu,Fren Körüğü,124,3025.0,3993.0,0.0,,False,0,/24-24-d-p-disk-korugu-iveco-tipi-p14242,14242
+8114,20/24 D/P DİSK KÖRÜK İVECO TİPİ,fren-korugu,Fren Körüğü,36,3025.0,3993.0,0.0,,False,0,/20-24-d-p-disk-koruk-iveco-tipi-p14241,14241
+8112,24/16 D/P DİSK KÖRÜK SCANIA,fren-korugu,Fren Körüğü,139,2850.0,3762.0,0.0,8682644620466,True,2,/24-16-d-p-disk-koruk-scania-p14239,14239
+8102,24/30 D/P (M22) FREN KÖRÜĞÜ,fren-korugu,Fren Körüğü,245,2850.0,3762.0,0.0,8682644620367,True,1,/24-30-d-p-m22-fren-korugu-p14237,14237
+42836.S2,Pistonsuz Körük,suspansiyon-korugu,Süspansiyon Körüğü,11,1680.0,2217.6,0.0,0513982,True,1,/pistonsuz-koruk-p14149,14149
+424157.S,Pistonsuz Körük,suspansiyon-korugu,Süspansiyon Körüğü,4,1870.0,2468.4,0.0,,True,1,/pistonsuz-koruk-p14146,14146
+424157.CP05,Komple Körük Plastik Piston,suspansiyon-korugu,Süspansiyon Körüğü,9,2475.0,3267.0,0.0,"21222442 , CF152721",True,1,/komple-koruk-plastik-piston-p14144,14144
+42310/2-292,Disk Balatası (29173-29203-29272),fren-balatasi,Fren Balatası,152,1620.0,2138.4,0.0,29173 - 29203 - 29272,True,1,/disk-balatasi-29173-29203-29272-p14143,14143
+ESP.16.04.04,PORYA BPW DİSKLİ Y.M.,porya,Porya,3,5175.0,6831.0,0.0,0327243410,True,1,/porya-bpw-diskli-y-m-p14123,14123
+42314/2-300,Fren Disk Balatası (29244),fren-balatasi,Fren Balatası,38,1420.0,1874.4,0.0,29244,True,1,/fren-disk-balatasi-29244-p14117,14117
+42284/2-293,Disk Balatası (29174),fren-balatasi,Fren Balatası,19,1620.0,2138.4,0.0,29174,True,1,/disk-balatasi-29174-p14116,14116
+40-4120,FRENCOO KALİPER TAMİR TAKIMI,kaliper,Kaliper,1,2100.0,2772.0,0.0,93299,True,1,/frencoo-kaliper-tamir-takimi-p14013,14013
+20-2390,FRENCOO KALİPER TAMİR TAKIMI,kaliper,Kaliper,8,1750.0,2310.0,0.0,"MCK1116, 1489197, 85102094, AMMCK1116, 5021202776, 1489197, STRMCK1116",True,1,/frencoo-kaliper-tamir-takimi-p14010,14010
+EF-4497230300,EBS UZATMA KABLOSU WABCO 3 MT,ebs-modulator,EBS Modülatör,58,550.0,726.0,0.0,,True,1,/ebs-uzatma-kablosu-wabco-3-mt-p13726,13726
+EYD 91 21,Disk Montaj Seti,fren-diski,Fren Diski,363,414.0,546.48,0.0,,True,2,/disk-montaj-seti-p13659,13659
+42200/2-290,Disk Balatası,fren-balatasi,Fren Balatası,37,1440.0,1900.8,0.0,29094-29095 - 29197,True,1,/disk-balatasi-p13657,13657
+426418.C,Komple Körük Metal Piston,suspansiyon-korugu,Süspansiyon Körüğü,58,2145.0,2831.4,0.0,"20582214 , 20374511 , 20374511",True,1,/komple-koruk-metal-piston-p13646,13646
+30-3699,MAXX22 BALATA İTİCİ PLEYT SOL,fren-balatasi,Fren Balatası,1,950.0,1254.0,0.0,,True,1,/maxx22-balata-itici-pleyt-sol-p13409,13409
+30-3690,MAXX22 RULMAN YATAĞI,kaliper-tamir-takimi,Kaliper Tamir Takımı,8,1241.0,1638.12,0.0,,True,1,/maxx22-rulman-yatagi-p13403,13403
+30-3688,MAXX22 PİSTON KAPAĞI,kaliper-tamir-takimi-maxx22,Kaliper Tamir Takımı (Maxx22),8,525.0,693.0,0.0,640 322 650 4,True,1,/maxx22-piston-kapagi-p13401,13401
+30-3682,MAXX22 AYAR TAŞIYICI MEKANİZMALI SET MAN TGX,kaliper-ayar-mekanizmasi,Kaliper Ayar Mekanizması,6,1975.0,2607.0,0.0,,True,1,/maxx22-ayar-tasiyici-mekanizmali-set-man-tgx-p13398,13398
+30-3681,MAXX22 AYAR TAŞIYICI MEKANİZMALI SET MAN TGS,kaliper-ayar-mekanizmasi,Kaliper Ayar Mekanizması,1,1975.0,2607.0,0.0,,True,1,/maxx22-ayar-tasiyici-mekanizmali-set-man-tgs-p13397,13397
+20-2431,DUCO AYAR MEKANİZMASI TM TK SOL,kaliper-ayar-mekanizmasi,Kaliper Ayar Mekanizması,10,3050.0,4026.0,0.0,"MCK1236, 3092262",True,1,/duco-ayar-mekanizmasi-tm-tk-sol-p13335,13335
+20-2430,DUCO AYAR MEKANİZMASI TM TK SAĞ,kaliper-ayar-mekanizmasi,Kaliper Ayar Mekanizması,6,3050.0,4026.0,0.0,"MCK1237, 3092263, CMSK.3.10",True,1,/duco-ayar-mekanizmasi-tm-tk-sag-p13334,13334
+20-2256,DUCO RULMAN YATAK SACI,kaliper-tamir-takimi-duco,Kaliper Tamir Takımı (Duco),10,746.0,984.72,0.0,,True,1,/duco-rulman-yatak-saci-p13328,13328
+10-1261,SL7 SM7 BALATA TUTUTCU,fren-balatasi,Fren Balatası,45,202.0,266.64,0.0,"K000129, II19712004, II30679004, II197120061, 0004202682, 0501211049, 6274200186, 6274200188, 36508226001, 36508226005, 1448911,",True,1,/sl7-sm7-balata-tututcu-p13236,13236
+10-1208,SN6-7 SK7 KALİPER GÖVDE TAPASI 45 MM.,kaliper,Kaliper,10,329.0,434.28,0.0,,True,1,/sn6-7-sk7-kaliper-govde-tapasi-45-mm-p13220,13220
+10-1207,SN6-7 SK7 KALİPER GÖVDE TAPASI 42 MM.,kaliper,Kaliper,10,329.0,434.28,0.0,,True,1,/sn6-7-sk7-kaliper-govde-tapasi-42-mm-p13219,13219
+10-1194,SB5- 3 KABLOLU SENSÖR&KAPAK (12-160 MN TGL İÇİN),kaliper-tamir-takimi-wabco,Kaliper Tamir Takımı (Wabco),1,974.16,1285.89,0.0,,True,1,/sb5-3-kablolu-sensor-kapak-12-160-mn-tgl-icin-p13217,13217
+10-1094,SB5 SENSÖRSÜZ KAPAK,kaliper-kapak-conta,Kaliper Kapak/Conta,5,400.0,528.0,0.0,,True,1,/sb5-sensorsuz-kapak-p13208,13208
+10-1090,SB5 SENSÖRSÜZ KAPAK,kaliper-kapak-conta,Kaliper Kapak/Conta,1,300.0,396.0,0.0,,True,1,/sb5-sensorsuz-kapak-p13207,13207
+20-2620,ELSA2-195 AYAR DİŞLİSİ SOL,kaliper-ayar-mekanizmasi,Kaliper Ayar Mekanizması,1,448.0,591.36,0.0,,True,1,/elsa2-195-ayar-dislisi-sol-p13062,13062
+ESPKİT.08.10,PORYA CARGO 3238 ÖN YM BİLYALI,porya,Porya,1,10000.0,13200.0,0.0,9C461106AA,True,1,/porya-cargo-3238-on-ym-bilyali-p13018,13018
+FX-3130,KALİPER TAMİR TAKIMI AROX SAĞ,kaliper,Kaliper,4,6450.0,8514.0,0.0,,True,1,/kaliper-tamir-takimi-arox-sag-p12877,12877
+424915.S,Renault Premıum,suspansiyon-korugu,Süspansiyon Körüğü,18,2200.0,2904.0,0.0,5001855856,False,0,/renault-premium-p12495,12495
+ESP.22.04.02,PORYA SERTEL S-1,porya,Porya,3,4255.0,5616.6,0.0,,False,0,/porya-sertel-s-1-p12408,12408
+30-3755,FRENCOO MAXX22T AYAR TAŞIYICI MEKANİZMALI SET,kaliper-ayar-mekanizmasi,Kaliper Ayar Mekanizması,1,1975.0,2607.0,0.0,,True,1,/frencoo-maxx22t-ayar-tasiyici-mekanizmali-set-p12184,12184
+FX-1080,AXOR SET YENİ MODEL,kaliper-tamir-takimi,Kaliper Tamir Takımı,1,4150.0,5478.0,0.0,,True,1,/axor-set-yeni-model-p11973,11973
+PWR-5030,DİSK BALATASI 29256,fren-balatasi,Fren Balatası,2,1422.655,1877.9,0.0,29256,True,1,/disk-balatasi-29256-p11910,11910
+30-3582,PAN22-1 BALATA İTİCİ PLEYTİ (SAĞ),fren-balatasi,Fren Balatası,1,875.0,1155.0,0.0,,True,1,/pan22-1-balata-itici-pleyti-sag-p11705,11705
+20-2609,ELSA2 RADIAL ALÜMİNYUM KAPAK TK,kaliper-tamir-takimi-elsa,Kaliper Tamir Takımı (Elsa),1,4350.0,5742.0,0.0,,True,1,/elsa2-radial-aluminyum-kapak-tk-p11614,11614
+PWR-5029,PWR DİSK BALATASI MERS.AROCS Y.M. 29315,fren-balatasi,Fren Balatası,48,1937.795,2557.89,17.0,29315,True,1,/pwr-disk-balatasi-mers-arocs-y-m-29315-p7113,7113
+PWR-5028,PWR DİSK BALATASI SCANIA Y.M.,fren-balatasi,Fren Balatası,73,2176.5525,2873.05,0.0,29332,True,1,/pwr-disk-balatasi-scania-y-m-p7112,7112
+PWR-5027,DİSK BALATA SCHMİTZ (29328),fren-balatasi,Fren Balatası,15,2103.2375,2776.27,0.0,29328,True,1,/disk-balata-schmitz-29328-p7111,7111
+PWR-5022,BALATA MAN TGAX (29252 / 29253),fren-balatasi,Fren Balatası,6,2070.1275,2732.57,0.0,29253,True,1,/balata-man-tgax-29252-29253-p7106,7106
+PWR-5020,BALATA MAN TGAX (29279),fren-balatasi,Fren Balatası,29,2105.065,2778.69,0.0,29279,True,1,/balata-man-tgax-29279-p7104,7104
+PWR-5019,BALATA RENAULT 220 ÖN-ARKA (29141 / 29142),fren-balatasi,Fren Balatası,8,1823.7375,2407.33,0.0,29141,True,1,/balata-renault-220-on-arka-29141-29142-p7103,7103
+PWR-5018,BALATA SAF DİNGİL (29195),fren-balatasi,Fren Balatası,168,1868.135,2465.94,0.0,29195,True,1,/balata-saf-dingil-29195-p7102,7102
+PWR-5017,BALATA MAN-İVECO-OTOKAR (29115),fren-balatasi,Fren Balatası,22,1667.6475,2201.29,0.0,29115,True,1,/balata-man-iveco-otokar-29115-p7101,7101
+PWR-5016,BALATA MERCEDES/IVECO/MAN/RENAULT (29030),fren-balatasi,Fren Balatası,17,2173.435,2868.93,0.0,29030,True,1,/balata-mercedes-iveco-man-renault-29030-p7100,7100
+PWR-5015,BALATA RENAULT MAGNUM DORSE (29169),fren-balatasi,Fren Balatası,20,1861.47,2457.14,0.0,29169,True,1,/balata-renault-magnum-dorse-29169-p7099,7099
+PWR-5014,BALATA RENAULT TRUCK /VOLVO 440 (29173),fren-balatasi,Fren Balatası,36,1798.69,2374.27,0.0,29173,True,1,/balata-renault-truck-volvo-440-29173-p7098,7098
+PWR-5013,BALATA YENİ BPW BÜYÜK (29228),fren-balatasi,Fren Balatası,382,2037.34,2689.29,5.0,29228,True,1,/balata-yeni-bpw-buyuk-29228-p7097,7097
+PWR-5012,BALATA YENİ BPW KÜÇÜK (29227),fren-balatasi,Fren Balatası,30,1948.0075,2571.37,0.0,29227,True,1,/balata-yeni-bpw-kucuk-29227-p7096,7096
+PWR-5011,BALATA REN.MİD.270/PRE 370/420 /MAGNUM DXI (29131-29156),fren-balatasi,Fren Balatası,33,2263.09,2987.28,0.0,29131,True,1,/balata-ren-mid-270-pre-370-420-magnum-dxi-29131-29156-p7095,7095
+PWR-5010,BALATA SAF DİNGİL (29162),fren-balatasi,Fren Balatası,27,2021.43,2668.29,0.0,29162,True,1,/balata-saf-dingil-29162-p7094,7094
+PWR-5009,BALATA SAF JUMBO DİNGİL (29159 / 29126),fren-balatasi,Fren Balatası,38,1762.57,2326.59,0.0,29159,True,1,/balata-saf-jumbo-dingil-29159-29126-p7093,7093
+PWR-5008,BALATA VOLVO FH12 420 SERİSİ (29125),fren-balatasi,Fren Balatası,26,2081.2,2747.18,0.0,29125,True,1,/balata-volvo-fh12-420-serisi-29125-p7092,7092
+PWR-5007,BALATA RENAULT PREMIUM 430/440/450/460 DXI (29174),fren-balatasi,Fren Balatası,123,1975.7425,2607.98,0.0,29174,True,1,/balata-renault-premium-430-440-450-460-dxi-29174-p7091,7091
+PWR-5006,BALATA AXOR DİSK ARKA Y.M. (29244 / 29245),fren-balatasi,Fren Balatası,19,1928.0125,2544.98,0.0,29244,True,1,/balata-axor-disk-arka-y-m-29244-29245-p7090,7090
+PWR-5005,BALATA AXOR DİSK ÖN Y.M. (29246 / 29247),fren-balatasi,Fren Balatası,125,2119.47,2797.7,0.0,29246,True,1,/balata-axor-disk-on-y-m-29246-29247-p7089,7089
+PWR-5004,BALATA AXOR DİSK E.M. (29087),fren-balatasi,Fren Balatası,46,1950.265,2574.35,0.0,29087,True,1,/balata-axor-disk-e-m-29087-p7088,7088
+PWR-5002,BALATA KOGEL-BPW DİNGİL (29171),fren-balatasi,Fren Balatası,42,1844.27,2434.44,0.0,29171,True,1,/balata-kogel-bpw-dingil-29171-p7086,7086
+PWR-5001,BALATA BPW DİNGİL JUMBO-ATEGO (29165-29166),fren-balatasi,Fren Balatası,79,1752.035,2312.69,5.0,29165,True,1,/balata-bpw-dingil-jumbo-atego-29165-29166-p7085,7085
+PWR-5000,BALATA FRUEHAUF DORSE BPW DİNGİL (29167),fren-balatasi,Fren Balatası,340,1950.265,2574.35,0.0,29167,True,1,/balata-fruehauf-dorse-bpw-dingil-29167-p7084,7084
+ESP.18.14,PORYA SOĞUTMALI Y.M (88'LİK),porya,Porya,22,5980.0,7893.6,0.0,"3307304500, 1307304510, 3307304502",True,1,/porya-sogutmali-y-m-88-lik-p6684,6684
+ESP.18.13,PORYA,porya,Porya,3,6210.0,8197.2,0.0,"3307305600, 3307305601, 03307305603",True,1,/porya-p6683,6683
+ESP.18.10,SAF DİSKLİ PORYA (82'LİK),porya,Porya,48,5980.0,7893.6,0.0,"3307303000, 3307303001",True,1,/saf-diskli-porya-82-lik-p6680,6680
+ESP.18.09.01,JANT FLANŞI SAF,porya,Porya,1,4025.0,5313.0,0.0,"1146200100, 1146200402, 1146200401",True,1,/jant-flansi-saf-p6678,6678
+ESP.16.29,PORYA 12 TONLUK PİLOT AXL-AKKAR BPW TİPİ (147 bilya),porya,Porya,5,4830.0,6375.6,0.0,,False,0,/porya-12-tonluk-pilot-axl-akkar-bpw-tipi-147-bilya-p6659,6659
+ESP.16.04.02,PORYA BPW DİSKLİ 9 TON PLOT,porya,Porya,1,5405.0,7134.6,0.0,"0327230990, 0980106670",True,1,/porya-bpw-diskli-9-ton-plot-p6619,6619
+ESP.16.01.04,PORYA BPW JUMBO ÇAKMA,porya,Porya,10,4255.0,5616.6,0.0,0327227480,True,1,/porya-bpw-jumbo-cakma-p6610,6610
+ESP.09.08,PORYA IVECO CERLİ ÇEKİCİ,porya,Porya,1,7360.0,9715.2,0.0,"42104692, 42104691",True,1,/porya-iveco-cerli-cekici-p6575,6575
+ESP.08.08,PORYA 35/30 KARGO ÇEKİCİ,porya,Porya,4,5750.0,7590.0,0.0,A333K4561,True,1,/porya-35-30-kargo-cekici-p6567,6567
+ESP.08.07,PORYA 3230 CARGO ÖN,porya,Porya,1,5635.0,7438.2,0.0,"98CT1106, 9C451K002AA, DC461104",True,1,/porya-3230-cargo-on-p6566,6566
+ESP.07.13,PORYA PRO 522 KAMPANALI ÖN,porya,Porya,1,4255.0,5616.6,0.0,"81357010176, 36357010000",True,1,/porya-pro-522-kampanali-on-p6558,6558
+ESP.07.04,PORYA 220/26 DEV 822/827 ÖN,porya,Porya,1,5980.0,7893.6,0.0,7K87702M,True,1,/porya-220-26-dev-822-827-on-p6551,6551
+ESP.07.02,PORYA 162/25 FATİH ÇEKİCİ,porya,Porya,1,7705.0,10170.6,0.0,7 KA 12558,True,2,/porya-162-25-fatih-cekici-p6549,6549
+ESP.04.06,PORYA DAF CF75 ÖN,porya,Porya,1,8165.0,10777.8,0.0,"1818004, 1699327, 1691621",True,1,/porya-daf-cf75-on-p6521,6521
+ESP.02.27,CERLİ ÇEKİCİ PORYA,porya,Porya,1,6095.0,8045.4,0.0,"81357006150, 81357006154, 8357006136, 81357010174",True,1,/cerli-cekici-porya-p6499,6499
+ESP.02.12,PORYA 33/372-32/270 MAN ÖN,porya,Porya,1,5060.0,6679.2,0.0,"81443010146, 81443013146",True,1,/porya-33-372-32-270-man-on-p6487,6487
+ESP.02.10,PORYA 26/230-26/270 CERLİ ÇEKİ,porya,Porya,1,7360.0,9715.2,0.0,81357010141,True,1,/porya-26-230-26-270-cerli-ceki-p6485,6485
+ESP.01.43.01,PORYA ATEGO DİSKLİ ÖN FLANŞLI,porya,Porya,2,3105.0,4098.6,0.0,9753300544,True,1,/porya-atego-diskli-on-flansli-p6467,6467
+ESP.01.39.01,PORYA AXOR DİSKLİ ÖN FLANŞLI,porya,Porya,14,4485.0,5920.2,2.0,9433340945,True,1,/porya-axor-diskli-on-flansli-p6463,6463
+ESP.01.35,PORYA MERCEDES DİSKLİ DİNGİL,porya,Porya,1,5980.0,7893.6,0.0,"9463560401, 9463560501",True,1,/porya-mercedes-diskli-dingil-p6459,6459
+ESP.01.02,PORYA 1840-1848 AXOR ÖN,porya,Porya,1,6325.0,8349.0,0.0,"9423341201, 9423340701, 9423341501, 9423340201",True,1,/porya-1840-1848-axor-on-p6426,6426
+EYD 92 04,SAF DORSE KOVAN SOMUNU KÜÇÜK SAĞ,somun-civata,Somun / Cıvata,144,315.0,415.8,0.0,,True,2,/saf-dorse-kovan-somunu-kucuk-sag-p5556,5556
+EYD 92 03,SAF DORSE KOVAN SOMUNU KÜÇÜK SOL,somun-civata,Somun / Cıvata,147,315.0,415.8,0.0,,False,0,/saf-dorse-kovan-somunu-kucuk-sol-p5555,5555
+EYD 92 02,SAF DORSE KOVAN SOMUNU BÜYÜK SAĞ,somun-civata,Somun / Cıvata,14,350.0,462.0,0.0,,True,3,/saf-dorse-kovan-somunu-buyuk-sag-p5554,5554
+EYD 92 01,SAF DORSE KOVAN SOMUNU BÜYÜK SOL,somun-civata,Somun / Cıvata,41,350.0,462.0,0.0,,True,2,/saf-dorse-kovan-somunu-buyuk-sol-p5553,5553
+EYD 91 27,SCANIA ABS DİŞLİSİ ÖN SAÇ,abs-sensoru-modulu-kablo,ABS Sensörü/Modülü/Kablo,17,215.0,283.8,2.0,1442300,True,3,/scania-abs-dislisi-on-sac-p5551,5551
+EYD 91 23-1,ATEGO ABS DİŞLİSİ ARKA Y.M.,abs-sensoru-modulu-kablo,ABS Sensörü/Modülü/Kablo,23,230.0,303.6,0.0,9733561015,True,2,/atego-abs-dislisi-arka-y-m-p5550,5550
+EYD 91 23,ATEGO ABS DİŞLİSİ ARKA,abs-sensoru-modulu-kablo,ABS Sensörü/Modülü/Kablo,3,255.0,336.6,0.0,9703560415,True,1,/atego-abs-dislisi-arka-p5549,5549
+EYD 91 19,DORSE 170*192*16 ABS DİŞLİSİ,abs-sensoru-modulu-kablo,ABS Sensörü/Modülü/Kablo,54,400.0,528.0,0.0,,True,3,/dorse-170-192-16-abs-dislisi-p5547,5547
+EYD 91 18,DORSE 168*192*16 ABS DİŞLİSİ,abs-sensoru-modulu-kablo,ABS Sensörü/Modülü/Kablo,49,400.0,528.0,0.0,,True,3,/dorse-168-192-16-abs-dislisi-p5546,5546
+EYD 91 15,VOLVO RENAULT 440 ABS DİŞLİSİ / ARKA,abs-sensoru-modulu-kablo,ABS Sensörü/Modülü/Kablo,120,400.0,528.0,0.0,20424109,True,3,/volvo-renault-440-abs-dislisi-arka-p5543,5543
+EYD 91 14,VOLVO RENAULT 440 ABS DİŞLİSİ / ÖN,abs-sensoru-modulu-kablo,ABS Sensörü/Modülü/Kablo,1,350.0,462.0,0.0,20392016,True,3,/volvo-renault-440-abs-dislisi-on-p5542,5542
+EYD 91 13,CARGO ABS DİŞLİSİ / ARKA,abs-sensoru-modulu-kablo,ABS Sensörü/Modülü/Kablo,50,725.0,957.0,0.0,,True,3,/cargo-abs-dislisi-arka-p5541,5541
+EYD 91 11,SAF DORSE ABS DİŞLİSİ,abs-sensoru-modulu-kablo,ABS Sensörü/Modülü/Kablo,12,185.0,244.2,0.0,4029106300,True,3,/saf-dorse-abs-dislisi-p5539,5539
+EYD 91 10-1,AXOR ABS DİŞLİSİ ARKA Y-M,abs-sensoru-modulu-kablo,ABS Sensörü/Modülü/Kablo,32,250.0,330.0,0.0,9423560515,True,3,/axor-abs-dislisi-arka-y-m-p5538,5538
+EYD 91 10,AXOR ABS DİŞLİSİ E.M / ARKA,abs-sensoru-modulu-kablo,ABS Sensörü/Modülü/Kablo,48,250.0,330.0,0.0,9423560715,True,1,/axor-abs-dislisi-e-m-arka-p5537,5537
+EYD 91 09-1,AXOR Y.M ABS DİŞLİSİ / ÖN,abs-sensoru-modulu-kablo,ABS Sensörü/Modülü/Kablo,2,220.0,290.4,0.0,9433340115,True,3,/axor-y-m-abs-dislisi-on-p5536,5536
+EYD 91 06,DAF ABS DİŞLİSİ / ÖN,abs-sensoru-modulu-kablo,ABS Sensörü/Modülü/Kablo,70,185.0,244.2,0.0,1805821,True,3,/daf-abs-dislisi-on-p5532,5532
+EYD 91 03,BPW ABS DİŞLİSİ Y.M SAÇ,abs-sensoru-modulu-kablo,ABS Sensörü/Modülü/Kablo,1,250.0,330.0,0.0,03.3100.84.41,True,2,/bpw-abs-dislisi-y-m-sac-p5529,5529
+EYD 91 01,126*156.5*7.8 BPW ABS DİŞLİSİ ÇELİK,abs-sensoru-modulu-kablo,ABS Sensörü/Modülü/Kablo,117,410.0,541.2,6.0,0331008530S,True,3,/126-156-5-7-8-bpw-abs-dislisi-celik-p5527,5527
+EYD 80 26,ALMAN SAF 18 CM PABUÇ E.M.,fren-pabucu,Fren Pabucu,104,800.0,1056.0,0.0,,True,2,/alman-saf-18-cm-pabuc-e-m-p5512,5512
+EYD 80 06,FRUHAUF DORSE 18 CM PABUÇ,fren-pabucu,Fren Pabucu,16,1020.0,1346.4,0.0,6504773,True,1,/fruhauf-dorse-18-cm-pabuc-p5497,5497
+EYD 80 05,FRUHAUF DORSE 20 CM PABUÇ,fren-pabucu,Fren Pabucu,30,1020.0,1346.4,0.0,,False,0,/fruhauf-dorse-20-cm-pabuc-p5496,5496
+EYD 80 04-2,BPW 20 CM BALATALI PABUÇ,fren-pabucu,Fren Pabucu,712,1400.0,1848.0,0.0,(A) G4,True,2,/bpw-20-cm-balatali-pabuc-p5495,5495
+EYD 80 04-1,BPW 18 CM PABUÇ BALATALI,fren-pabucu,Fren Pabucu,540,1400.0,1848.0,0.0,,True,2,/bpw-18-cm-pabuc-balatali-p5494,5494
+EYD 80 04,BPW 18 CM PABUÇ,fren-pabucu,Fren Pabucu,598,950.0,1254.0,0.0,(A) F4 - 05.091.46.17.0,True,2,/bpw-18-cm-pabuc-p5493,5493
+EYD 80 03,Fren Pabucu Bpw 20 cm.,fren-pabucu,Fren Pabucu,3033,950.0,1254.0,0.0,(A) H4 - 05.091.27.83.0,True,2,/fren-pabucu-bpw-20-cm-p5492,5492
+EYD 700 51,YEKSAN AXS PORYA KAPAĞI,porya,Porya,119,440.0,580.8,0.0,,True,3,/yeksan-axs-porya-kapagi-p5489,5489
+EYD 700 43-1,SEMİ-TDS DİNGİL PORYA KAPAĞI İÇTEN YİVLİ,porya,Porya,34,440.0,580.8,0.0,,True,5,/semi-tds-dingil-porya-kapagi-icten-yivli-p5486,5486
+EYD 700 34,EF 42 DİNGİL PORYA KAPAĞI,porya,Porya,17,440.0,580.8,0.0,,True,3,/ef-42-dingil-porya-kapagi-p5485,5485
+EYD 700 33,PIRLANTA PORYA KAPAĞI,porya,Porya,135,440.0,580.8,0.0,,True,3,/pirlanta-porya-kapagi-p5484,5484
+EYD 700 30,AYDIN DORSE DİNGİL PORYA KAPAĞI,porya,Porya,20,440.0,580.8,0.0,,True,3,/aydin-dorse-dingil-porya-kapagi-p5482,5482
+EYD 700 28,MUSTAFA CEYLAN DORSE PORYA KAPAK,porya,Porya,56,440.0,580.8,0.0,,True,3,/mustafa-ceylan-dorse-porya-kapak-p5481,5481
+EYD 700 08,COS DİNGİL PORYA KAPAĞI,porya,Porya,16,440.0,580.8,0.0,,True,4,/cos-dingil-porya-kapagi-p5475,5475
+EYD 700 07,SERİN DORSE PORYA KAPAĞI,porya,Porya,102,440.0,580.8,0.0,,True,4,/serin-dorse-porya-kapagi-p5474,5474
+EYD 700 06,SERTEL PORYA KAPAĞI 143 ALÜMİNYUM,porya,Porya,233,440.0,580.8,0.0,,True,3,/sertel-porya-kapagi-143-aluminyum-p5473,5473
+EYD 700 04,OSMAN KOÇ PORYA KAPAĞI K2,porya,Porya,2,440.0,580.8,0.0,,True,3,/osman-koc-porya-kapagi-k2-p5471,5471
+EYD 700 03,OSMAN KOÇ PORYA KAPAĞI K1,porya,Porya,67,440.0,580.8,0.0,,True,3,/osman-koc-porya-kapagi-k1-p5470,5470
+EYD 70 58,ISUZU NOR FREN YAYI,yay,Yay,180,35.0,46.2,0.0,(A) B4,True,4,/isuzu-nor-fren-yayi-p5466,5466
+EYD 70 55,ISUZU TURKUAZ FREN YAYI,yay,Yay,60,35.0,46.2,0.0,(A) B4,True,3,/isuzu-turkuaz-fren-yayi-p5465,5465
+EYD 70 49,ISUZU ŞAMPİYON FREN YAYI,yay,Yay,260,35.0,46.2,0.0,(A) B4,True,4,/isuzu-sampiyon-fren-yayi-p5464,5464
+EYD 70 48,ISUZU NPR FREN YAYI,yay,Yay,420,35.0,46.2,0.0,(A) B4,True,4,/isuzu-npr-fren-yayi-p5463,5463
+EYD 70 22,522 PRO FREN YAYI (BÜYÜK),yay,Yay,20,40.0,52.8,0.0,,True,1,/522-pro-fren-yayi-buyuk-p5461,5461
+EYD 70 18,TIR ASKI YAYI,yay,Yay,40,45.0,59.4,0.0,(A) C4,True,3,/tir-aski-yayi-p5459,5459
+EYD 70 12,JUMBO DORSE YAYI,yay,Yay,194,75.0,99.0,50.0,(A) C4,True,4,/jumbo-dorse-yayi-p5458,5458
+EYD 70 11,VOLVO TIR Y.M.FREN YAYI,yay,Yay,220,95.0,125.4,0.0,(A) B4,True,1,/volvo-tir-y-m-fren-yayi-p5457,5457
+EYD 70 10-1,RENAULT KERAX YAY KÜÇÜK,yay,Yay,65,85.0,112.2,0.0,,True,3,/renault-kerax-yay-kucuk-p5455,5455
+EYD 70 10,RENAULT MAGNUM TIR FREN YAY,yay,Yay,80,85.0,112.2,0.0,(A) B4,True,3,/renault-magnum-tir-fren-yay-p5454,5454
+EYD 70 06,Daf Arka Yay,yay,Yay,139,90.0,118.8,0.0,(A) B4,True,1,/daf-arka-yay-p5452,5452
+EYD 70 05,TIRSAN DORSE BÜYÜK YAY 29 CM,yay,Yay,1480,75.0,99.0,0.0,(A) A4,True,3,/tirsan-dorse-buyuk-yay-29-cm-p5451,5451
+EYD 70 04-1,TIRSAN DORSE ORTA YAY (SERTEL) 27 CM,yay,Yay,1702,75.0,99.0,0.0,(A) B4,True,3,/tirsan-dorse-orta-yay-sertel-27-cm-p5449,5449
+EYD 70 03-1,FREN YAYI VABİS BÜYÜK,yay,Yay,313,80.0,105.6,0.0,(A) C4,True,1,/fren-yayi-vabis-buyuk-p5447,5447
+EYD 70 02,Dorse Civatalı Yay,yay,Yay,161,75.0,99.0,30.0,,True,3,/dorse-civatali-yay-p5445,5445
+EYD 500 05-2-2,KAPLİN LASTİĞİ Y.M.,lastik,Lastik,307,10.0,13.2,0.0,,False,0,/kaplin-lastigi-y-m-p5439,5439
+EYD 500 05-2,KAPLİN LASTİĞİ DÜZ E.M,lastik,Lastik,2850,10.0,13.2,0.0,,True,3,/kaplin-lastigi-duz-e-m-p5437,5437
+EYD 301 08,SERTEL DİNGİL PABUÇ MAKARA TAKIMI 5 CM,fren-pabucu,Fren Pabucu,2500,175.0,231.0,6.0,,True,1,/sertel-dingil-pabuc-makara-takimi-5-cm-p5430,5430
+EYD 300 34,Fren Pabucu,fren-pabucu,Fren Pabucu,504,3025.0,3993.0,0.0,,True,2,/fren-pabucu-p5420,5420
+EYD 300 12,420/200 BURÇSUZ PABUÇ ARASI 5 CM,fren-pabucu,Fren Pabucu,47,1700.0,2244.0,0.0,(A) E3,True,2,/420-200-burcsuz-pabuc-arasi-5-cm-p5417,5417
+EYD 300 03,420/200 BURÇSUZ SERTEL E.M,burc-muylu,Burç / Muylu,20,1700.0,2244.0,0.0,,True,2,/420-200-burcsuz-sertel-e-m-p5413,5413
+EYD 30 05,AS 900 ARKA YAY ORJİNAL,yay,Yay,56,75.0,99.0,50.0,(A) C4,True,3,/as-900-arka-yay-orjinal-p5409,5409
+EYD 30 01,AS 600 DODGE ARKA FREN YAYI ORJİNAL 23 CM,yay,Yay,60,75.0,99.0,0.0,(A) C4,True,1,/as-600-dodge-arka-fren-yayi-orjinal-23-cm-p5408,5408
+EYD 209 11,Perno Klips,perno,Perno,1,22.8,30.1,0.0,,True,3,/perno-klips-p5405,5405
+EYD 209 03,SERTEL PABUÇ PERNO TEK TARAFI YARIKLI KİLİT SAÇLI TAKIM,fren-pabucu,Fren Pabucu,1072,480.0,633.6,6.0,,True,3,/sertel-pabuc-perno-tek-tarafi-yarikli-kilit-sacli-takim-p5403,5403
+EYD 209 02,DİSK CİVATASI,disk-bijonu-civatasi,Disk Bijonu/Civatası,62789,46.2,60.98,0.0,,True,3,/disk-civatasi-p5402,5402
+EYD 209 01,Disk Montaj Seti,fren-diski,Fren Diski,673,390.0,514.8,0.0,,True,1,/disk-montaj-seti-p5401,5401
+EYD 206 43-1,"FREN PABUCU VOLVO 17,5 CM ÜST (8 MM) (UZAK)",fren-pabucu,Fren Pabucu,17,1025.0,1353.0,0.0,30.951.95,True,2,/fren-pabucu-volvo-17-5-cm-ust-8-mm-uzak-p5397,5397
+EYD 206 43,"FREN PABUCU VOLVO 17,5 CM ALT (8 MM) (YAKIN)",fren-pabucu,Fren Pabucu,17,1025.0,1353.0,0.0,30.951.95,True,2,/fren-pabucu-volvo-17-5-cm-alt-8-mm-yakin-p5396,5396
+EYD 206 38,Fren Pabucu VOLVO-RENAULT-BMC NO: 68371632P-UST,fren-pabucu,Fren Pabucu,939,1025.0,1353.0,2.0,(A) F4 - 30.951.96,True,2,/fren-pabucu-volvo-renault-bmc-no-68371632p-ust-p5394,5394
+EYD 206 37,Fren Pabucu VOLVO-RENAULT-BMC NO: 68371632P-ALT,fren-pabucu,Fren Pabucu,885,1025.0,1353.0,2.0,(A) F4 - 30.951.96,True,2,/fren-pabucu-volvo-renault-bmc-no-68371632p-alt-p5393,5393
+EYD 206 09-1,SÜPER MAN FREN PABUCU 22 CM TEK TARAFLI SOL,fren-pabucu,Fren Pabucu,18,2025.0,2673.0,0.0,(A) D3,True,2,/super-man-fren-pabucu-22-cm-tek-tarafli-sol-p5389,5389
+EYD 206 09,SÜPER MAN FREN PABUCU 22 CM TEK TARAFLI SAĞ,fren-pabucu,Fren Pabucu,18,2025.0,2673.0,0.0,(A) D3,False,0,/super-man-fren-pabucu-22-cm-tek-tarafli-sag-p5388,5388
+EYD 206 07,Fren Pabucu - MERCEDES 18CM,fren-pabucu,Fren Pabucu,23,1975.0,2607.0,0.0,(A) G4 - 620.420.00.19,True,2,/fren-pabucu-mercedes-18cm-p5387,5387
+EYD 206 06,MERCEDES FREN PABUCU 16 CM,fren-pabucu,Fren Pabucu,12,1975.0,2607.0,0.0,(A) D3 - 393.420.07.19,False,0,/mercedes-fren-pabucu-16-cm-p5386,5386
+EYD 206 05,TURBO İNT.FREN PABUCU 20 CM - FORD CARGO,fren-pabucu,Fren Pabucu,30,850.0,1122.0,0.0,(A) E3 - 1906410 / 1906368,True,2,/turbo-int-fren-pabucu-20-cm-ford-cargo-p5385,5385
+EYD 206 04,FATİH CARGO FREN PABUCU 17.5 CM,fren-pabucu,Fren Pabucu,22,850.0,1122.0,0.0,,False,0,/fatih-cargo-fren-pabucu-17-5-cm-p5384,5384
+EYD 206 03-1,"FREN PABUCU (BMC NO: 683703-2) - 22,0CM - VOLVO",fren-pabucu,Fren Pabucu,9,700.0,924.0,0.0,(A) C3 - 30.900.77,True,2,/fren-pabucu-bmc-no-683703-2-22-0cm-volvo-p5383,5383
+EYD 206 03,"FREN PABUCU (BMC NO: 683703-1) - 22,0CM - VOLVO",fren-pabucu,Fren Pabucu,9,850.0,1122.0,0.0,(A) C3 - 30.900.77,True,2,/fren-pabucu-bmc-no-683703-1-22-0cm-volvo-p5382,5382
+EYD 206 02-1,FREN PABUCU 20 CM ( BMC NO: 683702-2),fren-pabucu,Fren Pabucu,76,850.0,1122.0,2.0,(A) E4 - 30.900.76,True,2,/fren-pabucu-20-cm-bmc-no-683702-2-p5381,5381
+EYD 206 02,FREN PABUCU 20 CM ( BMC NO: 683702-1),fren-pabucu,Fren Pabucu,149,850.0,1122.0,2.0,(A) E4 - 30.900.76,True,2,/fren-pabucu-20-cm-bmc-no-683702-1-p5380,5380
+EYD 206 01-1,Fren Pabucu (BMC NO: 683701-2) - VOLVO - 17.5CM,fren-pabucu,Fren Pabucu,73,700.0,924.0,0.0,(A) G4 - 30.900.75,True,2,/fren-pabucu-bmc-no-683701-2-volvo-17-5cm-p5379,5379
+EYD 206 01,FATİH İNT. PABUCU YAKIN 17.5CM - VOLVO - BMC,fren-pabucu,Fren Pabucu,53,850.0,1122.0,0.0,(A) G4 - 30.900.75,True,2,/fatih-int-pabucu-yakin-17-5cm-volvo-bmc-p5378,5378
+EYD 205 06,260'LIK KALDIRMA LASTİĞİ,lastik,Lastik,15,305.0,402.6,0.0,,True,3,/260-lik-kaldirma-lastigi-p5374,5374
+EYD 205 03,250'LİK KALDIRMA LASTİĞİ,lastik,Lastik,15,305.0,402.6,0.0,,True,3,/250-lik-kaldirma-lastigi-p5372,5372
+EYD 202 06,MERCEDES PERNO STANDART,perno,Perno,3287,159.5,210.54,10.0,,True,3,/mercedes-perno-standart-p5360,5360
+EYD 20 09,CARGO 3230-3430 YM FREN YAYI,yay,Yay,70,70.0,92.4,0.0,(A) B4,True,4,/cargo-3230-3430-ym-fren-yayi-p5354,5354
+EYD 20 08,FORD CARGO FATİH ARKA YAY(124),yay,Yay,538,50.0,66.0,60.0,(A) A4,True,3,/ford-cargo-fatih-arka-yay-124-p5353,5353
+EYD 100 71,"Bpw ""S"" Kolu Tamir Takımı",fren-korugu,Fren Körüğü,99,350.0,462.0,0.0,,False,0,/bpw-s-kolu-tamir-takimi-p5347,5347
+EYD 100 65,36 Nolu Körük Lastiği Derin,fren-korugu,Fren Körüğü,140,182.4,240.77,0.0,,True,3,/36-nolu-koruk-lastigi-derin-p5344,5344
+EYD 100 50,12 Nolu Körük Lastiği,fren-korugu,Fren Körüğü,163,118.2,156.02,0.0,,True,3,/12-nolu-koruk-lastigi-p5336,5336
+EYD 100 40,30 Nolu Körük Lastiği,fren-korugu,Fren Körüğü,331,142.2,187.7,0.0,,True,3,/30-nolu-koruk-lastigi-p5328,5328
+EYD 10 11,ÖZKOÇ DORSE YAYI,yay,Yay,60,90.0,118.8,0.0,(A) A4,True,1,/ozkoc-dorse-yayi-p5305,5305
+EYD 10 08,KOL YAYI KISA,yay,Yay,970,45.0,59.4,0.0,(A) C4,True,3,/kol-yayi-kisa-p5303,5303
+EYD 10 07,Kol Yayı Standart - ORTA,yay,Yay,1497,45.0,59.4,0.0,(A) A4,True,3,/kol-yayi-standart-orta-p5302,5302
+EYD 10 06,Kol Yayı Uzun,yay,Yay,1303,45.0,59.4,0.0,(A) B4,True,4,/kol-yayi-uzun-p5301,5301
+EYD 10 02,MERCEDES V6-V8 ÖN FREN YAYI,yay,Yay,2866,45.0,59.4,0.0,(A) A4,True,3,/mercedes-v6-v8-on-fren-yayi-p5297,5297
+EYD 10 01,FREN YAYI,yay,Yay,1178,45.0,59.4,0.0,(A) A4,True,4,/fren-yayi-p5296,5296
+42941.S,Pistonsuz Körük,suspansiyon-korugu,Süspansiyon Körüğü,6,1760.0,2323.2,0.0,"0542940030 , 0542940030",True,1,/pistonsuz-koruk-p5210,5210
+42941.C,KOMPLE KÖRÜK METAL PİSTON,suspansiyon-korugu,Süspansiyon Körüğü,93,2915.0,3847.8,25.0,"0542940281 , 0542940101",True,1,/komple-koruk-metal-piston-p5209,5209
+42940.S,Pistonsuz Körük,suspansiyon-korugu,Süspansiyon Körüğü,350,1705.0,2250.6,0.0,"0542940910 , 0542942560",True,1,/pistonsuz-koruk-p5208,5208
+42889.S,SÜSPANSİYON KÖRÜK LASTİK DAF,suspansiyon-korugu,Süspansiyon Körüğü,39,1540.0,2032.8,0.0,,True,1,/suspansiyon-koruk-lastik-daf-p5204,5204
+42887.S,CARGO ÖN KÖRÜK LASTİK,suspansiyon-korugu,Süspansiyon Körüğü,20,1540.0,2032.8,0.0,,True,1,/cargo-on-koruk-lastik-p5203,5203
+42881.S,Pistonsuz Körük,suspansiyon-korugu,Süspansiyon Körüğü,22,2035.0,2686.2,6.0,"0542940010 , 0542942580",True,1,/pistonsuz-koruk-p5200,5200
+42836.S1,Pistonsuz Körük,suspansiyon-korugu,Süspansiyon Körüğü,95,1570.0,2072.4,0.0,0067504,True,1,/pistonsuz-koruk-p5197,5197
+428185.S,Schmitz,suspansiyon-korugu,Süspansiyon Körüğü,6,1870.0,2468.4,0.0,,True,1,/schmitz-p5194,5194
+42813.S,Pistonsuz Körük,suspansiyon-korugu,Süspansiyon Körüğü,514,1515.0,1999.8,12.0,,True,1,/pistonsuz-koruk-p5192,5192
+42813.C,Komple Körük Metal Piston,suspansiyon-korugu,Süspansiyon Körüğü,631,2310.0,3049.2,0.0,"2229000300 , 2229210300",True,1,/komple-koruk-metal-piston-p5191,5191
+42810.S,Pistonsuz Körük 810 2 saplamalı lastik,suspansiyon-korugu,Süspansiyon Körüğü,38,1540.0,2032.8,0.0,016010S,True,1,/pistonsuz-koruk-810-2-saplamali-lastik-p5188,5188
+42810.C16,SÜSP.KÖRÜK KOMPLE METAL 4 SAPLAMALI KISA,suspansiyon-korugu,Süspansiyon Körüğü,18,2585.0,3412.2,0.0,,True,2,/susp-koruk-komple-metal-4-saplamali-kisa-p5187,5187
+427804.S,Volvo Yeni,suspansiyon-korugu,Süspansiyon Körüğü,89,1465.0,1933.8,0.0,,True,1,/volvo-yeni-p5186,5186
+427804.C,Komple Körük Metal Piston,suspansiyon-korugu,Süspansiyon Körüğü,57,2255.0,2976.6,0.0,"20582209 , 20531986",True,3,/komple-koruk-metal-piston-p5185,5185
+427803.S,Volvo Yeni,suspansiyon-korugu,Süspansiyon Körüğü,81,1540.0,2032.8,0.0,,True,1,/volvo-yeni-p5184,5184
+427803.C,Komple Körük Metal Piston,suspansiyon-korugu,Süspansiyon Körüğü,87,2350.0,3102.0,0.0,"21961374 , 20582206 , 20427800",True,1,/komple-koruk-metal-piston-p5183,5183
+42722.C,KOMPLE BMC KÖRÜK,suspansiyon-korugu,Süspansiyon Körüğü,39,3410.0,4501.2,0.0,,False,0,/komple-bmc-koruk-p5180,5180
+42720.R,Roll Körük,suspansiyon-korugu,Süspansiyon Körüğü,154,990.0,1306.8,0.0,"3873280101 , 81436010033 , 1629193 , 0220024100",True,1,/roll-koruk-p5179,5179
+426418.S,Volvo Yeni,suspansiyon-korugu,Süspansiyon Körüğü,155,1485.0,1960.2,0.0,,True,1,/volvo-yeni-p5174,5174
+426416.S,Pistonsuz Körük,suspansiyon-korugu,Süspansiyon Körüğü,95,1540.0,2032.8,0.0,,True,1,/pistonsuz-koruk-p5173,5173
+426416.C,Komple Körük Metal Piston,suspansiyon-korugu,Süspansiyon Körüğü,71,2200.0,2904.0,0.0,"21961456 , 21961456 , 20374510",True,1,/komple-koruk-metal-piston-p5172,5172
+426318.S,Pistonsuz Körük,suspansiyon-korugu,Süspansiyon Körüğü,96,1760.0,2323.2,0.0,"016512S , 016512S",True,1,/pistonsuz-koruk-p5171,5171
+424915.C,Komple Körük,suspansiyon-korugu,Süspansiyon Körüğü,14,3355.0,4428.6,0.0,"20757541 , 20757541 , 20757541 , 20757541",False,0,/komple-koruk-p5167,5167
+424913.S04,Pistonsuz Körük,suspansiyon-korugu,Süspansiyon Körüğü,129,2055.0,2712.6,0.0,1379393,True,1,/pistonsuz-koruk-p5166,5166
+424913.C02,Komple Körük Metal Piston,suspansiyon-korugu,Süspansiyon Körüğü,46,2970.0,3920.4,0.0,"1379392 , 1440294",True,1,/komple-koruk-metal-piston-p5165,5165
+424912.S10,SÜSP.KÖRÜK TEK ÇIKIŞ,suspansiyon-korugu,Süspansiyon Körüğü,85,2090.0,2758.8,0.0,(B) L1,True,1,/susp-koruk-tek-cikis-p5164,5164
+424912.S08,Pistonsuz Körük Çift Çıkış,suspansiyon-korugu,Süspansiyon Körüğü,104,2180.0,2877.6,0.0,5001832067,True,2,/pistonsuz-koruk-cift-cikis-p5163,5163
+424912.C10,Komple Körük Metal Piston Tek çıkış,suspansiyon-korugu,Süspansiyon Körüğü,99,2970.0,3920.4,0.0,"5010557355 , 7422025556",True,1,/komple-koruk-metal-piston-tek-cikis-p5162,5162
+424912.C07,Komple Körük Metal Piston Çift Çıkış,suspansiyon-korugu,Süspansiyon Körüğü,77,3080.0,4065.6,0.0,"5010294307 , MLF7063",True,1,/komple-koruk-metal-piston-cift-cikis-p5161,5161
+424882.S02,Pistonsuz Körük,suspansiyon-korugu,Süspansiyon Körüğü,98,1650.0,2178.0,0.0,"81436010151 , 81436010176",True,1,/pistonsuz-koruk-p5156,5156
+424718.S,Volvo,suspansiyon-korugu,Süspansiyon Körüğü,84,1350.0,1782.0,0.0,,False,0,/volvo-p5146,5146
+424713.S,Pistonsuz Körük,suspansiyon-korugu,Süspansiyon Körüğü,63,1700.0,2244.0,0.0,MLF7098,True,1,/pistonsuz-koruk-p5144,5144
+424713.C02,Komple Körük Metal Piston,suspansiyon-korugu,Süspansiyon Körüğü,11,2530.0,3339.6,0.0,(B) K4,True,1,/komple-koruk-metal-piston-p5143,5143
+424390.C01,Komple Körük Metal Piston,suspansiyon-korugu,Süspansiyon Körüğü,1,2125.0,2805.0,1.0,"9423205221 , 9423200421",True,1,/komple-koruk-metal-piston-p5140,5140
+424183.S2,SÜSPANSİYON KÖRÜK ÇİFT GİRİŞ,suspansiyon-korugu,Süspansiyon Körüğü,83,1690.0,2230.8,0.0,(A) E1,True,1,/suspansiyon-koruk-cift-giris-p5136,5136
+424159.C06,KOMPLE KÖRÜK METAL PİSTON,suspansiyon-korugu,Süspansiyon Körüğü,13,2665.0,3517.8,0.0,MLF7127,True,1,/komple-koruk-metal-piston-p5133,5133
+424158.S02,Pistonsuz Körük,suspansiyon-korugu,Süspansiyon Körüğü,134,1760.0,2323.2,0.0,(B) K2,True,1,/pistonsuz-koruk-p5132,5132
+424023.S,Pistonsuz Körük,suspansiyon-korugu,Süspansiyon Körüğü,58,1650.0,2178.0,0.0,,True,1,/pistonsuz-koruk-p5122,5122
+424023.C03,Komple Körük Metal Piston,suspansiyon-korugu,Süspansiyon Körüğü,54,2695.0,3557.4,0.0,"3229003100 , 3229213100",True,1,/komple-koruk-metal-piston-p5121,5121
+424022.S05,SÜSPANSİYON KÖRÜĞÜ PİSTONSUZ,suspansiyon-korugu,Süspansiyon Körüğü,89,1540.0,2032.8,0.0,,True,1,/suspansiyon-korugu-pistonsuz-p5120,5120
+424022.S02,Pistonsuz Körük,suspansiyon-korugu,Süspansiyon Körüğü,39,1540.0,2032.8,0.0,3229003300,True,1,/pistonsuz-koruk-p5119,5119
+424022.CP03,KOMPLE KÖRÜK PLASTİK PİSTON,suspansiyon-korugu,Süspansiyon Körüğü,37,2090.0,2758.8,0.0,3229003300,True,1,/komple-koruk-plastik-piston-p5117,5117
+424004.C03,EKERSAN 424004 SAF DORSE SÜSP.KÖRÜK KOMPLE METAL PİSTON,suspansiyon-korugu,Süspansiyon Körüğü,94,2695.0,3557.4,0.0,"MLF7091 , 2229000700",True,1,/ekersan-424004-saf-dorse-susp-koruk-komple-metal-piston-p5115,5115
+423608.S,SÜSP.KÖRÜK LASTİK,suspansiyon-korugu,Süspansiyon Körüğü,40,2065.0,2725.8,0.0,"1903608S , 1774804S",True,1,/susp-koruk-lastik-p5114,5114
+423608.C,SÜSP.KÖRÜK KOMPLE SCANIA Y.M.,suspansiyon-korugu,Süspansiyon Körüğü,91,3015.0,3979.8,0.0,"1903608 , 1774804",True,1,/susp-koruk-komple-scania-y-m-p5113,5113
+422211.P01,Katlı Körük Civatasız Düz,suspansiyon-korugu,Süspansiyon Körüğü,672,880.0,1161.6,0.0,21221395,True,1,/katli-koruk-civatasiz-duz-p5104,5104
+ESS 320 10,"SOMUN DÖNER PULLU 33'LÜK DPS M22*1,5",somun-civata,Somun / Cıvata,5626,57.25,75.57,0.0,,True,3,/somun-doner-pullu-33-luk-dps-m22-1-5-p4839,4839
+ESS 300 22,Aliminyum Jant Somunu Kısa 11 Diş,somun-civata,Somun / Cıvata,1510,158.0721905763,208.66,0.0,,True,3,/aliminyum-jant-somunu-kisa-11-dis-p4802,4802
+ESS 300 20,Aliminyum Jant Somunu Kısa,somun-civata,Somun / Cıvata,5914,156.9267399199,207.14,0.0,-,True,3,/aliminyum-jant-somunu-kisa-p4799,4799
+ESS 300 12,Aliminyum Jant Somunu Uzun 11 Diş,somun-civata,Somun / Cıvata,1760,158.0721905763,208.66,0.0,,True,3,/aliminyum-jant-somunu-uzun-11-dis-p4798,4798
+ESS 300 10,Aliminyum Jant Somunu Uzun,somun-civata,Somun / Cıvata,1986,156.9267399199,207.14,0.0,-,True,1,/aliminyum-jant-somunu-uzun-p4795,4795
+ESS 180 10,Küçük Döner Pullu Somun,somun-civata,Somun / Cıvata,120,61.7397903773,81.5,0.0,-,True,1,/kucuk-doner-pullu-somun-p4762,4762
+ESS 171 10,Büyük Döner Pullu Somun,somun-civata,Somun / Cıvata,24874,65.6343226089,86.64,0.0,-,True,3,/buyuk-doner-pullu-somun-p4756,4756
+ESS 170 10,Büyük Döner Pullu Somun,somun-civata,Somun / Cıvata,6210,65.6343226089,86.64,0.0,-,True,3,/buyuk-doner-pullu-somun-p4755,4755
+ESS 140 10,SOMUN FORD ARKA,somun-civata,Somun / Cıvata,20,29.91,39.48,0.0,,True,2,/somun-ford-arka-p4740,4740
+ESS 131 10,İspit Somunu,somun-civata,Somun / Cıvata,62,50.1707387481,66.23,0.0,-,True,3,/ispit-somunu-p4735,4735
+ESS 120 10,Man-Mercedes Somunu Uzun,somun-civata,Somun / Cıvata,5816,50.1707387481,66.23,0.0,-,True,3,/man-mercedes-somunu-uzun-p4727,4727
+ESS 080 10,50 NC somunu,somun-civata,Somun / Cıvata,764,50.1707387481,66.23,0.0,-,True,3,/50-nc-somunu-p4675,4675
+ESS 029 10,"27'lik 18x1,5 Döner Pullu Somun",somun-civata,Somun / Cıvata,11860,61.7397903773,81.5,0.0,-,True,3,/27-lik-18x1-5-doner-pullu-somun-p4654,4654
+ESS 028 10,30'luk Döner Pullu Somun,somun-civata,Somun / Cıvata,14375,61.7397903773,81.5,0.0,-,True,3,/30-luk-doner-pullu-somun-p4650,4650
+ESS 025 20-3,"SOMUN KISA DÖNER PULLU 22*1,5 DAKROMATLI",somun-civata,Somun / Cıvata,55436,55.58,73.37,0.0,,False,0,/somun-kisa-doner-pullu-22-1-5-dakromatli-p4646,4646
+ESS 025 20,Döner Pullu Somun,somun-civata,Somun / Cıvata,100000,61.7397903773,81.5,0.0,81455030056 - 81455030026,True,3,/doner-pullu-somun-p4644,4644
+ESS 024 11-L,Döner Pullu Somun,somun-civata,Somun / Cıvata,90,61.7397903773,81.5,0.0,-,True,3,/doner-pullu-somun-p4642,4642
+ESS 024 10-R,Döner Pullu Somun 14 diş volvo (R),somun-civata,Somun / Cıvata,688,61.7397903773,81.5,0.0,,True,3,/doner-pullu-somun-14-dis-volvo-r-p4641,4641
+ESS 023 10-R,Döner Pullu Somun,somun-civata,Somun / Cıvata,10337,61.7397903773,81.5,0.0,,True,3,/doner-pullu-somun-p4638,4638
+ESS 020 10,Döner Pullu Somun,somun-civata,Somun / Cıvata,100000,61.7397903773,81.5,50.0,-,True,3,/doner-pullu-somun-p4633,4633
+ESP.22.08,PORYA ÖZKOÇ 4646 DİSK PORYA E.M,porya,Porya,1,3400.0,4488.0,0.0,,False,0,/porya-ozkoc-4646-disk-porya-e-m-p4593,4593
+ESP.22.06.01,AKKAR DİNGİL DİSKLİ PORYA A2,porya,Porya,1,4945.0,6527.4,0.0,,False,0,/akkar-dingil-diskli-porya-a2-p4586,4586
+ESP.22.05.01,AYDIN DİNGİL PORYA KAMPANALI,porya,Porya,1,4830.0,6375.6,0.0,,False,0,/aydin-dingil-porya-kampanali-p4585,4585
+ESP.22.04.01,PORYA SERTEL T4 - K4,porya,Porya,6,4830.0,6375.6,0.0,,False,0,/porya-sertel-t4-k4-p4584,4584
+ESP.22.03.01,PORYA OSMAN KOÇ K1,porya,Porya,4,5405.0,7134.6,0.0,,False,0,/porya-osman-koc-k1-p4582,4582
+8132,20/24 D/P Disk Fren Körüğü 64 mm,fren-korugu,Fren Körüğü,834,2850.0,3762.0,0.0,8642644620329,True,2,/20-24-d-p-disk-fren-korugu-64-mm-p3780,3780
+8131,16'LIK SERVİS FREN KÖRÜĞÜ DİSK,fren-korugu,Fren Körüğü,1150,1100.0,1452.0,0.0,,False,0,/16-lik-servis-fren-korugu-disk-p3779,3779
+8129,20'LİK SERVİS FREN KÖRÜĞÜ DİSK,fren-korugu,Fren Körüğü,699,1100.0,1452.0,0.0,,False,0,/20-lik-servis-fren-korugu-disk-p3778,3778
+8127,9/6200 CARGO İMD.FREN KÖRÜĞÜ,fren-korugu,Fren Körüğü,19,2650.0,3498.0,0.0,(A) A2,False,0,/9-6200-cargo-imd-fren-korugu-p3777,3777
+8125,16/24 D/P İMD.FREN KÖRÜĞÜ,fren-korugu,Fren Körüğü,173,2750.0,3630.0,0.0,8682644620305,True,2,/16-24-d-p-imd-fren-korugu-p3776,3776
+8121-1,24/24 D/P Disk Fren Körüğü 64 mm,fren-korugu,Fren Körüğü,689,2750.0,3630.0,4.0,8682644620268,True,1,/24-24-d-p-disk-fren-korugu-64-mm-p3772,3772
+8120,12/6200 CARGO İMDAT FREN KÖRÜĞÜ,fren-korugu,Fren Körüğü,39,2650.0,3498.0,0.0,(A) B2,True,1,/12-6200-cargo-imdat-fren-korugu-p3770,3770
+8111,24/30 D/P KISA MİL KÖRÜK DİSK KÖRÜĞÜ,fren-korugu,Fren Körüğü,304,3025.0,3993.0,0.0,,True,1,/24-30-d-p-kisa-mil-koruk-disk-korugu-p3768,3768
+8110,24'lük Servis Fren Körüğü Disk,fren-korugu,Fren Körüğü,778,1100.0,1452.0,0.0,8682644620176-8682644620183-8682644620190,True,1,/24-luk-servis-fren-korugu-disk-p3767,3767
+8109,24'LÜK SERVİS FREN KÖRÜĞÜ EKERSAN,fren-korugu,Fren Körüğü,965,1050.0,1386.0,0.0,8682644620022,True,1,/24-luk-servis-fren-korugu-ekersan-p3766,3766
+8106,24/24 D/P İMD.FREN KÖRÜĞÜ M16,fren-korugu,Fren Körüğü,413,2750.0,3630.0,0.0,,True,1,/24-24-d-p-imd-fren-korugu-m16-p3764,3764
+8105,30/24 D/P İMD.FREN KÖRÜĞÜ M22,fren-korugu,Fren Körüğü,243,2850.0,3762.0,0.0,8682644620367,True,1,/30-24-d-p-imd-fren-korugu-m22-p3763,3763
+8104-1,30/30 D/P İMDATLI FREN KÖRÜĞÜ DİSK,fren-korugu,Fren Körüğü,2,3025.0,3993.0,0.0,,True,1,/30-30-d-p-imdatli-fren-korugu-disk-p3762,3762
+8104,30/30 D/P İMD.FREN KÖRÜĞÜ EKERSAN,fren-korugu,Fren Körüğü,1474,2850.0,3762.0,0.0,,True,1,/30-30-d-p-imd-fren-korugu-ekersan-p3761,3761
+8103,24/30 D/D İMD.FREN KÖRÜĞÜ EKERSAN,fren-korugu,Fren Körüğü,747,2300.0,3036.0,0.0,8682644620435,True,2,/24-30-d-d-imd-fren-korugu-ekersan-p3760,3760
+8101,30/30 D/D İMD.FREN KÖRÜĞÜ EKERSAN,fren-korugu,Fren Körüğü,330,2300.0,3036.0,0.0,,True,2,/30-30-d-d-imd-fren-korugu-ekersan-p3759,3759
+70.02020,DORSE PORYA KAPAK M152.00X2.50 SMB-FRUEHAUF,porya,Porya,35,300.0,396.0,0.0,,True,3,/dorse-porya-kapak-m152-00x2-50-smb-fruehauf-p3367,3367
+8122-1,"16/24 D/P DİSK FREN KÖRÜĞÜ 22*1,5 BOY:64 MM",fren-korugu,Fren Körüğü,773,2750.0,3630.0,6.0,8682644620299,True,2,/16-24-d-p-disk-fren-korugu-22-1-5-boy-64-mm-p2858,2858
+429002,Perno Tapası 40x12 mm,perno,Perno,103,17.0,22.44,0.0,,True,1,/perno-tapasi-40x12-mm-p2818,2818
+427120,Kaliper Perno Tamir Takımı,kaliper-perno-tamir-takimi,Kaliper Perno Tamir Takımı,264,745.0,983.4,0.0,3434386100,True,1,/kaliper-perno-tamir-takimi-p2781,2781
+426124,Kaliper Mekanizmalı Kapak,kaliper-kapak-conta,Kaliper Kapak/Conta,5,570.0,752.4,0.0,,True,1,/kaliper-mekanizmali-kapak-p2749,2749
+426123,Kaliper Perno Tamir Takımı,kaliper-perno-tamir-takimi,Kaliper Perno Tamir Takımı,651,950.0,1254.0,0.0,,True,1,/kaliper-perno-tamir-takimi-p2748,2748
+425299,KÖRÜK BOĞAZ SOMUNU (UZUN) (112 U),suspansiyon-korugu,Süspansiyon Körüğü,10,550.0,726.0,0.0,,True,1,/koruk-bogaz-somunu-uzun-112-u-p2689,2689
+425298,KÖRÜK BOĞAZ SOMUNU (KISA),suspansiyon-korugu,Süspansiyon Körüğü,18,475.0,627.0,0.0,,True,4,/koruk-bogaz-somunu-kisa-p2688,2688
+425268,AYAR MEKANİZMASI (522 SET),kaliper-ayar-mekanizmasi,Kaliper Ayar Mekanizması,3,1485.0,1960.2,0.0,,True,1,/ayar-mekanizmasi-522-set-p2670,2670
+425245,Ø 410 DUBLEX GRUBU TOZ LASTİĞİ (SİLİKON) İVECO 902,kaliper-toz-lastigi,Kaliper Toz Lastiği,24,85.0,112.2,0.0,,True,2,/o-410-dublex-grubu-toz-lastigi-silikon-iveco-902-p2648,2648
+425224,522 TOZ LASTİĞİ (SİLİKON),kaliper-toz-lastigi,Kaliper Toz Lastiği,25,125.0,165.0,0.0,,True,1,/522-toz-lastigi-silikon-p2627,2627
+425101,Fren Ayar Mekanizması (Sağ),kaliper-ayar-mekanizmasi,Kaliper Ayar Mekanizması,77,535.0,706.2,0.0,5001868118 - 3097100 - 272908 - 8550978,True,3,/fren-ayar-mekanizmasi-sag-p2566,2566
+425100,Fren Ayar Mekanizması (Sol),kaliper-ayar-mekanizmasi,Kaliper Ayar Mekanizması,114,535.0,706.2,0.0,5001868117 - 3097099 - 272909 - 8550978,True,4,/fren-ayar-mekanizmasi-sol-p2565,2565
+422158,Kaliper Ayar Mekanizma Seti (Uzun),kaliper-ayar-mekanizmasi,Kaliper Ayar Mekanizması,139,945.0,1247.4,0.0,,True,1,/kaliper-ayar-mekanizma-seti-uzun-p2206,2206
+422152,Kaliper Ayar Mekanizma Seti (Pimli - Kısa),kaliper-ayar-mekanizmasi,Kaliper Ayar Mekanizması,49,945.0,1247.4,0.0,,True,3,/kaliper-ayar-mekanizma-seti-pimli-kisa-p2200,2200
+422121,Kaliper Balata Tutucusu,fren-balatasi,Fren Balatası,4,405.0,534.6,0.0,,True,1,/kaliper-balata-tutucusu-p2169,2169
+422120,KALİPER BALATA TUTUCUSU PİMLİ (SOL),fren-balatasi,Fren Balatası,6,405.0,534.6,0.0,,True,3,/kaliper-balata-tutucusu-pimli-sol-p2168,2168
+422119,Kaliper Kapak Conta Seti,kaliper-kapak-conta,Kaliper Kapak/Conta,3,205.0,270.6,0.0,,True,1,/kaliper-kapak-conta-seti-p2167,2167
+422115,Kaliper Masura Bilya Yatağı,kaliper-tamir-takimi,Kaliper Tamir Takımı,76,535.0,706.2,0.0,,True,1,/kaliper-masura-bilya-yatagi-p2163,2163
+421236,KLİPER AYAR CİVATASI (AXOR YM 3 YİVLİ CİVATA),kaliper-ayar-mekanizmasi,Kaliper Ayar Mekanizması,1182,120.0,158.4,0.0,(A) B3,True,1,/kliper-ayar-civatasi-axor-ym-3-yivli-civata-p2087,2087
+421235,Kaliper Toz Lastiği Tamir Takımı (Ø 69 mm - 54 mm),kaliper-toz-lastigi,Kaliper Toz Lastiği,6,280.0,369.6,0.0,,True,2,/kaliper-toz-lastigi-tamir-takimi-o-69-mm-54-mm-p2086,2086
+421225,Kaliper Masura Bilya Yatağı,kaliper-tamir-takimi,Kaliper Tamir Takımı,194,565.0,745.8,0.0,,True,1,/kaliper-masura-bilya-yatagi-p2076,2076
+421202,Kaliper Tapa Seti,kaliper,Kaliper,20,270.0,356.4,0.0,,True,1,/kaliper-tapa-seti-p2050,2050
+421201,Kaliper Plastik Kapak Sensörlü (2 Kablolu),kaliper-kapak-conta,Kaliper Kapak/Conta,2,495.0,653.4,0.0,,True,1,/kaliper-plastik-kapak-sensorlu-2-kablolu-p2046,2046
+421186,Kaliper Masura Bilya Yatağı (0° - 113 mm),kaliper-tamir-takimi,Kaliper Tamir Takımı,24,565.0,745.8,0.0,,True,4,/kaliper-masura-bilya-yatagi-0-113-mm-p2031,2031
+421184,Kaliper Masura Bilya Yatağı,kaliper-tamir-takimi,Kaliper Tamir Takımı,48,565.0,745.8,0.0,,True,4,/kaliper-masura-bilya-yatagi-p2029,2029
+421181,Kısa Lastikli Burç,burc-muylu,Burç / Muylu,1,115.0,151.8,0.0,,True,4,/kisa-lastikli-burc-p2026,2026
+421164,Kaliper Perno Tamir Takımı,kaliper-perno-tamir-takimi,Kaliper Perno Tamir Takımı,60,340.0,448.8,0.0,,True,1,/kaliper-perno-tamir-takimi-p2009,2009
+421162,Kaliper Körüklü Lastik Takımı,kaliper,Kaliper,105,90.0,118.8,0.0,,True,1,/kaliper-koruklu-lastik-takimi-p2007,2007
+421161,Kaliper Perno Tamir Takımı,kaliper-perno-tamir-takimi,Kaliper Perno Tamir Takımı,444,675.0,891.0,0.0,0004204382,True,1,/kaliper-perno-tamir-takimi-p2006,2006
+421152,PLASTİK SENSÖR KAPAĞI 2 ÇIKIŞLI,sensor,Sensör,2,495.0,653.4,0.0,,True,1,/plastik-sensor-kapagi-2-cikisli-p1997,1997
+421147,Kaliper Masura Bilya Takımı,kaliper-tamir-takimi,Kaliper Tamir Takımı,8,205.0,270.6,0.0,,True,1,/kaliper-masura-bilya-takimi-p1991,1991
+421146,Kaliper Masura Bilya Takımı,kaliper-tamir-takimi,Kaliper Tamir Takımı,530,205.0,270.6,0.0,,True,3,/kaliper-masura-bilya-takimi-p1990,1990
+421139,Kaliper Mekanizma Zinciri (29 Bakla),kaliper-ayar-mekanizmasi,Kaliper Ayar Mekanizması,1037,125.0,165.0,0.0,,True,4,/kaliper-mekanizma-zinciri-29-bakla-p1981,1981
+421138,Kaliper Ayar Civatası,kaliper-ayar-mekanizmasi,Kaliper Ayar Mekanizması,2822,120.0,158.4,0.0,(A) C3,True,3,/kaliper-ayar-civatasi-p1980,1980
+421137,Kaliper Kilavuz Pim Takimi,kaliper-kilavuz-pim-takimi,Kaliper Kilavuz Pim Takimi,427,500.0,660.0,0.0,,True,5,/kaliper-durbun-takimi-p1979,1979
+421132,Kaliper Kilavuz Pim Takimi,kaliper-kilavuz-pim-takimi,Kaliper Kilavuz Pim Takimi,64,510.0,673.2,0.0,,True,4,/kaliper-durbun-takimi-p1974,1974
+421131,Kaliper Kilavuz Pim Takimi,kaliper-kilavuz-pim-takimi,Kaliper Kilavuz Pim Takimi,2,510.0,673.2,0.0,,True,4,/kaliper-durbun-takimi-p1973,1973
+421128,Kaliper Mekanizması Bilyalı,kaliper-ayar-mekanizmasi,Kaliper Ayar Mekanizması,901,470.0,620.4,0.0,,True,3,/kaliper-mekanizmasi-bilyali-p1970,1970
+421127,Kaliper Ayar Mekanizması (Yaylı),kaliper-ayar-mekanizmasi,Kaliper Ayar Mekanizması,493,135.0,178.2,0.0,,True,3,/kaliper-ayar-mekanizmasi-yayli-p1969,1969
+421124,Kaliper Masura Bilya Yatağı (0°),kaliper-tamir-takimi,Kaliper Tamir Takımı,1,530.0,699.6,0.0,,True,1,/kaliper-masura-bilya-yatagi-0-p1966,1966
+421106,Kaliper Toz Lastiği Tamir Takımı (Ø 74 mm),kaliper-toz-lastigi,Kaliper Toz Lastiği,92,280.0,369.6,0.0,0980102630 - 3434380400 - 0004200682 - 0004203982 - 81508226007 - 81508226022 - 81508226032 - 1743421 - 1746824 - 1756389,True,1,/kaliper-toz-lastigi-tamir-takimi-o-74-mm-p1947,1947
+421101,Kaliper Toz Lastiği Tamir Takımı (Ø 69 mm),kaliper-toz-lastigi,Kaliper Toz Lastiği,150,255.0,336.6,0.0,,True,1,/kaliper-toz-lastigi-tamir-takimi-o-69-mm-p1940,1940
+421100,Kaliper Toz Lastiği Tamir Takımı (Ø 69 mm),kaliper-toz-lastigi,Kaliper Toz Lastiği,1061,280.0,369.6,0.0,42541413 - 0004202382 - 0004204082 - 0004204282 - 81508226020 - 81508226031 - 3434381400 - 1622785 - 1689313,True,4,/kaliper-toz-lastigi-tamir-takimi-o-69-mm-p1939,1939
+42313/2-300,Disk Balatası,fren-balatasi,Fren Balatası,32,1620.0,2138.4,0.0,29246,True,1,/disk-balatasi-p1560,1560
+30-3694,MAXX 22 SENSÖRLÜ KAPAK,kaliper-kapak-conta,Kaliper Kapak/Conta,6,1350.0,1782.0,0.0,"640 322 928 2, 81.50822.6040",True,1,/maxx-22-sensorlu-kapak-p1502,1502
+30-3684,MAXX22 RULMAN TK,kaliper-tamir-takimi-maxx22,Kaliper Tamir Takımı (Maxx22),4,475.0,627.0,0.0,,True,1,/maxx22-rulman-tk-p1500,1500
+30-3579,KALİPER AYAR MEKANİZMASI,kaliper-ayar-mekanizmasi,Kaliper Ayar Mekanizması,7,1600.0,2112.0,0.0,,True,1,/kaliper-ayar-mekanizmasi-p1498,1498
+30-3530,PAN17 BALATA İTİCİ PLEYT SAĞ (YARGILI),fren-balatasi,Fren Balatası,34,750.0,990.0,0.0,,True,1,/pan17-balata-itici-pleyt-sag-yargili-p1493,1493
+30-3510,KALİPER MASURA RULMAN YATAĞI,kaliper-tamir-takimi,Kaliper Tamir Takımı,7,795.0,1049.4,0.0,,True,1,/kaliper-masura-rulman-yatagi-p1492,1492
+42242/1-290,Disk Balatası (29125),fren-balatasi,Fren Balatası,8,1500.0,1980.0,0.0,29125,True,1,/disk-balatasi-29125-p1419,1419
+42232/2-290,Disk Balatası (29159),fren-balatasi,Fren Balatası,138,1440.0,1900.8,0.0,"29159 , 29126",True,1,/disk-balatasi-29159-p1403,1403
+42200/7-290,Disk Balatası,fren-balatasi,Fren Balatası,166,1440.0,1900.8,0.0,29165 - 29215,True,1,/disk-balatasi-p1366,1366
+20-2601,KALİPER MEKANİZMA DİŞLİ VE KAP,kaliper-ayar-mekanizmasi,Kaliper Ayar Mekanizması,4,3950.0,5214.0,0.0,,True,1,/kaliper-mekanizma-disli-ve-kap-p1361,1361
+20-2487,ELSA2 RULMAN YATAĞI 123MM,kaliper-tamir-takimi,Kaliper Tamir Takımı,3,1335.0,1762.2,0.0,,True,1,/elsa2-rulman-yatagi-123mm-p1348,1348
+20-2471,DUCO AYAR MEKANİZMASI SOL,kaliper-ayar-mekanizmasi,Kaliper Ayar Mekanizması,8,1444.32,1906.5,0.0,"MCK1111, 3092265, SJ4102",True,1,/duco-ayar-mekanizmasi-sol-p1347,1347
+20-2470,DUCO AYAR MEKANİZMASI SAĞ,kaliper-ayar-mekanizmasi,Kaliper Ayar Mekanizması,4,1444.32,1906.5,0.0,"MCK1112, 3092266, SJ4103",True,1,/duco-ayar-mekanizmasi-sag-p1346,1346
+42182/6-300,Disk Balatası (29167),fren-balatasi,Fren Balatası,74,1560.0,2059.2,0.0,29167-29216-29270,True,1,/disk-balatasi-29167-p1305,1305
+42117/1-250,Disk Balatası 29011,fren-balatasi,Fren Balatası,65,1560.0,2059.2,0.0,29011,True,1,/disk-balatasi-29011-p1206,1206
+1000 820,8/20 Aliminyum Perçin,percin,Perçin,495,450.0,594.0,0.0,(A) C4,True,3,/8-20-aliminyum-percin-p1114,1114
+1000 817,8*17 ALUMİNYUM PERÇİN,percin,Perçin,121,450.0,594.0,0.0,(A) D4,True,3,/8-17-aluminyum-percin-p1112,1112
+1000 617,6*17 ALUMİNYUM PERÇİN,percin,Perçin,44,450.0,594.0,0.0,(A) D4,True,3,/6-17-aluminyum-percin-p1106,1106
+10-1403,SN6SK7SL7SM7 PİSTON KAPAĞI SOMUNLU,kaliper-tamir-takimi-wabco,Kaliper Tamir Takımı (Wabco),40,345.0,455.4,0.0,,True,1,/sn6sk7sl7sm7-piston-kapagi-somunlu-p992,992
+10-1400,KALİPER KAPAĞI,kaliper-kapak-conta,Kaliper Kapak/Conta,6,295.0,389.4,0.0,,True,1,/kaliper-kapagi-p991,991
+10-1320,KALİPER MİL-KEÇE TM.TK.,kaliper-tamir-takimi,Kaliper Tamir Takımı,9,1086.2064,1433.79,0.0,"K001915, K048389K50, K099604K50, 0004204682, 81508226019, 81508226034, 81508226037, 1477675, 1527631, 2121646, 1639100, 1847716,",True,1,/kaliper-mil-kece-tm-tk-p990,990
+10-1299,KALİPER TAMİR TAKIMI,kaliper,Kaliper,16,1850.0,2442.0,0.0,,True,1,/kaliper-tamir-takimi-p986,986
+10-1277,KALİPER MASURA BİLYA YATAĞI,kaliper-tamir-takimi,Kaliper Tamir Takımı,3,798.0,1053.36,0.0,,True,1,/kaliper-masura-bilya-yatagi-p982,982
+10-1260,SB6-7 SN6-7 SK7 BALATA TUTUCU,fren-balatasi,Fren Balatası,14,180.0,237.6,0.0,"K000133, II19712004, II30679004, 0004202582, 13C3305630AA",True,1,/sb6-7-sn6-7-sk7-balata-tutucu-p976,976
+10-1242,LASTİK,lastik,Lastik,20,101.0,133.32,0.0,,True,1,/lastik-p975,975
+10-1154,AYAR TAŞIYICI,kaliper-ayar-mekanizmasi,Kaliper Ayar Mekanizması,1,750.0,990.0,0.0,,True,1,/ayar-tasiyici-p969,969
+10-1152,KALİPER KÖPRÜ BAĞLANTISI,kaliper,Kaliper,2,810.0,1069.2,0.0,,True,1,/kaliper-kopru-baglantisi-p967,967
+10-1151,KALİPER KÖPRÜ BAĞLANTISI,kaliper,Kaliper,9,810.0,1069.2,0.0,CKSK.17.1,True,1,/kaliper-kopru-baglantisi-p966,966
+10-1134,SN5 KALİPER TAPASI,kaliper,Kaliper,10,475.0,627.0,0.0,,True,1,/sn5-kaliper-tapasi-p959,959
+10-1093,SB6-7 SENSÖRLÜ 3 KABLOLU KAPAK,kaliper-tamir-takimi-wabco,Kaliper Tamir Takımı (Wabco),5,900.0,1188.0,0.0,,True,1,/sb6-7-sensorlu-3-kablolu-kapak-p956,956
+10-1080,SB5-6-7 SN6-7 AYAR CİVATASI,kaliper-tamir-takimi-wabco,Kaliper Tamir Takımı (Wabco),1,175.0,231.0,0.0,,True,1,/sb5-6-7-sn6-7-ayar-civatasi-p953,953
+10-1050,SN6-SN7-SK7 ÇİFT TIRNAKLI RULMAN,kaliper-tamir-takimi-wabco,Kaliper Tamir Takımı (Wabco),1,305.0,402.6,0.0,,True,1,/sn6-sn7-sk7-cift-tirnakli-rulman-p947,947
+EYD.075099,SAF DORSE PORYA KAPAK (PLASTİK BÜYÜK),porya,Porya,1583,190.0,250.8,0.0,,True,3,/saf-dorse-porya-kapak-plastik-buyuk-p861,861
+EYD.075074,SAF DORSE PORYA KAPAK (PLASTİK KÜÇÜK),porya,Porya,12,190.0,250.8,0.0,,True,2,/saf-dorse-porya-kapak-plastik-kucuk-p860,860
+EYD.0170064,BPW PORYA KAPAĞI İÇTEN YİVLİ BÜYÜK,porya,Porya,11,400.0,528.0,0.0,,True,3,/bpw-porya-kapagi-icten-yivli-buyuk-p206,206
