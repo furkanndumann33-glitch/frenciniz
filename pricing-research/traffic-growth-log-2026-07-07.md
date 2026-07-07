@@ -193,3 +193,20 @@
 - Canli SEO dogrulama: urun 459/887/63/174/1056 sayfalari 200; Fiyat Stok title, Product schema, sik aranan parca ifadeleri ve 0850 888 7881 WhatsApp linki mevcut.
 - Uygulanan aksiyon: yeni kod degisikligi yapilmadi; onceki saatlik SEO deploy'u canlida dogrulandi. Risk almadan takip/log guncellendi.
 - Satis adimi: en sicak urun 459 icin kargo dahil kuponlu net fiyat cevabi hazir tutulmali: FT 34881, stok 79, site fiyat 1782 TL; uyum sorusu icin Dorse/Krone/Kogel/Schmitz/Tirsan teyidi istenmeli. Paralelde urun 887, 63, 174 ve 1056 icin ayni hizli cevap hazir olmali.
+
+## Heartbeat Trafik Kontrolu - 01:48
+- Onceki UTC gun (2026-07-06): 132 goruntuleme / 48 tekil; Facebook 0, Google 63, tiklama W/T/E 4/0/0.
+- Yeni UTC gun (2026-07-07): 130 goruntuleme / 41 tekil; raw log 130 satir.
+- Bot filtreli insan trafigi: 128 goruntuleme / 39 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 75; Google Ads isaretli 13.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2311 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Detayli filtre: bot/supheli 2 goruntuleme; insan trafigi 128 goruntuleme / 39 tekil IP. Sehirler: TR/bos 63, Istanbul 17, Bursa 8, Izmir 5, Saray 3, Izmit 2, Fethiye 2, Selcuklu 2, Mersin 2, Samsun 2; yurtdisi agirlikli US 11, GB 2.
+- Sicak yollar: ana sayfa 26, urun 459 Ford Cargo/Krone/Dorse/Kogel suspansiyon korugu 20, urun 26 Dodge akilli circir sol 4, urun 887 suspansiyon korugu 4, urun 63 Renault fren circiri 4, urun 174 fren diski 4, /suspansiyon-korugu 3, urun 515 kaliper ayar mekanizmasi 2, urun 863 Mercedes perno 2, urun 1056 ESC 80172 2.
+- Google kaynakli trafik: Google referrer 75, toplam Google isaretli insan goruntuleme 85; Google Ads isaretli 13. Facebook/Meta kaynakli goruntuleme 0. Google Ads/Meta/Merchant paneli acilmadi; bu kirilim site tracking ve canli feed kontrolune dayaniyor.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0. Bugunku lead de 0; ziyaretci var ama teklif/siparis aksiyonuna gecmiyor.
+- Canli SEO dogrulama: urun 459/887/63/174/1056 sayfalari 200; Fiyat Stok title, Product schema, sik aranan parca ifadeleri ve 0850 888 7881 WhatsApp linki mevcut.
+- Uygulanan aksiyon: yeni kod degisikligi yapilmadi; onceki saatlik SEO deploy'u canlida dogrulandi. Risk almadan takip/log guncellendi.
+- Satis adimi: en sicak urun 459 icin kargo dahil kuponlu net fiyat cevabi hazir tutulmali: FT 34881, stok 79, site fiyat 1782 TL; uyum sorusu icin Dorse/Krone/Kogel/Schmitz/Tirsan teyidi istenmeli. Paralelde urun 887, 63, 174 ve 1056 icin ayni hizli cevap hazir olmali.
