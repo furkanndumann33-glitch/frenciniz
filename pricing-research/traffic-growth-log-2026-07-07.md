@@ -59,3 +59,20 @@
 - Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0. Google organik TR kullanicilari gelmeye basladi ancak WhatsApp/telefon/e-posta tiklamasina donusmedi.
 - Canli dogrulama: ana sayfa /assets/index-DulfO1nk.js ile servis ediliyor; JS icinde coupon_banner_whatsapp ve 0850 888 7881 WhatsApp dogru. Telefon 0545 608 7008 dogru. /api/products ve /data/products.json 1055 urun.
 - Satis adimi: yeni sicak niyet BMC Tugra balata, Actros 1851 balata ve fren circiri aramalarinda. Bu dort sayfa icin kargo dahil kuponlu net fiyat ve uyumluluk cevabi hazirlanmali; ozellikle /bmc-tugra-balata ve /actros-1851-balata landinglerinden gelecek telefon/WhatsApp taleplerine 5 dakika icinde donulmeli.
+
+## Heartbeat Trafik Kontrolu - 12:25
+- Onceki UTC gun (2026-07-06): 132 goruntuleme / 48 tekil; Facebook 0, Google 63, tiklama W/T/E 4/0/0.
+- Yeni UTC gun (2026-07-07): 21 goruntuleme / 13 tekil; raw log 21 satir.
+- Bot filtreli insan trafigi: 21 goruntuleme / 13 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 16; Google Ads isaretli 1.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Detayli filtre: TR insan trafigi 16 goruntuleme / 10 tekil IP; supheli/yurtdisi agirlikli trafik 5 goruntuleme. Sehirler: Istanbul 5, TR/bos 3, Bursa 2, Kalecik 2, Sehitkamil 2, Baglar 1, Ankara 1; yurtdisi US 4 ve CA 1.
+- Google organik sicak yollar: urun 805 pirlanta porya kapagi 2, urun 365 dorse bijon 2, urun 888 Volvo FH12/FM/FL suspansiyon korugu 2, urun 26 Dodge akilli fren circiri 2, /bmc-tugra-balata 2, urun 63 Renault Premium/Magnum/Kerax/Midlum fren circiri 2, /axor-2528-kampana 1, /axor-1840-balata 1, ana sayfa 1, /actros-1851-balata 1.
+- Google Ads isaretli trafik: ana sayfa 1. Google Ads/Merchant/Meta paneli bu turda acilmadi; rapor site tracking ve canli feed verisine dayaniyor.
+- Sicak sayfa canli kontrolu: /axor-2528-kampana, /axor-1840-balata, /actros-1851-balata ve /bmc-tugra-balata sayfalarinda kupon banneri, WhatsApp, telefon, Product schema ve geri arama formu var. Urun 805, 365 ve 888 sayfalarinda WhatsApp, telefon ve Product schema var; kupon banneri JS tarafinda geliyor.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0. TR Google organik trafik 10 tekil IP'ye cikti ancak WhatsApp/telefon/e-posta tiklamasina donusmedi.
+- Canli dogrulama: ana sayfa /assets/index-DulfO1nk.js ile servis ediliyor; JS icinde coupon_banner_whatsapp ve 0850 888 7881 WhatsApp dogru. Telefon 0545 608 7008 dogru. /api/products ve /data/products.json 1055 urun.
+- Satis adimi: bugunun en yakin niyeti porya kapagi, dorse bijon, Volvo suspansiyon korugu, BMC/Actros/Axor balata-kampana ve fren circiri gruplarinda. Bu urunler icin "stok var + kargo dahil kuponlu net fiyat + arac uyum teyidi" hazir cevaplari olusturulmali; gelen ilk WhatsApp/telefon talebine 5 dakika icinde fiyat verilmesi gerekiyor.
