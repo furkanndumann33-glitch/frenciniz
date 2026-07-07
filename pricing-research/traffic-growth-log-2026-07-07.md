@@ -162,3 +162,9 @@
 - Canli dogrulama: ana sayfa 200, JS asset /assets/index-BjOp7orH.js, 0850 888 7881 WhatsApp ve 0545 608 7008 telefon mevcut. /data/products.json ve /api/products 1055 urun; sitemap 2310 URL; Merchant/Meta feed 200.
 - Ek urun analizi: Ekersan B2B karsilastirmasinda 85 satilabilir eksik SKU bulundu; 47'si oncelikli satis kategorilerinde. Onay gelmeden kataloga yukleme yapilmadi.
 - Satis adimi: sicak trafik bugun suspansiyon korugu ve fren circiri tarafina kaydi. Ilk aksiyon onayla 47 oncelikli eksik SKU'yu eklemek; paralelde urun 459/887/63/174 icin kargo dahil kuponlu net fiyat ve uyum cevabini hazir tutmak.
+
+## Urun 1056 Stok/Aciklama Duzeltmesi - 23:36
+- ESC 80172 / 425027 Otomatik Fren Circiri Dorse 10 Kanal icin stok manuel teyitle 1 adet yapildi; pre_order kapatildi.
+- Urun aciklamasindan Bayi Ekersan ve B2B stokta gorunmuyor ifadesi kaldirildi; specs icindeki B2B stok alani temizlendi.
+- Build basarili; commit e490257 push edildi. Canli /data/products.json ve urun sayfasi stok 1, in stock ve Bayi Ekersan/B2B metni yok seklinde dogrulandi.
+- Satis adimi: Bu urun icin gelen talepte eski parca fotosu/OEM 425027 teyidiyle WhatsApp uzerinden kargo dahil kuponlu net fiyat verilmeli.
