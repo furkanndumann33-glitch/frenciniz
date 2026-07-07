@@ -3446,7 +3446,7 @@ function ProductConversionPanel({p, qty, href, isMobile, fp}) {
   const partCode = p?.oem || p?.sku || "OEM / parca kodu";
   const trustItems = [
     {k:"Kod otomatik gider", v:`SKU: ${p?.sku || "-"}${p?.oem ? ` | OEM: ${String(p.oem).slice(0, 42)}` : ""}`},
-    {k:"Stok ve kargo teyidi", v:stockCount > 0 ? `${Math.floor(stockCount)} adet stok gorunuyor` : "Stok durumu hizli teyit edilir"},
+    {k:"Kuponlu net fiyat", v:"Kargo ve indirim birlikte netlesir"},
     {k:"Yanlis parca riskini azalt", v:"Sase, OEM veya eski parca fotosu ile kontrol"},
   ];
   const leadPayload = { source:"product_detail_primary_whatsapp", href, product:p, value:(Number(p?.price || 0) * Number(qty || 1)) };
@@ -3462,20 +3462,20 @@ function ProductConversionPanel({p, qty, href, isMobile, fp}) {
     }}>
       <div style={{display:"flex",alignItems:isMobile?"stretch":"center",justifyContent:"space-between",gap:14,flexDirection:isMobile?"column":"row"}}>
         <div style={{minWidth:0}}>
-          <div style={{fontSize:11,fontWeight:950,color:"#facc15",textTransform:"uppercase",letterSpacing:.2,marginBottom:5}}>Bugun satisa cevir</div>
-          <h2 style={{fontSize:isMobile?18:20,lineHeight:1.2,margin:"0 0 7px",fontWeight:950}}>Siparisten once dogru parcayi netlestir.</h2>
-          <p style={{fontSize:13,lineHeight:1.55,color:"#d1d5db",margin:"0 0 11px"}}>WhatsApp'a tiklayinca urun, SKU, OEM, adet ve link otomatik gider. Arac modelini veya eski parca fotografini ekle; fiyat, stok ve kargo teyidi gelsin.</p>
+          <div style={{fontSize:11,fontWeight:950,color:"#facc15",textTransform:"uppercase",letterSpacing:.2,marginBottom:5}}>Kuponlu net fiyat</div>
+          <h2 style={{fontSize:isMobile?18:20,lineHeight:1.2,margin:"0 0 7px",fontWeight:950}}>Kargo dahil fiyat ve uyumu tek mesajda alin.</h2>
+          <p style={{fontSize:13,lineHeight:1.55,color:"#d1d5db",margin:"0 0 11px"}}>WhatsApp'a tiklayinca urun, SKU, OEM, adet ve link otomatik gider. Kargo dahil kuponlu net fiyat, stok ve uyumluluk bilgisini tek cevapta verelim.</p>
           <div style={{fontSize:11,color:"#a7f3d0",background:"rgba(37,211,102,.1)",border:"1px solid rgba(37,211,102,.22)",borderRadius:6,padding:"7px 8px",overflowWrap:"anywhere"}}>Kod: {partCode}</div>
         </div>
         <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr",gap:8,minWidth:isMobile?0:210}}>
           <a href={href} target="_blank" rel="noopener noreferrer" data-lead-source="product_detail_primary_whatsapp" data-lead-product-id={p?.id} data-lead-sku={p?.sku || ""} data-lead-category={p?.cat || ""} data-lead-value={(Number(p?.price || 0) * Number(qty || 1)) || 0}
             onClick={() => { recordLeadEvent("whatsapp", leadPayload); metaTrack("Contact", metaProductPayload(p, qty, p?.cat)); metaTrackCustom("WhatsAppLead", { source:"product_detail_primary", productId:p?.id, sku:p?.sku }); }}
             style={{minHeight:50,borderRadius:7,background:"linear-gradient(135deg,#16a34a,#25D366)",color:"#062813",textDecoration:"none",fontSize:15,fontWeight:950,display:"flex",alignItems:"center",justifyContent:"center",textAlign:"center",padding:"0 16px",boxShadow:"0 12px 22px rgba(37,211,102,.22)"}}>
-            Bugun WhatsApp'tan fiyat al
+            Kuponlu fiyati WhatsApp'tan al
           </a>
           <a href="tel:+905456087008" data-lead-source="product_detail_primary_phone" onClick={() => { recordLeadEvent("phone", { source:"product_detail_primary_phone", product:p, value:p?.price || 0 }); metaTrackCustom("PhoneLead", { source:"product_detail_primary", productId:p?.id }); }}
             style={{minHeight:42,borderRadius:7,background:"rgba(255,255,255,.08)",border:"1px solid rgba(255,255,255,.18)",color:"#fff",textDecoration:"none",fontSize:13,fontWeight:900,display:"flex",alignItems:"center",justifyContent:"center",textAlign:"center",padding:"0 14px"}}>
-            Hemen ara
+            Telefonla fiyat al
           </a>
         </div>
       </div>
@@ -3489,7 +3489,7 @@ function ProductConversionPanel({p, qty, href, isMobile, fp}) {
       </div>
       <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:10,marginTop:12,flexWrap:"wrap",fontSize:12,color:"#cbd5e1"}}>
         <span>Fiyat: <strong style={{color:"#fff"}}>{fp(p?.price || 0)}</strong></span>
-        <span>Stoklu urunde kargo ve uyum teyidi</span>
+        <span>Kargo dahil kuponlu fiyat ve uyum teyidi</span>
       </div>
     </section>
   );
@@ -3802,7 +3802,7 @@ function ProductDetailPage() {
         </div>
         {/* Hızlı iletişim butonları */}
         <div style={{display:"flex",flexWrap:"wrap",gap:10,padding:16,background:"#fff8f0",borderRadius:10,border:"1px solid #ffd9b3"}}>
-          <div style={{width:"100%",fontSize:13,fontWeight:700,color:"#c05200",marginBottom:4}}>{lang==="en"?"Contact us for stock & compatibility":"Stok ve uyumluluk için bize ulaşın"}</div>
+          <div style={{width:"100%",fontSize:13,fontWeight:700,color:"#c05200",marginBottom:4}}>{lang==="en"?"Contact us for stock, coupon & compatibility":"Kuponlu fiyat, stok ve uyumluluk icin bize ulasin"}</div>
           <a href="tel:+905456087008" style={{flex:"1 1 150px",display:"flex",alignItems:"center",justifyContent:"center",gap:8,padding:"12px 20px",background:"#ff6000",color:"#fff",borderRadius:8,fontSize:14,fontWeight:700,textDecoration:"none",minHeight:44}}>📞 {lang==="en"?"Call":"Ara"}: 0545 608 7008</a>
           <a href={whatsappQuoteHref} target="_blank" rel="noopener noreferrer" onClick={() => { recordLeadEvent("whatsapp", { source:"product_desc_whatsapp", href:whatsappQuoteHref, product:p, value:(p.price || 0) * qty }); metaTrack("Contact", metaProductPayload(p, qty, p.cat)); }} style={{flex:"1 1 150px",display:"flex",alignItems:"center",justifyContent:"center",gap:8,padding:"12px 20px",background:"#25D366",color:"#fff",borderRadius:8,fontSize:14,fontWeight:700,textDecoration:"none",minHeight:44}}>💬 WhatsApp: 0850 888 7881</a>
           <a href="mailto:info@frenciniz.com" style={{flex:"1 1 150px",display:"flex",alignItems:"center",justifyContent:"center",gap:8,padding:"12px 20px",background:"#fff",color:"#333",border:"1px solid #ddd",borderRadius:8,fontSize:14,fontWeight:600,textDecoration:"none",minHeight:44}}>✉️ E-posta</a>
@@ -3843,7 +3843,7 @@ function ProductDetailPage() {
           </div>
           <a href={whatsappQuoteHref} target="_blank" rel="noopener noreferrer" onClick={() => { recordLeadEvent("whatsapp", { source:"product_mobile_sticky_whatsapp", href:whatsappQuoteHref, product:p, value:(p.price || 0) * qty }); metaTrack("Contact", metaProductPayload(p, qty, p.cat)); }}
             style={{minHeight:48,borderRadius:8,background:"linear-gradient(135deg,#16a34a,#25D366)",color:"#062813",textDecoration:"none",fontSize:12,fontWeight:950,display:"flex",alignItems:"center",justifyContent:"center",textAlign:"center",padding:"0 8px"}}>
-            WhatsApp
+            Kuponlu fiyat
           </a>
           <a href="tel:+905456087008" onClick={() => { recordLeadEvent("phone", { source:"product_mobile_sticky_phone", product:p, value:p.price || 0 }); metaTrackCustom("PhoneLead", { source: "product_sticky_bar", product_id: p.id, sku: p.sku }); }}
             style={{minHeight:48,borderRadius:8,background:"linear-gradient(135deg,#ff6000,#facc15)",color:"#111827",textDecoration:"none",fontSize:12,fontWeight:950,display:"flex",alignItems:"center",justifyContent:"center",textAlign:"center",padding:"0 8px"}}>

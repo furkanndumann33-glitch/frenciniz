@@ -76,3 +76,20 @@
 - Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0. TR Google organik trafik 10 tekil IP'ye cikti ancak WhatsApp/telefon/e-posta tiklamasina donusmedi.
 - Canli dogrulama: ana sayfa /assets/index-DulfO1nk.js ile servis ediliyor; JS icinde coupon_banner_whatsapp ve 0850 888 7881 WhatsApp dogru. Telefon 0545 608 7008 dogru. /api/products ve /data/products.json 1055 urun.
 - Satis adimi: bugunun en yakin niyeti porya kapagi, dorse bijon, Volvo suspansiyon korugu, BMC/Actros/Axor balata-kampana ve fren circiri gruplarinda. Bu urunler icin "stok var + kargo dahil kuponlu net fiyat + arac uyum teyidi" hazir cevaplari olusturulmali; gelen ilk WhatsApp/telefon talebine 5 dakika icinde fiyat verilmesi gerekiyor.
+
+## Heartbeat Trafik Kontrolu - 14:26
+- Onceki UTC gun (2026-07-06): 132 goruntuleme / 48 tekil; Facebook 0, Google 63, tiklama W/T/E 4/0/0.
+- Yeni UTC gun (2026-07-07): 26 goruntuleme / 16 tekil; raw log 26 satir.
+- Bot filtreli insan trafigi: 26 goruntuleme / 16 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 21; Google Ads isaretli 4.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Detayli filtre: TR insan trafigi 21 goruntuleme / 13 tekil IP; supheli/yurtdisi agirlikli trafik 5 goruntuleme. Sehirler: Istanbul 7, TR/bos 4, Cukurova 2, Bursa 2, Kalecik 2, Sehitkamil 2, Baglar 1, Ankara 1; yurtdisi US 4 ve CA 1.
+- Google sicak yollar: urun 174 fren diski 2, urun 882 Ford Cargo suspansiyon korugu 2, urun 805 porya kapagi 2, urun 365 dorse bijon 2, urun 888 Volvo suspansiyon korugu 2, urun 26 Dodge fren circiri 2, /bmc-tugra-balata 2, urun 63 Renault fren circiri 2, /axor-2528-kampana 1, /axor-1840-balata 1, /actros-1851-balata 1.
+- Google Ads isaretli trafik: urun 174 fren diski 2, ana sayfa 2. Google Ads/Merchant/Meta paneli bu turda acilmadi; rapor site tracking ve canli feed verisine dayaniyor.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0. Google kaynakli trafik artiyor fakat WhatsApp/telefon/e-posta tiklamasina donusum yok.
+- Canli dogrulama: ana sayfa /assets/index-DulfO1nk.js ile servis ediliyor; JS icinde coupon_banner_whatsapp ve 0850 888 7881 WhatsApp dogru. Telefon 0545 608 7008 dogru. /api/products ve /data/products.json 1055 urun.
+- Uygulanan iyilestirme: urun detay ana WhatsApp/telefon bolumu "kuponlu net fiyat + kargo dahil fiyat + uyum teyidi" mesajina cevrildi; mobil sticky WhatsApp metni "Kuponlu fiyat" yapildi. `npm run build` basarili, canli deploy dogrulamasi izleniyor.
+- Satis adimi: bugunun en yakin niyeti fren diski, Ford Cargo suspansiyon korugu, porya kapagi, dorse bijon, BMC/Actros/Axor balata-kampana ve fren circiri gruplarinda. Bu sayfalara gelen kullanici icin ilk cevap "kargo dahil kuponlu net fiyat + arac uyum teyidi" olmali; 0 tiklama sorunu icin CTA degisikligi canliya alinacak.
