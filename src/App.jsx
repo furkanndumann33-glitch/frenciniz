@@ -2770,6 +2770,7 @@ function ProductCard({p, eager}) {
           <div style={{minWidth:0}}>
             <span style={{fontSize:isMobile?18:21,fontWeight:900,color:"#0f172a"}}>{fp(p.price)}</span>
             {p.old && <span style={{fontSize:13,color:"#bbb",textDecoration:"line-through",marginLeft:6}}>{fp(p.old)}</span>}
+            <div style={{fontSize:10,color:"#16a34a",fontWeight:900,marginTop:3,lineHeight:1.25}}>Kargo + uyum teyidi</div>
           </div>
           <button onClick={e => {e.stopPropagation(); p.stock ? addToCart(p) : setShowAlert(true)}}
             className="fr-card-action"
@@ -2779,8 +2780,8 @@ function ProductCard({p, eager}) {
         </div>
         <a href={quoteHref} target="_blank" rel="noopener noreferrer" data-lead-source="product_card_whatsapp" data-lead-product-id={p.id} data-lead-sku={p.sku || ""} data-lead-category={p.cat || ""} data-lead-value={p.price || 0}
           onClick={e => {e.stopPropagation(); recordLeadEvent("whatsapp", { source:"product_card_whatsapp", href:quoteHref, productId:p.id, sku:p.sku || "", category:p.cat || "", value:p.price || 0 }); metaTrack("Contact", metaProductPayload(p, 1, p.cat)); metaTrackCustom("WhatsAppLead", { source: "product_card", productId: p.id, category: p.cat });}}
-          style={{minHeight:34,borderRadius:6,background:"linear-gradient(135deg,#16a34a,#25D366)",color:"#062813",display:"flex",alignItems:"center",justifyContent:"center",textDecoration:"none",fontSize:isMobile?11:12,fontWeight:950,marginTop:2}}>
-          WhatsApp'ta uyumluluk sor
+          style={{minHeight:isMobile?40:38,borderRadius:6,background:"linear-gradient(135deg,#16a34a,#25D366)",color:"#062813",display:"flex",alignItems:"center",justifyContent:"center",textDecoration:"none",fontSize:isMobile?11:12,fontWeight:950,marginTop:2,textAlign:"center",padding:"0 8px",boxShadow:"0 10px 22px rgba(37,211,102,.16)"}}>
+          Kargo dahil kuponlu fiyat al
         </a>
         {showAlert && <StockAlertInline productId={p.id} onClose={() => setShowAlert(false)} />}
       </div>
