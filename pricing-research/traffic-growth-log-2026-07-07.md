@@ -127,3 +127,20 @@
 - Canli dogrulama: ana sayfa ve sicak urun sayfalari 200; /suspansiyon-korugu ve /man-40-360-abs-sensoru statik landinglerinde kupon banneri, WhatsApp ve telefon var. JS asset /assets/index-BjOp7orH.js; 0850 888 7881 WhatsApp, 0545 608 7008 telefon, 1055 urun, sitemap 2310 URL, Merchant/Meta feed 200.
 - Uygulanan iyilestirme: urun kartlarinda fiyat altina "Kargo + uyum teyidi" mikro metni eklendi; kart WhatsApp CTA'si "Kargo dahil kuponlu fiyat al" olarak buyutuldu. `npm run build` basarili; canli deploy /assets/index-BjOp7orH.js ile dogrulandi.
 - Satis adimi: bugunun en yakin niyeti Renault fren circiri, Mercedes fren diski, Sertel fren pabucu ve suspansiyon korugu. Bu 4 grup icin stok, uyum ve kargo dahil kuponlu net fiyat cevabi hazir olmali.
+
+## Heartbeat Trafik Kontrolu - 20:28
+- Onceki UTC gun (2026-07-06): 132 goruntuleme / 48 tekil; Facebook 0, Google 63, tiklama W/T/E 4/0/0.
+- Yeni UTC gun (2026-07-07): 49 goruntuleme / 27 tekil; raw log 49 satir.
+- Bot filtreli insan trafigi: 49 goruntuleme / 27 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 31; Google Ads isaretli 9.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Detayli filtre: TR insan trafigi 40 goruntuleme / 22 tekil IP; supheli/yurtdisi agirlikli trafik 9 goruntuleme. Sehirler: Istanbul 13, TR/bos 10, Izmir 5, Samsun 2, Cukurova 2, Bursa 2, Kalecik 2, Sehitkamil 2, Baglar 1, Ankara 1; yurtdisi US 6, GB 2, CA 1.
+- Google sicak yollar: urun 63 Renault Premium/Magnum/Kerax/Midlum fren circiri 4, urun 174 Mercedes fren diski 4, ana sayfa 3, urun 834 Sertel dingil fren pabucu 2, urun 887 suspansiyon korugu 2, urun 435 Ford Cargo/BPW/Dorse fren yayi 2, urun 882 Ford Cargo suspansiyon korugu 2, /bmc-tugra-balata 2.
+- Google Ads isaretli trafik: urun 174 fren diski 4, ana sayfa 3, urun 767 Mercedes Axor on porya 2. Google Ads/Merchant/Meta paneli bu turda acilmadi; rapor site tracking ve canli feed verisine dayaniyor.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0. WhatsApp/telefon/e-posta tiklamasi da 0; kart CTA degisikligi canli ama henuz lead uretmedi.
+- Canli dogrulama: ana sayfa, urun 174/640/767/63 ve /suspansiyon-korugu sayfalari 200. JS asset /assets/index-BjOp7orH.js; urun karti CTA'si, 0850 888 7881 WhatsApp, 0545 608 7008 telefon, 1055 urun, sitemap 2310 URL, Merchant/Meta feed 200.
+- Uygulanan aksiyon: yeni frontend degisikligi yapilmadi; bir onceki urun karti CTA degisikligi canli oldugu icin etkisi izlenecek. Bu turda takip/log ve sicak urun kirilimi guncellendi.
+- Satis adimi: bugunun en yakin niyeti Renault fren circiri, Mercedes fren diski, Scania disk balata, Mercedes Axor on porya, Sertel fren pabucu ve suspansiyon korugu. Bu urunler icin kargo dahil kuponlu net fiyat ve uyum cevabi hazirlanmali; Google Ads tarafinda urun 767 GB tiklamasi maliyet/niyet acisindan panelde kontrol edilmeli.
