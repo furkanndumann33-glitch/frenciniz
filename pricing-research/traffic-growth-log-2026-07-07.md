@@ -174,4 +174,5 @@
 - Google 1. sayfa garanti edilemez; kontrol edilebilir aksiyon olarak 1056 urunun ortak SEO title/aciklama/schema/fallback HTML metni daha yuksek niyetli hale getirildi.
 - Urun title kurali: urun/model/OEM adi + "Fiyat Stok" + Frenciniz. Meta aciklama ve schema tarafina OEM/SKU, uyumluluk adaylari, sik aranan parca ifadeleri ve WhatsApp teklif niyeti eklendi.
 - Build basarili; seo:audit 1056 urun, 1187 landing, 2311 tahmini sitemap URL; seo:product-keywords 1056 urun ve 600 Google Ads exact keyword cikisi uretildi.
+- Commit ddd4406 push edildi. Canli urun 1056/174/63 sayfalarinda "Fiyat Stok" title, sik aranan parca ifadeleri ve yeni FAQ metni dogrulandi; sitemap, Merchant feed ve Meta feed 200.
 - Satis adimi: Search Console'da sitemap yeniden gonderilmeli; en sicak 10 landing/urun URL icin URL Denetimi ile dizine ekleme istenmeli.
