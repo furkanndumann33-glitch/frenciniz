@@ -34,3 +34,9 @@
 - Facebook referansli trafik: 0 goruntuleme; onceki UTC gun 0.
 - Toplam trafik: 26 goruntuleme / 16 tekil; insan trafigi 26 / 16 tekil IP.
 - Tiklama/siparis: WhatsApp 0, telefon 0, e-posta 0; odenmis siparis 3.
+
+## Heartbeat Kontrolu - 16:27
+- Facebook paylasimi: yeni paylasim yapilmadi; limit/spam riski alinmadi.
+- Facebook referansli trafik: 0 goruntuleme; onceki UTC gun 0.
+- Toplam trafik: 36 goruntuleme / 20 tekil; insan trafigi 36 / 20 tekil IP.
+- Tiklama/siparis: WhatsApp 0, telefon 0, e-posta 0; odenmis siparis 3.

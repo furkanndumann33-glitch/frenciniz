@@ -93,3 +93,20 @@
 - Canli dogrulama: ana sayfa ve sicak urun sayfalari /assets/index-DHPKOtXK.js ile servis ediliyor; JS icinde coupon_banner_whatsapp, yeni kuponlu fiyat CTA'si ve 0850 888 7881 WhatsApp dogru. Telefon 0545 608 7008 dogru. /api/products ve /data/products.json 1055 urun.
 - Uygulanan iyilestirme: urun detay ana WhatsApp/telefon bolumu "kuponlu net fiyat + kargo dahil fiyat + uyum teyidi" mesajina cevrildi; mobil sticky WhatsApp metni "Kuponlu fiyat" yapildi. `npm run build` basarili; canli deploy /assets/index-DHPKOtXK.js ile dogrulandi.
 - Satis adimi: bugunun en yakin niyeti fren diski, Ford Cargo suspansiyon korugu, porya kapagi, dorse bijon, BMC/Actros/Axor balata-kampana ve fren circiri gruplarinda. Bu sayfalara gelen kullanici icin ilk cevap "kargo dahil kuponlu net fiyat + arac uyum teyidi" olmali; 0 tiklama sorunu icin CTA degisikligi canliya alinacak.
+
+## Heartbeat Trafik Kontrolu - 16:27
+- Onceki UTC gun (2026-07-06): 132 goruntuleme / 48 tekil; Facebook 0, Google 63, tiklama W/T/E 4/0/0.
+- Yeni UTC gun (2026-07-07): 36 goruntuleme / 20 tekil; raw log 36 satir.
+- Bot filtreli insan trafigi: 36 goruntuleme / 20 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 24; Google Ads isaretli 6.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Detayli filtre: TR insan trafigi 29 goruntuleme / 16 tekil IP; supheli/yurtdisi agirlikli trafik 7 goruntuleme. Sehirler: Istanbul 8, TR/bos 6, Izmir 5, Cukurova 2, Bursa 2, Kalecik 2, Sehitkamil 2, Baglar 1, Ankara 1; yurtdisi US 6 ve CA 1.
+- Google sicak yollar: urun 174 fren diski 4, urun 435 Ford Cargo/BPW/Dorse/Krone/Kogel fren yayi 2, urun 882 Ford Cargo suspansiyon korugu 2, urun 805 porya kapagi 2, urun 365 dorse bijon 2, urun 888 Volvo suspansiyon korugu 2, /bmc-tugra-balata 2, /man-40-360-abs-sensoru 1.
+- Google Ads isaretli trafik: urun 174 fren diski 4, ana sayfa 2. Google Ads/Merchant/Meta paneli bu turda acilmadi; rapor site tracking ve canli feed verisine dayaniyor.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0. WhatsApp/telefon/e-posta tiklamasi da 0; ziyaretci kategori ve urun goruyor fakat lead'e gecmiyor.
+- Canli dogrulama: ana sayfa, urun 174/882/365, BMC Tugra, Axor 2528 ve Actros 1851 sayfalari 200. JS asset /assets/index-DHPKOtXK.js; 0850 888 7881 WhatsApp, 0545 608 7008 telefon, 1055 urun, sitemap 2310 URL, Merchant/Meta feed 200.
+- Uygulanan iyilestirme: kategori/urun liste sayfalarinda hizli teklif kutusu eklendi; metinler "kargo dahil kuponlu fiyat" odakli yapildi, QuickQuoteBox WhatsApp butonu kuponlu fiyat mesajina cevrildi. `npm run build` basarili; canli deploy dogrulamasi izleniyor.
+- Satis adimi: bugunun en yakin niyeti urun 174 Mercedes fren diski, suspansiyon korugu, Ford Cargo/Dorse fren yayi, porya kapagi ve dorse bijon. Bu gruplar icin telefonda/WhatsApp'ta verilecek kargo dahil kuponlu net fiyat listesi hazir tutulmali.

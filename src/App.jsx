@@ -2940,7 +2940,7 @@ function QuickQuoteBox({source = "quick_quote", product = null, dark = false}) {
             {lang==="en"?"Fast quote desk":"Hizli teklif masasi"}
           </div>
           <div style={{fontSize:isMobile?14:16,fontWeight:950,color:text,marginTop:3,lineHeight:1.25}}>
-            Kod, sase veya eski parca bilgisini gonderin; fiyat ve uyumu teyit edelim.
+            Kod, sase veya eski parca bilgisini gonderin; kargo dahil kuponlu fiyat ve uyumu teyit edelim.
           </div>
         </div>
         <span style={{fontSize:11,fontWeight:900,color:dark?"#86efac":"#15803d",background:dark?"rgba(34,197,94,.14)":"#dcfce7",borderRadius:999,padding:"5px 8px",whiteSpace:"nowrap"}}>WhatsApp</span>
@@ -2958,7 +2958,7 @@ function QuickQuoteBox({source = "quick_quote", product = null, dark = false}) {
         </button>
         <button type="submit" data-lead-source={source} data-lead-product-id={product?.id || ""} data-lead-sku={product?.sku || ""} data-lead-category={product?.cat || ""} data-lead-value={product?.price || 0}
           style={{minHeight:44,border:"none",borderRadius:7,background:"linear-gradient(135deg,#16a34a,#25D366)",color:"#062813",fontSize:13,fontWeight:950,padding:"0 14px",cursor:"pointer"}}>
-          WhatsApp'a gec
+          Kuponlu fiyati WhatsApp'tan al
         </button>
         <div style={{fontSize:12,color:muted,lineHeight:1.45}}>
           {callbackStatus || (sent ? "Talep kaydedildi; WhatsApp acildi." : callbackSent ? "Arama talebi kaydedildi." : "Telefon yazarsaniz WhatsApp acmadan da sizi arayabiliriz.")}
@@ -3363,7 +3363,7 @@ function ProductsPage() {
                 </div>}
                 <a href={salesInfo.whatsappHref} target="_blank" rel="noopener noreferrer" onClick={() => { recordLeadEvent("whatsapp", { source:"category_hero_whatsapp", href:salesInfo.whatsappHref, category:catName }); metaTrackCustom("WhatsAppCategoryLead", { category: cat, name: salesInfo.title }); }}
                   style={{display:"inline-flex",alignItems:"center",justifyContent:"center",gap:8,minHeight:44,padding:"12px 16px",background:"#25D366",color:"#07111f",borderRadius:6,textDecoration:"none",fontSize:14,fontWeight:950,boxShadow:"0 14px 28px rgba(37,211,102,.22)"}}>
-                  WhatsApp'tan teklif al
+                  Kuponlu fiyat al
                 </a>
               </div>
               <div style={{display:"grid",gridTemplateColumns:"repeat(2,minmax(0,1fr))",gap:10}}>
@@ -3391,6 +3391,19 @@ function ProductsPage() {
                 </button>
               ))}
             </div>
+          </div>}
+
+          {!term && items.length > 0 && <div style={{border:"1px solid #bbf7d0",borderRadius:8,background:"linear-gradient(135deg,#f0fdf4,#fff)",padding:isMobile?"12px":"14px 16px",marginBottom:16,boxShadow:"0 12px 34px rgba(22,163,74,.08)"}}>
+            <div style={{display:"flex",justifyContent:"space-between",gap:12,alignItems:isMobile?"flex-start":"center",marginBottom:10,flexDirection:isMobile?"column":"row"}}>
+              <div>
+                <div style={{fontSize:12,fontWeight:950,color:"#16a34a",textTransform:"uppercase",letterSpacing:.3}}>Kargo dahil kuponlu fiyat</div>
+                <div style={{fontSize:isMobile?14:16,fontWeight:950,color:"#111827",marginTop:3,lineHeight:1.35}}>{catName} icin kod, sase veya eski parca fotosu gonderin.</div>
+              </div>
+              <a href={generalWhatsAppUrl(`${catName} kargo dahil kuponlu fiyat`)} target="_blank" rel="noopener noreferrer" onClick={() => { const href = generalWhatsAppUrl(`${catName} kargo dahil kuponlu fiyat`); recordLeadEvent("whatsapp", { source:"category_quote_nudge_whatsapp", href, category:catName }); metaTrackCustom("WhatsAppCategoryLead", { source:"category_quote_nudge", category: cat }); }} style={{minHeight:40,padding:"9px 13px",borderRadius:8,background:"#25D366",color:"#062813",fontSize:13,fontWeight:950,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center",whiteSpace:isMobile?"normal":"nowrap",textAlign:"center"}}>
+                WhatsApp'tan netlestir
+              </a>
+            </div>
+            <QuickQuoteBox source={`category_quick_quote_${cat}`} />
           </div>}
 
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:16,gap:10,flexWrap:"wrap"}}>
