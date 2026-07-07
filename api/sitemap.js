@@ -176,6 +176,28 @@ function salesPriorityLabel(product) {
   return "sales-priority-3";
 }
 
+function productSitemapPriority(product) {
+  const stock = Number(product?.stock || 0);
+  const hasStock = stock > 0;
+  const hasCode = !!cleanSeoText(product?.oem || product?.sku);
+  const hasImage = hasProductDisplayImage(product);
+  const label = salesPriorityLabel(product);
+  if (label === "sales-priority-1" && hasStock && hasCode && hasImage) return "0.93";
+  if (label === "sales-priority-1" && hasStock && hasCode) return "0.88";
+  if (label === "sales-priority-2" && hasStock && hasCode) return "0.82";
+  if (hasStock && hasImage) return "0.78";
+  if (hasCode) return "0.72";
+  return "0.65";
+}
+
+function productSitemapChangefreq(product) {
+  const stock = Number(product?.stock || 0);
+  const label = salesPriorityLabel(product);
+  if (stock > 0 && label === "sales-priority-1") return "daily";
+  if (stock > 0 && label === "sales-priority-2") return "weekly";
+  return "monthly";
+}
+
 function buildSeoProductTitle(product, categories = [], max = 74) {
   return productSearchTitle(product, categories, max);
 }
@@ -268,9 +290,10 @@ function renderProductHtml(product) {
   return html.replace("</head>", `${jsonLd}\n</head>`);
 }
 
-function productJsonLdSeo(product, canonical, image, categories = []) {
+function productJsonLdSeo(product, canonical, image, categories = [], relatedProducts = []) {
   const price = Number(product.price || 0);
   const seoName = productSearchName(product, categories, 140);
+  const stock = Number(product.stock || 0);
   return {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -284,11 +307,21 @@ function productJsonLdSeo(product, canonical, image, categories = []) {
     url: canonical,
     brand: { "@type": "Brand", name: product.brand || "Ekersan" },
     category: categoryNameForProduct(product, categories),
+    mainEntityOfPage: canonical,
     additionalProperty: [
       product.sku ? { "@type": "PropertyValue", name: "SKU", value: product.sku } : null,
       product.oem ? { "@type": "PropertyValue", name: "OEM / Muadil", value: product.oem } : null,
       vehiclePhrase(product) ? { "@type": "PropertyValue", name: "Uyumluluk Adaylari", value: vehiclePhrase(product) } : null,
+      product.cat ? { "@type": "PropertyValue", name: "Kategori", value: categoryNameForProduct(product, categories) } : null,
+      { "@type": "PropertyValue", name: "Stok Durumu", value: stock > 0 ? `Stokta ${Math.floor(stock)} adet` : "Stok teyidi gerekli" },
     ].filter(Boolean),
+    isSimilarTo: relatedProducts.slice(0, 6).map(item => ({
+      "@type": "Product",
+      name: productSearchName(item, categories, 120) || item.name,
+      url: productSeoUrl(SITE, item),
+      sku: item.sku || String(item.id || ""),
+      mpn: item.oem || item.sku || String(item.id || ""),
+    })),
     aggregateRating: Number(product.rating || 0) > 0 ? {
       "@type": "AggregateRating",
       ratingValue: Number(product.rating || 4.7).toFixed(1),
@@ -305,6 +338,7 @@ function productJsonLdSeo(product, canonical, image, categories = []) {
       availability: Number(product.stock || 0) > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
       itemCondition: "https://schema.org/NewCondition",
       seller: { "@type": "Organization", name: "Frenciniz", url: SITE },
+      inventoryLevel: stock > 0 ? { "@type": "QuantitativeValue", value: Math.floor(stock) } : undefined,
       shippingDetails: {
         "@type": "OfferShippingDetails",
         shippingDestination: { "@type": "DefinedRegion", addressCountry: "TR" },
@@ -312,6 +346,11 @@ function productJsonLdSeo(product, canonical, image, categories = []) {
           "@type": "MonetaryAmount",
           value: price >= 3000 ? "0.00" : "150.00",
           currency: "TRY",
+        },
+        deliveryTime: {
+          "@type": "ShippingDeliveryTime",
+          handlingTime: { "@type": "QuantitativeValue", minValue: 0, maxValue: 1, unitCode: "DAY" },
+          transitTime: { "@type": "QuantitativeValue", minValue: 1, maxValue: 3, unitCode: "DAY" },
         },
       },
       hasMerchantReturnPolicy: {
@@ -321,6 +360,7 @@ function productJsonLdSeo(product, canonical, image, categories = []) {
         merchantReturnDays: 14,
         returnMethod: "https://schema.org/ReturnByMail",
         returnFees: "https://schema.org/ReturnFeesCustomerResponsibility",
+        merchantReturnLink: `${SITE}/return-policy`,
       },
     },
   };
@@ -434,6 +474,59 @@ function productNoScriptHtml(product, categories = [], canonical = "", relatedPr
   </noscript>`;
 }
 
+function productSeoFallbackHtml(product, categories = [], canonical = "", relatedProducts = []) {
+  const seoName = productSearchName(product, categories, 150) || product?.name || "Frenciniz urunu";
+  const category = categoryNameForProduct(product, categories);
+  const description = buildSeoProductDescription(product, categories, 900);
+  const vehicles = [
+    ...(Array.isArray(product?.compat) ? product.compat : []),
+    ...(Array.isArray(product?.veh) ? product.veh : []),
+  ].map(cleanSeoText).filter(Boolean).slice(0, 12);
+  const price = Number(product?.price || 0);
+  const stock = Number(product?.stock || 0);
+  const image = absoluteUrl(productPrimaryImage(product, "/img/site/frenciniz-logo-real-og.jpg"));
+  const whatsappText = [
+    "Merhaba Frenciniz, Google urun sayfasindan geldim; fiyat, stok ve uyumluluk teyidi istiyorum.",
+    `Urun: ${seoName}`,
+    product?.sku ? `SKU: ${product.sku}` : "",
+    product?.oem ? `OEM / muadil: ${String(product.oem).slice(0, 140)}` : "",
+    canonical ? `Link: ${canonical}` : "",
+    "Arac marka-model:",
+    "Sase no:",
+    "Eski parca fotografi gonderebilirim.",
+  ].filter(Boolean).join("\n");
+  const whatsappHref = `https://wa.me/908508887881?text=${encodeURIComponent(whatsappText)}`;
+  const relatedLinks = relatedProducts.slice(0, 12)
+    .map(item => `<li><a href="${xmlEscape(productSeoUrl(SITE, item))}">${xmlEscape(productSearchName(item, categories, 125) || item.name)}</a></li>`)
+    .join("");
+  const vehicleLinks = vehicles.map(value => `<li>${xmlEscape(value)}</li>`).join("");
+  return `
+    <main data-frenciniz-seo-product style="font-family:Arial,system-ui,sans-serif;line-height:1.55;color:#111827;background:#fff;max-width:1120px;margin:0 auto;padding:24px 16px">
+      <nav aria-label="Breadcrumb" style="font-size:13px;margin-bottom:14px">
+        <a href="${SITE}" style="color:#ff6000;text-decoration:none">Frenciniz</a>
+        <span> / </span>
+        <a href="${SITE}/${xmlEscape(product?.cat || "urunler")}" style="color:#ff6000;text-decoration:none">${xmlEscape(category)}</a>
+      </nav>
+      <article itemscope itemtype="https://schema.org/Product" style="display:grid;grid-template-columns:minmax(220px,360px) 1fr;gap:22px;align-items:start">
+        <img itemprop="image" src="${xmlEscape(image)}" alt="${xmlEscape(seoName)}" width="360" height="360" style="width:100%;height:auto;border:1px solid #e5e7eb;border-radius:8px;object-fit:contain;background:#f8fafc">
+        <div>
+          <h1 itemprop="name" style="font-size:30px;line-height:1.16;margin:0 0 10px">${xmlEscape(seoName)}</h1>
+          <p itemprop="description" style="font-size:16px;margin:0 0 14px;color:#334155">${xmlEscape(description)}</p>
+          <ul style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px 14px;list-style:none;padding:0;margin:0 0 16px">
+            <li><strong>Kategori:</strong> ${xmlEscape(category)}</li>
+            ${product?.sku ? `<li><strong>Stok kodu:</strong> <span itemprop="sku">${xmlEscape(product.sku)}</span></li>` : ""}
+            ${product?.oem ? `<li><strong>OEM / muadil:</strong> <span itemprop="mpn">${xmlEscape(product.oem)}</span></li>` : ""}
+            <li><strong>Stok:</strong> ${stock > 0 ? `${Math.floor(stock)} adet` : "stok teyidi gerekli"}</li>
+            ${price > 0 ? `<li><strong>Fiyat:</strong> <span itemprop="offers" itemscope itemtype="https://schema.org/Offer"><meta itemprop="priceCurrency" content="TRY"><meta itemprop="price" content="${xmlEscape(price.toFixed(2))}">${xmlEscape(price.toLocaleString("tr-TR"))} TL</span></li>` : ""}
+          </ul>
+          <a href="${xmlEscape(whatsappHref)}" data-lead-source="product_seo_fallback" style="display:inline-block;background:#16a34a;color:#fff;text-decoration:none;font-weight:800;border-radius:8px;padding:12px 16px">WhatsApp ile fiyat ve uyumluluk teyidi al</a>
+        </div>
+      </article>
+      ${vehicleLinks ? `<section style="margin-top:22px"><h2 style="font-size:22px;margin:0 0 10px">Uyumluluk adaylari</h2><ul style="columns:2;margin:0;padding-left:20px">${vehicleLinks}</ul><p style="color:#475569">Kesin uyumluluk icin OEM/parca kodu, sase no veya eski parca fotografi ile teyit alin.</p></section>` : ""}
+      ${relatedLinks ? `<section style="margin-top:22px"><h2 style="font-size:22px;margin:0 0 10px">Benzer ve muadil urunler</h2><ul style="columns:2;margin:0;padding-left:20px">${relatedLinks}</ul></section>` : ""}
+    </main>`;
+}
+
 function renderSeoProductHtml(product, categories = [], products = []) {
   const canonical = productSeoUrl(SITE, product);
   const title = buildSeoProductTitle(product, categories);
@@ -441,18 +534,25 @@ function renderSeoProductHtml(product, categories = [], products = []) {
   const image = absoluteUrl(product.img || (Array.isArray(product.images) && product.images[0]) || "/img/site/frenciniz-logo-real-og.jpg");
   const seoName = productSearchName(product, categories, 140) || product.name;
   const longDescription = buildSeoProductDescription(product, categories, 5000);
+  const relatedProducts = relatedSeoProducts(product, products, 12);
+  const price = Number(product?.price || 0);
+  const stock = Number(product?.stock || 0);
   const keywords = [
     seoName,
     product?.sku,
     product?.oem,
     categoryNameForProduct(product, categories),
     vehiclePhrase(product),
+    `${product?.sku || product?.oem || seoName} fiyat`,
+    `${product?.sku || product?.oem || seoName} stok`,
+    `${categoryNameForProduct(product, categories)} fiyatlari`,
     "agir vasita fren parcasi",
     "OEM ile uyumluluk",
+    "kamyon tir dorse yedek parca",
     "Frenciniz",
   ].filter(Boolean).join(", ");
   const jsonLd = [
-    productJsonLdSeo(product, canonical, image, categories),
+    productJsonLdSeo(product, canonical, image, categories, relatedProducts),
     productFaqJsonLd(product, categories),
     productBreadcrumbJsonLd(product, canonical, categories),
     {
@@ -460,13 +560,13 @@ function renderSeoProductHtml(product, categories = [], products = []) {
       "@type": "WebPage",
       name: title,
       description: longDescription,
+      keywords,
       url: canonical,
       primaryImageOfPage: image ? { "@type": "ImageObject", url: image } : undefined,
       mainEntity: { "@id": `${canonical}#product` },
       isPartOf: { "@type": "WebSite", name: "Frenciniz", url: SITE },
     },
   ].map(item => `<script type="application/ld+json">${JSON.stringify(item)}</script>`).join("\n");
-  const relatedProducts = relatedSeoProducts(product, products, 12);
   const relatedItemList = relatedProducts.length
     ? `<script type="application/ld+json">${JSON.stringify({
         "@context": "https://schema.org",
@@ -480,16 +580,17 @@ function renderSeoProductHtml(product, categories = [], products = []) {
         })),
       })}</script>`
     : "";
-  const noScript = productNoScriptHtml(product, categories, canonical, relatedProducts);
+  const fallbackHtml = productSeoFallbackHtml(product, categories, canonical, relatedProducts);
   let html = readIndexHtml();
 
   if (!html) {
-    return `<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${xmlEscape(title)}</title><meta name="description" content="${xmlEscape(description)}"><meta name="keywords" content="${xmlEscape(keywords)}"><link rel="canonical" href="${xmlEscape(canonical)}">${jsonLd}${relatedItemList}</head><body><h1>${xmlEscape(seoName)}</h1><p>${xmlEscape(description)}</p><a href="${xmlEscape(canonical)}">Urunu ac</a>${noScript}</body></html>`;
+    return `<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${xmlEscape(title)}</title><meta name="description" content="${xmlEscape(description)}"><meta name="keywords" content="${xmlEscape(keywords)}"><meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1"><link rel="canonical" href="${xmlEscape(canonical)}">${jsonLd}${relatedItemList}</head><body><div id="root">${fallbackHtml}</div></body></html>`;
   }
 
   html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${xmlEscape(title)}</title>`);
   html = replaceOrInject(html, /<meta name="description" content="[^"]*"\s*\/?>/i, `<meta name="description" content="${xmlEscape(description)}" />`);
   html = replaceOrInject(html, /<meta name="keywords" content="[^"]*"\s*\/?>/i, `<meta name="keywords" content="${xmlEscape(keywords)}" />`);
+  html = replaceOrInject(html, /<meta name="robots" content="[^"]*"\s*\/?>/i, `<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />`);
   html = replaceOrInject(html, /<link rel="canonical" href="[^"]*"\s*\/?>/i, `<link rel="canonical" href="${xmlEscape(canonical)}" />`);
   if (image) {
     html = replaceOrInject(html, /<link rel="preload" as="image" href="[^"]*"\s*\/?>/i, `<link rel="preload" as="image" href="${xmlEscape(image)}" />`);
@@ -499,10 +600,15 @@ function renderSeoProductHtml(product, categories = [], products = []) {
   html = replaceOrInject(html, /<meta property="og:description" content="[^"]*"\s*\/?>/i, `<meta property="og:description" content="${xmlEscape(description)}" />`);
   html = replaceOrInject(html, /<meta property="og:image" content="[^"]*"\s*\/?>/i, `<meta property="og:image" content="${xmlEscape(image)}" />`);
   html = replaceOrInject(html, /<meta property="og:url" content="[^"]*"\s*\/?>/i, `<meta property="og:url" content="${xmlEscape(canonical)}" />`);
+  html = replaceOrInject(html, /<meta property="product:price:amount" content="[^"]*"\s*\/?>/i, price > 0 ? `<meta property="product:price:amount" content="${xmlEscape(price.toFixed(2))}" />` : "");
+  html = replaceOrInject(html, /<meta property="product:price:currency" content="[^"]*"\s*\/?>/i, `<meta property="product:price:currency" content="TRY" />`);
+  html = replaceOrInject(html, /<meta property="product:availability" content="[^"]*"\s*\/?>/i, `<meta property="product:availability" content="${stock > 0 ? "in stock" : "out of stock"}" />`);
+  html = replaceOrInject(html, /<meta property="product:retailer_item_id" content="[^"]*"\s*\/?>/i, `<meta property="product:retailer_item_id" content="${xmlEscape(product?.sku || product?.id || "")}" />`);
   html = replaceOrInject(html, /<meta name="twitter:title" content="[^"]*"\s*\/?>/i, `<meta name="twitter:title" content="${xmlEscape(title)}" />`);
   html = replaceOrInject(html, /<meta name="twitter:description" content="[^"]*"\s*\/?>/i, `<meta name="twitter:description" content="${xmlEscape(description)}" />`);
   html = replaceOrInject(html, /<meta name="twitter:image" content="[^"]*"\s*\/?>/i, `<meta name="twitter:image" content="${xmlEscape(image)}" />`);
-  return html.replace("</head>", `${jsonLd}\n${relatedItemList}\n</head>`).replace("</body>", `${noScript}\n</body>`);
+  html = html.replace(/<div id="root"><\/div>/i, `<div id="root">${fallbackHtml}</div>`);
+  return html.replace("</head>", `${jsonLd}\n${relatedItemList}\n</head>`);
 }
 
 function categoryIdsForSeo(category, categories = []) {
@@ -1022,12 +1128,14 @@ export default async function handler(req, res) {
       if (hasImg) {
         imgUrl = absoluteUrl(rawImg);
       }
+      const priority = productSitemapPriority(p);
+      const changefreq = productSitemapChangefreq(p);
       urls.push(
         `<url>` +
         `<loc>${xmlEscape(productSeoUrl(SITE, p))}</loc>` +
         `<lastmod>${today}</lastmod>` +
-        `<changefreq>weekly</changefreq>` +
-        `<priority>0.7</priority>` +
+        `<changefreq>${changefreq}</changefreq>` +
+        `<priority>${priority}</priority>` +
         (imgUrl ? `<image:image><image:loc>${xmlEscape(imgUrl)}</image:loc><image:title>${xmlEscape(productSearchName(p, categories, 140) || p.name)}</image:title></image:image>` : "") +
         `</url>`
       );
