@@ -215,3 +215,20 @@
 - Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
 - Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
 - Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+
+## Heartbeat Trafik Kontrolu - 01:39
+- Onceki UTC gun (2026-07-07): 133 goruntuleme / 41 tekil; Facebook 0, Google 75, tiklama W/T/E 0/0/0.
+- Yeni UTC gun (2026-07-08): 145 goruntuleme / 52 tekil; raw log 145 satir.
+- Bot filtreli insan trafigi: 124 goruntuleme / 45 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 80; Google Ads isaretli 14.
+- Iletisim tiklamalari: WhatsApp 2, telefon 2, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Detayli filtre: 145 goruntulemenin 21'i bot/supheli; insan trafigi 124 goruntuleme / 45 tekil IP. Insan sehirleri: Istanbul 27, TR/bos 17, Sofia 12, Izmir 11, Antalya 9, Ankara 8, Eyupsultan 7, Cankaya 6, Efeler 6, US/bos 6, Bursa 5.
+- Turkiye saatiyle 09.07.2026 00:00 sonrasi: 27 goruntuleme / 8 tekil; insan filtreli 14 goruntuleme / 3 tekil IP. Google 8, Google Ads isaretli 0, Facebook/Meta 0. Bu gece sicak yollar: urun 142 BMC/Kampana 522 6, urun 888 Volvo suspansiyon korugu 2, urun 801 fren pabucu 4 toplam, urun 1042 dorse koruk lastigi 2.
+- Bugunku UTC insan yollari: ana sayfa 22, urun 888 Volvo suspansiyon korugu 6, urun 142 BMC/Kampana 522 6, urun 915 komple koruk metal piston 6, urun 1042 dorse koruk lastigi 4, urun 459 Ford Cargo/Krone/Kogel suspansiyon korugu 4, urun 141 BMC fren kampanasi 4, urun 166 BMC Probus/Fatih fren diski 4, urun 462 SAF Holland fren korugu 3, urun 480 Ford Cargo fren balatasi 3, /fren-balatasi 3, urun 446 dorse suspansiyon korugu 3.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0. Eski toplam add_to_cart kayitlari var ama bugune ait degil; son 7 gun satisa yakin sepet/favori sinyali yok. WhatsApp/telefon/e-posta degerleri sadece link tiklamasidir.
+- Canli SEO dogrulama: ana sayfa, urun 915, 1042, 459, 166, /fren-balatasi ve /saf-dorse-kaliper-tamir-takimi 200. Urun sayfalarinda canonical, Product schema, JSON-LD, WhatsApp, telefon ve indirim kuponu CTA'si mevcut. Sitemap/robots/Merchant/Meta feed 200.
+- Uygulanan aksiyon: yeni kod degisikligi yapilmadi; teknik SEO ve feed tarafinda acil hata gorulmedi. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking ve canli feed kontrolune dayaniyor.
+- Satis adimi: en yakin teklif cevaplari urun 142, 888, 915, 459, 166 ve 480 icin hazir tutulmali. Mesaj formati: OEM/kod teyidi + uyum sorusu + stok/adet + kargo dahil kuponlu net fiyat + eski parca foto/olcu istegi.
