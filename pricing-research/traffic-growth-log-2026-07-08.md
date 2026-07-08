@@ -34,3 +34,20 @@
 - Sicak urun stok/fiyat: 767 Mercedes Axor Porya On ESP.01.39.01 stok 14 fiyat 5920.2 TL; 459 FT 34881 stok 79 fiyat 1782 TL; 887 42813.S stok 667 fiyat 1815 TL.
 - Uygulanan aksiyon: yeni kod degisikligi yapilmadi; bugunku insan veri cok dusuk ve canli teknik SEO/feed saglikli oldugu icin risk almadan takip/log guncellendi.
 - Satis adimi: bugun ilk insan ziyaret /fren-korukleri oldugu icin fren korugu landingindeki urunlere "kargo dahil kuponlu net fiyat" cevabi hazir tutulmali; 767 porya ziyaretleri supheli gorundugu icin Ads tarafinda maliyet varsa panelde negatif/konum kontrolu yapilmali.
+
+## Heartbeat Trafik Kontrolu - 05:48
+- Onceki UTC gun (2026-07-07): 133 goruntuleme / 41 tekil; Facebook 0, Google 75, tiklama W/T/E 0/0/0.
+- Yeni UTC gun (2026-07-08): 4 goruntuleme / 3 tekil; raw log 4 satir.
+- Bot filtreli insan trafigi: 1 goruntuleme / 1 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 0; Google Ads isaretli 0.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2311 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Detayli filtre: 4 goruntulemenin 3'u bot/supheli; insan trafigi 1 goruntuleme / 1 tekil IP. Insan sehir: TR/Izmit 1.
+- Bugunku insan yolu: /fren-korukleri 1. Tum ham yollar: urun 767 Mercedes Axor on porya 2, ana sayfa 1, /fren-korukleri 1.
+- Google/Facebook kirilimi: bugun Google referrer 0, Google Ads isaretli 0, Facebook/Meta 0. Onceki gun Google isaretli insan goruntuleme 77, Google Ads 13 idi.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0. Bugunku lead de 0; WhatsApp/telefon/e-posta tiklamasi yok.
+- Canli SEO dogrulama: /fren-korukleri, urun 767, 459 ve 887 sayfalari 200. Urunlerde Fiyat Stok title, canonical, Product schema, sik aranan parca ifadeleri ve 0850 888 7881 WhatsApp linki mevcut; /fren-korukleri landinginde JSON-LD ve WhatsApp var.
+- Uygulanan aksiyon: yeni kod degisikligi yapilmadi; 05:48 itibariyla yeni trafik yok, canli SEO/feed saglikli.
+- Satis adimi: sabah kampanya cevabi fren korugu ve suspansiyon korugu odağinda hazir tutulmali. 767 porya ham goruntulemeleri insan filtreye takilmadigi icin Ads panelinde maliyet olusuyorsa konum/negatif kelime kontrolu yapilmali.
