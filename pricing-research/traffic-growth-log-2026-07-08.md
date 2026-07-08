@@ -205,3 +205,13 @@
 - Canli SEO dogrulama: /axor-3340-bijon, /ford-cargo-1846-fren-diski, /temsa-safir-suspansiyon-korugu, urun 718, 915, 166 ve 480 200. Landinglerde canonical, Product schema, JSON-LD, kupon, WhatsApp, telefon ve arama ifadeleri mevcut. Urun sayfalarinda yeni product_coupon_banner, telefon CTA, canonical, Product schema, JSON-LD, WhatsApp ve OEM/parca kodu mevcut. Sitemap/robots/Merchant/Meta feed 200.
 - Uygulanan aksiyon: yeni kod degisikligi yapilmadi; onceki turda eklenen urun kupon bandi canli urun sayfalarinda dogrulandi. Teknik SEO/CTA saglikli; asil darbogaz tiklamanin lead'e donusmemesi.
 - Satis adimi: en yakin niyet landingleri /axor-3340-bijon, /ford-cargo-1846-fren-diski, /temsa-safir-suspansiyon-korugu ve urun 915/166/480. Hazir cevap: kod/OEM teyidi + arac/dorse/aks uyum + adet + eski parca foto/olcu + kargo dahil kuponlu net fiyat.
+
+## Heartbeat Trafik Kontrolu - 00:33
+- Onceki UTC gun (2026-07-07): 133 goruntuleme / 41 tekil; Facebook 0, Google 75, tiklama W/T/E 0/0/0.
+- Yeni UTC gun (2026-07-08): 120 goruntuleme / 47 tekil; raw log 120 satir.
+- Bot filtreli insan trafigi: 112 goruntuleme / 43 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 74; Google Ads isaretli 14.
+- Iletisim tiklamalari: WhatsApp 2, telefon 2, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
