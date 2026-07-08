@@ -508,6 +508,16 @@ function productSeoFallbackHtml(product, categories = [], canonical = "", relate
     "Eski parca fotografi gonderebilirim.",
   ].filter(Boolean).join("\n");
   const whatsappHref = `https://wa.me/908508887881?text=${encodeURIComponent(whatsappText)}`;
+  const couponText = [
+    "Merhaba Frenciniz, bu urun icin indirim kuponu ve kargo dahil net fiyat istiyorum.",
+    `Urun: ${seoName}`,
+    product?.sku ? `Stok kodu: ${product.sku}` : "",
+    product?.oem ? `OEM / muadil: ${String(product.oem).slice(0, 140)}` : "",
+    canonical ? `Link: ${canonical}` : "",
+    "Arac marka-model / sase:",
+    "Adet:",
+  ].filter(Boolean).join("\n");
+  const couponHref = `https://wa.me/908508887881?text=${encodeURIComponent(couponText)}`;
   const relatedLinks = relatedProducts.slice(0, 12)
     .map(item => `<li><a href="${xmlEscape(productSeoUrl(SITE, item))}">${xmlEscape(productSearchName(item, categories, 125) || item.name)}</a></li>`)
     .join("");
@@ -520,6 +530,14 @@ function productSeoFallbackHtml(product, categories = [], canonical = "", relate
         <span> / </span>
         <a href="${SITE}/${xmlEscape(product?.cat || "urunler")}" style="color:#ff6000;text-decoration:none">${xmlEscape(category)}</a>
       </nav>
+      <section style="margin:0 0 18px;padding:12px 14px;border:1px solid #fed7aa;border-radius:8px;background:linear-gradient(90deg,#fff7ed,#fef3c7 54%,#dcfce7);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+        <div style="min-width:220px;flex:1">
+          <div style="display:inline-block;background:#ff6000;color:#fff;font-size:11px;font-weight:900;border-radius:999px;padding:5px 8px;margin-bottom:6px">INDIRIM KUPONU</div>
+          <strong style="display:block;color:#111827;font-size:16px;line-height:1.35">Kargo dahil kuponlu net fiyat ve uyumluluk teyidi icin urun kodunu WhatsApp'a gonderin.</strong>
+          <span style="display:block;color:#475569;font-size:13px;margin-top:4px">SKU/OEM, adet, arac modeli ve eski parca fotografi ile yanlis parca riskini azaltalim.</span>
+        </div>
+        <a href="${xmlEscape(couponHref)}" data-lead-source="product_coupon_banner" style="min-height:42px;display:inline-flex;align-items:center;justify-content:center;background:#25D366;color:#062813;text-decoration:none;font-weight:900;border-radius:8px;padding:10px 14px">WhatsApp'tan kuponlu fiyat al</a>
+      </section>
       <article itemscope itemtype="https://schema.org/Product" style="display:grid;grid-template-columns:minmax(220px,360px) 1fr;gap:22px;align-items:start">
         <img itemprop="image" src="${xmlEscape(image)}" alt="${xmlEscape(seoName)}" width="360" height="360" style="width:100%;height:auto;border:1px solid #e5e7eb;border-radius:8px;object-fit:contain;background:#f8fafc">
         <div>
@@ -532,7 +550,10 @@ function productSeoFallbackHtml(product, categories = [], canonical = "", relate
             <li><strong>Stok:</strong> ${stock > 0 ? `${Math.floor(stock)} adet` : "stok teyidi gerekli"}</li>
             ${price > 0 ? `<li><strong>Fiyat:</strong> <span itemprop="offers" itemscope itemtype="https://schema.org/Offer"><meta itemprop="priceCurrency" content="TRY"><meta itemprop="price" content="${xmlEscape(price.toFixed(2))}">${xmlEscape(price.toLocaleString("tr-TR"))} TL</span></li>` : ""}
           </ul>
-          <a href="${xmlEscape(whatsappHref)}" data-lead-source="product_seo_fallback" style="display:inline-block;background:#16a34a;color:#fff;text-decoration:none;font-weight:800;border-radius:8px;padding:12px 16px">WhatsApp ile fiyat ve uyumluluk teyidi al</a>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <a href="${xmlEscape(whatsappHref)}" data-lead-source="product_seo_fallback" style="display:inline-flex;align-items:center;justify-content:center;background:#16a34a;color:#fff;text-decoration:none;font-weight:800;border-radius:8px;padding:12px 16px;min-height:44px">WhatsApp ile fiyat ve uyumluluk teyidi al</a>
+            <a href="tel:+905456087008" data-lead-source="product_seo_phone" style="display:inline-flex;align-items:center;justify-content:center;background:#111827;color:#fff;text-decoration:none;font-weight:800;border-radius:8px;padding:12px 16px;min-height:44px">Telefonla fiyat al</a>
+          </div>
         </div>
       </article>
       ${searchPhraseLinks ? `<section style="margin-top:22px"><h2 style="font-size:22px;margin:0 0 10px">Sik aranan parca ifadeleri</h2><ul style="columns:2;margin:0;padding-left:20px">${searchPhraseLinks}</ul></section>` : ""}

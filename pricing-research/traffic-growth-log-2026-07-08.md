@@ -171,3 +171,20 @@
 - Canli SEO dogrulama: ana sayfa, /cart, urun 166, urun 446, urun 480, urun 888, urun 515, urun 174 ve urun 322 200. Urunlerde canonical, Product schema, JSON-LD, arama ifadeleri, stok/fiyat niyeti, OEM/parca kodu, WhatsApp 0850 888 7881 ve telefon 0545 608 7008 mevcut. Feed/sitemap/robots canli saglikli.
 - Uygulanan aksiyon: yeni kod degisikligi yapilmadi; teknik SEO ve CTA kontrolleri saglikli. Trafik artiyor fakat lead/sepet/favori donusumu sifir oldugu icin odak teklif cevap hizina ve kuponlu net fiyat mesajina cekildi.
 - Satis adimi: en yakin teklif paketleri urun 166, 480, 446, 174 ve 322 icin hazir tutulmali. Oncelik: 166 BMC fren diski "57RS307931M / ESD 160 05 kod teyidi + BMC Probus/Fatih uyum + adet + eski disk olcusu/foto + kargo dahil kuponlu net fiyat"; 480 Ford Cargo balata "19921 / PWR-K005 + Ford Cargo 2520/2621 uyum"; 446 koruk "FT34220-2P01 + dorse/aks teyidi".
+
+## Heartbeat Trafik Kontrolu - 13:49
+- Onceki UTC gun (2026-07-07): 133 goruntuleme / 41 tekil; Facebook 0, Google 75, tiklama W/T/E 0/0/0.
+- Yeni UTC gun (2026-07-08): 62 goruntuleme / 20 tekil; raw log 62 satir.
+- Bot filtreli insan trafigi: 57 goruntuleme / 17 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 31; Google Ads isaretli 7.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Detayli filtre: 62 goruntulemenin 5'i bot/supheli; insan trafigi 57 goruntuleme / 17 tekil IP. Insan sehirleri: TR/bos 14, Sofia 12, Antalya 9, Istanbul 6, Efeler 4, US/bos 4, Ankara 4, Antakya 2, Izmir 1, Izmit 1.
+- Bugunku insan yollari: ana sayfa 15, urun 888 Volvo suspansiyon korugu 4, urun 915 komple koruk metal piston 4, urun 166 BMC Probus/Fatih fren diski 4, urun 480 Ford Cargo fren balatasi 3, /fren-balatasi 3, urun 446 dorse suspansiyon korugu 3, urun 718 Schmitz disk balata 2, urun 1042 dorse koruk lastigi 2, urun 515 kaliper ayar mekanizmasi 2, urun 174 dorse fren diski 2, urun 322 Ford Cargo bijon 2, urun 504 kaliper tamir takimi 2, /cart 1, /iveco-eurocargo-kaliper-tamir-takimi 1.
+- Google/Facebook kirilimi: bugun Google referrer 31 ve Google Ads isaretli 7. Google yollari: ana sayfa 5, urun 915 4, urun 166 4, urun 480 3, /fren-balatasi 3, urun 718 2, urun 1042 2, urun 174 2, urun 322 2, urun 482 1, urun 853 1, urun 848 1, /iveco-eurocargo-kaliper-tamir-takimi 1. Google Ads yollari: ana sayfa 3, urun 174 2, urun 322 2. Facebook/Meta 0. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking ve canli feed kontrolune dayaniyor.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0. /cart icin 1 insan goruntulemesi var ama add_to_cart event'i yok; gercek sepete ekleme sayilmadi. Bugunku lead de 0; WhatsApp/telefon/e-posta tiklamasi yok.
+- Canli SEO dogrulama: ana sayfa, /fren-balatasi, /cart, urun 888, 915, 166, 480, 446, 718, 1042, 174 ve 322 200. Urunlerde canonical, Product schema, JSON-LD, arama ifadeleri, stok/fiyat niyeti, OEM/parca kodu, WhatsApp 0850 888 7881 ve telefon 0545 608 7008 mevcut.
+- Uygulanan aksiyon: API-render urun sayfalarina ustte "INDIRIM KUPONU" WhatsApp bandi ve ikinci telefon CTA'si eklendi. Amac Google/Ads ile gelen direkt urun ziyaretcisini kuponlu net fiyat mesajina daha hizli almak. Build npm.cmd run build ile basarili; ilk npm run build denemesi PowerShell execution policy nedeniyle calismadi.
+- Satis adimi: ilk geri donus icin urun 166, 915, 888, 480, 446, 718, 1042, 174 ve 322 teklif cevaplari hazir tutulmali. Kisa cevap formati: "Kod/OEM teyidi + arac/dorse/aks uyum + adet + eski parca foto/olcu + kargo dahil kuponlu net fiyat".
