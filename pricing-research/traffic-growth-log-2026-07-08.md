@@ -188,3 +188,20 @@
 - Canli SEO dogrulama: ana sayfa, /fren-balatasi, /cart, urun 888, 915, 166, 480, 446, 718, 1042, 174 ve 322 200. Urunlerde canonical, Product schema, JSON-LD, arama ifadeleri, stok/fiyat niyeti, OEM/parca kodu, WhatsApp 0850 888 7881 ve telefon 0545 608 7008 mevcut.
 - Uygulanan aksiyon: API-render urun sayfalarina ustte "INDIRIM KUPONU" WhatsApp bandi ve ikinci telefon CTA'si eklendi. Amac Google/Ads ile gelen direkt urun ziyaretcisini kuponlu net fiyat mesajina daha hizli almak. Build npm.cmd run build ile basarili; ilk npm run build denemesi PowerShell execution policy nedeniyle calismadi.
 - Satis adimi: ilk geri donus icin urun 166, 915, 888, 480, 446, 718, 1042, 174 ve 322 teklif cevaplari hazir tutulmali. Kisa cevap formati: "Kod/OEM teyidi + arac/dorse/aks uyum + adet + eski parca foto/olcu + kargo dahil kuponlu net fiyat".
+
+## Heartbeat Trafik Kontrolu - 14:50
+- Onceki UTC gun (2026-07-07): 133 goruntuleme / 41 tekil; Facebook 0, Google 75, tiklama W/T/E 0/0/0.
+- Yeni UTC gun (2026-07-08): 72 goruntuleme / 27 tekil; raw log 72 satir.
+- Bot filtreli insan trafigi: 67 goruntuleme / 24 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 41; Google Ads isaretli 9.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Detayli filtre: 72 goruntulemenin 5'i bot/supheli; insan trafigi 67 goruntuleme / 24 tekil IP. Insan sehirleri: TR/bos 16, Sofia 12, Istanbul 10, Antalya 9, Efeler 4, US/bos 4, Ankara 4, Cankaya 2, Antakya 2, Diyarbakir 1, Bursa 1, Izmir 1, Izmit 1.
+- Bugunku insan yollari: ana sayfa 17, urun 888 Volvo suspansiyon korugu 4, urun 915 komple koruk metal piston 4, urun 166 BMC Probus/Fatih fren diski 4, urun 480 Ford Cargo fren balatasi 3, /fren-balatasi 3, urun 446 dorse suspansiyon korugu 3, urun 643 Mercedes Actros/Axor fren pabucu 2, urun 993 kaliper toz lastigi tamir takimi 2, urun 718 Schmitz disk balata 2, urun 1042 dorse koruk lastigi 2, urun 515 kaliper ayar mekanizmasi 2, urun 174 dorse fren diski 2, urun 322 Ford Cargo bijon 2, urun 504 kaliper tamir takimi 2, /axor-3340-bijon 1, /ford-cargo-1846-fren-diski 1, /temsa-safir-suspansiyon-korugu 1, /tirsan-dorse-kaliper-tamir-takimi 1, /cart 1.
+- Google/Facebook kirilimi: bugun Google referrer 41 ve Google Ads isaretli 9. Google yollari: ana sayfa 7, urun 915 4, urun 166 4, urun 480 3, /fren-balatasi 3, urun 643 2, urun 993 2, urun 718 2, urun 1042 2, urun 174 2, urun 322 2, /axor-3340-bijon 1, /ford-cargo-1846-fren-diski 1, /temsa-safir-suspansiyon-korugu 1, /tirsan-dorse-kaliper-tamir-takimi 1. Google Ads yollari: ana sayfa 5, urun 174 2, urun 322 2. Facebook/Meta 0. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking ve canli feed kontrolune dayaniyor.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0. /cart icin 1 insan goruntulemesi var ama add_to_cart event'i yok; gercek sepete ekleme sayilmadi. Bugunku lead de 0; WhatsApp/telefon/e-posta tiklamasi yok.
+- Canli SEO dogrulama: /axor-3340-bijon, /ford-cargo-1846-fren-diski, /temsa-safir-suspansiyon-korugu, urun 718, 915, 166 ve 480 200. Landinglerde canonical, Product schema, JSON-LD, kupon, WhatsApp, telefon ve arama ifadeleri mevcut. Urun sayfalarinda yeni product_coupon_banner, telefon CTA, canonical, Product schema, JSON-LD, WhatsApp ve OEM/parca kodu mevcut. Sitemap/robots/Merchant/Meta feed 200.
+- Uygulanan aksiyon: yeni kod degisikligi yapilmadi; onceki turda eklenen urun kupon bandi canli urun sayfalarinda dogrulandi. Teknik SEO/CTA saglikli; asil darbogaz tiklamanin lead'e donusmemesi.
+- Satis adimi: en yakin niyet landingleri /axor-3340-bijon, /ford-cargo-1846-fren-diski, /temsa-safir-suspansiyon-korugu ve urun 915/166/480. Hazir cevap: kod/OEM teyidi + arac/dorse/aks uyum + adet + eski parca foto/olcu + kargo dahil kuponlu net fiyat.
