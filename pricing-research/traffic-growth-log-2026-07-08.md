@@ -120,3 +120,20 @@
 - Canli SEO dogrulama: /iveco-eurocargo-kaliper-tamir-takimi, urun 23, urun 77, /kampana, urun 504 ve /fren-korukleri 200. Urun sayfalarinda Fiyat Stok title, canonical, Product schema, arama ifadeleri ve 0850 888 7881 WhatsApp linki mevcut. Landing/kategori sayfalarinda canonical, JSON-LD, WhatsApp ve stok/fiyat niyeti mevcut.
 - Uygulanan aksiyon: yeni kod degisikligi yapilmadi; landing render'inda arama ifadeleri zaten "Bu sayfanin cevap verdigi aramalar" blogu ve schema keywords olarak mevcut. Risk almadan takip/log guncellendi.
 - Satis adimi: Google'dan gelen en yakin niyet /iveco-eurocargo-kaliper-tamir-takimi. Iveco Eurocargo kaliper tamir takimi icin model/kaliper tipi, eski parca fotosu ve OEM/SKU teyidi istenmeli; kampana ziyaretleri icin urun 23/77 stok-fiyat ve kargo dahil kuponlu net fiyat cevabi hazir olmali.
+
+## Heartbeat Trafik Kontrolu - 10:48
+- Onceki UTC gun (2026-07-07): 133 goruntuleme / 41 tekil; Facebook 0, Google 75, tiklama W/T/E 0/0/0.
+- Yeni UTC gun (2026-07-08): 25 goruntuleme / 11 tekil; raw log 25 satir.
+- Bot filtreli insan trafigi: 20 goruntuleme / 8 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 6; Google Ads isaretli 6.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Detayli filtre: 25 goruntulemenin 5'i bot/supheli; insan trafigi 20 goruntuleme / 8 tekil IP. Insan sehirleri: Antalya 7, Istanbul 6, Antakya 2, US/bos 2, TR/bos 1, Izmir 1, Izmit 1.
+- Bugunku insan yollari: ana sayfa 8, urun 174 Ford Cargo/Krone/Kogel Dorse fren diski 2, urun 322 Ford Cargo bijon 2, urun 504 CH4035 Kaliper Tamir Takimi 2, urun 888 Volvo suspansiyon korugu 1, /iveco-eurocargo-kaliper-tamir-takimi 1, urun 23 kampana 1, urun 77 kampana 1, /kampana 1, /fren-korukleri 1.
+- Google/Facebook kirilimi: bugun Google referrer 6 ve Google Ads isaretli 6. Google yollari: urun 174 2, urun 322 2, ana sayfa 1, /iveco-eurocargo-kaliper-tamir-takimi 1. Google Ads yollari: ana sayfa 2, urun 174 2, urun 322 2. Facebook/Meta 0. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking ve canli feed kontrolune dayaniyor.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0. Bugunku lead de 0; WhatsApp/telefon/e-posta tiklamasi yok.
+- Canli SEO dogrulama: ana sayfa, urun 174, urun 322, urun 888, /iveco-eurocargo-kaliper-tamir-takimi, /kampana ve /fren-korukleri 200. Urunlerde canonical, Product schema, JSON-LD, arama ifadeleri, fiyat/stok niyeti ve WhatsApp 0850 888 7881 mevcut. Landing/kategori sayfalarinda kupon banneri, WhatsApp, canonical ve JSON-LD mevcut.
+- Uygulanan aksiyon: yeni kod degisikligi yapilmadi; trafik Google Ads isaretli sayfalara gelmeye basladi ama lead/sepet/favori yok. Riskli spam/paylasim yapilmadi, log ve canli dogrulama guncellendi.
+- Satis adimi: Google Ads tiklanan urun 174 ve 322 icin teklif cevabi oncelikli olmali. Urun 174 fren diski icin "Ford Cargo/Krone/Kogel dorse uyum teyidi + adet + sase/olcu + kargo dahil kuponlu fiyat"; urun 322 bijon icin "FC461118CA kod teyidi + adet + bijon olcusu + hizli kargo" mesaji hazir tutulmali.
