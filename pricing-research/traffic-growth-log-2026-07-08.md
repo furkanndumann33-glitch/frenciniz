@@ -137,3 +137,20 @@
 - Canli SEO dogrulama: ana sayfa, urun 174, urun 322, urun 888, /iveco-eurocargo-kaliper-tamir-takimi, /kampana ve /fren-korukleri 200. Urunlerde canonical, Product schema, JSON-LD, arama ifadeleri, fiyat/stok niyeti ve WhatsApp 0850 888 7881 mevcut. Landing/kategori sayfalarinda kupon banneri, WhatsApp, canonical ve JSON-LD mevcut.
 - Uygulanan aksiyon: yeni kod degisikligi yapilmadi; trafik Google Ads isaretli sayfalara gelmeye basladi ama lead/sepet/favori yok. Riskli spam/paylasim yapilmadi, log ve canli dogrulama guncellendi.
 - Satis adimi: Google Ads tiklanan urun 174 ve 322 icin teklif cevabi oncelikli olmali. Urun 174 fren diski icin "Ford Cargo/Krone/Kogel dorse uyum teyidi + adet + sase/olcu + kargo dahil kuponlu fiyat"; urun 322 bijon icin "FC461118CA kod teyidi + adet + bijon olcusu + hizli kargo" mesaji hazir tutulmali.
+
+## Heartbeat Trafik Kontrolu - 11:49
+- Onceki UTC gun (2026-07-07): 133 goruntuleme / 41 tekil; Facebook 0, Google 75, tiklama W/T/E 0/0/0.
+- Yeni UTC gun (2026-07-08): 32 goruntuleme / 15 tekil; raw log 32 satir.
+- Bot filtreli insan trafigi: 27 goruntuleme / 12 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 11; Google Ads isaretli 7.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Detayli filtre: 32 goruntulemenin 5'i bot/supheli; insan trafigi 27 goruntuleme / 12 tekil IP. Insan sehirleri: Antalya 7, Istanbul 6, Ankara 4, US/bos 4, TR/bos 2, Antakya 2, Izmir 1, Izmit 1.
+- Bugunku insan yollari: ana sayfa 9, urun 166 BMC Probus/Fatih 16 delik fren diski 4, urun 515 ROR/Meritor/Knorr kaliper ayar mekanizmasi 2, urun 174 Ford Cargo/Krone/Kogel dorse fren diski 2, urun 322 Ford Cargo bijon 2, urun 504 CH4035 kaliper tamir takimi 2, urun 888 Volvo suspansiyon korugu 1, /iveco-eurocargo-kaliper-tamir-takimi 1, urun 23 kampana 1, urun 77 kampana 1, /kampana 1, /fren-korukleri 1.
+- Google/Facebook kirilimi: bugun Google referrer 11 ve Google Ads isaretli 7. Google yollari: urun 166 4, ana sayfa 2, urun 174 2, urun 322 2, /iveco-eurocargo-kaliper-tamir-takimi 1. Google Ads yollari: ana sayfa 3, urun 174 2, urun 322 2. Facebook/Meta 0. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking ve canli feed kontrolune dayaniyor.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0. Bugunku lead de 0; WhatsApp/telefon/e-posta tiklamasi yok.
+- Canli SEO dogrulama: ana sayfa, urun 515, urun 166, urun 174, urun 322, /iveco-eurocargo-kaliper-tamir-takimi, /kampana ve /fren-korukleri 200. Urunlerde canonical, Product schema, JSON-LD, arama ifadeleri, stok/fiyat niyeti, OEM/parca kodu, WhatsApp 0850 888 7881 ve telefon 0545 608 7008 mevcut. Landing/kategori sayfalarinda kupon banneri, WhatsApp, canonical ve JSON-LD mevcut.
+- Uygulanan aksiyon: yeni kod degisikligi yapilmadi; ana uygulamada TodaySalesStrip, DiscountCouponBanner ve WhatsAppTrustStrip admin disi sayfalarda render ediliyor. Teknik eksik yerine ana sorun lead/sepet/favori donusumu; log ve canli dogrulama guncellendi.
+- Satis adimi: bugun en yakin urun 166 BMC fren diski ve Google Ads urunleri 174/322. Hazir teklif cevabi: urun 166 icin "57RS307931M / ESD 160 05 kod teyidi, BMC Probus/Fatih uyum, adet, eski disk olcusu/foto ve kargo dahil kuponlu net fiyat"; urun 174 icin dorse/aks uyum teyidi; urun 322 icin FC461118CA bijon olcusu ve adet.
