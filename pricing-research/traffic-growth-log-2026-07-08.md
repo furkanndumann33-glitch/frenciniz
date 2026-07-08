@@ -103,3 +103,20 @@
 - Canli SEO dogrulama: urun 504, 322, 767, 459, 887 ve /fren-korukleri 200. Urunlerde Fiyat Stok title, canonical, Product schema, sik aranan parca ifadeleri ve 0850 888 7881 WhatsApp linki mevcut; /fren-korukleri landinginde JSON-LD ve WhatsApp var.
 - Uygulanan aksiyon: yeni kod degisikligi yapilmadi; 08:48 itibariyla yeni insan trafik/lead yok, canli SEO/feed saglikli.
 - Satis adimi: en yakin niyet hala CH4035 kaliper tamir takimi ve fren korukleri. CH4035 icin kaliper modeli/uyum teyidi + stok 28 + kargo dahil kuponlu net fiyat; fren korukleri icin eski parca foto/olcu talebi hazir tutulmali.
+
+## Heartbeat Trafik Kontrolu - 09:48
+- Onceki UTC gun (2026-07-07): 133 goruntuleme / 41 tekil; Facebook 0, Google 75, tiklama W/T/E 0/0/0.
+- Yeni UTC gun (2026-07-08): 14 goruntuleme / 7 tekil; raw log 14 satir.
+- Bot filtreli insan trafigi: 9 goruntuleme / 4 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 1; Google Ads isaretli 0.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Detayli filtre: 14 goruntulemenin 5'i bot/supheli; insan trafigi 9 goruntuleme / 4 tekil IP. Insan sehirleri: Istanbul 5, US/bos 2, Izmir 1, Izmit 1.
+- Bugunku insan yollari: ana sayfa 2, urun 504 CH4035 Kaliper Tamir Takimi 2, /iveco-eurocargo-kaliper-tamir-takimi 1, urun 23 Ford Cargo/BPW/Dorse fren kampanasi 1, urun 77 Ford Cargo fren kampanasi 1, /kampana 1, /fren-korukleri 1.
+- Google/Facebook kirilimi: bugun Google referrer 1, Google Ads isaretli 0, Facebook/Meta 0. Google'dan gelen tek insan yolu /iveco-eurocargo-kaliper-tamir-takimi. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking ve canli feed kontrolune dayaniyor.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0. Bugunku lead de 0; WhatsApp/telefon/e-posta tiklamasi yok.
+- Canli SEO dogrulama: /iveco-eurocargo-kaliper-tamir-takimi, urun 23, urun 77, /kampana, urun 504 ve /fren-korukleri 200. Urun sayfalarinda Fiyat Stok title, canonical, Product schema, arama ifadeleri ve 0850 888 7881 WhatsApp linki mevcut. Landing/kategori sayfalarinda canonical, JSON-LD, WhatsApp ve stok/fiyat niyeti mevcut.
+- Uygulanan aksiyon: yeni kod degisikligi yapilmadi; landing render'inda arama ifadeleri zaten "Bu sayfanin cevap verdigi aramalar" blogu ve schema keywords olarak mevcut. Risk almadan takip/log guncellendi.
+- Satis adimi: Google'dan gelen en yakin niyet /iveco-eurocargo-kaliper-tamir-takimi. Iveco Eurocargo kaliper tamir takimi icin model/kaliper tipi, eski parca fotosu ve OEM/SKU teyidi istenmeli; kampana ziyaretleri icin urun 23/77 stok-fiyat ve kargo dahil kuponlu net fiyat cevabi hazir olmali.
