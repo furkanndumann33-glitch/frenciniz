@@ -69,3 +69,20 @@
 - Sicak urun stok/fiyat: 504 CH4035 stok 28 fiyat 13739.88 TL; 322 ESB 422 10 stok 3250 fiyat 213.05 TL; 767 ESP.01.39.01 stok 14 fiyat 5920.2 TL; 459 FT 34881 stok 79 fiyat 1782 TL; 887 42813.S stok 667 fiyat 1815 TL.
 - Uygulanan aksiyon: yeni kod degisikligi yapilmadi; insan veri halen cok dusuk ve canli SEO/feed saglikli oldugu icin takip/log guncellendi.
 - Satis adimi: bu saat icin en yakin niyet urun 504 kaliper tamir takimi ve /fren-korukleri. Hazir cevapta CH4035 icin uyum/kaliper modeli teyidi, stok 28 ve kargo dahil kuponlu net fiyat; fren koruklerinde ise eski parca foto/olcu talebi one alinmali.
+
+## Heartbeat Trafik Kontrolu - 07:48
+- Onceki UTC gun (2026-07-07): 133 goruntuleme / 41 tekil; Facebook 0, Google 75, tiklama W/T/E 0/0/0.
+- Yeni UTC gun (2026-07-08): 8 goruntuleme / 5 tekil; raw log 8 satir.
+- Bot filtreli insan trafigi: 3 goruntuleme / 2 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 0; Google Ads isaretli 0.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2311 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Detayli filtre: 8 goruntulemenin 5'i bot/supheli; insan trafigi 3 goruntuleme / 2 tekil IP. Insan sehirleri: US/bos 2, TR/Izmit 1.
+- Bugunku insan yollari: urun 504 CH4035 Kaliper Tamir Takimi 2, /fren-korukleri 1. Tum ham yollar: ana sayfa 2, urun 504 2, urun 767 Mercedes Axor on porya 2, urun 322 Ford Cargo bijon 1, /fren-korukleri 1.
+- Google/Facebook kirilimi: bugun Google referrer 0, Google Ads isaretli 0, Facebook/Meta 0. Onceki gun Google isaretli insan goruntuleme 77, Google Ads 13 idi.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0. Bugunku lead de 0; WhatsApp/telefon/e-posta tiklamasi yok.
+- Canli SEO dogrulama: urun 504, 322, 767, 459, 887 ve /fren-korukleri 200. Urunlerde Fiyat Stok title, canonical, Product schema, sik aranan parca ifadeleri ve 0850 888 7881 WhatsApp linki mevcut; /fren-korukleri landinginde JSON-LD ve WhatsApp var.
+- Uygulanan aksiyon: yeni kod degisikligi yapilmadi; 07:48 itibariyla yeni trafik yok, canli SEO/feed saglikli.
+- Satis adimi: en yakin niyet CH4035 kaliper tamir takimi ve fren korukleri. Hazir cevap: CH4035 icin kaliper modeli/uyum teyidi, stok 28, kargo dahil kuponlu net fiyat; fren koruklerinde eski parca foto/olcu talebi.
