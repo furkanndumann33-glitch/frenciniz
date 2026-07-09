@@ -33,3 +33,10 @@
 - Toplam trafik: 11 goruntuleme / 8 tekil; insan trafigi 11 / 8 tekil IP.
 - Tiklama/siparis: WhatsApp 0, telefon 0, e-posta 0; odenmis siparis 3.
 - Kalite notu: 11 goruntulemenin 9'u kaynak bos/US paterni nedeniyle dusuk kaliteli/supheli; guvenilir insan sinyali 2. Facebook/Meta 0.
+
+## Heartbeat Kontrolu - 09:41
+- Facebook paylasimi: yeni paylasim yapilmadi; limit/spam riski alinmadi.
+- Facebook referansli trafik: 0 goruntuleme; onceki UTC gun 0.
+- Toplam trafik: 15 goruntuleme / 11 tekil; insan trafigi 15 / 11 tekil IP.
+- Tiklama/siparis: WhatsApp 0, telefon 0, e-posta 0; odenmis siparis 3.
+- Kalite notu: guvenilir insan sinyali 6, dusuk kaliteli/supheli 9. Facebook/Meta 0; guvenilir trafik Google agirlikli.

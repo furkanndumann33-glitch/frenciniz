@@ -82,3 +82,20 @@
 - Canli SEO dogrulama: /actros-1848-kaliper-tamir-takimi, urun 398, 828, 439 ve 142 200. Landing/urun sayfalarinda canonical, Product schema/JSON-LD, WhatsApp, telefon ve indirim kuponu CTA'si mevcut. Sitemap/robots/Merchant/Meta feed 200.
 - Uygulanan aksiyon: yeni kod degisikligi yapilmadi; teknik SEO ve feed tarafinda acil hata gorulmedi. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking ve canli feed kontrolune dayaniyor.
 - Satis adimi: bugun ilk elle takip edilmesi gereken en sicak yol /actros-1848-kaliper-tamir-takimi. Hazir cevap: Actros 1848 kaliper modeli/aks tarafi teyidi + tamir takimi uyumu + stok/adet + kargo dahil kuponlu net fiyat.
+
+## Heartbeat Trafik Kontrolu - 09:41
+- Onceki UTC gun (2026-07-08): 151 goruntuleme / 55 tekil; Facebook 0, Google 80, tiklama W/T/E 2/2/0.
+- Yeni UTC gun (2026-07-09): 15 goruntuleme / 11 tekil; raw log 15 satir.
+- Bot filtreli insan trafigi: 15 goruntuleme / 11 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 6; Google Ads isaretli 2.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Kalite filtresi: 15 goruntulemenin 6'si guvenilir insan sinyali, 9'u kaynak bos/US paterni nedeniyle dusuk kaliteli/supheli. Guvenilir Google 6, Google Ads isaretli 2, Facebook/Meta 0.
+- Guvenilir sicak yollar: urun 133 Ford Cargo fren kampanasi 2, ana sayfa 2, /travego-balata 1, /actros-1848-kaliper-tamir-takimi 1. Sehirler: Inegol 2, Istanbul 2, Gaziantep 1, Fransa/Lauterbourg 1.
+- Supheli yollar: urun 398 DAF CF/XF bijon 2, urun 828 Ford Cargo/Krone/Kogel fren yayi 2, urun 439 imdatli fren korugu 2, urun 435 fren yayi 2, ana sayfa 1.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0. WhatsApp/telefon/e-posta tiklamasi 0/0/0; bu degerler gercek mesaj/arama garantisi degildir.
+- Canli SEO dogrulama: urun 133, /travego-balata, /actros-1848-kaliper-tamir-takimi, urun 398 ve 828 200. Landing/urun sayfalarinda canonical, Product schema/JSON-LD, WhatsApp, telefon ve indirim kuponu CTA'si mevcut. Sitemap/robots/Merchant/Meta feed 200.
+- Uygulanan aksiyon: yeni kod degisikligi yapilmadi; teknik SEO ve feed tarafinda acil hata gorulmedi. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking ve canli feed kontrolune dayaniyor.
+- Satis adimi: en yakin teklif onceligi urun 133 Ford Cargo fren kampanasi, /travego-balata ve /actros-1848-kaliper-tamir-takimi. Hazir cevaplarda OEM/kod + arac modeli + adet + kargo dahil kuponlu net fiyat one alinmali.
