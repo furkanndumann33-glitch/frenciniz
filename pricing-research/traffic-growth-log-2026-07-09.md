@@ -207,3 +207,22 @@
 - Canli SEO dogrulama: /ford-cargo-fren-circiri, /fren-balatasi, urun 428 suspansiyon korugu, /bpw-dorse-kampana ve urun 770 Axor porya 200. Urun/landing sayfalarinda canonical, JSON-LD, WhatsApp, telefon ve indirim kuponu CTA'si mevcut; /fren-balatasi kategori sayfasi oldugu icin Product schema beklenmedi. /api/products katalogu 1055 urun donduruyor; sitemap/robots/Merchant/Meta feed 200.
 - Uygulanan aksiyon: yeni kod degisikligi yapilmadi; teknik SEO/feed hatasi gorulmedi. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking, admin API ve canli feed kontrolune dayaniyor.
 - Satis adimi: Ads isaretli trafik artarken tiklama gelmedigi icin Ford Cargo fren circiri, /fren-balatasi, suspansiyon korugu OEM 0003270101, CHS5005 ve Axor porya icin WhatsApp'a yonlendiren net teklif metni hazir tutulmali.
+
+## Heartbeat Trafik Kontrolu - 16:41
+- Onceki UTC gun (2026-07-08): 151 goruntuleme / 55 tekil; Facebook 0, Google 80, tiklama W/T/E 2/2/0.
+- Yeni UTC gun (2026-07-09): 54 goruntuleme / 32 tekil; raw log 54 satir.
+- Bot filtreli insan trafigi: 51 goruntuleme / 30 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 40; Google Ads isaretli 7.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Saatlik durum: 15:41'e gore +8 goruntuleme / +3 tekil artis var. Google referrer 40'a cikti; lead/sepet/favori yok.
+- Kalite filtresi: 54 goruntulemenin 42'si guvenilir insan sinyali, 12'si dusuk kaliteli/supheli. Guvenilir trafik Google agirlikli: Google 40, Google Ads isaretli 7, Facebook/Meta 0.
+- Guvenilir sicak yollar: ana sayfa 3, /fren-balatasi 3, urun 132 Ford Cargo arka fren kampanasi OEM 9C461126AD 2, urun 715 Ford Cargo/Krone/Kogel ABS sensoru 2, urun 785 SAF dorse ABS dislisi 2, /man-18-440-fren-korugu 1, Ford Cargo fren circiri landing 1, urun 428 suspansiyon korugu OEM 0003270101 2, CHS5005 sag kaliper tamir takimi toplam 4.
+- Sehirler: Istanbul 15, Inegol 8, Cankaya 2, Malatya 2, Nevsehir 2, Ilijas 2, Amasya 2, Corlu 2.
+- Supheli yollar: ana sayfa 2, urun 753 Ford Cargo porya 35/30 2, urun 398 DAF CF/XF bijon 2, urun 435 fren yayi 2, urun 439 imdatli fren korugu 2, urun 828 Ford Cargo/Krone/Kogel fren yayi 2.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0; 30 gun toplam sepete ekleme 8, favori 0. WhatsApp/telefon/e-posta tiklamasi 0/0/0; bu degerler gercek mesaj/arama garantisi degildir.
+- Canli SEO dogrulama: urun 132 Ford Cargo arka fren kampanasi, /man-18-440-fren-korugu, urun 715 ABS sensoru, /ford-cargo-fren-circiri ve /fren-balatasi 200. Sayfalarda canonical, JSON-LD, WhatsApp, telefon ve indirim kuponu CTA'si mevcut; /fren-balatasi kategori sayfasi oldugu icin Product schema beklenmedi. /api/products katalogu 1055 urun donduruyor; sitemap/robots/Merchant/Meta feed 200.
+- Uygulanan aksiyon: yeni kod degisikligi yapilmadi; teknik SEO/feed hatasi gorulmedi. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking, admin API ve canli feed kontrolune dayaniyor.
+- Satis adimi: Ford Cargo arka fren kampanasi, ABS sensoru, SAF dorse ABS dislisi, MAN 18.440 fren korugu ve Ford Cargo fren circiri icin hizli teklif cevaplari hazir tutulmali; format urun kodu + arac/dorse uyumu + stok/adet + kargo dahil kuponlu net fiyat.

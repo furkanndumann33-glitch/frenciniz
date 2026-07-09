@@ -98,3 +98,13 @@
 - Kalite notu: 46 goruntulemenin 34'u guvenilir insan sinyali, 12'si dusuk kaliteli/supheli. Guvenilir trafik Google agirlikli; Google 32, Google Ads isaretli 7.
 - Sicak yollar: ana sayfa 3, /fren-balatasi 3, Ford Cargo fren circiri 1, suspansiyon korugu OEM 0003270101 2, CHS5005 sag kaliper tamir takimi toplam 4, Axor 1840/1848 on porya 2.
 - Aksiyon: tekrarli Facebook grup paylasimi yapilmadi; bu tur satis adimi Google/Ads kaynakli Ford Cargo fren circiri, /fren-balatasi ve suspansiyon korugu ilgisine hizli teklif cevabi hazirlamak.
+
+## Heartbeat Kontrolu - 16:41
+- Facebook paylasimi: yeni paylasim yapilmadi; limit/spam riski alinmadi.
+- Facebook referansli trafik: 0 goruntuleme; onceki UTC gun 0.
+- Toplam trafik: 54 goruntuleme / 32 tekil; insan trafigi 51 / 30 tekil IP.
+- Tiklama/siparis: WhatsApp 0, telefon 0, e-posta 0; odenmis siparis 3.
+- Saatlik durum: 15:41'e gore +8 goruntuleme / +3 tekil artis var; Facebook/Meta kaynakli goruntuleme yine 0.
+- Kalite notu: 54 goruntulemenin 42'si guvenilir insan sinyali, 12'si dusuk kaliteli/supheli. Guvenilir trafik Google agirlikli; Google 40, Google Ads isaretli 7.
+- Sicak yollar: Ford Cargo arka fren kampanasi OEM 9C461126AD 2, ABS sensoru 2, SAF dorse ABS dislisi 2, /man-18-440-fren-korugu 1, Ford Cargo fren circiri 1, /fren-balatasi 3, CHS5005 sag kaliper tamir takimi toplam 4.
+- Aksiyon: tekrarli Facebook grup paylasimi yapilmadi; bu tur satis adimi Google kaynakli Ford Cargo kampana/ABS ve MAN fren korugu taleplerine hizli teklif cevabi hazirlamak.
