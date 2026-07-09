@@ -32,3 +32,20 @@
 - Canli SEO dogrulama: urun 435, 142, 888, 915 ve 459 200. Urun sayfalarinda canonical, Product schema, JSON-LD, WhatsApp, telefon ve indirim kuponu CTA'si mevcut. Sitemap/robots/Merchant/Meta feed 200.
 - Uygulanan aksiyon: yeni kod degisikligi yapilmadi; teknik SEO ve feed tarafinda acil hata gorulmedi. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking ve canli feed kontrolune dayaniyor.
 - Satis adimi: sabah 142, 888, 915, 459, 166, 480, 801 ve yeni gorunen 435 fren yayi icin teklif cevaplari hazir tutulmali. Mesaj formati: OEM/kod teyidi + uyum sorusu + stok/adet + kargo dahil kuponlu net fiyat.
+
+## Heartbeat Trafik Kontrolu - 05:39
+- Onceki UTC gun (2026-07-08): 151 goruntuleme / 55 tekil; Facebook 0, Google 80, tiklama W/T/E 2/2/0.
+- Yeni UTC gun (2026-07-09): 3 goruntuleme / 3 tekil; raw log 3 satir.
+- Bot filtreli insan trafigi: 3 goruntuleme / 3 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 0; Google Ads isaretli 0.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Kalite filtresi: UTC 09.07'deki 3 goruntuleme kaynak bos/US oldugu icin satis niyeti dusuk/supheli sayildi. Guvenilir insan sinyali 0.
+- Turkiye saatiyle 09.07.2026 00:00 sonrasi: 36 goruntuleme / 11 tekil; kalite filtreli insan trafigi 16 goruntuleme / 4 tekil IP. Bot/supheli 20. Google 8, Google Ads isaretli 0, Facebook/Meta 0.
+- Gece sicak yollari: urun 142 BMC/Kampana 522 8, urun 888 Volvo suspansiyon korugu 2, urun 801 fren pabucu varyantlari toplam 4, urun 1042 dorse koruk lastigi 2. Yeni UTC goruntuleme ana sayfa kaynak bos/US.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0. WhatsApp/telefon/e-posta tiklamasi 0/0/0.
+- Canli SEO dogrulama: ana sayfa, urun 435, 142, 888 ve 915 200. Urunlerde canonical, Product schema, JSON-LD, WhatsApp, telefon ve indirim kuponu CTA'si mevcut. Sitemap/robots/Merchant/Meta feed 200.
+- Uygulanan aksiyon: yeni kod degisikligi yapilmadi; teknik SEO ve feed tarafinda acil hata gorulmedi. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking ve canli feed kontrolune dayaniyor.
+- Satis adimi: sabah ilk manuel satis cevabi icin 142, 888, 915, 459, 166, 480, 801 ve 435 hazir teklif listesi one alinmali.
