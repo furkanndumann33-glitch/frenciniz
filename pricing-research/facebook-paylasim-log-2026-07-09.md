@@ -160,3 +160,14 @@
 - Sicak yollar: ana sayfa 4, /fren-balatasi 3, Frencoo kaliper tamir takimi OEM 93299/40/4120 2, Ford Cargo arka fren kampanasi OEM 9C461126AD 2, ABS sensoru 2, SAF dorse ABS dislisi 2, Axor porya 2, CHS5005 sag kaliper tamir takimi toplam 4, /ror-meritor-dorse-kampana 1.
 - Sepet/favori: bugun 0/0, son 7 gun 0/0; 30 gun sepete ekleme 8 ama bugune ait degil. WhatsApp/telefon/e-posta tiklamasi 0/0/0 ve bunlar gercek mesaj/arama garantisi degildir.
 - Aksiyon: tekrarli Facebook grup paylasimi yapilmadi; bu tur satis adimi ROR/Meritor dorse kampana ve Google kaynakli sicak urunlerde kargo dahil kuponlu net fiyatla hizli WhatsApp teklif cevabi hazirlamak.
+
+## Heartbeat Kontrolu - 22:45
+- Facebook paylasimi: yeni paylasim yapilmadi; limit/spam riski alinmadi.
+- Facebook referansli trafik: 0 goruntuleme; onceki UTC gun 0.
+- Toplam trafik: 65 goruntuleme / 38 tekil; insan trafigi 57 / 34 tekil IP.
+- Tiklama/siparis: WhatsApp 0, telefon 0, e-posta 0; odenmis siparis 3.
+- Saatlik durum: 21:41'e gore +4 goruntuleme / +1 tekil artis var; Facebook/Meta kaynakli goruntuleme yine 0. Yeni guvenilir sinyal Google kaynakli urun 881 DAF suspansiyon koruk lastigi tarafinda.
+- Kalite notu: 65 goruntulemenin 48'i guvenilir insan sinyali, 17'si dusuk kaliteli/supheli. Guvenilir trafik Google agirlikli; Google 46, Google Ads isaretli 8.
+- Sicak yollar: ana sayfa 4, /fren-balatasi 3, DAF suspansiyon koruk lastigi 2, Frencoo kaliper tamir takimi OEM 93299/40/4120 2, Ford Cargo arka fren kampanasi OEM 9C461126AD 2, ABS sensoru 2, SAF dorse ABS dislisi 2, CHS5005 sag kaliper tamir takimi toplam 4, /ror-meritor-dorse-kampana 1.
+- Sepet/favori: bugun 0/0, son 7 gun 0/0; 30 gun sepete ekleme 8 ama bugune ait degil. WhatsApp/telefon/e-posta tiklamasi 0/0/0 ve bunlar gercek mesaj/arama garantisi degildir.
+- Aksiyon: tekrarli Facebook grup paylasimi yapilmadi; bu tur satis adimi DAF suspansiyon koruk lastigi ve ROR/Meritor dorse kampana icin kargo dahil kuponlu net fiyatla hizli WhatsApp teklif cevabi hazirlamak.
