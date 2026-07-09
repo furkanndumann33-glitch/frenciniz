@@ -118,3 +118,13 @@
 - Kalite notu: 54 goruntulemenin 42'si guvenilir insan sinyali, 12'si dusuk kaliteli/supheli. Guvenilir trafik Google agirlikli; Google 40, Google Ads isaretli 7.
 - Sicak yollar: Ford Cargo arka fren kampanasi OEM 9C461126AD 2, ABS sensoru 2, SAF dorse ABS dislisi 2, /man-18-440-fren-korugu 1, Ford Cargo fren circiri 1, /fren-balatasi 3, CHS5005 sag kaliper tamir takimi toplam 4.
 - Aksiyon: tekrarli Facebook grup paylasimi yapilmadi; yeni trafik gelmedigi icin satis onceligi ayni sicak urunlerde hizli WhatsApp teklif metni hazirlamak.
+
+## Heartbeat Kontrolu - 18:41
+- Facebook paylasimi: yeni paylasim yapilmadi; limit/spam riski alinmadi.
+- Facebook referansli trafik: 0 goruntuleme; onceki UTC gun 0.
+- Toplam trafik: 58 goruntuleme / 35 tekil; insan trafigi 53 / 31 tekil IP.
+- Tiklama/siparis: WhatsApp 0, telefon 0, e-posta 0; odenmis siparis 3.
+- Saatlik durum: 17:41'e gore +4 goruntuleme / +3 tekil artis var; Facebook/Meta kaynakli goruntuleme yine 0.
+- Kalite notu: 58 goruntulemenin 44'u guvenilir insan sinyali, 14'u dusuk kaliteli/supheli. Guvenilir trafik Google agirlikli; Google 42, Google Ads isaretli 7.
+- Sicak yollar: Frencoo kaliper tamir takimi OEM 93299/40/4120 2, Ford Cargo arka fren kampanasi OEM 9C461126AD 2, ABS sensoru 2, SAF dorse ABS dislisi 2, /fren-balatasi 3, CHS5005 sag kaliper tamir takimi toplam 4.
+- Aksiyon: tekrarli Facebook grup paylasimi yapilmadi; bu tur satis adimi Frencoo kaliper tamir takimi ve Ford Cargo/ABS sicak urunlerine hizli WhatsApp teklif metni hazirlamak.
