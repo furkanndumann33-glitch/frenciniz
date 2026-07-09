@@ -133,3 +133,39 @@
 - Canli SEO dogrulama: /ford-fmax-bijon, /bmc-tugra-bijon, urun 502 CHS5005, urun 15 Arocs fren circiri ve urun 133 Ford Cargo fren kampanasi 200. Sayfalarda canonical, Product schema/JSON-LD, WhatsApp, telefon ve indirim kuponu CTA'si mevcut. /api/products katalogu 1055 urun donduruyor; sitemap/robots/Merchant/Meta feed 200.
 - Uygulanan aksiyon: yeni kod degisikligi yapilmadi; bu turda teknik SEO/feed hatasi gorulmedi. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking, admin API ve canli feed kontrolune dayaniyor.
 - Satis adimi: en yakin teklif onceligi CHS5005 sag kaliper tamir takimi, Ford F-Max bijon, BMC Tugra bijon, Arocs fren circiri ve Ford Cargo fren kampanasi. Hazir cevaplarda uyum/kod + arac modeli + adet + kargo dahil kuponlu net fiyat one alinmali.
+
+## Heartbeat Trafik Kontrolu - 12:41
+- Onceki UTC gun (2026-07-08): 151 goruntuleme / 55 tekil; Facebook 0, Google 80, tiklama W/T/E 2/2/0.
+- Yeni UTC gun (2026-07-09): 32 goruntuleme / 20 tekil; raw log 32 satir.
+- Bot filtreli insan trafigi: 32 goruntuleme / 20 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 23; Google Ads isaretli 2.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Saatlik durum: 11:41'den bu yana yeni goruntuleme yok; trafik 32/20 seviyesinde sabit kaldi.
+- Kalite filtresi: 32 goruntulemenin 23'u guvenilir insan sinyali, 9'u kaynak bos/US paterni nedeniyle dusuk kaliteli/supheli. Guvenilir trafik Google agirlikli: Google 23, Google Ads isaretli 2, Facebook/Meta 0.
+- Guvenilir sicak yollar: urun 502 CHS5005 sag kaliper tamir takimi varyantlari toplam 4, urun 15 Arocs fren circiri 2, urun 1043 kaliper piston tamir takimi 2, urun 133 Ford Cargo fren kampanasi 2, urun 177 Karsan Atak fren diski 2, urun 668 pistonsuz koruk 2, urun 828 Tirsan dorse fren yayi 2, ana sayfa 2, /ford-fmax-bijon 1, /bmc-tugra-bijon 1, /axor-3228-bijon 1, /travego-balata 1, /actros-1848-kaliper-tamir-takimi 1.
+- Sehirler: Istanbul 10, Inegol 4, Ilijas 2, Amasya 2, Corlu 2, Izmir 1, Gaziantep 1, Fransa/Lauterbourg 1.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0; 30 gun toplam sepete ekleme 8, favori 0. WhatsApp/telefon/e-posta tiklamasi 0/0/0; bu degerler gercek mesaj/arama garantisi degildir.
+- Canli SEO dogrulama: /ford-fmax-bijon, /bmc-tugra-bijon, urun 502 CHS5005, urun 15 Arocs fren circiri ve urun 133 Ford Cargo fren kampanasi 200. Sayfalarda canonical, Product schema/JSON-LD, WhatsApp, telefon ve indirim kuponu CTA'si mevcut. /api/products katalogu 1055 urun donduruyor; sitemap/robots/Merchant/Meta feed 200.
+- Uygulanan aksiyon: yeni kod degisikligi yapilmadi; teknik SEO/feed hatasi gorulmedi. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking, admin API ve canli feed kontrolune dayaniyor.
+- Satis adimi: yeni ziyaret gelmedigi icin en yakin is manuel satis takibi; CHS5005 sag kaliper tamir takimi, Ford F-Max bijon, BMC Tugra bijon, Arocs fren circiri ve Ford Cargo fren kampanasi icin kargo dahil kuponlu net teklif hazir tutulmali.
+
+## Heartbeat Trafik Kontrolu - 13:41
+- Onceki UTC gun (2026-07-08): 151 goruntuleme / 55 tekil; Facebook 0, Google 80, tiklama W/T/E 2/2/0.
+- Yeni UTC gun (2026-07-09): 35 goruntuleme / 22 tekil; raw log 35 satir.
+- Bot filtreli insan trafigi: 35 goruntuleme / 22 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 26; Google Ads isaretli 2.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Saatlik durum: 12:41'e gore +3 goruntuleme / +2 tekil artis var; yeni trafik Google kaynakli.
+- Kalite filtresi: 35 goruntulemenin 26'si guvenilir insan sinyali, 9'u kaynak bos/US paterni nedeniyle dusuk kaliteli/supheli. Guvenilir trafik Google agirlikli: Google 26, Google Ads isaretli 2, Facebook/Meta 0.
+- Guvenilir sicak yollar: urun 502 CHS5005 sag kaliper tamir takimi varyantlari toplam 4, urun 770 Axor 1840/1848 on porya 2, urun 15 Arocs fren circiri 2, urun 1043 kaliper piston tamir takimi 2, urun 133 Ford Cargo fren kampanasi 2, urun 177 Karsan Atak fren diski 2, urun 668 pistonsuz koruk 2, urun 828 Tirsan dorse fren yayi 2, /bpw-dorse-kampana 1, /ford-fmax-bijon 1, /bmc-tugra-bijon 1.
+- Sehirler: Istanbul 11, Inegol 4, Ilijas 2, Amasya 2, Corlu 2, Nevsehir 2, Gaziantep 1, Izmir 1.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0; 30 gun toplam sepete ekleme 8, favori 0. WhatsApp/telefon/e-posta tiklamasi 0/0/0; bu degerler gercek mesaj/arama garantisi degildir.
+- Canli SEO dogrulama: /bpw-dorse-kampana, urun 770 Axor porya, /ford-fmax-bijon, /bmc-tugra-bijon ve urun 502 CHS5005 200. Sayfalarda canonical, Product schema/JSON-LD, WhatsApp, telefon ve indirim kuponu CTA'si mevcut. /api/products katalogu 1055 urun donduruyor; sitemap/robots/Merchant/Meta feed 200.
+- Uygulanan aksiyon: yeni kod degisikligi yapilmadi; teknik SEO/feed hatasi gorulmedi. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking, admin API ve canli feed kontrolune dayaniyor.
+- Satis adimi: yeni Google ilgisi nedeniyle teklif onceligi BPW dorse kampana, Axor 1840/1848 on porya, CHS5005 sag kaliper tamir takimi, Ford F-Max bijon ve BMC Tugra bijon. Her teklif icin uyum/kod + stok/adet + kargo dahil kuponlu net fiyat hazir tutulmali.
