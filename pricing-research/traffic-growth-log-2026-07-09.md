@@ -301,3 +301,22 @@
 - Canli SEO dogrulama: /faq, urun 674 Frencoo kaliper tamir takimi, urun 132 Ford Cargo arka fren kampanasi, urun 715 ABS sensoru ve /fren-balatasi 200. Urun sayfalarinda canonical, JSON-LD, Product schema, WhatsApp, telefon ve indirim kuponu CTA'si mevcut; /fren-balatasi kategori sayfasi oldugu icin Product schema beklenmedi, /faq icin urun schema/kupon CTA beklenmedi. /api/products ilk istekte gecici 500 verdi, tekrar kontrolde 1055 urun dondurdu; /data/products.json da 1055 urun, sitemap/robots/Merchant/Meta feed 200.
 - Uygulanan aksiyon: yeni kod degisikligi yapilmadi; teknik SEO/feed hatasi gorulmedi. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking, admin API ve canli feed kontrolune dayaniyor.
 - Satis adimi: yeni alici kaliteli trafik gelmedigi icin teklif onceligi ayni kaldi; Frencoo kaliper tamir takimi, Ford Cargo arka fren kampanasi, ABS sensoru, SAF dorse ABS dislisi ve CHS5005 icin urun kodu + arac/dorse uyumu + stok/adet + kargo dahil kuponlu net fiyatla hizli WhatsApp cevabi hazir tutulmali.
+
+## Heartbeat Trafik Kontrolu - 21:41
+- Onceki UTC gun (2026-07-08): 151 goruntuleme / 55 tekil; Facebook 0, Google 80, tiklama W/T/E 2/2/0.
+- Yeni UTC gun (2026-07-09): 61 goruntuleme / 37 tekil; raw log 61 satir.
+- Bot filtreli insan trafigi: 55 goruntuleme / 33 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 44; Google Ads isaretli 8.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Saatlik durum: 20:42'ye gore +2 goruntuleme / +2 tekil artis var. Yeni kayitlar Google kaynakli ana sayfa Bursa ve /ror-meritor-dorse-kampana; ROR/Meritor dorse kampana alici niyetine daha yakin bir landing. Lead/sepet/favori yok.
+- Kalite filtresi: 61 goruntulemenin 46'si guvenilir insan sinyali, 15'i dusuk kaliteli/supheli. Guvenilir trafik Google agirlikli: Google 44, Google Ads isaretli 8, Facebook/Meta 0.
+- Guvenilir sicak yollar: ana sayfa 4, /fren-balatasi 3, urun 674 Frencoo kaliper tamir takimi OEM 93299/40/4120 2, urun 132 Ford Cargo arka fren kampanasi OEM 9C461126AD 2, urun 715 ABS sensoru 2, urun 785 SAF dorse ABS dislisi 2, urun 770 Axor porya 2, Arocs fren circiri 2, CHS5005 sag kaliper tamir takimi toplam 4, /ror-meritor-dorse-kampana 1.
+- Sehirler: Istanbul 15, Inegol 8, bilinmeyen TR 4, Selcuklu 2, Cankaya 2, Malatya 2, Nevsehir 2, Amasya 2, Corlu 2, Bursa 1, Izmir 1, Gaziantep 1.
+- Supheli yollar: ana sayfa 2, urun 753 Ford Cargo porya 35/30 2, urun 398 DAF CF/XF bijon 2, urun 435 fren yayi 2, urun 439 imdatli fren korugu 2, urun 828 Ford Cargo/Krone/Kogel fren yayi 2, /faq 1, urun 223/224 MAN fren diski 1'er.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0; 30 gun toplam sepete ekleme 8, favori 0. Son sepet kayitlari bugune ait degil; bugunku WhatsApp/telefon/e-posta tiklamasi 0/0/0 ve bu degerler gercek mesaj/arama garantisi degildir.
+- Canli SEO dogrulama: ana sayfa, /faq, /ror-meritor-dorse-kampana, urun 674 Frencoo kaliper tamir takimi, urun 132 Ford Cargo arka fren kampanasi, urun 715 ABS sensoru ve /fren-balatasi 200. Urun sayfalarinda canonical, JSON-LD, Product schema, WhatsApp, telefon ve indirim kuponu CTA'si mevcut; /fren-balatasi ve /ror-meritor-dorse-kampana landinglerinde canonical/JSON-LD/WhatsApp/telefon/kupon CTA mevcut. /api/products ve /data/products.json 1055 urun, sitemap/robots/Merchant/Meta feed 200.
+- Uygulanan aksiyon: yeni kod degisikligi yapilmadi; teknik SEO/feed hatasi gorulmedi. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking, admin API ve canli feed kontrolune dayaniyor.
+- Satis adimi: ROR/Meritor dorse kampana icin hizli teklif hazir tutulmali; onceki sicak urunlerle birlikte Frencoo kaliper tamir takimi, Ford Cargo arka fren kampanasi, ABS sensoru, SAF dorse ABS dislisi ve CHS5005 icin urun kodu + uyumluluk + stok/adet + kargo dahil kuponlu net fiyatla WhatsApp cevabi verilmeli.
