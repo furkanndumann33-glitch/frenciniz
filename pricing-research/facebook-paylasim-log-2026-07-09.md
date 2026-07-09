@@ -49,3 +49,12 @@
 - Kalite notu: 26 goruntulemenin 17'si guvenilir insan sinyali, 9'u kaynak bos/US paterni nedeniyle dusuk kaliteli/supheli. Guvenilir trafik Google agirlikli; Google 17, Google Ads isaretli 2, Facebook/Meta 0.
 - Sicak yollar: urun 15 Arocs fren circiri 2, urun 1043 kaliper piston tamir takimi 2, urun 668 pistonsuz koruk 2, urun 177 Karsan Atak fren diski 2, urun 828 Tirsan dorse fren yayi 2, urun 133 Ford Cargo fren kampanasi 2, /travego-balata 1, /actros-1848-kaliper-tamir-takimi 1.
 - Aksiyon: tekrarli Facebook grup paylasimi yapilmadi; bu tur satisa en yakin hamle Google kaynakli sicak urunlere manuel teklif hazirlamak. Iletisim tiklamalari link tiklamasidir, gercek mesaj/arama garantisi degildir.
+
+## Heartbeat Kontrolu - 11:41
+- Facebook paylasimi: yeni paylasim yapilmadi; limit/spam riski alinmadi.
+- Facebook referansli trafik: 0 goruntuleme; onceki UTC gun 0.
+- Toplam trafik: 32 goruntuleme / 20 tekil; insan trafigi 32 / 20 tekil IP.
+- Tiklama/siparis: WhatsApp 0, telefon 0, e-posta 0; odenmis siparis 3.
+- Kalite notu: 32 goruntulemenin 23'u guvenilir insan sinyali, 9'u dusuk kaliteli/supheli. Guvenilir trafik Google agirlikli; Google 23, Google Ads isaretli 2, Facebook/Meta 0.
+- Sicak yollar: CHS5005 sag kaliper tamir takimi varyantlari toplam 4, urun 15 Arocs fren circiri 2, urun 133 Ford Cargo fren kampanasi 2, /ford-fmax-bijon 1, /bmc-tugra-bijon 1, /travego-balata 1, /actros-1848-kaliper-tamir-takimi 1.
+- Aksiyon: tekrarli Facebook grup paylasimi yapilmadi; bu turda Facebook kaynakli talep yok. Satisa en yakin hamle Google kaynakli CHS5005, Ford F-Max bijon, BMC Tugra bijon ve Arocs/Ford Cargo urunlerine hizli teklif hazirlamak.
