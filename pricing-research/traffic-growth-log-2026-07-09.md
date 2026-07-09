@@ -282,3 +282,22 @@
 - Canli SEO dogrulama: urun 674 Frencoo kaliper tamir takimi, urun 132 Ford Cargo arka fren kampanasi, urun 223/224 MAN fren diski ve /fren-balatasi 200. Sayfalarda canonical, JSON-LD, WhatsApp, telefon ve indirim kuponu CTA'si mevcut; /fren-balatasi kategori sayfasi oldugu icin Product schema beklenmedi. /api/products katalogu 1055 urun donduruyor; sitemap/robots/Merchant/Meta feed 200.
 - Uygulanan aksiyon: yeni kod degisikligi yapilmadi; teknik SEO/feed hatasi gorulmedi. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking, admin API ve canli feed kontrolune dayaniyor.
 - Satis adimi: yeni trafik gelmedigi icin teklif onceligi degismedi; Frencoo kaliper tamir takimi, Ford Cargo arka fren kampanasi, ABS sensoru, SAF dorse ABS dislisi ve CHS5005 icin hizli WhatsApp teklif metni hazir tutulmali.
+
+## Heartbeat Trafik Kontrolu - 20:42
+- Onceki UTC gun (2026-07-08): 151 goruntuleme / 55 tekil; Facebook 0, Google 80, tiklama W/T/E 2/2/0.
+- Yeni UTC gun (2026-07-09): 59 goruntuleme / 35 tekil; raw log 59 satir.
+- Bot filtreli insan trafigi: 53 goruntuleme / 31 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 42; Google Ads isaretli 7.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Saatlik durum: 19:41'e gore +1 goruntuleme / +0 tekil artis var; bu yeni kayit /faq kaynak bos/US paterni nedeniyle dusuk niyetli/supheli. Lead/sepet/favori yok.
+- Kalite filtresi: 59 goruntulemenin 44'u guvenilir insan sinyali, 15'i dusuk kaliteli/supheli. Guvenilir trafik Google agirlikli: Google 42, Google Ads isaretli 7, Facebook/Meta 0.
+- Guvenilir sicak yollar: ana sayfa 3, /fren-balatasi 3, urun 674 Frencoo kaliper tamir takimi OEM 93299/40/4120 2, urun 132 Ford Cargo arka fren kampanasi OEM 9C461126AD 2, urun 715 ABS sensoru 2, urun 770 Axor porya 2, CHS5005 sag kaliper tamir takimi toplam 4.
+- Sehirler: Istanbul 15, Inegol 8, Selcuklu 2, Cankaya 2, Malatya 2, Nevsehir 2, Ilijas 2, Amasya 2, Corlu 2.
+- Supheli yollar: ana sayfa 2, urun 753 Ford Cargo porya 35/30 2, urun 398 DAF CF/XF bijon 2, urun 435 fren yayi 2, urun 439 imdatli fren korugu 2, urun 828 Ford Cargo/Krone/Kogel fren yayi 2, /faq 1, urun 223/224 MAN fren diski 1'er.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0; 30 gun toplam sepete ekleme 8, favori 0. WhatsApp/telefon/e-posta tiklamasi 0/0/0; bu degerler gercek mesaj/arama garantisi degildir.
+- Canli SEO dogrulama: /faq, urun 674 Frencoo kaliper tamir takimi, urun 132 Ford Cargo arka fren kampanasi, urun 715 ABS sensoru ve /fren-balatasi 200. Urun sayfalarinda canonical, JSON-LD, Product schema, WhatsApp, telefon ve indirim kuponu CTA'si mevcut; /fren-balatasi kategori sayfasi oldugu icin Product schema beklenmedi, /faq icin urun schema/kupon CTA beklenmedi. /api/products ilk istekte gecici 500 verdi, tekrar kontrolde 1055 urun dondurdu; /data/products.json da 1055 urun, sitemap/robots/Merchant/Meta feed 200.
+- Uygulanan aksiyon: yeni kod degisikligi yapilmadi; teknik SEO/feed hatasi gorulmedi. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking, admin API ve canli feed kontrolune dayaniyor.
+- Satis adimi: yeni alici kaliteli trafik gelmedigi icin teklif onceligi ayni kaldi; Frencoo kaliper tamir takimi, Ford Cargo arka fren kampanasi, ABS sensoru, SAF dorse ABS dislisi ve CHS5005 icin urun kodu + arac/dorse uyumu + stok/adet + kargo dahil kuponlu net fiyatla hizli WhatsApp cevabi hazir tutulmali.
