@@ -88,3 +88,13 @@
 - Kalite notu: 43 goruntulemenin 32'si guvenilir insan sinyali, 11'i dusuk kaliteli/supheli. Guvenilir trafik Google agirlikli; Google 30, Google Ads isaretli 6.
 - Sicak yollar: /fren-balatasi 3, suspansiyon korugu OEM 0003270101 2, CHS5005 sag kaliper tamir takimi toplam 4, Axor 1840/1848 on porya 2, Arocs fren circiri 2, Ford Cargo fren kampanasi 2, /bpw-dorse-kampana 1.
 - Aksiyon: tekrarli Facebook grup paylasimi yapilmadi; bu tur satis adimi Google/Ads kaynakli sicak urunlerde hizli teklif ve uyum teyidi cevabi hazirlamak.
+
+## Heartbeat Kontrolu - 15:41
+- Facebook paylasimi: yeni paylasim yapilmadi; limit/spam riski alinmadi.
+- Facebook referansli trafik: 0 goruntuleme; onceki UTC gun 0.
+- Toplam trafik: 46 goruntuleme / 29 tekil; insan trafigi 43 / 27 tekil IP.
+- Tiklama/siparis: WhatsApp 0, telefon 0, e-posta 0; odenmis siparis 3.
+- Saatlik durum: 14:41'e gore +3 goruntuleme / +2 tekil artis var; Facebook/Meta kaynakli goruntuleme yine 0.
+- Kalite notu: 46 goruntulemenin 34'u guvenilir insan sinyali, 12'si dusuk kaliteli/supheli. Guvenilir trafik Google agirlikli; Google 32, Google Ads isaretli 7.
+- Sicak yollar: ana sayfa 3, /fren-balatasi 3, Ford Cargo fren circiri 1, suspansiyon korugu OEM 0003270101 2, CHS5005 sag kaliper tamir takimi toplam 4, Axor 1840/1848 on porya 2.
+- Aksiyon: tekrarli Facebook grup paylasimi yapilmadi; bu tur satis adimi Google/Ads kaynakli Ford Cargo fren circiri, /fren-balatasi ve suspansiyon korugu ilgisine hizli teklif cevabi hazirlamak.
