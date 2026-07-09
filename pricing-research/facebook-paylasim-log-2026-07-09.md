@@ -78,3 +78,13 @@
 - Kalite notu: 35 goruntulemenin 26'si guvenilir insan sinyali, 9'u dusuk kaliteli/supheli. Guvenilir trafik Google agirlikli; Google 26, Google Ads isaretli 2.
 - Sicak yollar: CHS5005 sag kaliper tamir takimi varyantlari toplam 4, Axor 1840/1848 on porya 2, Arocs fren circiri 2, Ford Cargo fren kampanasi 2, /bpw-dorse-kampana 1, /ford-fmax-bijon 1, /bmc-tugra-bijon 1.
 - Aksiyon: tekrarli Facebook grup paylasimi yapilmadi; bu tur satis adimi BPW dorse kampana, Axor porya ve CHS5005 icin hizli teklif cevabi hazirlamak.
+
+## Heartbeat Kontrolu - 14:41
+- Facebook paylasimi: yeni paylasim yapilmadi; limit/spam riski alinmadi.
+- Facebook referansli trafik: 0 goruntuleme; onceki UTC gun 0.
+- Toplam trafik: 43 goruntuleme / 27 tekil; insan trafigi 41 / 26 tekil IP.
+- Tiklama/siparis: WhatsApp 0, telefon 0, e-posta 0; odenmis siparis 3.
+- Saatlik durum: 13:41'e gore +8 goruntuleme / +5 tekil artis var; Facebook/Meta kaynakli goruntuleme yine 0.
+- Kalite notu: 43 goruntulemenin 32'si guvenilir insan sinyali, 11'i dusuk kaliteli/supheli. Guvenilir trafik Google agirlikli; Google 30, Google Ads isaretli 6.
+- Sicak yollar: /fren-balatasi 3, suspansiyon korugu OEM 0003270101 2, CHS5005 sag kaliper tamir takimi toplam 4, Axor 1840/1848 on porya 2, Arocs fren circiri 2, Ford Cargo fren kampanasi 2, /bpw-dorse-kampana 1.
+- Aksiyon: tekrarli Facebook grup paylasimi yapilmadi; bu tur satis adimi Google/Ads kaynakli sicak urunlerde hizli teklif ve uyum teyidi cevabi hazirlamak.

@@ -169,3 +169,22 @@
 - Canli SEO dogrulama: /bpw-dorse-kampana, urun 770 Axor porya, /ford-fmax-bijon, /bmc-tugra-bijon ve urun 502 CHS5005 200. Sayfalarda canonical, Product schema/JSON-LD, WhatsApp, telefon ve indirim kuponu CTA'si mevcut. /api/products katalogu 1055 urun donduruyor; sitemap/robots/Merchant/Meta feed 200.
 - Uygulanan aksiyon: yeni kod degisikligi yapilmadi; teknik SEO/feed hatasi gorulmedi. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking, admin API ve canli feed kontrolune dayaniyor.
 - Satis adimi: yeni Google ilgisi nedeniyle teklif onceligi BPW dorse kampana, Axor 1840/1848 on porya, CHS5005 sag kaliper tamir takimi, Ford F-Max bijon ve BMC Tugra bijon. Her teklif icin uyum/kod + stok/adet + kargo dahil kuponlu net fiyat hazir tutulmali.
+
+## Heartbeat Trafik Kontrolu - 14:41
+- Onceki UTC gun (2026-07-08): 151 goruntuleme / 55 tekil; Facebook 0, Google 80, tiklama W/T/E 2/2/0.
+- Yeni UTC gun (2026-07-09): 43 goruntuleme / 27 tekil; raw log 43 satir.
+- Bot filtreli insan trafigi: 41 goruntuleme / 26 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 30; Google Ads isaretli 6.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Saatlik durum: 13:41'e gore +8 goruntuleme / +5 tekil artis var. Google Ads isaretli trafik 2'den 6'ya yukseldi; buna ragmen lead/sepet/favori yok.
+- Kalite filtresi: 43 goruntulemenin 32'si guvenilir insan sinyali, 11'i dusuk kaliteli/supheli. Guvenilir trafik Google agirlikli: Google 30, Google Ads isaretli 6, Facebook/Meta 0.
+- Guvenilir sicak yollar: /fren-balatasi 3, urun 428 suspansiyon korugu roll koruk OEM 0003270101 2, urun 502 CHS5005 sag kaliper tamir takimi varyantlari toplam 4, urun 770 Axor 1840/1848 on porya 2, urun 15 Arocs fren circiri 2, urun 133 Ford Cargo fren kampanasi 2, urun 1043 kaliper piston tamir takimi 2, /bpw-dorse-kampana 1.
+- Sehirler: Istanbul 11, Inegol 4, Cankaya 2, Malatya 2, Nevsehir 2, Ilijas 2, Amasya 2, Corlu 2.
+- Supheli yollar: urun 753 Ford Cargo porya 35/30 2, urun 398 DAF CF/XF bijon 2, urun 435 fren yayi 2, urun 439 imdatli fren korugu 2, urun 828 Ford Cargo/Krone/Kogel fren yayi 2, ana sayfa 1.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0; 30 gun toplam sepete ekleme 8, favori 0. WhatsApp/telefon/e-posta tiklamasi 0/0/0; bu degerler gercek mesaj/arama garantisi degildir.
+- Canli SEO dogrulama: urun 428 suspansiyon korugu, /fren-balatasi, /bpw-dorse-kampana, urun 770 Axor porya ve urun 753 Ford Cargo porya 200. Urun sayfalarinda canonical, Product schema/JSON-LD, WhatsApp, telefon ve indirim kuponu CTA'si mevcut; /fren-balatasi kategori sayfasi oldugu icin Product schema beklenmedi ama canonical, JSON-LD ve CTA mevcut. /api/products katalogu 1055 urun donduruyor; sitemap/robots/Merchant/Meta feed 200.
+- Uygulanan aksiyon: yeni kod degisikligi yapilmadi; teknik SEO/feed hatasi gorulmedi. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking, admin API ve canli feed kontrolune dayaniyor.
+- Satis adimi: Google Ads isaretli trafik artarken lead gelmedigi icin oncelik /fren-balatasi, urun 428 suspansiyon korugu, CHS5005, Axor porya ve BPW dorse kampana icin hizli teklif ve uyum sorusu. Cevap formatinda urun kodu + arac/dorse uyumu + stok/adet + kargo dahil kuponlu net fiyat olmali.
