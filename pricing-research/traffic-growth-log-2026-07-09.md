@@ -99,3 +99,20 @@
 - Canli SEO dogrulama: urun 133, /travego-balata, /actros-1848-kaliper-tamir-takimi, urun 398 ve 828 200. Landing/urun sayfalarinda canonical, Product schema/JSON-LD, WhatsApp, telefon ve indirim kuponu CTA'si mevcut. Sitemap/robots/Merchant/Meta feed 200.
 - Uygulanan aksiyon: yeni kod degisikligi yapilmadi; teknik SEO ve feed tarafinda acil hata gorulmedi. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking ve canli feed kontrolune dayaniyor.
 - Satis adimi: en yakin teklif onceligi urun 133 Ford Cargo fren kampanasi, /travego-balata ve /actros-1848-kaliper-tamir-takimi. Hazir cevaplarda OEM/kod + arac modeli + adet + kargo dahil kuponlu net fiyat one alinmali.
+
+## Heartbeat Trafik Kontrolu - 10:41
+- Onceki UTC gun (2026-07-08): 151 goruntuleme / 55 tekil; Facebook 0, Google 80, tiklama W/T/E 2/2/0.
+- Yeni UTC gun (2026-07-09): 26 goruntuleme / 17 tekil; raw log 26 satir.
+- Bot filtreli insan trafigi: 26 goruntuleme / 17 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 17; Google Ads isaretli 2.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Kalite filtresi: 26 goruntulemenin 17'si guvenilir insan sinyali, 9'u kaynak bos/US paterni nedeniyle dusuk kaliteli/supheli. Guvenilir trafik tamamen Google agirlikli: Google 17, Google Ads isaretli 2, Facebook/Meta 0.
+- Guvenilir sicak yollar: urun 15 Mercedes Arocs fren circiri sag on 2, urun 1043 kaliper piston tamir takimi 2, urun 668 pistonsuz koruk 2, urun 177 Karsan Atak fren diski 2, urun 828 Tirsan dorse fren yayi 2, urun 133 Ford Cargo fren kampanasi 2, ana sayfa 2, /axor-3228-bijon 1, /travego-balata 1, /actros-1848-kaliper-tamir-takimi 1.
+- Sehirler: Istanbul 5, Inegol 4, Ilijas 2, Amasya 2, Corlu 2, Gaziantep 1, Fransa/Lauterbourg 1.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0. WhatsApp/telefon/e-posta tiklamasi 0/0/0; bu degerler gercek mesaj/arama garantisi degildir.
+- Canli SEO dogrulama: urun 15, 1043, 668, 133, /travego-balata ve /actros-1848-kaliper-tamir-takimi 200. Landing/urun sayfalarinda canonical, Product schema/JSON-LD, WhatsApp, telefon ve indirim kuponu CTA'si mevcut. Sitemap/robots/Merchant/Meta feed 200.
+- Uygulanan aksiyon: yeni kod degisikligi yapilmadi; teknik SEO ve feed tarafinda acil hata gorulmedi. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking ve canli feed kontrolune dayaniyor.
+- Satis adimi: en yakin teklif onceligi urun 15 Arocs fren circiri, urun 1043 kaliper piston tamir takimi, urun 133 Ford Cargo fren kampanasi, /travego-balata ve /actros-1848-kaliper-tamir-takimi. Hazir cevaplarda OEM/kod + arac modeli + adet + kargo dahil kuponlu net fiyat one alinmali.
