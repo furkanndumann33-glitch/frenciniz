@@ -49,3 +49,20 @@
 - Canli SEO dogrulama: ana sayfa, urun 435, 142, 888 ve 915 200. Urunlerde canonical, Product schema, JSON-LD, WhatsApp, telefon ve indirim kuponu CTA'si mevcut. Sitemap/robots/Merchant/Meta feed 200.
 - Uygulanan aksiyon: yeni kod degisikligi yapilmadi; teknik SEO ve feed tarafinda acil hata gorulmedi. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking ve canli feed kontrolune dayaniyor.
 - Satis adimi: sabah ilk manuel satis cevabi icin 142, 888, 915, 459, 166, 480, 801 ve 435 hazir teklif listesi one alinmali.
+
+## Heartbeat Trafik Kontrolu - 06:39
+- Onceki UTC gun (2026-07-08): 151 goruntuleme / 55 tekil; Facebook 0, Google 80, tiklama W/T/E 2/2/0.
+- Yeni UTC gun (2026-07-09): 7 goruntuleme / 5 tekil; raw log 7 satir.
+- Bot filtreli insan trafigi: 7 goruntuleme / 5 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 0; Google Ads isaretli 0.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Kalite filtresi: UTC 09.07'deki 7 goruntulemenin tamaminda kaynak bos/US paterni var; satis niyeti dusuk/supheli sayildi. Guvenilir insan sinyali 0.
+- Turkiye saatiyle 09.07.2026 00:00 sonrasi: 40 goruntuleme / 12 tekil; kalite filtreli insan trafigi 16 goruntuleme / 4 tekil IP. Bot/supheli 24. Google 8, Google Ads isaretli 0, Facebook/Meta 0.
+- Supheli UTC yollar: urun 828 Ford Cargo/Krone/Kogel fren yayi 2, urun 439 imdatli fren korugu 2, urun 435 fren yayi 2, ana sayfa 1. Gece guvenilir sicak yollar onceki gibi urun 142, 888, 801 ve 1042.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0. WhatsApp/telefon/e-posta tiklamasi 0/0/0.
+- Canli SEO dogrulama: urun 828, 439, 435, 142 ve 888 200. Urunlerde canonical, Product schema, JSON-LD, WhatsApp, telefon ve indirim kuponu CTA'si mevcut. Sitemap/robots/Merchant/Meta feed 200.
+- Uygulanan aksiyon: yeni kod degisikligi yapilmadi; teknik SEO ve feed tarafinda acil hata gorulmedi. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking ve canli feed kontrolune dayaniyor.
+- Satis adimi: sabah manuel takipte 142, 888, 801, 1042 ve onceki gunun 915/459/166/480 urunleri teklif onceligi olmali. 828/439/435 icin de fren yayi/koruk uyum sorusu hazir tutulmali.
