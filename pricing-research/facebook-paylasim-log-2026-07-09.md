@@ -171,3 +171,14 @@
 - Sicak yollar: ana sayfa 4, /fren-balatasi 3, DAF suspansiyon koruk lastigi 2, Frencoo kaliper tamir takimi OEM 93299/40/4120 2, Ford Cargo arka fren kampanasi OEM 9C461126AD 2, ABS sensoru 2, SAF dorse ABS dislisi 2, CHS5005 sag kaliper tamir takimi toplam 4, /ror-meritor-dorse-kampana 1.
 - Sepet/favori: bugun 0/0, son 7 gun 0/0; 30 gun sepete ekleme 8 ama bugune ait degil. WhatsApp/telefon/e-posta tiklamasi 0/0/0 ve bunlar gercek mesaj/arama garantisi degildir.
 - Aksiyon: tekrarli Facebook grup paylasimi yapilmadi; bu tur satis adimi DAF suspansiyon koruk lastigi ve ROR/Meritor dorse kampana icin kargo dahil kuponlu net fiyatla hizli WhatsApp teklif cevabi hazirlamak.
+
+## Heartbeat Kontrolu - 23:45
+- Facebook paylasimi: yeni paylasim yapilmadi; limit/spam riski alinmadi.
+- Facebook referansli trafik: 0 goruntuleme; onceki UTC gun 0.
+- Toplam trafik: 80 goruntuleme / 39 tekil; insan trafigi 72 / 35 tekil IP.
+- Tiklama/siparis: WhatsApp 0, telefon 0, e-posta 0; odenmis siparis 3.
+- Saatlik durum: 22:45'e gore +15 goruntuleme / +1 tekil artis var; Facebook/Meta kaynakli goruntuleme yine 0. Artis Google kaynakli kampana ve suspansiyon korugu kumesinde.
+- Kalite notu: 80 goruntulemenin 63'u guvenilir insan sinyali, 17'si dusuk kaliteli/supheli. Guvenilir trafik Google agirlikli; Google 61, Google Ads isaretli 8.
+- Sicak yollar: FT 34810-K04F suspansiyon korugu 6, ana sayfa 5, /fren-balatasi 3, Kampana 522 Profesyonel 2, BMC Probus/Profesyonel/Fatih Pro kampana 2, dorse korugu pistonsuz 2, DAF suspansiyon koruk lastigi 2, Ford Cargo arka fren kampanasi 2, /kampana 1.
+- Sepet/favori: bugun 0/0, son 7 gun 0/0; 30 gun sepete ekleme 8 ama bugune ait degil. WhatsApp/telefon/e-posta tiklamasi 0/0/0 ve bunlar gercek mesaj/arama garantisi degildir.
+- Aksiyon: tekrarli Facebook grup paylasimi yapilmadi; bu tur satis adimi FT 34810-K04F suspansiyon korugu ve kampana kumesi icin kargo dahil kuponlu net fiyatla hizli WhatsApp teklif cevabi hazirlamak.

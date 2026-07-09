@@ -339,3 +339,22 @@
 - Canli SEO dogrulama: ana sayfa, urun 881 DAF suspansiyon koruk lastigi, /ror-meritor-dorse-kampana, urun 674 Frencoo kaliper tamir takimi, urun 132 Ford Cargo arka fren kampanasi ve /fren-balatasi 200. Urun sayfalarinda canonical, JSON-LD, Product schema, WhatsApp, telefon ve indirim kuponu CTA'si mevcut; /fren-balatasi kategori sayfasi oldugu icin Product schema beklenmedi. /api/products ve /data/products.json 1055 urun, sitemap/robots/Merchant/Meta feed 200.
 - Uygulanan aksiyon: yeni kod degisikligi yapilmadi; teknik SEO/feed hatasi gorulmedi. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking, admin API ve canli feed kontrolune dayaniyor.
 - Satis adimi: DAF suspansiyon koruk lastigi icin hizli teklif hazir tutulmali; onceki sicak urunlerle birlikte ROR/Meritor dorse kampana, Frencoo kaliper tamir takimi, Ford Cargo arka fren kampanasi, ABS sensoru ve CHS5005 icin urun kodu + uyumluluk + stok/adet + kargo dahil kuponlu net fiyatla WhatsApp cevabi verilmeli.
+
+## Heartbeat Trafik Kontrolu - 23:45
+- Onceki UTC gun (2026-07-08): 151 goruntuleme / 55 tekil; Facebook 0, Google 80, tiklama W/T/E 2/2/0.
+- Yeni UTC gun (2026-07-09): 80 goruntuleme / 39 tekil; raw log 80 satir.
+- Bot filtreli insan trafigi: 72 goruntuleme / 35 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 61; Google Ads isaretli 8.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Saatlik durum: 22:45'e gore +15 goruntuleme / +1 tekil artis var. Artis tekil sayidan cok sayfa gezintisi seklinde; yeni guvenilir trafik Google kaynakli kampana ve suspansiyon korugu kumesinde yogunlasti. Lead/sepet/favori yok.
+- Kalite filtresi: 80 goruntulemenin 63'u guvenilir insan sinyali, 17'si dusuk kaliteli/supheli. Supheli hacim sabit kaldi; yeni artis agirlikli guvenilir Google trafigi. Google 61, Google Ads isaretli 8, Facebook/Meta 0.
+- Guvenilir sicak yollar: urun 422 FT 34810-K04F suspansiyon korugu 6, ana sayfa 5, /fren-balatasi 3, urun 142 Kampana 522 Profesyonel F/R OEM 57RS302616UB 2, urun 145 BMC Probus/Profesyonel/Fatih Pro 20 cm fren kampanasi 2, urun 459 dorse korugu pistonsuz 2, urun 881 DAF suspansiyon koruk lastigi 2, urun 674 Frencoo kaliper tamir takimi 2, urun 132 Ford Cargo arka fren kampanasi 2, urun 715 ABS sensoru 2, /kampana 1.
+- Sehirler: bilinmeyen TR 19, Istanbul 17, Inegol 8, Selcuklu 2, Cankaya 2, Malatya 2, Nevsehir 2, Amasya 2, Corlu 2, Bursa 1, Izmir 1, Gaziantep 1.
+- Supheli yollar: urun 753 Ford Cargo porya 35/30 4, ana sayfa 2, urun 398 DAF CF/XF bijon 2, urun 435 fren yayi 2, urun 439 imdatli fren korugu 2, urun 828 Ford Cargo/Krone/Kogel fren yayi 2, /faq 1, urun 223/224 MAN fren diski 1'er.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0; 30 gun toplam sepete ekleme 8, favori 0. Son sepet kayitlari bugune ait degil; bugunku WhatsApp/telefon/e-posta tiklamasi 0/0/0 ve bu degerler gercek mesaj/arama garantisi degildir.
+- Canli SEO dogrulama: ana sayfa, /kampana, urun 142 Kampana 522, urun 145 BMC Probus/Profesyonel/Fatih Pro kampana, urun 881 DAF suspansiyon koruk lastigi ve /ror-meritor-dorse-kampana 200. Urun sayfalarinda canonical, JSON-LD, Product schema, WhatsApp, telefon ve indirim kuponu CTA'si mevcut; /kampana kategori/landing sayfasi oldugu icin Product schema beklenmedi. /api/products ve /data/products.json 1055 urun, sitemap/robots/Merchant/Meta feed 200.
+- Uygulanan aksiyon: yeni kod degisikligi yapilmadi; teknik SEO/feed hatasi gorulmedi. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking, admin API ve canli feed kontrolune dayaniyor.
+- Satis adimi: FT 34810-K04F suspansiyon korugu ve kampana kumesi icin hizli teklif hazir tutulmali; Kampana 522 Profesyonel, BMC Probus/Profesyonel/Fatih Pro kampana, DAF suspansiyon koruk lastigi ve ROR/Meritor dorse kampana icin urun kodu + uyumluluk + stok/adet + kargo dahil kuponlu net fiyatla WhatsApp cevabi verilmeli.
