@@ -204,3 +204,14 @@
 - Sicak yollar: ana sayfa 6, FT 34810-K04F suspansiyon korugu 6, /fren-balatasi 3, Kampana 522 Profesyonel 2, BMC Probus/Profesyonel/Fatih Pro kampana 2, dorse korugu pistonsuz 2, DAF suspansiyon koruk lastigi 2, Ford Cargo arka fren kampanasi 2.
 - Sepet/favori: bugun 0/0, son 7 gun 0/0; 30 gun sepete ekleme 8 ama bugune ait degil. WhatsApp/telefon/e-posta tiklamasi 0/0/0 ve bunlar gercek mesaj/arama garantisi degildir.
 - Aksiyon: tekrarli Facebook grup paylasimi yapilmadi; yeni trafik olmadigi icin satis onceligi FT 34810-K04F suspansiyon korugu ve kampana kumesinde hizli WhatsApp teklif cevabi hazirlamak.
+
+## Heartbeat Kontrolu - 02:45
+- Facebook paylasimi: yeni paylasim yapilmadi; limit/spam riski alinmadi.
+- Facebook referansli trafik: 0 goruntuleme; onceki UTC gun 0.
+- Toplam trafik: 89 goruntuleme / 43 tekil; insan trafigi 80 / 38 tekil IP.
+- Tiklama/siparis: WhatsApp 0, telefon 0, e-posta 0; odenmis siparis 3.
+- Saatlik durum: 01:45'e gore +7 goruntuleme / +2 tekil artis var; Facebook/Meta kaynakli goruntuleme yine 0. Artis Google kaynakli /brands, /fren-diski ve FT 34810-K04F suspansiyon korugu tarafinda.
+- Kalite notu: 89 goruntulemenin 71'i guvenilir insan sinyali, 18'i dusuk kaliteli/supheli. Guvenilir trafik Google agirlikli; Google 67, Google Ads isaretli 14.
+- Sicak yollar: FT 34810-K04F suspansiyon korugu 8, ana sayfa 6, /brands 4, /fren-balatasi 3, /fren-diski 2, Kampana 522 Profesyonel 2, BMC Probus/Profesyonel/Fatih Pro kampana 2, dorse korugu pistonsuz 2, DAF suspansiyon koruk lastigi 2.
+- Sepet/favori: bugun 0/0, son 7 gun 0/0; 30 gun sepete ekleme 8 ama bugune ait degil. WhatsApp/telefon/e-posta tiklamasi 0/0/0 ve bunlar gercek mesaj/arama garantisi degildir.
+- Aksiyon: tekrarli Facebook grup paylasimi yapilmadi; bu tur satis adimi Google/Ads kaynakli /fren-diski ve FT 34810-K04F suspansiyon korugu icin kargo dahil kuponlu net fiyatla hizli WhatsApp teklif cevabi hazirlamak.

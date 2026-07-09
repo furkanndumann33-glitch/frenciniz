@@ -396,3 +396,22 @@
 - Canli SEO dogrulama: ana sayfa, /contact, /kampana, urun 422 FT 34810-K04F suspansiyon korugu, urun 142 Kampana 522 ve urun 145 BMC Probus/Profesyonel/Fatih Pro kampana 200. Urun sayfalarinda canonical, JSON-LD, Product schema, WhatsApp, telefon ve indirim kuponu CTA'si mevcut; ana sayfa/contact/kategori sayfalarinda Product schema beklenmedi. /api/products ve /data/products.json 1055 urun, sitemap/robots/Merchant/Meta feed 200.
 - Uygulanan aksiyon: yeni kod degisikligi yapilmadi; teknik SEO/feed hatasi gorulmedi. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking, admin API ve canli feed kontrolune dayaniyor.
 - Satis adimi: yeni trafik gelmedigi icin oncelik degismedi; FT 34810-K04F suspansiyon korugu ve kampana kumesi icin urun kodu + uyumluluk + stok/adet + kargo dahil kuponlu net fiyatla WhatsApp cevabi hazir tutulmali.
+
+## Heartbeat Trafik Kontrolu - 02:45
+- Onceki UTC gun (2026-07-08): 151 goruntuleme / 55 tekil; Facebook 0, Google 80, tiklama W/T/E 2/2/0.
+- Yeni UTC gun (2026-07-09): 89 goruntuleme / 43 tekil; raw log 89 satir.
+- Bot filtreli insan trafigi: 80 goruntuleme / 38 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 67; Google Ads isaretli 14.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Saatlik durum: 01:45'e gore +7 goruntuleme / +2 tekil artis var. Yeni guvenilir kayitlar Google kaynakli /brands, /fren-diski ve urun 422 FT 34810-K04F suspansiyon korugu tarafinda; Google Ads isaretli trafik 9'dan 14'e yukseldi. Lead/sepet/favori yok.
+- Kalite filtresi: 89 goruntulemenin 71'i guvenilir insan sinyali, 18'i dusuk kaliteli/supheli. Guvenilir trafik Google agirlikli: Google 67, Google Ads isaretli 14, Facebook/Meta 0.
+- Guvenilir sicak yollar: urun 422 FT 34810-K04F suspansiyon korugu 8, ana sayfa 6, /brands 4, /fren-balatasi 3, /fren-diski 2, urun 142 Kampana 522 Profesyonel F/R OEM 57RS302616UB 2, urun 145 BMC Probus/Profesyonel/Fatih Pro 20 cm fren kampanasi 2, urun 459 dorse korugu pistonsuz 2, urun 881 DAF suspansiyon koruk lastigi 2, urun 674 Frencoo kaliper tamir takimi 2.
+- Sehirler: bilinmeyen TR 25, Istanbul 17, Inegol 8, Bursa 3, Selcuklu 2, Cankaya 2, Malatya 2, Nevsehir 2, Amasya 2, Corlu 2, Izmir 1, Gaziantep 1.
+- Supheli yollar: urun 753 Ford Cargo porya 35/30 4, ana sayfa 2, urun 398 DAF CF/XF bijon 2, urun 435 fren yayi 2, urun 439 imdatli fren korugu 2, urun 828 Ford Cargo/Krone/Kogel fren yayi 2, /contact 1, /faq 1, urun 223/224 MAN fren diski 1'er.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0; 30 gun toplam sepete ekleme 8, favori 0. Son sepet kayitlari bugune ait degil; bugunku WhatsApp/telefon/e-posta tiklamasi 0/0/0 ve bu degerler gercek mesaj/arama garantisi degildir.
+- Canli SEO dogrulama: ana sayfa, /brands, /fren-diski, /kampana, urun 422 FT 34810-K04F suspansiyon korugu ve urun 142 Kampana 522 200. Urun sayfalarinda canonical, JSON-LD, Product schema, WhatsApp, telefon ve indirim kuponu CTA'si mevcut; marka/kategori sayfalarinda Product schema beklenmedi. /api/products ve /data/products.json 1055 urun, sitemap/robots/Merchant/Meta feed 200.
+- Uygulanan aksiyon: yeni kod degisikligi yapilmadi; teknik SEO/feed hatasi gorulmedi. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking, admin API ve canli feed kontrolune dayaniyor.
+- Satis adimi: Ads isaretli trafik yukseldigi icin ilk mesai aksiyonu /fren-diski ve FT 34810-K04F suspansiyon korugu icin teklif metnini hazir tutmak; kampana kumesiyle birlikte urun kodu + uyumluluk + stok/adet + kargo dahil kuponlu net fiyatla WhatsApp cevabi verilmeli.
