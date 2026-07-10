@@ -165,3 +165,22 @@
 - Satis bilgisi: urun 785 EYD 91 11 stok 65, site fiyati 217.80 TL; urun 946 ESP.22.08 stok 1, site fiyati 4488 TL; urun 335 ESB 340 20 stok 4506, site fiyati 199.31 TL; urun 177 ESD 090 08 stok 116, site fiyati 4424.14 TL; urun 182 ESD 080 01 stok 301, site fiyati 3817.95 TL; urun 640 PWR-5041 stok 10, site fiyati 2473.68 TL.
 - Uygulanan aksiyon: yeni kod degisikligi yapilmadi; sicak urun ve landing SEO/feed kontrolleri temiz. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking, admin API ve canli feed kontrolune dayaniyor.
 - Satis adimi: 11:45 itibariyla en yakin teklif urun 785 ABS/EBS sensoru + urun 946 porya; porya stok 1 oldugu icin gelen WhatsApp'ta kargo dahil kuponlu net fiyat ve stok teyidi ilk mesajda verilmeli.
+
+## Heartbeat Trafik Kontrolu - 12:45
+- Onceki UTC gun (2026-07-09): 89 goruntuleme / 43 tekil; Facebook 0, Google 67, tiklama W/T/E 0/0/0.
+- Yeni UTC gun (2026-07-10): 25 goruntuleme / 14 tekil; raw log 25 satir.
+- Bot filtreli insan trafigi: 23 goruntuleme / 12 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 19; Google Ads isaretli 3.
+- Iletisim tiklamalari: WhatsApp 3, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Saatlik durum: 11:45'e gore +6 goruntuleme / +4 tekil artis var. En onemli yeni sinyal urun 785 ABS/EBS sensoru sayfasindan 3 WhatsApp link tiklamasi; bunlar gercek mesaj gonderildi garantisi degil, WhatsApp linkinin acildigini gosterir.
+- Kalite filtresi: 25 goruntulemenin 23'u guvenilir insan sinyali, 2'si dusuk kaliteli/supheli. Google 19, site tracking'e gore Google Ads isaretli 3, Facebook/Meta 0. Google Ads paneli acilmadi; Ads durumu panel verisi degil, site kaynak isaretidir.
+- Guvenilir sicak yollar: anasayfa 4; urun 785 ABS/EBS Sensoru EYD 91 11 toplam 5; urun 946 Ford Cargo/Krone/Kogel Dorse Porya E.M. 2; urun 335 BMC Bijon ESB 340 20 2; urun 177 Otokar/Karsan Atak Fren Diski ESD 090 08 2; urun 182 Scania P G R Fren Diski ESD 080 01 2; urun 640 Scania P G R Disk Fren Balatasi PWR-5041 2; /fren-korugu 1; /bmc-pro-fren-circiri 1; /scania-r420-kaliper-tamir-takimi 1.
+- Sehir/IP dagilimi: guvenilir trafik TR/Istanbul 12, TR/Bursa 5, TR/Antalya 3, TR/Ankara 1, TR sehir bos 1; IP detaylari rapora yazdirilmadi.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0; 30 gun toplam sepete ekleme 8, favori 0. WhatsApp tiklamalarinin 3'u de urun 785 ABS/EBS sensoru sayfasindan geldi; 2'si product_detail CTA, 1'i floating_whatsapp.
+- Canli SEO dogrulama: ana sayfa, urun 785 ABS/EBS sensoru iki URL varyanti, /fren-korugu, urun 946 porya, /bmc-pro-fren-circiri, /scania-r420-kaliper-tamir-takimi, urun 335 BMC Bijon, urun 177 Otokar/Karsan Atak Fren Diski, urun 182 Scania P G R Fren Diski ve urun 640 Scania P G R Disk Fren Balatasi 200. Urun/landing sayfalarinda canonical, JSON-LD, Product schema, WhatsApp, telefon ve indirim kuponu CTA'si mevcut. /api/products ve /data/products.json 1055 urun, sitemap/robots/Merchant/Meta feed 200.
+- Satis bilgisi: urun 785 EYD 91 11 stok 65, site fiyati 217.80 TL; urun 946 ESP.22.08 stok 1, site fiyati 4488 TL; urun 335 ESB 340 20 stok 4506, site fiyati 199.31 TL; urun 177 ESD 090 08 stok 116, site fiyati 4424.14 TL; urun 182 ESD 080 01 stok 301, site fiyati 3817.95 TL; urun 640 PWR-5041 stok 10, site fiyati 2473.68 TL.
+- Uygulanan aksiyon: yeni kod degisikligi yapilmadi; sicak urun ve landing SEO/feed kontrolleri temiz. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking, admin API ve canli feed kontrolune dayaniyor.
+- Satis adimi: WhatsApp uygulamasinda urun 785 icin mesaj gelip gelmedigi kontrol edilmeli; mesaj geldiyse ilk cevapta OEM 4029106300 / EYD 91 11, stok 65, kargo dahil kuponlu net fiyat ve uyumluluk teyidi verilmeli. Mesaj yoksa link tiklamasi yarida kalmis olabilir.
