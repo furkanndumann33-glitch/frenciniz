@@ -434,3 +434,23 @@
 - Satis bilgisi: Schmitz/Dorse fren korugu niyetinde urun 469 ARF 16/24 D/P - L stok 58, site fiyati 5940 TL; urun 561 BK 01 1624 stok 2, site fiyati 5940 TL; urun 553 ARF 16/24 D/D stok 13, site fiyati 2970 TL; urun 558 EYD 100 71-1 stok 296, site fiyati 396 TL. Net parca icin disk/kampana tipi, 16/24 veya 30/30 olcu ve eski parca kodu teyidi gerekli.
 - Uygulanan aksiyon: yeni kod degisikligi yapilmadi; sicak landing ve feed kontrolleri temiz, yeni veri artisi yok. Donusum icin ana eksik hala lead/sepet/favori davranisi.
 - Satis adimi: Schmitz dorse fren korugu icin hazir cevap sablonu kullanilmali: "Disk mi kampana mi, koruk uzerindeki 16/24-30/30 olcu ve eski parca kodu/foto var mi?" Teyit gelince kargo dahil kuponlu fiyat ver.
+
+## Heartbeat Trafik Kontrolu - 02:47
+- Onceki UTC gun (2026-07-09): 89 goruntuleme / 43 tekil; Facebook 0, Google 67, tiklama W/T/E 0/0/0.
+- Yeni UTC gun (2026-07-10): 91 goruntuleme / 43 tekil; raw log 91 satir.
+- Bot filtreli insan trafigi: 74 goruntuleme / 37 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 63; Google Ads isaretli 13.
+- Iletisim tiklamalari: WhatsApp 3, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Saatlik durum: 01:47'ye gore yeni goruntuleme, yeni tekil, yeni insan trafik ve yeni bot artisi yok. Metrikler 91/43 toplam, 74/37 insan filtreli, 17 supheli olarak sabit kaldi. Ham trafik onceki UTC gunun 89/43 degerini gecti; insan filtreli trafik ise onceki gunun 80/38 seviyesinin altinda.
+- Yeni sicak sinyal yok; son sicaklar Mersin Google Ads/site-tag anasayfa, Istanbul Google /schmitz-dorse-fren-korugu ve Antalya /otokar-sultan-fren-korugu. Yeni WhatsApp, telefon, e-posta, sepet veya favori yok.
+- Kalite filtresi: guvenilir kaynak dagilimi Google organic/referrer 53, Google Ads/site-tag 13, direct/bos 6, diger referrer 2; Facebook/Meta 0. Google Ads paneli acilmadi; Ads durumu panel verisi degil, site kaynak isaretidir.
+- Guvenilir sicak yollar: anasayfa 9; urun 785 ABS/EBS sensoru 4; urun 595 Renault fren korugu 3; /fren-balatasi 3; urun 145 BMC kampana 2; urun 422 suspansiyon korugu 2; urun 142 BMC kampana 2; /arocs-4142-balata 2; urun 146 BMC kampana 2; urun 149 MAN kampana 2; urun 685 kaliper ayar mekanizmasi 2; urun 7 Ford Cargo/Krone/Kogel fren diski 2; urun 469 imdatli fren korugu 2; urun 227 Mercedes Axor/Actros/Arocs fren diski 2.
+- Sehir/IP dagilimi: guvenilir trafik TR/Istanbul 21, TR sehir bos 15, TR/Bursa 7, TR/Konya 5, TR/Antalya 4, TR/Aydin 4, TR/Mersin 3, TR/Ankara 3, TR/Corum 2, TR/Elazig 2, TR/Tokat 2, TR/Diyarbakir 2; IP detaylari rapora yazdirilmadi.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0; 30 gun toplam sepete ekleme 8, favori 0. WhatsApp tiklamasi 3 olarak sabit; bu degerler gercek mesaj/arama garantisi degildir.
+- Canli SEO dogrulama: anasayfa, /schmitz-dorse-fren-korugu, /otokar-sultan-fren-korugu, /fren-korugu, urun 469, urun 561 ve urun 553 200. Sicak landing ve urun sayfalarinda canonical, JSON-LD, WhatsApp, telefon ve kupon CTA mevcut; urun sayfalarinda Product schema mevcut. /api/products 1055 urun, Merchant feed 1055 item, Meta feed 1055 satir.
+- Satis bilgisi: Schmitz/Dorse fren korugu adaylari urun 469 ARF 16/24 D/P - L stok 58 fiyat 5940 TL, urun 561 BK 01 1624 stok 2 fiyat 5940 TL, urun 553 ARF 16/24 D/D stok 13 fiyat 2970 TL, urun 558 EYD 100 71-1 stok 296 fiyat 396 TL. BMC kampana urun 145 stok 537 fiyat 6083.19 TL, urun 142 stok 62 fiyat 5264.30 TL; suspansiyon korugu urun 422 stok 22 fiyat 3300 TL.
+- Uygulanan aksiyon: yeni kod degisikligi yapilmadi; teknik SEO/feed/CTA kontrolleri temiz ve yeni veri artisi yok. Bu turda problem trafik kalitesi degil, lead/sepet/favoriye donusum olmamasi.
+- Satis adimi: Schmitz dorse fren korugu icin hazir cevap aynen surdurulmeli: "Disk mi kampana mi, koruk uzerindeki 16/24-30/30 olcu ve eski parca kodu/foto var mi?" Teyit gelince kargo dahil kuponlu fiyat verilmeli.
