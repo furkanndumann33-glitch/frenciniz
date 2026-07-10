@@ -196,3 +196,14 @@
 - Sicak yollar: urun 785 ABS/EBS Sensoru toplam 5 ve WhatsApp tiklamasi 3; urun 595 Renault fren korugu 3; /fren-balatasi 3; /arocs-4142-balata 2; urun 146 BMC kampana 2; urun 149 MAN kampana 2; urun 685 kaliper ayar mekanizmasi 2; urun 7 Ford Cargo fren diski 2; urun 469 imdatli fren korugu 2; urun 650 suspansiyon korugu 2; urun 227 Mercedes Axor/Actros/Arocs fren diski 2.
 - Sepet/favori: bugun 0/0, son 7 gun 0/0; 30 gun sepete ekleme 8 ama bugune ait degil. WhatsApp 3 gercek mesaj garantisi degil; link acilmasi olarak yorumlanmali.
 - Aksiyon: tekrarli Facebook grup paylasimi yapilmadi. Arocs 4142 balata/fren diski, urun 146 BMC kampana ve urun 149 MAN kampana icin kargo dahil kuponlu net fiyat + arac/olcu uyumluluk teyidiyle hizli WhatsApp cevabi hazirlanmali.
+
+## Heartbeat Kontrolu - 21:45
+- Facebook paylasimi: yeni paylasim yapilmadi; limit/spam riski alinmadi.
+- Facebook referansli trafik: 0 goruntuleme; onceki UTC gun 0.
+- Toplam trafik: 69 goruntuleme / 37 tekil; insan trafigi 65 / 33 tekil IP.
+- Tiklama/siparis: WhatsApp 3, telefon 0, e-posta 0; odenmis siparis 3.
+- Saatlik durum: 20:45'e gore +1 goruntuleme / +0 tekil artis var; yeni kayit /company sayfasinda US/ref bos ve bot isaretli. Facebook/Meta kaynakli goruntuleme yine 0, guvenilir insan trafik sabit.
+- Kalite notu: 69 goruntulemenin 65'i guvenilir insan sinyali, 4'u dusuk kaliteli/supheli. Google 57, site tracking'e gore Google Ads isaretli 12; Ads paneli acilmadi.
+- Sicak yollar: /arocs-4142-balata 2; urun 146 BMC kampana 2; urun 149 MAN kampana 2; urun 685 kaliper ayar mekanizmasi 2; urun 7 Ford Cargo fren diski 2; urun 227 Mercedes Axor/Actros/Arocs fren diski 2; urun 785 ABS/EBS Sensoru 4 ve WhatsApp tiklamasi toplam 3.
+- Sepet/favori: bugun 0/0, son 7 gun 0/0; WhatsApp 3 link tiklamasi sabit ve gercek mesaj garantisi degil. Yeni telefon/e-posta tiklamasi yok.
+- Aksiyon: tekrarli Facebook grup paylasimi yapilmadi. Bu saatte sosyal kaynak yeni trafik getirmedigi icin oncelik Google kaynakli sicak urunlerde kargo dahil kuponlu teklif ve hizli WhatsApp donus takibi.
