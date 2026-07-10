@@ -184,3 +184,22 @@
 - Satis bilgisi: urun 785 EYD 91 11 stok 65, site fiyati 217.80 TL; urun 946 ESP.22.08 stok 1, site fiyati 4488 TL; urun 335 ESB 340 20 stok 4506, site fiyati 199.31 TL; urun 177 ESD 090 08 stok 116, site fiyati 4424.14 TL; urun 182 ESD 080 01 stok 301, site fiyati 3817.95 TL; urun 640 PWR-5041 stok 10, site fiyati 2473.68 TL.
 - Uygulanan aksiyon: yeni kod degisikligi yapilmadi; sicak urun ve landing SEO/feed kontrolleri temiz. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking, admin API ve canli feed kontrolune dayaniyor.
 - Satis adimi: WhatsApp uygulamasinda urun 785 icin mesaj gelip gelmedigi kontrol edilmeli; mesaj geldiyse ilk cevapta OEM 4029106300 / EYD 91 11, stok 65, kargo dahil kuponlu net fiyat ve uyumluluk teyidi verilmeli. Mesaj yoksa link tiklamasi yarida kalmis olabilir.
+
+## Heartbeat Trafik Kontrolu - 13:45
+- Onceki UTC gun (2026-07-09): 89 goruntuleme / 43 tekil; Facebook 0, Google 67, tiklama W/T/E 0/0/0.
+- Yeni UTC gun (2026-07-10): 27 goruntuleme / 15 tekil; raw log 27 satir.
+- Bot filtreli insan trafigi: 25 goruntuleme / 13 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 21; Google Ads isaretli 3.
+- Iletisim tiklamalari: WhatsApp 3, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Saatlik durum: 12:45'e gore +2 goruntuleme / +1 tekil artis var. Yeni guvenilir sinyal Google organik kaynakli Bursa /ford-cargo-1846-fren-korugu landing sayfasinda 2 goruntuleme. WhatsApp tiklamalari 3 olarak sabit; yeni WhatsApp tiklamasi yok.
+- Kalite filtresi: 27 goruntulemenin 25'i guvenilir insan sinyali, 2'si dusuk kaliteli/supheli. Google 21, site tracking'e gore Google Ads isaretli 3, Facebook/Meta 0. Google Ads paneli acilmadi; Ads durumu panel verisi degil, site kaynak isaretidir.
+- Guvenilir sicak yollar: anasayfa 4; urun 785 ABS/EBS Sensoru EYD 91 11 toplam 5; /ford-cargo-1846-fren-korugu 2; urun 946 Ford Cargo/Krone/Kogel Dorse Porya E.M. 2; urun 335 BMC Bijon ESB 340 20 2; urun 177 Otokar/Karsan Atak Fren Diski ESD 090 08 2; urun 182 Scania P G R Fren Diski ESD 080 01 2; urun 640 Scania P G R Disk Fren Balatasi PWR-5041 2; /fren-korugu 1; /bmc-pro-fren-circiri 1; /scania-r420-kaliper-tamir-takimi 1.
+- Sehir/IP dagilimi: guvenilir trafik TR/Istanbul 12, TR/Bursa 7, TR/Antalya 3, TR/Ankara 1, TR sehir bos 1; IP detaylari rapora yazdirilmadi.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0; 30 gun toplam sepete ekleme 8, favori 0. WhatsApp tiklamalari 3 ve hepsi urun 785 ABS/EBS sensoru sayfasindan; bu degerler gercek mesaj/arama garantisi degildir.
+- Canli SEO dogrulama: /ford-cargo-1846-fren-korugu, /fren-korugu, urun 785 iki URL varyanti, urun 946 porya ve onceki sicak urunler 200. Ford Cargo 1846 landing ve urun sayfalarinda canonical, JSON-LD, Product schema, WhatsApp, telefon ve indirim kuponu CTA'si mevcut. /api/products ve /data/products.json 1055 urun, sitemap/robots/Merchant/Meta feed 200.
+- Satis bilgisi: urun 785 EYD 91 11 stok 65, site fiyati 217.80 TL; urun 946 ESP.22.08 stok 1, site fiyati 4488 TL; Ford Cargo 1846 fren korugu landing icin net urun eslesmesi ayrica dogrulanmali.
+- Uygulanan aksiyon: yeni kod degisikligi yapilmadi; sicak urun ve landing SEO/feed kontrolleri temiz. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking, admin API ve canli feed kontrolune dayaniyor.
+- Satis adimi: WhatsApp uygulamasinda urun 785 mesaji hala oncelik; ayrica Ford Cargo 1846 fren korugu sorusu gelirse once arac/olcu teyidi isteyip net urun kodu eslestir, sonra kargo dahil kuponlu net fiyat ver.

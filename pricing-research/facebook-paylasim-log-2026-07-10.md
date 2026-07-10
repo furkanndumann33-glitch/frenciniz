@@ -108,3 +108,14 @@
 - Sicak yollar: anasayfa 4; urun 785 ABS/EBS Sensoru toplam 5 ve WhatsApp tiklamasi 3; urun 946 Porya 2; urun 335 BMC Bijon 2; urun 177 Otokar/Karsan Atak Fren Diski 2; urun 182 Scania Fren Diski 2; urun 640 Scania Balata 2; /fren-korugu 1.
 - Sepet/favori: bugun 0/0, son 7 gun 0/0; 30 gun sepete ekleme 8 ama bugune ait degil. WhatsApp 3 gercek mesaj garantisi degil; link acilmasi olarak yorumlanmali.
 - Aksiyon: tekrarli Facebook grup paylasimi yapilmadi; urun 785 ABS/EBS sensoru icin OEM 4029106300 / EYD 91 11, stok 65 ve kargo dahil kuponlu net fiyatla hizli WhatsApp teklif cevabi hazirlamak.
+
+## Heartbeat Kontrolu - 13:45
+- Facebook paylasimi: yeni paylasim yapilmadi; limit/spam riski alinmadi.
+- Facebook referansli trafik: 0 goruntuleme; onceki UTC gun 0.
+- Toplam trafik: 27 goruntuleme / 15 tekil; insan trafigi 25 / 13 tekil IP.
+- Tiklama/siparis: WhatsApp 3, telefon 0, e-posta 0; odenmis siparis 3.
+- Saatlik durum: 12:45'e gore +2 goruntuleme / +1 tekil artis var; Facebook/Meta kaynakli goruntuleme yine 0. Yeni guvenilir sinyal Google organik kaynakli Bursa /ford-cargo-1846-fren-korugu landing sayfasinda.
+- Kalite notu: 27 goruntulemenin 25'i guvenilir insan sinyali, 2'si dusuk kaliteli/supheli. Google 21, site tracking'e gore Google Ads isaretli 3.
+- Sicak yollar: urun 785 ABS/EBS Sensoru toplam 5 ve WhatsApp tiklamasi 3; /ford-cargo-1846-fren-korugu 2; urun 946 Porya 2; urun 335 BMC Bijon 2; urun 177 Otokar/Karsan Atak Fren Diski 2; urun 182 Scania Fren Diski 2; urun 640 Scania Balata 2.
+- Sepet/favori: bugun 0/0, son 7 gun 0/0; 30 gun sepete ekleme 8 ama bugune ait degil. WhatsApp 3 gercek mesaj garantisi degil; link acilmasi olarak yorumlanmali.
+- Aksiyon: tekrarli Facebook grup paylasimi yapilmadi; urun 785 ABS/EBS sensoru ve Ford Cargo 1846 fren korugu sorulari icin hizli WhatsApp teklif/uyumluluk cevabi hazirlamak.
