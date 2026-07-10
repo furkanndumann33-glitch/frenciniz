@@ -414,3 +414,23 @@
 - Satis bilgisi: Schmitz/Dorse fren korugu niyetinde ilgili stok adaylari urun 469 ARF 16/24 D/P - L stok 58, site fiyati 5940 TL; urun 561 BK 01 1624 stok 2, site fiyati 5940 TL; urun 553 ARF 16/24 D/D stok 13, site fiyati 2970 TL; urun 558 EYD 100 71-1 stok 296, site fiyati 396 TL. Kesin secim icin disk/kampana tipi, 16/24 veya 30 luk olcu ve eski parca kodu teyidi gerekli.
 - Uygulanan aksiyon: yeni kod degisikligi yapilmadi; sicak /schmitz-dorse-fren-korugu landing sayfasi teknik olarak temiz. Trafik ham olarak dunu gecti fakat lead/sepet/favori gelmedigi icin donusum sorunu devam ediyor.
 - Satis adimi: Schmitz dorse fren korugu icin ilk cevapta "disk mi kampana mi, koruk uzerindeki 16/24-30/30 olcu ve eski parca kodu/foto var mi?" sorulmali; uygun SKU netlesince kargo dahil kuponlu fiyat verilmeli. Mersin anasayfa girisi icin de genel fren korugu ve kampana teklif sablonu hazir tutulmali.
+
+## Heartbeat Trafik Kontrolu - 01:47
+- Onceki UTC gun (2026-07-09): 89 goruntuleme / 43 tekil; Facebook 0, Google 67, tiklama W/T/E 0/0/0.
+- Yeni UTC gun (2026-07-10): 91 goruntuleme / 43 tekil; raw log 91 satir.
+- Bot filtreli insan trafigi: 74 goruntuleme / 37 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 63; Google Ads isaretli 13.
+- Iletisim tiklamalari: WhatsApp 3, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Saatlik durum: 00:47'ye gore yeni goruntuleme, yeni tekil, yeni insan trafik ve yeni bot artisi yok. Metrikler 91/43 toplam, 74/37 insan filtreli, 17 supheli olarak sabit kaldi. Ham trafik onceki UTC gunu gecti, fakat insan filtreli trafik hala onceki gunun 80/38 seviyesinin altinda.
+- Yeni sicak sinyal yok; son sicak sinyaller Istanbul /schmitz-dorse-fren-korugu, Mersin Google anasayfa girisi ve Antalya /otokar-sultan-fren-korugu olarak kaldi. Yeni WhatsApp, sepet veya favori yok.
+- Kalite filtresi: 91 goruntulemenin 74'u guvenilir insan sinyali, 17'si dusuk kaliteli/supheli. Google 63, site tracking'e gore Google Ads isaretli 13, Facebook/Meta 0. Google Ads paneli acilmadi; Ads durumu panel verisi degil, site kaynak isaretidir.
+- Guvenilir sicak yollar: anasayfa 9; urun 785 ABS/EBS Sensoru EYD 91 11 toplam 4; urun 595 Renault fren korugu 3; /fren-balatasi 3; urun 145 BMC Fren Kampanasi 20 cm 2; urun 422 suspansiyon korugu FT 34810-K04F 2; urun 142 BMC Fren Kampanasi ESK 030 13 2; /arocs-4142-balata 2; urun 146 BMC kampana 2; urun 149 MAN kampana 2; urun 685 kaliper ayar mekanizmasi 2; urun 7 Ford Cargo/Krone/Kogel Fren Diski 2; urun 469 imdatli fren korugu 2; /schmitz-dorse-fren-korugu 1; /otokar-sultan-fren-korugu 1.
+- Sehir/IP dagilimi: guvenilir trafik TR/Istanbul 21, TR sehir bos 15, TR/Bursa 7, TR/Konya 5, TR/Antalya 4, TR/Aydin 4, TR/Mersin 3, TR/Ankara 3, TR/Corum 2, TR/Elazig 2, TR/Tokat 2, TR/Diyarbakir 2, TR/Cankaya 1, TR/Bitlis 1, TR/Buca 1, US/Dorchester Center 1; IP detaylari rapora yazdirilmadi.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0; 30 gun toplam sepete ekleme 8, favori 0. WhatsApp tiklamasi 3 olarak sabit; yeni WhatsApp/telefon/e-posta tiklamasi yok. Bu degerler gercek mesaj/arama garantisi degildir.
+- Canli SEO dogrulama: /schmitz-dorse-fren-korugu, /otokar-sultan-fren-korugu, /fren-korugu, urun 561, urun 553 ve urun 469 200. Sicak landing ve urun sayfalarinda canonical, JSON-LD, WhatsApp, telefon ve indirim kuponu CTA mevcut; urun sayfalarinda Product schema mevcut. Sitemap/robots/Merchant/Meta feed 200.
+- Satis bilgisi: Schmitz/Dorse fren korugu niyetinde urun 469 ARF 16/24 D/P - L stok 58, site fiyati 5940 TL; urun 561 BK 01 1624 stok 2, site fiyati 5940 TL; urun 553 ARF 16/24 D/D stok 13, site fiyati 2970 TL; urun 558 EYD 100 71-1 stok 296, site fiyati 396 TL. Net parca icin disk/kampana tipi, 16/24 veya 30/30 olcu ve eski parca kodu teyidi gerekli.
+- Uygulanan aksiyon: yeni kod degisikligi yapilmadi; sicak landing ve feed kontrolleri temiz, yeni veri artisi yok. Donusum icin ana eksik hala lead/sepet/favori davranisi.
+- Satis adimi: Schmitz dorse fren korugu icin hazir cevap sablonu kullanilmali: "Disk mi kampana mi, koruk uzerindeki 16/24-30/30 olcu ve eski parca kodu/foto var mi?" Teyit gelince kargo dahil kuponlu fiyat ver.

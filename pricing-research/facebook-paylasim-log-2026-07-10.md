@@ -240,3 +240,14 @@
 - Sicak yollar: yeni Istanbul /schmitz-dorse-fren-korugu ve Mersin Google anasayfa girisi; Antalya /otokar-sultan-fren-korugu sicak kaldi. Urun 145 BMC kampana 2, urun 422 suspansiyon korugu 2, urun 142 BMC kampana 2, /arocs-4142-balata 2, urun 785 ABS/EBS Sensoru 4 ve WhatsApp tiklamasi toplam 3.
 - Sepet/favori: bugun 0/0, son 7 gun 0/0; WhatsApp 3 link tiklamasi sabit ve gercek mesaj garantisi degil. Yeni telefon/e-posta tiklamasi yok.
 - Aksiyon: tekrarli Facebook grup paylasimi yapilmadi. Yeni satis adimi Schmitz dorse fren korugu icin disk/kampana tipi, 16/24-30/30 olcu ve eski parca kodu/foto teyidi alip kargo dahil kuponlu fiyatla hizli donmek.
+
+## Heartbeat Kontrolu - 01:47
+- Facebook paylasimi: yeni paylasim yapilmadi; limit/spam riski alinmadi.
+- Facebook referansli trafik: 0 goruntuleme; onceki UTC gun 0.
+- Toplam trafik: 91 goruntuleme / 43 tekil; insan trafigi 74 / 37 tekil IP.
+- Tiklama/siparis: WhatsApp 3, telefon 0, e-posta 0; odenmis siparis 3.
+- Saatlik durum: 00:47'ye gore yeni goruntuleme veya tekil artis yok. Facebook/Meta kaynakli goruntuleme yine 0. Ham trafik onceki UTC gunu gecmis durumda, fakat insan filtreli trafik hala onceki gunun altinda.
+- Kalite notu: 91 goruntulemenin 74'u guvenilir insan sinyali, 17'si dusuk kaliteli/supheli. Google 63, site tracking'e gore Google Ads isaretli 13; Ads paneli acilmadi.
+- Sicak yollar: yeni sinyal yok; son sicaklar Istanbul /schmitz-dorse-fren-korugu, Mersin Google anasayfa, Antalya /otokar-sultan-fren-korugu. Urun 145 BMC kampana 2, urun 422 suspansiyon korugu 2, urun 142 BMC kampana 2, /arocs-4142-balata 2, urun 785 ABS/EBS Sensoru 4 ve WhatsApp tiklamasi toplam 3.
+- Sepet/favori: bugun 0/0, son 7 gun 0/0; WhatsApp 3 link tiklamasi sabit ve gercek mesaj garantisi degil. Yeni telefon/e-posta tiklamasi yok.
+- Aksiyon: tekrarli Facebook grup paylasimi yapilmadi. Sosyal kanal sifir kaldigi icin satisa en yakin adim Schmitz dorse fren korugu icin olcu/parca kodu teyidi alip kargo dahil kuponlu fiyatla hizli donmek.
