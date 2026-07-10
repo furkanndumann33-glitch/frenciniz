@@ -146,3 +146,22 @@
 - Satis bilgisi: urun 335 ESB 340 20 stok 4506, site fiyati 199.31 TL; urun 177 ESD 090 08 stok 116, site fiyati 4424.14 TL; urun 182 ESD 080 01 stok 301, site fiyati 3817.95 TL; urun 640 PWR-5041 stok 10, site fiyati 2473.68 TL.
 - Uygulanan aksiyon: yeni kod degisikligi yapilmadi; sicak urun ve landing SEO/feed kontrolleri temiz. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking, admin API ve canli feed kontrolune dayaniyor.
 - Satis adimi: yeni lead gelmedigi icin teklif hazirligi kritik; Scania fren diski + Scania balata paketi ile Otokar/Karsan Atak fren diski + BMC Bijon tekliflerini kargo dahil kuponlu net fiyatla hazir tut.
+
+## Heartbeat Trafik Kontrolu - 11:45
+- Onceki UTC gun (2026-07-09): 89 goruntuleme / 43 tekil; Facebook 0, Google 67, tiklama W/T/E 0/0/0.
+- Yeni UTC gun (2026-07-10): 19 goruntuleme / 10 tekil; raw log 19 satir.
+- Bot filtreli insan trafigi: 17 goruntuleme / 8 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 17; Google Ads isaretli 0.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Saatlik durum: 10:45'e gore +8 goruntuleme / +4 tekil artis var. Yeni guvenilir sinyaller Google organik kaynakli Istanbul urun 785 ABS/EBS sensoru, urun 946 porya, BMC Pro fren circiri landing ve Bursa Scania R420 kaliper tamir takimi landing sayfalarinda. Lead/sepet/favori henuz yok.
+- Kalite filtresi: 19 goruntulemenin 17'si guvenilir insan sinyali, 2'si dusuk kaliteli/supheli. Google 17, Google Ads isaretli 0, Facebook/Meta 0.
+- Guvenilir sicak yollar: urun 785 ABS Sensoru EBS Modulator SAF/Dorse 4; urun 946 Ford Cargo/Krone/Kogel Dorse Porya E.M. 2; urun 335 BMC Bijon ESB 340 20 2; urun 177 Otokar/Karsan Atak Fren Diski ESD 090 08 2; urun 182 Scania P G R Fren Diski ESD 080 01 2; urun 640 Scania P G R Disk Fren Balatasi PWR-5041 2; /bmc-pro-fren-circiri 1; /scania-r420-kaliper-tamir-takimi 1; /scania-g440-fren-diski 1.
+- Sehir/IP dagilimi: guvenilir trafik TR/Istanbul 12 goruntuleme / 6 tekil ve TR/Bursa 5 goruntuleme / 2 tekil; IP detaylari rapora yazdirilmadi.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0; 30 gun toplam sepete ekleme 8, favori 0. Bugunku WhatsApp/telefon/e-posta tiklamasi 0/0/0 ve bu degerler gercek mesaj/arama garantisi degildir.
+- Canli SEO dogrulama: ana sayfa, urun 785 ABS/EBS sensoru, /bmc-pro-fren-circiri, /scania-r420-kaliper-tamir-takimi, urun 946 porya, urun 335 BMC Bijon, urun 177 Otokar/Karsan Atak Fren Diski, urun 182 Scania P G R Fren Diski, urun 640 Scania P G R Disk Fren Balatasi, /fren-diski, /kaliper-tamir-takimi, /porya ve /fren-circiri 200. Urun/landing sayfalarinda canonical, JSON-LD, Product schema, WhatsApp, telefon ve indirim kuponu CTA'si mevcut; kategori sayfalarinda Product schema beklenmedi. /api/products ve /data/products.json 1055 urun, sitemap/robots/Merchant/Meta feed 200.
+- Satis bilgisi: urun 785 EYD 91 11 stok 65, site fiyati 217.80 TL; urun 946 ESP.22.08 stok 1, site fiyati 4488 TL; urun 335 ESB 340 20 stok 4506, site fiyati 199.31 TL; urun 177 ESD 090 08 stok 116, site fiyati 4424.14 TL; urun 182 ESD 080 01 stok 301, site fiyati 3817.95 TL; urun 640 PWR-5041 stok 10, site fiyati 2473.68 TL.
+- Uygulanan aksiyon: yeni kod degisikligi yapilmadi; sicak urun ve landing SEO/feed kontrolleri temiz. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking, admin API ve canli feed kontrolune dayaniyor.
+- Satis adimi: 11:45 itibariyla en yakin teklif urun 785 ABS/EBS sensoru + urun 946 porya; porya stok 1 oldugu icin gelen WhatsApp'ta kargo dahil kuponlu net fiyat ve stok teyidi ilk mesajda verilmeli.
