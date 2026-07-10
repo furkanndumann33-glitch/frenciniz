@@ -298,3 +298,22 @@
 - Satis bilgisi: urun 685 30-3682 stok 6, site fiyati 2402.40 TL; urun 7 ESD 220 03 stok 179, site fiyati 4918.32 TL; urun 227 ESD 010 27 stok 442, site fiyati 4273.32 TL; urun 469 ARF 16/24 D/P - L stok 58, site fiyati 5940 TL; urun 650 422211.P02 stok 144, site fiyati 1056 TL.
 - Uygulanan aksiyon: yeni kod degisikligi yapilmadi; teknik SEO/feed kontrolleri temiz. Trafik urun niyetli artiyor fakat yeni lead/sepet/favori yok, bu nedenle donusum sorunu teklif ve iletisim takibi tarafinda kalmaya devam ediyor.
 - Satis adimi: Istanbul kaliper sinyali icin urun 685 ve MAN TGS kaliper tamir seti, ayrica urun 7 Ford Cargo fren diski icin kargo dahil kuponlu net fiyat hazirlanmali; mesaj gelirse marka/model ve olcu teyidiyle ilk cevapta stok ve fiyat ver.
+
+## Heartbeat Trafik Kontrolu - 19:45
+- Onceki UTC gun (2026-07-09): 89 goruntuleme / 43 tekil; Facebook 0, Google 67, tiklama W/T/E 0/0/0.
+- Yeni UTC gun (2026-07-10): 67 goruntuleme / 36 tekil; raw log 67 satir.
+- Bot filtreli insan trafigi: 64 goruntuleme / 32 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 56; Google Ads isaretli 12.
+- Iletisim tiklamalari: WhatsApp 3, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Saatlik durum: 18:45'e gore +4 goruntuleme / +2 tekil artis var. Guvenilir insan trafigi +4 goruntuleme / +2 tekil IP artti. Yeni sicak sinyaller Corum urun 146 BMC fren kampanasi ESK 030 05 ve Istanbul urun 149 MAN TGA/TGS/TGX/TGM fren kampanasi ESK 020 09 sayfalarinda.
+- Kalite filtresi: 67 goruntulemenin 64'u guvenilir insan sinyali, 3'u dusuk kaliteli/supheli. Google 56, site tracking'e gore Google Ads isaretli 12, Facebook/Meta 0. Google Ads paneli acilmadi; Ads durumu panel verisi degil, site kaynak isaretidir.
+- Guvenilir sicak yollar: anasayfa 8; urun 785 ABS/EBS Sensoru EYD 91 11 toplam 5; urun 595 Renault fren korugu 3; /fren-balatasi 3; urun 146 BMC Fren Kampanasi ESK 030 05 2; urun 149 MAN TGA/TGS/TGX/TGM Fren Kampanasi ESK 020 09 2; urun 685 kaliper ayar mekanizmasi 2; urun 7 Ford Cargo/Krone/Kogel Fren Diski 2; urun 469 imdatli fren korugu 2; urun 650 suspansiyon korugu 2; urun 925 suspansiyon korugu 2; urun 227 Mercedes Axor/Actros/Arocs fren diski 2; urun 743 porya 2; urun 89 kampana 2; urun 148 BMC kampana 2; urun 174 fren diski 2; /man-tgs-kaliper-tamir-takimi 1; /arocs-4142-balata 1.
+- Sehir/IP dagilimi: guvenilir trafik TR/Istanbul 20, TR sehir bos 8, TR/Bursa 7, TR/Konya 5, TR/Aydin 4, TR/Ankara 3, TR/Antalya 3, TR/Corum 2, TR/Elazig 2, TR/Tokat 2, TR/Diyarbakir 2, TR/Mersin 2, TR/Cankaya 1; IP detaylari rapora yazdirilmadi.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0; 30 gun toplam sepete ekleme 8, favori 0. WhatsApp tiklamasi 3 olarak sabit ve hepsi urun 785 ABS/EBS sensoru sayfasindan; yeni WhatsApp/telefon/e-posta tiklamasi yok. Bu degerler gercek mesaj/arama garantisi degildir.
+- Canli SEO dogrulama: urun 146, urun 149, /fren-kampanasi, urun 685, /man-tgs-kaliper-tamir-takimi, urun 7, /fren-diski ve urun 785 200. Urun/landing sayfalarinda canonical, JSON-LD, Product schema, WhatsApp, telefon ve indirim kuponu CTA'si mevcut; kategori sayfalarinda Product schema beklenmedi. /api/products ve /data/products.json 1055 urun, sitemap/robots/Merchant/Meta feed 200.
+- Satis bilgisi: urun 146 ESK 030 05 stok 74, site fiyati 6147 TL; urun 149 ESK 020 09 stok 9, site fiyati 4892.08 TL; urun 685 30-3682 stok 6, site fiyati 2402.40 TL; urun 7 ESD 220 03 stok 179, site fiyati 4918.32 TL; urun 785 EYD 91 11 stok 65, site fiyati 217.80 TL.
+- Uygulanan aksiyon: yeni kod degisikligi yapilmadi; teknik SEO/feed kontrolleri temiz. Trafik Google kaynakli urun niyetli, fakat yeni lead/sepet/favori yok; donusum icin teklif akisi ve WhatsApp takip hizi kritik.
+- Satis adimi: Corum BMC kampana sinyali icin urun 146, Istanbul MAN kampana sinyali icin urun 149 teklifleri hazir olmali; gelen mesajda arac/model/olcu teyidi, stok ve kargo dahil kuponlu net fiyat ilk cevapta verilmeli.

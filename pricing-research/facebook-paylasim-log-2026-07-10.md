@@ -174,3 +174,14 @@
 - Sicak yollar: urun 785 ABS/EBS Sensoru toplam 5 ve WhatsApp tiklamasi 3; urun 595 Renault fren korugu 3; /fren-balatasi 3; urun 685 Kaliper Ayar Mekanizmasi 2; urun 7 Ford Cargo/Krone/Kogel Fren Diski 2; urun 469 imdatli fren korugu 2; urun 650 suspansiyon korugu 2; urun 227 Mercedes Axor/Actros/Arocs fren diski 2; /man-tgs-kaliper-tamir-takimi 1; /arocs-4142-balata 1.
 - Sepet/favori: bugun 0/0, son 7 gun 0/0; 30 gun sepete ekleme 8 ama bugune ait degil. WhatsApp 3 gercek mesaj garantisi degil; link acilmasi olarak yorumlanmali.
 - Aksiyon: tekrarli Facebook grup paylasimi yapilmadi. Urun 685 kaliper ayar mekanizmasi, MAN TGS kaliper tamir takimi ve urun 7 Ford Cargo fren diski icin kargo dahil kuponlu net fiyat + uyumluluk teyidiyle hizli WhatsApp cevabi hazirlanmali.
+
+## Heartbeat Kontrolu - 19:45
+- Facebook paylasimi: yeni paylasim yapilmadi; limit/spam riski alinmadi.
+- Facebook referansli trafik: 0 goruntuleme; onceki UTC gun 0.
+- Toplam trafik: 67 goruntuleme / 36 tekil; insan trafigi 64 / 32 tekil IP.
+- Tiklama/siparis: WhatsApp 3, telefon 0, e-posta 0; odenmis siparis 3.
+- Saatlik durum: 18:45'e gore +4 goruntuleme / +2 tekil artis var; Facebook/Meta kaynakli goruntuleme yine 0. Yeni sicak sinyaller Corum urun 146 BMC fren kampanasi ESK 030 05 ve Istanbul urun 149 MAN TGA/TGS/TGX/TGM fren kampanasi ESK 020 09 sayfalarinda.
+- Kalite notu: 67 goruntulemenin 64'u guvenilir insan sinyali, 3'u dusuk kaliteli/supheli. Google 56, site tracking'e gore Google Ads isaretli 12.
+- Sicak yollar: urun 785 ABS/EBS Sensoru toplam 5 ve WhatsApp tiklamasi 3; urun 595 Renault fren korugu 3; /fren-balatasi 3; urun 146 BMC kampana 2; urun 149 MAN kampana 2; urun 685 kaliper ayar mekanizmasi 2; urun 7 Ford Cargo fren diski 2; urun 469 imdatli fren korugu 2; urun 650 suspansiyon korugu 2; urun 227 Mercedes Axor/Actros/Arocs fren diski 2.
+- Sepet/favori: bugun 0/0, son 7 gun 0/0; 30 gun sepete ekleme 8 ama bugune ait degil. WhatsApp 3 gercek mesaj garantisi degil; link acilmasi olarak yorumlanmali.
+- Aksiyon: tekrarli Facebook grup paylasimi yapilmadi. Urun 146 BMC kampana ve urun 149 MAN kampana icin kargo dahil kuponlu net fiyat + arac/olcu uyumluluk teyidiyle hizli WhatsApp cevabi hazirlanmali.
