@@ -127,3 +127,22 @@
 - Satis bilgisi: urun 335 ESB 340 20 stok 4506, site fiyati 199.31 TL; urun 177 ESD 090 08 stok 116, site fiyati 4424.14 TL; urun 182 ESD 080 01 stok 301, site fiyati 3817.95 TL; urun 640 PWR-5041 stok 10, site fiyati 2473.68 TL.
 - Uygulanan aksiyon: yeni kod degisikligi yapilmadi; sicak urun ve landing SEO/feed kontrolleri temiz. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking, admin API ve canli feed kontrolune dayaniyor.
 - Satis adimi: Istanbul/Bursa alicisi icin iki teklif seti hazir olmali: Scania fren diski + Scania balata paketi ve Otokar/Karsan Atak fren diski + BMC Bijon tekil teklifleri; her cevapta kargo dahil kuponlu net fiyat ve uyumluluk teyidi verilmeli.
+
+## Heartbeat Trafik Kontrolu - 10:45
+- Onceki UTC gun (2026-07-09): 89 goruntuleme / 43 tekil; Facebook 0, Google 67, tiklama W/T/E 0/0/0.
+- Yeni UTC gun (2026-07-10): 11 goruntuleme / 6 tekil; raw log 11 satir.
+- Bot filtreli insan trafigi: 9 goruntuleme / 4 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 9; Google Ads isaretli 0.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Saatlik durum: 09:46'dan bu yana yeni trafik yok; toplam 11 goruntuleme / 6 tekil seviyesinde sabit. Guvenilir kaynak Google organik 9 goruntuleme; lead/sepet/favori henuz yok.
+- Kalite filtresi: 11 goruntulemenin 9'u guvenilir insan sinyali, 2'si dusuk kaliteli/supheli. Google 9, Google Ads isaretli 0, Facebook/Meta 0.
+- Guvenilir sicak yollar: urun 335 BMC Bijon ESB 340 20 2; urun 177 Otokar/Karsan Atak Fren Diski ESD 090 08 2; urun 182 Scania P G R Fren Diski ESD 080 01 2; urun 640 Scania P G R Disk Fren Balatasi PWR-5041 2; /scania-g440-fren-diski 1.
+- Sehir/IP dagilimi: guvenilir trafik TR/Istanbul 5 goruntuleme / 2 tekil ve TR/Bursa 4 goruntuleme / 2 tekil; IP detaylari rapora yazdirilmadi.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0; 30 gun toplam sepete ekleme 8, favori 0. Bugunku WhatsApp/telefon/e-posta tiklamasi 0/0/0 ve bu degerler gercek mesaj/arama garantisi degildir.
+- Canli SEO dogrulama: ana sayfa, urun 335 BMC Bijon, urun 177 Otokar/Karsan Atak Fren Diski, urun 182 Scania P G R Fren Diski, /scania-g440-fren-diski, urun 640 Scania P G R Disk Fren Balatasi, /fren-diski, /bijon, /fren-balatasi ve /brands 200. Urun/landing sayfalarinda canonical, JSON-LD, Product schema, WhatsApp, telefon ve indirim kuponu CTA'si mevcut; kategori/marka sayfalarinda Product schema beklenmedi. /api/products ve /data/products.json 1055 urun, sitemap/robots/Merchant/Meta feed 200.
+- Satis bilgisi: urun 335 ESB 340 20 stok 4506, site fiyati 199.31 TL; urun 177 ESD 090 08 stok 116, site fiyati 4424.14 TL; urun 182 ESD 080 01 stok 301, site fiyati 3817.95 TL; urun 640 PWR-5041 stok 10, site fiyati 2473.68 TL.
+- Uygulanan aksiyon: yeni kod degisikligi yapilmadi; sicak urun ve landing SEO/feed kontrolleri temiz. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking, admin API ve canli feed kontrolune dayaniyor.
+- Satis adimi: yeni lead gelmedigi icin teklif hazirligi kritik; Scania fren diski + Scania balata paketi ile Otokar/Karsan Atak fren diski + BMC Bijon tekliflerini kargo dahil kuponlu net fiyatla hazir tut.
