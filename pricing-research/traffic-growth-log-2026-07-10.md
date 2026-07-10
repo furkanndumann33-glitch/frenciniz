@@ -260,3 +260,22 @@
 - Satis bilgisi: urun 743 ESP.18.13 stok 3, site fiyati 8197.20 TL; urun 89 ESK 161 07 stok 200, site fiyati 4934.62 TL; urun 148 ESK 030 01 stok 5, site fiyati 5402.56 TL; urun 436 8106-2 stok 120, site fiyati 3168 TL; urun 595 BK 01 0024 stok 6, site fiyati 1650 TL.
 - Uygulanan aksiyon: yeni kod degisikligi yapilmadi; teknik SEO/feed kontrolleri temiz. Trafik urun niyetli ancak yeni iletisim/sepet/favori yok; donusum icin hizli teklif akisina odaklanilmali.
 - Satis adimi: Tokat porya sinyali icin urun 743 ESP.18.13 teklifini hazir tut; gelen mesajda OEM 3307305600, arac/dorse uyumlulugu, stok 3 ve kargo dahil kuponlu net fiyat ilk cevapta verilmeli.
+
+## Heartbeat Trafik Kontrolu - 17:45
+- Onceki UTC gun (2026-07-09): 89 goruntuleme / 43 tekil; Facebook 0, Google 67, tiklama W/T/E 0/0/0.
+- Yeni UTC gun (2026-07-10): 58 goruntuleme / 32 tekil; raw log 58 satir.
+- Bot filtreli insan trafigi: 55 goruntuleme / 28 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 49; Google Ads isaretli 12.
+- Iletisim tiklamalari: WhatsApp 3, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Saatlik durum: 16:45'e gore +10 goruntuleme / +4 tekil artis var. Guvenilir insan trafigi +10 goruntuleme / +4 tekil IP artti. Yeni sicak sinyaller Istanbul urun 469 Ford Cargo/Krone/Kogel 16/24 imdatli fren korugu, Konya urun 650 suspansiyon korugu ve /arocs-4142-balata landing sayfasinda.
+- Kalite filtresi: 58 goruntulemenin 55'i guvenilir insan sinyali, 3'u dusuk kaliteli/supheli. Google 49, site tracking'e gore Google Ads isaretli 12, Facebook/Meta 0. Google Ads paneli acilmadi; Ads durumu panel verisi degil, site kaynak isaretidir.
+- Guvenilir sicak yollar: anasayfa 8; urun 785 ABS/EBS Sensoru EYD 91 11 toplam 5; urun 595 Renault fren korugu 3; /fren-balatasi 3; urun 469 Ford Cargo/Krone/Kogel 16/24 imdatli fren korugu 2; urun 650 Ford Cargo/Krone/Kogel suspansiyon korugu 2; urun 925 suspansiyon korugu 2; urun 227 Mercedes Axor/Actros/Arocs fren diski 2; urun 743 SAF Holland porya ESP.18.13 2; urun 89 Ford Cargo/Krone/Kogel fren kampanasi 2; urun 148 BMC fren kampanasi 2; urun 174 Ford Cargo/Krone/Kogel fren diski 2; /ford-cargo-1846-fren-korugu 2; urun 946 porya 2; urun 335 BMC bijon 2; /arocs-4142-balata 1.
+- Sehir/IP dagilimi: guvenilir trafik TR/Istanbul 15, TR/Bursa 7, TR sehir bos 6, TR/Konya 5, TR/Aydin 4, TR/Ankara 3, TR/Antalya 3, TR/Elazig 2, TR/Tokat 2, TR/Diyarbakir 2, TR/Mersin 2, TR/Cankaya 1; IP detaylari rapora yazdirilmadi.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0; 30 gun toplam sepete ekleme 8, favori 0. WhatsApp tiklamasi 3 olarak sabit ve hepsi urun 785 ABS/EBS sensoru sayfasindan; yeni WhatsApp/telefon/e-posta tiklamasi yok. Bu degerler gercek mesaj/arama garantisi degildir.
+- Canli SEO dogrulama: /arocs-4142-balata, urun 469, urun 650, urun 743, /porya, /fren-korugu, /fren-balatasi ve urun 785 200. Urun/landing sayfalarinda canonical, JSON-LD, Product schema, WhatsApp, telefon ve indirim kuponu CTA'si mevcut; kategori sayfalarinda Product schema beklenmedi. /api/products ve /data/products.json 1055 urun, sitemap/robots/Merchant/Meta feed 200.
+- Satis bilgisi: urun 469 ARF 16/24 D/P - L stok 58, site fiyati 5940 TL; urun 650 422211.P02 stok 144, site fiyati 1056 TL; urun 743 ESP.18.13 stok 3, site fiyati 8197.20 TL; urun 227 Mercedes Axor/Actros/Arocs fren diski sayfasi sicak ama fiyat/stok bu tur rapora cekilmedi; urun 785 EYD 91 11 stok 65, site fiyati 217.80 TL.
+- Uygulanan aksiyon: yeni kod degisikligi yapilmadi; teknik SEO/feed kontrolleri temiz. Trafik urun niyetli artiyor fakat yeni lead/sepet/favori yok, bu nedenle donusum sorunu teknik kirikliktan cok teklif/iletisim davranisi tarafinda.
+- Satis adimi: Istanbul fren korugu sinyali icin urun 469, Konya suspansiyon korugu sinyali icin urun 650 ve Arocs balata/fren diski sinyali icin hizli WhatsApp teklif metinleri hazirlanmali; her mesajda uyumluluk teyidi, stok ve kargo dahil kuponlu net fiyat ilk cevapta verilmeli.
