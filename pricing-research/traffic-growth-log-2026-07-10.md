@@ -70,3 +70,22 @@
 - Canli SEO dogrulama: ana sayfa, urun 341 Bijon DPS, /fren-diski, /kampana, urun 422 FT 34810-K04F suspansiyon korugu ve /brands 200. Urun sayfalarinda canonical, JSON-LD, Product schema, WhatsApp, telefon ve indirim kuponu CTA'si mevcut; marka/kategori sayfalarinda Product schema beklenmedi. /api/products ve /data/products.json 1055 urun, sitemap/robots/Merchant/Meta feed 200.
 - Uygulanan aksiyon: yeni kod degisikligi yapilmadi; teknik SEO/feed hatasi gorulmedi. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking, admin API ve canli feed kontrolune dayaniyor.
 - Satis adimi: trafik beklemek yerine onceki gun guvenilir Google sinyali alan FT 34810-K04F suspansiyon korugu, /fren-diski ve kampana kumesi icin kargo dahil kuponlu net fiyatlar ve uyumluluk cevap metinleri hazir tutulmali.
+
+## Heartbeat Trafik Kontrolu - 07:45
+- Onceki UTC gun (2026-07-09): 89 goruntuleme / 43 tekil; Facebook 0, Google 67, tiklama W/T/E 0/0/0.
+- Yeni UTC gun (2026-07-10): 3 goruntuleme / 2 tekil; raw log 3 satir.
+- Bot filtreli insan trafigi: 2 goruntuleme / 1 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 2; Google Ads isaretli 0.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Saatlik durum: 06:45'e gore +2 goruntuleme / +1 tekil artis var. Yeni guvenilir sinyal Google organik kaynakli Bursa ziyareti; iki goruntuleme de urun 640 Scania P G R Disk Fren Balatasi Y.M. PWR-5041 sayfasinda. Lead/sepet/favori henuz yok.
+- Kalite filtresi: 3 goruntulemenin 2'si guvenilir insan sinyali, 1'i dusuk kaliteli/supheli. Google 2, Google Ads isaretli 0, Facebook/Meta 0.
+- Guvenilir sicak yollar: urun 640 Scania P G R Disk Fren Balatasi Y.M. PWR-5041 2; supheli yol urun 341 Bijon DPS OEM 81455010174 1.
+- Sehir/IP dagilimi: guvenilir trafik TR/Bursa 2 goruntuleme / 1 tekil; IP detaylari rapora yazdirilmadi.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0; 30 gun toplam sepete ekleme 8, favori 0. Bugunku WhatsApp/telefon/e-posta tiklamasi 0/0/0 ve bu degerler gercek mesaj/arama garantisi degildir.
+- Canli SEO dogrulama: ana sayfa, urun 640 Scania P G R Disk Fren Balatasi, urun 341 Bijon DPS, /fren-diski, /fren-balatasi, /kampana, urun 422 FT 34810-K04F suspansiyon korugu ve /brands 200. Urun sayfalarinda canonical, JSON-LD, Product schema, WhatsApp, telefon ve indirim kuponu CTA'si mevcut; kategori/marka sayfalarinda Product schema beklenmedi. /api/products ve /data/products.json 1055 urun, sitemap/robots/Merchant/Meta feed 200.
+- Urun 640 satis bilgisi: PWR-5041, stok 10, site fiyati 2473.68 TL. Bu urun bugunun en sicak satis adayi.
+- Uygulanan aksiyon: yeni kod degisikligi yapilmadi; urun 640 ve kategori SEO/feed kontrolleri temiz. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking, admin API ve canli feed kontrolune dayaniyor.
+- Satis adimi: Scania P/G/R Disk Fren Balatasi PWR-5041 icin kargo dahil kuponlu net fiyat ve uyumluluk cevabi hazirlanmali; Bursa'dan gelirse WhatsApp'ta ilk cevap bu urun uzerinden verilmeli.

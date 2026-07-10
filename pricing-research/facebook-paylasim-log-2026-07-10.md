@@ -42,3 +42,14 @@
 - Sicak yollar: 10.07 icin henuz guvenilir sicak yol yok; onceki gun FT 34810-K04F suspansiyon korugu, /fren-diski ve kampana kumesi one cikmisti.
 - Sepet/favori: bugun 0/0, son 7 gun 0/0; 30 gun sepete ekleme 8 ama bugune ait degil. WhatsApp/telefon/e-posta tiklamasi 0/0/0 ve bunlar gercek mesaj/arama garantisi degildir.
 - Aksiyon: tekrarli Facebook grup paylasimi yapilmadi; guvenilir trafik gelene kadar onceki gunun sicak urunleri icin kargo dahil kuponlu net fiyatla hizli WhatsApp teklif cevabi hazirlamak.
+
+## Heartbeat Kontrolu - 07:45
+- Facebook paylasimi: yeni paylasim yapilmadi; limit/spam riski alinmadi.
+- Facebook referansli trafik: 0 goruntuleme; onceki UTC gun 0.
+- Toplam trafik: 3 goruntuleme / 2 tekil; insan trafigi 2 / 1 tekil IP.
+- Tiklama/siparis: WhatsApp 0, telefon 0, e-posta 0; odenmis siparis 3.
+- Saatlik durum: 06:45'e gore +2 goruntuleme / +1 tekil artis var; Facebook/Meta kaynakli goruntuleme yine 0. Yeni guvenilir sinyal Google organik kaynakli Bursa ziyareti ve urun 640 Scania P G R Disk Fren Balatasi sayfasinda.
+- Kalite notu: 3 goruntulemenin 2'si guvenilir insan sinyali, 1'i dusuk kaliteli/supheli. Google 2, Google Ads isaretli 0.
+- Sicak yollar: urun 640 Scania P G R Disk Fren Balatasi Y.M. PWR-5041 2; supheli yol urun 341 Bijon DPS 1.
+- Sepet/favori: bugun 0/0, son 7 gun 0/0; 30 gun sepete ekleme 8 ama bugune ait degil. WhatsApp/telefon/e-posta tiklamasi 0/0/0 ve bunlar gercek mesaj/arama garantisi degildir.
+- Aksiyon: tekrarli Facebook grup paylasimi yapilmadi; bugunun sicak urunu PWR-5041 icin kargo dahil kuponlu net fiyatla hizli WhatsApp teklif cevabi hazirlamak.
