@@ -207,3 +207,14 @@
 - Sicak yollar: /arocs-4142-balata 2; urun 146 BMC kampana 2; urun 149 MAN kampana 2; urun 685 kaliper ayar mekanizmasi 2; urun 7 Ford Cargo fren diski 2; urun 227 Mercedes Axor/Actros/Arocs fren diski 2; urun 785 ABS/EBS Sensoru 4 ve WhatsApp tiklamasi toplam 3.
 - Sepet/favori: bugun 0/0, son 7 gun 0/0; WhatsApp 3 link tiklamasi sabit ve gercek mesaj garantisi degil. Yeni telefon/e-posta tiklamasi yok.
 - Aksiyon: tekrarli Facebook grup paylasimi yapilmadi. Bu saatte sosyal kaynak yeni trafik getirmedigi icin oncelik Google kaynakli sicak urunlerde kargo dahil kuponlu teklif ve hizli WhatsApp donus takibi.
+
+## Heartbeat Kontrolu - 22:46
+- Facebook paylasimi: yeni paylasim yapilmadi; limit/spam riski alinmadi.
+- Facebook referansli trafik: 0 goruntuleme; onceki UTC gun 0.
+- Toplam trafik: 85 goruntuleme / 40 tekil; insan trafigi 71 / 34 tekil IP.
+- Tiklama/siparis: WhatsApp 3, telefon 0, e-posta 0; odenmis siparis 3.
+- Saatlik durum: 21:45'e gore +16 goruntuleme / +3 tekil artis var; guvenilir insan tarafi +6 goruntuleme / +1 tekil IP. Facebook/Meta kaynakli goruntuleme yine 0. Yeni insan sinyalleri urun 145 BMC kampana, urun 422 suspansiyon korugu ve urun 142 BMC kampana; US/ref bos anasayfa/brands/faq/urun 174 kayitlari bot isaretli.
+- Kalite notu: 85 goruntulemenin 71'i guvenilir insan sinyali, 14'u dusuk kaliteli/supheli. Google 61, site tracking'e gore Google Ads isaretli 12; Ads paneli acilmadi.
+- Sicak yollar: urun 145 BMC kampana 2; urun 422 suspansiyon korugu 2; urun 142 BMC kampana 2; /arocs-4142-balata 2; urun 146 BMC kampana 2; urun 149 MAN kampana 2; urun 685 kaliper 2; urun 7 Ford Cargo fren diski 2; urun 227 Mercedes Axor/Actros/Arocs fren diski 2; urun 785 ABS/EBS Sensoru 4 ve WhatsApp tiklamasi toplam 3.
+- Sepet/favori: bugun 0/0, son 7 gun 0/0; WhatsApp 3 link tiklamasi sabit ve gercek mesaj garantisi degil. Yeni telefon/e-posta tiklamasi yok.
+- Aksiyon: tekrarli Facebook grup paylasimi yapilmadi. Sosyal trafik sifir kaldigi icin oncelik Google'dan gelen BMC kampana ve suspansiyon korugu ziyaretlerine kargo dahil kuponlu fiyat + uyumluluk teyidiyle hizli teklif vermek.

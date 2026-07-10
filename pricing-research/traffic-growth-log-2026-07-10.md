@@ -355,3 +355,22 @@
 - Satis bilgisi: urun 146 ESK 030 05 stok 74, site fiyati 6147 TL; urun 149 ESK 020 09 stok 9, site fiyati 4892.08 TL; urun 685 30-3682 stok 6, site fiyati 2402.40 TL; urun 7 ESD 220 03 stok 179, site fiyati 4918.32 TL; urun 227 ESD 010 27 stok 442, site fiyati 4273.32 TL.
 - Uygulanan aksiyon: yeni kod degisikligi yapilmadi; teknik SEO/feed/CTA kontrolleri temiz. 20:45 sonrasi insan trafik durdugu icin sorun bu saatte teknik kiriklik degil, yeni nitelikli trafik ve teklif takibi eksigi.
 - Satis adimi: Arocs 4142 balata/fren diski, urun 146 BMC kampana, urun 149 MAN kampana ve urun 685 kaliper icin kargo dahil kuponlu net fiyat teklifleri elde hazir tutulmali; gelen mesajda arac/model/olcu teyidi ve stok bilgisi ilk cevapta verilmeli.
+
+## Heartbeat Trafik Kontrolu - 22:46
+- Onceki UTC gun (2026-07-09): 89 goruntuleme / 43 tekil; Facebook 0, Google 67, tiklama W/T/E 0/0/0.
+- Yeni UTC gun (2026-07-10): 85 goruntuleme / 40 tekil; raw log 85 satir.
+- Bot filtreli insan trafigi: 71 goruntuleme / 34 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 61; Google Ads isaretli 12.
+- Iletisim tiklamalari: WhatsApp 3, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Saatlik durum: 21:45'e gore +16 goruntuleme / +3 tekil artis var; bunun guvenilir insan tarafi +6 goruntuleme / +1 tekil IP, supheli/bot tarafi +10 goruntuleme. Yeni insan sinyalleri Google kaynakli urun 145 BMC fren kampanasi, urun 422 suspansiyon korugu ve urun 142 BMC kampanasi tarafinda. Son gorunen US/ref bos urun 174, anasayfa, /brands ve /faq kayitlari bot isaretli; satis niyeti sayilmadi.
+- Kalite filtresi: 85 goruntulemenin 71'i guvenilir insan sinyali, 14'u dusuk kaliteli/supheli. Google 61, site tracking'e gore Google Ads isaretli 12, Facebook/Meta 0. Google Ads paneli acilmadi; Ads durumu panel verisi degil, site kaynak isaretidir.
+- Guvenilir sicak yollar: anasayfa 8; urun 785 ABS/EBS Sensoru EYD 91 11 toplam 4; urun 595 Renault fren korugu 3; /fren-balatasi 3; urun 145 BMC Fren Kampanasi 20 cm 2; urun 422 suspansiyon korugu FT 34810-K04F 2; urun 142 BMC Fren Kampanasi ESK 030 13 2; /arocs-4142-balata 2; urun 146 BMC kampana 2; urun 149 MAN kampana 2; urun 685 kaliper ayar mekanizmasi 2; urun 7 Ford Cargo/Krone/Kogel Fren Diski 2; urun 469 imdatli fren korugu 2; urun 650 suspansiyon korugu 2; urun 227 Mercedes Axor/Actros/Arocs fren diski 2; urun 174 fren diski 2.
+- Sehir/IP dagilimi: guvenilir trafik TR/Istanbul 20, TR sehir bos 15, TR/Bursa 7, TR/Konya 5, TR/Aydin 4, TR/Ankara 3, TR/Antalya 3, TR/Corum 2, TR/Elazig 2, TR/Tokat 2, TR/Diyarbakir 2, TR/Mersin 2, TR/Cankaya 1, TR/Bitlis 1, TR/Buca 1, US/Dorchester Center 1; IP detaylari rapora yazdirilmadi.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0; 30 gun toplam sepete ekleme 8, favori 0. WhatsApp tiklamasi 3 olarak sabit; yeni WhatsApp/telefon/e-posta tiklamasi yok. Bu degerler gercek mesaj/arama garantisi degildir.
+- Canli SEO dogrulama: urun 174, /brands, anasayfa, /arocs-4142-balata, urun 146, urun 149, urun 685 ve urun 7 200. Urun/landing sayfalarinda canonical, JSON-LD, Product schema, WhatsApp, telefon ve indirim kuponu CTA'si mevcut; marka/anasayfa sayfalarinda Product schema beklenmedi. /api/products 1055 urun, sitemap 2310 URL, Merchant feed 1055 item, Meta feed 1055 satir.
+- Satis bilgisi: urun 145 ESK 030 08 stok 537, site fiyati 6083.19 TL; urun 422 FT 34810-K04F stok 22, site fiyati 3300 TL; urun 142 ESK 030 13 stok 62, site fiyati 5264.30 TL; urun 174 ESD 110 01-2 stok 83, site fiyati 4041.28 TL; urun 227 ESD 010 27 stok 442, site fiyati 4273.32 TL.
+- Uygulanan aksiyon: yeni kod degisikligi yapilmadi; teknik SEO/feed/CTA kontrolleri temiz. Trafik artti ama yeni WhatsApp/sepet/favori yok; bot payi da yukseldi. Bu tur icin en dogru aksiyon nitelikli Google urun sinyallerine fiyat/uyumluluk teklifi hazirlamak.
+- Satis adimi: urun 145 ve urun 142 BMC kampanalar icin BMC/Profesyonel/Fatih uyumluluk teyitli, kargo dahil kuponlu net fiyat; urun 422 suspansiyon korugu icin Ford Cargo/Krone/Kogel/Dorse uyumluluk teyitli hizli WhatsApp cevap sablonu hazir tutulmali.
