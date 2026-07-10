@@ -89,3 +89,22 @@
 - Urun 640 satis bilgisi: PWR-5041, stok 10, site fiyati 2473.68 TL. Bu urun bugunun en sicak satis adayi.
 - Uygulanan aksiyon: yeni kod degisikligi yapilmadi; urun 640 ve kategori SEO/feed kontrolleri temiz. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking, admin API ve canli feed kontrolune dayaniyor.
 - Satis adimi: Scania P/G/R Disk Fren Balatasi PWR-5041 icin kargo dahil kuponlu net fiyat ve uyumluluk cevabi hazirlanmali; Bursa'dan gelirse WhatsApp'ta ilk cevap bu urun uzerinden verilmeli.
+
+## Heartbeat Trafik Kontrolu - 08:45
+- Onceki UTC gun (2026-07-09): 89 goruntuleme / 43 tekil; Facebook 0, Google 67, tiklama W/T/E 0/0/0.
+- Yeni UTC gun (2026-07-10): 7 goruntuleme / 4 tekil; raw log 7 satir.
+- Bot filtreli insan trafigi: 5 goruntuleme / 2 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 5; Google Ads isaretli 0.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Saatlik durum: 07:45'e gore +4 goruntuleme / +2 tekil artis var. Yeni guvenilir sinyal Google organik kaynakli Istanbul ziyareti; Scania G440 fren diski landing ve urun 182 Scania P G R Fren Diski ESD 080 01 sayfalari goruldu. Lead/sepet/favori henuz yok.
+- Kalite filtresi: 7 goruntulemenin 5'i guvenilir insan sinyali, 2'si dusuk kaliteli/supheli. Google 5, Google Ads isaretli 0, Facebook/Meta 0.
+- Guvenilir sicak yollar: urun 182 Scania P G R Fren Diski ESD 080 01 2; urun 640 Scania P G R Disk Fren Balatasi Y.M. PWR-5041 2; /scania-g440-fren-diski 1. Supheli yollar: /brands 1 ve urun 341 Bijon DPS OEM 81455010174 1.
+- Sehir/IP dagilimi: guvenilir trafik TR/Istanbul 3 goruntuleme / 1 tekil ve TR/Bursa 2 goruntuleme / 1 tekil; IP detaylari rapora yazdirilmadi.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0; 30 gun toplam sepete ekleme 8, favori 0. Bugunku WhatsApp/telefon/e-posta tiklamasi 0/0/0 ve bu degerler gercek mesaj/arama garantisi degildir.
+- Canli SEO dogrulama: ana sayfa, urun 182 Scania P G R Fren Diski, /scania-g440-fren-diski, urun 640 Scania P G R Disk Fren Balatasi, /fren-diski, /fren-balatasi, /kampana ve /brands 200. Urun/landing sayfalarinda canonical, JSON-LD, Product schema, WhatsApp, telefon ve indirim kuponu CTA'si mevcut; kategori/marka sayfalarinda Product schema beklenmedi. /api/products ve /data/products.json 1055 urun, sitemap/robots/Merchant/Meta feed 200.
+- Satis bilgisi: urun 182 ESD 080 01 stok 301, site fiyati 3817.95 TL; urun 640 PWR-5041 stok 10, site fiyati 2473.68 TL. Bugunun sicak satis adaylari Scania fren diski + Scania balata.
+- Uygulanan aksiyon: yeni kod degisikligi yapilmadi; sicak urun ve landing SEO/feed kontrolleri temiz. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking, admin API ve canli feed kontrolune dayaniyor.
+- Satis adimi: Istanbul/Bursa kaynakli Google alicisi gelirse iki kalemli teklif hazir olmali: Scania P/G/R Fren Diski ESD 080 01 + Scania P/G/R Disk Fren Balatasi PWR-5041 icin kargo dahil kuponlu net fiyat ve uyumluluk cevabi.

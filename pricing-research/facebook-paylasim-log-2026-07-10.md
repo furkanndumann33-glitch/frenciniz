@@ -53,3 +53,14 @@
 - Sicak yollar: urun 640 Scania P G R Disk Fren Balatasi Y.M. PWR-5041 2; supheli yol urun 341 Bijon DPS 1.
 - Sepet/favori: bugun 0/0, son 7 gun 0/0; 30 gun sepete ekleme 8 ama bugune ait degil. WhatsApp/telefon/e-posta tiklamasi 0/0/0 ve bunlar gercek mesaj/arama garantisi degildir.
 - Aksiyon: tekrarli Facebook grup paylasimi yapilmadi; bugunun sicak urunu PWR-5041 icin kargo dahil kuponlu net fiyatla hizli WhatsApp teklif cevabi hazirlamak.
+
+## Heartbeat Kontrolu - 08:45
+- Facebook paylasimi: yeni paylasim yapilmadi; limit/spam riski alinmadi.
+- Facebook referansli trafik: 0 goruntuleme; onceki UTC gun 0.
+- Toplam trafik: 7 goruntuleme / 4 tekil; insan trafigi 5 / 2 tekil IP.
+- Tiklama/siparis: WhatsApp 0, telefon 0, e-posta 0; odenmis siparis 3.
+- Saatlik durum: 07:45'e gore +4 goruntuleme / +2 tekil artis var; Facebook/Meta kaynakli goruntuleme yine 0. Yeni guvenilir sinyal Google organik kaynakli Istanbul ziyareti; Scania G440 fren diski landing ve urun 182 Scania P G R Fren Diski sayfalari goruldu.
+- Kalite notu: 7 goruntulemenin 5'i guvenilir insan sinyali, 2'si dusuk kaliteli/supheli. Google 5, Google Ads isaretli 0.
+- Sicak yollar: urun 182 Scania P G R Fren Diski ESD 080 01 2; urun 640 Scania P G R Disk Fren Balatasi PWR-5041 2; /scania-g440-fren-diski 1.
+- Sepet/favori: bugun 0/0, son 7 gun 0/0; 30 gun sepete ekleme 8 ama bugune ait degil. WhatsApp/telefon/e-posta tiklamasi 0/0/0 ve bunlar gercek mesaj/arama garantisi degildir.
+- Aksiyon: tekrarli Facebook grup paylasimi yapilmadi; Scania fren diski + Scania balata icin kargo dahil kuponlu net fiyatla hizli WhatsApp teklif cevabi hazirlamak.
