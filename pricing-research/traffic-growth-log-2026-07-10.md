@@ -317,3 +317,22 @@
 - Satis bilgisi: urun 146 ESK 030 05 stok 74, site fiyati 6147 TL; urun 149 ESK 020 09 stok 9, site fiyati 4892.08 TL; urun 685 30-3682 stok 6, site fiyati 2402.40 TL; urun 7 ESD 220 03 stok 179, site fiyati 4918.32 TL; urun 785 EYD 91 11 stok 65, site fiyati 217.80 TL.
 - Uygulanan aksiyon: yeni kod degisikligi yapilmadi; teknik SEO/feed kontrolleri temiz. Trafik Google kaynakli urun niyetli, fakat yeni lead/sepet/favori yok; donusum icin teklif akisi ve WhatsApp takip hizi kritik.
 - Satis adimi: Corum BMC kampana sinyali icin urun 146, Istanbul MAN kampana sinyali icin urun 149 teklifleri hazir olmali; gelen mesajda arac/model/olcu teyidi, stok ve kargo dahil kuponlu net fiyat ilk cevapta verilmeli.
+
+## Heartbeat Trafik Kontrolu - 20:45
+- Onceki UTC gun (2026-07-09): 89 goruntuleme / 43 tekil; Facebook 0, Google 67, tiklama W/T/E 0/0/0.
+- Yeni UTC gun (2026-07-10): 68 goruntuleme / 37 tekil; raw log 68 satir.
+- Bot filtreli insan trafigi: 65 goruntuleme / 33 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 57; Google Ads isaretli 12.
+- Iletisim tiklamalari: WhatsApp 3, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Saatlik durum: 19:45'e gore +1 goruntuleme / +1 tekil artis var. Guvenilir insan trafigi +1 goruntuleme / +1 tekil IP artti. Yeni tek sinyal /arocs-4142-balata landing sayfasinda Google kaynakli goruntuleme.
+- Kalite filtresi: 68 goruntulemenin 65'i guvenilir insan sinyali, 3'u dusuk kaliteli/supheli. Google 57, site tracking'e gore Google Ads isaretli 12, Facebook/Meta 0. Google Ads paneli acilmadi; Ads durumu panel verisi degil, site kaynak isaretidir.
+- Guvenilir sicak yollar: anasayfa 8; urun 785 ABS/EBS Sensoru EYD 91 11 toplam 5; urun 595 Renault fren korugu 3; /fren-balatasi 3; /arocs-4142-balata 2; urun 146 BMC kampana 2; urun 149 MAN kampana 2; urun 685 kaliper ayar mekanizmasi 2; urun 7 Ford Cargo/Krone/Kogel Fren Diski 2; urun 469 imdatli fren korugu 2; urun 650 suspansiyon korugu 2; urun 227 Mercedes Axor/Actros/Arocs fren diski 2; urun 743 porya 2; urun 89 kampana 2; urun 148 BMC kampana 2; urun 174 fren diski 2; /man-tgs-kaliper-tamir-takimi 1.
+- Sehir/IP dagilimi: guvenilir trafik TR/Istanbul 20, TR sehir bos 9, TR/Bursa 7, TR/Konya 5, TR/Aydin 4, TR/Ankara 3, TR/Antalya 3, TR/Corum 2, TR/Elazig 2, TR/Tokat 2, TR/Diyarbakir 2, TR/Mersin 2, TR/Cankaya 1; IP detaylari rapora yazdirilmadi.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0; 30 gun toplam sepete ekleme 8, favori 0. WhatsApp tiklamasi 3 olarak sabit ve hepsi urun 785 ABS/EBS sensoru sayfasindan; yeni WhatsApp/telefon/e-posta tiklamasi yok. Bu degerler gercek mesaj/arama garantisi degildir.
+- Canli SEO dogrulama: /arocs-4142-balata, urun 146, urun 149, /fren-kampanasi, urun 685, /man-tgs-kaliper-tamir-takimi, urun 7 ve urun 785 200. Urun/landing sayfalarinda canonical, JSON-LD, Product schema, WhatsApp, telefon ve indirim kuponu CTA'si mevcut; kategori sayfalarinda Product schema beklenmedi. /api/products ve /data/products.json 1055 urun, sitemap/robots/Merchant/Meta feed 200.
+- Satis bilgisi: Arocs 4142 balata landing tekrar sicak; urun 227 Mercedes Axor/Actros/Arocs fren diski ESD 010 27 stok 442, site fiyati 4273.32 TL; urun 146 ESK 030 05 stok 74, site fiyati 6147 TL; urun 149 ESK 020 09 stok 9, site fiyati 4892.08 TL; urun 685 30-3682 stok 6, site fiyati 2402.40 TL; urun 7 ESD 220 03 stok 179, site fiyati 4918.32 TL.
+- Uygulanan aksiyon: yeni kod degisikligi yapilmadi; teknik SEO/feed kontrolleri temiz. Trafik artisi yavasladi ve yeni lead/sepet/favori yok; donusum icin sicak urunlerde hizli teklif ve WhatsApp takibi gerekli.
+- Satis adimi: Arocs 4142 balata/fren diski, BMC kampana urun 146 ve MAN kampana urun 149 icin hazir teklifler one alinmali; gelen mesajda arac/model/olcu teyidi, stok ve kargo dahil kuponlu net fiyat ilk cevapta verilmeli.
