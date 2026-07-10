@@ -119,3 +119,14 @@
 - Sicak yollar: urun 785 ABS/EBS Sensoru toplam 5 ve WhatsApp tiklamasi 3; /ford-cargo-1846-fren-korugu 2; urun 946 Porya 2; urun 335 BMC Bijon 2; urun 177 Otokar/Karsan Atak Fren Diski 2; urun 182 Scania Fren Diski 2; urun 640 Scania Balata 2.
 - Sepet/favori: bugun 0/0, son 7 gun 0/0; 30 gun sepete ekleme 8 ama bugune ait degil. WhatsApp 3 gercek mesaj garantisi degil; link acilmasi olarak yorumlanmali.
 - Aksiyon: tekrarli Facebook grup paylasimi yapilmadi; urun 785 ABS/EBS sensoru ve Ford Cargo 1846 fren korugu sorulari icin hizli WhatsApp teklif/uyumluluk cevabi hazirlamak.
+
+## Heartbeat Kontrolu - 14:45
+- Facebook paylasimi: yeni paylasim yapilmadi; limit/spam riski alinmadi.
+- Facebook referansli trafik: 0 goruntuleme; onceki UTC gun 0.
+- Toplam trafik: 40 goruntuleme / 23 tekil; insan trafigi 38 / 20 tekil IP.
+- Tiklama/siparis: WhatsApp 3, telefon 0, e-posta 0; odenmis siparis 3.
+- Saatlik durum: 13:45'e gore +13 goruntuleme / +8 tekil artis var; Facebook/Meta kaynakli goruntuleme yine 0. Yeni yogun sinyal Google kaynakli Aydin urun 595 Renault fren korugu ve urun 436 Ford Cargo/Krone/Kogel 24/24 imdatli fren korugu sayfalarinda.
+- Kalite notu: 40 goruntulemenin 38'i guvenilir insan sinyali, 2'si dusuk kaliteli/supheli. Google 32, site tracking'e gore Google Ads isaretli 11.
+- Sicak yollar: urun 785 ABS/EBS Sensoru toplam 5 ve WhatsApp tiklamasi 3; urun 595 Renault fren korugu 3; /fren-balatasi 3; urun 174 Ford Cargo/Krone/Kogel fren diski 2; /ford-cargo-1846-fren-korugu 2; urun 946 Porya 2; urun 335 BMC Bijon 2; urun 177 Otokar/Karsan Atak Fren Diski 2; urun 182 Scania Fren Diski 2; urun 640 Scania Balata 2; urun 436 24/24 imdatli fren korugu 1.
+- Sepet/favori: bugun 0/0, son 7 gun 0/0; 30 gun sepete ekleme 8 ama bugune ait degil. WhatsApp 3 gercek mesaj garantisi degil; link acilmasi olarak yorumlanmali.
+- Aksiyon: tekrarli Facebook grup paylasimi yapilmadi; Aydin fren korugu niyeti icin urun 595 BK 01 0024 ve urun 436 8106-2 teklif metinleri kargo dahil kuponlu net fiyatla hazirlanmali.

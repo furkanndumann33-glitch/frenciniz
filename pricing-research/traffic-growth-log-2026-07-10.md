@@ -203,3 +203,22 @@
 - Satis bilgisi: urun 785 EYD 91 11 stok 65, site fiyati 217.80 TL; urun 946 ESP.22.08 stok 1, site fiyati 4488 TL; Ford Cargo 1846 fren korugu landing icin net urun eslesmesi ayrica dogrulanmali.
 - Uygulanan aksiyon: yeni kod degisikligi yapilmadi; sicak urun ve landing SEO/feed kontrolleri temiz. Google Ads/Meta/Merchant paneli acilmadi; rapor site tracking, admin API ve canli feed kontrolune dayaniyor.
 - Satis adimi: WhatsApp uygulamasinda urun 785 mesaji hala oncelik; ayrica Ford Cargo 1846 fren korugu sorusu gelirse once arac/olcu teyidi isteyip net urun kodu eslestir, sonra kargo dahil kuponlu net fiyat ver.
+
+## Heartbeat Trafik Kontrolu - 14:45
+- Onceki UTC gun (2026-07-09): 89 goruntuleme / 43 tekil; Facebook 0, Google 67, tiklama W/T/E 0/0/0.
+- Yeni UTC gun (2026-07-10): 40 goruntuleme / 23 tekil; raw log 40 satir.
+- Bot filtreli insan trafigi: 38 goruntuleme / 20 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 32; Google Ads isaretli 11.
+- Iletisim tiklamalari: WhatsApp 3, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Saatlik durum: 13:45'e gore +13 goruntuleme / +8 tekil artis var. Guvenilir insan trafigi +13 goruntuleme / +7 tekil IP artti. Yeni yogun sinyal Aydin'dan urun 595 Renault fren korugu ve urun 436 Ford Cargo/Krone/Kogel 24/24 imdatli fren korugu; Mersin tarafinda /fren-balatasi ve /fren-diski kategori niyeti var.
+- Kalite filtresi: 40 goruntulemenin 38'i guvenilir insan sinyali, 2'si dusuk kaliteli/supheli. Google 32, site tracking'e gore Google Ads isaretli 11, Facebook/Meta 0. Google Ads paneli acilmadi; Ads durumu panel verisi degil, site kaynak isaretidir.
+- Guvenilir sicak yollar: anasayfa 6; urun 785 ABS/EBS Sensoru EYD 91 11 toplam 5; urun 595 Renault Premium/Magnum/Kerax/Midlum fren korugu BK 01 0024 3; /fren-balatasi 3; urun 174 Ford Cargo/Krone/Kogel Fren Diski ESD 110 01-2 2; /ford-cargo-1846-fren-korugu 2; urun 946 Ford Cargo/Krone/Kogel Dorse Porya E.M. 2; urun 335 BMC Bijon 2; urun 177 Otokar/Karsan Atak Fren Diski 2; urun 182 Scania Fren Diski 2; urun 640 Scania Balata 2; urun 436 Ford Cargo/Krone/Kogel 24/24 imdatli fren korugu 1; /axor-4140-fren-korugu 1.
+- Sehir/IP dagilimi: guvenilir trafik TR/Istanbul 13, TR/Bursa 7, TR sehir bos 5, TR/Aydin 4, TR/Antalya 3, TR/Mersin 2, TR/Bitlis 1, TR/Buca 1; IP detaylari rapora yazdirilmadi.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0; 30 gun toplam sepete ekleme 8, favori 0. Bugunku WhatsApp tiklamasi 3 olarak sabit; telefon/e-posta 0/0. WhatsApp/telefon/e-posta sayilari gercek mesaj/arama garantisi degildir.
+- Canli SEO dogrulama: urun 595, urun 436, /fren-diski, /fren-balatasi, /ford-cargo-1846-fren-korugu, urun 785 ve urun 946 200. Urun/landing sayfalarinda canonical, JSON-LD, Product schema, WhatsApp, telefon ve indirim kuponu CTA'si mevcut; kategori sayfalarinda Product schema beklenmedi. /api/products ve /data/products.json 1055 urun, sitemap/robots/Merchant/Meta feed 200.
+- Satis bilgisi: urun 595 BK 01 0024 stok 6, site fiyati 1650 TL; urun 436 8106-2 stok 120, site fiyati 3168 TL; urun 174 ESD 110 01-2 stok 83, site fiyati 4041.28 TL; urun 785 EYD 91 11 stok 65, site fiyati 217.80 TL; urun 946 ESP.22.08 stok 1, site fiyati 4488 TL.
+- Uygulanan aksiyon: yeni kod degisikligi yapilmadi; sicak urun ve landing SEO/feed kontrolleri temiz. Sorun teknik gorunmuyor; yeni trafik urun/kategori niyetli ama WhatsApp tiklamasi 3'te sabit kaldigi icin teklif/cevap hizi satis tarafinda kritik.
+- Satis adimi: Aydin sinyali icin iki hazir teklif one alinmali: urun 595 Renault BK 01 0024 kargo dahil kuponlu net fiyat ve urun 436 Ford Cargo/Krone/Kogel 24/24 imdatli fren korugu 8106-2 kargo dahil kuponlu net fiyat. Mesaj gelirse once uyumluluk/olcu teyidi, sonra stok ve bugune ozel kupon net fiyat ver.
