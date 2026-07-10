@@ -241,3 +241,22 @@
 - Satis bilgisi: urun 89 ESK 161 07 stok 200, site fiyati 4934.62 TL; urun 148 ESK 030 01 stok 5, site fiyati 5402.56 TL; urun 436 8106-2 stok 120, site fiyati 3168 TL; urun 595 BK 01 0024 stok 6, site fiyati 1650 TL; urun 785 EYD 91 11 stok 65, site fiyati 217.80 TL.
 - Uygulanan aksiyon: yeni kod degisikligi yapilmadi; teknik SEO/feed kontrolleri temiz. Bu turda sorun site tekniginden cok iletisim donusumunde: Google kaynakli urun niyeti var, ancak yeni WhatsApp/sepet/favori yok.
 - Satis adimi: Ankara kampana sinyali icin urun 89, Diyarbakir BMC kampana sinyali icin urun 148 teklifleri hazir olmali. Gelen mesajda sase/olcu teyidi al, stok ve kargo dahil kuponlu net fiyatla hemen cevap ver.
+
+## Heartbeat Trafik Kontrolu - 16:45
+- Onceki UTC gun (2026-07-09): 89 goruntuleme / 43 tekil; Facebook 0, Google 67, tiklama W/T/E 0/0/0.
+- Yeni UTC gun (2026-07-10): 48 goruntuleme / 28 tekil; raw log 48 satir.
+- Bot filtreli insan trafigi: 45 goruntuleme / 24 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 39; Google Ads isaretli 12.
+- Iletisim tiklamalari: WhatsApp 3, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Saatlik durum: 15:45'e gore +2 goruntuleme / +1 tekil artis var. Guvenilir insan trafigi +2 goruntuleme / +1 tekil IP artti. Yeni sicak sinyal Tokat kaynakli urun 743 Ford Cargo/SAF Dorse/Krone/Kogel Dorse porya ESP.18.13 sayfasinda 2 goruntuleme.
+- Kalite filtresi: 48 goruntulemenin 45'i guvenilir insan sinyali, 3'u dusuk kaliteli/supheli. Google 39, site tracking'e gore Google Ads isaretli 12, Facebook/Meta 0. Google Ads paneli acilmadi; Ads durumu panel verisi degil, site kaynak isaretidir.
+- Guvenilir sicak yollar: anasayfa 7; urun 785 ABS/EBS Sensoru EYD 91 11 toplam 5; urun 595 Renault fren korugu 3; /fren-balatasi 3; urun 743 SAF Holland porya ESP.18.13 2; urun 89 Ford Cargo/Krone/Kogel Fren Kampanasi ESK 161 07 2; urun 148 BMC Fren Kampanasi ESK 030 01 2; urun 174 Ford Cargo/Krone/Kogel Fren Diski ESD 110 01-2 2; /ford-cargo-1846-fren-korugu 2; urun 946 Porya 2; urun 335 BMC Bijon 2; urun 177 Otokar/Karsan Atak Fren Diski 2; urun 182 Scania Fren Diski 2; urun 640 Scania Balata 2.
+- Sehir/IP dagilimi: guvenilir trafik TR/Istanbul 13, TR/Bursa 7, TR sehir bos 5, TR/Aydin 4, TR/Ankara 3, TR/Antalya 3, TR/Tokat 2, TR/Diyarbakir 2, TR/Mersin 2, TR/Cankaya 1; IP detaylari rapora yazdirilmadi.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0; 30 gun toplam sepete ekleme 8, favori 0. WhatsApp tiklamasi 3 olarak sabit ve hepsi urun 785 ABS/EBS sensoru sayfasindan; yeni WhatsApp/telefon/e-posta tiklamasi yok. Bu degerler gercek mesaj/arama garantisi degildir.
+- Canli SEO dogrulama: urun 743, /porya, urun 89, urun 148, /fren-kampanasi, urun 595, urun 436 ve urun 785 200. Urun sayfalarinda canonical, JSON-LD, Product schema, WhatsApp, telefon ve indirim kuponu CTA'si mevcut; kategori sayfalarinda Product schema beklenmedi. /api/products ve /data/products.json 1055 urun, sitemap/robots/Merchant/Meta feed 200.
+- Satis bilgisi: urun 743 ESP.18.13 stok 3, site fiyati 8197.20 TL; urun 89 ESK 161 07 stok 200, site fiyati 4934.62 TL; urun 148 ESK 030 01 stok 5, site fiyati 5402.56 TL; urun 436 8106-2 stok 120, site fiyati 3168 TL; urun 595 BK 01 0024 stok 6, site fiyati 1650 TL.
+- Uygulanan aksiyon: yeni kod degisikligi yapilmadi; teknik SEO/feed kontrolleri temiz. Trafik urun niyetli ancak yeni iletisim/sepet/favori yok; donusum icin hizli teklif akisina odaklanilmali.
+- Satis adimi: Tokat porya sinyali icin urun 743 ESP.18.13 teklifini hazir tut; gelen mesajda OEM 3307305600, arac/dorse uyumlulugu, stok 3 ve kargo dahil kuponlu net fiyat ilk cevapta verilmeli.

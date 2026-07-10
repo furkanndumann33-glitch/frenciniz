@@ -141,3 +141,14 @@
 - Sicak yollar: urun 785 ABS/EBS Sensoru toplam 5 ve WhatsApp tiklamasi 3; urun 595 Renault fren korugu 3; /fren-balatasi 3; urun 89 Ford Cargo/Krone/Kogel Fren Kampanasi 2; urun 148 BMC Fren Kampanasi 2; urun 174 Ford Cargo/Krone/Kogel Fren Diski 2; /ford-cargo-1846-fren-korugu 2; urun 946 Porya 2; urun 335 BMC Bijon 2; urun 177 Otokar/Karsan Atak Fren Diski 2; urun 182 Scania Fren Diski 2; urun 640 Scania Balata 2.
 - Sepet/favori: bugun 0/0, son 7 gun 0/0; 30 gun sepete ekleme 8 ama bugune ait degil. WhatsApp 3 gercek mesaj garantisi degil; link acilmasi olarak yorumlanmali.
 - Aksiyon: tekrarli Facebook grup paylasimi yapilmadi. Kampana niyeti artmis durumda; urun 89 ESK 161 07 ve urun 148 ESK 030 01 icin kargo dahil kuponlu net fiyat + uyumluluk teyidiyle hizli WhatsApp cevabi hazirlanmali.
+
+## Heartbeat Kontrolu - 16:45
+- Facebook paylasimi: yeni paylasim yapilmadi; limit/spam riski alinmadi.
+- Facebook referansli trafik: 0 goruntuleme; onceki UTC gun 0.
+- Toplam trafik: 48 goruntuleme / 28 tekil; insan trafigi 45 / 24 tekil IP.
+- Tiklama/siparis: WhatsApp 3, telefon 0, e-posta 0; odenmis siparis 3.
+- Saatlik durum: 15:45'e gore +2 goruntuleme / +1 tekil artis var; Facebook/Meta kaynakli goruntuleme yine 0. Yeni sicak sinyal Tokat kaynakli urun 743 Ford Cargo/SAF Dorse/Krone/Kogel Dorse porya ESP.18.13 sayfasinda.
+- Kalite notu: 48 goruntulemenin 45'i guvenilir insan sinyali, 3'u dusuk kaliteli/supheli. Google 39, site tracking'e gore Google Ads isaretli 12.
+- Sicak yollar: urun 785 ABS/EBS Sensoru toplam 5 ve WhatsApp tiklamasi 3; urun 595 Renault fren korugu 3; /fren-balatasi 3; urun 743 SAF Holland porya 2; urun 89 Ford Cargo/Krone/Kogel Fren Kampanasi 2; urun 148 BMC Fren Kampanasi 2; urun 174 Ford Cargo/Krone/Kogel Fren Diski 2; /ford-cargo-1846-fren-korugu 2; urun 946 Porya 2; urun 335 BMC Bijon 2; urun 177 Otokar/Karsan Atak Fren Diski 2; urun 182 Scania Fren Diski 2; urun 640 Scania Balata 2.
+- Sepet/favori: bugun 0/0, son 7 gun 0/0; 30 gun sepete ekleme 8 ama bugune ait degil. WhatsApp 3 gercek mesaj garantisi degil; link acilmasi olarak yorumlanmali.
+- Aksiyon: tekrarli Facebook grup paylasimi yapilmadi. Urun 743 ESP.18.13 porya icin OEM 3307305600, stok 3, kargo dahil kuponlu net fiyat ve uyumluluk teyidiyle hizli WhatsApp cevabi hazirlanmali.
