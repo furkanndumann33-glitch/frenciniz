@@ -374,3 +374,23 @@
 - Satis bilgisi: urun 145 ESK 030 08 stok 537, site fiyati 6083.19 TL; urun 422 FT 34810-K04F stok 22, site fiyati 3300 TL; urun 142 ESK 030 13 stok 62, site fiyati 5264.30 TL; urun 174 ESD 110 01-2 stok 83, site fiyati 4041.28 TL; urun 227 ESD 010 27 stok 442, site fiyati 4273.32 TL.
 - Uygulanan aksiyon: yeni kod degisikligi yapilmadi; teknik SEO/feed/CTA kontrolleri temiz. Trafik artti ama yeni WhatsApp/sepet/favori yok; bot payi da yukseldi. Bu tur icin en dogru aksiyon nitelikli Google urun sinyallerine fiyat/uyumluluk teklifi hazirlamak.
 - Satis adimi: urun 145 ve urun 142 BMC kampanalar icin BMC/Profesyonel/Fatih uyumluluk teyitli, kargo dahil kuponlu net fiyat; urun 422 suspansiyon korugu icin Ford Cargo/Krone/Kogel/Dorse uyumluluk teyitli hizli WhatsApp cevap sablonu hazir tutulmali.
+
+## Heartbeat Trafik Kontrolu - 23:47
+- Onceki UTC gun (2026-07-09): 89 goruntuleme / 43 tekil; Facebook 0, Google 67, tiklama W/T/E 0/0/0.
+- Yeni UTC gun (2026-07-10): 89 goruntuleme / 41 tekil; raw log 89 satir.
+- Bot filtreli insan trafigi: 72 goruntuleme / 35 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 61; Google Ads isaretli 12.
+- Iletisim tiklamalari: WhatsApp 3, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2310 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- Saatlik durum: 22:46'ya gore +4 goruntuleme / +1 tekil artis var; guvenilir insan tarafi +1 goruntuleme / +1 tekil IP, supheli/bot tarafi +3 goruntuleme. Ham goruntuleme dunku 89 seviyesine ulasti ama tekil 41 ile dunden 2 eksik; insan filtreli trafik 72/35 ile dunku 80/38 seviyesinin altinda.
+- Yeni sicak sinyal: Antalya kaynakli /otokar-sultan-fren-korugu landing goruntulemesi. US/ref bos /faq, anasayfa ve urun 174 kayitlari bot isaretli; satis niyeti sayilmadi.
+- Kalite filtresi: 89 goruntulemenin 72'si guvenilir insan sinyali, 17'si dusuk kaliteli/supheli. Google 61, site tracking'e gore Google Ads isaretli 12, Facebook/Meta 0. Google Ads paneli acilmadi; Ads durumu panel verisi degil, site kaynak isaretidir.
+- Guvenilir sicak yollar: anasayfa 8; urun 785 ABS/EBS Sensoru EYD 91 11 toplam 4; urun 595 Renault fren korugu 3; /fren-balatasi 3; urun 145 BMC Fren Kampanasi 20 cm 2; urun 422 suspansiyon korugu FT 34810-K04F 2; urun 142 BMC Fren Kampanasi ESK 030 13 2; /arocs-4142-balata 2; urun 146 BMC kampana 2; urun 149 MAN kampana 2; urun 685 kaliper ayar mekanizmasi 2; urun 7 Ford Cargo/Krone/Kogel Fren Diski 2; urun 227 Mercedes Axor/Actros/Arocs fren diski 2; urun 177 Otokar/Karsan Atak fren diski 2; /otokar-sultan-fren-korugu 1.
+- Sehir/IP dagilimi: guvenilir trafik TR/Istanbul 20, TR sehir bos 15, TR/Bursa 7, TR/Konya 5, TR/Antalya 4, TR/Aydin 4, TR/Ankara 3, TR/Corum 2, TR/Elazig 2, TR/Tokat 2, TR/Diyarbakir 2, TR/Mersin 2, TR/Cankaya 1, TR/Bitlis 1, TR/Buca 1, US/Dorchester Center 1; IP detaylari rapora yazdirilmadi.
+- Sepete ekleme/favori: bugun 0/0, son 7 gun 0/0; 30 gun toplam sepete ekleme 8, favori 0. WhatsApp tiklamasi 3 olarak sabit; yeni WhatsApp/telefon/e-posta tiklamasi yok. Bu degerler gercek mesaj/arama garantisi degildir.
+- Canli SEO dogrulama: /otokar-sultan-fren-korugu, /faq, urun 174, urun 145, urun 422, urun 142, /arocs-4142-balata ve /fren-korugu 200. /otokar-sultan-fren-korugu dahil urun/landing sayfalarinda canonical, JSON-LD, Product schema, WhatsApp, telefon ve indirim kuponu CTA'si mevcut; /faq ve kategori sayfalarinda Product schema beklenmedi. /api/products 1055 urun, sitemap 2310 URL, Merchant feed 1055 item, Meta feed 1055 satir.
+- Satis bilgisi: Otokar Sultan/Doruk eslesen urunlerde urun 177 ESD 090 08 stok 116, site fiyati 4424.14 TL; urun 105 ESK 150 05 stok 24, site fiyati 4392.24 TL; urun 106 ESK 150 04 stok 4, site fiyati 4253.98 TL. Yeni ziyaret /otokar-sultan-fren-korugu oldugu icin net koruk SKU'su cevapta sasi/olcu teyidiyle kontrol edilmeli; dogrudan disk/kampana onermeden uyumluluk sorulmali.
+- Uygulanan aksiyon: yeni kod degisikligi yapilmadi; teknik SEO/feed/CTA kontrolleri temiz. Trafik dünkü ham seviyeye ulassa da yeni lead/sepet/favori yok; sorun bu turda fiyat/uyumluluk teklifinin WhatsApp'a donmemesi.
+- Satis adimi: Otokar Sultan fren korugu talebi gelirse ilk mesajda arac modeli, yil, sasi veya eski parca olcusu istenmeli; uygun urun netlesince kargo dahil kuponlu fiyat verilmeli. BMC kampana urun 145/142 ve suspansiyon korugu urun 422 teklifleri de hazir tutulmali.

@@ -218,3 +218,14 @@
 - Sicak yollar: urun 145 BMC kampana 2; urun 422 suspansiyon korugu 2; urun 142 BMC kampana 2; /arocs-4142-balata 2; urun 146 BMC kampana 2; urun 149 MAN kampana 2; urun 685 kaliper 2; urun 7 Ford Cargo fren diski 2; urun 227 Mercedes Axor/Actros/Arocs fren diski 2; urun 785 ABS/EBS Sensoru 4 ve WhatsApp tiklamasi toplam 3.
 - Sepet/favori: bugun 0/0, son 7 gun 0/0; WhatsApp 3 link tiklamasi sabit ve gercek mesaj garantisi degil. Yeni telefon/e-posta tiklamasi yok.
 - Aksiyon: tekrarli Facebook grup paylasimi yapilmadi. Sosyal trafik sifir kaldigi icin oncelik Google'dan gelen BMC kampana ve suspansiyon korugu ziyaretlerine kargo dahil kuponlu fiyat + uyumluluk teyidiyle hizli teklif vermek.
+
+## Heartbeat Kontrolu - 23:47
+- Facebook paylasimi: yeni paylasim yapilmadi; limit/spam riski alinmadi.
+- Facebook referansli trafik: 0 goruntuleme; onceki UTC gun 0.
+- Toplam trafik: 89 goruntuleme / 41 tekil; insan trafigi 72 / 35 tekil IP.
+- Tiklama/siparis: WhatsApp 3, telefon 0, e-posta 0; odenmis siparis 3.
+- Saatlik durum: 22:46'ya gore +4 goruntuleme / +1 tekil artis var; guvenilir insan tarafi +1 goruntuleme / +1 tekil IP. Facebook/Meta kaynakli goruntuleme yine 0. Ham trafik dünkü 89 goruntulemeye ulasti ama insan filtreli trafik dunden dusuk.
+- Kalite notu: 89 goruntulemenin 72'si guvenilir insan sinyali, 17'si dusuk kaliteli/supheli. Google 61, site tracking'e gore Google Ads isaretli 12; Ads paneli acilmadi.
+- Sicak yollar: yeni insan sinyali Antalya /otokar-sultan-fren-korugu; urun 145 BMC kampana 2; urun 422 suspansiyon korugu 2; urun 142 BMC kampana 2; /arocs-4142-balata 2; urun 146 BMC kampana 2; urun 149 MAN kampana 2; urun 685 kaliper 2; urun 7 Ford Cargo fren diski 2; urun 785 ABS/EBS Sensoru 4 ve WhatsApp tiklamasi toplam 3.
+- Sepet/favori: bugun 0/0, son 7 gun 0/0; WhatsApp 3 link tiklamasi sabit ve gercek mesaj garantisi degil. Yeni telefon/e-posta tiklamasi yok.
+- Aksiyon: tekrarli Facebook grup paylasimi yapilmadi. Yeni satis adimi Otokar Sultan fren korugu talebinde sasi/olcu teyidi almak; uygun parca netlesince kargo dahil kuponlu fiyatla hizli donmek.
