@@ -163,3 +163,14 @@
 - Sicak yollar: urun 785 ABS/EBS Sensoru toplam 5 ve WhatsApp tiklamasi 3; urun 595 Renault fren korugu 3; /fren-balatasi 3; urun 469 Ford Cargo/Krone/Kogel 16/24 imdatli fren korugu 2; urun 650 suspansiyon korugu 2; urun 925 suspansiyon korugu 2; urun 227 Mercedes Axor/Actros/Arocs fren diski 2; urun 743 porya 2; urun 89 kampana 2; urun 148 BMC kampana 2; urun 174 fren diski 2; /arocs-4142-balata 1.
 - Sepet/favori: bugun 0/0, son 7 gun 0/0; 30 gun sepete ekleme 8 ama bugune ait degil. WhatsApp 3 gercek mesaj garantisi degil; link acilmasi olarak yorumlanmali.
 - Aksiyon: tekrarli Facebook grup paylasimi yapilmadi. Urun 469, urun 650 ve Arocs 4142 balata/fren diski niyetleri icin kargo dahil kuponlu net fiyat + uyumluluk teyidiyle hizli WhatsApp cevabi hazirlanmali.
+
+## Heartbeat Kontrolu - 18:45
+- Facebook paylasimi: yeni paylasim yapilmadi; limit/spam riski alinmadi.
+- Facebook referansli trafik: 0 goruntuleme; onceki UTC gun 0.
+- Toplam trafik: 63 goruntuleme / 34 tekil; insan trafigi 60 / 30 tekil IP.
+- Tiklama/siparis: WhatsApp 3, telefon 0, e-posta 0; odenmis siparis 3.
+- Saatlik durum: 17:45'e gore +5 goruntuleme / +2 tekil artis var; Facebook/Meta kaynakli goruntuleme yine 0. Yeni sicak sinyaller Istanbul urun 685 ROR/Meritor/Knorr/WABCO kaliper ayar mekanizmasi, /man-tgs-kaliper-tamir-takimi ve urun 7 Ford Cargo/Krone/Kogel fren diski.
+- Kalite notu: 63 goruntulemenin 60'i guvenilir insan sinyali, 3'u dusuk kaliteli/supheli. Google 52, site tracking'e gore Google Ads isaretli 12.
+- Sicak yollar: urun 785 ABS/EBS Sensoru toplam 5 ve WhatsApp tiklamasi 3; urun 595 Renault fren korugu 3; /fren-balatasi 3; urun 685 Kaliper Ayar Mekanizmasi 2; urun 7 Ford Cargo/Krone/Kogel Fren Diski 2; urun 469 imdatli fren korugu 2; urun 650 suspansiyon korugu 2; urun 227 Mercedes Axor/Actros/Arocs fren diski 2; /man-tgs-kaliper-tamir-takimi 1; /arocs-4142-balata 1.
+- Sepet/favori: bugun 0/0, son 7 gun 0/0; 30 gun sepete ekleme 8 ama bugune ait degil. WhatsApp 3 gercek mesaj garantisi degil; link acilmasi olarak yorumlanmali.
+- Aksiyon: tekrarli Facebook grup paylasimi yapilmadi. Urun 685 kaliper ayar mekanizmasi, MAN TGS kaliper tamir takimi ve urun 7 Ford Cargo fren diski icin kargo dahil kuponlu net fiyat + uyumluluk teyidiyle hizli WhatsApp cevabi hazirlanmali.
