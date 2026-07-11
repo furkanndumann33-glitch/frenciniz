@@ -160,3 +160,21 @@
 - Feed dogrulama: Merchant feed 200 ve Meta feed 200; ESD 110 01-2/Fren Diski sinyali mevcut. Google Ads/Meta/Merchant paneli acilmadi; Ads bilgisi site takip isareti ve canli feed/sayfa kontroludur.
 - Kod degisikligi yapilmadi: canonical ve urun schema saglam, kategori/urun feedleri yayinda.
 - Satis adimi: Google Ads fren diski ziyaretine ESD 110 01-2 teklif akisiyle donulmeli: stok 83, fiyat 4041.28 TL; musteriye dorse/aks, disk cap/olcu, eski parca fotosu veya stok kodu teyidi sorulup kupon/kargo dahil net fiyat verilmeli.
+
+## Heartbeat Trafik Kontrolu - 12:47
+- Onceki UTC gun (2026-07-10): 91 goruntuleme / 43 tekil; Facebook 0, Google 63, tiklama W/T/E 3/0/0.
+- Yeni UTC gun (2026-07-11): 14 goruntuleme / 9 tekil; raw log 14 satir.
+- Bot filtreli insan trafigi: 14 goruntuleme / 9 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 14; Google Ads isaretli 4.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2311 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- 11:47 kontrolune gore artis: +5 goruntuleme / +3 tekil IP. Yeni ziyaretler Google referrer ile geldi; Google Ads sayisi 4'te kaldi. Supheli/bot 0.
+- Yeni sicak yollar: urun 212 ESD 030 17 2 kez Antalya, urun 718 PWR-5027 2 kez Istanbul, /schmitz-dorse-kaliper-tamir-takimi 1 kez Sofia/BG. Gun ici toplamda Google 14, Facebook/Meta 0.
+- Donusum kirilimi: WhatsApp/telefon/e-posta 0, sepet 0, favori 0. Son 7 gunde sepet/favori 0/0; toplam gecmis sepete ekleme 8. Bu sayilar link tiklamasidir; gercek mesaj/arama garantisi degildir.
+- Urun 212 canli kontrolu: sayfa 200, canonical temiz Ford Cargo slug'ina gidiyor, Product schema/WhatsApp/telefon/kupon true. Urun: Ford Cargo Fren Diski ABS'li Arka ESD 030 17; stok 59, fiyat 4849.54 TL, OEM 2992636, 7184078, 7189863; Merchant ve Meta feedde mevcut.
+- Urun 718 canli kontrolu: sayfa 200, canonical/Product schema/WhatsApp/telefon/kupon true. Urun: Ford Cargo Krone Dorse Kogel Dorse Disk Fren Balatasi PWR-5027; stok 35, fiyat 2582.58 TL, OEM 29328; Merchant ve Meta feedde mevcut.
+- Schmitz dorse kaliper tamir landing kontrolu: sayfa 200, canonical/JSON-LD/WhatsApp/telefon/kupon true. En yakin stoklu adaylar CHS5005 sag stok 1 fiyat 11180.40 TL, FX-3040 sol stok 1 fiyat 5674.68 TL, FX-3030 sag stok 1 fiyat 5674.68 TL, FX-5010 stok 1 fiyat 8512.68 TL, 10-1099 stok 1 fiyat 1082.40 TL.
+- Kod degisikligi yapilmadi: bu turda canli sayfa, schema, canonical ve feed tarafinda kirik bulunmadi. Google Ads/Meta/Merchant paneli acilmadi; Ads bilgisi site takip isareti ve canli feed/sayfa kontroludur.
+- Satis adimi: son 1 saatteki en sicak niyetler icin 3 teklif akisi hazir tutulmali: ESD 030 17 4849.54 TL, PWR-5027 2582.58 TL, Schmitz kaliper icin sag/sol ve kaliper modeli/foto teyidi sonrasi stok 1 olan uygun tamir takimi. Kupon/kargo dahil net fiyat WhatsApp'a tasinmali.

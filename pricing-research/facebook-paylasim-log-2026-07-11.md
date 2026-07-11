@@ -94,3 +94,14 @@
 - Donusum durumu: WhatsApp/telefon/e-posta 0, sepet/favori 0. Bunlar link tiklamasidir, gercek mesaj/arama garantisi degildir.
 - Teknik kontrol: /fren-diski ve urun 174 canli 200; canonical, Product schema, Merchant feed ve Meta feed sinyalleri saglam. Urun 174 stok 83, fiyat 4041.28 TL.
 - Satis adimi: Facebook yerine bugunku Google Ads fren diski niyetine odaklanilmali. ESD 110 01-2 icin dorse/aks, disk olcusu ve eski parca fotosu istenip kupon/kargo dahil net teklif WhatsApp'a tasinmali.
+
+## Heartbeat Kontrolu - 12:47
+- Facebook paylasimi: yeni paylasim yapilmadi; limit/spam riski alinmadi.
+- Facebook referansli trafik: 0 goruntuleme; onceki UTC gun 0.
+- Toplam trafik: 14 goruntuleme / 9 tekil; insan trafigi 14 / 9 tekil IP.
+- Tiklama/siparis: WhatsApp 0, telefon 0, e-posta 0; odenmis siparis 3.
+- Facebook/Meta sonucu: Facebook kaynakli trafik yine 0. Yeni grup paylasimi yapilmadi; tekrar/spam/limit riski alinmadi. Meta paneli acilmadi.
+- Yeni sicak trafik: son 1 saatte Google referrer ile +5 goruntuleme geldi; urun 212 ESD 030 17 2 kez, urun 718 PWR-5027 2 kez, /schmitz-dorse-kaliper-tamir-takimi 1 kez acildi. Google Ads sayisi artmadi, toplam 4'te.
+- Donusum durumu: WhatsApp/telefon/e-posta 0, sepet/favori 0. Bunlar link tiklamasidir, gercek mesaj/arama garantisi degildir.
+- Teknik kontrol: urun 212, urun 718 ve Schmitz dorse kaliper landing canli 200; canonical, WhatsApp, telefon, kupon ve schema sinyalleri saglam. Merchant ve Meta feed 200.
+- Satis adimi: Facebook yerine Google niyetlerine odaklanilmali. ESD 030 17 icin 4849.54 TL/stok 59, PWR-5027 icin 2582.58 TL/stok 35 teklif hazir; Schmitz kaliper icin sag-sol ve eski parca fotosu sorulup stok 1 tamir takimi hizli tekliflenmeli.
