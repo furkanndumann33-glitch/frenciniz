@@ -70,3 +70,21 @@
 - En yakin Arocs urun adayi: urun 716 Mercedes Arocs Disk Fren Balatasi Y.M. PWR-5029; OEM 29315; stok 37; fiyat 2379.43 TL; uyumluluk Arocs 1842/2636/3342/4142/4145. Canli urun sayfasi 200, canonical/jsonLd/Product schema/WhatsApp/kupon true.
 - Kod degisikligi yapilmadi: bu turda teknik SEO/CTA/feed eksigi bulunmadi. Google Ads/Meta panelleri acilmadi; yalniz site admin/API ve canli feed/sayfa kontrolu yapildi.
 - Satis adimi: Arocs 4142 icin gelen soruda direkt PWR-5029 teklif akisi kullanilmali; musteriye "on/arka aks, disk/kampana, WVA/OEM 29315 veya eski balata fotosu/olcusu" sorulup 2379.43 TL uzerinden kupon/kargo dahil net fiyat verilmelidir.
+
+## Heartbeat Trafik Kontrolu - 07:47
+- Onceki UTC gun (2026-07-10): 91 goruntuleme / 43 tekil; Facebook 0, Google 63, tiklama W/T/E 3/0/0.
+- Yeni UTC gun (2026-07-11): 3 goruntuleme / 2 tekil; raw log 3 satir.
+- Bot filtreli insan trafigi: 3 goruntuleme / 2 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 3; Google Ads isaretli 0.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2311 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- 06:47 kontrolune gore yeni artis yok: 3 goruntuleme / 2 tekil IP seviyesinde kaldi. Supheli/bot 0.
+- Gun ici sicak yollar degismedi: /arocs-4142-balata 1; urun 731 PWR-5009 SAF dorse disk fren balatasi 2. Kaynaklarin tamami Google referrer; Facebook/Meta 0; Google Ads isaretli 0.
+- Donusum kirilimi: WhatsApp/telefon/e-posta 0, sepet 0, favori 0. Son 7 gunde sepet/favori 0/0; toplam sepete ekleme gecmis kayit 8.
+- Canli SEO/feed dogrulama: /arocs-4142-balata, urun 716 PWR-5029, urun 731 PWR-5009, /29159-29126-saf-dorse-fren-balatasi ve /fren-balatasi 200 dondu. Canonical, JSON-LD, WhatsApp ve kupon sinyalleri saglam; kategori sayfasinda Product schema beklenmedigi icin false, landing/urun sayfalarinda true.
+- Feed dogrulama: Merchant feed 200 ve Meta feed 200; ikisi de PWR-5029/Arocs 4142 ve PWR-5009 sinyallerini iceriyor.
+- Stok/fiyat odagi: Arocs urun 716 PWR-5029 stok 37, fiyat 2379.43 TL, OEM 29315; PWR-5009 urun 731 stok 20, fiyat 2164.27 TL, OEM 29159, 29126.
+- Kod degisikligi yapilmadi: bu turda teknik SEO/CTA/feed acigi bulunmadi. Google Ads/Meta panelleri acilmadi; yalniz site admin/API ve canli sayfa/feed kontrolu yapildi.
+- Satis adimi: Bugun gelen iki niyet icin WhatsApp cevaplari hazir tutulmali: Arocs 4142 icin PWR-5029 2379.43 TL; SAF dorse 29159/29126 icin PWR-5009 2164.27 TL. Her ikisinde de eski parca fotosu/olcu ve aks bilgisi istenip kupon/kargo dahil net teklif verilmelidir.

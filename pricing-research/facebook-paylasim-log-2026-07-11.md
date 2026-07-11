@@ -40,3 +40,13 @@
 - Yeni sicak trafik: 05:47'den sonra Google organik/referrer ile /arocs-4142-balata sayfasina +1 tekil ziyaret geldi; supheli/bot yok.
 - Donusum durumu: WhatsApp/telefon/e-posta 0; sepet/favori 0. Link tiklamasi disinda gercek mesaj/arama bilgisi yok.
 - Satis adimi: Arocs 4142 balata niyeti icin urun 716 PWR-5029 hazir tekliflenmeli: stok 37, fiyat 2379.43 TL, OEM 29315. Musteriden on/arka aks, disk/kampana, eski parca fotosu veya olcu teyidi istenmeli.
+
+## Heartbeat Kontrolu - 07:47
+- Facebook paylasimi: yeni paylasim yapilmadi; limit/spam riski alinmadi.
+- Facebook referansli trafik: 0 goruntuleme; onceki UTC gun 0.
+- Toplam trafik: 3 goruntuleme / 2 tekil; insan trafigi 3 / 2 tekil IP.
+- Tiklama/siparis: WhatsApp 0, telefon 0, e-posta 0; odenmis siparis 3.
+- Facebook/Meta sonucu: Facebook kaynakli trafik halen 0. Yeni grup paylasimi yapilmadi; tekrar/spam/limit riski alinmadi. Meta paneli acilmadi.
+- Yeni trafik yok: 06:47'den sonra ek ziyaret gelmedi. Mevcut sicak yollar Google kaynakli /arocs-4142-balata 1 ve urun 731 PWR-5009 2.
+- Donusum durumu: WhatsApp/telefon/e-posta 0; sepet/favori 0. Bunlar link tiklamasidir, gercek mesaj/arama garantisi degildir.
+- Satis adimi: Facebook yerine organik Google niyetleri takip edilmeli. Arocs 4142 icin urun 716 PWR-5029 stok 37 fiyat 2379.43 TL; SAF dorse 29159/29126 icin urun 731 PWR-5009 stok 20 fiyat 2164.27 TL teklifleri hazir tutulmali.
