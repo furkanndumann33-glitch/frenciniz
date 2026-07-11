@@ -15,6 +15,9 @@ const BRAND_MAP = { 1: "Ekersan" };
 
 // Fiyat çarpanı — Ekersan B2B fiyatı üzerine markup (sync.py ile senkron tutulmalı)
 const PRICE_MULTIPLIER = 1.32;
+const MANUAL_PRODUCT_OVERRIDES = new Map([
+  ["PWR-5009", { oem: "29159, 29126" }],
+]);
 
 // (regex, kategori) — daha spesifik önce
 const CATEGORY_PATTERNS = [
@@ -341,6 +344,13 @@ function processProducts(raw) {
   return { products: final, categories: cats };
 }
 
+function applyManualProductOverrides(products) {
+  for (const product of products) {
+    const override = MANUAL_PRODUCT_OVERRIDES.get(String(product?.sku || ""));
+    if (override) Object.assign(product, override);
+  }
+}
+
 function buildRawSourceMap(raw) {
   return new Map((raw.products || [])
     .map((row) => row?.attributes || {})
@@ -365,6 +375,7 @@ export default async function handler(req, res) {
     console.log(`[sync] Raw: ${raw.products.length} products, ${raw.included.length} included`);
 
     const { products, categories } = processProducts(raw);
+    applyManualProductOverrides(products);
     const { summary: compatibilitySummary } = enrichProducts(products, categories, {
       sourceBySku: buildRawSourceMap(raw),
     });

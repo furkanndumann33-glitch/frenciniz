@@ -31,6 +31,9 @@ PRODUCTS_PATH = os.path.join(BASE_DIR, "public", "data", "products.json")
 CATEGORIES_PATH = os.path.join(BASE_DIR, "public", "data", "categories.json")
 RAW_CACHE_PATH = os.path.join(BASE_DIR, "raw_cache.json")
 COMPAT_FIELDS = ("desc", "compat", "compat_source", "compat_updated_at", "compat_notes", "compat_confidence", "compat_basis")
+MANUAL_PRODUCT_OVERRIDES = {
+    "PWR-5009": {"oem": "29159, 29126"},
+}
 
 # Brand id -> name. brand_id=1 baskın (Ekersan'ın kendi ürünleri).
 BRAND_MAP = {
@@ -391,6 +394,18 @@ def preserve_compatibility_fields(final_products):
         preserved += 1
     return preserved
 
+def apply_manual_product_overrides(final_products):
+    changed = 0
+    for product in final_products:
+        override = MANUAL_PRODUCT_OVERRIDES.get(str(product.get("sku") or ""))
+        if not override:
+            continue
+        for key, value in override.items():
+            if product.get(key) != value:
+                product[key] = value
+                changed += 1
+    return changed
+
 def fetch_with_resume():
     """Tüm ürünleri çek, raw_cache.json'a checkpoint yaz, kaldığı yerden devam et."""
     all_products, all_included, start_page = [], [], 1
@@ -618,6 +633,9 @@ def main():
     preserved_count = preserve_compatibility_fields(final)
     if preserved_count:
         log(f"Uyumluluk alanları korundu: {preserved_count} ürün")
+    override_count = apply_manual_product_overrides(final)
+    if override_count:
+        log(f"Manuel urun override uygulandi: {override_count} alan")
 
     log(f"Stokta: {len(final)} ürün, {len(cats_list)-1} kategori")
 

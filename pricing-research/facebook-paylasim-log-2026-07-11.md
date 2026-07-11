@@ -50,3 +50,14 @@
 - Yeni trafik yok: 06:47'den sonra ek ziyaret gelmedi. Mevcut sicak yollar Google kaynakli /arocs-4142-balata 1 ve urun 731 PWR-5009 2.
 - Donusum durumu: WhatsApp/telefon/e-posta 0; sepet/favori 0. Bunlar link tiklamasidir, gercek mesaj/arama garantisi degildir.
 - Satis adimi: Facebook yerine organik Google niyetleri takip edilmeli. Arocs 4142 icin urun 716 PWR-5029 stok 37 fiyat 2379.43 TL; SAF dorse 29159/29126 icin urun 731 PWR-5009 stok 20 fiyat 2164.27 TL teklifleri hazir tutulmali.
+
+## Heartbeat Kontrolu - 08:47
+- Facebook paylasimi: yeni paylasim yapilmadi; limit/spam riski alinmadi.
+- Facebook referansli trafik: 0 goruntuleme; onceki UTC gun 0.
+- Toplam trafik: 4 goruntuleme / 3 tekil; insan trafigi 4 / 3 tekil IP.
+- Tiklama/siparis: WhatsApp 0, telefon 0, e-posta 0; odenmis siparis 3.
+- Facebook/Meta sonucu: Facebook kaynakli trafik halen 0. Yeni grup paylasimi yapilmadi; tekrar/spam/limit riski alinmadi. Meta paneli acilmadi.
+- Yeni sicak trafik: 07:47'den sonra Mersin'den Google Ads isaretli 1 tekil ziyaret anasayfaya geldi. Gun ici diger niyetler /arocs-4142-balata ve PWR-5009 urun sayfasi.
+- Donusum durumu: WhatsApp/telefon/e-posta 0, sepet/favori 0. Bu iletisim sayilari link tiklamasidir, gercek mesaj/arama garantisi degildir.
+- Teknik aksiyon: Facebook tekrar paylasimi yerine PWR-5009 muadil kod verisi kalici hale getirildi. Otomatik sync'in 29159, 29126 bilgisini tekrar silmemesi icin sync.py ve api/sync-products.js icine manuel override eklendi; products.json geri duzeltildi.
+- Satis adimi: Facebook yerine bugunku Google niyetleri takip edilmeli. Mersin Google Ads ziyareti icin genel karsilama + parca kodu/foto isteme, ardindan Arocs PWR-5029 veya SAF dorse PWR-5009 kuponlu/kargo dahil teklif akisi kullanilmali.

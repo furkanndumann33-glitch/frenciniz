@@ -88,3 +88,21 @@
 - Stok/fiyat odagi: Arocs urun 716 PWR-5029 stok 37, fiyat 2379.43 TL, OEM 29315; PWR-5009 urun 731 stok 20, fiyat 2164.27 TL, OEM 29159, 29126.
 - Kod degisikligi yapilmadi: bu turda teknik SEO/CTA/feed acigi bulunmadi. Google Ads/Meta panelleri acilmadi; yalniz site admin/API ve canli sayfa/feed kontrolu yapildi.
 - Satis adimi: Bugun gelen iki niyet icin WhatsApp cevaplari hazir tutulmali: Arocs 4142 icin PWR-5029 2379.43 TL; SAF dorse 29159/29126 icin PWR-5009 2164.27 TL. Her ikisinde de eski parca fotosu/olcu ve aks bilgisi istenip kupon/kargo dahil net teklif verilmelidir.
+
+## Heartbeat Trafik Kontrolu - 08:47
+- Onceki UTC gun (2026-07-10): 91 goruntuleme / 43 tekil; Facebook 0, Google 63, tiklama W/T/E 3/0/0.
+- Yeni UTC gun (2026-07-11): 4 goruntuleme / 3 tekil; raw log 4 satir.
+- Bot filtreli insan trafigi: 4 goruntuleme / 3 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 4; Google Ads isaretli 1.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2311 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- 07:47 kontrolune gore artis: +1 goruntuleme / +1 tekil IP. Yeni ziyaret Mersin lokasyonlu Windows masaustu kullanici; Google referrer ve site-tag uzerinden Google Ads isaretli olarak anasayfaya geldi. Supheli/bot 0.
+- Gun ici sicak yollar: / 1 Google Ads, /arocs-4142-balata 1 Google organik/referrer, urun 731 PWR-5009 2 Google organik/referrer. Facebook/Meta kaynakli trafik 0.
+- Donusum kirilimi: WhatsApp/telefon/e-posta 0, sepet 0, favori 0. Bu metrikler link tiklamasidir; gercek WhatsApp mesaji, arama veya e-posta garantisi degildir.
+- Canli SEO/feed dogrulama: anasayfa, /arocs-4142-balata, urun 716 PWR-5029, urun 731 PWR-5009, /29159-29126-saf-dorse-fren-balatasi ve /fren-balatasi 200 dondu. Landing/urun sayfalarinda canonical, JSON-LD/Product schema, WhatsApp, telefon ve kupon sinyalleri saglam.
+- Feed dogrulama: Merchant feed 200 ve Meta feed 200; PWR-5029/Arocs 4142 ve PWR-5009 sinyalleri feedlerde mevcut. Google Ads/Meta/Merchant paneli acilmadi; Ads bilgisi sadece site takip isareti ve canli feed/sayfa verisidir.
+- Kritik veri tespiti: 08:00 otomatik urun sync commit'i PWR-5009 icin manuel OEM bilgisini 29159, 29126 yerine tekrar 29159'a dusurmustu. Bu, Google/Product schema/feed muadil kod tutarliligini zayiflatiyordu.
+- Uygulanan aksiyon: sync.py ve api/sync-products.js icine PWR-5009 manuel OEM override eklendi; public/data/products.json icinde urun 731 oem/specs/aciklama 29159, 29126 olarak geri alindi. python py_compile, node --check ve npm.cmd run build basarili; build yalniz mevcut buyuk chunk uyarisi verdi.
+- Satis adimi: Mersin Google Ads anasayfa ziyareti genel niyet oldugu icin ilk mesajda "hangi arac/parca kodu/foto var?" sorulup iki sicak teklif hazir tutulmali: Arocs PWR-5029 stok 37 fiyat 2379.43 TL; SAF dorse PWR-5009 stok 20 fiyat 2164.27 TL. Kupon ve kargo dahil net fiyat WhatsApp'a tasinmali.
