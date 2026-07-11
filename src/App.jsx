@@ -2125,10 +2125,7 @@ export default function App() {
         {!isAdminPage && mobileFilterOpen && <MobileFilterDrawer />}
         <div style={{marginLeft: ((page==="home" || page==="products") && !isMobile) ? 220 : 0}}>
         <main style={{minHeight:isAdminPage?"100vh":"60vh"}}>
-          {!isAdminPage && <TodaySalesStrip />}
           {!isAdminPage && <DiscountCouponBanner />}
-          {!isAdminPage && <WhatsAppTrustStrip />}
-          {!isAdminPage && <ReferralSalesBar />}
           {page==="home"&&<HomePage/>}
           {page==="products"&&<ProductsPage/>}
           {page==="product"&&<ProductDetailPage/>}
