@@ -333,3 +333,21 @@
 - Feed dogrulama: sitemap 200 ve 2311 URL; home, urun 281 ve urun 452 URL'leri var. Robots 200; Merchant feed 200 ve Meta feed 200; ESD 090 09/3010097AA ve FT 344183 sinyalleri mevcut.
 - Kod degisikligi yapilmadi: yeni trafik gelmedigi ve sicak urun/kategori/feedler saglam oldugu icin teknik deploy gerekmedi. Google Ads/Meta/Merchant panelleri acilmadi; Ads bilgisi site takip isareti ve canli feed/sayfa kontroludur.
 - Satis adimi: ESD 090 09 ve FT 344183 teklifleri hazir tutulmali. ESD 090 09 icin arac/dorse modeli, arka aks, disk olcusu ve eski disk fotosu; FT 344183 icin dorse/cekici modeli, koruk olcusu/foto ve montaj yeri teyidi istenip kupon/kargo dahil net teklif verilmelidir.
+
+## Heartbeat Trafik Kontrolu - 22:47
+- Onceki UTC gun (2026-07-10): 91 goruntuleme / 43 tekil; Facebook 0, Google 63, tiklama W/T/E 3/0/0.
+- Yeni UTC gun (2026-07-11): 25 goruntuleme / 16 tekil; raw log 25 satir.
+- Bot filtreli insan trafigi: 24 goruntuleme / 15 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 24; Google Ads isaretli 7.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2311 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- 21:47 kontrolune gore ham artis: +3 goruntuleme / +2 tekil IP. Bot filtreli artis: +2 goruntuleme / +1 tekil IP. Yeni insan ziyareti Malatya/TR'den Android Chrome ile Google referrer uzerinden urun 86 ESC 80422 fren circiri sayfasina iki kez geldi. Ek 1 kayit US/direkt AdsBot-Google ile urun 322 ESB 422 10 bijon sayfasina geldi; satis trafigi sayilmadi.
+- Gun ici sicak yollar: / 4, urun 86 ESC 80422 2, urun 281 ESD 090 09 2, urun 452 FT 344183 2, /arocs-4142-balata 2, urun 212 ESD 030 17 2, urun 718 PWR-5027 2, urun 174 ESD 110 01-2 2, urun 731 PWR-5009 2, /schmitz-dorse-kaliper-tamir-takimi 1, /fren-diski 1, /atego-fren-diski 1, /axor-3340-kampana 1. Insan Google toplam 24; Google Ads isaretli 7; Facebook/Meta 0.
+- Donusum kirilimi: WhatsApp/telefon/e-posta 0, sepet 0, favori 0. Son 7 gunde sepet/favori 0/0; toplam eski sepete ekleme 8 ama bugun aktif sepet sinyali yok.
+- Urun 86 canli dogrulama: sayfa 200, canonical/og:url www temiz slug'a gidiyor, Product schema/ItemList, kupon CTA, WhatsApp ve telefon true, non-www URL false. Urun: Mercedes Arocs Fren Circiri Sol; SKU ESC 80422, stok 4, fiyat 1452 TL.
+- AdsBot urun 322 dogrulama: sayfa 200, canonical/og:url www, Product schema/ItemList, kupon CTA ve iletisim linkleri saglam. Urun: Ford Cargo Bijon DPS ESB 422 10; OEM FC461118CA, stok 3250, fiyat 213.05 TL.
+- Kategori/feed dogrulama: /fren-circiri, /bijon ve /fren-diski 200; ItemList schema ve CTA saglam. Sitemap 200 ve urun 86/322 URL'leri var; robots 200; Merchant feed 200 ve Meta feed 200; ESC 80422 ve ESB 422 10 sinyalleri mevcut.
+- Kod degisikligi yapilmadi: yeni sicak fren circiri urun sayfasi, bot kontrol edilen bijon sayfasi, kategori ve feedler saglam oldugu icin teknik deploy gerekmedi. Google Ads/Meta/Merchant panelleri acilmadi; Ads bilgisi site takip isareti ve canli feed/sayfa kontroludur.
+- Satis adimi: ESC 80422 icin hizli teklif hazir tutulmali: stok 4, fiyat 1452 TL. Musteriden Arocs/Actros model, sag-sol yon, eski circir fotosu ve dis/kanal teyidi istenip kupon/kargo dahil net teklif WhatsApp'a tasinmali.

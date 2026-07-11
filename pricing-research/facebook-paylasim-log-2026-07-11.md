@@ -204,3 +204,14 @@
 - Donusum durumu: WhatsApp/telefon/e-posta 0, sepet/favori 0. Bunlar link tiklamasidir, gercek mesaj/arama garantisi degildir.
 - Teknik kontrol: urun 281, urun 452, ana sayfa ve /fren-diski 200; canonical/og:url www, kupon CTA, WhatsApp/telefon ve schema/feed sinyalleri saglam.
 - Satis adimi: Facebook yerine Google sicak urun niyetleri takip edilmeli; ESD 090 09 stok 10 fiyat 3934.93 TL ve FT 344183 stok 25 fiyat 1518 TL icin arac/dorse bilgisi + eski parca fotosu teyidiyle hizli teklif hazir tutulmali.
+
+## Heartbeat Kontrolu - 22:47
+- Facebook paylasimi: yeni paylasim yapilmadi; limit/spam riski alinmadi.
+- Facebook referansli trafik: 0 goruntuleme; onceki UTC gun 0.
+- Toplam trafik: 25 goruntuleme / 16 tekil; insan trafigi 24 / 15 tekil IP.
+- Tiklama/siparis: WhatsApp 0, telefon 0, e-posta 0; odenmis siparis 3.
+- Facebook/Meta sonucu: Facebook kaynakli trafik yine 0. Yeni grup paylasimi yapilmadi; tekrar/spam/limit riski alinmadi. Meta paneli acilmadi.
+- Yeni sicak trafik: son 1 saatte Malatya'dan Google referrer ile urun 86 ESC 80422 fren circiri sayfasina +2 insan goruntuleme / +1 tekil IP geldi. Ek US/direkt urun 322 kaydi AdsBot-Google oldugu icin satis trafigi sayilmadi. Bugunku insan Google 24, Google Ads isaretli 7.
+- Donusum durumu: WhatsApp/telefon/e-posta 0, sepet/favori 0. Bunlar link tiklamasidir, gercek mesaj/arama garantisi degildir.
+- Teknik kontrol: urun 86, urun 322, /fren-circiri, /bijon ve /fren-diski 200; canonical/og:url www, kupon CTA, WhatsApp/telefon ve schema/feed sinyalleri saglam.
+- Satis adimi: Facebook yerine Google'dan gelen ESC 80422 fren circiri niyeti izlenmeli; stok 4 fiyat 1452 TL ile Arocs/Actros model, sag-sol yon, eski parca fotosu ve dis/kanal teyidi istenip hizli teklif verilmeli.
