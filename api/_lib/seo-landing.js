@@ -213,6 +213,17 @@ export const LANDING_PAGES = [
     priority: "0.86",
   },
   {
+    slug: "dorse-fren-korugu",
+    heading: "Dorse Fren Korugu",
+    title: "Dorse Fren Korugu Fiyat ve Stok | Frenciniz",
+    description: "Dorse, treyler, Krone, Kogel ve Schmitz uyumlu fren korugu urunleri. 16/24, 24/30 ve 30/30 olcu teyidi, stok, fiyat ve WhatsApp kupon teklifi.",
+    cats: ["fren-korugu"],
+    terms: ["dorse", "treyler", "krone", "kogel", "schmitz", "fren korugu", "koruk", "16/24", "24/30", "30/30"],
+    primaryTerm: "Dorse",
+    part: "fren korugu",
+    priority: "0.9",
+  },
+  {
     slug: "agir-vasita-suspansiyon-korugu",
     heading: "Süspansiyon Körüğü",
     title: "Süspansiyon Körüğü ve Hava Körüğü | Frenciniz",
