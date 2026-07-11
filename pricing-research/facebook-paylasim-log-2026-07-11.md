@@ -193,3 +193,14 @@
 - Donusum durumu: WhatsApp/telefon/e-posta 0, sepet/favori 0. Bunlar link tiklamasidir, gercek mesaj/arama garantisi degildir.
 - Teknik kontrol: urun 281 ve /fren-diski 200; canonical/og:url www, kupon CTA, WhatsApp/telefon ve Product/ItemList schema saglam. ESD 090 09 / 3010097AA Merchant ve Meta feedde var.
 - Satis adimi: Facebook yerine Google'dan gelen ESD 090 09 fren diski niyeti izlenmeli; stok 10, fiyat 3934.93 TL ile arac/dorse modeli, arka aks ve eski disk fotosu teyidi istenip kupon/kargo dahil hizli teklif verilmeli.
+
+## Heartbeat Kontrolu - 21:47
+- Facebook paylasimi: yeni paylasim yapilmadi; limit/spam riski alinmadi.
+- Facebook referansli trafik: 0 goruntuleme; onceki UTC gun 0.
+- Toplam trafik: 22 goruntuleme / 14 tekil; insan trafigi 22 / 14 tekil IP.
+- Tiklama/siparis: WhatsApp 0, telefon 0, e-posta 0; odenmis siparis 3.
+- Facebook/Meta sonucu: Facebook kaynakli trafik yine 0. Yeni grup paylasimi yapilmadi; tekrar/spam/limit riski alinmadi. Meta paneli acilmadi.
+- Yeni trafik yok: 20:47'den sonra ek ziyaret gelmedi. Bugunku toplam Google 22, Google Ads isaretli 7 seviyesinde kaldi.
+- Donusum durumu: WhatsApp/telefon/e-posta 0, sepet/favori 0. Bunlar link tiklamasidir, gercek mesaj/arama garantisi degildir.
+- Teknik kontrol: urun 281, urun 452, ana sayfa ve /fren-diski 200; canonical/og:url www, kupon CTA, WhatsApp/telefon ve schema/feed sinyalleri saglam.
+- Satis adimi: Facebook yerine Google sicak urun niyetleri takip edilmeli; ESD 090 09 stok 10 fiyat 3934.93 TL ve FT 344183 stok 25 fiyat 1518 TL icin arac/dorse bilgisi + eski parca fotosu teyidiyle hizli teklif hazir tutulmali.

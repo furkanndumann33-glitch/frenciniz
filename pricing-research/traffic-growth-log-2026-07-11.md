@@ -315,3 +315,21 @@
 - Kategori/feed dogrulama: /fren-diski 200, canonical/og:url www, ItemList schema ve CTA saglam. Sitemap 200 ve urun 281 URL var; robots 200; Merchant feed 200 ve Meta feed 200, ESD 090 09 / 3010097AA sinyali mevcut.
 - Kod degisikligi yapilmadi: yeni sicak fren diski urun sayfasi, kategori ve feedler saglam oldugu icin teknik deploy gerekmedi. Google Ads/Meta/Merchant panelleri acilmadi; Ads bilgisi site takip isareti ve canli feed/sayfa kontroludur.
 - Satis adimi: ESD 090 09 icin hizli teklif hazir tutulmali: stok 10, fiyat 3934.93 TL. Musteriden arac/dorse modeli, arka aks, disk olcusu ve eski disk fotosu istenip kupon/kargo dahil net teklif WhatsApp'a tasinmali.
+
+## Heartbeat Trafik Kontrolu - 21:47
+- Onceki UTC gun (2026-07-10): 91 goruntuleme / 43 tekil; Facebook 0, Google 63, tiklama W/T/E 3/0/0.
+- Yeni UTC gun (2026-07-11): 22 goruntuleme / 14 tekil; raw log 22 satir.
+- Bot filtreli insan trafigi: 22 goruntuleme / 14 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 22; Google Ads isaretli 7.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2311 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- 20:47 kontrolune gore yeni artis yok: trafik 22 goruntuleme / 14 tekil IP seviyesinde kaldi. Son yeni ziyaret 17:30 UTC Merkez/TR'den urun 281 ESD 090 09 fren diski sayfasina geldi.
+- Gun ici sicak yollar degismedi: / 4, urun 281 ESD 090 09 2, urun 452 FT 344183 2, /arocs-4142-balata 2, urun 212 ESD 030 17 2, urun 718 PWR-5027 2, urun 174 ESD 110 01-2 2, urun 731 PWR-5009 2, /schmitz-dorse-kaliper-tamir-takimi 1, /fren-diski 1, /atego-fren-diski 1, /axor-3340-kampana 1. Google toplam 22; Google Ads isaretli 7; Facebook/Meta 0.
+- Donusum kirilimi: WhatsApp/telefon/e-posta 0, sepet 0, favori 0. Son 7 gunde sepet/favori 0/0; toplam eski sepete ekleme 8 ama bugun aktif sepet sinyali yok.
+- Canli sayfa dogrulama: ana sayfa, urun 281 ESD 090 09, /fren-diski ve urun 452 FT 344183 sayfalari 200. Canonical/og:url www, kupon CTA, WhatsApp ve telefon true, non-www URL false.
+- Urun veri dogrulama: ESD 090 09 / OEM 3010097AA stok 10 fiyat 3934.93 TL; FT 344183 stok 25 fiyat 1518 TL. Urun sayfalarinda Product schema, kategori sayfasinda ItemList schema mevcut.
+- Feed dogrulama: sitemap 200 ve 2311 URL; home, urun 281 ve urun 452 URL'leri var. Robots 200; Merchant feed 200 ve Meta feed 200; ESD 090 09/3010097AA ve FT 344183 sinyalleri mevcut.
+- Kod degisikligi yapilmadi: yeni trafik gelmedigi ve sicak urun/kategori/feedler saglam oldugu icin teknik deploy gerekmedi. Google Ads/Meta/Merchant panelleri acilmadi; Ads bilgisi site takip isareti ve canli feed/sayfa kontroludur.
+- Satis adimi: ESD 090 09 ve FT 344183 teklifleri hazir tutulmali. ESD 090 09 icin arac/dorse modeli, arka aks, disk olcusu ve eski disk fotosu; FT 344183 icin dorse/cekici modeli, koruk olcusu/foto ve montaj yeri teyidi istenip kupon/kargo dahil net teklif verilmelidir.
