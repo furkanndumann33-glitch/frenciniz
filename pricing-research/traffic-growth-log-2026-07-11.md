@@ -213,3 +213,19 @@
 - Uygulanan teknik SEO/CTA aksiyonu: index.html statik canonical, OG ve JSON-LD URL'leri https://www.frenciniz.com ile hizalandi; ham HTML root icine "Indirim kuponu icin WhatsApp..." CTA eklendi. npm run build basarili; sadece mevcut buyuk chunk uyarisi verdi. Temiz worktree'den Vercel production deploy yapildi ve www.frenciniz.com canli kontrolunde canonical/og:url www, kupon CTA true, non-www URL false dogrulandi.
 - Feed dogrulama: Merchant feed 200, Meta feed 200; feedlerde urun varligi dogrulandi. Google Ads/Meta/Merchant paneli acilmadi; Ads bilgisi site takip isareti ve canli feed/sayfa kontroludur.
 - Satis adimi: Bursa ana sayfa Google Ads ziyareti genel niyet oldugu icin ilk WhatsApp cevabi "arac modeli/parca kodu/foto" istemeli. Hazir teklif seti: PWR-5029 Arocs balata 2379.43 TL, ESD 030 17 Ford Cargo disk 4849.54 TL, PWR-5027 dorse balata 2582.58 TL, ESD 110 01-2 dorse disk 4041.28 TL.
+
+## Heartbeat Trafik Kontrolu - 15:47
+- Onceki UTC gun (2026-07-10): 91 goruntuleme / 43 tekil; Facebook 0, Google 63, tiklama W/T/E 3/0/0.
+- Yeni UTC gun (2026-07-11): 16 goruntuleme / 11 tekil; raw log 16 satir.
+- Bot filtreli insan trafigi: 16 goruntuleme / 11 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 16; Google Ads isaretli 5.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2311 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- 14:47 kontrolune gore yeni artis yok: 16 goruntuleme / 11 tekil IP seviyesinde kaldi. Supheli/bot 0.
+- Gun ici sicak yollar degismedi: / 2, /arocs-4142-balata 2, urun 212 ESD 030 17 2, urun 718 PWR-5027 2, urun 174 ESD 110 01-2 2, urun 731 PWR-5009 2, /schmitz-dorse-kaliper-tamir-takimi 1, /fren-diski 1, /atego-fren-diski 1, /axor-3340-kampana 1. Google toplam 16; Google Ads isaretli 5; Facebook/Meta 0.
+- Donusum kirilimi: WhatsApp/telefon/e-posta 0, sepet 0, favori 0. Son 7 gunde sepet/favori 0/0; bugun gercek mesaj/arama garantisi olan veri yok.
+- Ana sayfa canli dogrulama tekrarlandi: www.frenciniz.com 200, canonical https://www.frenciniz.com/, og:url https://www.frenciniz.com/, kupon CTA true, static_home_coupon_banner true, non-www URL false.
+- Kod degisikligi yapilmadi: 14:47'deki ana sayfa SEO/CTA deployu canli ve saglam gorundu. Google Ads/Meta/Merchant panelleri acilmadi; Ads bilgisi site takip isareti ve canli feed/sayfa kontroludur.
+- Satis adimi: yeni ziyaret gelmedigi icin onceki sicak niyetler izlenmeli. Bursa ana sayfa ve Google urun ziyaretleri icin ilk cevapta arac modeli/parca kodu/foto istenmeli; PWR-5029, ESD 030 17, PWR-5027 ve ESD 110 01-2 fiyat seti hazir tutulmali.

@@ -127,3 +127,14 @@
 - Donusum durumu: WhatsApp/telefon/e-posta 0, sepet/favori 0. Bunlar link tiklamasidir, gercek mesaj/arama garantisi degildir.
 - Teknik aksiyon: Facebook paylasimi yerine ana sayfa Google Ads girisi icin statik SEO/CTA iyilestirmesi yapildi; index.html canonical/OG/JSON-LD www ile hizalandi ve ham HTML'e indirim kuponu icin WhatsApp CTA eklendi. Build basarili; temiz worktree'den Vercel production deploy yapildi ve www.frenciniz.com canli kontrolunde www canonical + kupon CTA dogrulandi.
 - Satis adimi: Bursa ana sayfa ziyaretine genel teklif akisiyle donulmeli; arac modeli/parca kodu/foto sorulup PWR-5029, ESD 030 17, PWR-5027 ve ESD 110 01-2 fiyatlari hazir tutulmali.
+
+## Heartbeat Kontrolu - 15:47
+- Facebook paylasimi: yeni paylasim yapilmadi; limit/spam riski alinmadi.
+- Facebook referansli trafik: 0 goruntuleme; onceki UTC gun 0.
+- Toplam trafik: 16 goruntuleme / 11 tekil; insan trafigi 16 / 11 tekil IP.
+- Tiklama/siparis: WhatsApp 0, telefon 0, e-posta 0; odenmis siparis 3.
+- Facebook/Meta sonucu: Facebook kaynakli trafik yine 0. Yeni grup paylasimi yapilmadi; tekrar/spam/limit riski alinmadi. Meta paneli acilmadi.
+- Yeni trafik yok: 14:47'den sonra ek ziyaret gelmedi. Bugunku toplam Google 16, Google Ads isaretli 5 seviyesinde kaldi.
+- Donusum durumu: WhatsApp/telefon/e-posta 0, sepet/favori 0. Bunlar link tiklamasidir, gercek mesaj/arama garantisi degildir.
+- Teknik kontrol: www ana sayfa canli 200; canonical ve og:url www, indirim kuponu WhatsApp CTA mevcut, non-www URL kalintisi yok. 14:47 SEO/CTA deployu canli gorundu.
+- Satis adimi: Facebook yerine Google niyetleri takip edilmeli; Bursa ana sayfa ziyareti icin genel parca kodu/foto akisi, Arocs PWR-5029, Ford Cargo ESD 030 17, PWR-5027 ve ESD 110 01-2 teklifleri hazir tutulmali.
