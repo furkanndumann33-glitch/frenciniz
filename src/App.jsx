@@ -3078,8 +3078,6 @@ function HomePage() {
       </div>
     </section>
 
-    <HomeIntentLinks isMobile={isMobile} lang={lang} />
-
     <section style={{maxWidth:1220,margin:"0 auto",padding:isMobile?"26px 18px 12px":"34px 24px 16px"}}>
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"end",gap:16,marginBottom:16}}>
         <div>
@@ -3149,6 +3147,8 @@ function HomePage() {
         ))}
       </div>
     </section>
+
+    <HomeIntentLinks isMobile={isMobile} lang={lang} />
   </>;
 }
 
