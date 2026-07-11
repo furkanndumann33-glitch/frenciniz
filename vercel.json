@@ -113,6 +113,10 @@
       "destination": "/api/sitemap?type=landing&slug=agir-vasita-fren-korugu"
     },
     {
+      "source": "/dorse-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=dorse-fren-korugu"
+    },
+    {
       "source": "/agir-vasita-suspansiyon-korugu",
       "destination": "/api/sitemap?type=landing&slug=agir-vasita-suspansiyon-korugu"
     },
