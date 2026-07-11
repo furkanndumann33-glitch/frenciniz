@@ -53,3 +53,20 @@
 - Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
 - Teknik SEO/feed: sitemap 200 ve 2311 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
 - Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+
+## Heartbeat Trafik Kontrolu - 06:47
+- Onceki UTC gun (2026-07-10): 91 goruntuleme / 43 tekil; Facebook 0, Google 63, tiklama W/T/E 3/0/0.
+- Yeni UTC gun (2026-07-11): 3 goruntuleme / 2 tekil; raw log 3 satir.
+- Bot filtreli insan trafigi: 3 goruntuleme / 2 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 3; Google Ads isaretli 0.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2311 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- 05:47 kontrolune gore artis: +1 goruntuleme / +1 tekil IP. Yeni ziyaret Google organik/referrer ile /arocs-4142-balata sayfasina geldi; ulke TR, sehir bos; cihaz iPhone. Supheli/bot 0.
+- Gun ici sicak yollar: /arocs-4142-balata 1; urun 731 PWR-5009 SAF dorse disk fren balatasi 2. Tum trafik Google referrer; Facebook/Meta 0; Google Ads isaretli 0.
+- Donusum kirilimi: WhatsApp/telefon/e-posta 0, sepet 0, favori 0. Bu sayilar link tiklamasidir; gercek mesaj/arama garantisi degildir.
+- Arocs 4142 landing canli kontrolu: /arocs-4142-balata 200, canonical true, JSON-LD true, Product schema true, WhatsApp true, kupon true, telefon formu true ve 24+ urun karti true. Merchant ve Meta feed 200 ve Arocs/4142 sinyalini iceriyor.
+- En yakin Arocs urun adayi: urun 716 Mercedes Arocs Disk Fren Balatasi Y.M. PWR-5029; OEM 29315; stok 37; fiyat 2379.43 TL; uyumluluk Arocs 1842/2636/3342/4142/4145. Canli urun sayfasi 200, canonical/jsonLd/Product schema/WhatsApp/kupon true.
+- Kod degisikligi yapilmadi: bu turda teknik SEO/CTA/feed eksigi bulunmadi. Google Ads/Meta panelleri acilmadi; yalniz site admin/API ve canli feed/sayfa kontrolu yapildi.
+- Satis adimi: Arocs 4142 icin gelen soruda direkt PWR-5029 teklif akisi kullanilmali; musteriye "on/arka aks, disk/kampana, WVA/OEM 29315 veya eski balata fotosu/olcusu" sorulup 2379.43 TL uzerinden kupon/kargo dahil net fiyat verilmelidir.
