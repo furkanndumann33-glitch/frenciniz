@@ -125,5 +125,5 @@
 - Facebook/Meta sonucu: Facebook kaynakli trafik yine 0. Yeni grup paylasimi yapilmadi; tekrar/spam/limit riski alinmadi. Meta paneli acilmadi.
 - Yeni sicak trafik: son 1 saatte Bursa'dan Google Ads isaretli +1 tekil ziyaret ana sayfaya geldi. Bugunku toplam Google 16, Google Ads isaretli 5.
 - Donusum durumu: WhatsApp/telefon/e-posta 0, sepet/favori 0. Bunlar link tiklamasidir, gercek mesaj/arama garantisi degildir.
-- Teknik aksiyon: Facebook paylasimi yerine ana sayfa Google Ads girisi icin statik SEO/CTA iyilestirmesi yapildi; index.html canonical/OG/JSON-LD www ile hizalandi ve ham HTML'e indirim kuponu icin WhatsApp CTA eklendi. Build basarili.
+- Teknik aksiyon: Facebook paylasimi yerine ana sayfa Google Ads girisi icin statik SEO/CTA iyilestirmesi yapildi; index.html canonical/OG/JSON-LD www ile hizalandi ve ham HTML'e indirim kuponu icin WhatsApp CTA eklendi. Build basarili; temiz worktree'den Vercel production deploy yapildi ve www.frenciniz.com canli kontrolunde www canonical + kupon CTA dogrulandi.
 - Satis adimi: Bursa ana sayfa ziyaretine genel teklif akisiyle donulmeli; arac modeli/parca kodu/foto sorulup PWR-5029, ESD 030 17, PWR-5027 ve ESD 110 01-2 fiyatlari hazir tutulmali.
