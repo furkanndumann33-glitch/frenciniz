@@ -61,3 +61,14 @@
 - Donusum durumu: WhatsApp/telefon/e-posta 0, sepet/favori 0. Bu iletisim sayilari link tiklamasidir, gercek mesaj/arama garantisi degildir.
 - Teknik aksiyon: Facebook tekrar paylasimi yerine PWR-5009 muadil kod verisi kalici hale getirildi. Otomatik sync'in 29159, 29126 bilgisini tekrar silmemesi icin sync.py ve api/sync-products.js icine manuel override eklendi; products.json geri duzeltildi.
 - Satis adimi: Facebook yerine bugunku Google niyetleri takip edilmeli. Mersin Google Ads ziyareti icin genel karsilama + parca kodu/foto isteme, ardindan Arocs PWR-5029 veya SAF dorse PWR-5009 kuponlu/kargo dahil teklif akisi kullanilmali.
+
+## Heartbeat Kontrolu - 09:47
+- Facebook paylasimi: yeni paylasim yapilmadi; limit/spam riski alinmadi.
+- Facebook referansli trafik: 0 goruntuleme; onceki UTC gun 0.
+- Toplam trafik: 5 goruntuleme / 4 tekil; insan trafigi 5 / 4 tekil IP.
+- Tiklama/siparis: WhatsApp 0, telefon 0, e-posta 0; odenmis siparis 3.
+- Facebook/Meta sonucu: Facebook kaynakli trafik yine 0. Yeni grup paylasimi yapilmadi; tekrar/spam/limit riski alinmadi. Meta paneli acilmadi.
+- Yeni sicak trafik: Google referrer ile /axor-3340-kampana sayfasina +1 tekil ziyaret geldi. Bugunku toplam Google 5, Google Ads isaretli 1.
+- Donusum durumu: WhatsApp/telefon/e-posta 0, sepet/favori 0. Bunlar link tiklamasidir, gercek mesaj/arama garantisi degildir.
+- Teknik kontrol: /axor-3340-kampana 200, kupon/WhatsApp/telefon/canonical/JSON-LD saglam, 25 urun karti ve JSON-LD icinde 12 Product item var. Bu turda Facebook yerine Google niyetli landing takip edildi.
+- Satis adimi: Axor 3340 kampana ziyareti icin ESK 010 45 teklif akisi hazir tutulmali; OEM 3014210801, stok 118, fiyat 5360.01 TL, eski kampana fotosu/olcusu ve aks bilgisi istenmeli.

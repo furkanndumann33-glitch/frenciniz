@@ -106,3 +106,21 @@
 - Kritik veri tespiti: 08:00 otomatik urun sync commit'i PWR-5009 icin manuel OEM bilgisini 29159, 29126 yerine tekrar 29159'a dusurmustu. Bu, Google/Product schema/feed muadil kod tutarliligini zayiflatiyordu.
 - Uygulanan aksiyon: sync.py ve api/sync-products.js icine PWR-5009 manuel OEM override eklendi; public/data/products.json icinde urun 731 oem/specs/aciklama 29159, 29126 olarak geri alindi. python py_compile, node --check ve npm.cmd run build basarili; build yalniz mevcut buyuk chunk uyarisi verdi.
 - Satis adimi: Mersin Google Ads anasayfa ziyareti genel niyet oldugu icin ilk mesajda "hangi arac/parca kodu/foto var?" sorulup iki sicak teklif hazir tutulmali: Arocs PWR-5029 stok 37 fiyat 2379.43 TL; SAF dorse PWR-5009 stok 20 fiyat 2164.27 TL. Kupon ve kargo dahil net fiyat WhatsApp'a tasinmali.
+
+## Heartbeat Trafik Kontrolu - 09:47
+- Onceki UTC gun (2026-07-10): 91 goruntuleme / 43 tekil; Facebook 0, Google 63, tiklama W/T/E 3/0/0.
+- Yeni UTC gun (2026-07-11): 5 goruntuleme / 4 tekil; raw log 5 satir.
+- Bot filtreli insan trafigi: 5 goruntuleme / 4 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 5; Google Ads isaretli 1.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2311 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- 08:47 kontrolune gore artis: +1 goruntuleme / +1 tekil IP. Yeni ziyaret Google referrer ile /axor-3340-kampana sayfasina geldi; ulke TR, sehir bos. Supheli/bot 0.
+- Gun ici sicak yollar: /axor-3340-kampana 1, / 1 Google Ads, /arocs-4142-balata 1, urun 731 PWR-5009 2. Google toplam 5; Facebook/Meta 0.
+- Donusum kirilimi: WhatsApp/telefon/e-posta 0, sepet 0, favori 0. Bu sayilar link tiklamasidir; gercek mesaj/arama garantisi degildir.
+- Axor 3340 kampana landing canli kontrolu: 200, title/canonical/JSON-LD/WhatsApp/telefon/kupon true, 25 urun karti var. JSON-LD parse edildi: CollectionPage ItemList icinde 12 Product item mevcut.
+- En yakin Axor kampana urun adayi: urun 18 Mercedes Axor Actros Fren Kampanasi ESK 010 45; stok 118, fiyat 5360.01 TL, OEM 3014210801, uyumluluk Axor/Actros. Ek adaylar: Axor disk bijonu ESB 4000 13 stok 2486 fiyat 73.46 TL ve Axor/Actros bijon ESB 185 10 stok 460 fiyat 201.82 TL.
+- PWR-5009 kontrolu: /api/products ve /data/products.json canli kayitta oem/specs 29159, 29126; urun sayfasi, Merchant feed ve Meta feed 29126 sinyalini koruyor.
+- Kod degisikligi yapilmadi: bu turda canli landing, feed ve schema sinyalleri saglam. Google Ads/Meta/Merchant panelleri acilmadi; Ads bilgisi site takip isareti ve canli feed/sayfa kontroludur.
+- Satis adimi: Axor 3340 kampana icin gelen soruda direkt ESK 010 45 teklif akisi kullanilmali: arac Axor/Actros, kampana OEM 3014210801, eski kampana olcusu/fotosu ve aks bilgisi teyit edilmeli; 5360.01 TL uzerinden kupon/kargo dahil net fiyat verilmeli.
