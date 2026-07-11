@@ -351,3 +351,25 @@
 - Kategori/feed dogrulama: /fren-circiri, /bijon ve /fren-diski 200; ItemList schema ve CTA saglam. Sitemap 200 ve urun 86/322 URL'leri var; robots 200; Merchant feed 200 ve Meta feed 200; ESC 80422 ve ESB 422 10 sinyalleri mevcut.
 - Kod degisikligi yapilmadi: yeni sicak fren circiri urun sayfasi, bot kontrol edilen bijon sayfasi, kategori ve feedler saglam oldugu icin teknik deploy gerekmedi. Google Ads/Meta/Merchant panelleri acilmadi; Ads bilgisi site takip isareti ve canli feed/sayfa kontroludur.
 - Satis adimi: ESC 80422 icin hizli teklif hazir tutulmali: stok 4, fiyat 1452 TL. Musteriden Arocs/Actros model, sag-sol yon, eski circir fotosu ve dis/kanal teyidi istenip kupon/kargo dahil net teklif WhatsApp'a tasinmali.
+
+## Trafik Artirma Uygulamasi - 23:53
+- Kullanici talebi: trafik cok az (24 insan goruntuleme civari); trafik artirmak icin canliya zarar vermeyen SEO/internal-link/reklam hazirlik hamlesi yapildi.
+- Commit/deploy: `34d7b7a` push edildi; `www.frenciniz.com` ve `frenciniz.vercel.app` ayni ETag ile yeni icerigi gosterdi.
+- Ana sayfa guncellemesi: bugun niyet gosteren ESC 80422, ESD 090 09, FT 344183, ESD 030 17, PWR-5027, ESD 110 01-2, PWR-5009, Axor porya ve Ford Cargo bijon urunleri hero kisa yollari, gorunur link kartlari, static HTML linkleri ve homepage ItemList JSON-LD icine alindi.
+- Yeni landingler: `/esc-80422-mercedes-arocs-fren-circiri`, `/3010097aa-esd-090-09-ford-cargo-dorse-fren-diski`, `/ft-344183-ford-cargo-krone-kogel-suspansiyon-korugu`, `/2992636-esd-030-17-ford-cargo-fren-diski`, `/29328-pwr-5027-ford-cargo-krone-kogel-dorse-balata`, `/esd-110-01-2-ford-cargo-krone-kogel-dorse-fren-diski`, `/pwr-5009-29159-29126-saf-dorse-fren-balatasi`, `/9433340945-mercedes-axor-on-porya`.
+- Canli dogrulama: ana sayfada `Bugun stok sorulan fren parcalari` ve ESC 80422 linki gorundu; ESC 80422 landing 200 ve server-rendered landing HTML olarak geldi; sitemap yeni URL'leri iceriyor ve URL sayisi 2319'a cikti.
+- Reklam hazirligi: `pricing-research/google-ads-hot-traffic-keywords-2026-07-11.csv` ve `pricing-research/google-ads-hot-traffic-ads-2026-07-11.csv` olusturuldu. Google Ads paneline yukleme/aktif etme islemi panel erisimi olmadan yapilmadi.
+- Search Console sirasi: `pricing-research/search-console-hot-traffic-priority-2026-07-11.csv` olusturuldu; ilk kontrol edilmesi gereken URL'ler bugun niyet gosteren urun ve landing sayfalari.
+- IndexNow: Yandex endpoint 202 kabul etti; Bing endpoint 403 `UserForbiddedToAccessSite` verdi. Bing icin basari iddia edilmiyor; anahtar dosyasi canlıda mevcut ve yerel ile ayni gorundu.
+- Son trafik olcumu: 2026-07-11 UTC gunu 26 goruntuleme / 17 tekil; bot filtreli 24 goruntuleme / 15 tekil IP. Kaynak Google 24, Google Ads isaretli 7, Facebook 0. WhatsApp/telefon/e-posta tiklamasi 0; bu degerler gercek mesaj/arama garantisi degildir.
+- Satis adimi: Google Ads panelinde yeni hot-traffic CSV'leri exact match olarak aktif etmek; Search Console'da yeni 11 URL icin URL inspection yapmak; WhatsApp'ta ESC 80422, ESD 090 09 ve FT 344183 icin hazir fiyat/uyumluluk cevaplarini bekletmek.
+
+## Heartbeat Trafik Kontrolu - 23:53
+- Onceki UTC gun (2026-07-10): 91 goruntuleme / 43 tekil; Facebook 0, Google 63, tiklama W/T/E 3/0/0.
+- Yeni UTC gun (2026-07-11): 26 goruntuleme / 17 tekil; raw log 26 satir.
+- Bot filtreli insan trafigi: 24 goruntuleme / 15 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 24; Google Ads isaretli 7.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2319 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
