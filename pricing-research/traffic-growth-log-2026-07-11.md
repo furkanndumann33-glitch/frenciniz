@@ -298,3 +298,20 @@
 - Feed dogrulama: sitemap 200 ve 2311 URL, home ve urun 452 URL var; robots 200; Merchant feed 200 ve Meta feed 200, FT 344183 sinyali mevcut.
 - Kod degisikligi yapilmadi: yeni Google Ads ana sayfa ziyareti icin mevcut ana sayfa canonical/CTA/feed saglam gorundu. Google Ads/Meta/Merchant panelleri acilmadi; Ads bilgisi site takip isareti ve canli feed/sayfa kontroludur.
 - Satis adimi: Antalya ana sayfa Google Ads ziyareti genel niyet oldugu icin ilk WhatsApp cevabi urun belirletmeye odaklanmali: arac modeli, parca kodu ve eski parca fotosu istenmeli; FT 344183 1518 TL/stok 25 ve onceki sicak fren urunleri hizli teklif setinde hazir tutulmali.
+
+## Heartbeat Trafik Kontrolu - 20:47
+- Onceki UTC gun (2026-07-10): 91 goruntuleme / 43 tekil; Facebook 0, Google 63, tiklama W/T/E 3/0/0.
+- Yeni UTC gun (2026-07-11): 22 goruntuleme / 14 tekil; raw log 22 satir.
+- Bot filtreli insan trafigi: 22 goruntuleme / 14 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 22; Google Ads isaretli 7.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2311 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- 19:47 kontrolune gore artis: +2 goruntuleme / +1 tekil IP. Yeni ziyaret Merkez/TR'den iPhone ile Google referrer uzerinden urun 281 ESD 090 09 fren diski sayfasina iki kez geldi. Google Ads sayisi 7'de kaldi; yeni artis organik/referrer Google gibi gorunuyor.
+- Gun ici sicak yollar: / 4, urun 281 ESD 090 09 2, urun 452 FT 344183 2, /arocs-4142-balata 2, urun 212 ESD 030 17 2, urun 718 PWR-5027 2, urun 174 ESD 110 01-2 2, urun 731 PWR-5009 2, /schmitz-dorse-kaliper-tamir-takimi 1, /fren-diski 1, /atego-fren-diski 1, /axor-3340-kampana 1. Google toplam 22; Facebook/Meta 0.
+- Donusum kirilimi: WhatsApp/telefon/e-posta 0, sepet 0, favori 0. Son 7 gunde sepet/favori 0/0; toplam eski sepete ekleme 8 ama bugun aktif sepet sinyali yok.
+- Urun 281 canli dogrulama: sayfa 200, canonical/og:url www temiz slug'a gidiyor, Product schema/ItemList, kupon CTA, WhatsApp ve telefon true, non-www URL false. Urun: Ford Cargo Otokar Sultan Doruk Krone Dorse Fren Diski ABS'li Arka; SKU ESD 090 09, OEM 3010097AA, stok 10, fiyat 3934.93 TL.
+- Kategori/feed dogrulama: /fren-diski 200, canonical/og:url www, ItemList schema ve CTA saglam. Sitemap 200 ve urun 281 URL var; robots 200; Merchant feed 200 ve Meta feed 200, ESD 090 09 / 3010097AA sinyali mevcut.
+- Kod degisikligi yapilmadi: yeni sicak fren diski urun sayfasi, kategori ve feedler saglam oldugu icin teknik deploy gerekmedi. Google Ads/Meta/Merchant panelleri acilmadi; Ads bilgisi site takip isareti ve canli feed/sayfa kontroludur.
+- Satis adimi: ESD 090 09 icin hizli teklif hazir tutulmali: stok 10, fiyat 3934.93 TL. Musteriden arac/dorse modeli, arka aks, disk olcusu ve eski disk fotosu istenip kupon/kargo dahil net teklif WhatsApp'a tasinmali.

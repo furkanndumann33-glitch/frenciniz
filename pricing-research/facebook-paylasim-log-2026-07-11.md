@@ -182,3 +182,14 @@
 - Donusum durumu: WhatsApp/telefon/e-posta 0, sepet/favori 0. Bunlar link tiklamasidir, gercek mesaj/arama garantisi degildir.
 - Teknik kontrol: www ana sayfa 200; canonical/og:url www, kupon CTA, WhatsApp/telefon true, non-www false. FT 344183 urun ve dorse suspansiyon landing sayfalari/feedler de saglam.
 - Satis adimi: Facebook yerine Google Ads ana sayfa niyeti urun belirleme akisiyle yakalanmali; Antalya icin arac modeli/parca kodu/foto sorulup FT 344183 ve fren sicak urun teklif seti hazir tutulmali.
+
+## Heartbeat Kontrolu - 20:47
+- Facebook paylasimi: yeni paylasim yapilmadi; limit/spam riski alinmadi.
+- Facebook referansli trafik: 0 goruntuleme; onceki UTC gun 0.
+- Toplam trafik: 22 goruntuleme / 14 tekil; insan trafigi 22 / 14 tekil IP.
+- Tiklama/siparis: WhatsApp 0, telefon 0, e-posta 0; odenmis siparis 3.
+- Facebook/Meta sonucu: Facebook kaynakli trafik yine 0. Yeni grup paylasimi yapilmadi; tekrar/spam/limit riski alinmadi. Meta paneli acilmadi.
+- Yeni sicak trafik: son 1 saatte Google referrer ile urun 281 ESD 090 09 fren diski sayfasina +2 goruntuleme / +1 tekil IP geldi. Bugunku toplam Google 22, Google Ads isaretli 7.
+- Donusum durumu: WhatsApp/telefon/e-posta 0, sepet/favori 0. Bunlar link tiklamasidir, gercek mesaj/arama garantisi degildir.
+- Teknik kontrol: urun 281 ve /fren-diski 200; canonical/og:url www, kupon CTA, WhatsApp/telefon ve Product/ItemList schema saglam. ESD 090 09 / 3010097AA Merchant ve Meta feedde var.
+- Satis adimi: Facebook yerine Google'dan gelen ESD 090 09 fren diski niyeti izlenmeli; stok 10, fiyat 3934.93 TL ile arac/dorse modeli, arka aks ve eski disk fotosu teyidi istenip kupon/kargo dahil hizli teklif verilmeli.
