@@ -280,3 +280,21 @@
 - Kategori/feed dogrulama: /dorse-suspansiyon-korugu 200, canonical/og:url www, schema/CTA saglam. Sitemap 200 ve urun 452 URL var; Merchant feed 200 ve Meta feed 200, FT 344183 sinyali mevcut.
 - Kod degisikligi yapilmadi: yeni sicak urun sayfasi ve feedler saglam oldugu icin bu turda teknik deploy gerekmedi. Google Ads/Meta/Merchant panelleri acilmadi; Ads bilgisi site takip isareti ve canli feed/sayfa kontroludur.
 - Satis adimi: FT 344183 icin hizli teklif hazir tutulmali: stok 25, fiyat 1518 TL. Musteriden dorse/cekici modeli, kordu/olcu/foto ve montaj yeri teyidi istenip kupon/kargo dahil net fiyat WhatsApp'a tasinmali.
+
+## Heartbeat Trafik Kontrolu - 19:47
+- Onceki UTC gun (2026-07-10): 91 goruntuleme / 43 tekil; Facebook 0, Google 63, tiklama W/T/E 3/0/0.
+- Yeni UTC gun (2026-07-11): 20 goruntuleme / 13 tekil; raw log 20 satir.
+- Bot filtreli insan trafigi: 20 goruntuleme / 13 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 20; Google Ads isaretli 7.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2311 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- 18:47 kontrolune gore artis: +1 goruntuleme / +0 tekil IP. Yeni kayit Antalya'dan Android/Chrome ile Google referrer ve Google Ads isaretli olarak ana sayfaya geldi. Google Ads isaretli toplam 7'ye cikti.
+- Gun ici sicak yollar: / 4, urun 452 FT 344183 2, /arocs-4142-balata 2, urun 212 ESD 030 17 2, urun 718 PWR-5027 2, urun 174 ESD 110 01-2 2, urun 731 PWR-5009 2, /schmitz-dorse-kaliper-tamir-takimi 1, /fren-diski 1, /atego-fren-diski 1, /axor-3340-kampana 1. Google toplam 20; Facebook/Meta 0.
+- Donusum kirilimi: WhatsApp/telefon/e-posta 0, sepet 0, favori 0. Son 7 gunde sepet/favori 0/0; toplam eski sepete ekleme 8 ama bugun aktif sepet sinyali yok.
+- Ana sayfa canli dogrulama: www.frenciniz.com 200, canonical https://www.frenciniz.com/, og:url https://www.frenciniz.com/, kupon CTA true, WhatsApp/telefon true, non-www URL false.
+- Sicak urun ve kategori dogrulama: urun 452 FT 344183, /dorse-suspansiyon-korugu, /arocs-4142-balata ve /fren-diski 200. FT 344183 sayfasinda Product schema, kategori/landinglerde ItemList schema, kupon CTA ve iletisim linkleri saglam.
+- Feed dogrulama: sitemap 200 ve 2311 URL, home ve urun 452 URL var; robots 200; Merchant feed 200 ve Meta feed 200, FT 344183 sinyali mevcut.
+- Kod degisikligi yapilmadi: yeni Google Ads ana sayfa ziyareti icin mevcut ana sayfa canonical/CTA/feed saglam gorundu. Google Ads/Meta/Merchant panelleri acilmadi; Ads bilgisi site takip isareti ve canli feed/sayfa kontroludur.
+- Satis adimi: Antalya ana sayfa Google Ads ziyareti genel niyet oldugu icin ilk WhatsApp cevabi urun belirletmeye odaklanmali: arac modeli, parca kodu ve eski parca fotosu istenmeli; FT 344183 1518 TL/stok 25 ve onceki sicak fren urunleri hizli teklif setinde hazir tutulmali.
