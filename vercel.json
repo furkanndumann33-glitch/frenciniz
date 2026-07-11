@@ -253,6 +253,38 @@
       "destination": "/api/sitemap?type=landing&slug=31796200-ror-meritor-knorr-wabco-disk-bijonu"
     },
     {
+      "source": "/esc-80422-mercedes-arocs-fren-circiri",
+      "destination": "/api/sitemap?type=landing&slug=esc-80422-mercedes-arocs-fren-circiri"
+    },
+    {
+      "source": "/3010097aa-esd-090-09-ford-cargo-dorse-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=3010097aa-esd-090-09-ford-cargo-dorse-fren-diski"
+    },
+    {
+      "source": "/ft-344183-ford-cargo-krone-kogel-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=ft-344183-ford-cargo-krone-kogel-suspansiyon-korugu"
+    },
+    {
+      "source": "/2992636-esd-030-17-ford-cargo-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=2992636-esd-030-17-ford-cargo-fren-diski"
+    },
+    {
+      "source": "/29328-pwr-5027-ford-cargo-krone-kogel-dorse-balata",
+      "destination": "/api/sitemap?type=landing&slug=29328-pwr-5027-ford-cargo-krone-kogel-dorse-balata"
+    },
+    {
+      "source": "/esd-110-01-2-ford-cargo-krone-kogel-dorse-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=esd-110-01-2-ford-cargo-krone-kogel-dorse-fren-diski"
+    },
+    {
+      "source": "/pwr-5009-29159-29126-saf-dorse-fren-balatasi",
+      "destination": "/api/sitemap?type=landing&slug=pwr-5009-29159-29126-saf-dorse-fren-balatasi"
+    },
+    {
+      "source": "/9433340945-mercedes-axor-on-porya",
+      "destination": "/api/sitemap?type=landing&slug=9433340945-mercedes-axor-on-porya"
+    },
+    {
       "source": "/mercedes-actros-fren-kampanasi",
       "destination": "/api/sitemap?type=landing&slug=mercedes-actros-fren-kampanasi"
     },

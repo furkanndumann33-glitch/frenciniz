@@ -688,7 +688,18 @@ function recordProductAction(type = "add_to_cart", product = {}, data = {}) {
   } catch {}
 }
 
+const HOME_PRIORITY_PRODUCT_IDS = ["86", "281", "452", "212", "718", "174", "731", "767", "322"];
+
 const HOME_INTENT_LINKS = [
+  { href: "/urun/86/esc-80422-mercedes-arocs-fren-circiri-sol-ekersan", title: "ESC 80422 Arocs Fren Circiri", desc: "Mercedes Arocs sol fren circiri, stoklu fiyat ve uyumluluk teyidi" },
+  { href: "/urun/281/3010097aa-ford-cargo-otokar-sultan-doruk-krone-dorse-fren-diski-abs-li-arka-ekersan", title: "3010097AA ESD 090 09 Fren Diski", desc: "Ford Cargo, Otokar Sultan/Doruk ve Krone dorse ABS'li arka disk" },
+  { href: "/urun/452/ford-cargo-krone-dorse-kogel-dorse-suspansiyon-korugu-ft-344183-ekersan", title: "FT 344183 Suspansiyon Korugu", desc: "Ford Cargo, Krone ve Kogel dorse suspansiyon korugu" },
+  { href: "/urun/212/2992636-ford-cargo-fren-diski-abs-li-arka-esd-030-17-ekersan", title: "2992636 ESD 030 17 Fren Diski", desc: "Ford Cargo ABS'li arka fren diski, stoklu urun teyidi" },
+  { href: "/urun/718/29328-ford-cargo-krone-dorse-kogel-dorse-disk-fren-balatasi-ekersan", title: "29328 PWR-5027 Dorse Balata", desc: "Ford Cargo, Krone ve Kogel dorse disk fren balatasi" },
+  { href: "/urun/174/ford-cargo-krone-dorse-kogel-dorse-fren-diski-esd-110-01-2-ekersan", title: "ESD 110 01-2 Dorse Fren Diski", desc: "Ford Cargo, Krone ve Kogel dorse fren diski" },
+  { href: "/urun/731/29159-29126-saf-dorse-disk-fren-balatasi-pwr-5009-ekersan", title: "29159 29126 SAF Dorse Balata", desc: "SAF dorse PWR-5009 disk fren balatasi" },
+  { href: "/urun/767/9433340945-mercedes-axor-porya-on-esp-01-39-01-ekersan", title: "9433340945 Axor On Porya", desc: "Mercedes Axor on porya ESP.01.39.01 stok ve fiyat" },
+  { href: "/urun/322/fc461118ca-ford-cargo-bijon-dps-esb-422-10-ekersan", title: "FC461118CA Ford Cargo Bijon", desc: "Ford Cargo DPS ESB 422 10 bijon, adetli stok" },
   { href: "/ford-cargo-9c46-1125-ab-fren-kampanasi", title: "Ford Cargo 9C46 Kampana", desc: "9C46-1125-AB / ESK 040 12 Ford Cargo kampana" },
   { href: "/daf-cf-xf-99717-bijon", title: "DAF CF XF 99717 Bijon", desc: "DAF CF / XF bijon, somun ve disk civatasi teyidi" },
   { href: "/wabco-4630840410-ebs-dingil-kaldirma-bobini", title: "Wabco 4630840410 EBS", desc: "EBS dingil kaldirma bobini, dorse sistem teyidi" },
@@ -753,6 +764,7 @@ const HOME_INTENT_LINKS = [
 ];
 
 function HomeIntentLinks({isMobile, lang}) {
+  const visibleLinks = HOME_INTENT_LINKS.slice(0, isMobile ? 8 : 16);
   return (
     <section style={{maxWidth:1220,margin:"0 auto",padding:isMobile?"8px 18px 28px":"8px 24px 34px"}}>
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"end",gap:16,marginBottom:14}}>
@@ -763,7 +775,7 @@ function HomeIntentLinks({isMobile, lang}) {
         {!isMobile && <span style={{fontSize:12,color:"#64748b",fontWeight:800}}>OEM / sase / eski parca fotosu ile teyit</span>}
       </div>
       <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"repeat(4,minmax(0,1fr))",gap:10}}>
-        {HOME_INTENT_LINKS.map(item => (
+        {visibleLinks.map(item => (
           <a key={item.href} href={item.href} onClick={() => metaTrackCustom("SeoLandingClick", { source: "home_intent_links", href: item.href })}
             style={{display:"block",minHeight:isMobile?84:112,padding:isMobile?13:15,borderRadius:8,border:"1px solid rgba(15,23,42,.1)",background:"linear-gradient(180deg,#ffffff,#f8fafc)",boxShadow:"0 10px 26px rgba(15,23,42,.06)",textDecoration:"none",color:"#111827"}}>
             <div style={{fontSize:15,fontWeight:950,lineHeight:1.25}}>{item.title}</div>
@@ -1438,7 +1450,15 @@ export default function App() {
       desc = baseDesc;
       canonical = `${SITE_URL}/`;
       // Homepage ItemList — popüler/öne çıkan ürünler — Google'a "bu site bu ürünleri öne çıkarıyor" sinyali
-      const featuredProds = (products || []).filter(p => p.stock > 0 && p.img && !p.img.includes("placehold")).slice(0, 12);
+      const priorityProds = HOME_PRIORITY_PRODUCT_IDS
+        .map(id => (products || []).find(p => String(p.id) === String(id)))
+        .filter(Boolean);
+      const featuredProds = [
+        ...priorityProds,
+        ...(products || []).filter(p => p.stock > 0 && p.img && !p.img.includes("placehold")),
+      ]
+        .filter((p, index, list) => list.findIndex(item => String(item.id) === String(p.id)) === index)
+        .slice(0, 12);
       if (featuredProds.length) {
         setJsonLd("page-itemlist", {
           "@context": "https://schema.org",
@@ -3005,11 +3025,11 @@ function HomePage() {
     {cat:"kaliper-tamir-takimi", title:lang==="en"?"Caliper Repair":"Kaliper Tamir", text:lang==="en"?"Knorr, Wabco, ELSA, PAN":"Knorr, Wabco, ELSA, PAN", color:"#8b5cf6"},
   ];
   const heroIntentChips = [
-    {label:"Axor 1840 balata", href:"/axor-1840-balata"},
-    {label:"Actros Axor fren diski", href:"/mercedes-actros-axor-fren-diski"},
-    {label:"Travego Tourismo fren", href:"/tourismo-fren-diski"},
-    {label:"BPW dorse kampana", href:"/bpw-30k-kampana"},
-    {label:"Krone Kogel dorse disk", href:"/kogel-dorse-fren-diski"},
+    {label:"ESC 80422 Arocs circir", href:"/urun/86/esc-80422-mercedes-arocs-fren-circiri-sol-ekersan"},
+    {label:"3010097AA fren diski", href:"/urun/281/3010097aa-ford-cargo-otokar-sultan-doruk-krone-dorse-fren-diski-abs-li-arka-ekersan"},
+    {label:"FT 344183 koruk", href:"/urun/452/ford-cargo-krone-dorse-kogel-dorse-suspansiyon-korugu-ft-344183-ekersan"},
+    {label:"PWR-5027 dorse balata", href:"/urun/718/29328-ford-cargo-krone-dorse-kogel-dorse-disk-fren-balatasi-ekersan"},
+    {label:"PWR-5009 SAF balata", href:"/urun/731/29159-29126-saf-dorse-disk-fren-balatasi-pwr-5009-ekersan"},
   ];
 
   return <>
@@ -3060,6 +3080,8 @@ function HomePage() {
         </div>
       </div>
     </section>
+
+    <HomeIntentLinks isMobile={isMobile} lang={lang} />
 
     <section style={{maxWidth:1220,margin:"0 auto",padding:isMobile?"26px 18px 12px":"34px 24px 16px"}}>
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"end",gap:16,marginBottom:16}}>
