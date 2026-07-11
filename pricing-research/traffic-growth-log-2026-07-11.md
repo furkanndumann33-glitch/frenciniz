@@ -178,3 +178,21 @@
 - Schmitz dorse kaliper tamir landing kontrolu: sayfa 200, canonical/JSON-LD/WhatsApp/telefon/kupon true. En yakin stoklu adaylar CHS5005 sag stok 1 fiyat 11180.40 TL, FX-3040 sol stok 1 fiyat 5674.68 TL, FX-3030 sag stok 1 fiyat 5674.68 TL, FX-5010 stok 1 fiyat 8512.68 TL, 10-1099 stok 1 fiyat 1082.40 TL.
 - Kod degisikligi yapilmadi: bu turda canli sayfa, schema, canonical ve feed tarafinda kirik bulunmadi. Google Ads/Meta/Merchant paneli acilmadi; Ads bilgisi site takip isareti ve canli feed/sayfa kontroludur.
 - Satis adimi: son 1 saatteki en sicak niyetler icin 3 teklif akisi hazir tutulmali: ESD 030 17 4849.54 TL, PWR-5027 2582.58 TL, Schmitz kaliper icin sag/sol ve kaliper modeli/foto teyidi sonrasi stok 1 olan uygun tamir takimi. Kupon/kargo dahil net fiyat WhatsApp'a tasinmali.
+
+## Heartbeat Trafik Kontrolu - 13:47
+- Onceki UTC gun (2026-07-10): 91 goruntuleme / 43 tekil; Facebook 0, Google 63, tiklama W/T/E 3/0/0.
+- Yeni UTC gun (2026-07-11): 15 goruntuleme / 10 tekil; raw log 15 satir.
+- Bot filtreli insan trafigi: 15 goruntuleme / 10 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 15; Google Ads isaretli 4.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2311 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- 12:47 kontrolune gore artis: +1 goruntuleme / +1 tekil IP. Yeni ziyaret Ankara'dan Google referrer ile /arocs-4142-balata sayfasina geldi; Google Ads sayisi 4'te kaldi. Supheli/bot 0.
+- Gun ici sicak yollar: /arocs-4142-balata 2, urun 212 ESD 030 17 2, urun 718 PWR-5027 2, urun 174 ESD 110 01-2 2, urun 731 PWR-5009 2, /schmitz-dorse-kaliper-tamir-takimi 1, /fren-diski 1, /atego-fren-diski 1, /axor-3340-kampana 1, / 1. Google toplam 15; Facebook/Meta 0.
+- Donusum kirilimi: WhatsApp/telefon/e-posta 0, sepet 0, favori 0. Son 7 gunde sepet/favori 0/0; toplam gecmis sepete ekleme 8 ama son kayitlar eski ve Storebot agirlikli. Bu sayilar link tiklamasidir; gercek mesaj/arama garantisi degildir.
+- Arocs 4142 landing canli kontrolu: /arocs-4142-balata 200, canonical/JSON-LD/WhatsApp/telefon/kupon true, sayfada urun linkleri var. /fren-balatasi kategori 200; ItemList schema var.
+- Urun 716 canli kontrolu: /urun/716/... 200, canonical temiz 29315 slug'ina gidiyor, Product schema/WhatsApp/telefon/kupon true. Urun: Mercedes Arocs Disk Fren Balatasi Y.M. PWR-5029; stok 37, fiyat 2379.43 TL, OEM 29315.
+- Feed dogrulama: Merchant feed 200 ve Meta feed 200; PWR-5029, 29315, Arocs 4142, PWR-5027, PWR-5009 ve ESD 030 17 sinyalleri mevcut. Google Ads/Meta/Merchant paneli acilmadi; Ads bilgisi site takip isareti ve canli feed/sayfa kontroludur.
+- Kod degisikligi yapilmadi: bu turda canli sayfa, canonical, schema ve feed tarafinda kirik bulunmadi.
+- Satis adimi: Ankara Arocs niyeti icin PWR-5029 teklif akisi hazir tutulmali: stok 37, fiyat 2379.43 TL, OEM 29315; musteriden Arocs 4142 on/arka aks, disk/kampana ve eski balata fotosu/olcusu istenip kupon/kargo dahil net fiyat verilmelidir.

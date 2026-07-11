@@ -105,3 +105,14 @@
 - Donusum durumu: WhatsApp/telefon/e-posta 0, sepet/favori 0. Bunlar link tiklamasidir, gercek mesaj/arama garantisi degildir.
 - Teknik kontrol: urun 212, urun 718 ve Schmitz dorse kaliper landing canli 200; canonical, WhatsApp, telefon, kupon ve schema sinyalleri saglam. Merchant ve Meta feed 200.
 - Satis adimi: Facebook yerine Google niyetlerine odaklanilmali. ESD 030 17 icin 4849.54 TL/stok 59, PWR-5027 icin 2582.58 TL/stok 35 teklif hazir; Schmitz kaliper icin sag-sol ve eski parca fotosu sorulup stok 1 tamir takimi hizli tekliflenmeli.
+
+## Heartbeat Kontrolu - 13:47
+- Facebook paylasimi: yeni paylasim yapilmadi; limit/spam riski alinmadi.
+- Facebook referansli trafik: 0 goruntuleme; onceki UTC gun 0.
+- Toplam trafik: 15 goruntuleme / 10 tekil; insan trafigi 15 / 10 tekil IP.
+- Tiklama/siparis: WhatsApp 0, telefon 0, e-posta 0; odenmis siparis 3.
+- Facebook/Meta sonucu: Facebook kaynakli trafik yine 0. Yeni grup paylasimi yapilmadi; tekrar/spam/limit riski alinmadi. Meta paneli acilmadi.
+- Yeni sicak trafik: son 1 saatte Ankara'dan Google referrer ile /arocs-4142-balata +1 tekil ziyaret aldi. Bugunku toplam Google 15, Google Ads isaretli 4.
+- Donusum durumu: WhatsApp/telefon/e-posta 0, sepet/favori 0. Bunlar link tiklamasidir, gercek mesaj/arama garantisi degildir.
+- Teknik kontrol: /arocs-4142-balata, urun 716 PWR-5029 ve /fren-balatasi canli 200; canonical, WhatsApp, telefon, kupon ve schema sinyalleri saglam. Merchant ve Meta feed 200, PWR-5029/29315/Arocs 4142 sinyali mevcut.
+- Satis adimi: Facebook yerine Google niyetlerine odaklanilmali. Ankara Arocs 4142 ziyareti icin PWR-5029 stok 37, fiyat 2379.43 TL; on/arka aks ve eski balata fotosu sorulup kupon/kargo dahil teklif WhatsApp'a tasinmali.
