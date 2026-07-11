@@ -142,3 +142,21 @@
 - Feed dogrulama: Merchant feed 200 ve Meta feed 200; Atego ve Fren Diski sinyalleri feedlerde mevcut. Google Ads/Meta/Merchant paneli acilmadi; Ads bilgisi site takip isareti ve canli feed/sayfa kontroludur.
 - Kod degisikligi yapilmadi: landing, schema, feed ve urun verisi saglam; bu turda teknik SEO acigi bulunmadi.
 - Satis adimi: Istanbul Atego fren diski ziyareti icin ESD 070 27 teklif akisi hazir tutulmali: OEM 6754210012 veya eski disk fotosu/olcusu ve aks bilgisi teyit edilmeli; 4636.84 TL uzerinden kupon/kargo dahil net fiyat verilmeli.
+
+## Heartbeat Trafik Kontrolu - 11:47
+- Onceki UTC gun (2026-07-10): 91 goruntuleme / 43 tekil; Facebook 0, Google 63, tiklama W/T/E 3/0/0.
+- Yeni UTC gun (2026-07-11): 9 goruntuleme / 6 tekil; raw log 9 satir.
+- Bot filtreli insan trafigi: 9 goruntuleme / 6 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 9; Google Ads isaretli 4.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2311 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- 10:47 kontrolune gore artis: +3 goruntuleme / +1 tekil IP. Yeni Google Ads isaretli akista /urun/174/... iki kez ve /fren-diski bir kez acildi; supheli/bot 0.
+- Gun ici sicak yollar: urun 174 ESD 110 01-2 2, /fren-diski 1, /atego-fren-diski 1, /axor-3340-kampana 1, / 1 Google Ads, /arocs-4142-balata 1, urun 731 PWR-5009 2. Google toplam 9; Google Ads isaretli 4; Facebook/Meta 0.
+- Donusum kirilimi: WhatsApp/telefon/e-posta 0, sepet 0, favori 0. Son 7 gunde sepet/favori 0/0; toplam gecmis sepete ekleme 8. Bunlar link tiklamasidir; gercek mesaj/arama garantisi degildir.
+- Fren diski kategori ve urun 174 canli kontrolu: /fren-diski 200, canonical/robots/JSON-LD/WhatsApp/telefon/kupon true, 37 urun karti; urun 174 200, Product schema true, canonical temiz URLye isaret ediyor.
+- Urun 174 odagi: Ford Cargo Krone Dorse Kogel Dorse Fren Diski ESD 110 01-2; stok 83, fiyat 4041.28 TL, OEM kaydi yok; uyumluluk dorse/Krone/Kogel/Schmitz/Tirsan/Fruehauf ve Ford Cargo adaylari. Eski disk olcusu/fotosu ile teyit gerekli.
+- Feed dogrulama: Merchant feed 200 ve Meta feed 200; ESD 110 01-2/Fren Diski sinyali mevcut. Google Ads/Meta/Merchant paneli acilmadi; Ads bilgisi site takip isareti ve canli feed/sayfa kontroludur.
+- Kod degisikligi yapilmadi: canonical ve urun schema saglam, kategori/urun feedleri yayinda.
+- Satis adimi: Google Ads fren diski ziyaretine ESD 110 01-2 teklif akisiyle donulmeli: stok 83, fiyat 4041.28 TL; musteriye dorse/aks, disk cap/olcu, eski parca fotosu veya stok kodu teyidi sorulup kupon/kargo dahil net fiyat verilmeli.

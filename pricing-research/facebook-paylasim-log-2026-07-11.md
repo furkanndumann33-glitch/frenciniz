@@ -83,3 +83,14 @@
 - Donusum durumu: WhatsApp/telefon/e-posta 0, sepet/favori 0. Bunlar link tiklamasidir, gercek mesaj/arama garantisi degildir.
 - Teknik kontrol: /atego-fren-diski 200, kupon/WhatsApp/telefon/canonical/JSON-LD saglam, 25 urun karti ve JSON-LD icinde 12 Product item var. Merchant ve Meta feedlerde Atego/Fren Diski sinyali mevcut.
 - Satis adimi: Atego fren diski ziyareti icin ESD 070 27 teklif akisi hazir tutulmali; OEM 6754210012, stok 13, fiyat 4636.84 TL, eski disk fotosu/olcusu ve aks bilgisi istenmeli.
+
+## Heartbeat Kontrolu - 11:47
+- Facebook paylasimi: yeni paylasim yapilmadi; limit/spam riski alinmadi.
+- Facebook referansli trafik: 0 goruntuleme; onceki UTC gun 0.
+- Toplam trafik: 9 goruntuleme / 6 tekil; insan trafigi 9 / 6 tekil IP.
+- Tiklama/siparis: WhatsApp 0, telefon 0, e-posta 0; odenmis siparis 3.
+- Facebook/Meta sonucu: Facebook kaynakli trafik yine 0. Yeni grup paylasimi yapilmadi; tekrar/spam/limit riski alinmadi. Meta paneli acilmadi.
+- Yeni sicak trafik: Google Ads isaretli fren diski akisi geldi; /fren-diski 1 kez, urun 174 ESD 110 01-2 2 kez acildi. Bugunku Google toplam 9, Google Ads isaretli 4.
+- Donusum durumu: WhatsApp/telefon/e-posta 0, sepet/favori 0. Bunlar link tiklamasidir, gercek mesaj/arama garantisi degildir.
+- Teknik kontrol: /fren-diski ve urun 174 canli 200; canonical, Product schema, Merchant feed ve Meta feed sinyalleri saglam. Urun 174 stok 83, fiyat 4041.28 TL.
+- Satis adimi: Facebook yerine bugunku Google Ads fren diski niyetine odaklanilmali. ESD 110 01-2 icin dorse/aks, disk olcusu ve eski parca fotosu istenip kupon/kargo dahil net teklif WhatsApp'a tasinmali.
