@@ -116,3 +116,14 @@
 - Donusum durumu: WhatsApp/telefon/e-posta 0, sepet/favori 0. Bunlar link tiklamasidir, gercek mesaj/arama garantisi degildir.
 - Teknik kontrol: /arocs-4142-balata, urun 716 PWR-5029 ve /fren-balatasi canli 200; canonical, WhatsApp, telefon, kupon ve schema sinyalleri saglam. Merchant ve Meta feed 200, PWR-5029/29315/Arocs 4142 sinyali mevcut.
 - Satis adimi: Facebook yerine Google niyetlerine odaklanilmali. Ankara Arocs 4142 ziyareti icin PWR-5029 stok 37, fiyat 2379.43 TL; on/arka aks ve eski balata fotosu sorulup kupon/kargo dahil teklif WhatsApp'a tasinmali.
+
+## Heartbeat Kontrolu - 14:47
+- Facebook paylasimi: yeni paylasim yapilmadi; limit/spam riski alinmadi.
+- Facebook referansli trafik: 0 goruntuleme; onceki UTC gun 0.
+- Toplam trafik: 16 goruntuleme / 11 tekil; insan trafigi 16 / 11 tekil IP.
+- Tiklama/siparis: WhatsApp 0, telefon 0, e-posta 0; odenmis siparis 3.
+- Facebook/Meta sonucu: Facebook kaynakli trafik yine 0. Yeni grup paylasimi yapilmadi; tekrar/spam/limit riski alinmadi. Meta paneli acilmadi.
+- Yeni sicak trafik: son 1 saatte Bursa'dan Google Ads isaretli +1 tekil ziyaret ana sayfaya geldi. Bugunku toplam Google 16, Google Ads isaretli 5.
+- Donusum durumu: WhatsApp/telefon/e-posta 0, sepet/favori 0. Bunlar link tiklamasidir, gercek mesaj/arama garantisi degildir.
+- Teknik aksiyon: Facebook paylasimi yerine ana sayfa Google Ads girisi icin statik SEO/CTA iyilestirmesi yapildi; index.html canonical/OG/JSON-LD www ile hizalandi ve ham HTML'e indirim kuponu icin WhatsApp CTA eklendi. Build basarili.
+- Satis adimi: Bursa ana sayfa ziyaretine genel teklif akisiyle donulmeli; arac modeli/parca kodu/foto sorulup PWR-5029, ESD 030 17, PWR-5027 ve ESD 110 01-2 fiyatlari hazir tutulmali.

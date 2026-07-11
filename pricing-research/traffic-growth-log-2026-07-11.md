@@ -196,3 +196,20 @@
 - Feed dogrulama: Merchant feed 200 ve Meta feed 200; PWR-5029, 29315, Arocs 4142, PWR-5027, PWR-5009 ve ESD 030 17 sinyalleri mevcut. Google Ads/Meta/Merchant paneli acilmadi; Ads bilgisi site takip isareti ve canli feed/sayfa kontroludur.
 - Kod degisikligi yapilmadi: bu turda canli sayfa, canonical, schema ve feed tarafinda kirik bulunmadi.
 - Satis adimi: Ankara Arocs niyeti icin PWR-5029 teklif akisi hazir tutulmali: stok 37, fiyat 2379.43 TL, OEM 29315; musteriden Arocs 4142 on/arka aks, disk/kampana ve eski balata fotosu/olcusu istenip kupon/kargo dahil net fiyat verilmelidir.
+
+## Heartbeat Trafik Kontrolu - 14:47
+- Onceki UTC gun (2026-07-10): 91 goruntuleme / 43 tekil; Facebook 0, Google 63, tiklama W/T/E 3/0/0.
+- Yeni UTC gun (2026-07-11): 16 goruntuleme / 11 tekil; raw log 16 satir.
+- Bot filtreli insan trafigi: 16 goruntuleme / 11 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 16; Google Ads isaretli 5.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2311 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- 13:47 kontrolune gore artis: +1 goruntuleme / +1 tekil IP. Yeni ziyaret Bursa'dan iPhone ile Google referrer ve Google Ads isaretli olarak ana sayfaya geldi. Supheli/bot 0.
+- Gun ici sicak yollar: / 2, /arocs-4142-balata 2, urun 212 ESD 030 17 2, urun 718 PWR-5027 2, urun 174 ESD 110 01-2 2, urun 731 PWR-5009 2, /schmitz-dorse-kaliper-tamir-takimi 1, /fren-diski 1, /atego-fren-diski 1, /axor-3340-kampana 1. Google toplam 16; Google Ads isaretli 5; Facebook/Meta 0.
+- Donusum kirilimi: WhatsApp/telefon/e-posta 0, sepet 0, favori 0. Son 7 gunde sepet/favori 0/0; bugun gercek mesaj/arama garantisi olan veri yok.
+- Ana sayfa canli kontrolu: / 200, WhatsApp ve telefon linkleri var; ham HTML'de canonical non-www gorunuyordu ve kupon metni ham HTML'de yoktu. Kategori sayfalari /fren-balatasi, /fren-diski, /kampana 200 ve ItemList/WhatsApp/telefon/kupon sinyalleri saglam.
+- Uygulanan teknik SEO/CTA aksiyonu: index.html statik canonical, OG ve JSON-LD URL'leri https://www.frenciniz.com ile hizalandi; ham HTML root icine "Indirim kuponu icin WhatsApp..." CTA eklendi. npm run build basarili; sadece mevcut buyuk chunk uyarisi verdi.
+- Feed dogrulama: Merchant feed 200, Meta feed 200; feedlerde urun varligi dogrulandi. Google Ads/Meta/Merchant paneli acilmadi; Ads bilgisi site takip isareti ve canli feed/sayfa kontroludur.
+- Satis adimi: Bursa ana sayfa Google Ads ziyareti genel niyet oldugu icin ilk WhatsApp cevabi "arac modeli/parca kodu/foto" istemeli. Hazir teklif seti: PWR-5029 Arocs balata 2379.43 TL, ESD 030 17 Ford Cargo disk 4849.54 TL, PWR-5027 dorse balata 2582.58 TL, ESD 110 01-2 dorse disk 4041.28 TL.
