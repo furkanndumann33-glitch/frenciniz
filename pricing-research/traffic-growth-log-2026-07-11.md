@@ -246,3 +246,20 @@
 - Sitemap/robots/feed dogrulama: sitemap 200 ve 2311 URL, home URL var; robots 200; Merchant feed 200 ve Meta feed 200, PWR-5029 sinyali mevcut.
 - Kod degisikligi yapilmadi: 14:47 ana sayfa SEO/CTA deployu canli ve saglam gorundu. Google Ads/Meta/Merchant panelleri acilmadi; Ads bilgisi site takip isareti ve canli feed/sayfa kontroludur.
 - Satis adimi: Antakya ve Bursa ana sayfa Google Ads ziyaretleri genel niyet oldugu icin ilk WhatsApp cevabinda arac modeli/parca kodu/eski parca fotosu istenmeli; PWR-5029, ESD 030 17, PWR-5027 ve ESD 110 01-2 fiyat seti hazir tutulmali.
+
+## Heartbeat Trafik Kontrolu - 17:47
+- Onceki UTC gun (2026-07-10): 91 goruntuleme / 43 tekil; Facebook 0, Google 63, tiklama W/T/E 3/0/0.
+- Yeni UTC gun (2026-07-11): 17 goruntuleme / 12 tekil; raw log 17 satir.
+- Bot filtreli insan trafigi: 17 goruntuleme / 12 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 17; Google Ads isaretli 6.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2311 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- 16:47 kontrolune gore yeni artis yok: trafik 17 goruntuleme / 12 tekil IP seviyesinde kaldi. Son yeni ziyaret 13:16 UTC Antakya'dan Google Ads isaretli ana sayfa ziyareti.
+- Gun ici sicak yollar degismedi: / 3, /arocs-4142-balata 2, urun 212 ESD 030 17 2, urun 718 PWR-5027 2, urun 174 ESD 110 01-2 2, urun 731 PWR-5009 2, /schmitz-dorse-kaliper-tamir-takimi 1, /fren-diski 1, /atego-fren-diski 1, /axor-3340-kampana 1. Google toplam 17; Google Ads isaretli 6; Facebook/Meta 0.
+- Donusum kirilimi: WhatsApp/telefon/e-posta 0, sepet 0, favori 0. Son 7 gunde sepet/favori 0/0; toplam eski sepete ekleme 8 ama bugun aktif sepet sinyali yok.
+- Canli sayfa dogrulama: ana sayfa, /arocs-4142-balata, /fren-diski, PWR-5029 urun 716, ESD 030 17 urun 212 ve PWR-5027 urun 718 sayfalari 200. Canonical/og:url www, kupon CTA, WhatsApp ve telefon true; non-www URL kalintisi false.
+- Schema/feed dogrulama: urun sayfalarinda Product schema, kategori/landinglerde ItemList schema var. Sitemap 200 ve 2311 URL, home URL var; robots 200; Merchant feed 200 ve Meta feed 200, PWR-5029/Arocs sinyali mevcut.
+- Kod degisikligi yapilmadi: canli SEO/CTA/feed tarafinda kirik bulunmadi. Google Ads/Meta/Merchant panelleri acilmadi; Ads bilgisi site takip isareti ve canli feed/sayfa kontroludur.
+- Satis adimi: yeni trafik durdugu icin Google Ads tarafinda ana sayfa gelen Antakya/Bursa niyetleri urun bazli yakalanmali. WhatsApp ilk mesaj akisi arac modeli + parca kodu + eski parca fotosu istemeli; PWR-5029, ESD 030 17, PWR-5027 ve ESD 110 01-2 fiyat seti hizli teklif icin hazir tutulmali.

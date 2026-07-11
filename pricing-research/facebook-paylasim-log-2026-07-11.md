@@ -149,3 +149,14 @@
 - Donusum durumu: WhatsApp/telefon/e-posta 0, sepet/favori 0. Bunlar link tiklamasidir, gercek mesaj/arama garantisi degildir.
 - Teknik kontrol: www ana sayfa 200; canonical/og:url www, kupon CTA, WhatsApp ve telefon true, non-www false; sitemap/robots/feed 200.
 - Satis adimi: Facebook yerine Google Ads ana sayfa niyetleri takip edilmeli; Antakya/Bursa ziyaretleri icin arac modeli, parca kodu ve eski parca fotosu istenip PWR-5029, ESD 030 17, PWR-5027 ve ESD 110 01-2 fiyat setiyle hizli teklif verilmeli.
+
+## Heartbeat Kontrolu - 17:47
+- Facebook paylasimi: yeni paylasim yapilmadi; limit/spam riski alinmadi.
+- Facebook referansli trafik: 0 goruntuleme; onceki UTC gun 0.
+- Toplam trafik: 17 goruntuleme / 12 tekil; insan trafigi 17 / 12 tekil IP.
+- Tiklama/siparis: WhatsApp 0, telefon 0, e-posta 0; odenmis siparis 3.
+- Facebook/Meta sonucu: Facebook kaynakli trafik yine 0. Yeni grup paylasimi yapilmadi; tekrar/spam/limit riski alinmadi. Meta paneli acilmadi.
+- Yeni trafik yok: 16:47'den sonra ek ziyaret gelmedi. Bugunku toplam Google 17, Google Ads isaretli 6 seviyesinde kaldi.
+- Donusum durumu: WhatsApp/telefon/e-posta 0, sepet/favori 0. Bunlar link tiklamasidir, gercek mesaj/arama garantisi degildir.
+- Teknik kontrol: www ana sayfa, Arocs landing, fren diski kategori ve sicak urun sayfalari 200; canonical/og:url www, kupon CTA, WhatsApp/telefon ve schema/feed sinyalleri saglam.
+- Satis adimi: Facebook yerine Google Ads ana sayfa niyetleri urun teklifine cevrilmeli; Antakya/Bursa icin arac modeli, parca kodu ve eski parca fotosu istenip PWR-5029, ESD 030 17, PWR-5027 ve ESD 110 01-2 hizli teklif seti kullanilmali.
