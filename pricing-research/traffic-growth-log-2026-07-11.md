@@ -124,3 +124,21 @@
 - PWR-5009 kontrolu: /api/products ve /data/products.json canli kayitta oem/specs 29159, 29126; urun sayfasi, Merchant feed ve Meta feed 29126 sinyalini koruyor.
 - Kod degisikligi yapilmadi: bu turda canli landing, feed ve schema sinyalleri saglam. Google Ads/Meta/Merchant panelleri acilmadi; Ads bilgisi site takip isareti ve canli feed/sayfa kontroludur.
 - Satis adimi: Axor 3340 kampana icin gelen soruda direkt ESK 010 45 teklif akisi kullanilmali: arac Axor/Actros, kampana OEM 3014210801, eski kampana olcusu/fotosu ve aks bilgisi teyit edilmeli; 5360.01 TL uzerinden kupon/kargo dahil net fiyat verilmeli.
+
+## Heartbeat Trafik Kontrolu - 10:47
+- Onceki UTC gun (2026-07-10): 91 goruntuleme / 43 tekil; Facebook 0, Google 63, tiklama W/T/E 3/0/0.
+- Yeni UTC gun (2026-07-11): 6 goruntuleme / 5 tekil; raw log 6 satir.
+- Bot filtreli insan trafigi: 6 goruntuleme / 5 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 6; Google Ads isaretli 1.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2311 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- 09:47 kontrolune gore artis: +1 goruntuleme / +1 tekil IP. Yeni ziyaret Istanbul lokasyonlu Google referrer ile /atego-fren-diski sayfasina geldi. Supheli/bot 0.
+- Gun ici sicak yollar: /atego-fren-diski 1, /axor-3340-kampana 1, / 1 Google Ads, /arocs-4142-balata 1, urun 731 PWR-5009 2. Google toplam 6; Facebook/Meta 0.
+- Donusum kirilimi: WhatsApp/telefon/e-posta 0, sepet 0, favori 0. Bu sayilar link tiklamasidir; gercek mesaj/arama garantisi degildir.
+- Atego fren diski landing canli kontrolu: 200, title/canonical/JSON-LD/WhatsApp/telefon/kupon true, 25 urun karti var. JSON-LD parse edildi: CollectionPage ItemList icinde 12 Product item mevcut.
+- En yakin Atego fren diski urun adayi: urun 183 Mercedes Atego Fren Diski ESD 070 27; stok 13, fiyat 4636.84 TL, OEM 6754210012, uyumluluk Atego 815/818/1218/1518/1524/2528. Ikinci aday urun 232 ESD 010 04; stok 94, fiyat 3789.91 TL, OEM 9754210212/0012/0112.
+- Feed dogrulama: Merchant feed 200 ve Meta feed 200; Atego ve Fren Diski sinyalleri feedlerde mevcut. Google Ads/Meta/Merchant paneli acilmadi; Ads bilgisi site takip isareti ve canli feed/sayfa kontroludur.
+- Kod degisikligi yapilmadi: landing, schema, feed ve urun verisi saglam; bu turda teknik SEO acigi bulunmadi.
+- Satis adimi: Istanbul Atego fren diski ziyareti icin ESD 070 27 teklif akisi hazir tutulmali: OEM 6754210012 veya eski disk fotosu/olcusu ve aks bilgisi teyit edilmeli; 4636.84 TL uzerinden kupon/kargo dahil net fiyat verilmeli.

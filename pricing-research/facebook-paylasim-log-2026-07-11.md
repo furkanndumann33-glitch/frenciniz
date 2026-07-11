@@ -72,3 +72,14 @@
 - Donusum durumu: WhatsApp/telefon/e-posta 0, sepet/favori 0. Bunlar link tiklamasidir, gercek mesaj/arama garantisi degildir.
 - Teknik kontrol: /axor-3340-kampana 200, kupon/WhatsApp/telefon/canonical/JSON-LD saglam, 25 urun karti ve JSON-LD icinde 12 Product item var. Bu turda Facebook yerine Google niyetli landing takip edildi.
 - Satis adimi: Axor 3340 kampana ziyareti icin ESK 010 45 teklif akisi hazir tutulmali; OEM 3014210801, stok 118, fiyat 5360.01 TL, eski kampana fotosu/olcusu ve aks bilgisi istenmeli.
+
+## Heartbeat Kontrolu - 10:47
+- Facebook paylasimi: yeni paylasim yapilmadi; limit/spam riski alinmadi.
+- Facebook referansli trafik: 0 goruntuleme; onceki UTC gun 0.
+- Toplam trafik: 6 goruntuleme / 5 tekil; insan trafigi 6 / 5 tekil IP.
+- Tiklama/siparis: WhatsApp 0, telefon 0, e-posta 0; odenmis siparis 3.
+- Facebook/Meta sonucu: Facebook kaynakli trafik yine 0. Yeni grup paylasimi yapilmadi; tekrar/spam/limit riski alinmadi. Meta paneli acilmadi.
+- Yeni sicak trafik: Istanbul'dan Google referrer ile /atego-fren-diski sayfasina +1 tekil ziyaret geldi. Bugunku toplam Google 6, Google Ads isaretli 1.
+- Donusum durumu: WhatsApp/telefon/e-posta 0, sepet/favori 0. Bunlar link tiklamasidir, gercek mesaj/arama garantisi degildir.
+- Teknik kontrol: /atego-fren-diski 200, kupon/WhatsApp/telefon/canonical/JSON-LD saglam, 25 urun karti ve JSON-LD icinde 12 Product item var. Merchant ve Meta feedlerde Atego/Fren Diski sinyali mevcut.
+- Satis adimi: Atego fren diski ziyareti icin ESD 070 27 teklif akisi hazir tutulmali; OEM 6754210012, stok 13, fiyat 4636.84 TL, eski disk fotosu/olcusu ve aks bilgisi istenmeli.
