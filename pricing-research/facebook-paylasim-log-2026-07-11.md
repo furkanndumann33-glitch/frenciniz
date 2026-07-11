@@ -160,3 +160,14 @@
 - Donusum durumu: WhatsApp/telefon/e-posta 0, sepet/favori 0. Bunlar link tiklamasidir, gercek mesaj/arama garantisi degildir.
 - Teknik kontrol: www ana sayfa, Arocs landing, fren diski kategori ve sicak urun sayfalari 200; canonical/og:url www, kupon CTA, WhatsApp/telefon ve schema/feed sinyalleri saglam.
 - Satis adimi: Facebook yerine Google Ads ana sayfa niyetleri urun teklifine cevrilmeli; Antakya/Bursa icin arac modeli, parca kodu ve eski parca fotosu istenip PWR-5029, ESD 030 17, PWR-5027 ve ESD 110 01-2 hizli teklif seti kullanilmali.
+
+## Heartbeat Kontrolu - 18:47
+- Facebook paylasimi: yeni paylasim yapilmadi; limit/spam riski alinmadi.
+- Facebook referansli trafik: 0 goruntuleme; onceki UTC gun 0.
+- Toplam trafik: 19 goruntuleme / 13 tekil; insan trafigi 19 / 13 tekil IP.
+- Tiklama/siparis: WhatsApp 0, telefon 0, e-posta 0; odenmis siparis 3.
+- Facebook/Meta sonucu: Facebook kaynakli trafik yine 0. Yeni grup paylasimi yapilmadi; tekrar/spam/limit riski alinmadi. Meta paneli acilmadi.
+- Yeni sicak trafik: son 1 saatte Google referrer ile urun 452 FT 344183 suspansiyon korugu sayfasina +2 goruntuleme / +1 tekil IP geldi. Bugunku toplam Google 19, Google Ads isaretli 6.
+- Donusum durumu: WhatsApp/telefon/e-posta 0, sepet/favori 0. Bunlar link tiklamasidir, gercek mesaj/arama garantisi degildir.
+- Teknik kontrol: urun 452 ve /dorse-suspansiyon-korugu 200; canonical/og:url www, kupon CTA, WhatsApp/telefon ve schema/feed sinyalleri saglam. FT 344183 Merchant ve Meta feedde var.
+- Satis adimi: Facebook yerine Google'dan gelen FT 344183 niyeti izlenmeli; stok 25, fiyat 1518 TL ile dorse/olcu/foto teyidi istenip kupon/kargo dahil hizli teklif verilmeli.

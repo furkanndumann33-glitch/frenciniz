@@ -263,3 +263,20 @@
 - Schema/feed dogrulama: urun sayfalarinda Product schema, kategori/landinglerde ItemList schema var. Sitemap 200 ve 2311 URL, home URL var; robots 200; Merchant feed 200 ve Meta feed 200, PWR-5029/Arocs sinyali mevcut.
 - Kod degisikligi yapilmadi: canli SEO/CTA/feed tarafinda kirik bulunmadi. Google Ads/Meta/Merchant panelleri acilmadi; Ads bilgisi site takip isareti ve canli feed/sayfa kontroludur.
 - Satis adimi: yeni trafik durdugu icin Google Ads tarafinda ana sayfa gelen Antakya/Bursa niyetleri urun bazli yakalanmali. WhatsApp ilk mesaj akisi arac modeli + parca kodu + eski parca fotosu istemeli; PWR-5029, ESD 030 17, PWR-5027 ve ESD 110 01-2 fiyat seti hizli teklif icin hazir tutulmali.
+
+## Heartbeat Trafik Kontrolu - 18:47
+- Onceki UTC gun (2026-07-10): 91 goruntuleme / 43 tekil; Facebook 0, Google 63, tiklama W/T/E 3/0/0.
+- Yeni UTC gun (2026-07-11): 19 goruntuleme / 13 tekil; raw log 19 satir.
+- Bot filtreli insan trafigi: 19 goruntuleme / 13 tekil IP.
+- Kaynaklar: Facebook 0 goruntuleme; Google referrer 19; Google Ads isaretli 6.
+- Iletisim tiklamalari: WhatsApp 0, telefon 0, e-posta 0. Bu sayilar gercek mesaj/arama garantisi degildir.
+- Siparis durumu: toplam 3, odenmis 3, toplam ciro 2826 TL.
+- Teknik SEO/feed: sitemap 200 ve 2311 URL; robots 200; Merchant feed 200; Meta feed 200; landing testleri saglikli.
+- Facebook paylasimi: yeni paylasim yapilmadi; tekrarli grup paylasimi hesap riski dogurabilecegi icin takip tercih edildi.
+- 17:47 kontrolune gore artis: +2 goruntuleme / +1 tekil IP. Yeni ziyaret TR/city bos, Windows Chrome ile Google referrer uzerinden urun 452 FT 344183 suspansiyon korugu sayfasina iki kez geldi. Google Ads sayisi 6'da kaldi; yeni artis organik/referrer Google gibi gorunuyor.
+- Gun ici sicak yollar: / 3, urun 452 FT 344183 2, /arocs-4142-balata 2, urun 212 ESD 030 17 2, urun 718 PWR-5027 2, urun 174 ESD 110 01-2 2, urun 731 PWR-5009 2, /schmitz-dorse-kaliper-tamir-takimi 1, /fren-diski 1, /atego-fren-diski 1, /axor-3340-kampana 1. Google toplam 19; Facebook/Meta 0.
+- Donusum kirilimi: WhatsApp/telefon/e-posta 0, sepet 0, favori 0. Son 7 gunde sepet/favori 0/0; toplam eski sepete ekleme 8 ama bugun aktif sepet sinyali yok.
+- Urun 452 canli dogrulama: sayfa 200, canonical/og:url www, Product schema/ItemList, kupon CTA, WhatsApp ve telefon true, non-www URL false. Urun: Ford Cargo Krone Dorse Kogel Dorse Suspansiyon Korugu FT 344183; stok 25, fiyat 1518 TL.
+- Kategori/feed dogrulama: /dorse-suspansiyon-korugu 200, canonical/og:url www, schema/CTA saglam. Sitemap 200 ve urun 452 URL var; Merchant feed 200 ve Meta feed 200, FT 344183 sinyali mevcut.
+- Kod degisikligi yapilmadi: yeni sicak urun sayfasi ve feedler saglam oldugu icin bu turda teknik deploy gerekmedi. Google Ads/Meta/Merchant panelleri acilmadi; Ads bilgisi site takip isareti ve canli feed/sayfa kontroludur.
+- Satis adimi: FT 344183 icin hizli teklif hazir tutulmali: stok 25, fiyat 1518 TL. Musteriden dorse/cekici modeli, kordu/olcu/foto ve montaj yeri teyidi istenip kupon/kargo dahil net fiyat WhatsApp'a tasinmali.
