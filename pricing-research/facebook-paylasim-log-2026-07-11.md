@@ -16,7 +16,17 @@
 - Facebook referansli trafik: 0 goruntuleme; onceki UTC gun 0.
 - Toplam trafik: 2 goruntuleme / 1 tekil; insan trafigi 2 / 1 tekil IP.
 - Tiklama/siparis: WhatsApp 0, telefon 0, e-posta 0; odenmis siparis 3.
+- Facebook/Meta sonucu: 05:47 itibariyla Facebook kaynakli trafik yine 0; yeni grup paylasimi yapilmadi, spam/limit riski alinmadi. Meta paneli acilmadi.
+- Yeni trafik yok: 04:47'den sonra ek ziyaret gelmedi. Mevcut 2 goruntuleme Antalya Google organik/referrer ile urun 731 PWR-5009 sayfasinda.
+- Teknik aksiyon: sosyal paylasim yerine sicak Google urununde muadil kod tutarliligi duzeltildi; PWR-5009 icin oem/specs ve aciklama 29159, 29126 olarak guncellendi, build basarili.
+- Satis adimi: Bu urune soran kisiye direkt uyumluluk teyidi istenmeli: SAF/Krone/Kogel/Schmitz dingil, WVA/OEM 29159/29126, eski balata fotosu/olcusu; sonra 2164.27 TL uzerinden kupon/kargo dahil net teklif verilmeli.
 - Facebook/Meta sonucu: bu saatte Facebook kaynakli trafik halen 0. Tekrarli grup paylasimi yapilmadi; spam/limit riski alinmadi. Meta paneli acilmadi.
 - Yeni sicak trafik: Google organik/referrer uzerinden Antalya lokasyonlu 1 tekil kullanici urun 731 PWR-5009 SAF dorse disk fren balatasini 2 kez acmis. Supheli/bot kayit yok.
 - Donusum durumu: WhatsApp/telefon/e-posta 0; sepet/favori 0. Bu iletisim sayilari link tiklamasidir, gercek mesaj/arama garantisi degildir.
 - Satis adimi: PWR-5009 icin kisa cevap sablonu hazir tutulmali: "SAF dorse disk fren balatasi PWR-5009 stokta 20 adet, 2164.27 TL. Uyum icin WVA/OEM 29159/29126 veya eski parca fotosu gonderin; kuponlu/kargo dahil net fiyat cikartalim."
+
+## Heartbeat Kontrolu - 05:47
+- Facebook paylasimi: yeni paylasim yapilmadi; limit/spam riski alinmadi.
+- Facebook referansli trafik: 0 goruntuleme; onceki UTC gun 0.
+- Toplam trafik: 2 goruntuleme / 1 tekil; insan trafigi 2 / 1 tekil IP.
+- Tiklama/siparis: WhatsApp 0, telefon 0, e-posta 0; odenmis siparis 3.
