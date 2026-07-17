@@ -10,7 +10,7 @@ import {
   landingWhatsappUrl,
 } from "./seo-landing.js";
 import { productSearchName, productSeoUrl } from "../../shared/product-seo.js";
-import { buildOrganizationJsonLd, buildProductJsonLd } from "../../shared/structured-data.js";
+import { buildOrganizationJsonLd } from "../../shared/structured-data.js";
 
 function productUrl(product) {
   return productSeoUrl(SITE, product);
@@ -67,12 +67,15 @@ function renderProductCard(product, categories) {
     </article>`;
 }
 
-export function renderLanding(page, products, categories) {
+export function renderLanding(page, products, categories, seoState = null, selectedSlugs = null) {
   const matched = filterProductsForLanding(products, page, 24);
-  const canonical = `${SITE}/${page.slug}`;
+  const canonical = seoState?.canonical || `${SITE}/${page.slug}`;
+  const robots = seoState?.reason === "insufficient-exact-products"
+    ? "noindex, follow"
+    : "index, follow, max-image-preview:large, max-snippet:-1";
   const firstImage = matched[0] ? absoluteImage(matched[0]) : `${SITE}/img/site/frenciniz-logo-real-og.jpg`;
   const searchPhrases = landingSearchPhrases(page);
-  const relatedPages = getRelatedLandingPages(page, 14);
+  const relatedPages = getRelatedLandingPages(page, 14, selectedSlugs);
   const categoryLinks = [...new Set(page.cats || [])]
     .map(cat => `<a href="${SITE}/${cat}">${htmlEscape(categoryName(categories, cat))}</a>`)
     .join("");
@@ -87,14 +90,7 @@ export function renderLanding(page, products, categories) {
     "@type": "ListItem",
     position: index + 1,
     url: productUrl(product),
-    name: product.name,
-    item: buildProductJsonLd(product, categories, {
-      site: SITE,
-      url: productUrl(product),
-      images: [absoluteImage(product)],
-      categoryName: categoryName(categories, product.cat),
-      includeContext: false,
-    }),
+    name: productSearchName(product, categories, 140) || product.name,
   }));
   const schema = [
     buildOrganizationJsonLd(SITE),
@@ -148,7 +144,7 @@ export function renderLanding(page, products, categories) {
   <title>${htmlEscape(page.title)}</title>
   <meta name="description" content="${htmlEscape(page.description)}">
   <meta name="keywords" content="${htmlEscape(searchPhrases.join(", "))}">
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="robots" content="${robots}">
   <link rel="canonical" href="${canonical}">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Frenciniz">
@@ -481,7 +477,7 @@ export function renderLanding(page, products, categories) {
 </html>`;
 }
 
-export function renderLandingIndex() {
-  const links = LANDING_PAGES.map(page => `<li><a href="${SITE}/${page.slug}">${htmlEscape(page.heading)}</a></li>`).join("");
+export function renderLandingIndex(pages = LANDING_PAGES) {
+  const links = pages.map(page => `<li><a href="${SITE}/${page.slug}">${htmlEscape(page.heading)}</a></li>`).join("");
   return `<!doctype html><html lang="tr"><head><meta charset="utf-8"><title>Frenciniz SEO Sayfaları</title><meta name="robots" content="noindex"></head><body><h1>Frenciniz SEO Sayfaları</h1><ul>${links}</ul></body></html>`;
 }

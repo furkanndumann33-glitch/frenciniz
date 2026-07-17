@@ -1117,6 +1117,7 @@ function buildLandingPage(vehicle, partKey) {
   const priority = Math.min(0.9, Number(vehicle.priority || 0.78) + Number(part.priorityBoost || 0)).toFixed(2);
   return {
     slug: `${vehicle.key}-${slugify(partKey)}`,
+    source: "vehicle-part",
     heading,
     title: `${heading} | Fiyat ve Stok | Frenciniz`,
     description: `${vehicle.label} uyumlu ${part.part} ürünleri. OEM/parça kodu ile uyumluluk teyidi, stok ve fiyat kontrolü, aynı gün kargo ve WhatsApp hızlı teklif.`,
@@ -1148,6 +1149,7 @@ function buildExactIntentPage(vehicle, partKey) {
   const priority = Math.min(0.93, Number(vehicle.priority || 0.82) + Number(part.boost || 0)).toFixed(2);
   return {
     slug: `${vehicle.base}-${partKey}`,
+    source: "exact-intent",
     heading,
     title: `${heading} | ${vehicle.full} ${part.part} Fiyat ve Stok | Frenciniz`,
     description: `${heading} arayanlar icin ${vehicle.full} uyumlu ${part.part} urunleri. OEM/parca kodu, eski parca fotografi veya sase ile uyumluluk teyidi, ayni gun kargo ve WhatsApp teklif.`,
@@ -1181,6 +1183,7 @@ function registerOemDemandLandingPages() {
     if (seen.has(group.slug)) continue;
     LANDING_PAGES.push({
       slug: group.slug,
+      source: "oem-demand",
       heading: group.heading,
       title: `${group.heading} | Stok Fiyat OEM Teyit | Frenciniz`,
       description: `${group.heading} icin stok, fiyat ve arac uyumluluk teyidi. OEM/WVA kodu, eski parca fotografi veya sase ile dogru urunu hizli bulun.`,
@@ -1263,8 +1266,14 @@ function normalize(s) {
     .replace(/ç/g, "c");
 }
 
+const PRODUCT_TEXT_CACHE = new WeakMap();
+const PAGE_SIGNAL_CACHE = new WeakMap();
+
 export function productText(product) {
-  return normalize([
+  if (product && typeof product === "object" && PRODUCT_TEXT_CACHE.has(product)) {
+    return PRODUCT_TEXT_CACHE.get(product);
+  }
+  const text = normalize([
     product?.name,
     product?.sku,
     product?.oem,
@@ -1273,6 +1282,21 @@ export function productText(product) {
     ...(product?.compat || []),
     ...(product?.veh || []),
   ].filter(Boolean).join(" "));
+  if (product && typeof product === "object") PRODUCT_TEXT_CACHE.set(product, text);
+  return text;
+}
+
+function pageSignals(page) {
+  if (page && typeof page === "object" && PAGE_SIGNAL_CACHE.has(page)) {
+    return PAGE_SIGNAL_CACHE.get(page);
+  }
+  const signals = {
+    primary: normalize(page?.primaryTerm),
+    terms: [...new Set((page?.terms || []).map(normalize).filter(Boolean))],
+    codes: [...new Set((page?.demandCodes || []).map(normalize).filter(Boolean))],
+  };
+  if (page && typeof page === "object") PAGE_SIGNAL_CACHE.set(page, signals);
+  return signals;
 }
 
 function hasRealImage(product) {
@@ -1290,13 +1314,13 @@ export function categoryName(categories, id) {
   return categories.find(category => category.id === id)?.name || id || "Fren Aksamı";
 }
 
-export function getRelatedLandingPages(page, limit = 14) {
+export function getRelatedLandingPages(page, limit = 14, allowedSlugs = null) {
   if (!page) return [];
   const pageTerms = new Set((page.terms || []).map(term => normalize(term)).filter(Boolean));
   const pageCats = new Set(page.cats || []);
 
   return LANDING_PAGES
-    .filter(candidate => candidate.slug !== page.slug)
+    .filter(candidate => candidate.slug !== page.slug && (!allowedSlugs || allowedSlugs.has(candidate.slug)))
     .map(candidate => {
       const candidateTerms = (candidate.terms || []).map(term => normalize(term)).filter(Boolean);
       const sharedTerms = candidateTerms.filter(term => pageTerms.has(term)).length;
@@ -1334,28 +1358,89 @@ export function landingSearchPhrases(page) {
 
 export function scoreProductForLanding(product, page) {
   const text = productText(product);
+  const signals = pageSignals(page);
   let score = 0;
   if (page.cats?.includes(product.cat)) score += 80;
-  for (const code of page.demandCodes || []) {
-    if (code && text.includes(normalize(code))) score += 160;
+  for (const code of signals.codes) {
+    if (text.includes(code)) score += 160;
   }
-  for (const term of page.terms || []) {
-    if (text.includes(normalize(term))) score += 18;
+  for (const term of signals.terms) {
+    if (text.includes(term)) score += 18;
   }
-  if (page.primaryTerm && text.includes(normalize(page.primaryTerm))) score += 25;
+  if (signals.primary && text.includes(signals.primary)) score += 25;
   if (product.stock > 0) score += Math.min(15, Math.ceil(Number(product.stock) / 50));
   if (hasRealImage(product)) score += 8;
   if (product.oem) score += 4;
   return score;
 }
 
-export function filterProductsForLanding(products, page, limit = 24) {
-  const scored = products
-    .map(product => ({ product, score: scoreProductForLanding(product, page) }))
-    .filter(row => row.score >= 80)
-    .sort((a, b) => b.score - a.score || Number(b.product.stock || 0) - Number(a.product.stock || 0));
+export function productMatchesLandingIntent(product, page) {
+  if (!product || !page || !page.cats?.includes(product.cat)) return false;
+  const text = productText(product);
+  const signals = pageSignals(page);
+  if (signals.codes.some(code => text.includes(code))) return true;
+  if (signals.primary && text.includes(signals.primary)) return true;
+  return signals.terms.filter(term => text.includes(term)).length >= 2;
+}
 
-  const exact = scored.map(row => row.product);
+export function strictProductsForLanding(products, page, limit = 24) {
+  return products
+    .filter(product => productMatchesLandingIntent(product, page))
+    .map(product => ({ product, score: scoreProductForLanding(product, page) }))
+    .sort((a, b) => b.score - a.score || Number(b.product.stock || 0) - Number(a.product.stock || 0))
+    .slice(0, limit)
+    .map(row => row.product);
+}
+
+function landingSourceRank(page) {
+  if (page?.source === "oem-demand") return 4;
+  if (!page?.source) return 3;
+  if (page?.source === "exact-intent") return 2;
+  return 1;
+}
+
+export function buildLandingSeoIndex(products) {
+  const rows = LANDING_PAGES.map(page => {
+    const strict = strictProductsForLanding(products, page, 24);
+    const minimum = page.source === "oem-demand" || !page.source ? 1 : 2;
+    const eligible = strict.length >= minimum;
+    const signature = strict.map(product => String(product.id)).sort().join("|");
+    return { page, strict, eligible, signature };
+  });
+
+  const winners = new Map();
+  for (const row of rows.filter(item => item.eligible && item.signature)) {
+    const current = winners.get(row.signature);
+    const sourceRank = landingSourceRank(row.page);
+    const currentSourceRank = current ? landingSourceRank(current.page) : -1;
+    const better = !current
+      || sourceRank > currentSourceRank
+      || (sourceRank === currentSourceRank
+        && Number(row.page.priority || 0) > Number(current.page.priority || 0))
+      || (sourceRank === currentSourceRank
+        && Number(row.page.priority || 0) === Number(current.page.priority || 0)
+        && row.page.slug.length < current.page.slug.length);
+    if (better) winners.set(row.signature, row);
+  }
+
+  return new Map(rows.map(row => {
+    const winner = row.signature ? winners.get(row.signature) : null;
+    const isWinner = row.eligible && winner?.page.slug === row.page.slug;
+    const fallbackCategory = row.page.cats?.[0] || "urunler";
+    const canonicalSlug = isWinner ? row.page.slug : (winner?.page.slug || fallbackCategory);
+    return [row.page.slug, {
+      indexable: isWinner,
+      eligible: row.eligible,
+      strictCount: row.strict.length,
+      canonical: `${SITE}/${canonicalSlug}`,
+      canonicalSlug,
+      reason: isWinner ? "selected" : (winner ? "duplicate" : "insufficient-exact-products"),
+    }];
+  }));
+}
+
+export function filterProductsForLanding(products, page, limit = 24) {
+  const exact = strictProductsForLanding(products, page, limit);
   if (exact.length >= Math.min(6, limit)) return exact.slice(0, limit);
 
   const related = products

@@ -45,8 +45,17 @@ function categoryLabel(categories, product, fallback) {
 
 function sanitizeSku(product) {
   return cleanText(product?.sku || product?.id || product?.oem || "frenciniz-urun")
-    .replace(/[^\p{L}\p{N}\-_. /]/gu, "")
-    .slice(0, 100);
+    .normalize("NFKD")
+    .replace(/[^\x00-\x7F]/g, "")
+    .replace(/[^A-Za-z0-9._-]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 50);
+}
+
+function sanitizeMpn(product) {
+  const raw = cleanText(product?.oem || product?.sku || product?.id);
+  const primary = raw.split(/[;,|/]+/).map(value => value.trim()).find(Boolean) || raw;
+  return primary.slice(0, 70);
 }
 
 export function buildProductDescription(product, categories = [], options = {}) {
@@ -124,6 +133,7 @@ export function buildOfferJsonLd(product, options = {}) {
     url,
     priceCurrency: "TRY",
     price: price.toFixed(2),
+    validFrom: new Date().toISOString().slice(0, 10),
     priceValidUntil: validUntil,
     itemCondition: "https://schema.org/NewCondition",
     availability: Number(product?.stock || 0) > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
@@ -148,9 +158,6 @@ export function buildProductJsonLd(product, categories = [], options = {}) {
     .filter(Boolean)
     .map(image => absoluteUrl(site, image));
   const category = categoryLabel(categories, product, options.categoryName);
-  const ratingValue = Number(product?.rating || 0);
-  const reviewCount = Number(product?.reviews || 0);
-
   const searchName = productSearchName(product, categories, 140);
 
   return stripUndefined({
@@ -161,7 +168,7 @@ export function buildProductJsonLd(product, categories = [], options = {}) {
     image: [...new Set(images)],
     description: buildProductDescription(product, categories, { categoryName: category }),
     sku: sanitizeSku(product),
-    mpn: cleanText(product?.oem || product?.sku || product?.id),
+    mpn: sanitizeMpn(product),
     gtin: cleanText(product?.gtin),
     productID: cleanText(product?.id),
     url,
@@ -178,13 +185,6 @@ export function buildProductJsonLd(product, categories = [], options = {}) {
         : null,
       { "@type": "PropertyValue", name: "Stok", value: String(Math.max(0, Number(product?.stock || 0))) },
     ].filter(Boolean),
-    aggregateRating: ratingValue > 0 ? {
-      "@type": "AggregateRating",
-      ratingValue: ratingValue.toFixed(1),
-      reviewCount: Math.max(1, reviewCount || 1),
-      bestRating: "5",
-      worstRating: "1",
-    } : undefined,
     offers: buildOfferJsonLd(product, { site, url, priceValidUntil: options.priceValidUntil }),
   });
 }

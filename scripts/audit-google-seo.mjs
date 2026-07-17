@@ -2,12 +2,14 @@ import fs from "fs";
 import path from "path";
 import {
   LANDING_PAGES,
+  buildLandingSeoIndex,
   filterProductsForLanding,
 } from "../api/_lib/seo-landing.js";
 import { productSeoSlug, productSeoUrl } from "../shared/product-seo.js";
 
 const ROOT = process.cwd();
 const OUT_DIR = path.join(ROOT, "pricing-research");
+const SITE = "https://www.frenciniz.com";
 const products = JSON.parse(fs.readFileSync(path.join(ROOT, "public/data/products.json"), "utf8"));
 const categories = JSON.parse(fs.readFileSync(path.join(ROOT, "public/data/categories.json"), "utf8"));
 
@@ -26,20 +28,25 @@ const productsWithImage = products.filter(hasRealImage).length;
 const productsWithOem = products.filter(product => product.oem).length;
 const productsWithDescription = products.filter(product => String(product.desc || "").trim().length >= 80).length;
 const stockProducts = products.filter(product => Number(product.stock || 0) > 0).length;
-const brandCounts = products.reduce((acc, product) => {
-  if (product.brand) acc[product.brand] = (acc[product.brand] || 0) + 1;
+const landingSeoIndex = buildLandingSeoIndex(products);
+const landingSeoStats = [...landingSeoIndex.values()].reduce((acc, state) => {
+  acc[state.reason] = (acc[state.reason] || 0) + 1;
   return acc;
 }, {});
-const brandFilterPages = Math.min(10, Object.keys(brandCounts).length);
 
 const landingRows = LANDING_PAGES.map(page => {
   const matched = filterProductsForLanding(products, page, 24);
+  const seoState = landingSeoIndex.get(page.slug);
   return {
     slug: page.slug,
     heading: page.heading,
     title: page.title,
     description: page.description,
     priority: page.priority,
+    indexable: Boolean(seoState?.indexable),
+    exactProducts: seoState?.strictCount || 0,
+    canonical: seoState?.canonical || `${SITE}/${page.slug}`,
+    seoReason: seoState?.reason || "unknown",
     matchedProducts: matched.length,
     categories: (page.cats || []).join("|"),
     topProducts: matched.slice(0, 5).map(product => `${product.id}:${product.name}`).join(" | "),
@@ -66,8 +73,8 @@ const productRows = products.map(product => {
 });
 
 const staticPages = 11;
-const vehicleFilterPages = 4;
-const sitemapUrlEstimate = staticPages + LANDING_PAGES.length + categoryPages + brandFilterPages + vehicleFilterPages + products.length;
+const indexableLandingPages = landingSeoStats.selected || 0;
+const sitemapUrlEstimate = staticPages + indexableLandingPages + categoryPages + products.length;
 
 const report = {
   generatedAt: new Date().toISOString(),
@@ -76,7 +83,10 @@ const report = {
     products: products.length,
     categories: categories.length,
     categoryPages,
-    landingPages: LANDING_PAGES.length,
+    landingPagesGenerated: LANDING_PAGES.length,
+    landingPagesIndexable: indexableLandingPages,
+    landingPagesCanonicalized: landingSeoStats.duplicate || 0,
+    landingPagesExcluded: landingSeoStats["insufficient-exact-products"] || 0,
     sitemapUrlEstimate,
   },
   productReadiness: {
@@ -96,10 +106,10 @@ const report = {
     productSeoUrls: "pricing-research/google-seo-product-urls.csv",
   },
   highIntentLandingPages: landingRows
-    .filter(row => row.priority >= 0.84 || row.matchedProducts >= 12)
+    .filter(row => row.indexable && (row.priority >= 0.84 || row.exactProducts >= 12))
     .slice(0, 40),
   landingPagesNeedingMoreSpecificProducts: landingRows
-    .filter(row => row.matchedProducts < 6)
+    .filter(row => !row.indexable)
     .slice(0, 40),
   nextManualActions: [
     "Google Search Console'da sitemap.xml yeniden gönder.",
@@ -115,7 +125,7 @@ fs.writeFileSync(
   `${JSON.stringify(report, null, 2)}\n`
 );
 
-const headers = ["slug", "heading", "title", "description", "priority", "matchedProducts", "categories", "topProducts"];
+const headers = ["slug", "heading", "title", "description", "priority", "indexable", "exactProducts", "canonical", "seoReason", "matchedProducts", "categories", "topProducts"];
 const lines = [
   headers.map(csv).join(","),
   ...landingRows.map(row => headers.map(header => csv(row[header])).join(",")),
@@ -131,7 +141,8 @@ fs.writeFileSync(path.join(OUT_DIR, "google-seo-product-urls.csv"), `${productLi
 
 console.log(JSON.stringify({
   products: products.length,
-  landingPages: LANDING_PAGES.length,
+  landingPagesGenerated: LANDING_PAGES.length,
+  landingPagesIndexable: indexableLandingPages,
   sitemapUrlEstimate,
   productsWithImage,
   productsWithOem,

@@ -33,29 +33,29 @@ export function slugifyProductText(value, maxLength = 96) {
 const CATEGORY_SEARCH_LABELS = {
   "fren-diski": "Fren Diski",
   "fren-diski-abs-li": "ABS'li Fren Diski",
-  "fren-kampanasi": "Fren Kampanasi",
-  "fren-balatasi": "Fren Balatasi",
+  "fren-kampanasi": "Fren Kampanası",
+  "fren-balatasi": "Fren Balatası",
   "fren-pabucu": "Fren Pabucu",
-  "fren-korugu": "Fren Korugu",
-  "suspansiyon-korugu": "Suspansiyon Korugu",
-  "otomatik-fren-circiri": "Otomatik Fren Circiri",
-  "mekanik-fren-circiri": "Mekanik Fren Circiri",
-  "fren-circiri": "Fren Circiri",
+  "fren-korugu": "Fren Körüğü",
+  "suspansiyon-korugu": "Süspansiyon Körüğü",
+  "otomatik-fren-circiri": "Otomatik Fren Cırcırı",
+  "mekanik-fren-circiri": "Mekanik Fren Cırcırı",
+  "fren-circiri": "Fren Cırcırı",
   "bijon": "Bijon",
-  "disk-bijonu-civatasi": "Disk Bijonu Civatasi",
-  "somun-civata": "Somun Civata",
+  "disk-bijonu-civatasi": "Disk Bijonu Cıvatası",
+  "somun-civata": "Somun Cıvata",
   "porya": "Porya",
-  "porya-kapagi": "Porya Kapagi",
+  "porya-kapagi": "Porya Kapağı",
   "kaliper": "Kaliper",
-  "kaliper-tamir-takimi": "Kaliper Tamir Takimi",
-  "kaliper-perno-tamir-takimi": "Kaliper Perno Tamir Takimi",
-  "kaliper-ayar-mekanizmasi": "Kaliper Ayar Mekanizmasi",
+  "kaliper-tamir-takimi": "Kaliper Tamir Takımı",
+  "kaliper-perno-tamir-takimi": "Kaliper Perno Tamir Takımı",
+  "kaliper-ayar-mekanizmasi": "Kaliper Ayar Mekanizması",
   "kaliper-kapak-conta": "Kaliper Kapak Conta",
-  "kaliper-toz-lastigi": "Kaliper Toz Lastigi",
-  "abs-sensoru-modulu-kablo": "ABS Sensoru EBS Modulator",
-  "ebs-modulator": "EBS Modulator",
-  "sensor": "ABS Sensoru",
-  "yay": "Dorse Yayi",
+  "kaliper-toz-lastigi": "Kaliper Toz Lastiği",
+  "abs-sensoru-modulu-kablo": "ABS Sensörü EBS Modülatör",
+  "ebs-modulator": "EBS Modülatör",
+  "sensor": "ABS Sensörü",
+  "yay": "Dorse Yayı",
 };
 
 function cleanText(value) {
@@ -66,7 +66,7 @@ function cleanText(value) {
 
 function normalizeSearchText(value) {
   return cleanText(value)
-    .replace(/[Ä±Ä°ÄŸÄÃ¼ÃœÅŸÅÃ¶Ã–Ã§Ã‡]/g, char => TR_MAP[char] || char)
+    .replace(/[ıİğĞüÜşŞöÖçÇ]/g, char => TR_MAP[char] || char)
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase();
@@ -115,7 +115,7 @@ export function productPartLabel(product, categories = []) {
   const mapped = CATEGORY_SEARCH_LABELS[product?.cat];
   if (mapped) return mapped;
   const category = Array.isArray(categories) ? categories.find(item => item.id === product?.cat) : null;
-  return cleanText(category?.name || product?.cat || "Agir Vasita Fren Aksami");
+  return cleanText(category?.name || product?.cat || "Ağır Vasıta Fren Aksamı");
 }
 
 export function productVehicleSignals(product, max = 3) {
@@ -178,7 +178,7 @@ function nameHasPart(name, part) {
 export function productSearchName(product, categories = [], max = 128) {
   const priorityName = prioritySeoProductName(product, max);
   if (priorityName) return compactText(priorityName, max);
-  const original = cleanText(product?.name || "Agir Vasita Fren Parcasi");
+  const original = cleanText(product?.name || "Ağır Vasıta Fren Parçası");
   const part = productPartLabel(product, categories);
   const base = nameHasPart(original, part) ? original : `${part} ${original}`;
   const code = firstUsefulCode(product?.oem) || firstUsefulCode(product?.sku);
@@ -189,9 +189,18 @@ export function productSearchName(product, categories = [], max = 128) {
 }
 
 export function productSearchTitle(product, categories = [], max = 74) {
-  const name = productSearchName(product, categories, 116);
-  const suffix = " | Fiyat Stok | Frenciniz";
-  return `${compactText(name, Math.max(28, max - suffix.length))}${suffix}`;
+  const part = productPartLabel(product, categories);
+  const vehicles = productVehicleSignals(product, 2).join(" ");
+  const primaryCode = productPrimaryCode(product);
+  const sku = cleanText(product?.sku).slice(0, 24) || cleanText(product?.id);
+  const usefulCode = /\d/.test(primaryCode) ? primaryCode : sku;
+  const base = uniqueParts([
+    usefulCode,
+    vehicles,
+    part,
+  ]).join(" ");
+  const suffix = ` | ${sku} Fiyat | Frenciniz`;
+  return `${compactText(base || productSearchName(product, categories, 116), Math.max(24, max - suffix.length))}${suffix}`;
 }
 
 export function productSearchDescription(product, categories = [], max = 165) {
@@ -203,11 +212,11 @@ export function productSearchDescription(product, categories = [], max = 165) {
     .filter(phrase => normalizeSearchText(phrase) !== normalizeSearchText(name))
     .join("; ");
   const pieces = [
-    `${name} fiyat, stok ve uyumluluk teyidi.`,
-    vehicles ? `Uygunluk adaylari: ${vehicles}.` : "",
+    `${name} fiyatı, stok ve uyumluluk teyidi.`,
+    vehicles ? `Uyumluluk adayları: ${vehicles}.` : "",
     code ? `OEM/SKU: ${code}.` : "",
-    searchPhrases ? `Arama ifadeleri: ${searchPhrases}.` : "",
-    stock > 0 ? "Stokta urun, hizli kargo ve WhatsApp teklif." : "Stok ve fiyat icin WhatsApp teklif alin.",
+    searchPhrases ? `İlgili aramalar: ${searchPhrases}.` : "",
+    stock > 0 ? "Stokta ürün, hızlı kargo ve WhatsApp teklif." : "Stok ve fiyat için WhatsApp teklif alın.",
   ];
   return compactText(pieces.filter(Boolean).join(" "), max);
 }

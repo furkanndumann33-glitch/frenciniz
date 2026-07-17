@@ -1,7 +1,7 @@
 // Dinamik sitemap.xml — KV'den ürünler, fallback static JSON
 import fs from "fs";
 import path from "path";
-import { LANDING_PAGES, getLandingBySlug } from "./_lib/seo-landing.js";
+import { LANDING_PAGES, buildLandingSeoIndex, getLandingBySlug } from "./_lib/seo-landing.js";
 import { renderLanding, renderLandingIndex } from "./_lib/landing-render.js";
 import { matchOemDemandGroup } from "../shared/oem-demand-priority.js";
 import {
@@ -52,6 +52,20 @@ function merchantSafeProductText(value) {
   return String(value || "")
     .replace(/Kaliper\s+D(?:\u00fc|u)rb(?:\u00fc|u)n\s+Tak(?:\u0131|i)m(?:\u0131|i)/gi, "Kaliper Kilavuz Pim Takimi")
     .replace(/D(?:\u00fc|u)rb(?:\u00fc|u)n\s+Tak(?:\u0131|i)m(?:\u0131|i)/gi, "Kilavuz Pim Takimi");
+}
+
+function schemaSku(product) {
+  return String(product?.sku || product?.id || product?.oem || "frenciniz-urun")
+    .normalize("NFKD")
+    .replace(/[^\x00-\x7F]/g, "")
+    .replace(/[^A-Za-z0-9._-]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 50);
+}
+
+function schemaMpn(product) {
+  const raw = String(product?.oem || product?.sku || product?.id || "").replace(/\s+/g, " ").trim();
+  return (raw.split(/[;,|/]+/).map(value => value.trim()).find(Boolean) || raw).slice(0, 70);
 }
 
 function isRealProductImage(value) {
@@ -249,8 +263,8 @@ function productJsonLd(product, canonical, image, categories = []) {
     name: product.name,
     image: [image],
     description: compactText(product.desc || `${product.name} ağır vasıta fren aksamı ürünüdür.`, 500),
-    sku: product.sku || String(product.id),
-    mpn: product.oem || product.sku || String(product.id),
+    sku: schemaSku(product),
+    mpn: schemaMpn(product),
     brand: { "@type": "Brand", name: product.brand || "Ekersan" },
     category: categoryNameForProduct(product, categories),
     offers: {
@@ -311,8 +325,8 @@ function productJsonLdSeo(product, canonical, image, categories = [], relatedPro
     name: seoName || product.name,
     image: [image],
     description: buildSeoProductDescription(product, categories, 500),
-    sku: product.sku || String(product.id),
-    mpn: product.oem || product.sku || String(product.id),
+    sku: schemaSku(product),
+    mpn: schemaMpn(product),
     productID: String(product.id || ""),
     url: canonical,
     brand: { "@type": "Brand", name: product.brand || "Ekersan" },
@@ -325,25 +339,12 @@ function productJsonLdSeo(product, canonical, image, categories = [], relatedPro
       product.cat ? { "@type": "PropertyValue", name: "Kategori", value: categoryNameForProduct(product, categories) } : null,
       { "@type": "PropertyValue", name: "Stok Durumu", value: stock > 0 ? `Stokta ${Math.floor(stock)} adet` : "Stok teyidi gerekli" },
     ].filter(Boolean),
-    isSimilarTo: relatedProducts.slice(0, 6).map(item => ({
-      "@type": "Product",
-      name: productSearchName(item, categories, 120) || item.name,
-      url: productSeoUrl(SITE, item),
-      sku: item.sku || String(item.id || ""),
-      mpn: item.oem || item.sku || String(item.id || ""),
-    })),
-    aggregateRating: Number(product.rating || 0) > 0 ? {
-      "@type": "AggregateRating",
-      ratingValue: Number(product.rating || 4.7).toFixed(1),
-      reviewCount: Math.max(1, Number(product.reviews || 1)),
-      bestRating: "5",
-      worstRating: "1",
-    } : undefined,
     offers: {
       "@type": "Offer",
       url: canonical,
       priceCurrency: "TRY",
       price: price > 0 ? price.toFixed(2) : undefined,
+      validFrom: new Date().toISOString().slice(0, 10),
       priceValidUntil: new Date(Date.now() + 180 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10),
       availability: Number(product.stock || 0) > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
       itemCondition: "https://schema.org/NewCondition",
@@ -1064,16 +1065,23 @@ export default async function handler(req, res) {
 
     if (type === "landing") {
       const slug = String(req.query?.slug || parsedUrl.searchParams.get("slug") || "").replace(/^\/+|\/+$/g, "");
+      const landingSeoIndex = buildLandingSeoIndex(products);
+      const selectedSlugs = new Set(
+        [...landingSeoIndex.entries()]
+          .filter(([, state]) => state.indexable)
+          .map(([selectedSlug]) => selectedSlug)
+      );
+      const selectedPages = LANDING_PAGES.filter(page => selectedSlugs.has(page.slug));
 
       if (!slug) {
         res.setHeader("Content-Type", "text/html; charset=utf-8");
-        return res.status(200).send(renderLandingIndex());
+        return res.status(200).send(renderLandingIndex(selectedPages));
       }
 
       const page = getLandingBySlug(slug);
       if (!page) return res.status(404).send("Landing page not found");
 
-      const html = renderLanding(page, products, categories);
+      const html = renderLanding(page, products, categories, landingSeoIndex.get(page.slug), selectedSlugs);
       res.setHeader("Content-Type", "text/html; charset=utf-8");
       res.setHeader("Cache-Control", "public, max-age=600, s-maxage=86400, stale-while-revalidate=604800");
       return res.status(200).send(html);
@@ -1119,38 +1127,25 @@ export default async function handler(req, res) {
       return res.status(200).send(xml);
     }
 
-    const today = new Date().toISOString().slice(0, 10);
-
     const urls = [];
 
     // Statik sayfalar
     for (const p of STATIC_PAGES) {
-      urls.push(`<url><loc>${SITE}${p.loc}</loc><lastmod>${today}</lastmod><changefreq>${p.changefreq}</changefreq><priority>${p.priority}</priority></url>`);
+      urls.push(`<url><loc>${SITE}${p.loc}</loc></url>`);
     }
 
-    // Satış niyetli SEO landing sayfaları (araç + parça + OEM aramaları)
+    // Yalnızca gerçek ürün eşleşmesi olan ve benzer sayfalar arasından
+    // kanonik seçilen satış niyetli landing sayfaları sitemap'e girer.
+    const landingSeoIndex = buildLandingSeoIndex(products);
     for (const page of LANDING_PAGES) {
-      urls.push(`<url><loc>${SITE}/${xmlEscape(page.slug)}</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>${page.priority || "0.8"}</priority></url>`);
+      if (!landingSeoIndex.get(page.slug)?.indexable) continue;
+      urls.push(`<url><loc>${SITE}/${xmlEscape(page.slug)}</loc></url>`);
     }
 
     // Kategoriler (hem alt-kategori hem grup ana sayfası — grup sayfaları da listeleme yapıyor)
     for (const c of categories) {
       if (!c.id || c.id === "all") continue;
-      const priority = c.isGroup ? "0.85" : "0.8";
-      urls.push(`<url><loc>${SITE}/${xmlEscape(c.id)}</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>${priority}</priority></url>`);
-    }
-
-    // Marka filtreli sayfalar (en çok görülen 10 marka)
-    const brandCounts = {};
-    for (const p of products) { if (p.brand) brandCounts[p.brand] = (brandCounts[p.brand] || 0) + 1; }
-    const topBrands = Object.entries(brandCounts).sort((a, b) => b[1] - a[1]).slice(0, 10).map(([b]) => b);
-    for (const b of topBrands) {
-      urls.push(`<url><loc>${SITE}/?brand=${encodeURIComponent(b)}</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>`);
-    }
-
-    // Araç tipi filtreli sayfalar
-    for (const v of ["kamyon", "tir", "otobus", "dorse"]) {
-      urls.push(`<url><loc>${SITE}/?veh=${v}</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>`);
+      urls.push(`<url><loc>${SITE}/${xmlEscape(c.id)}</loc></url>`);
     }
 
     // Ürünler
@@ -1163,14 +1158,9 @@ export default async function handler(req, res) {
       if (hasImg) {
         imgUrl = absoluteUrl(rawImg);
       }
-      const priority = productSitemapPriority(p);
-      const changefreq = productSitemapChangefreq(p);
       urls.push(
         `<url>` +
         `<loc>${xmlEscape(productSeoUrl(SITE, p))}</loc>` +
-        `<lastmod>${today}</lastmod>` +
-        `<changefreq>${changefreq}</changefreq>` +
-        `<priority>${priority}</priority>` +
         (imgUrl ? `<image:image><image:loc>${xmlEscape(imgUrl)}</image:loc><image:title>${xmlEscape(productSearchName(p, categories, 140) || p.name)}</image:title></image:image>` : "") +
         `</url>`
       );
