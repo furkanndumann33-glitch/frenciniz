@@ -35,7 +35,16 @@ function cleanLeadType(value) {
 
 function cleanProductAction(value) {
   const action = String(value || "").toLowerCase().replace(/[^a-z0-9_-]/g, "").slice(0, 24);
-  return ["add_to_cart", "favorite"].includes(action) ? action : "product_action";
+  return [
+    "view_product",
+    "add_to_cart",
+    "favorite",
+    "view_cart",
+    "begin_checkout",
+    "checkout_contact",
+    "payment_redirect",
+    "payment_error",
+  ].includes(action) ? action : "product_action";
 }
 
 export default async function handler(req, res) {
@@ -320,18 +329,20 @@ export default async function handler(req, res) {
         const city = decodeURIComponent(String(req.headers["x-vercel-ip-city"] || "")).replace(/\+/g, " ");
         const country = String(req.headers["x-vercel-ip-country"] || "");
 
-        await Promise.all([
-          kv.incr(`product_action:${type}:${day}`),
-          kv.incr(`product_action:${type}:product:${day}:${productKey}`),
-          kv.sadd(`product_action:${type}:products:${day}`, productKey),
-          kv.set(`product_action:product_meta:${productKey}`, JSON.stringify({ productId, sku, name, category })),
-        ]);
-        await Promise.all([
-          kv.expire(`product_action:${type}:${day}`, 60 * 60 * 24 * 120),
-          kv.expire(`product_action:${type}:product:${day}:${productKey}`, 60 * 60 * 24 * 120),
-          kv.expire(`product_action:${type}:products:${day}`, 60 * 60 * 24 * 120),
-          kv.expire(`product_action:product_meta:${productKey}`, 60 * 60 * 24 * 180),
-        ]);
+        await kv.incr(`product_action:${type}:${day}`);
+        await kv.expire(`product_action:${type}:${day}`, 60 * 60 * 24 * 120);
+        if (productId || sku) {
+          await Promise.all([
+            kv.incr(`product_action:${type}:product:${day}:${productKey}`),
+            kv.sadd(`product_action:${type}:products:${day}`, productKey),
+            kv.set(`product_action:product_meta:${productKey}`, JSON.stringify({ productId, sku, name, category })),
+          ]);
+          await Promise.all([
+            kv.expire(`product_action:${type}:product:${day}:${productKey}`, 60 * 60 * 24 * 120),
+            kv.expire(`product_action:${type}:products:${day}`, 60 * 60 * 24 * 120),
+            kv.expire(`product_action:product_meta:${productKey}`, 60 * 60 * 24 * 180),
+          ]);
+        }
 
         const logEntry = {
           type, path: pathClean, productId, sku, name, category,

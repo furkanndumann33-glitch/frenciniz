@@ -139,11 +139,20 @@ export default async function handler(req, res) {
         unique: dailyUnique[d],
       }));
 
-      const productActionTypes = ["add_to_cart", "favorite"];
+      const productActionTypes = [
+        "view_product",
+        "add_to_cart",
+        "favorite",
+        "view_cart",
+        "begin_checkout",
+        "checkout_contact",
+        "payment_redirect",
+        "payment_error",
+      ];
       const productActions = {
-        totals: { add_to_cart: 0, favorite: 0 },
-        today: { add_to_cart: 0, favorite: 0 },
-        last7: { add_to_cart: 0, favorite: 0 },
+        totals: Object.fromEntries(productActionTypes.map(type => [type, 0])),
+        today: Object.fromEntries(productActionTypes.map(type => [type, 0])),
+        last7: Object.fromEntries(productActionTypes.map(type => [type, 0])),
         recent: [],
         topProducts: { add_to_cart: [], favorite: [] },
       };
@@ -155,6 +164,7 @@ export default async function handler(req, res) {
           if (day === todayKey) productActions.today[type] += count;
           if (last7.includes(day)) productActions.last7[type] += count;
         }
+        if (!["add_to_cart", "favorite"].includes(type)) continue;
         const productCounts = {};
         for (const day of last7) {
           const ids = (await kv.smembers(`product_action:${type}:products:${day}`)) || [];

@@ -688,15 +688,60 @@ function recordProductAction(type = "add_to_cart", product = {}, data = {}) {
   } catch {}
 }
 
-const HOME_PRIORITY_PRODUCT_IDS = ["86", "281", "452", "212", "718", "174", "731", "767", "322"];
+function recordFunnelEvent(type, data = {}) {
+  if (typeof window === "undefined") return;
+  const key = String(data.dedupeKey || data.productId || data.sku || data.cartKey || "session")
+    .replace(/[^a-zA-Z0-9._-]/g, "_")
+    .slice(0, 120);
+  const storageKey = `frenciniz:funnel:${type}:${key}`;
+  try {
+    if (sessionStorage.getItem(storageKey)) return;
+    sessionStorage.setItem(storageKey, new Date().toISOString());
+  } catch {}
+
+  const payload = {
+    type,
+    path: window.location.pathname || "/",
+    productId: data.productId || "",
+    sku: data.sku || "",
+    name: data.name || "",
+    category: data.category || "",
+    qty: Math.max(1, Number(data.qty || data.items || 1) || 1),
+    value: Number(data.value || 0) || 0,
+  };
+  try {
+    const body = JSON.stringify(payload);
+    if (navigator.sendBeacon) {
+      const blob = new Blob([body], { type: "application/json" });
+      if (navigator.sendBeacon("/api/auth/product-action", blob)) return;
+    }
+    fetch("/api/auth/product-action", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body,
+      keepalive: true,
+    }).catch(() => {});
+  } catch {}
+}
+
+// Keep the home catalogue aligned with the product pages that are actually
+// receiving organic traffic. This turns a landing-page visit into another
+// relevant internal click instead of sending every visitor back to a generic
+// category grid.
+const HOME_PRIORITY_PRODUCT_IDS = ["142", "422", "813", "174", "915", "132", "205", "183", "783"];
 
 const HOME_INTENT_LINKS = [
+  { href: "/yay", title: "Ağır Vasıta Fren Yayları", desc: "Dorse, treyler ve kamyon fren yayı seçenekleri; ölçü ve stok teyidi" },
+  { href: "/fren-balatasi", title: "Ağır Vasıta Fren Balatası", desc: "Ford Cargo, Mercedes, SAF, BPW ve dorse fren balataları" },
+  { href: "/urun/142/fren-kampanasi-kampana-522-profesyonel-f-r-oem-57rs302616ub-esk-030-13-ekersan", title: "57RS302616UB BMC Fren Kampanası", desc: "ESK 030 13 BMC fren kampanası; OEM, ölçü ve stok teyidi" },
+  { href: "/urun/422/suspansiyon-korugu-ft-34810-k04f-sku-ft-34810-k04f-ekersan", title: "FT 34810-K04F Süspansiyon Körüğü", desc: "Ford Cargo, Krone ve Kögel dorse süspansiyon körüğü" },
+  { href: "/urun/813/ford-cargo-krone-dorse-kogel-dorse-porya-kapagi-eyd-700-03-ekersan", title: "EYD 700 03 Porya Kapağı", desc: "Ford Cargo ve dorse porya kapağı; stok ve uyumluluk teyidi" },
+  { href: "/urun/915/komple-koruk-metal-piston-424159-c06-424159-c06-ekersan", title: "424159.C06 Süspansiyon Körüğü", desc: "Komple metal pistonlu körük; araç ve ölçü teyidi" },
   { href: "/urun/86/esc-80422-mercedes-arocs-fren-circiri-sol-ekersan", title: "ESC 80422 Arocs Fren Circiri", desc: "Mercedes Arocs sol fren circiri, stoklu fiyat ve uyumluluk teyidi" },
   { href: "/urun/281/3010097aa-ford-cargo-otokar-sultan-doruk-krone-dorse-fren-diski-abs-li-arka-ekersan", title: "3010097AA ESD 090 09 Fren Diski", desc: "Ford Cargo, Otokar Sultan/Doruk ve Krone dorse ABS'li arka disk" },
   { href: "/urun/452/ford-cargo-krone-dorse-kogel-dorse-suspansiyon-korugu-ft-344183-ekersan", title: "FT 344183 Suspansiyon Korugu", desc: "Ford Cargo, Krone ve Kogel dorse suspansiyon korugu" },
   { href: "/urun/212/2992636-ford-cargo-fren-diski-abs-li-arka-esd-030-17-ekersan", title: "2992636 ESD 030 17 Fren Diski", desc: "Ford Cargo ABS'li arka fren diski, stoklu urun teyidi" },
   { href: "/urun/718/29328-ford-cargo-krone-dorse-kogel-dorse-disk-fren-balatasi-ekersan", title: "29328 PWR-5027 Dorse Balata", desc: "Ford Cargo, Krone ve Kogel dorse disk fren balatasi" },
-  { href: "/urun/174/ford-cargo-krone-dorse-kogel-dorse-fren-diski-esd-110-01-2-ekersan", title: "ESD 110 01-2 Dorse Fren Diski", desc: "Ford Cargo, Krone ve Kogel dorse fren diski" },
   { href: "/urun/731/29159-29126-saf-dorse-disk-fren-balatasi-pwr-5009-ekersan", title: "29159 29126 SAF Dorse Balata", desc: "SAF dorse PWR-5009 disk fren balatasi" },
   { href: "/urun/767/9433340945-mercedes-axor-porya-on-esp-01-39-01-ekersan", title: "9433340945 Axor On Porya", desc: "Mercedes Axor on porya ESP.01.39.01 stok ve fiyat" },
   { href: "/urun/322/fc461118ca-ford-cargo-bijon-dps-esb-422-10-ekersan", title: "FC461118CA Ford Cargo Bijon", desc: "Ford Cargo DPS ESB 422 10 bijon, adetli stok" },
@@ -3679,7 +3724,18 @@ function ProductDetailPage() {
   const [alertEmail, setAlertEmail] = useState("");
   const [alertSent, setAlertSent] = useState(false);
 
-  useEffect(() => { if(p) addViewed(p.id); }, [p?.id]);
+  useEffect(() => {
+    if (!p) return;
+    addViewed(p.id);
+    recordFunnelEvent("view_product", {
+      productId: p.id,
+      sku: p.sku,
+      name: p.name,
+      category: p.cat,
+      value: p.price || 0,
+      dedupeKey: p.id,
+    });
+  }, [p?.id]);
 
   // Products henüz yükleniyor — direct link gelince "bulunamadı" göstermek yerine bekle
   if(!dataLoaded && !p) return <div style={{padding:"60px 20px",textAlign:"center",color:"#999"}}>Yükleniyor...</div>;
@@ -3720,10 +3776,16 @@ function ProductDetailPage() {
         <div>
           <div style={{fontSize:13,color:"#ff6000",fontWeight:600,marginBottom:6}}>{p.brand}</div>
           <h1 style={{fontSize:24,fontWeight:700,marginBottom:8}}>{lang==="en" ? translateName(p.name,lang) : seoDisplayName}</h1>
-          <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
-            <span style={{color:"#f5a623"}}>★ {p.rating || 4.5}</span>
-            <span style={{color:"#999",fontSize:13}}>{p.reviews || 0} değerlendirme</span>
-          </div>
+          {Number(p.rating || 0) > 0 && Number(p.reviews || 0) > 0 ? (
+            <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
+              <span style={{color:"#f5a623"}}>★ {p.rating}</span>
+              <span style={{color:"#999",fontSize:13}}>{p.reviews} değerlendirme</span>
+            </div>
+          ) : (
+            <div style={{display:"inline-flex",alignItems:"center",gap:7,marginBottom:8,padding:"6px 9px",borderRadius:6,background:"#ecfdf5",border:"1px solid #bbf7d0",color:"#166534",fontSize:12,fontWeight:900}}>
+              OEM / şase ile sipariş öncesi uyumluluk teyidi
+            </div>
+          )}
           <div style={{fontSize:13,color:"#999",marginBottom:16}}>SKU: {p.sku} | OEM: {p.oem}</div>
           <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1.15fr .85fr",gap:10,marginBottom:16}}>
             <div style={{padding:"14px 15px",background:"#fff",border:"1px solid #e5e7eb",borderRadius:8,boxShadow:"0 10px 24px rgba(15,23,42,.05)"}}>
@@ -3899,6 +3961,16 @@ function CartPage() {
   const remaining = Math.max(3000 - cartTotal, 0);
   const [couponLoading, setCouponLoading] = useState(false);
   const whatsappCartHref = cartWhatsAppUrl(cart, cartTotal, ship, discount);
+  const cartFunnelKey = cart.map(item => `${item.id}:${item.qty}`).sort().join("|") || "empty";
+
+  useEffect(() => {
+    if (!cart.length) return;
+    recordFunnelEvent("view_cart", {
+      items: cart.reduce((sum, item) => sum + Number(item.qty || 1), 0),
+      value: cartTotal + ship - discount,
+      dedupeKey: cartFunnelKey,
+    });
+  }, [cartFunnelKey]);
 
   const applyCoupon = async () => {
     const code = coupon.trim().toUpperCase();
@@ -4029,7 +4101,17 @@ function CheckoutPage() {
   const [card, setCard] = useState({number:"", holder:"", exp:"", cvv:"", installment:1});
   const ship = cartTotal >= 3000 ? 0 : 150;
   const grandTotal = Math.max(0, cartTotal - discount + ship);
+  const checkoutFunnelKey = cart.map(item => `${item.id}:${item.qty}`).sort().join("|") || "empty";
   const IS = {width:"100%",padding:"10px 14px",border:"1px solid #ddd",borderRadius:6,fontSize:14};
+
+  useEffect(() => {
+    if (!cart.length) return;
+    recordFunnelEvent("begin_checkout", {
+      items: cart.reduce((sum, item) => sum + Number(item.qty || 1), 0),
+      value: grandTotal,
+      dedupeKey: checkoutFunnelKey,
+    });
+  }, [checkoutFunnelKey]);
 
   // Varsayılan değerler: user profili + ilk kayıtlı adres
   const defAddr = addresses && addresses[0];
@@ -4042,6 +4124,7 @@ function CheckoutPage() {
     email: user?.email || "",
     phone: user?.phone || defAddr?.phone || "",
     address: defAddr ? `${defAddr.address||""}${defAddr.city?` — ${defAddr.city}`:""}` : "",
+    city: defAddr?.city || "",
   });
   const [nameInput, setNameInput] = useState(`${defFirst} ${defLast}`.trim());
   // Seçilen adres değişirse form'u güncelle
@@ -4056,6 +4139,7 @@ function CheckoutPage() {
         last: sp.slice(1).join(" ") || f.last,
         phone: addr.phone || f.phone,
         address: `${addr.address||""}${addr.city?` — ${addr.city}`:""}`,
+        city: addr.city || f.city,
       }));
       setNameInput((addr.name || user?.name || "").trim());
     }
@@ -4071,12 +4155,20 @@ function CheckoutPage() {
   };
   const continueToPayment = () => {
     setPayError("");
-    if (!ship_form.first || !ship_form.phone || !ship_form.address) {
-      return setPayError("Ad soyad, telefon ve adresi tamamlayın.");
+    if (!ship_form.first || !ship_form.last || !ship_form.phone || !ship_form.address || !ship_form.city) {
+      return setPayError("Ad soyad, telefon, şehir ve adresi tamamlayın.");
     }
-    if (!ship_form.email) {
-      return setPayError("PayTR ödeme bağlantısı için e-posta gerekiyor.");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(ship_form.email || "")) {
+      return setPayError("PayTR ödeme bağlantısı için geçerli bir e-posta gerekiyor.");
     }
+    if (String(ship_form.phone || "").replace(/\D/g, "").length < 10) {
+      return setPayError("Geçerli bir cep telefonu numarası yazın.");
+    }
+    recordFunnelEvent("checkout_contact", {
+      items: cart.reduce((sum, item) => sum + Number(item.qty || 1), 0),
+      value: grandTotal,
+      dedupeKey: checkoutFunnelKey,
+    });
     setStep(2);
     try { window.scrollTo({top:0, behavior:"smooth"}); } catch {}
   };
@@ -4117,7 +4209,10 @@ function CheckoutPage() {
             <div><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>Telefon</label><input value={ship_form.phone} onChange={e=>setShipForm(f=>({...f,phone:e.target.value}))} placeholder="05xx xxx xx xx" style={IS}/></div>
             <div><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>E-posta</label><input type="email" value={ship_form.email} onChange={e=>setShipForm(f=>({...f,email:e.target.value}))} placeholder="ornek@email.com" style={IS}/></div>
           </div>
-          <div style={{marginTop:14}}><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>Adres</label><textarea rows={3} value={ship_form.address} onChange={e=>setShipForm(f=>({...f,address:e.target.value}))} placeholder="Teslimat adresi" style={{...IS,resize:"vertical"}}/></div>
+          <div style={{marginTop:14,display:"grid",gridTemplateColumns:isMobile?"1fr":"180px 1fr",gap:12}}>
+            <div><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>Şehir</label><input value={ship_form.city} onChange={e=>setShipForm(f=>({...f,city:e.target.value}))} placeholder="Isparta" autoComplete="address-level1" style={IS}/></div>
+            <div><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>Adres</label><textarea rows={3} value={ship_form.address} onChange={e=>setShipForm(f=>({...f,address:e.target.value}))} placeholder="Teslimat adresi" autoComplete="street-address" style={{...IS,resize:"vertical"}}/></div>
+          </div>
           {payError && <div style={{marginTop:12,padding:"10px 14px",background:"#fee2e2",borderRadius:6,border:"1px solid #fecaca",fontSize:13,color:"#991b1b"}}>⚠ {payError}</div>}
           <button onClick={continueToPayment} style={{width:isMobile?"100%":"auto",padding:"13px 30px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:15,fontWeight:950,cursor:"pointer",marginTop:18,boxShadow:"0 10px 24px rgba(255,96,0,.18)"}}>Ödemeye Geç →</button>
         </>}
@@ -4162,7 +4257,7 @@ function CheckoutPage() {
                   installmentCount: card.installment,
                   billingAddress: {
                     address: ship_form.address,
-                    city: "İstanbul",
+                    city: ship_form.city,
                     country: "Türkiye",
                     zipCode: "00000",
                     district: "-",
@@ -4176,7 +4271,7 @@ function CheckoutPage() {
                     surName: ship_form.last,
                     emailAddress: ship_form.email,
                     phoneNumber: ship_form.phone,
-                    city: "İstanbul",
+                    city: ship_form.city,
                     country: "Türkiye",
                     zipCode: "00000",
                     registrationAddress: ship_form.address,
@@ -4206,8 +4301,18 @@ function CheckoutPage() {
                 const data = await r.json();
                 if (!r.ok || !data.success) throw new Error(data.error || "Ödeme başlatılamadı");
                 if (!data.iframeUrl) throw new Error("PayTR yönlendirme URL'i boş");
+                recordFunnelEvent("payment_redirect", {
+                  items: cart.reduce((sum, item) => sum + Number(item.qty || 1), 0),
+                  value: grandTotal,
+                  dedupeKey: checkoutFunnelKey,
+                });
                 window.location.href = data.iframeUrl;
               } catch (e) {
+                recordFunnelEvent("payment_error", {
+                  items: cart.reduce((sum, item) => sum + Number(item.qty || 1), 0),
+                  value: grandTotal,
+                  dedupeKey: `${checkoutFunnelKey}:${String(e?.message || "error").slice(0, 32)}`,
+                });
                 setPayError(e.message || "Ödeme sırasında hata oluştu");
                 setPayLoading(false);
               }
@@ -6870,6 +6975,15 @@ function ATraffic(){
   const favoriteAddsToday = productActions.today?.favorite || 0;
   const cartAdds7 = productActions.last7?.add_to_cart || 0;
   const favoriteAdds7 = productActions.last7?.favorite || 0;
+  const funnelCounts = {
+    viewed: productActions.totals?.view_product || 0,
+    cart: productActions.totals?.add_to_cart || 0,
+    checkout: productActions.totals?.begin_checkout || 0,
+    contact: productActions.totals?.checkout_contact || 0,
+    redirect: productActions.totals?.payment_redirect || 0,
+    errors: productActions.totals?.payment_error || 0,
+  };
+  const funnelRate = (value, base) => base > 0 ? `%${((value / base) * 100).toFixed(1)}` : "-";
 
   return <div style={{display:"flex",flexDirection:"column",gap:16}}>
     {/* Stats cards */}
@@ -6895,6 +7009,26 @@ function ATraffic(){
         </div>
       ))}
     </div>
+
+    <ACard title="Satış Hunisi (son 30 gün)">
+      <div style={{fontSize:12,color:"#64748b",lineHeight:1.5,marginBottom:12}}>Aynı oturumdaki tekrarlar süzülür. Böylece ziyaretçinin ürün, sepet ve ödeme adımlarından hangisinde düştüğü görünür.</div>
+      <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(145px,1fr))",gap:10}}>
+        {[
+          {label:"Ürün görüntüleme",value:funnelCounts.viewed,rate:"Başlangıç",color:"#2563eb"},
+          {label:"Sepete ekleme",value:funnelCounts.cart,rate:funnelRate(funnelCounts.cart,funnelCounts.viewed),color:"#ff6000"},
+          {label:"Ödeme başlangıcı",value:funnelCounts.checkout,rate:funnelRate(funnelCounts.checkout,funnelCounts.cart),color:"#7c3aed"},
+          {label:"Teslimat tamamlandı",value:funnelCounts.contact,rate:funnelRate(funnelCounts.contact,funnelCounts.checkout),color:"#0f766e"},
+          {label:"PayTR yönlendirme",value:funnelCounts.redirect,rate:funnelRate(funnelCounts.redirect,funnelCounts.contact),color:"#15803d"},
+          {label:"Ödeme hatası",value:funnelCounts.errors,rate:funnelRate(funnelCounts.errors,funnelCounts.checkout),color:"#dc2626"},
+        ].map(stage => (
+          <div key={stage.label} style={{padding:13,border:"1px solid #e5e7eb",borderRadius:8,background:"#fff"}}>
+            <div style={{fontSize:11,color:"#64748b",marginBottom:5}}>{stage.label}</div>
+            <div style={{fontSize:22,fontWeight:950,color:stage.color}}>{Number(stage.value).toLocaleString("tr-TR")}</div>
+            <div style={{fontSize:11,fontWeight:900,color:"#475569",marginTop:4}}>{stage.rate}</div>
+          </div>
+        ))}
+      </div>
+    </ACard>
 
     {/* Daily chart */}
     <ACard title="Son 30 Gün — Günlük Trafik">
