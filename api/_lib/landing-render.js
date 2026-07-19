@@ -9,7 +9,12 @@ import {
   landingSearchPhrases,
   landingWhatsappUrl,
 } from "./seo-landing.js";
-import { productSearchName, productSeoUrl } from "../../shared/product-seo.js";
+import {
+  productPrimaryCode,
+  productSearchName,
+  productSeoUrl,
+  productVehicleSignals,
+} from "../../shared/product-seo.js";
 import { buildOrganizationJsonLd } from "../../shared/structured-data.js";
 
 function productUrl(product) {
@@ -18,6 +23,19 @@ function productUrl(product) {
 
 function money(value) {
   return `₺${Number(value || 0).toLocaleString("tr-TR", { maximumFractionDigits: 0 })}`;
+}
+
+function uniqueValues(values, limit = 12) {
+  const seen = new Set();
+  const result = [];
+  for (const value of values.map(item => String(item || "").replace(/\s+/g, " ").trim()).filter(Boolean)) {
+    const key = value.toLocaleLowerCase("tr-TR");
+    if (seen.has(key)) continue;
+    seen.add(key);
+    result.push(value);
+    if (result.length >= limit) break;
+  }
+  return result;
 }
 
 function landingCouponWhatsAppUrl(page) {
@@ -70,11 +88,14 @@ function renderProductCard(product, categories) {
 export function renderLanding(page, products, categories, seoState = null, selectedSlugs = null) {
   const matched = filterProductsForLanding(products, page, 24);
   const canonical = seoState?.canonical || `${SITE}/${page.slug}`;
-  const robots = seoState?.reason === "insufficient-exact-products"
-    ? "noindex, follow"
-    : "index, follow, max-image-preview:large, max-snippet:-1";
+  const robots = seoState?.indexable
+    ? "index, follow, max-image-preview:large, max-snippet:-1"
+    : "noindex, follow";
   const firstImage = matched[0] ? absoluteImage(matched[0]) : `${SITE}/img/site/frenciniz-logo-real-og.jpg`;
   const searchPhrases = landingSearchPhrases(page);
+  const inStockCount = matched.filter(product => Number(product.stock || 0) > 0).length;
+  const productCodes = uniqueValues(matched.map(productPrimaryCode), 10);
+  const vehicleSignals = uniqueValues(matched.flatMap(product => productVehicleSignals(product, 5)), 12);
   const relatedPages = getRelatedLandingPages(page, 14, selectedSlugs);
   const categoryLinks = [...new Set(page.cats || [])]
     .map(cat => `<a href="${SITE}/${cat}">${htmlEscape(categoryName(categories, cat))}</a>`)
@@ -83,9 +104,22 @@ export function renderLanding(page, products, categories, seoState = null, selec
   const relatedLinks = relatedPages
     .map(related => `<a href="${SITE}/${related.slug}">${htmlEscape(related.heading)}</a>`)
     .join("");
-  const phraseLinks = searchPhrases
-    .map(phrase => `<span>${htmlEscape(phrase)}</span>`)
-    .join("");
+  const landingFaqItems = [
+    {
+      question: `${page.heading} aracima uyar mi?`,
+      answer: `Bu sayfadaki ${matched.length} urun adayi arasinda kesin uyumluluk OEM/parca kodu, arac marka-modeli, sase no veya eski parca fotografi ile kontrol edilir.${vehicleSignals.length ? ` Katalogda gorunen arac/dingil adaylari: ${vehicleSignals.slice(0, 6).join(", ")}.` : ""}`,
+    },
+    {
+      question: `${page.heading} icin hangi OEM veya parca kodlari var?`,
+      answer: productCodes.length
+        ? `Bu sayfadaki urunlerde gorunen baslica kodlar: ${productCodes.join(", ")}. Siparisten once urun sayfasindaki kod ile eski parca kodunu karsilastirin.`
+        : "OEM veya parca kodu arac sase bilgisi ve eski parca fotografi ile Frenciniz tarafindan kontrol edilir.",
+    },
+    {
+      question: `${page.heading} stok durumu nedir?`,
+      answer: `${matched.length} eslesen urunun ${inStockCount} tanesi su anda stoklu gorunuyor. Stok, fiyat ve uyumluluk siparisten hemen once yeniden teyit edilir.`,
+    },
+  ];
   const itemList = matched.slice(0, 12).map((product, index) => ({
     "@type": "ListItem",
     position: index + 1,
@@ -107,24 +141,11 @@ export function renderLanding(page, products, categories, seoState = null, selec
     {
       "@context": "https://schema.org",
       "@type": "FAQPage",
-      mainEntity: [
-        {
-          "@type": "Question",
-          name: `${page.heading} aracıma uyar mı?`,
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Uyumluluk için ürün üzerindeki parça kodu, OEM numarası veya araç şase/model bilgisini WhatsApp hattımıza gönderebilirsiniz. Frenciniz ekibi stok ve uyumluluk teyidi yapar.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Aynı gün kargo var mı?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Stoklu ürünlerde mesai ve kargo teslim saatine göre aynı gün kargo yapılabilir. 3000 TL üzeri siparişlerde standart kargo ücretsizdir.",
-          },
-        },
-      ],
+      mainEntity: landingFaqItems.map(item => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: { "@type": "Answer", text: item.answer },
+      })),
     },
     {
       "@context": "https://schema.org",
@@ -449,8 +470,13 @@ export function renderLanding(page, products, categories, seoState = null, selec
         <h2>${htmlEscape(page.heading)} seçerken nelere bakılır?</h2>
         <p>${htmlEscape(page.primaryTerm)} için ${htmlEscape(page.part)} seçerken ürün kodu, OEM numarası, araç modeli, dingil tipi ve ölçü uyumluluğu beraber kontrol edilmelidir. Yanlış parça hem montaj süresini uzatır hem de aracın fren güvenliğini riske atar.</p>
         <p>Frenciniz, Dumanlar Ticaret çatısı altında ağır vasıta fren aksamında stoklu ürün, hızlı teyit ve Türkiye geneli kargo desteği sunar. Elinizdeki eski parçanın kodunu veya fotoğrafını WhatsApp hattımıza göndererek doğru ürünü hızlıca bulabilirsiniz.</p>
-        <h2 style="font-size:20px;margin-top:22px">Bu sayfanın cevap verdiği aramalar</h2>
-        <div class="phrase-grid">${phraseLinks}</div>
+        <h2 style="font-size:20px;margin-top:22px">Katalogdan OEM ve uyumluluk özeti</h2>
+        <p><strong>${matched.length} eşleşen ürün</strong> bulundu; bunların <strong>${inStockCount} tanesi stoklu</strong> görünüyor.</p>
+        ${productCodes.length ? `<p><strong>Başlıca OEM / parça kodları:</strong> ${htmlEscape(productCodes.join(", "))}</p>` : ""}
+        ${vehicleSignals.length ? `<p><strong>Araç / dingil uyumluluk adayları:</strong> ${htmlEscape(vehicleSignals.join(", "))}</p>` : ""}
+        <p class="muted">Bu bilgiler katalog eşleşmesidir; kesin sipariş için OEM kodu, şase veya eski parça fotoğrafı ile teyit gerekir.</p>
+        <h2 style="font-size:20px;margin-top:22px">Sık sorulan sorular</h2>
+        ${landingFaqItems.map(item => `<article style="margin-top:12px"><h3 style="font-size:16px;margin:0 0 5px">${htmlEscape(item.question)}</h3><p style="margin:0">${htmlEscape(item.answer)}</p></article>`).join("")}
         ${relatedLinks ? `<div class="related-panel"><h2>Yakın model ve parça sayfaları</h2><div class="links">${relatedLinks}</div></div>` : ""}
       </div>
       <aside class="panel">

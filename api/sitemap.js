@@ -231,16 +231,12 @@ function buildSeoProductDescription(product, categories = [], max = 5000) {
   const stock = Number(product?.stock || 0);
   const catalogDescription = merchantSafeProductText(product?.desc || "");
   const catalogHaystack = catalogDescription.toLowerCase();
-  const searchPhrases = productSeoSearchPhrases(product, categories, 8)
-    .filter(phrase => phrase && phrase !== productName)
-    .join("; ");
   const pieces = [
     catalogDescription || productSearchDescription(product, categories, 260),
     catalogDescription && catalogHaystack.includes(productName.toLowerCase()) ? "" : `${productName}, ${category} kategorisinde ${brand} marka agir vasita fren parcasi.`,
     sku && !catalogHaystack.includes(sku.toLowerCase()) ? `Stok kodu: ${sku}.` : "",
     oem && !catalogHaystack.includes(oem.toLowerCase()) ? `OEM / muadil kod: ${oem}.` : "",
     vehicles && !catalogHaystack.includes(vehicles.toLowerCase()) ? `Uyumluluk adaylari: ${vehicles}.` : "",
-    searchPhrases ? `Sik aranan parca ifadeleri: ${searchPhrases}.` : "",
     "Kamyon, tir, otobus ve dorse fren sistemleri icin OEM kodu, sase no veya eski parca fotografi ile uyumluluk teyidi yapilir.",
     stock > 0 ? `Stokta ${Math.floor(stock)} adet gorunuyor; fiyat ve kargo icin teklif alabilirsiniz.` : "Stok ve fiyat icin WhatsApp uzerinden teyit alabilirsiniz.",
     "Ayni gun kargo, 12 taksit ve 14 gun iade destegi vardir.",
@@ -419,6 +415,11 @@ function productBreadcrumbJsonLd(product, canonical, categories = []) {
 function relatedSeoProducts(product, products = [], limit = 12) {
   if (!product || !Array.isArray(products)) return [];
   const currentId = String(product.id || "");
+  const codeTokens = new Set(
+    [product.oem, product.sku]
+      .flatMap(value => cleanSeoText(value).toLowerCase().split(/[^a-z0-9]+/))
+      .filter(value => value.length >= 4 && /\d/.test(value))
+  );
   const productCompat = new Set([
     ...(Array.isArray(product.compat) ? product.compat : []),
     ...(Array.isArray(product.veh) ? product.veh : []),
@@ -437,6 +438,10 @@ function relatedSeoProducts(product, products = [], limit = 12) {
         ...(Array.isArray(item.veh) ? item.veh : []),
       ].map(value => cleanSeoText(value).toLowerCase()).filter(Boolean);
       if (compat.some(value => productCompat.has(value))) score += 4;
+      const itemCodeTokens = [item.oem, item.sku]
+        .flatMap(value => cleanSeoText(value).toLowerCase().split(/[^a-z0-9]+/))
+        .filter(value => value.length >= 4 && /\d/.test(value));
+      if (itemCodeTokens.some(value => codeTokens.has(value))) score += 12;
       return { item, score };
     })
     .filter(row => row.score > 0)
@@ -496,8 +501,6 @@ function productSeoFallbackHtml(product, categories = [], canonical = "", relate
   const price = Number(product?.price || 0);
   const stock = Number(product?.stock || 0);
   const image = absoluteUrl(productPrimaryImage(product, "/img/site/frenciniz-logo-real-og.jpg"));
-  const searchPhrases = productSeoSearchPhrases(product, categories, 10)
-    .filter(phrase => phrase && phrase !== seoName);
   const whatsappText = [
     "Merhaba Frenciniz, Google urun sayfasindan geldim; fiyat, stok ve uyumluluk teyidi istiyorum.",
     `Urun: ${seoName}`,
@@ -523,7 +526,6 @@ function productSeoFallbackHtml(product, categories = [], canonical = "", relate
     .map(item => `<li><a href="${xmlEscape(productSeoUrl(SITE, item))}">${xmlEscape(productSearchName(item, categories, 125) || item.name)}</a></li>`)
     .join("");
   const vehicleLinks = vehicles.map(value => `<li>${xmlEscape(value)}</li>`).join("");
-  const searchPhraseLinks = searchPhrases.map(value => `<li>${xmlEscape(value)}</li>`).join("");
   return `
     <main data-frenciniz-seo-product style="font-family:Arial,system-ui,sans-serif;line-height:1.55;color:#111827;background:#fff;max-width:1120px;margin:0 auto;padding:24px 16px">
       <nav aria-label="Breadcrumb" style="font-size:13px;margin-bottom:14px">
@@ -557,7 +559,10 @@ function productSeoFallbackHtml(product, categories = [], canonical = "", relate
           </div>
         </div>
       </article>
-      ${searchPhraseLinks ? `<section style="margin-top:22px"><h2 style="font-size:22px;margin:0 0 10px">Sik aranan parca ifadeleri</h2><ul style="columns:2;margin:0;padding-left:20px">${searchPhraseLinks}</ul></section>` : ""}
+      <section style="margin-top:22px">
+        <h2 style="font-size:22px;margin:0 0 10px">Dogru parcayi nasil teyit edersiniz?</h2>
+        <p style="color:#475569">Urun sayfasindaki SKU ve OEM kodunu eski parcanizdaki kodla karsilastirin. Arac marka-modeli, sase no ve eski parca fotografini birlikte iletmeniz yanlis parca riskini azaltir.</p>
+      </section>
       ${vehicleLinks ? `<section style="margin-top:22px"><h2 style="font-size:22px;margin:0 0 10px">Uyumluluk adaylari</h2><ul style="columns:2;margin:0;padding-left:20px">${vehicleLinks}</ul><p style="color:#475569">Kesin uyumluluk icin OEM/parca kodu, sase no veya eski parca fotografi ile teyit alin.</p></section>` : ""}
       ${relatedLinks ? `<section style="margin-top:22px"><h2 style="font-size:22px;margin:0 0 10px">Benzer ve muadil urunler</h2><ul style="columns:2;margin:0;padding-left:20px">${relatedLinks}</ul></section>` : ""}
     </main>`;
@@ -643,7 +648,10 @@ function renderSeoProductHtml(product, categories = [], products = []) {
   html = replaceOrInject(html, /<meta name="twitter:title" content="[^"]*"\s*\/?>/i, `<meta name="twitter:title" content="${xmlEscape(title)}" />`);
   html = replaceOrInject(html, /<meta name="twitter:description" content="[^"]*"\s*\/?>/i, `<meta name="twitter:description" content="${xmlEscape(description)}" />`);
   html = replaceOrInject(html, /<meta name="twitter:image" content="[^"]*"\s*\/?>/i, `<meta name="twitter:image" content="${xmlEscape(image)}" />`);
-  html = html.replace(/<div id="root"><\/div>/i, `<div id="root">${fallbackHtml}</div>`);
+  html = html.replace(
+    /<div id="root">[\s\S]*?<\/div>\s*<noscript>/i,
+    `<div id="root">${fallbackHtml}</div>\n<noscript>`
+  );
   return html.replace("</head>", `${jsonLd}\n${relatedItemList}\n</head>`);
 }
 
