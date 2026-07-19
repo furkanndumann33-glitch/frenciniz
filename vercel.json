@@ -41,6 +41,14 @@
       "destination": "/api/sitemap?type=catalog"
     },
     {
+      "source": "/filo-toplu-alim",
+      "destination": "/api/sitemap?type=fleet"
+    },
+    {
+      "source": "/frencoo-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=demand&slug=frencoo-kaliper-tamir-takimi"
+    },
+    {
       "source": "/mercedes-actros-fren-diski",
       "destination": "/api/sitemap?type=landing&slug=mercedes-actros-fren-diski"
     },

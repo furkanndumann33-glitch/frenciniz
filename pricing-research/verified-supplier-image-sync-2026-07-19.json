@@ -1,0 +1,624 @@
+{
+  "generatedAt": "2026-07-19T12:17:12.071Z",
+  "source": "authenticated stock-only supplier snapshot",
+  "containsPrices": false,
+  "updatedCount": 1,
+  "unavailableCount": 101,
+  "updated": [
+    {
+      "id": 7,
+      "sku": "ESD 220 03",
+      "publicPath": "/img/supplier/7-esd-220-03.png",
+      "sourceUrl": "https://s3-eu-west-1.amazonaws.com/dia-fs/ekersan/Resimler/15859978.png",
+      "bytes": 146782
+    }
+  ],
+  "unavailable": [
+    {
+      "id": 1,
+      "sku": "ESC 1760-1",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 2,
+      "sku": "ESB 1315 10",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 3,
+      "sku": "ESC 79458",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 4,
+      "sku": "ESC 79445",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 5,
+      "sku": "ESC 79444",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 252,
+      "sku": "ESB 112 20-1",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 282,
+      "sku": "ESD 030 25",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 364,
+      "sku": "ESB 2032 10",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 421,
+      "sku": "EYD 700 14-1",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 422,
+      "sku": "FT 34810-K04F",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 423,
+      "sku": "421128-1",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 424,
+      "sku": "EYD 92 30",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 425,
+      "sku": "EYD 70 67",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 427,
+      "sku": "EYD 700 06-1",
+      "supplierMatch": false,
+      "reason": "supplier_sku_not_found"
+    },
+    {
+      "id": 428,
+      "sku": "FT 34644",
+      "supplierMatch": false,
+      "reason": "supplier_sku_not_found"
+    },
+    {
+      "id": 429,
+      "sku": "FT 3498608-KP",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 430,
+      "sku": "FT 34720",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 431,
+      "sku": "EYD 92 28",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 432,
+      "sku": "EYD 70 04-3",
+      "supplierMatch": false,
+      "reason": "supplier_sku_not_found"
+    },
+    {
+      "id": 433,
+      "sku": "EF-4410329880",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 434,
+      "sku": "EF-4410329870",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 435,
+      "sku": "EYD 70 66",
+      "supplierMatch": false,
+      "reason": "supplier_sku_not_found"
+    },
+    {
+      "id": 436,
+      "sku": "8106-2",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 437,
+      "sku": "EYD 100 67-K",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 438,
+      "sku": "EYD 100 66-K",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 439,
+      "sku": "EYD 100 65-K",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 440,
+      "sku": "EYD 100 51-K",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 441,
+      "sku": "EYD 100 63-K",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 442,
+      "sku": "EYD 100 62-K",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 443,
+      "sku": "EYD 100 61-K",
+      "supplierMatch": false,
+      "reason": "supplier_sku_not_found"
+    },
+    {
+      "id": 444,
+      "sku": "EYD 100 60-K",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 445,
+      "sku": "EYD 100 40-K",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 446,
+      "sku": "FT 34220-2P01",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 448,
+      "sku": "424705.S01",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 451,
+      "sku": "FT 344022",
+      "supplierMatch": false,
+      "reason": "supplier_sku_not_found"
+    },
+    {
+      "id": 452,
+      "sku": "FT 344183",
+      "supplierMatch": false,
+      "reason": "supplier_sku_not_found"
+    },
+    {
+      "id": 453,
+      "sku": "FX-3180",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 454,
+      "sku": "EYD 075059",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 456,
+      "sku": "FT 34813-K",
+      "supplierMatch": false,
+      "reason": "supplier_sku_not_found"
+    },
+    {
+      "id": 460,
+      "sku": "ARF 16/24 D/P - R",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 462,
+      "sku": "ARF 24 SFK D - L",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 464,
+      "sku": "ARF 20 SFK D - R",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 465,
+      "sku": "ARF 30/30 D/P- K",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 466,
+      "sku": "ARF 24/24 D/P- K",
+      "supplierMatch": false,
+      "reason": "supplier_sku_not_found"
+    },
+    {
+      "id": 468,
+      "sku": "ARF 20/24 D/P",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 469,
+      "sku": "ARF 16/24 D/P - L",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 470,
+      "sku": "ARF 20 SFK D - L",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 485,
+      "sku": "427003.S",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 487,
+      "sku": "425832.CP",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 488,
+      "sku": "ESP.30.04",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 489,
+      "sku": "ESP.30.03",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 491,
+      "sku": "EYD 92 07",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 492,
+      "sku": "EYD 92 06",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 534,
+      "sku": "421889.C",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 538,
+      "sku": "EYD 80 33",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 539,
+      "sku": "EYD 80 32",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 549,
+      "sku": "424159.CP",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 550,
+      "sku": "303.08.0001.02",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 558,
+      "sku": "EYD 100 71-1",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 563,
+      "sku": "ESP.26.27",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 566,
+      "sku": "426290.S1",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 601,
+      "sku": "424930.S",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 602,
+      "sku": "424933.S",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 603,
+      "sku": "424933.C",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 604,
+      "sku": "424930.CP",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 612,
+      "sku": "424713.C",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 613,
+      "sku": "424156.C",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 616,
+      "sku": "424881.S",
+      "supplierMatch": false,
+      "reason": "supplier_sku_not_found"
+    },
+    {
+      "id": 630,
+      "sku": "42810.C1",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 631,
+      "sku": "42722.S",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 643,
+      "sku": "EYD 206 14",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 650,
+      "sku": "422211.P02",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 662,
+      "sku": "8115",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 663,
+      "sku": "8114",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 664,
+      "sku": "8113",
+      "supplierMatch": false,
+      "reason": "supplier_sku_not_found"
+    },
+    {
+      "id": 704,
+      "sku": "424915.S",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 706,
+      "sku": "ESP.22.04.02",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 746,
+      "sku": "ESP.16.29",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 747,
+      "sku": "ESP.16.25",
+      "supplierMatch": false,
+      "reason": "supplier_sku_not_found"
+    },
+    {
+      "id": 774,
+      "sku": "EYD 92 03",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 795,
+      "sku": "EYD 80 07",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 797,
+      "sku": "EYD 80 05",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 832,
+      "sku": "EYD 500 05-2-2",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 850,
+      "sku": "EYD 206 09",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 852,
+      "sku": "EYD 206 06",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 854,
+      "sku": "EYD 206 04",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 866,
+      "sku": "EYD 100 71",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 895,
+      "sku": "42722.C",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 901,
+      "sku": "424915.C",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 910,
+      "sku": "424718.S",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 940,
+      "sku": "ESS 025 20-3",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 946,
+      "sku": "ESP.22.08",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 947,
+      "sku": "ESP.22.06.01",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 948,
+      "sku": "ESP.22.05.01",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 949,
+      "sku": "ESP.22.04.01",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 950,
+      "sku": "ESP.22.03.01",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 952,
+      "sku": "8138",
+      "supplierMatch": false,
+      "reason": "supplier_sku_not_found"
+    },
+    {
+      "id": 954,
+      "sku": "8131",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 955,
+      "sku": "8129",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 956,
+      "sku": "8127",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    },
+    {
+      "id": 1017,
+      "sku": "42325/1-300",
+      "supplierMatch": true,
+      "reason": "supplier_has_no_image"
+    }
+  ]
+}
