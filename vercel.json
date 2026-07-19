@@ -5050,7 +5050,7 @@
     },
     {
       "source": "/urun/:id/:slug*",
-      "destination": "/api/sitemap?type=product&route=:id"
+      "destination": "/api/sitemap?type=product&route=:id/:slug*"
     },
     {
       "source": "/urun/:id",

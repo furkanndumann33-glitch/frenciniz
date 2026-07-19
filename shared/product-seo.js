@@ -91,13 +91,20 @@ function uniqueParts(parts) {
 }
 
 function firstUsefulCode(value) {
-  const first = cleanText(value)
+  const candidates = cleanText(value)
     .split(/[,;/|]+|\s+-\s+|\s{2,}/)
     .map(part => part.trim())
-    .filter(Boolean)
-    .find(part => /[0-9]/.test(part)) || "";
+    .filter(Boolean);
+  const first = candidates.find(part => {
+    const compact = part.replace(/[^a-z0-9]/gi, "");
+    const digitCount = (part.match(/\d/g) || []).length;
+    return digitCount >= 3 || (digitCount >= 1 && compact.length >= 6);
+  }) || "";
   const hyphenParts = first.split("-").map(part => part.trim()).filter(Boolean);
-  if (hyphenParts.length >= 3 && /^\d{5,}$/.test(hyphenParts[0])) return hyphenParts[0];
+  if (hyphenParts.length >= 3 && /\d/.test(hyphenParts[0]) && hyphenParts.filter(part => /\d/.test(part)).length >= 2) {
+    return hyphenParts[0];
+  }
+  if (first.length > 28) return "";
   return first;
 }
 
@@ -112,6 +119,24 @@ export function productPrimaryCodeLabel(product) {
 }
 
 export function productPartLabel(product, categories = []) {
+  const productName = normalizeSearchText(product?.name);
+  const explicitParts = [
+    ["kaliper tamir takimi", "Kaliper Tamir Tak\u0131m\u0131"],
+    ["kaliper ayar mekanizmasi", "Kaliper Ayar Mekanizmas\u0131"],
+    ["kaliper toz lastigi", "Kaliper Toz Lasti\u011fi"],
+    ["porya kapagi", "Porya Kapa\u011f\u0131"],
+    ["suspansiyon korugu", "S\u00fcspansiyon K\u00f6r\u00fc\u011f\u00fc"],
+    ["fren korugu", "Fren K\u00f6r\u00fc\u011f\u00fc"],
+    ["fren circiri", "Fren C\u0131rc\u0131r\u0131"],
+    ["fren diski", "Fren Diski"],
+    ["fren balat", "Fren Balatas\u0131"],
+    ["fren kampana", "Fren Kampanas\u0131"],
+    ["abs sensor", "ABS Sens\u00f6r\u00fc"],
+    ["fren yayi", "Dorse Fren Yay\u0131"],
+  ];
+  const explicit = explicitParts.find(([needle]) => productName.includes(needle));
+  if (explicit) return explicit[1];
+
   const mapped = CATEGORY_SEARCH_LABELS[product?.cat];
   if (mapped) return mapped;
   const category = Array.isArray(categories) ? categories.find(item => item.id === product?.cat) : null;
@@ -119,14 +144,6 @@ export function productPartLabel(product, categories = []) {
 }
 
 export function productVehicleSignals(product, max = 3) {
-  const values = [
-    ...(Array.isArray(product?.compat) ? product.compat : []),
-    ...(Array.isArray(product?.veh) ? product.veh : []),
-  ].map(cleanText).filter(Boolean);
-
-  const useful = values.filter(value => !/^(agir vasita|kamyon|tir|otobus|dorse|treyler)$/i.test(normalizeSearchText(value)));
-  if (useful.length) return uniqueParts(useful).slice(0, max);
-
   const name = cleanText(product?.name);
   const known = [
     "Mercedes Axor", "Mercedes Actros", "Mercedes Atego", "Mercedes Arocs", "Travego", "Tourismo",
@@ -136,6 +153,17 @@ export function productVehicleSignals(product, max = 3) {
     "Isuzu NovoCiti", "Isuzu NPR", "Mitsubishi Canter",
   ];
   const haystack = normalizeSearchText(name);
+  const explicitNameSignals = known.filter(term => haystack.includes(normalizeSearchText(term)));
+  if (explicitNameSignals.length) return uniqueParts(explicitNameSignals).slice(0, max);
+
+  const values = [
+    ...(Array.isArray(product?.compat) ? product.compat : []),
+    ...(Array.isArray(product?.veh) ? product.veh : []),
+  ].map(cleanText).filter(Boolean);
+
+  const useful = values.filter(value => !/^(agir vasita|kamyon|tir|otobus|dorse|treyler)$/i.test(normalizeSearchText(value)));
+  if (useful.length) return uniqueParts(useful).slice(0, max);
+
   return known.filter(term => haystack.includes(normalizeSearchText(term))).slice(0, max);
 }
 
@@ -190,17 +218,21 @@ export function productSearchName(product, categories = [], max = 128) {
 
 export function productSearchTitle(product, categories = [], max = 74) {
   const part = productPartLabel(product, categories);
-  const vehicles = productVehicleSignals(product, 2).join(" ");
+  const vehicleSignals = productVehicleSignals(product, 2);
   const primaryCode = productPrimaryCode(product);
   const sku = cleanText(product?.sku).slice(0, 24) || cleanText(product?.id);
   const usefulCode = /\d/.test(primaryCode) ? primaryCode : sku;
-  const base = uniqueParts([
-    usefulCode,
-    vehicles,
-    part,
-  ]).join(" ");
-  const suffix = ` | ${sku} Fiyat | Frenciniz`;
-  return `${compactText(base || productSearchName(product, categories, 116), Math.max(24, max - suffix.length))}${suffix}`;
+  const distinctSku = normalizeSearchText(sku) !== normalizeSearchText(usefulCode) ? sku : "";
+  const suffix = " | Frenciniz";
+  const available = Math.max(30, max - suffix.length);
+  const candidates = [
+    uniqueParts([usefulCode, distinctSku, vehicleSignals[0], part, "Fiyatı"]).join(" "),
+    uniqueParts([usefulCode, distinctSku, part, "Fiyatı"]).join(" "),
+    uniqueParts([usefulCode, ...vehicleSignals, part, "Fiyatı"]).join(" "),
+  ].filter(Boolean);
+  const base = candidates.find(value => value.length <= available)
+    || compactText(candidates[candidates.length - 1] || productSearchName(product, categories, 116), available);
+  return `${base}${suffix}`;
 }
 
 export function productSearchDescription(product, categories = [], max = 165) {

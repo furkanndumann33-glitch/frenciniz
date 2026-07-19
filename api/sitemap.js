@@ -1591,8 +1591,26 @@ export default async function handler(req, res) {
       const product = products.find(p => String(p.id) === String(id));
       if (!product) return res.status(404).send("Product not found");
 
+      const canonical = productSeoUrl(SITE, product);
+      const canonicalPath = new URL(canonical).pathname.replace(/\/+$/g, "");
+      const requestedRoute = route
+        .split("/")
+        .map(part => {
+          try { return decodeURIComponent(part); } catch { return part; }
+        })
+        .filter(Boolean)
+        .join("/");
+      const requestedPath = `/urun/${requestedRoute}`.replace(/\/+$/g, "");
+      if (requestedPath !== canonicalPath) {
+        res.setHeader("Location", canonical);
+        res.setHeader("Cache-Control", "public, max-age=300, s-maxage=3600");
+        return res.status(308).send(`Permanent redirect: ${canonical}`);
+      }
+
       const html = renderSeoProductHtml(product, categories, products);
       res.setHeader("Content-Type", "text/html; charset=utf-8");
+      res.setHeader("Content-Location", canonical);
+      res.setHeader("Link", `<${canonical}>; rel="canonical"`);
       res.setHeader("Cache-Control", "public, max-age=300, s-maxage=3600, stale-while-revalidate=86400");
       return res.status(200).send(html);
     }
@@ -1618,7 +1636,12 @@ export default async function handler(req, res) {
 
     // Statik sayfalar
     for (const p of STATIC_PAGES) {
-      urls.push(`<url><loc>${SITE}${p.loc}</loc></url>`);
+      urls.push(
+        `<url><loc>${SITE}${p.loc}</loc>` +
+        (p.changefreq ? `<changefreq>${p.changefreq}</changefreq>` : "") +
+        (p.priority ? `<priority>${p.priority}</priority>` : "") +
+        `</url>`
+      );
     }
 
     // Yalnızca gerçek ürün eşleşmesi olan ve benzer sayfalar arasından
@@ -1637,7 +1660,7 @@ export default async function handler(req, res) {
 
     // Ürünler
     for (const p of products) {
-      if (!p.id) continue;
+      if (!p.id || Number(p.stock || 0) <= 0) continue;
       const rawImg = productPrimaryImage(p, "");
       const hasImg = isRealProductImage(rawImg);
       // Image URL absolute olmalı (sitemap protokolü gereği) — relative ise SITE prefix ekle
@@ -1648,6 +1671,8 @@ export default async function handler(req, res) {
       urls.push(
         `<url>` +
         `<loc>${xmlEscape(productSeoUrl(SITE, p))}</loc>` +
+        `<changefreq>${productSitemapChangefreq(p)}</changefreq>` +
+        `<priority>${productSitemapPriority(p)}</priority>` +
         (imgUrl ? `<image:image><image:loc>${xmlEscape(imgUrl)}</image:loc><image:title>${xmlEscape(productSearchName(p, categories, 140) || p.name)}</image:title></image:image>` : "") +
         `</url>`
       );
