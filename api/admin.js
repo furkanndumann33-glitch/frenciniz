@@ -148,6 +148,7 @@ export default async function handler(req, res) {
         "checkout_contact",
         "payment_redirect",
         "payment_error",
+        "catalog_download",
       ];
       const productActions = {
         totals: Object.fromEntries(productActionTypes.map(type => [type, 0])),

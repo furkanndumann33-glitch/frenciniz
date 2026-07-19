@@ -44,6 +44,7 @@ function cleanProductAction(value) {
     "checkout_contact",
     "payment_redirect",
     "payment_error",
+    "catalog_download",
   ].includes(action) ? action : "product_action";
 }
 
@@ -275,9 +276,15 @@ export default async function handler(req, res) {
         const contactName = cleanLeadText(body.contactName || body.name || "", 80);
         const contactPhone = cleanLeadText(body.contactPhone || body.phone || "", 40);
         const contactEmail = cleanLeadText(body.contactEmail || body.email || "", 100);
-        const code = cleanLeadText(body.code || body.oem || body.partCode || "", 120);
+        const code = cleanLeadText(
+          body.code || body.oem || body.partCode || "",
+          source === "fleet_bulk_quote_form" ? 12000 : 120
+        );
         const vehicle = cleanLeadText(body.vehicle || body.model || "", 140);
-        const note = cleanLeadText(body.note || body.message || "", 500);
+        const note = cleanLeadText(
+          body.note || body.message || "",
+          source === "fleet_bulk_quote_form" ? 2000 : 500
+        );
         const value = Number(body.value || 0) || 0;
         const items = Number(body.items || 0) || 0;
         const ip = (req.headers["x-forwarded-for"] || "").split(",")[0].trim() || req.headers["x-real-ip"] || "unknown";

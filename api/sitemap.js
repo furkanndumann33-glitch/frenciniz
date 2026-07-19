@@ -25,6 +25,12 @@ const STATIC_PAGES = [
   { loc: "/urunler", priority: "0.9", changefreq: "daily" },
   { loc: "/filo-toplu-alim", priority: "0.9", changefreq: "weekly" },
   { loc: "/frencoo-kaliper-tamir-takimi", priority: "0.8", changefreq: "weekly" },
+  { loc: "/rehber/fren-circiri-nasil-secilir", priority: "0.7", changefreq: "monthly" },
+  { loc: "/rehber/dorse-fren-korugu-nasil-secilir", priority: "0.7", changefreq: "monthly" },
+  { loc: "/rehber/axor-abs-sensoru-nasil-secilir", priority: "0.7", changefreq: "monthly" },
+  { loc: "/rehber/oem-parca-kodu-nasil-bulunur", priority: "0.7", changefreq: "monthly" },
+  { loc: "/rehber/kaliper-tamir-takimi-nasil-secilir", priority: "0.7", changefreq: "monthly" },
+  { loc: "/rehber/fren-diski-olcusu-nasil-alinir", priority: "0.7", changefreq: "monthly" },
   { loc: "/brands", priority: "0.7", changefreq: "weekly" },
   { loc: "/about", priority: "0.5", changefreq: "monthly" },
   { loc: "/contact", priority: "0.7", changefreq: "monthly" },
@@ -71,6 +77,101 @@ const DEMAND_COLLECTIONS = {
       return Number(product?.stock || 0) > 0 && text.includes("frencoo");
     },
   },
+};
+
+const BUYING_GUIDES = {
+  "fren-circiri-nasil-secilir": {
+    title: "Fren Circiri Nasil Secilir? Otomatik ve Mekanik Circir Rehberi",
+    description: "Agir vasita fren circiri seciminde OEM kodu, dis sayisi, kol boyu, mil olcusu, otomatik veya mekanik tip ve montaj yonu nasil kontrol edilir?",
+    heading: "Fren circiri nasil secilir?",
+    intro: "Fren circiri, hava frenli agir vasitalarda balata ile kampana arasindaki boslugun ayarlanmasinda gorev alir. Yanlis kol boyu, mil veya dis secimi fren ayarini bozabilir. Arac modeli tek basina yeterli degildir.",
+    checks: ["Parca uzerindeki OEM ve uretici kodu", "Otomatik veya mekanik ayar tipi", "Mil capi ve dis sayisi", "Kol merkezleri arasi uzunluk", "Sag veya sol montaj yonu", "Aks ve fren sistemi tipi"],
+    warning: "Eski circirin fotografini, kol boyunu ve mil/dis bilgisini birlikte gonderin. Ayar kolu geometrisi farkliysa parca fiziksel olarak takilsa bile dogru calismayabilir.",
+    category: "/fren-circiri",
+    categoryLabel: "Stoklu fren circirlarini incele",
+    faq: [
+      ["Otomatik ve mekanik fren circiri birbirinin yerine kullanilir mi?", "Her uygulamada kullanilmaz. Fren sistemi, aks ve uretici spesifikasyonu birlikte kontrol edilmelidir."],
+      ["Fren circirinda sag sol farki var mi?", "Bazi modellerde montaj yonu ve kol geometrisi farklidir. Eski parca ve OEM koduyla teyit gerekir."],
+    ],
+  },
+  "dorse-fren-korugu-nasil-secilir": {
+    title: "Dorse Fren Korugu Nasil Secilir? Tip, Olcu ve OEM Rehberi",
+    description: "Dorse fren korugu seciminde 16/24, 20/24, 24/24, disk veya kampana tipi, mil boyu, baglanti ve OEM kodu nasil kontrol edilir?",
+    heading: "Dorse fren korugu nasil secilir?",
+    intro: "Dorse fren koruklerinde oda olcusu ayni gorunse bile disk-kampana tipi, mil boyu, baglanti acisi ve imdat mekanizmasi degisebilir. Yalnizca 16/24 veya 24/24 ifadesiyle siparis vermek yeterli degildir.",
+    checks: ["Koruk tipi ve oda olcusu", "Disk veya kampana fren uygulamasi", "Mil boyu ve catal yapisi", "Baglanti saplamalarinin araligi", "Hava girislerinin konumu", "OEM veya Arfesan urun kodu"],
+    warning: "Koruk yay mekanizmasi basincli bir guvenlik parcasidir. Montaj ve sokme islemi yetkin servis tarafindan yapilmalidir.",
+    category: "/fren-korugu",
+    categoryLabel: "Stoklu dorse fren koruklarini incele",
+    faq: [
+      ["16/24 ile 24/24 fren korugu ayni midir?", "Hayir. Servis ve imdat odasi olculeri ile uygulama tipi farklidir."],
+      ["Disk tipi koruk kampana frende kullanilir mi?", "Genellikle dogrudan muadil kabul edilmez. Aks ve fren sistemi spesifikasyonu kontrol edilmelidir."],
+    ],
+  },
+  "axor-abs-sensoru-nasil-secilir": {
+    title: "Mercedes Axor ABS Sensoru Nasil Secilir? OEM ve Kablo Rehberi",
+    description: "Mercedes Axor ABS sensoru seciminde OEM kodu, kablo boyu, soket, aks konumu ve disli halka uyumu nasil dogrulanir?",
+    heading: "Axor ABS sensoru nasil secilir?",
+    intro: "ABS sensorunde arac modeli kadar sensorun OEM numarasi, kablo boyu, soket yapisi ve on-arka aks konumu onemlidir. Ayni Axor modelinde yil ve aks tipine gore farkli sensor kullanilabilir.",
+    checks: ["Mercedes OEM numarasi", "Sensor kablosunun toplam boyu", "Soket tipi ve pin yapisi", "On veya arka aks konumu", "Sensor ucu ve montaj burcu", "ABS disli halkasi ve porya uygulamasi"],
+    warning: "Ariza lambasi her zaman sensorun bozuk oldugu anlamina gelmez. Kablo, soket, sensor boslugu ve disli halka da kontrol edilmelidir.",
+    category: "/abs-sensoru-modulu-kablo",
+    categoryLabel: "Axor ve dorse ABS urunlerini incele",
+    faq: [
+      ["Axor ABS sensoru sadece arac modeline gore alinir mi?", "Hayir. OEM kodu, kablo boyu, soket ve aks konumu birlikte kontrol edilmelidir."],
+      ["ABS sensor arizasi nasil kesinlestirilir?", "Ariza kodu okunmali; kablo, soket, sensor direnci, bosluk ve disli halka servis tarafindan kontrol edilmelidir."],
+    ],
+  },
+  "oem-parca-kodu-nasil-bulunur": {
+    title: "OEM Parca Kodu Nasil Bulunur? Agir Vasita Parca Teyit Rehberi",
+    description: "Kamyon, tir, otobus ve dorse parcalarinda OEM numarasi nerede yazar, stok kodundan farki nedir ve siparis oncesi nasil teyit edilir?",
+    heading: "OEM parca kodu nasil bulunur?",
+    intro: "OEM numarasi, arac veya sistem ureticisinin parcayi tanimlamak icin kullandigi referanstir. Frenciniz stok kodu veya tedarikci kodu OEM numarasindan farkli olabilir; en saglikli eslesme birden fazla sinyalin birlikte kontrol edilmesidir.",
+    checks: ["Eski parca uzerindeki lazer, kabartma veya etiket kodu", "Arac sase numarasina gore parca katalogu", "Kaliper, aks veya fren sistemi ureticisi", "Olcu ve montaj detaylari", "Stok kodu ile OEM/muadil listesinin ayri okunmasi", "Eski parcayi birden fazla acidan fotograflama"],
+    warning: "Benzer gorunen parcayi yalnizca arac markasina gore secmeyin. Model yili, aks, fren sistemi ve OEM kodu fark yaratabilir.",
+    category: "/urunler",
+    categoryLabel: "OEM koduyla stoklu urunlerde ara",
+    faq: [
+      ["SKU ile OEM numarasi ayni sey mi?", "Hayir. SKU magazanin stok kodudur; OEM numarasi arac veya sistem ureticisinin parca referansidir."],
+      ["Eski parcada kod okunmuyorsa ne yapmaliyim?", "Parcanin genel gorunumu, baglanti noktalari, olculeri, arac sase bilgisi ve aks/fren sistemi bilgisi birlikte gonderilmelidir."],
+    ],
+  },
+  "kaliper-tamir-takimi-nasil-secilir": {
+    title: "Kaliper Tamir Takimi Nasil Secilir? Knorr, WABCO, Meritor Rehberi",
+    description: "Kaliper tamir takimi seciminde kaliper etiketi, sistem modeli, sag-sol yon, perno, kapak ve mekanizma farklari nasil kontrol edilir?",
+    heading: "Kaliper tamir takimi nasil secilir?",
+    intro: "Kaliper tamir takimlari disaridan benzer gorunebilir; ancak Knorr, WABCO, Meritor ve Haldex sistemlerinde perno capi, conta, kapak ve mekanizma parcalari farklidir.",
+    checks: ["Kaliper govdesindeki marka ve model etiketi", "Knorr SB/SN/SK, WABCO PAN/MAXX veya Meritor ELSA/DUCO sistemi", "Sag veya sol kaliper", "Perno capi ve uzunlugu", "Takim icerigi ve parca adedi", "OEM ve tamir takim kodu"],
+    warning: "Eksik veya yanlis tamir takimi fren kaliperinde bosluk, sikisma veya sizdirmazlik sorunu olusturabilir. Takim icerigi eski parcalarla karsilastirilmalidir.",
+    category: "/kaliper-tamir-takimi",
+    categoryLabel: "Stoklu kaliper tamir takimlarini incele",
+    faq: [
+      ["Kaliper markasi bilinmeden tamir takimi secilir mi?", "Guvenli degildir. Govde etiketi, kaliper modeli ve parca olculeri kontrol edilmelidir."],
+      ["Sag ve sol kaliper tamir takimi farkli olabilir mi?", "Takimin turune ve kaliper modeline gore farkli olabilir; urun koduyla teyit edilmelidir."],
+    ],
+  },
+  "fren-diski-olcusu-nasil-alinir": {
+    title: "Agir Vasita Fren Diski Olcusu Nasil Alinir? Teknik Secim Rehberi",
+    description: "Kamyon ve dorse fren diskinde dis cap, kalinlik, yukseklik, merkez deligi, bijon sayisi ve ABS halkasi nasil kontrol edilir?",
+    heading: "Agir vasita fren diski olcusu nasil alinir?",
+    intro: "Fren diskinde yalnizca dis cap yeterli degildir. Toplam yukseklik, disk kalinligi, merkez deligi, bijon delikleri, gobekli-gobeksiz yapi ve ABS halkasi birlikte eslesmelidir.",
+    checks: ["Disk dis capi", "Yeni disk kalinligi", "Toplam yukseklik", "Merkez deligi capi", "Bijon deligi sayisi ve dairesi", "Gobekli veya gobeksiz yapi", "ABS disli halkasi veya sensor uygulamasi"],
+    warning: "Asinmis diskte olculen kalinlik katalogdaki yeni parca degerinden dusuk olabilir. Mumkunse OEM kodu ve teknik katalog olcusu esas alinmalidir.",
+    category: "/fren-diski",
+    categoryLabel: "Stoklu agir vasita fren disklerini incele",
+    faq: [
+      ["Fren diski sadece dis capla bulunur mu?", "Hayir. Kalinlik, yukseklik, merkez deligi, bijon yapisi ve OEM kodu da eslesmelidir."],
+      ["Gobekli disk yerine gobeksiz disk kullanilir mi?", "Arac ve aks uygulamasina baglidir; montaj yapisi farkli oldugu icin dogrudan muadil kabul edilmemelidir."],
+    ],
+  },
+};
+
+const CATEGORY_GUIDE_LINKS = {
+  "fren-circiri": "fren-circiri-nasil-secilir",
+  "fren-korugu": "dorse-fren-korugu-nasil-secilir",
+  "abs-sensoru-modulu-kablo": "axor-abs-sensoru-nasil-secilir",
+  "kaliper-tamir-takimi": "kaliper-tamir-takimi-nasil-secilir",
+  "fren-diski": "fren-diski-olcusu-nasil-alinir",
 };
 
 function xmlEscape(s) {
@@ -825,6 +926,11 @@ function renderSeoCategoryHtml(category, products = [], categories = [], matched
     .slice(0, 12)
     .map(item => `<a href="${SITE}/${xmlEscape(item.id)}">${xmlEscape(item.name)}</a>`)
     .join("");
+  const guideSlug = CATEGORY_GUIDE_LINKS[category.id];
+  const guide = guideSlug ? BUYING_GUIDES[guideSlug] : null;
+  const guideLink = guide
+    ? `<p><a href="${SITE}/rehber/${xmlEscape(guideSlug)}"><strong>${xmlEscape(guide.heading)} - teknik secim rehberini okuyun</strong></a></p>`
+    : "";
 
   return `<!doctype html>
 <html lang="tr">
@@ -899,11 +1005,63 @@ function renderSeoCategoryHtml(category, products = [], categories = [], matched
   <header class="top"><div class="bar"><a class="brand" href="${SITE}">FRENCINIZ<span>.com</span></a><div class="contact"><a href="tel:+905456087008">0545 608 7008</a><a href="https://wa.me/908508887881">WhatsApp</a></div></div></header>
   <section class="coupon-strip"><div class="coupon-inner"><div class="coupon-copy"><span class="coupon-badge">INDIRIM KUPONU</span><strong>Indirim kuponu icin WhatsApp ile iletisime gecin; urun kodunu yazin, uygun kuponu netlestirelim.</strong></div><a href="${xmlEscape(couponWa)}" data-lead-source="category_coupon_banner">WhatsApp'tan kupon iste</a></div></section>
   <section class="hero"><div class="hero-inner"><div><div class="eyebrow">Stoklu kategori · OEM kodu ile teyit</div><h1>${xmlEscape(heading)}</h1><p class="lead">${xmlEscape(description)} Yanlis parca riskini azaltmak icin OEM kodu, sase no veya eski parca fotografi ile teyit alin.</p><a class="cta" href="${xmlEscape(wa)}" data-lead-source="category_hero">WhatsApp'tan teklif al</a></div><div class="trust"><strong>${matched.length}</strong><div>ilgili urun ve muadil secenek</div><p class="muted" style="color:#cbd5e1">14:00'a kadar stoklu urunde hizli kargo, 3000 TL uzeri standart kargo ucretsiz.</p></div></div></section>
-  <main class="wrap"><div class="head"><div><h2>${xmlEscape(cleanName)} Urunleri</h2><div class="muted">Fiyat, stok ve uyumluluk icin urunu acin veya WhatsApp'tan kod gonderin.</div></div><a class="cta" href="${xmlEscape(wa)}" data-lead-source="category_top">Kod gonder, teklif al</a></div><form data-category-callback data-lead-source="category_callback_form" style="margin:0 0 18px;padding:14px;border:1px solid #dbe3ef;border-radius:8px;background:#fff;box-shadow:0 10px 26px rgba(15,23,42,.05)"><div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:10px"><div><strong style="display:block;color:#111;font-size:16px">Telefonunuzu birakin, ${xmlEscape(cleanName)} icin sizi arayalim.</strong><span class="muted">OEM/parca kodu ve arac bilgisini yazin; stok, fiyat ve uyumlulugu netlestirelim.</span></div><span style="font-size:12px;font-weight:900;color:#087f3d;background:#dcfce7;border:1px solid #bbf7d0;border-radius:999px;padding:6px 9px">WhatsApp sart degil</span></div><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;align-items:stretch"><input name="phone" inputmode="tel" autocomplete="tel" placeholder="Telefon: 05xx xxx xx xx" style="width:100%;min-height:42px;border:1px solid #d1d5db;border-radius:7px;padding:0 11px;font-size:13px;font-weight:700"><input name="code" placeholder="OEM / parca kodu" style="width:100%;min-height:42px;border:1px solid #d1d5db;border-radius:7px;padding:0 11px;font-size:13px;font-weight:700"><input name="vehicle" placeholder="Arac / sase notu" style="width:100%;min-height:42px;border:1px solid #d1d5db;border-radius:7px;padding:0 11px;font-size:13px;font-weight:700"><input name="note" placeholder="Not / adet" style="width:100%;min-height:42px;border:1px solid #d1d5db;border-radius:7px;padding:0 11px;font-size:13px;font-weight:700"><button type="submit" style="min-height:42px;border:none;border-radius:7px;background:#ff6000;color:#fff;font-size:13px;font-weight:950;padding:0 14px;white-space:nowrap">Beni arayin</button></div><div data-callback-status style="margin-top:8px;font-size:12px;font-weight:800;color:#15803d"></div></form><section class="products">${matched.slice(0, 36).map(product => renderCategoryProductCard(product, categories)).join("\n")}</section>${matched.length > 36 ? `<section class="product-index" aria-label="${xmlEscape(cleanName)} tum urun baglantilari"><h2>${xmlEscape(cleanName)} urun dizini</h2><p class="muted">Bu kategorideki diger stoklu urunlere ve OEM kodlarina dogrudan ulasin.</p><ul>${matched.slice(36).map(product => renderCategoryProductIndexLink(product, categories)).join("")}</ul></section>` : ""}<section class="info"><div class="panel"><h2>${xmlEscape(cleanName)} secimi</h2><p>${xmlEscape(cleanName)} alirken OEM/parca kodu, olcu, dingil/aks tipi ve arac modeli birlikte kontrol edilmelidir. Frenciniz ekibi kamyon, tir, otobus ve dorse fren sistemleri icin uyumluluk teyidi yapar.</p><p>Eski parcadaki kodu veya fotografi WhatsApp hattina gondererek stok, fiyat ve kargo bilgisini hizli alabilirsiniz.</p></div><aside class="panel"><h2>Yakin kategoriler</h2><div class="links">${related}</div></aside></section></main>
+  <main class="wrap"><div class="head"><div><h2>${xmlEscape(cleanName)} Urunleri</h2><div class="muted">Fiyat, stok ve uyumluluk icin urunu acin veya WhatsApp'tan kod gonderin.</div></div><a class="cta" href="${xmlEscape(wa)}" data-lead-source="category_top">Kod gonder, teklif al</a></div><form data-category-callback data-lead-source="category_callback_form" style="margin:0 0 18px;padding:14px;border:1px solid #dbe3ef;border-radius:8px;background:#fff;box-shadow:0 10px 26px rgba(15,23,42,.05)"><div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:10px"><div><strong style="display:block;color:#111;font-size:16px">Telefonunuzu birakin, ${xmlEscape(cleanName)} icin sizi arayalim.</strong><span class="muted">OEM/parca kodu ve arac bilgisini yazin; stok, fiyat ve uyumlulugu netlestirelim.</span></div><span style="font-size:12px;font-weight:900;color:#087f3d;background:#dcfce7;border:1px solid #bbf7d0;border-radius:999px;padding:6px 9px">WhatsApp sart degil</span></div><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;align-items:stretch"><input name="phone" inputmode="tel" autocomplete="tel" placeholder="Telefon: 05xx xxx xx xx" style="width:100%;min-height:42px;border:1px solid #d1d5db;border-radius:7px;padding:0 11px;font-size:13px;font-weight:700"><input name="code" placeholder="OEM / parca kodu" style="width:100%;min-height:42px;border:1px solid #d1d5db;border-radius:7px;padding:0 11px;font-size:13px;font-weight:700"><input name="vehicle" placeholder="Arac / sase notu" style="width:100%;min-height:42px;border:1px solid #d1d5db;border-radius:7px;padding:0 11px;font-size:13px;font-weight:700"><input name="note" placeholder="Not / adet" style="width:100%;min-height:42px;border:1px solid #d1d5db;border-radius:7px;padding:0 11px;font-size:13px;font-weight:700"><button type="submit" style="min-height:42px;border:none;border-radius:7px;background:#ff6000;color:#fff;font-size:13px;font-weight:950;padding:0 14px;white-space:nowrap">Beni arayin</button></div><div data-callback-status style="margin-top:8px;font-size:12px;font-weight:800;color:#15803d"></div></form><section class="products">${matched.slice(0, 36).map(product => renderCategoryProductCard(product, categories)).join("\n")}</section>${matched.length > 36 ? `<section class="product-index" aria-label="${xmlEscape(cleanName)} tum urun baglantilari"><h2>${xmlEscape(cleanName)} urun dizini</h2><p class="muted">Bu kategorideki diger stoklu urunlere ve OEM kodlarina dogrudan ulasin.</p><ul>${matched.slice(36).map(product => renderCategoryProductIndexLink(product, categories)).join("")}</ul></section>` : ""}<section class="info"><div class="panel"><h2>${xmlEscape(cleanName)} secimi</h2><p>${xmlEscape(cleanName)} alirken OEM/parca kodu, olcu, dingil/aks tipi ve arac modeli birlikte kontrol edilmelidir. Frenciniz ekibi kamyon, tir, otobus ve dorse fren sistemleri icin uyumluluk teyidi yapar.</p><p>Eski parcadaki kodu veya fotografi WhatsApp hattina gondererek stok, fiyat ve kargo bilgisini hizli alabilirsiniz.</p>${guideLink}</div><aside class="panel"><h2>Yakin kategoriler</h2><div class="links">${related}</div></aside></section></main>
   <div class="sticky"><div class="sticky-inner"><div><strong>${xmlEscape(cleanName)} icin hizli teklif</strong><div style="font-size:13px;color:#cbd5e1">OEM kodu veya eski parca fotosu ile teyit.</div></div><a href="${xmlEscape(wa)}" data-lead-source="category_sticky">WhatsApp Teklif</a></div></div>
   <footer class="footer"><a href="${SITE}/filo-toplu-alim">Filo ve toplu alim teklifi</a> · Frenciniz · Dumanlar Ticaret · Isparta · info@frenciniz.com</footer>
 </body>
 </html>`;
+}
+
+function renderBuyingGuideHtml(slug, guide) {
+  const canonical = `${SITE}/rehber/${slug}`;
+  const waText = encodeURIComponent(`Merhaba Frenciniz, ${guide.heading} konusunda urun teyidi istiyorum.\nOEM / parca kodu:\nArac marka-model:\nSase no:\nOlcu / not:`);
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: guide.faq.map(([question, answer]) => ({
+      "@type": "Question",
+      name: question,
+      acceptedAnswer: { "@type": "Answer", text: answer },
+    })),
+  };
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: guide.title,
+    description: guide.description,
+    mainEntityOfPage: canonical,
+    author: { "@type": "Organization", name: "Frenciniz", url: SITE },
+    publisher: { "@type": "Organization", name: "Frenciniz", url: SITE },
+    dateModified: new Date().toISOString().slice(0, 10),
+  };
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Frenciniz", item: SITE },
+      { "@type": "ListItem", position: 2, name: "Urun Secim Rehberleri", item: `${SITE}/urunler` },
+      { "@type": "ListItem", position: 3, name: guide.heading, item: canonical },
+    ],
+  };
+  const otherGuides = Object.entries(BUYING_GUIDES)
+    .filter(([otherSlug]) => otherSlug !== slug)
+    .slice(0, 5)
+    .map(([otherSlug, other]) => `<a href="${SITE}/rehber/${xmlEscape(otherSlug)}">${xmlEscape(other.heading)}</a>`)
+    .join("");
+  return `<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${xmlEscape(compactText(`${guide.title} | Frenciniz`, 72))}</title><meta name="description" content="${xmlEscape(guide.description)}"><meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1"><link rel="canonical" href="${canonical}">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Frenciniz"><meta property="og:title" content="${xmlEscape(guide.title)}"><meta property="og:description" content="${xmlEscape(guide.description)}"><meta property="og:url" content="${canonical}">
+<script type="application/ld+json">${JSON.stringify([articleSchema, faqSchema, breadcrumbSchema])}</script>
+<style>*{box-sizing:border-box}body{margin:0;background:#f5f7fb;color:#172033;font-family:Arial,Helvetica,sans-serif;line-height:1.65}a{color:inherit}.top{background:#080d17;color:#fff}.bar,.wrap{max-width:980px;margin:auto;padding:15px 20px}.bar{display:flex;justify-content:space-between;align-items:center;gap:14px}.brand{font-size:23px;font-weight:950;text-decoration:none}.brand span{color:#ff6000}.nav{display:flex;gap:14px}.nav a{color:#fff;text-decoration:none;font-size:13px;font-weight:800}.hero{background:linear-gradient(125deg,#111827,#1f2937);color:#fff;border-bottom:4px solid #ff6000}.hero .wrap{padding-top:48px;padding-bottom:48px}.eyebrow{color:#facc15;font-size:12px;font-weight:950;text-transform:uppercase}.hero h1{font-size:42px;line-height:1.1;margin:8px 0 14px}.lead{font-size:18px;color:#d1d5db;max-width:840px}.content{display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:22px;padding-top:28px;padding-bottom:44px}.article,.side{background:#fff;border:1px solid #e1e7ef;border-radius:10px;padding:24px;box-shadow:0 10px 28px rgba(15,23,42,.05)}h2{font-size:25px;margin:25px 0 8px}h2:first-child{margin-top:0}.checks{display:grid;grid-template-columns:1fr 1fr;gap:9px;list-style:none;padding:0}.checks li{background:#f8fafc;border:1px solid #e2e8f0;border-radius:7px;padding:10px;font-weight:750}.warning{border-left:4px solid #ff6000;background:#fff7ed;padding:14px;margin:20px 0}.faq{border-top:1px solid #e5e7eb;padding-top:12px;margin-top:12px}.faq h3{font-size:17px;margin:12px 0 4px}.cta{display:flex;align-items:center;justify-content:center;text-align:center;text-decoration:none;border-radius:8px;padding:12px 14px;font-weight:950;margin:10px 0}.orange{background:#ff6000;color:#fff}.green{background:#25D366;color:#062813}.links{display:flex;flex-direction:column;gap:9px;margin-top:14px}.links a{font-size:13px;text-decoration:none;border-bottom:1px solid #e5e7eb;padding-bottom:8px}.footer{text-align:center;padding:22px;color:#64748b;background:#fff;border-top:1px solid #e5e7eb}@media(max-width:760px){.content{grid-template-columns:1fr}.hero h1{font-size:32px}.checks{grid-template-columns:1fr}.bar{align-items:flex-start;flex-direction:column}}</style>
+</head><body>
+<header class="top"><div class="bar"><a class="brand" href="${SITE}">FRENCINIZ<span>.com</span></a><nav class="nav"><a href="${SITE}/urunler">Urunler</a><a href="${SITE}/filo-toplu-alim">Filo Teklifi</a></nav></div></header>
+<section class="hero"><div class="wrap"><div class="eyebrow">Agir vasita parca secim rehberi</div><h1>${xmlEscape(guide.heading)}</h1><p class="lead">${xmlEscape(guide.description)}</p></div></section>
+<main class="wrap content"><article class="article"><h2>Dogru parca icin temel kontrol</h2><p>${xmlEscape(guide.intro)}</p><ul class="checks">${guide.checks.map(item => `<li>${xmlEscape(item)}</li>`).join("")}</ul><div class="warning"><strong>Guvenlik notu:</strong> ${xmlEscape(guide.warning)}</div><h2>Siparis oncesi ne gonderilmeli?</h2><p>OEM veya parca kodunu, arac marka-modelini, varsa sase numarasini ve eski parcanin net fotograflarini birlikte iletin. Uyum bilgileri aday eslesmedir; kesin secim mevcut parca ve arac bilgisiyle yapilir.</p><h2>Sik sorulan sorular</h2>${guide.faq.map(([q, a]) => `<section class="faq"><h3>${xmlEscape(q)}</h3><p>${xmlEscape(a)}</p></section>`).join("")}</article>
+<aside class="side"><h2>Urunleri incele</h2><p>Stok, fiyat ve uyumluluk teyidi icin ilgili urun grubuna gidin.</p><a class="cta orange" href="${SITE}${xmlEscape(guide.category)}">${xmlEscape(guide.categoryLabel)}</a><a class="cta green" data-lead-source="buying_guide_whatsapp" href="https://wa.me/908508887881?text=${waText}">WhatsApp'tan teyit al</a><h2>Diger rehberler</h2><div class="links">${otherGuides}</div></aside></main>
+<footer class="footer">Frenciniz · Dumanlar Ticaret · Isparta · 0545 608 7008</footer>
+<script>(function(){function post(url,payload){var body=JSON.stringify(payload);if(navigator.sendBeacon){var blob=new Blob([body],{type:'application/json'});if(navigator.sendBeacon(url,blob))return}fetch(url,{method:'POST',credentials:'include',headers:{'Content-Type':'application/json'},body:body,keepalive:true}).catch(function(){})}post('/api/auth/track',{path:location.pathname,search:location.search,ref:document.referrer||''});document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;var href=a.getAttribute('href')||'';if(href.indexOf('wa.me')!==-1)post('/api/auth/lead',{type:'whatsapp',source:a.dataset.leadSource||'buying_guide',href:href,path:location.pathname,ref:document.referrer||''})},true)})();</script>
+</body></html>`;
 }
 
 function renderFleetQuoteHtml() {
@@ -945,14 +1103,14 @@ function renderFleetQuoteHtml() {
 <title>${xmlEscape(title)}</title><meta name="description" content="${xmlEscape(description)}"><meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="${canonical}"><meta property="og:type" content="website"><meta property="og:site_name" content="Frenciniz"><meta property="og:title" content="${xmlEscape(title)}"><meta property="og:description" content="${xmlEscape(description)}"><meta property="og:url" content="${canonical}">
 <script type="application/ld+json">${JSON.stringify(schema)}</script>
-<style>*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f5f7fb;color:#172033;line-height:1.55}a{color:inherit}.top{background:#080d17;color:#fff}.bar,.wrap{max-width:1120px;margin:auto;padding:16px 20px}.bar{display:flex;justify-content:space-between;align-items:center;gap:16px}.brand{font-size:24px;font-weight:950;text-decoration:none}.brand span{color:#ff6000}.nav{display:flex;gap:14px}.nav a{color:#fff;text-decoration:none;font-weight:800;font-size:13px}.hero{background:linear-gradient(125deg,#101827,#18243a);color:#fff;border-bottom:4px solid #ff6000}.hero .wrap{padding-top:56px;padding-bottom:56px;display:grid;grid-template-columns:1.25fr .75fr;gap:30px}.eyebrow{color:#facc15;font-weight:950;font-size:12px;text-transform:uppercase}h1{font-size:44px;line-height:1.08;margin:8px 0 14px}.lead{font-size:18px;color:#d4d9e2}.stats{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);padding:20px 20px 20px 38px;border-radius:10px}.stats li{margin:10px 0}.main{display:grid;grid-template-columns:1.05fr .95fr;gap:22px;padding-top:32px;padding-bottom:44px}.panel{background:#fff;border:1px solid #e1e7ef;border-radius:10px;padding:22px;box-shadow:0 12px 30px rgba(15,23,42,.06)}h2{margin:0 0 8px;font-size:26px}.steps{padding-left:20px}.steps li{margin:11px 0}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.full{grid-column:1/-1}label{display:block;font-size:12px;font-weight:850;margin-bottom:5px}input,textarea{width:100%;border:1px solid #cbd5e1;border-radius:7px;padding:11px;font:inherit}button,.cta{display:inline-flex;justify-content:center;align-items:center;min-height:45px;border:0;border-radius:7px;padding:11px 16px;font-weight:950;text-decoration:none;cursor:pointer}.submit{background:#ff6000;color:#fff;width:100%}.cta{background:#25D366;color:#062813}.tel{background:#111827;color:#fff}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.status{font-size:13px;font-weight:800;color:#15803d;margin-top:9px}.footer{text-align:center;padding:22px;color:#64748b;background:#fff;border-top:1px solid #e5e7eb}@media(max-width:780px){.hero .wrap,.main{grid-template-columns:1fr}h1{font-size:34px}.grid{grid-template-columns:1fr}.full{grid-column:auto}.bar{align-items:flex-start;flex-direction:column}}</style>
+<style>*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f5f7fb;color:#172033;line-height:1.55}a{color:inherit}.top{background:#080d17;color:#fff}.bar,.wrap{max-width:1120px;margin:auto;padding:16px 20px}.bar{display:flex;justify-content:space-between;align-items:center;gap:16px}.brand{font-size:24px;font-weight:950;text-decoration:none}.brand span{color:#ff6000}.nav{display:flex;gap:14px}.nav a{color:#fff;text-decoration:none;font-weight:800;font-size:13px}.hero{background:linear-gradient(125deg,#101827,#18243a);color:#fff;border-bottom:4px solid #ff6000}.hero .wrap{padding-top:56px;padding-bottom:56px;display:grid;grid-template-columns:1.25fr .75fr;gap:30px}.eyebrow{color:#facc15;font-weight:950;font-size:12px;text-transform:uppercase}h1{font-size:44px;line-height:1.08;margin:8px 0 14px}.lead{font-size:18px;color:#d4d9e2}.stats{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);padding:20px 20px 20px 38px;border-radius:10px}.stats li{margin:10px 0}.main{display:grid;grid-template-columns:1.05fr .95fr;gap:22px;padding-top:32px;padding-bottom:44px}.panel{background:#fff;border:1px solid #e1e7ef;border-radius:10px;padding:22px;box-shadow:0 12px 30px rgba(15,23,42,.06)}h2{margin:0 0 8px;font-size:26px}.steps{padding-left:20px}.steps li{margin:11px 0}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.full{grid-column:1/-1}label{display:block;font-size:12px;font-weight:850;margin-bottom:5px}input,textarea{width:100%;border:1px solid #cbd5e1;border-radius:7px;padding:11px;font:inherit}input[type=file]{background:#f8fafc;font-size:13px}button,.cta{display:inline-flex;justify-content:center;align-items:center;min-height:45px;border:0;border-radius:7px;padding:11px 16px;font-weight:950;text-decoration:none;cursor:pointer}.submit{background:#ff6000;color:#fff;width:100%}.cta{background:#25D366;color:#062813}.tel{background:#111827;color:#fff}.catalog{background:#fff;color:#111827}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.status{font-size:13px;font-weight:800;color:#15803d;margin-top:9px}.hint{font-size:12px;color:#64748b;margin-top:5px}.footer{text-align:center;padding:22px;color:#64748b;background:#fff;border-top:1px solid #e5e7eb}@media(max-width:780px){.hero .wrap,.main{grid-template-columns:1fr}h1{font-size:34px}.grid{grid-template-columns:1fr}.full{grid-column:auto}.bar{align-items:flex-start;flex-direction:column}}</style>
 </head><body>
 <header class="top"><div class="bar"><a class="brand" href="${SITE}">FRENCINIZ<span>.com</span></a><nav class="nav"><a href="${SITE}/urunler">Urunler</a><a href="${SITE}/contact">Iletisim</a></nav></div></header>
-<section class="hero"><div class="wrap"><div><div class="eyebrow">Filo ve kurumsal toplu alim</div><h1>Fren parcasi tedarikini tek listede hizlandirin</h1><p class="lead">${xmlEscape(description)}</p><div class="actions"><a class="cta" data-lead-source="fleet_hero_whatsapp" href="https://wa.me/908508887881?text=${waText}">WhatsApp'tan liste gonder</a><a class="cta tel" data-lead-source="fleet_hero_phone" href="tel:+905456087008">0545 608 7008</a></div></div><ul class="stats"><li>Stoktaki urunlerden toplu teklif</li><li>OEM kodu ve arac bilgisiyle uyumluluk teyidi</li><li>Kamyon, tir, otobus ve dorse parcalari</li><li>Teklifte urun kodu ve adet bazli calisma</li></ul></div></section>
+<section class="hero"><div class="wrap"><div><div class="eyebrow">Filo ve kurumsal toplu alim</div><h1>Fren parcasi tedarikini tek listede hizlandirin</h1><p class="lead">${xmlEscape(description)}</p><div class="actions"><a class="cta" data-lead-source="fleet_hero_whatsapp" href="https://wa.me/908508887881?text=${waText}">WhatsApp'tan liste gonder</a><a class="cta tel" data-lead-source="fleet_hero_phone" href="tel:+905456087008">0545 608 7008</a><a class="cta catalog" data-lead-source="fleet_catalog_download" href="${SITE}/raporlar/frenciniz-stoklu-urunler-fiyatsiz-katalog.pdf" download>Fiyatsiz PDF katalog</a></div></div><ul class="stats"><li>1.196 stoklu urunluk fiyatsiz katalog</li><li>OEM kodu ve arac bilgisiyle uyumluluk teyidi</li><li>Kamyon, tir, otobus ve dorse parcalari</li><li>Teklifte urun kodu ve adet bazli calisma</li></ul></div></section>
 <main class="wrap main"><section class="panel"><h2>Nasil ilerliyoruz?</h2><ol class="steps"><li>Arac marka-model listenizi ve varsa sase/OEM kodlarini gonderin.</li><li>Ihtiyac duyulan urunleri ve adetleri stoktaki katalogla eslestirelim.</li><li>Uyumlulugu teyit edilen kalemler icin toplu teklif hazirlayalim.</li></ol><p>Fren diski, kampana, balata, kaliper parcalari, fren circiri, fren korugu, suspansiyon korugu, porya, bijon ve ABS/EBS parcalarinda calisiyoruz.</p><p><a href="${SITE}/urunler"><strong>Stoklu urun katalog merkezini inceleyin</strong></a></p></section>
-<section class="panel"><h2>Filo teklif talebi</h2><p>Bilgileri birakin; urun listesini netlestirmek icin sizi arayalim.</p><form data-fleet-form><div class="grid"><div><label>Firma / yetkili</label><input name="name" autocomplete="name" required></div><div><label>Telefon</label><input name="phone" inputmode="tel" autocomplete="tel" placeholder="05xx xxx xx xx" required></div><div><label>Filo arac sayisi</label><input name="fleetSize" inputmode="numeric" placeholder="Orn. 200"></div><div><label>Marka ve modeller</label><input name="vehicle" placeholder="Actros, Axor, TGX, FH..."></div><div class="full"><label>OEM / parca kodlari</label><textarea name="code" rows="3" placeholder="Her satira bir kod yazabilirsiniz"></textarea></div><div class="full"><label>Adetler ve not</label><textarea name="note" rows="3" placeholder="Urun bazinda adet veya ek ihtiyaclar"></textarea></div><div class="full"><button class="submit" type="submit">Teklif talebini gonder</button><div class="status" data-status></div></div></div></form></section></main>
+<section class="panel"><h2>Filo teklif talebi</h2><p>Bilgileri birakin; urun listesini netlestirmek icin sizi arayalim.</p><form data-fleet-form><div class="grid"><div><label>Firma / yetkili</label><input name="name" autocomplete="name" required></div><div><label>Telefon</label><input name="phone" inputmode="tel" autocomplete="tel" placeholder="05xx xxx xx xx" required></div><div><label>Filo arac sayisi</label><input name="fleetSize" inputmode="numeric" placeholder="Orn. 200"></div><div><label>Marka ve modeller</label><input name="vehicle" placeholder="Actros, Axor, TGX, FH..."></div><div class="full"><label>OEM / parca kodlari</label><textarea name="code" rows="5" placeholder="Her satira bir kod ve adet yazabilirsiniz"></textarea></div><div class="full"><label>CSV/TXT parca listesini forma aktar</label><input type="file" name="partsFile" accept=".csv,.txt,text/csv,text/plain"><div class="hint">Excel listenizi CSV olarak kaydedebilir veya Excel'deki satirlari yukaridaki alana yapistirabilirsiniz. Dosya sunucuya yuklenmez; yalnizca bu formdaki kod alanina aktarilir.</div></div><div class="full"><label>Adetler ve not</label><textarea name="note" rows="3" placeholder="Urun bazinda adet veya ek ihtiyaclar"></textarea></div><div class="full"><button class="submit" type="submit">Teklif talebini gonder</button><div class="status" data-status></div></div></div></form></section></main>
 <footer class="footer">Frenciniz · Dumanlar Ticaret · Isparta · info@frenciniz.com</footer>
-<script>(function(){function post(url,payload){var body=JSON.stringify(payload);if(navigator.sendBeacon){var blob=new Blob([body],{type:'application/json'});if(navigator.sendBeacon(url,blob))return Promise.resolve()}return fetch(url,{method:'POST',credentials:'include',headers:{'Content-Type':'application/json'},body:body,keepalive:true})}post('/api/auth/track',{path:location.pathname,search:location.search,ref:document.referrer||''}).catch(function(){});document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;var href=a.getAttribute('href')||'';var type=href.indexOf('tel:')===0?'phone':href.indexOf('wa.me')!==-1?'whatsapp':'';if(type)post('/api/auth/lead',{type:type,source:a.dataset.leadSource||'fleet_page',href:href,path:location.pathname,ref:document.referrer||''}).catch(function(){})},true);var form=document.querySelector('[data-fleet-form]');form.addEventListener('submit',function(e){e.preventDefault();var status=form.querySelector('[data-status]');var phone=String(form.elements.phone.value||'').trim();if(phone.replace(/\\D/g,'').length<10){status.textContent='Gecerli bir telefon numarasi yazin.';return}var note=['Filo arac sayisi: '+String(form.elements.fleetSize.value||'belirtilmedi'),String(form.elements.note.value||'')].filter(Boolean).join(' | ');post('/api/auth/lead',{type:'phone',source:'fleet_bulk_quote_form',path:location.pathname,ref:document.referrer||'',contactName:String(form.elements.name.value||''),contactPhone:phone,code:String(form.elements.code.value||''),vehicle:String(form.elements.vehicle.value||''),note:note}).then(function(){status.textContent='Talebiniz kaydedildi. En kisa surede aranacaksiniz.';form.reset()}).catch(function(){status.textContent='Kayit sirasinda sorun olustu. Lutfen 0545 608 7008 numarasini arayin.'})})})();</script>
+<script>(function(){function post(url,payload){var body=JSON.stringify(payload);if(navigator.sendBeacon){var blob=new Blob([body],{type:'application/json'});if(navigator.sendBeacon(url,blob))return Promise.resolve()}return fetch(url,{method:'POST',credentials:'include',headers:{'Content-Type':'application/json'},body:body,keepalive:true})}post('/api/auth/track',{path:location.pathname,search:location.search,ref:document.referrer||''}).catch(function(){});document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;var href=a.getAttribute('href')||'';var type=href.indexOf('tel:')===0?'phone':href.indexOf('wa.me')!==-1?'whatsapp':'';if(type)post('/api/auth/lead',{type:type,source:a.dataset.leadSource||'fleet_page',href:href,path:location.pathname,ref:document.referrer||''}).catch(function(){});if(a.hasAttribute('download')&&href.indexOf('/raporlar/')!==-1)post('/api/auth/product-action',{type:'catalog_download',path:location.pathname,name:'Frenciniz stoklu urunler katalogu'}).catch(function(){})},true);var form=document.querySelector('[data-fleet-form]');var partsFile=form.elements.partsFile;partsFile.addEventListener('change',function(){var file=partsFile.files&&partsFile.files[0];var status=form.querySelector('[data-status]');if(!file)return;if(file.size>1024*1024){status.textContent='Liste dosyasi en fazla 1 MB olabilir.';partsFile.value='';return}var reader=new FileReader();reader.onload=function(){var text=String(reader.result||'').replace(/\\r\\n/g,'\\n').trim().slice(0,12000);form.elements.code.value=text;status.textContent=text?'Parca listesi forma aktarildi.':'Dosyada okunabilir parca satiri bulunamadi.'};reader.onerror=function(){status.textContent='Dosya okunamadi; satirlari kod alanina yapistirabilirsiniz.'};reader.readAsText(file,'UTF-8')});form.addEventListener('submit',function(e){e.preventDefault();var status=form.querySelector('[data-status]');var phone=String(form.elements.phone.value||'').trim();if(phone.replace(/\\D/g,'').length<10){status.textContent='Gecerli bir telefon numarasi yazin.';return}var note=['Filo arac sayisi: '+String(form.elements.fleetSize.value||'belirtilmedi'),String(form.elements.note.value||'')].filter(Boolean).join(' | ');post('/api/auth/lead',{type:'phone',source:'fleet_bulk_quote_form',path:location.pathname,ref:document.referrer||'',contactName:String(form.elements.name.value||''),contactPhone:phone,code:String(form.elements.code.value||'').slice(0,12000),vehicle:String(form.elements.vehicle.value||''),note:note}).then(function(){status.textContent='Talebiniz kaydedildi. En kisa surede aranacaksiniz.';form.reset()}).catch(function(){status.textContent='Kayit sirasinda sorun olustu. Lutfen 0545 608 7008 numarasini arayin.'})})})();</script>
 </body></html>`;
 }
 
@@ -1006,6 +1164,9 @@ function renderSeoCatalogHtml(products = [], categories = []) {
     const parent = category.parent ? categories.find(item => item.id === category.parent) : null;
     return `<a class="category" href="${SITE}/${xmlEscape(category.id)}"><strong>${xmlEscape(category.name)}</strong><span>${categoryProducts.length} urun${parent ? ` · ${xmlEscape(parent.name)}` : ""}</span></a>`;
   }).join("");
+  const guideCards = Object.entries(BUYING_GUIDES).map(([slug, guide]) =>
+    `<a class="category" href="${SITE}/rehber/${xmlEscape(slug)}"><strong>${xmlEscape(guide.heading)}</strong><span>Urun secim rehberi</span></a>`
+  ).join("");
   const priorityLinks = priorityProducts.map(product => {
     const href = productSeoUrl(SITE, product);
     const displayName = productSearchName(product, categories, 140) || product.name;
@@ -1049,6 +1210,7 @@ function renderSeoCatalogHtml(products = [], categories = []) {
   <section class="hero"><div class="hero-inner"><div class="eyebrow">Stoklu urun katalog merkezi</div><h1>Tum Agir Vasita Fren Parcalari</h1><p class="lead">${xmlEscape(description)} Her kategori sayfasi kendi icindeki tum urunlere dogrudan baglanti verir.</p></div></section>
   <main class="wrap">
     <section><h2>Urun kategorileri</h2><p class="muted">Parca grubunu secerek stoklu urun, OEM kodu, fiyat ve uyumluluk bilgilerine ulasin.</p><div class="categories">${categoryCards}</div></section>
+    <section class="priority"><h2>Dogru parcayi secme rehberleri</h2><p class="muted">OEM kodu, olcu ve arac bilgisiyle yanlis siparis riskini azaltan teknik kontrol listeleri.</p><div class="categories">${guideCards}</div></section>
     <section class="priority"><h2>Oncelikli stoklu urunler</h2><p class="muted">OEM talebi, stok ve urun verisi guclu olan urunlerden secilmis hizli baglantilar.</p><ul>${priorityLinks}</ul></section>
   </main>
   <footer class="footer">Frenciniz · Dumanlar Ticaret · Isparta · info@frenciniz.com</footer>
@@ -1302,6 +1464,16 @@ export default async function handler(req, res) {
 
     if (type === "fleet") {
       const html = renderFleetQuoteHtml();
+      res.setHeader("Content-Type", "text/html; charset=utf-8");
+      res.setHeader("Cache-Control", "public, max-age=600, s-maxage=86400, stale-while-revalidate=604800");
+      return res.status(200).send(html);
+    }
+
+    if (type === "guide") {
+      const slug = String(req.query?.slug || parsedUrl.searchParams.get("slug") || "").replace(/^\/+|\/+$/g, "");
+      const guide = BUYING_GUIDES[slug];
+      if (!guide) return res.status(404).send("Buying guide not found");
+      const html = renderBuyingGuideHtml(slug, guide);
       res.setHeader("Content-Type", "text/html; charset=utf-8");
       res.setHeader("Cache-Control", "public, max-age=600, s-maxage=86400, stale-while-revalidate=604800");
       return res.status(200).send(html);

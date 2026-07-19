@@ -45,6 +45,10 @@
       "destination": "/api/sitemap?type=fleet"
     },
     {
+      "source": "/rehber/:slug",
+      "destination": "/api/sitemap?type=guide&slug=:slug"
+    },
+    {
       "source": "/frencoo-kaliper-tamir-takimi",
       "destination": "/api/sitemap?type=demand&slug=frencoo-kaliper-tamir-takimi"
     },
