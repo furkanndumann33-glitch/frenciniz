@@ -560,44 +560,6 @@ function quickQuoteWhatsAppUrl({product, code, vehicle, phone, note} = {}) {
   ].filter(Boolean).join("\n"));
 }
 
-function withUtm(url, source = "organic", medium = "share", campaign = "today_sales") {
-  try {
-    const parsed = new URL(url, SITE_URL);
-    parsed.searchParams.set("utm_source", source);
-    parsed.searchParams.set("utm_medium", medium);
-    parsed.searchParams.set("utm_campaign", campaign);
-    return parsed.toString();
-  } catch {
-    const sep = String(url || "").includes("?") ? "&" : "?";
-    return `${url}${sep}utm_source=${encodeURIComponent(source)}&utm_medium=${encodeURIComponent(medium)}&utm_campaign=${encodeURIComponent(campaign)}`;
-  }
-}
-
-function productShareUrl(product, source = "facebook") {
-  return withUtm(productSeoUrl(SITE_URL, product), source, "organic_share", "product_share");
-}
-
-function productShareText(product, url) {
-  const seoName = productSearchName(product, CATS, 140) || product?.name || "Agir vasita fren parcasi";
-  return [
-    `${seoName}`,
-    product?.sku ? `Stok kodu: ${product.sku}` : "",
-    product?.oem ? `OEM/Muadil: ${product.oem}` : "",
-    "Fiyat, stok ve uyumluluk icin Frenciniz.",
-    url,
-  ].filter(Boolean).join("\n");
-}
-
-function shareToWhatsAppUrl(product) {
-  const url = productShareUrl(product, "whatsapp");
-  return `https://api.whatsapp.com/send?text=${encodeURIComponent(productShareText(product, url))}`;
-}
-
-function shareToFacebookUrl(product) {
-  const url = productShareUrl(product, "facebook");
-  return `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
-}
-
 function recordLeadEvent(type = "whatsapp", data = {}) {
   if (typeof window === "undefined") return;
   const product = data.product || null;
@@ -3612,67 +3574,6 @@ function ProductCallbackLeadForm({p, qty, isMobile}) {
   );
 }
 
-function ProductShareTrafficPanel({p, isMobile}) {
-  const [copied, setCopied] = useState(false);
-  const facebookHref = shareToFacebookUrl(p);
-  const whatsappHref = shareToWhatsAppUrl(p);
-  const copyUrl = productShareUrl(p, "copy_link");
-  const shareText = productShareText(p, copyUrl);
-  const copyLink = async () => {
-    try {
-      await navigator.clipboard.writeText(shareText);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2200);
-      metaTrackCustom("ProductShareCopy", { productId:p?.id, sku:p?.sku, source:"copy_link" });
-    } catch {
-      setCopied(false);
-    }
-  };
-  const btnBase = {
-    minHeight:42,
-    borderRadius:7,
-    fontSize:13,
-    fontWeight:950,
-    textDecoration:"none",
-    display:"inline-flex",
-    alignItems:"center",
-    justifyContent:"center",
-    textAlign:"center",
-    padding:"10px 12px",
-    border:"none",
-    cursor:"pointer",
-  };
-  return (
-    <section aria-label="Urunu paylas ve trafik cek" style={{
-      marginBottom:18,
-      padding:isMobile?13:15,
-      borderRadius:8,
-      background:"#fff",
-      border:"1px solid #e5e7eb",
-      boxShadow:"0 12px 26px rgba(15,23,42,.06)"
-    }}>
-      <div style={{display:"flex",alignItems:isMobile?"stretch":"center",justifyContent:"space-between",gap:12,flexDirection:isMobile?"column":"row"}}>
-        <div style={{minWidth:0}}>
-          <div style={{fontSize:11,fontWeight:950,color:"#ff6000",textTransform:"uppercase",letterSpacing:.2,marginBottom:4}}>Trafik cek</div>
-          <div style={{fontSize:15,fontWeight:950,color:"#111827",lineHeight:1.25,marginBottom:5}}>Bu urunu gruba veya musterine gonder.</div>
-          <div style={{fontSize:12,color:"#64748b",lineHeight:1.45}}>Paylasim linkleri takip kodlu gelir; Facebook/WhatsApp kaynakli ziyaretleri admin panelde ayiririz.</div>
-        </div>
-        <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"repeat(3,minmax(0,1fr))",gap:8,minWidth:isMobile?0:360}}>
-          <a href={whatsappHref} target="_blank" rel="noopener noreferrer" onClick={() => metaTrackCustom("ProductShare", { productId:p?.id, sku:p?.sku, source:"whatsapp" })} style={{...btnBase,background:"#25D366",color:"#062813"}}>
-            WhatsApp'a at
-          </a>
-          <a href={facebookHref} target="_blank" rel="noopener noreferrer" onClick={() => metaTrackCustom("ProductShare", { productId:p?.id, sku:p?.sku, source:"facebook" })} style={{...btnBase,background:"#1877f2",color:"#fff"}}>
-            Facebook'ta paylas
-          </a>
-          <button type="button" onClick={copyLink} style={{...btnBase,background:copied?"#16a34a":"#111827",color:"#fff"}}>
-            {copied ? "Kopyalandi" : "Linki kopyala"}
-          </button>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 // ===== PRODUCT DETAIL =====
 function ProductDetailPage() {
   const {params, go, addToCart, addViewed, favs, toggleFav, addStockAlert, isMobile, t, fp, lang, products, dataLoaded} = use$();
@@ -3791,7 +3692,6 @@ function ProductDetailPage() {
           </div>
                   <ProductCallbackLeadForm p={p} qty={qty} isMobile={isMobile} />
                   <ProductConversionPanel p={p} qty={qty} href={whatsappQuoteHref} isMobile={isMobile} fp={fp} />
-                  <ProductShareTrafficPanel p={p} isMobile={isMobile} />
           <div style={{fontSize:14,color:"#666",lineHeight:1.7,marginBottom:16,whiteSpace:"pre-line"}}>{linkifyContacts(detailDesc)}</div>
           <div style={{padding:"16px 20px",background:"#f9f9f9",borderRadius:8,marginBottom:20,border:"1px solid #eee"}}>
             <div style={{display:"flex",alignItems:"baseline",gap:10}}>
