@@ -3919,8 +3919,11 @@ function CartPage() {
   const shippingProgress = Math.min((cartTotal / 3000) * 100, 100);
   const remaining = Math.max(3000 - cartTotal, 0);
   const [couponLoading, setCouponLoading] = useState(false);
+  const [callbackPhone, setCallbackPhone] = useState("");
+  const [callbackStatus, setCallbackStatus] = useState("");
   const whatsappCartHref = cartWhatsAppUrl(cart, cartTotal, ship, discount);
   const cartFunnelKey = cart.map(item => `${item.id}:${item.qty}`).sort().join("|") || "empty";
+  const cartItemCount = cart.reduce((sum, item) => sum + Number(item.qty || 1), 0);
 
   useEffect(() => {
     if (!cart.length) return;
@@ -3930,6 +3933,32 @@ function CartPage() {
       dedupeKey: cartFunnelKey,
     });
   }, [cartFunnelKey]);
+
+  const requestCartCallback = () => {
+    const digits = callbackPhone.replace(/\D/g, "");
+    if (digits.length < 10) {
+      setCallbackStatus("Geçerli bir telefon numarası yazın.");
+      return;
+    }
+    const itemSummary = cart
+      .slice(0, 12)
+      .map(item => `${item.sku || item.id} x${item.qty || 1}`)
+      .join(", ");
+    recordLeadEvent("phone", {
+      source: "cart_callback",
+      contactPhone: callbackPhone,
+      value: cartTotal + ship - discount,
+      items: cartItemCount,
+      note: `Sepet sipariş desteği: ${itemSummary}`.slice(0, 480),
+    });
+    metaTrackCustom("CallbackLead", {
+      source: "cart_callback",
+      value: cartTotal + ship - discount,
+      items: cartItemCount,
+    });
+    setCallbackStatus("Arama talebiniz kaydedildi.");
+    setCallbackPhone("");
+  };
 
   const applyCoupon = async () => {
     const code = coupon.trim().toUpperCase();
@@ -4042,7 +4071,24 @@ function CartPage() {
               style={{width:"100%",padding:"14px",background:"#25D366",color:"#062813",border:"none",borderRadius:6,fontSize:15,fontWeight:950,cursor:"pointer",marginTop:16,textDecoration:"none",display:"flex",alignItems:"center",justifyContent:"center",textAlign:"center",minHeight:46}}>
               WhatsApp ile 30 Saniyede Sipariş Ver
             </a>
-            <button onClick={() => go("checkout")} style={{width:"100%",padding:"14px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:16,fontWeight:950,cursor:"pointer",marginTop:10,boxShadow:"0 10px 24px rgba(255,96,0,.18)"}}>Kartla Güvenli Ödeme</button>
+            <button onClick={() => {
+              recordFunnelEvent("begin_checkout", {
+                items: cartItemCount,
+                value: cartTotal + ship - discount,
+                dedupeKey: cartFunnelKey,
+              });
+              go("checkout");
+            }} style={{width:"100%",padding:"14px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:16,fontWeight:950,cursor:"pointer",marginTop:10,boxShadow:"0 10px 24px rgba(255,96,0,.18)"}}>Kartla Güvenli Ödeme</button>
+            <div style={{marginTop:12,padding:11,border:"1px solid #dbeafe",borderRadius:7,background:"#f8fbff"}}>
+              <div style={{fontSize:12,fontWeight:900,color:"#111827",marginBottom:7}}>Sepet için sipariş desteği ister misiniz?</div>
+              <div style={{display:"flex",gap:6,minWidth:0}}>
+                <input value={callbackPhone} onChange={e=>{setCallbackPhone(e.target.value);setCallbackStatus("");}} inputMode="tel" autoComplete="tel" placeholder="05xx xxx xx xx"
+                  style={{flex:"1 1 auto",minWidth:0,minHeight:40,border:"1px solid #cbd5e1",borderRadius:6,padding:"0 9px",fontSize:12}} />
+                <button type="button" onClick={requestCartCallback}
+                  style={{flex:"0 0 auto",minHeight:40,border:"none",borderRadius:6,background:"#111827",color:"#fff",padding:"0 11px",fontSize:12,fontWeight:900,cursor:"pointer"}}>Beni arayın</button>
+              </div>
+              <div style={{fontSize:10.5,color:callbackStatus?"#15803d":"#64748b",lineHeight:1.4,marginTop:6}}>{callbackStatus || "Telefonunuz yalnızca bu sepetle ilgili sipariş desteği için kullanılır."}</div>
+            </div>
             <div style={{fontSize:11,color:"#6b7280",lineHeight:1.45,textAlign:"center",marginTop:9}}>Üyelik zorunlu değil. Kart bilgisi PayTR güvenli sayfasında girilir.</div>
           </div>
         </div>

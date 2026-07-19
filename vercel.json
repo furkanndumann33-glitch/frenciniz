@@ -49,6 +49,10 @@
       "destination": "/api/sitemap?type=guide&slug=:slug"
     },
     {
+      "source": "/katalog/:slug",
+      "destination": "/api/sitemap?type=catalog_segment&slug=:slug"
+    },
+    {
       "source": "/frencoo-kaliper-tamir-takimi",
       "destination": "/api/sitemap?type=demand&slug=frencoo-kaliper-tamir-takimi"
     },

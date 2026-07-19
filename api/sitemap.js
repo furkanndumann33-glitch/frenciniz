@@ -31,6 +31,10 @@ const STATIC_PAGES = [
   { loc: "/rehber/oem-parca-kodu-nasil-bulunur", priority: "0.7", changefreq: "monthly" },
   { loc: "/rehber/kaliper-tamir-takimi-nasil-secilir", priority: "0.7", changefreq: "monthly" },
   { loc: "/rehber/fren-diski-olcusu-nasil-alinir", priority: "0.7", changefreq: "monthly" },
+  { loc: "/katalog/mercedes-agir-vasita", priority: "0.8", changefreq: "weekly" },
+  { loc: "/katalog/man-bmc-agir-vasita", priority: "0.8", changefreq: "weekly" },
+  { loc: "/katalog/avrupa-kamyon", priority: "0.8", changefreq: "weekly" },
+  { loc: "/katalog/dorse-aks", priority: "0.8", changefreq: "weekly" },
   { loc: "/brands", priority: "0.7", changefreq: "weekly" },
   { loc: "/about", priority: "0.5", changefreq: "monthly" },
   { loc: "/contact", priority: "0.7", changefreq: "monthly" },
@@ -172,6 +176,53 @@ const CATEGORY_GUIDE_LINKS = {
   "abs-sensoru-modulu-kablo": "axor-abs-sensoru-nasil-secilir",
   "kaliper-tamir-takimi": "kaliper-tamir-takimi-nasil-secilir",
   "fren-diski": "fren-diski-olcusu-nasil-alinir",
+};
+
+function catalogSegmentText(product) {
+  return [
+    product?.name,
+    product?.oem,
+    ...(Array.isArray(product?.compat) ? product.compat : []),
+  ].filter(Boolean).join(" ");
+}
+
+const CATALOG_SEGMENTS = {
+  "mercedes-agir-vasita": {
+    name: "Mercedes-Benz Agir Vasita",
+    title: "Mercedes Actros, Axor, Atego Fren Parcalari Katalogu | Frenciniz",
+    heading: "Mercedes-Benz agir vasita fren parcalari",
+    description: "Actros, Axor, Atego, Arocs, Travego ve Tourismo icin urun verisinde arac veya OEM sinyali bulunan stoklu fren parcalarini inceleyin.",
+    pdf: "/raporlar/frenciniz-mercedes-agir-vasita-fiyatsiz-katalog.pdf",
+    matches: product => product?.compat_confidence !== "category_generic" &&
+      /\b(mercedes|actros|axor|atego|arocs|travego|tourismo|sprinter)\b/i.test(catalogSegmentText(product)),
+  },
+  "man-bmc-agir-vasita": {
+    name: "MAN ve BMC Agir Vasita",
+    title: "MAN TGA TGS TGX ve BMC Fren Parcalari Katalogu | Frenciniz",
+    heading: "MAN ve BMC agir vasita fren parcalari",
+    description: "MAN TGA, TGS, TGX, TGM ve BMC araclari icin urun verisinde model veya OEM sinyali bulunan stoklu fren parcalarini inceleyin.",
+    pdf: "/raporlar/frenciniz-man-bmc-agir-vasita-fiyatsiz-katalog.pdf",
+    matches: product => product?.compat_confidence !== "category_generic" &&
+      /\b(man|tga|tgs|tgx|tgm|bmc|procity|profesyonel)\b/i.test(catalogSegmentText(product)),
+  },
+  "avrupa-kamyon": {
+    name: "Avrupa Kamyonlari",
+    title: "Volvo Scania DAF Iveco Renault Fren Parcalari Katalogu | Frenciniz",
+    heading: "Volvo, Scania, DAF, Iveco ve Renault fren parcalari",
+    description: "Avrupa kamyon ve cekici grubu icin urun verisinde model veya OEM sinyali bulunan stoklu fren parcalarini inceleyin.",
+    pdf: "/raporlar/frenciniz-avrupa-kamyon-fiyatsiz-katalog.pdf",
+    matches: product => product?.compat_confidence !== "category_generic" &&
+      /\b(volvo|scania|daf|iveco|renault|fh\d*|fm\d*|r-seri|xf\d*|stralis|premium|magnum)\b/i.test(catalogSegmentText(product)),
+  },
+  "dorse-aks": {
+    name: "Dorse ve Aks Sistemleri",
+    title: "Dorse BPW SAF Schmitz Krone Kogel Parca Katalogu | Frenciniz",
+    heading: "Dorse ve aks sistemi fren parcalari",
+    description: "BPW, SAF, Schmitz, Krone, Kogel ve dorse uygulamalari icin urun verisinde sistem veya OEM sinyali bulunan stoklu parcalari inceleyin.",
+    pdf: "/raporlar/frenciniz-dorse-aks-fiyatsiz-katalog.pdf",
+    matches: product => product?.compat_confidence !== "category_generic" &&
+      /\b(dorse|bpw|saf|schmitz|krone|kogel|kögel|fruehauf|trailer)\b/i.test(catalogSegmentText(product)),
+  },
 };
 
 function xmlEscape(s) {
@@ -1107,7 +1158,7 @@ function renderFleetQuoteHtml() {
 </head><body>
 <header class="top"><div class="bar"><a class="brand" href="${SITE}">FRENCINIZ<span>.com</span></a><nav class="nav"><a href="${SITE}/urunler">Urunler</a><a href="${SITE}/contact">Iletisim</a></nav></div></header>
 <section class="hero"><div class="wrap"><div><div class="eyebrow">Filo ve kurumsal toplu alim</div><h1>Fren parcasi tedarikini tek listede hizlandirin</h1><p class="lead">${xmlEscape(description)}</p><div class="actions"><a class="cta" data-lead-source="fleet_hero_whatsapp" href="https://wa.me/908508887881?text=${waText}">WhatsApp'tan liste gonder</a><a class="cta tel" data-lead-source="fleet_hero_phone" href="tel:+905456087008">0545 608 7008</a><a class="cta catalog" data-lead-source="fleet_catalog_download" href="${SITE}/raporlar/frenciniz-stoklu-urunler-fiyatsiz-katalog.pdf" download>Fiyatsiz PDF katalog</a></div></div><ul class="stats"><li>1.196 stoklu urunluk fiyatsiz katalog</li><li>OEM kodu ve arac bilgisiyle uyumluluk teyidi</li><li>Kamyon, tir, otobus ve dorse parcalari</li><li>Teklifte urun kodu ve adet bazli calisma</li></ul></div></section>
-<main class="wrap main"><section class="panel"><h2>Nasil ilerliyoruz?</h2><ol class="steps"><li>Arac marka-model listenizi ve varsa sase/OEM kodlarini gonderin.</li><li>Ihtiyac duyulan urunleri ve adetleri stoktaki katalogla eslestirelim.</li><li>Uyumlulugu teyit edilen kalemler icin toplu teklif hazirlayalim.</li></ol><p>Fren diski, kampana, balata, kaliper parcalari, fren circiri, fren korugu, suspansiyon korugu, porya, bijon ve ABS/EBS parcalarinda calisiyoruz.</p><p><a href="${SITE}/urunler"><strong>Stoklu urun katalog merkezini inceleyin</strong></a></p></section>
+<main class="wrap main"><section class="panel"><h2>Nasil ilerliyoruz?</h2><ol class="steps"><li>Arac marka-model listenizi ve varsa sase/OEM kodlarini gonderin.</li><li>Ihtiyac duyulan urunleri ve adetleri stoktaki katalogla eslestirelim.</li><li>Uyumlulugu teyit edilen kalemler icin toplu teklif hazirlayalim.</li></ol><p>Fren diski, kampana, balata, kaliper parcalari, fren circiri, fren korugu, suspansiyon korugu, porya, bijon ve ABS/EBS parcalarinda calisiyoruz.</p><p><a href="${SITE}/urunler"><strong>Stoklu urun katalog merkezini inceleyin</strong></a></p><p><strong>Marka kataloglari:</strong><br><a href="${SITE}/katalog/mercedes-agir-vasita">Mercedes-Benz</a> · <a href="${SITE}/katalog/man-bmc-agir-vasita">MAN ve BMC</a> · <a href="${SITE}/katalog/avrupa-kamyon">Volvo, Scania, DAF, Iveco ve Renault</a> · <a href="${SITE}/katalog/dorse-aks">Dorse ve aks sistemleri</a></p></section>
 <section class="panel"><h2>Filo teklif talebi</h2><p>Bilgileri birakin; urun listesini netlestirmek icin sizi arayalim.</p><form data-fleet-form><div class="grid"><div><label>Firma / yetkili</label><input name="name" autocomplete="name" required></div><div><label>Telefon</label><input name="phone" inputmode="tel" autocomplete="tel" placeholder="05xx xxx xx xx" required></div><div><label>Filo arac sayisi</label><input name="fleetSize" inputmode="numeric" placeholder="Orn. 200"></div><div><label>Marka ve modeller</label><input name="vehicle" placeholder="Actros, Axor, TGX, FH..."></div><div class="full"><label>OEM / parca kodlari</label><textarea name="code" rows="5" placeholder="Her satira bir kod ve adet yazabilirsiniz"></textarea></div><div class="full"><label>CSV/TXT parca listesini forma aktar</label><input type="file" name="partsFile" accept=".csv,.txt,text/csv,text/plain"><div class="hint">Excel listenizi CSV olarak kaydedebilir veya Excel'deki satirlari yukaridaki alana yapistirabilirsiniz. Dosya sunucuya yuklenmez; yalnizca bu formdaki kod alanina aktarilir.</div></div><div class="full"><label>Adetler ve not</label><textarea name="note" rows="3" placeholder="Urun bazinda adet veya ek ihtiyaclar"></textarea></div><div class="full"><button class="submit" type="submit">Teklif talebini gonder</button><div class="status" data-status></div></div></div></form></section></main>
 <footer class="footer">Frenciniz · Dumanlar Ticaret · Isparta · info@frenciniz.com</footer>
 <script>(function(){function post(url,payload){var body=JSON.stringify(payload);if(navigator.sendBeacon){var blob=new Blob([body],{type:'application/json'});if(navigator.sendBeacon(url,blob))return Promise.resolve()}return fetch(url,{method:'POST',credentials:'include',headers:{'Content-Type':'application/json'},body:body,keepalive:true})}post('/api/auth/track',{path:location.pathname,search:location.search,ref:document.referrer||''}).catch(function(){});document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;var href=a.getAttribute('href')||'';var type=href.indexOf('tel:')===0?'phone':href.indexOf('wa.me')!==-1?'whatsapp':'';if(type)post('/api/auth/lead',{type:type,source:a.dataset.leadSource||'fleet_page',href:href,path:location.pathname,ref:document.referrer||''}).catch(function(){});if(a.hasAttribute('download')&&href.indexOf('/raporlar/')!==-1)post('/api/auth/product-action',{type:'catalog_download',path:location.pathname,name:'Frenciniz stoklu urunler katalogu'}).catch(function(){})},true);var form=document.querySelector('[data-fleet-form]');var partsFile=form.elements.partsFile;partsFile.addEventListener('change',function(){var file=partsFile.files&&partsFile.files[0];var status=form.querySelector('[data-status]');if(!file)return;if(file.size>1024*1024){status.textContent='Liste dosyasi en fazla 1 MB olabilir.';partsFile.value='';return}var reader=new FileReader();reader.onload=function(){var text=String(reader.result||'').replace(/\\r\\n/g,'\\n').trim().slice(0,12000);form.elements.code.value=text;status.textContent=text?'Parca listesi forma aktarildi.':'Dosyada okunabilir parca satiri bulunamadi.'};reader.onerror=function(){status.textContent='Dosya okunamadi; satirlari kod alanina yapistirabilirsiniz.'};reader.readAsText(file,'UTF-8')});form.addEventListener('submit',function(e){e.preventDefault();var status=form.querySelector('[data-status]');var phone=String(form.elements.phone.value||'').trim();if(phone.replace(/\\D/g,'').length<10){status.textContent='Gecerli bir telefon numarasi yazin.';return}var note=['Filo arac sayisi: '+String(form.elements.fleetSize.value||'belirtilmedi'),String(form.elements.note.value||'')].filter(Boolean).join(' | ');post('/api/auth/lead',{type:'phone',source:'fleet_bulk_quote_form',path:location.pathname,ref:document.referrer||'',contactName:String(form.elements.name.value||''),contactPhone:phone,code:String(form.elements.code.value||'').slice(0,12000),vehicle:String(form.elements.vehicle.value||''),note:note}).then(function(){status.textContent='Talebiniz kaydedildi. En kisa surede aranacaksiniz.';form.reset()}).catch(function(){status.textContent='Kayit sirasinda sorun olustu. Lutfen 0545 608 7008 numarasini arayin.'})})})();</script>
@@ -1167,6 +1218,9 @@ function renderSeoCatalogHtml(products = [], categories = []) {
   const guideCards = Object.entries(BUYING_GUIDES).map(([slug, guide]) =>
     `<a class="category" href="${SITE}/rehber/${xmlEscape(slug)}"><strong>${xmlEscape(guide.heading)}</strong><span>Urun secim rehberi</span></a>`
   ).join("");
+  const segmentCards = Object.entries(CATALOG_SEGMENTS).map(([slug, segment]) =>
+    `<a class="category" href="${SITE}/katalog/${xmlEscape(slug)}"><strong>${xmlEscape(segment.name)}</strong><span>Stoklu urunler ve fiyatsiz PDF</span></a>`
+  ).join("");
   const priorityLinks = priorityProducts.map(product => {
     const href = productSeoUrl(SITE, product);
     const displayName = productSearchName(product, categories, 140) || product.name;
@@ -1210,6 +1264,7 @@ function renderSeoCatalogHtml(products = [], categories = []) {
   <section class="hero"><div class="hero-inner"><div class="eyebrow">Stoklu urun katalog merkezi</div><h1>Tum Agir Vasita Fren Parcalari</h1><p class="lead">${xmlEscape(description)} Her kategori sayfasi kendi icindeki tum urunlere dogrudan baglanti verir.</p></div></section>
   <main class="wrap">
     <section><h2>Urun kategorileri</h2><p class="muted">Parca grubunu secerek stoklu urun, OEM kodu, fiyat ve uyumluluk bilgilerine ulasin.</p><div class="categories">${categoryCards}</div></section>
+    <section class="priority"><h2>Marka ve arac grubu kataloglari</h2><p class="muted">Yalnizca urun verisinde model veya OEM sinyali bulunan stoklu urunlerden hazirlanan fiyatsiz kataloglar.</p><div class="categories">${segmentCards}</div></section>
     <section class="priority"><h2>Dogru parcayi secme rehberleri</h2><p class="muted">OEM kodu, olcu ve arac bilgisiyle yanlis siparis riskini azaltan teknik kontrol listeleri.</p><div class="categories">${guideCards}</div></section>
     <section class="priority"><h2>Oncelikli stoklu urunler</h2><p class="muted">OEM talebi, stok ve urun verisi guclu olan urunlerden secilmis hizli baglantilar.</p><ul>${priorityLinks}</ul></section>
   </main>
@@ -1474,6 +1529,30 @@ export default async function handler(req, res) {
       const guide = BUYING_GUIDES[slug];
       if (!guide) return res.status(404).send("Buying guide not found");
       const html = renderBuyingGuideHtml(slug, guide);
+      res.setHeader("Content-Type", "text/html; charset=utf-8");
+      res.setHeader("Cache-Control", "public, max-age=600, s-maxage=86400, stale-while-revalidate=604800");
+      return res.status(200).send(html);
+    }
+
+    if (type === "catalog_segment") {
+      const slug = String(req.query?.slug || parsedUrl.searchParams.get("slug") || "").replace(/^\/+|\/+$/g, "");
+      const segment = CATALOG_SEGMENTS[slug];
+      if (!segment) return res.status(404).send("Catalog segment not found");
+      const matched = products.filter(segment.matches);
+      if (!matched.length) return res.status(404).send("Catalog segment products not found");
+      const category = {
+        id: `katalog/${slug}`,
+        name: segment.name,
+        seo: {
+          title: segment.title,
+          heading: segment.heading,
+          description: segment.description,
+        },
+      };
+      let html = renderSeoCategoryHtml(category, products, categories, matched);
+      const catalogPanel = `<section style="margin:0 0 20px;padding:18px;border-radius:10px;background:#111827;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap"><div><strong style="font-size:18px">Fiyatsiz PDF katalog</strong><div style="font-size:13px;color:#cbd5e1;margin-top:4px">Urun kodlari ve uyumluluk sinyalleriyle kurumsal paylasima hazir.</div></div><a href="${SITE}${xmlEscape(segment.pdf)}" download data-catalog-download style="background:#facc15;color:#111827;text-decoration:none;font-weight:950;border-radius:7px;padding:11px 15px">PDF katalogu indir</a></section>`;
+      html = html.replace('<main class="wrap">', `<main class="wrap">${catalogPanel}`);
+      html = html.replace("</body>", `<script>(function(){document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-catalog-download]');if(!a)return;var body=JSON.stringify({type:'catalog_download',path:location.pathname,name:${JSON.stringify(segment.name)}});if(navigator.sendBeacon){var blob=new Blob([body],{type:'application/json'});if(navigator.sendBeacon('/api/auth/product-action',blob))return}fetch('/api/auth/product-action',{method:'POST',headers:{'Content-Type':'application/json'},body:body,keepalive:true}).catch(function(){})},true)})();</script></body>`);
       res.setHeader("Content-Type", "text/html; charset=utf-8");
       res.setHeader("Cache-Control", "public, max-age=600, s-maxage=86400, stale-while-revalidate=604800");
       return res.status(200).send(html);
