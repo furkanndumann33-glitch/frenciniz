@@ -48,34 +48,34 @@ const STATIC_PAGES = [
 
 const CATEGORY_SEO_OVERRIDES = {
   "fren-circiri": {
-    title: "Fren Circiri Fiyatlari | Otomatik ve Mekanik | Frenciniz",
-    heading: "Fren Circiri Fiyatlari ve Stok",
-    description: "Otomatik ve mekanik agir vasita fren circiri secenekleri. Kamyon, tir, otobus ve dorse icin OEM kodu, arac modeli ve sase ile uyumluluk teyidi alin.",
+    title: "Fren Cırcırı Fiyatları | Otomatik ve Mekanik | Frenciniz",
+    heading: "Fren Cırcırı Fiyatları ve Stok",
+    description: "Otomatik ve mekanik ağır vasıta fren cırcırı seçenekleri. Kamyon, tır, otobüs ve dorse için OEM kodu, araç modeli ve şase ile uyumluluk teyidi alın.",
   },
   "fren-korugu": {
-    title: "Fren Korugu ve Dorse Fren Korugu Fiyatlari | Frenciniz",
-    heading: "Fren Korugu ve Dorse Fren Korugu Fiyatlari",
-    description: "Kamyon, tir ve dorse fren korugu secenekleri. Arfesan ve muadil urunlerde OEM kodu, tip ve olcu ile stok ve uyumluluk teyidi alin.",
+    title: "Fren Körüğü ve Dorse Fren Körüğü Fiyatları | Frenciniz",
+    heading: "Fren Körüğü ve Dorse Fren Körüğü Fiyatları",
+    description: "Kamyon, tır ve dorse fren körüğü seçenekleri. Arfesan ve muadil ürünlerde OEM kodu, tip ve ölçü ile stok ve uyumluluk teyidi alın.",
   },
   "abs-sensoru-modulu-kablo": {
-    title: "Axor ve Dorse ABS Sensoru, EBS Modulu | Frenciniz",
-    heading: "Axor ve Dorse ABS Sensoru Urunleri",
-    description: "Mercedes Axor, kamyon ve dorse icin ABS sensoru, kablo ve EBS urunleri. OEM kodu ve sase bilgisiyle dogru sensoru teyit edin.",
+    title: "Axor ve Dorse ABS Sensörü, EBS Modülü | Frenciniz",
+    heading: "Axor ve Dorse ABS Sensörü Ürünleri",
+    description: "Mercedes Axor, kamyon ve dorse için ABS sensörü, kablo ve EBS ürünleri. OEM kodu ve şase bilgisiyle doğru sensörü teyit edin.",
   },
   "suspansiyon-korugu": {
-    title: "Kamyon ve Dorse Suspansiyon Korugu Fiyatlari | Frenciniz",
-    heading: "Kamyon ve Dorse Suspansiyon Korugu",
-    description: "Kamyon, cekici ve dorse suspansiyon korugu secenekleri. OEM numarasi, alt-ust baglanti ve arac modeliyle uyumluluk ve stok teyidi alin.",
+    title: "Kamyon ve Dorse Süspansiyon Körüğü Fiyatları | Frenciniz",
+    heading: "Kamyon ve Dorse Süspansiyon Körüğü",
+    description: "Kamyon, çekici ve dorse süspansiyon körüğü seçenekleri. OEM numarası, alt-üst bağlantı ve araç modeliyle uyumluluk ve stok teyidi alın.",
   },
 };
 
 const DEMAND_COLLECTIONS = {
   "frencoo-kaliper-tamir-takimi": {
     id: "frencoo-kaliper-tamir-takimi",
-    name: "Frencoo Kaliper Tamir Takimi",
-    title: "Frencoo Kaliper Tamir Takimi ve Fren Kaliper Parcalari | Frenciniz",
-    heading: "Frencoo Kaliper Tamir Takimi ve Parcalari",
-    description: "Frencoo adiyla aranan stoklu kaliper tamir takimi ve fren kaliper parcalari. Urun kodu, kaliper tipi ve eski parca fotografiyla uyumluluk teyidi alin.",
+    name: "Frencoo Kaliper Tamir Takımı",
+    title: "Frencoo Kaliper Tamir Takımı ve Parçaları | Frenciniz",
+    heading: "Frencoo Kaliper Tamir Takımı ve Parçaları",
+    description: "Frencoo adıyla aranan stoklu kaliper tamir takımı ve fren kaliper parçaları. Ürün kodu, kaliper tipi ve eski parça fotoğrafıyla uyumluluk teyidi alın.",
     matches(product) {
       const text = [product?.name, product?.desc, product?.sku, product?.oem].filter(Boolean).join(" ").toLowerCase();
       return Number(product?.stock || 0) > 0 && text.includes("frencoo");
