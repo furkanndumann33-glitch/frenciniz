@@ -37,6 +37,10 @@
       "destination": "/api/sitemap?type=meta"
     },
     {
+      "source": "/urunler",
+      "destination": "/api/sitemap?type=catalog"
+    },
+    {
       "source": "/mercedes-actros-fren-diski",
       "destination": "/api/sitemap?type=landing&slug=mercedes-actros-fren-diski"
     },

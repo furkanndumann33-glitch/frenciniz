@@ -593,10 +593,10 @@ function renderSeoProductHtml(product, categories = [], products = []) {
     "Frenciniz",
   ].filter(Boolean).join(", ");
   const jsonLd = [
-    productJsonLdSeo(product, canonical, image, categories, relatedProducts),
-    productFaqJsonLd(product, categories),
-    productBreadcrumbJsonLd(product, canonical, categories),
-    {
+    { key: "product", value: productJsonLdSeo(product, canonical, image, categories, relatedProducts) },
+    { key: "faq", value: productFaqJsonLd(product, categories) },
+    { key: "breadcrumb", value: productBreadcrumbJsonLd(product, canonical, categories) },
+    { key: "webpage", value: {
       "@context": "https://schema.org",
       "@type": "WebPage",
       name: title,
@@ -606,10 +606,10 @@ function renderSeoProductHtml(product, categories = [], products = []) {
       primaryImageOfPage: image ? { "@type": "ImageObject", url: image } : undefined,
       mainEntity: { "@id": `${canonical}#product` },
       isPartOf: { "@type": "WebSite", name: "Frenciniz", url: SITE },
-    },
-  ].map(item => `<script type="application/ld+json">${JSON.stringify(item)}</script>`).join("\n");
+    } },
+  ].map(({ key, value }) => `<script type="application/ld+json" data-server-jsonld="${key}" data-server-canonical="${xmlEscape(canonical)}">${JSON.stringify(value)}</script>`).join("\n");
   const relatedItemList = relatedProducts.length
-    ? `<script type="application/ld+json">${JSON.stringify({
+    ? `<script type="application/ld+json" data-server-jsonld="related-products" data-server-canonical="${xmlEscape(canonical)}">${JSON.stringify({
         "@context": "https://schema.org",
         "@type": "ItemList",
         name: `${seoName} benzer urunler`,
@@ -736,6 +736,13 @@ function renderCategoryProductCard(product, categories = []) {
     </article>`;
 }
 
+function renderCategoryProductIndexLink(product, categories = []) {
+  const href = productSeoUrl(SITE, product);
+  const displayName = productSearchName(product, categories, 140) || product.name;
+  const code = cleanSeoText(product.oem || product.sku);
+  return `<li><a href="${xmlEscape(href)}">${xmlEscape(displayName)}</a>${code ? `<span>${xmlEscape(code.slice(0, 90))}</span>` : ""}</li>`;
+}
+
 function renderSeoCategoryHtml(category, products = [], categories = []) {
   const matched = categorySeoProducts(category, products, categories);
   const canonical = `${SITE}/${category.id}`;
@@ -844,15 +851,115 @@ function renderSeoCategoryHtml(category, products = [], categories = []) {
     })();
   </script>
   <style>
-    *{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:#172033;background:#f6f8fb;line-height:1.55;padding-bottom:76px}a{color:inherit}.top{background:#080d17;color:#fff}.bar{max-width:1220px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{text-decoration:none;font-size:24px;font-weight:950;color:#fff}.brand span{color:#ff6000}.contact{display:flex;gap:10px;flex-wrap:wrap}.contact a{color:#fff;text-decoration:none;font-size:14px;font-weight:800}.coupon-strip{background:linear-gradient(90deg,#fff7ed,#fef3c7 54%,#dcfce7);border-bottom:1px solid #fed7aa;color:#111827}.coupon-inner{max-width:1220px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}.coupon-copy{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:900}.coupon-badge{background:#ff6000;color:#fff;font-size:11px;font-weight:950;padding:5px 8px;border-radius:999px;white-space:nowrap}.coupon-strip a{min-height:38px;padding:9px 14px;border-radius:8px;background:#25D366;color:#062813;text-decoration:none;font-size:13px;font-weight:950;display:inline-flex;align-items:center;justify-content:center}.hero{background:#111827;color:#fff;border-bottom:4px solid #ff6000}.hero-inner{max-width:1220px;margin:0 auto;padding:42px 20px;display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:26px;align-items:center}.eyebrow{color:#facc15;font-size:12px;font-weight:950;text-transform:uppercase;letter-spacing:.05em}h1{font-size:42px;line-height:1.08;margin:8px 0 12px;letter-spacing:0}.lead{font-size:18px;color:#d1d5db;max-width:780px;margin:0 0 18px}.cta{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:12px 18px;border-radius:8px;background:#25D366;color:#062813;text-decoration:none;font-weight:950}.trust{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:8px;padding:16px}.trust strong{display:block;font-size:28px;color:#facc15}.wrap{max-width:1220px;margin:0 auto;padding:28px 20px 44px}.head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:16px}h2{font-size:26px;margin:0}.muted{color:#64748b;font-size:13px}.products{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}.product-card{background:#fff;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;display:flex;flex-direction:column;min-height:100%;box-shadow:0 10px 26px rgba(15,23,42,.05)}.image{height:176px;display:flex;align-items:center;justify-content:center;background:#f8fafc}.image img{max-width:100%;max-height:100%;object-fit:contain}.body{padding:14px;display:flex;flex-direction:column;gap:6px;flex:1}.title{font-size:14px;font-weight:900;text-decoration:none;color:#111827;min-height:42px}.meta{font-size:12px;color:#475569}.row{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:auto;padding-top:8px}.row strong{color:#ff6000}.row span{font-size:12px;color:#087f3d;font-weight:800}.mini{display:block;text-align:center;margin-top:8px;border-radius:6px;padding:8px;background:#111827;color:#fff;text-decoration:none;font-size:13px;font-weight:900}.mini.wa-mini{background:#25D366;color:#062813}.info{display:grid;grid-template-columns:2fr 1fr;gap:18px;margin-top:28px}.panel{background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:18px}.links{display:flex;flex-wrap:wrap;gap:8px}.links a{padding:8px 10px;border:1px solid #e5e7eb;border-radius:6px;text-decoration:none;font-size:13px;background:#f8fafc}.sticky{position:fixed;left:0;right:0;bottom:0;background:#111;color:#fff;border-top:3px solid #ff6000;z-index:30}.sticky-inner{max-width:1220px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}.sticky a{background:#25D366;color:#062813;text-decoration:none;font-weight:950;padding:10px 14px;border-radius:7px}.footer{padding:22px;text-align:center;color:#64748b;font-size:13px}@media(max-width:900px){.hero-inner{grid-template-columns:1fr}h1{font-size:31px}.products{grid-template-columns:repeat(2,minmax(0,1fr))}.info{grid-template-columns:1fr}}@media(max-width:560px){body{padding-bottom:112px}.bar{align-items:flex-start;flex-direction:column}.coupon-inner{align-items:stretch;flex-direction:column}.coupon-copy{align-items:flex-start;flex-direction:column}.coupon-strip a{text-align:center}.products{grid-template-columns:1fr}.head{align-items:flex-start;flex-direction:column}.sticky-inner{align-items:stretch;flex-direction:column}.sticky a{text-align:center}}
+    *{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:#172033;background:#f6f8fb;line-height:1.55;padding-bottom:76px}a{color:inherit}.top{background:#080d17;color:#fff}.bar{max-width:1220px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{text-decoration:none;font-size:24px;font-weight:950;color:#fff}.brand span{color:#ff6000}.contact{display:flex;gap:10px;flex-wrap:wrap}.contact a{color:#fff;text-decoration:none;font-size:14px;font-weight:800}.coupon-strip{background:linear-gradient(90deg,#fff7ed,#fef3c7 54%,#dcfce7);border-bottom:1px solid #fed7aa;color:#111827}.coupon-inner{max-width:1220px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}.coupon-copy{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:900}.coupon-badge{background:#ff6000;color:#fff;font-size:11px;font-weight:950;padding:5px 8px;border-radius:999px;white-space:nowrap}.coupon-strip a{min-height:38px;padding:9px 14px;border-radius:8px;background:#25D366;color:#062813;text-decoration:none;font-size:13px;font-weight:950;display:inline-flex;align-items:center;justify-content:center}.hero{background:#111827;color:#fff;border-bottom:4px solid #ff6000}.hero-inner{max-width:1220px;margin:0 auto;padding:42px 20px;display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:26px;align-items:center}.eyebrow{color:#facc15;font-size:12px;font-weight:950;text-transform:uppercase;letter-spacing:.05em}h1{font-size:42px;line-height:1.08;margin:8px 0 12px;letter-spacing:0}.lead{font-size:18px;color:#d1d5db;max-width:780px;margin:0 0 18px}.cta{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:12px 18px;border-radius:8px;background:#25D366;color:#062813;text-decoration:none;font-weight:950}.trust{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:8px;padding:16px}.trust strong{display:block;font-size:28px;color:#facc15}.wrap{max-width:1220px;margin:0 auto;padding:28px 20px 44px}.head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:16px}h2{font-size:26px;margin:0}.muted{color:#64748b;font-size:13px}.products{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}.product-card{background:#fff;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;display:flex;flex-direction:column;min-height:100%;box-shadow:0 10px 26px rgba(15,23,42,.05)}.image{height:176px;display:flex;align-items:center;justify-content:center;background:#f8fafc}.image img{max-width:100%;max-height:100%;object-fit:contain}.body{padding:14px;display:flex;flex-direction:column;gap:6px;flex:1}.title{font-size:14px;font-weight:900;text-decoration:none;color:#111827;min-height:42px}.meta{font-size:12px;color:#475569}.row{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:auto;padding-top:8px}.row strong{color:#ff6000}.row span{font-size:12px;color:#087f3d;font-weight:800}.mini{display:block;text-align:center;margin-top:8px;border-radius:6px;padding:8px;background:#111827;color:#fff;text-decoration:none;font-size:13px;font-weight:900}.mini.wa-mini{background:#25D366;color:#062813}.product-index{margin-top:28px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:18px}.product-index ul{columns:3;column-gap:26px;list-style:none;margin:14px 0 0;padding:0}.product-index li{break-inside:avoid;padding:9px 0;border-bottom:1px solid #eef2f7}.product-index a{display:block;color:#111827;font-size:13px;font-weight:850;text-decoration:none}.product-index span{display:block;color:#64748b;font-size:11px;margin-top:2px}.info{display:grid;grid-template-columns:2fr 1fr;gap:18px;margin-top:28px}.panel{background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:18px}.links{display:flex;flex-wrap:wrap;gap:8px}.links a{padding:8px 10px;border:1px solid #e5e7eb;border-radius:6px;text-decoration:none;font-size:13px;background:#f8fafc}.sticky{position:fixed;left:0;right:0;bottom:0;background:#111;color:#fff;border-top:3px solid #ff6000;z-index:30}.sticky-inner{max-width:1220px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}.sticky a{background:#25D366;color:#062813;text-decoration:none;font-weight:950;padding:10px 14px;border-radius:7px}.footer{padding:22px;text-align:center;color:#64748b;font-size:13px}@media(max-width:900px){.hero-inner{grid-template-columns:1fr}h1{font-size:31px}.products{grid-template-columns:repeat(2,minmax(0,1fr))}.product-index ul{columns:2}.info{grid-template-columns:1fr}}@media(max-width:560px){body{padding-bottom:112px}.bar{align-items:flex-start;flex-direction:column}.coupon-inner{align-items:stretch;flex-direction:column}.coupon-copy{align-items:flex-start;flex-direction:column}.coupon-strip a{text-align:center}.products{grid-template-columns:1fr}.product-index ul{columns:1}.head{align-items:flex-start;flex-direction:column}.sticky-inner{align-items:stretch;flex-direction:column}.sticky a{text-align:center}}
   </style>
 </head>
 <body>
   <header class="top"><div class="bar"><a class="brand" href="${SITE}">FRENCINIZ<span>.com</span></a><div class="contact"><a href="tel:+905456087008">0545 608 7008</a><a href="https://wa.me/908508887881">WhatsApp</a></div></div></header>
   <section class="coupon-strip"><div class="coupon-inner"><div class="coupon-copy"><span class="coupon-badge">INDIRIM KUPONU</span><strong>Indirim kuponu icin WhatsApp ile iletisime gecin; urun kodunu yazin, uygun kuponu netlestirelim.</strong></div><a href="${xmlEscape(couponWa)}" data-lead-source="category_coupon_banner">WhatsApp'tan kupon iste</a></div></section>
   <section class="hero"><div class="hero-inner"><div><div class="eyebrow">Stoklu kategori · OEM kodu ile teyit</div><h1>${xmlEscape(cleanName)} Fiyatlari ve Stok</h1><p class="lead">${xmlEscape(description)} Yanlis parca riskini azaltmak icin OEM kodu, sase no veya eski parca fotografi ile teyit alin.</p><a class="cta" href="${xmlEscape(wa)}" data-lead-source="category_hero">WhatsApp'tan teklif al</a></div><div class="trust"><strong>${matched.length}</strong><div>ilgili urun ve muadil secenek</div><p class="muted" style="color:#cbd5e1">14:00'a kadar stoklu urunde hizli kargo, 3000 TL uzeri standart kargo ucretsiz.</p></div></div></section>
-  <main class="wrap"><div class="head"><div><h2>${xmlEscape(cleanName)} Urunleri</h2><div class="muted">Fiyat, stok ve uyumluluk icin urunu acin veya WhatsApp'tan kod gonderin.</div></div><a class="cta" href="${xmlEscape(wa)}" data-lead-source="category_top">Kod gonder, teklif al</a></div><form data-category-callback data-lead-source="category_callback_form" style="margin:0 0 18px;padding:14px;border:1px solid #dbe3ef;border-radius:8px;background:#fff;box-shadow:0 10px 26px rgba(15,23,42,.05)"><div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:10px"><div><strong style="display:block;color:#111827;font-size:16px">Telefonunuzu birakin, ${xmlEscape(cleanName)} icin sizi arayalim.</strong><span class="muted">OEM/parca kodu ve arac bilgisini yazin; fiyat, stok ve uyumlulugu netlestirelim.</span></div><span style="font-size:12px;font-weight:900;color:#087f3d;background:#dcfce7;border:1px solid #bbf7d0;border-radius:999px;padding:6px 9px">WhatsApp sart degil</span></div><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;align-items:stretch"><input name="phone" inputmode="tel" autocomplete="tel" placeholder="Telefon: 05xx xxx xx xx" style="width:100%;min-height:42px;border:1px solid #d1d5db;border-radius:7px;padding:0 11px;font-size:13px;font-weight:700"><input name="code" placeholder="OEM / parca kodu" style="width:100%;min-height:42px;border:1px solid #d1d5db;border-radius:7px;padding:0 11px;font-size:13px;font-weight:700"><input name="vehicle" placeholder="Arac / sase notu" style="width:100%;min-height:42px;border:1px solid #d1d5db;border-radius:7px;padding:0 11px;font-size:13px;font-weight:700"><input name="note" placeholder="Not / adet" style="width:100%;min-height:42px;border:1px solid #d1d5db;border-radius:7px;padding:0 11px;font-size:13px;font-weight:700"><button type="submit" style="min-height:42px;border:none;border-radius:7px;background:#ff6000;color:#fff;font-size:13px;font-weight:950;padding:0 14px;white-space:nowrap">Beni arayin</button></div><div data-callback-status style="margin-top:8px;font-size:12px;font-weight:800;color:#15803d"></div></form><section class="products">${matched.slice(0, 36).map(product => renderCategoryProductCard(product, categories)).join("\n")}</section><section class="info"><div class="panel"><h2>${xmlEscape(cleanName)} secimi</h2><p>${xmlEscape(cleanName)} alirken OEM/parca kodu, olcu, dingil/aks tipi ve arac modeli birlikte kontrol edilmelidir. Frenciniz ekibi kamyon, tir, otobus ve dorse fren sistemleri icin uyumluluk teyidi yapar.</p><p>Eski parcadaki kodu veya fotografi WhatsApp hattina gondererek stok, fiyat ve kargo bilgisini hizli alabilirsiniz.</p></div><aside class="panel"><h2>Yakin kategoriler</h2><div class="links">${related}</div></aside></section></main>
+  <main class="wrap"><div class="head"><div><h2>${xmlEscape(cleanName)} Urunleri</h2><div class="muted">Fiyat, stok ve uyumluluk icin urunu acin veya WhatsApp'tan kod gonderin.</div></div><a class="cta" href="${xmlEscape(wa)}" data-lead-source="category_top">Kod gonder, teklif al</a></div><form data-category-callback data-lead-source="category_callback_form" style="margin:0 0 18px;padding:14px;border:1px solid #dbe3ef;border-radius:8px;background:#fff;box-shadow:0 10px 26px rgba(15,23,42,.05)"><div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:10px"><div><strong style="display:block;color:#111;font-size:16px">Telefonunuzu birakin, ${xmlEscape(cleanName)} icin sizi arayalim.</strong><span class="muted">OEM/parca kodu ve arac bilgisini yazin; stok, fiyat ve uyumlulugu netlestirelim.</span></div><span style="font-size:12px;font-weight:900;color:#087f3d;background:#dcfce7;border:1px solid #bbf7d0;border-radius:999px;padding:6px 9px">WhatsApp sart degil</span></div><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;align-items:stretch"><input name="phone" inputmode="tel" autocomplete="tel" placeholder="Telefon: 05xx xxx xx xx" style="width:100%;min-height:42px;border:1px solid #d1d5db;border-radius:7px;padding:0 11px;font-size:13px;font-weight:700"><input name="code" placeholder="OEM / parca kodu" style="width:100%;min-height:42px;border:1px solid #d1d5db;border-radius:7px;padding:0 11px;font-size:13px;font-weight:700"><input name="vehicle" placeholder="Arac / sase notu" style="width:100%;min-height:42px;border:1px solid #d1d5db;border-radius:7px;padding:0 11px;font-size:13px;font-weight:700"><input name="note" placeholder="Not / adet" style="width:100%;min-height:42px;border:1px solid #d1d5db;border-radius:7px;padding:0 11px;font-size:13px;font-weight:700"><button type="submit" style="min-height:42px;border:none;border-radius:7px;background:#ff6000;color:#fff;font-size:13px;font-weight:950;padding:0 14px;white-space:nowrap">Beni arayin</button></div><div data-callback-status style="margin-top:8px;font-size:12px;font-weight:800;color:#15803d"></div></form><section class="products">${matched.slice(0, 36).map(product => renderCategoryProductCard(product, categories)).join("\n")}</section>${matched.length > 36 ? `<section class="product-index" aria-label="${xmlEscape(cleanName)} tum urun baglantilari"><h2>${xmlEscape(cleanName)} urun dizini</h2><p class="muted">Bu kategorideki diger stoklu urunlere ve OEM kodlarina dogrudan ulasin.</p><ul>${matched.slice(36).map(product => renderCategoryProductIndexLink(product, categories)).join("")}</ul></section>` : ""}<section class="info"><div class="panel"><h2>${xmlEscape(cleanName)} secimi</h2><p>${xmlEscape(cleanName)} alirken OEM/parca kodu, olcu, dingil/aks tipi ve arac modeli birlikte kontrol edilmelidir. Frenciniz ekibi kamyon, tir, otobus ve dorse fren sistemleri icin uyumluluk teyidi yapar.</p><p>Eski parcadaki kodu veya fotografi WhatsApp hattina gondererek stok, fiyat ve kargo bilgisini hizli alabilirsiniz.</p></div><aside class="panel"><h2>Yakin kategoriler</h2><div class="links">${related}</div></aside></section></main>
   <div class="sticky"><div class="sticky-inner"><div><strong>${xmlEscape(cleanName)} icin hizli teklif</strong><div style="font-size:13px;color:#cbd5e1">OEM kodu veya eski parca fotosu ile teyit.</div></div><a href="${xmlEscape(wa)}" data-lead-source="category_sticky">WhatsApp Teklif</a></div></div>
+  <footer class="footer">Frenciniz · Dumanlar Ticaret · Isparta · info@frenciniz.com</footer>
+</body>
+</html>`;
+}
+
+function renderSeoCatalogHtml(products = [], categories = []) {
+  const canonical = `${SITE}/urunler`;
+  const availableCategories = categories
+    .filter(category => category.id && category.id !== "all")
+    .map(category => ({
+      category,
+      products: categorySeoProducts(category, products, categories),
+    }))
+    .filter(row => row.products.length > 0);
+  const priorityProducts = [...products]
+    .sort((a, b) => {
+      const labelScore = value => value === "sales-priority-1" ? 3 : value === "sales-priority-2" ? 2 : 1;
+      return labelScore(salesPriorityLabel(b)) - labelScore(salesPriorityLabel(a))
+        || Number(b.stock || 0) - Number(a.stock || 0);
+    })
+    .slice(0, 24);
+  const title = "Tum Agir Vasita Fren Parcalari | OEM, Fiyat ve Stok | Frenciniz";
+  const description = `${products.length} stoklu agir vasita fren parcasi; ${availableCategories.length} kategori. Kamyon, tir, otobus ve dorse icin OEM, parca kodu ve arac uyumluluguna gore urunleri inceleyin.`;
+  const schema = [
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      name: "Frenciniz Tum Urunler",
+      description,
+      url: canonical,
+      isPartOf: { "@type": "WebSite", name: "Frenciniz", url: SITE },
+      mainEntity: {
+        "@type": "ItemList",
+        numberOfItems: products.length,
+        itemListElement: priorityProducts.map((product, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          url: productSeoUrl(SITE, product),
+          name: productSearchName(product, categories, 140) || product.name,
+        })),
+      },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Frenciniz", item: SITE },
+        { "@type": "ListItem", position: 2, name: "Tum Urunler", item: canonical },
+      ],
+    },
+  ];
+  const categoryCards = availableCategories.map(({ category, products: categoryProducts }) => {
+    const parent = category.parent ? categories.find(item => item.id === category.parent) : null;
+    return `<a class="category" href="${SITE}/${xmlEscape(category.id)}"><strong>${xmlEscape(category.name)}</strong><span>${categoryProducts.length} urun${parent ? ` · ${xmlEscape(parent.name)}` : ""}</span></a>`;
+  }).join("");
+  const priorityLinks = priorityProducts.map(product => {
+    const href = productSeoUrl(SITE, product);
+    const displayName = productSearchName(product, categories, 140) || product.name;
+    return `<li><a href="${xmlEscape(href)}">${xmlEscape(displayName)}</a><span>${xmlEscape(product.oem || product.sku || "")}</span></li>`;
+  }).join("");
+
+  return `<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>${xmlEscape(title)}</title>
+  <meta name="description" content="${xmlEscape(description)}">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="${canonical}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Frenciniz">
+  <meta property="og:title" content="${xmlEscape(title)}">
+  <meta property="og:description" content="${xmlEscape(description)}">
+  <meta property="og:url" content="${canonical}">
+  <meta property="og:image" content="${SITE}/img/site/frenciniz-logo-real-og.jpg">
+  <script type="application/ld+json">${JSON.stringify(schema)}</script>
+  <script>
+    (function () {
+      try {
+        var payload = JSON.stringify({ path: window.location.pathname || '/urunler', search: window.location.search || '', ref: document.referrer || '' });
+        if (navigator.sendBeacon) {
+          var blob = new Blob([payload], { type: 'application/json' });
+          if (navigator.sendBeacon('/api/auth/track', blob)) return;
+        }
+        fetch('/api/auth/track', { method:'POST', credentials:'include', headers:{'Content-Type':'application/json'}, body:payload, keepalive:true }).catch(function(){});
+      } catch (e) {}
+    })();
+  </script>
+  <style>
+    *{box-sizing:border-box}body{margin:0;background:#f6f8fb;color:#172033;font-family:Arial,Helvetica,sans-serif;line-height:1.55}a{color:inherit}.top{background:#080d17;color:#fff}.bar{max-width:1220px;margin:0 auto;padding:15px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{font-size:24px;font-weight:950;text-decoration:none}.brand span{color:#ff6000}.bar nav{display:flex;gap:14px;flex-wrap:wrap}.bar nav a{color:#fff;text-decoration:none;font-size:13px;font-weight:800}.hero{background:#111827;color:#fff;border-bottom:4px solid #ff6000}.hero-inner{max-width:1220px;margin:0 auto;padding:46px 20px}.eyebrow{color:#facc15;font-size:12px;font-weight:950;text-transform:uppercase}h1{font-size:42px;line-height:1.08;margin:8px 0 12px}.lead{max-width:850px;color:#d1d5db;font-size:18px;margin:0}.wrap{max-width:1220px;margin:0 auto;padding:30px 20px 48px}h2{font-size:26px;margin:0 0 6px}.muted{font-size:13px;color:#64748b}.categories{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:17px}.category{background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:14px;text-decoration:none;box-shadow:0 8px 20px rgba(15,23,42,.04)}.category strong{display:block;color:#111827;font-size:14px}.category span{display:block;color:#64748b;font-size:12px;margin-top:4px}.priority{margin-top:34px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:20px}.priority ul{columns:3;column-gap:28px;list-style:none;margin:14px 0 0;padding:0}.priority li{break-inside:avoid;border-bottom:1px solid #eef2f7;padding:9px 0}.priority a{display:block;color:#111827;font-size:13px;font-weight:850;text-decoration:none}.priority span{display:block;color:#64748b;font-size:11px;margin-top:2px}.footer{border-top:1px solid #e5e7eb;background:#fff;padding:22px;text-align:center;color:#64748b;font-size:13px}@media(max-width:900px){h1{font-size:32px}.categories{grid-template-columns:repeat(2,minmax(0,1fr))}.priority ul{columns:2}}@media(max-width:560px){.bar{align-items:flex-start;flex-direction:column}.categories{grid-template-columns:1fr}.priority ul{columns:1}}
+  </style>
+</head>
+<body>
+  <header class="top"><div class="bar"><a class="brand" href="${SITE}">FRENCINIZ<span>.com</span></a><nav><a href="${SITE}">Ana Sayfa</a><a href="${SITE}/brands">Markalar</a><a href="${SITE}/contact">Iletisim</a></nav></div></header>
+  <section class="hero"><div class="hero-inner"><div class="eyebrow">Stoklu urun katalog merkezi</div><h1>Tum Agir Vasita Fren Parcalari</h1><p class="lead">${xmlEscape(description)} Her kategori sayfasi kendi icindeki tum urunlere dogrudan baglanti verir.</p></div></section>
+  <main class="wrap">
+    <section><h2>Urun kategorileri</h2><p class="muted">Parca grubunu secerek stoklu urun, OEM kodu, fiyat ve uyumluluk bilgilerine ulasin.</p><div class="categories">${categoryCards}</div></section>
+    <section class="priority"><h2>Oncelikli stoklu urunler</h2><p class="muted">OEM talebi, stok ve urun verisi guclu olan urunlerden secilmis hizli baglantilar.</p><ul>${priorityLinks}</ul></section>
+  </main>
   <footer class="footer">Frenciniz · Dumanlar Ticaret · Isparta · info@frenciniz.com</footer>
 </body>
 </html>`;
@@ -1090,6 +1197,13 @@ export default async function handler(req, res) {
       if (!page) return res.status(404).send("Landing page not found");
 
       const html = renderLanding(page, products, categories, landingSeoIndex.get(page.slug), selectedSlugs);
+      res.setHeader("Content-Type", "text/html; charset=utf-8");
+      res.setHeader("Cache-Control", "public, max-age=600, s-maxage=86400, stale-while-revalidate=604800");
+      return res.status(200).send(html);
+    }
+
+    if (type === "catalog") {
+      const html = renderSeoCatalogHtml(products, categories);
       res.setHeader("Content-Type", "text/html; charset=utf-8");
       res.setHeader("Cache-Control", "public, max-age=600, s-maxage=86400, stale-while-revalidate=604800");
       return res.status(200).send(html);

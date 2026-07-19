@@ -7,7 +7,7 @@ const TR = {
   search:"Ürün adı, parça kodu veya OEM ara...",searchBtn:"Ara",cart:"Sepetim",login:"Giriş Yap",favs:"Favoriler",
   home:"Ana Sayfa",products:"Ürünler",brands:"Markalar",contact:"İletişim",about:"Hakkımızda",faq:"SSS",
   addToCart:"Sepete Ekle",outOfStock:"Tükendi",notifyMe:"🔔 Haber Ver",buyAgain:"Tekrar Al",
-  heroTitle:"Fren Aksamı Uzmanı",heroDesc:"10.000+ orijinal ve eşdeğer parça. Aynı gün kargo, 12 taksit.",browseProducts:"Ürünleri İncele",
+  heroTitle:"Fren Aksamı Uzmanı",heroDesc:"1.000+ stoklu ağır vasıta fren parçası. OEM/şase ile uyumluluk teyidi.",browseProducts:"Ürünleri İncele",
   byVehicle:"Araç Tipine Göre Alışveriş",bestSellers:"Çok Satanlar",featured:"Öne Çıkanlar",seeAll:"Tümünü Gör →",discounted:"🔥 İndirimli Ürünler",
   sameDay:"Aynı Gün Kargo",sameDayDesc:"14:00'a kadar sipariş",origGuarantee:"Uyumluluk Teyidi",origDesc:"OEM/şase kontrolü",
   installment:"12 Taksit",installmentDesc:"Tüm kredi kartlarına",returnPolicy:"14 Gün İade",returnDesc:"Koşulsuz iade hakkı",
@@ -58,7 +58,7 @@ const EN = {
   search:"Search product, part code or OEM...",searchBtn:"Search",cart:"My Cart",login:"Sign In",favs:"Favorites",
   home:"Home",products:"Products",brands:"Brands",contact:"Contact",about:"About Us",faq:"FAQ",
   addToCart:"Add to Cart",outOfStock:"Sold Out",notifyMe:"🔔 Notify Me",buyAgain:"Reorder",
-  heroTitle:"Brake Parts Expert",heroDesc:"10,000+ original and equivalent parts. Same day shipping, 12 installments.",browseProducts:"Browse Products",
+  heroTitle:"Brake Parts Expert",heroDesc:"1,000+ in-stock heavy-duty brake parts. OEM/chassis fitment verification.",browseProducts:"Browse Products",
   byVehicle:"Shop by Vehicle Type",bestSellers:"Best Sellers",featured:"Featured",seeAll:"See All →",discounted:"🔥 Discounted Products",
   sameDay:"Same Day Shipping",sameDayDesc:"Order before 2 PM",origGuarantee:"Fitment Check",origDesc:"OEM/chassis check",
   installment:"12 Installments",installmentDesc:"All credit cards",returnPolicy:"14 Day Return",returnDesc:"Unconditional return",
@@ -914,7 +914,7 @@ function applySEO({title, description, canonical, ogImage, robots, ogType, produ
 function preloadImages(prods) {
   if (typeof window === 'undefined') return;
   const isMob = window.innerWidth < 768;
-  const limit = isMob ? 16 : 36;
+  const limit = isMob ? 6 : 12;
   const imgs = prods.filter(p => p.img && !p.img.includes("placehold")).slice(0, limit).map(p => cdnImg(p.img, isMob ? 320 : 320));
   let i = 0;
   function next() {
@@ -927,7 +927,7 @@ function preloadImages(prods) {
       else setTimeout(next, 16);
     };
   }
-  const parallel = isMob ? 3 : 6;
+  const parallel = isMob ? 1 : 3;
   const start = () => { for (let j = 0; j < parallel; j++) next(); };
   if ('requestIdleCallback' in window) requestIdleCallback(start, {timeout: 2000});
   else setTimeout(start, 300);
@@ -936,7 +936,7 @@ function preloadImages(prods) {
 // Kritik görseller için <link rel=preload> runtime inject — ilk N ürünün
 // görseli sayfa parse aşamasından hemen sonra browser tarafından öncelikli
 // indirilir. Sayfa değişince temizlenir.
-function useCriticalImagePreload(items, count = 6, w = 320) {
+function useCriticalImagePreload(items, count = 2, w = 320) {
   useEffect(() => {
     if (typeof document === 'undefined' || !Array.isArray(items)) return;
     const links = [];
@@ -1122,8 +1122,8 @@ export default function App() {
     // Cache-bust: her saatlik bucket farklı URL → CDN edge taze çeker
     const cacheBust = Math.floor(Date.now() / 3600000);
     Promise.all([
-      fetch(`/data/products.json?v=${cacheBust}`, { cache: "no-store" }).then(r => r.json()),
-      fetch(`/data/categories.json?v=${cacheBust}`, { cache: "no-store" }).then(r => r.json()),
+      fetch(`/data/products.json?v=${cacheBust}`, { cache: "default" }).then(r => r.json()),
+      fetch(`/data/categories.json?v=${cacheBust}`, { cache: "default" }).then(r => r.json()),
     ]).then(([p, c]) => {
       PRODUCTS = p;
       CATS = c;
@@ -1478,6 +1478,13 @@ export default function App() {
     const baseTitle = "Frenciniz - Ağır Vasıta Fren Aksamı | 0545 608 7008";
     const baseDesc = "Kamyon, tır, otobüs ve dorse için fren diski, balata, kampana, kaliper, EBS modülatör ve ABS sensörü. 1000+ ürün, OEM/şase ile uyumluluk teyidi, aynı gün kargo, 12 taksit, 14 gün iade. Tel: 0545 608 7008 · WhatsApp: 0850 888 7881.";
     const baseImg = `${SITE_URL}/img/site/frenciniz-logo-real-og.jpg`;
+    const currentDocumentCanonical = `${SITE_URL}${window.location.pathname}`;
+
+    // Doğrudan açılan ürün sayfasında sunucunun hazırladığı şemayı koru.
+    // SPA ile başka URL'ye geçildiyse eski sayfanın sunucu şemalarını temizle.
+    document.querySelectorAll('script[data-server-jsonld][data-server-canonical]').forEach(el => {
+      if (el.getAttribute('data-server-canonical') !== currentDocumentCanonical) el.remove();
+    });
 
     // Önceki sayfa-spesifik JSON-LD'yi temizle
     setJsonLd("page-product", null);
@@ -1672,73 +1679,20 @@ export default function App() {
         metaTrack('ViewContent', metaProductPayload(p, 1, catName));
         const priceValidUntil = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
 
-        // Product JSON-LD — 2026 Google Merchant rich result spec'i ile uyumlu
-        setJsonLd("page-product", {
-          "@context": "https://schema.org",
-          "@type": "Product",
-          "name": seoName || p.name,
-          "image": productImageList,
-          "description": desc || p.desc || p.name,
-          "sku": p.sku,
-          "mpn": p.oem || p.sku,
-          "gtin": p.gtin || undefined,
-          "productID": p.id,
-          "brand": { "@type": "Brand", "name": p.brand || "Ekersan" },
-          "category": sub ? sub.name : undefined,
-          "additionalProperty": [
-            p.sku ? { "@type": "PropertyValue", "name": "SKU", "value": p.sku } : null,
-            p.oem ? { "@type": "PropertyValue", "name": "OEM / Muadil", "value": p.oem } : null,
-            p.compat?.length ? { "@type": "PropertyValue", "name": "Uyumluluk Adayları", "value": p.compat.slice(0, 10).join(", ") } : null,
-            { "@type": "PropertyValue", "name": "Stok", "value": String(p.stock || 0) },
-          ].filter(Boolean),
-          "aggregateRating": p.rating ? {
-            "@type": "AggregateRating",
-            "ratingValue": p.rating,
-            "reviewCount": Math.max(1, p.reviews || 1),
-            "bestRating": "5",
-            "worstRating": "1"
-          } : undefined,
-          "offers": {
-            "@type": "Offer",
-            "url": canonical,
-            "priceCurrency": "TRY",
-            "price": p.price,
-            "priceValidUntil": priceValidUntil,
-            "itemCondition": "https://schema.org/NewCondition",
-            "availability": p.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
-            "seller": { "@type": "Organization", "name": "Frenciniz", "url": SITE_URL },
-            "hasMerchantReturnPolicy": {
-              "@type": "MerchantReturnPolicy",
-              "applicableCountry": "TR",
-              "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
-              "merchantReturnDays": 14,
-              "returnMethod": "https://schema.org/ReturnByMail",
-              "returnFees": "https://schema.org/FreeReturn"
-            },
-            "shippingDetails": {
-              "@type": "OfferShippingDetails",
-              "shippingRate": {
-                "@type": "MonetaryAmount",
-                "value": p.price >= 3000 ? "0" : "150",
-                "currency": "TRY"
-              },
-              "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "TR" },
-              "deliveryTime": {
-                "@type": "ShippingDeliveryTime",
-                "handlingTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 1, "unitCode": "DAY" },
-                "transitTime": { "@type": "QuantitativeValue", "minValue": 1, "maxValue": 3, "unitCode": "DAY" }
-              }
-            }
-          }
-        });
-
-        setJsonLd("page-product", buildProductJsonLd(p, cats, {
-          site: SITE_URL,
-          url: canonical,
-          images: productImageList,
-          categoryName: catName,
-          priceValidUntil,
-        }));
+        // Doğrudan URL açılışında sunucu Product şeması zaten mevcut.
+        // SPA geçişlerinde ise istemci şeması oluşturulur.
+        const hasServerProductSchema = Array.from(
+          document.querySelectorAll('script[data-server-jsonld="product"]')
+        ).some(el => el.getAttribute('data-server-canonical') === canonical);
+        if (!hasServerProductSchema) {
+          setJsonLd("page-product", buildProductJsonLd(p, cats, {
+            site: SITE_URL,
+            url: canonical,
+            images: productImageList,
+            categoryName: catName,
+            priceValidUntil,
+          }));
+        }
 
         // Breadcrumb JSON-LD
         const grp = sub?.parent ? cats.find(c => c.id === sub.parent) : null;
@@ -1746,16 +1700,21 @@ export default function App() {
         if (grp) crumbs.push({ name: grp.name, url: `${SITE_URL}/${grp.id}` });
         if (sub) crumbs.push({ name: sub.name, url: `${SITE_URL}/${sub.id}` });
         crumbs.push({ name: seoName || p.name, url: canonical });
-        setJsonLd("page-breadcrumb", {
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          "itemListElement": crumbs.map((c, i) => ({
-            "@type": "ListItem",
-            "position": i + 1,
-            "name": c.name,
-            "item": c.url
-          }))
-        });
+        const hasServerBreadcrumbSchema = Array.from(
+          document.querySelectorAll('script[data-server-jsonld="breadcrumb"]')
+        ).some(el => el.getAttribute('data-server-canonical') === canonical);
+        if (!hasServerBreadcrumbSchema) {
+          setJsonLd("page-breadcrumb", {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": crumbs.map((c, i) => ({
+              "@type": "ListItem",
+              "position": i + 1,
+              "name": c.name,
+              "item": c.url
+            }))
+          });
+        }
       }
     } else if (page === "contact") { title = "İletişim - Frenciniz"; desc = "Frenciniz iletişim: 0545 608 7008 (Tel), 0850 888 7881 (WhatsApp), info@frenciniz.com. Isparta merkez."; canonical = `${SITE_URL}/contact`; }
     else if (page === "about") {
@@ -3052,7 +3011,7 @@ function HomePage() {
   const discounted = productList.filter(p => p.old).slice(0, 4);
   const totalCount = productList.length || 1055;
   const stockCount = productList.filter(p => p.stock > 0).length || totalCount;
-  useCriticalImagePreload(featured, 6, 320);
+  useCriticalImagePreload(featured, 2, 320);
 
   const vehicleCards = [
     {id:"kamyon", name:t("truck"), desc:lang==="en"?"city and long-haul trucks":"sehir ici ve uzun yol kamyonlari", gradient:"linear-gradient(135deg,#ff6000,#facc15)"},
@@ -3131,7 +3090,7 @@ function HomePage() {
         </div>
         <button onClick={() => go("products")} style={{background:"#111827",border:"none",color:"#fff",fontSize:13,fontWeight:900,cursor:"pointer",borderRadius:8,padding:"10px 14px"}}>{t("seeAll")}</button>
       </div>
-      <div style={{display:"grid",gridTemplateColumns:isMobile?"repeat(2,minmax(0,1fr))":"repeat(4,minmax(0,1fr))",gap:isMobile?10:16}}>{featured.map((p,i) => <ProductCard key={p.id} p={p} eager={i<6} />)}</div>
+      <div style={{display:"grid",gridTemplateColumns:isMobile?"repeat(2,minmax(0,1fr))":"repeat(4,minmax(0,1fr))",gap:isMobile?10:16}}>{featured.map((p,i) => <ProductCard key={p.id} p={p} eager={i<2} />)}</div>
     </section>
 
     <section style={{maxWidth:1220,margin:"0 auto",padding:isMobile?"14px 18px 28px":"8px 24px 34px"}}>
@@ -3222,7 +3181,7 @@ function HomePageLegacy() {
   }, [products]);
   const discounted = (products||[]).filter(p => p.old);
   // Kritik görsel preload — ilk 6 öne çıkan ürünün görselini browser'a önceden indirt
-  useCriticalImagePreload(featured, 6, 320);
+  useCriticalImagePreload(featured, 2, 320);
 
   return <>
     {/* Sol kenar kategori çubuğu (sadece geniş ekran) - hiyerarşik */}
@@ -3237,7 +3196,7 @@ function HomePageLegacy() {
           <button onClick={() => go("products")} style={{padding:"12px 28px",background:"#fff",color:"#ff6000",border:"none",borderRadius:6,fontSize:15,fontWeight:700,cursor:"pointer"}}>{t("browseProducts")}</button>
         </div>
         <div style={{display:"flex",gap:20}}>
-          {[{n:"10.000+",l:t("products")},{n:"25+",l:t("brands")},{n:"5.000+",l:lang==="tr"?"Müşteri":"Customers"}].map((s,i) => (
+          {[{n:`${(products||[]).length.toLocaleString("tr-TR")}`,l:t("products")},{n:"52",l:lang==="tr"?"Kategori":"Categories"},{n:`${products?.length ? Math.round(products.filter(p => Number(p.stock || 0) > 0).length / products.length * 100) : 0}%`,l:lang==="tr"?"Stoklu":"In stock"}].map((s,i) => (
             <div key={i} style={{textAlign:"center",color:"#fff"}}><div style={{fontSize:28,fontWeight:800}}>{s.n}</div><div style={{fontSize:12,opacity:.8}}>{s.l}</div></div>
           ))}
         </div>
@@ -3265,7 +3224,7 @@ function HomePageLegacy() {
         <h2 style={{fontSize:20,fontWeight:700}}>{t("featured")}</h2>
         <button onClick={() => go("products")} style={{background:"none",border:"none",color:"#ff6000",fontSize:13,fontWeight:600,cursor:"pointer"}}>{t("seeAll")}</button>
       </div>
-      <div style={{display:"grid",gridTemplateColumns:isMobile?"repeat(2,1fr)":"repeat(4,1fr)",gap:isMobile?10:16}}>{featured.map((p,i) => <ProductCard key={p.id} p={p} eager={i<6} />)}</div>
+      <div style={{display:"grid",gridTemplateColumns:isMobile?"repeat(2,1fr)":"repeat(4,1fr)",gap:isMobile?10:16}}>{featured.map((p,i) => <ProductCard key={p.id} p={p} eager={i<2} />)}</div>
     </div>
 
     {/* Discounted */}
@@ -3373,7 +3332,7 @@ function ProductsPage() {
     return r;
   }, [cat,catMatch,veh,brand,sort,term,productList]);
   // Kritik görsel preload — listenin ilk 6'sı için browser'a önceden indir
-  useCriticalImagePreload(items, 6, 320);
+  useCriticalImagePreload(items, 2, 320);
 
   const activeFilters = (cat!=="all"?1:0)+(veh!=="all"?1:0)+(brand!=="all"?1:0);
 
@@ -3495,7 +3454,7 @@ function ProductsPage() {
               </a>
             </div>
           ) : (
-            <div style={{display:"grid",gridTemplateColumns:isMobile?"repeat(2,1fr)":"repeat(3,1fr)",gap:isMobile?10:16}}>{items.map((p,i) => <ProductCard key={p.id} p={p} eager={i<6} />)}</div>
+            <div style={{display:"grid",gridTemplateColumns:isMobile?"repeat(2,1fr)":"repeat(3,1fr)",gap:isMobile?10:16}}>{items.map((p,i) => <ProductCard key={p.id} p={p} eager={i<2} />)}</div>
           )}
         </div>
       </div>
