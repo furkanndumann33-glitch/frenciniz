@@ -314,8 +314,11 @@ export default async function handler(req, res) {
         };
         await kv.lpush("lead:log", JSON.stringify(logEntry));
         await kv.ltrim("lead:log", 0, 499);
-      } catch {}
-      return res.status(200).json({ ok: true });
+        return res.status(200).json({ ok: true });
+      } catch (error) {
+        console.error("[lead] storage error", error?.message || error);
+        return res.status(503).json({ ok: false, error: "Talep su anda kaydedilemedi" });
+      }
     }
 
     if (action === "product-action" && req.method === "POST") {

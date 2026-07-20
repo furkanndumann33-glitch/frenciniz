@@ -509,18 +509,14 @@ function discountCouponWhatsAppUrl() {
 function productWhatsAppUrl(product, qty = 1) {
   const seoName = productSearchName(product, CATS, 140) || product?.name || "-";
   return waUrl([
-    "Merhaba Frenciniz, bu urun icin bugun fiyat/stok ve uyumluluk teyidi almak istiyorum.",
-    "Talebim: Aracima uyumluluk, stok, fiyat, kargo ve odeme teyidi",
+    "Merhaba Frenciniz, bu urun icin fiyat, stok ve uyumluluk teyidi istiyorum.",
     `Urun: ${seoName}`,
     `SKU: ${product?.sku || "-"}`,
     `OEM / muadil: ${product?.oem || "-"}`,
     `Adet: ${qty || 1}`,
-    `Link: ${product ? productSeoUrl(SITE_URL, product) : `${SITE_URL}/urunler`}`,
     "Arac marka/model:",
     "Sase no:",
-    "Eski parca/OEM no:",
-    "Eski parca fotosu gonderebilirim.",
-    "Uygunsa bugun siparis vermek istiyorum.",
+    `Link: ${product ? productSeoUrl(SITE_URL, product) : `${SITE_URL}/urunler`}`,
   ].join("\n"));
 }
 
@@ -562,25 +558,7 @@ function quickQuoteWhatsAppUrl({product, code, vehicle, phone, note} = {}) {
 
 function recordLeadEvent(type = "whatsapp", data = {}) {
   if (typeof window === "undefined") return;
-  const product = data.product || null;
-  const payload = {
-    type,
-    path: window.location.pathname || "/",
-    ref: document.referrer || "",
-    source: data.source || type,
-    href: data.href || "",
-    productId: data.productId || product?.id || "",
-    sku: data.sku || product?.sku || "",
-    category: data.category || product?.cat || "",
-    value: Number(data.value || product?.price || 0) || 0,
-    items: Number(data.items || 0) || 0,
-    contactName: data.contactName || "",
-    contactPhone: data.contactPhone || "",
-    contactEmail: data.contactEmail || "",
-    code: data.code || "",
-    vehicle: data.vehicle || "",
-    note: data.note || "",
-  };
+  const payload = createLeadPayload(type, data);
   try {
     if (typeof window.gtag === "function") {
       window.gtag("event", "generate_lead", {
@@ -620,6 +598,39 @@ function recordLeadEvent(type = "whatsapp", data = {}) {
       keepalive: true,
     }).catch(() => {});
   } catch {}
+}
+
+function createLeadPayload(type = "lead", data = {}) {
+  const product = data.product || null;
+  return {
+    type,
+    path: typeof window !== "undefined" ? (window.location.pathname || "/") : "/",
+    ref: typeof document !== "undefined" ? (document.referrer || "") : "",
+    source: data.source || type,
+    href: data.href || "",
+    productId: data.productId || product?.id || "",
+    sku: data.sku || product?.sku || "",
+    category: data.category || product?.cat || "",
+    value: Number(data.value || product?.price || 0) || 0,
+    items: Number(data.items || 0) || 0,
+    contactName: data.contactName || "",
+    contactPhone: data.contactPhone || "",
+    contactEmail: data.contactEmail || "",
+    code: data.code || "",
+    vehicle: data.vehicle || "",
+    note: data.note || "",
+  };
+}
+
+async function submitLeadEvent(type = "lead", data = {}) {
+  const response = await fetch("/api/auth/lead", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(createLeadPayload(type, data)),
+  });
+  const result = await response.json().catch(() => ({}));
+  if (!response.ok || !result.ok) throw new Error(result.error || "Talep kaydedilemedi");
+  return result;
 }
 
 function recordProductAction(type = "add_to_cart", product = {}, data = {}) {
@@ -3441,12 +3452,11 @@ function ProductsPage() {
 }
 
 function ProductConversionPanel({p, qty, href, isMobile, fp}) {
-  const stockCount = Number(p?.stock || 0);
   const partCode = p?.oem || p?.sku || "OEM / parca kodu";
   const trustItems = [
-    {k:"Kod otomatik gider", v:`SKU: ${p?.sku || "-"}${p?.oem ? ` | OEM: ${String(p.oem).slice(0, 42)}` : ""}`},
-    {k:"Kuponlu net fiyat", v:"Kargo ve indirim birlikte netlesir"},
-    {k:"Yanlis parca riskini azalt", v:"Sase, OEM veya eski parca fotosu ile kontrol"},
+    {k:"Mesaj hazir acilir", v:"Urun, SKU, OEM, adet ve sayfa linki otomatik eklenir"},
+    {k:"Stok ve fiyat", v:"Guncel durum ayni urun uzerinden teyit edilir"},
+    {k:"Uyumluluk kontrolu", v:"Arac modeli, sase veya eski parca koduyla kontrol"},
   ];
   const leadPayload = { source:"product_detail_primary_whatsapp", href, product:p, value:(Number(p?.price || 0) * Number(qty || 1)) };
   return (
@@ -3461,20 +3471,20 @@ function ProductConversionPanel({p, qty, href, isMobile, fp}) {
     }}>
       <div style={{display:"flex",alignItems:isMobile?"stretch":"center",justifyContent:"space-between",gap:14,flexDirection:isMobile?"column":"row"}}>
         <div style={{minWidth:0}}>
-          <div style={{fontSize:11,fontWeight:950,color:"#facc15",textTransform:"uppercase",letterSpacing:.2,marginBottom:5}}>Kuponlu net fiyat</div>
-          <h2 style={{fontSize:isMobile?18:20,lineHeight:1.2,margin:"0 0 7px",fontWeight:950}}>Kargo dahil fiyat ve uyumu tek mesajda alin.</h2>
-          <p style={{fontSize:13,lineHeight:1.55,color:"#d1d5db",margin:"0 0 11px"}}>WhatsApp'a tiklayinca urun, SKU, OEM, adet ve link otomatik gider. Kargo dahil kuponlu net fiyat, stok ve uyumluluk bilgisini tek cevapta verelim.</p>
+          <div style={{fontSize:11,fontWeight:950,color:"#facc15",textTransform:"uppercase",letterSpacing:.2,marginBottom:5}}>Urunu dogru secin</div>
+          <h2 style={{fontSize:isMobile?18:20,lineHeight:1.2,margin:"0 0 7px",fontWeight:950}}>Fiyat, stok ve uyumlulugu tek mesajda sorun.</h2>
+          <p style={{fontSize:13,lineHeight:1.55,color:"#d1d5db",margin:"0 0 11px"}}>Butona tiklayinca urun kodlari ve sayfa linki hazir gelir. Arac modelinizi veya sase numaranizi ekleyip gonderin.</p>
           <div style={{fontSize:11,color:"#a7f3d0",background:"rgba(37,211,102,.1)",border:"1px solid rgba(37,211,102,.22)",borderRadius:6,padding:"7px 8px",overflowWrap:"anywhere"}}>Kod: {partCode}</div>
         </div>
         <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr",gap:8,minWidth:isMobile?0:210}}>
           <a href={href} target="_blank" rel="noopener noreferrer" data-lead-source="product_detail_primary_whatsapp" data-lead-product-id={p?.id} data-lead-sku={p?.sku || ""} data-lead-category={p?.cat || ""} data-lead-value={(Number(p?.price || 0) * Number(qty || 1)) || 0}
             onClick={() => { recordLeadEvent("whatsapp", leadPayload); metaTrack("Contact", metaProductPayload(p, qty, p?.cat)); metaTrackCustom("WhatsAppLead", { source:"product_detail_primary", productId:p?.id, sku:p?.sku }); }}
             style={{minHeight:50,borderRadius:7,background:"linear-gradient(135deg,#16a34a,#25D366)",color:"#062813",textDecoration:"none",fontSize:15,fontWeight:950,display:"flex",alignItems:"center",justifyContent:"center",textAlign:"center",padding:"0 16px",boxShadow:"0 12px 22px rgba(37,211,102,.22)"}}>
-            Kuponlu fiyati WhatsApp'tan al
+            WhatsApp'tan fiyat ve uyumluluk sor
           </a>
           <a href="tel:+905456087008" data-lead-source="product_detail_primary_phone" onClick={() => { recordLeadEvent("phone", { source:"product_detail_primary_phone", product:p, value:p?.price || 0 }); metaTrackCustom("PhoneLead", { source:"product_detail_primary", productId:p?.id }); }}
             style={{minHeight:42,borderRadius:7,background:"rgba(255,255,255,.08)",border:"1px solid rgba(255,255,255,.18)",color:"#fff",textDecoration:"none",fontSize:13,fontWeight:900,display:"flex",alignItems:"center",justifyContent:"center",textAlign:"center",padding:"0 14px"}}>
-            Telefonla fiyat al
+            Hemen ara: 0545 608 7008
           </a>
         </div>
       </div>
@@ -3488,7 +3498,7 @@ function ProductConversionPanel({p, qty, href, isMobile, fp}) {
       </div>
       <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:10,marginTop:12,flexWrap:"wrap",fontSize:12,color:"#cbd5e1"}}>
         <span>Fiyat: <strong style={{color:"#fff"}}>{fp(p?.price || 0)}</strong></span>
-        <span>Kargo dahil kuponlu fiyat ve uyum teyidi</span>
+        <span>Stok ve uyumluluk siparisten once teyit edilir</span>
       </div>
     </section>
   );
@@ -3521,12 +3531,17 @@ function ProductCallbackLeadForm({p, qty, isMobile}) {
       vehicle: vehicle.trim(),
       note: "Urun sayfasindan geri arama talebi",
     };
-    recordLeadEvent("phone", payload);
-    metaTrackCustom("CallbackLead", { source: "product_callback_form", productId: p?.id, sku: p?.sku, value });
-    setStatus("Talep kaydedildi. Admin panelde lead olarak gorunecek.");
-    setPhone("");
-    setVehicle("");
-    setSending(false);
+    try {
+      await submitLeadEvent("phone", payload);
+      metaTrackCustom("CallbackLead", { source: "product_callback_form", productId: p?.id, sku: p?.sku, value });
+      setStatus("Arama talebiniz kaydedildi.");
+      setPhone("");
+      setVehicle("");
+    } catch {
+      setStatus("Talep kaydedilemedi. Lutfen 0545 608 7008 numarasini arayin veya WhatsApp'i kullanin.");
+    } finally {
+      setSending(false);
+    }
   };
 
   const inputStyle = {
@@ -3690,8 +3705,8 @@ function ProductDetailPage() {
               <div style={{fontSize:12,color:"#a7b0c0",marginTop:8,lineHeight:1.45}}>Siparişten önce eski parça fotoğrafı veya şase ile kontrol önerilir.</div>
             </div>
           </div>
-                  <ProductCallbackLeadForm p={p} qty={qty} isMobile={isMobile} />
                   <ProductConversionPanel p={p} qty={qty} href={whatsappQuoteHref} isMobile={isMobile} fp={fp} />
+                  <ProductCallbackLeadForm p={p} qty={qty} isMobile={isMobile} />
           <div style={{fontSize:14,color:"#666",lineHeight:1.7,marginBottom:16,whiteSpace:"pre-line"}}>{linkifyContacts(detailDesc)}</div>
           <div style={{padding:"16px 20px",background:"#f9f9f9",borderRadius:8,marginBottom:20,border:"1px solid #eee"}}>
             <div style={{display:"flex",alignItems:"baseline",gap:10}}>
@@ -3790,14 +3805,14 @@ function ProductDetailPage() {
       {related.length > 0 && <div><h2 style={{fontSize:20,fontWeight:700,marginBottom:16}}>{t("similarProducts")}</h2><div style={{display:"grid",gridTemplateColumns:isMobile?"repeat(2,1fr)":"repeat(4,1fr)",gap:isMobile?10:16}}>{related.map(rp => <ProductCard key={rp.id} p={rp} />)}</div></div>}
       <RecentlyViewed />
       {isMobile && (
-        <nav aria-label="Urun hizli islemleri" style={{position:"fixed",left:0,right:0,bottom:0,zIndex:998,padding:"8px 10px calc(8px + env(safe-area-inset-bottom))",background:"linear-gradient(180deg,rgba(7,10,18,.94),#070a12)",borderTop:"1px solid rgba(255,255,255,.12)",boxShadow:"0 -14px 38px rgba(0,0,0,.34)",display:"grid",gridTemplateColumns:"1.15fr .95fr .72fr .95fr",gap:7,alignItems:"stretch"}}>
+        <nav aria-label="Urun hizli islemleri" style={{position:"fixed",left:0,right:0,bottom:0,zIndex:998,padding:"8px 10px calc(8px + env(safe-area-inset-bottom))",background:"linear-gradient(180deg,rgba(7,10,18,.94),#070a12)",borderTop:"1px solid rgba(255,255,255,.12)",boxShadow:"0 -14px 38px rgba(0,0,0,.34)",display:"grid",gridTemplateColumns:".85fr 1.35fr .72fr .95fr",gap:7,alignItems:"stretch"}}>
           <div style={{minWidth:0,color:"#fff",display:"flex",flexDirection:"column",justifyContent:"center",lineHeight:1.1}}>
             <span style={{fontSize:10,color:"#a7b0c0",fontWeight:800}}>Fiyat</span>
             <strong style={{fontSize:14,whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}>{fp(p.price)}</strong>
           </div>
           <a href={whatsappQuoteHref} target="_blank" rel="noopener noreferrer" onClick={() => { recordLeadEvent("whatsapp", { source:"product_mobile_sticky_whatsapp", href:whatsappQuoteHref, product:p, value:(p.price || 0) * qty }); metaTrack("Contact", metaProductPayload(p, qty, p.cat)); }}
             style={{minHeight:48,borderRadius:8,background:"linear-gradient(135deg,#16a34a,#25D366)",color:"#062813",textDecoration:"none",fontSize:12,fontWeight:950,display:"flex",alignItems:"center",justifyContent:"center",textAlign:"center",padding:"0 8px"}}>
-            Kuponlu fiyat
+            Fiyat ve uyum sor
           </a>
           <a href="tel:+905456087008" onClick={() => { recordLeadEvent("phone", { source:"product_mobile_sticky_phone", product:p, value:p.price || 0 }); metaTrackCustom("PhoneLead", { source: "product_sticky_bar", product_id: p.id, sku: p.sku }); }}
             style={{minHeight:48,borderRadius:8,background:"linear-gradient(135deg,#ff6000,#facc15)",color:"#111827",textDecoration:"none",fontSize:12,fontWeight:950,display:"flex",alignItems:"center",justifyContent:"center",textAlign:"center",padding:"0 8px"}}>
