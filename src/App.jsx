@@ -2231,7 +2231,7 @@ export default function App() {
 }
 
 function MobileBottomBar() {
-  const {isMobile, go, cartCount, lang} = use$();
+  const {isMobile, lang} = use$();
   if (!isMobile) return null;
   const itemStyle = {
     minWidth: 0,
@@ -2250,20 +2250,15 @@ function MobileBottomBar() {
     position: "relative",
   };
   return (
-    <nav aria-label={lang==="en"?"Quick actions":"Hizli islemler"} style={{position:"fixed",left:0,right:0,bottom:0,zIndex:997,padding:"8px 12px calc(8px + env(safe-area-inset-bottom))",background:"linear-gradient(180deg,rgba(7,10,18,.92),#070a12)",borderTop:"1px solid rgba(255,255,255,.12)",boxShadow:"0 -14px 38px rgba(0,0,0,.34)",display:"grid",gridTemplateColumns:"repeat(3,minmax(0,1fr))",gap:8}}>
+    <nav aria-label={lang==="en"?"Quick actions":"Hizli islemler"} style={{position:"fixed",left:0,right:0,bottom:0,zIndex:997,padding:"8px 12px calc(8px + env(safe-area-inset-bottom))",background:"linear-gradient(180deg,rgba(7,10,18,.92),#070a12)",borderTop:"1px solid rgba(255,255,255,.12)",boxShadow:"0 -14px 38px rgba(0,0,0,.34)",display:"grid",gridTemplateColumns:"repeat(2,minmax(0,1fr))",gap:8}}>
       <a href={generalWhatsAppUrl("mobil alt bar")} target="_blank" rel="noopener noreferrer" onClick={() => { recordLeadEvent("whatsapp", { source:"mobile_bottom_bar", href:generalWhatsAppUrl("mobil alt bar") }); metaTrackCustom("WhatsAppLead", { source: "mobile_bottom_bar" }); }} style={{...itemStyle,background:"linear-gradient(135deg,#16a34a,#25D366)",color:"#062813"}}>
         <span style={{fontSize:10,letterSpacing:.3}}>WhatsApp</span>
-        <strong style={{fontSize:13,lineHeight:1}}>Teklif Al</strong>
+        <strong style={{fontSize:14,lineHeight:1}}>Fiyat ve Stok Sor</strong>
       </a>
       <a href="tel:+905456087008" onClick={() => { recordLeadEvent("phone", { source:"mobile_bottom_bar" }); metaTrackCustom("PhoneLead", { source: "mobile_bottom_bar" }); }} style={{...itemStyle,background:"linear-gradient(135deg,#ff6000,#facc15)",color:"#111827"}}>
         <span style={{fontSize:10,letterSpacing:.3}}>Telefon</span>
-        <strong style={{fontSize:13,lineHeight:1}}>Ara</strong>
+        <strong style={{fontSize:14,lineHeight:1}}>Hemen Ara</strong>
       </a>
-      <button onClick={() => go("cart")} style={{...itemStyle,background:"linear-gradient(135deg,#111827,#263246)",cursor:"pointer"}}>
-        <span style={{fontSize:10,letterSpacing:.3}}>Sepet</span>
-        <strong style={{fontSize:13,lineHeight:1}}>Goruntule</strong>
-        {cartCount > 0 && <span style={{position:"absolute",top:-6,right:-4,minWidth:20,height:20,padding:"0 5px",borderRadius:999,background:"#ff6000",color:"#fff",fontSize:11,fontWeight:950,display:"flex",alignItems:"center",justifyContent:"center",border:"2px solid #070a12"}}>{cartCount}</span>}
-      </button>
     </nav>
   );
 }
@@ -3698,8 +3693,18 @@ function ProductDetailPage() {
                     Sepete ekle
                   </button>
                 </div>
-                <button onClick={checkoutNow} disabled={!p.stock} style={{width:"100%",minHeight:42,marginTop:8,borderRadius:7,border:"none",background:p.stock?"linear-gradient(135deg,#ff6000,#f97316)":"#1f2937",color:p.stock?"#fff":"#94a3b8",fontSize:13,fontWeight:950,cursor:p.stock?"pointer":"default",boxShadow:p.stock?"0 10px 22px rgba(255,96,0,.24)":"none"}}>
-                  Ödemeye geç
+                <div style={{display:"grid",gridTemplateColumns:"1.35fr .85fr",gap:8,marginTop:8}}>
+                  <a href={whatsappQuoteHref} target="_blank" rel="noopener noreferrer" onClick={() => { recordLeadEvent("whatsapp", { source:"product_price_box_whatsapp", href:whatsappQuoteHref, product:p, value:(p.price || 0) * qty }); metaTrack("Contact", metaProductPayload(p, qty, p.cat)); }}
+                    style={{minHeight:44,borderRadius:7,background:"linear-gradient(135deg,#16a34a,#25D366)",color:"#062813",textDecoration:"none",fontSize:12,fontWeight:950,display:"flex",alignItems:"center",justifyContent:"center",textAlign:"center",padding:"0 9px"}}>
+                    WhatsApp'tan sor
+                  </a>
+                  <a href="tel:+905456087008" onClick={() => { recordLeadEvent("phone", { source:"product_price_box_phone", product:p, value:p.price || 0 }); metaTrackCustom("PhoneLead", { source:"product_price_box", product_id:p.id, sku:p.sku }); }}
+                    style={{minHeight:44,borderRadius:7,background:"linear-gradient(135deg,#ff6000,#facc15)",color:"#111827",textDecoration:"none",fontSize:12,fontWeight:950,display:"flex",alignItems:"center",justifyContent:"center",textAlign:"center",padding:"0 9px"}}>
+                    Hemen ara
+                  </a>
+                </div>
+                <button onClick={checkoutNow} disabled={!p.stock} style={{width:"100%",minHeight:38,marginTop:8,borderRadius:7,border:"1px solid rgba(255,255,255,.18)",background:p.stock?"rgba(255,255,255,.08)":"#1f2937",color:p.stock?"#fff":"#94a3b8",fontSize:12,fontWeight:900,cursor:p.stock?"pointer":"default"}}>
+                  Online ödemeye geç
                 </button>
               </div>
               <div style={{fontSize:12,color:"#a7b0c0",marginTop:8,lineHeight:1.45}}>Siparişten önce eski parça fotoğrafı veya şase ile kontrol önerilir.</div>
@@ -3771,10 +3776,9 @@ function ProductDetailPage() {
         </div>
         {/* Hızlı iletişim butonları */}
         <div style={{display:"flex",flexWrap:"wrap",gap:10,padding:16,background:"#fff8f0",borderRadius:10,border:"1px solid #ffd9b3"}}>
-          <div style={{width:"100%",fontSize:13,fontWeight:700,color:"#c05200",marginBottom:4}}>{lang==="en"?"Contact us for stock, coupon & compatibility":"Kuponlu fiyat, stok ve uyumluluk icin bize ulasin"}</div>
-          <a href="tel:+905456087008" style={{flex:"1 1 150px",display:"flex",alignItems:"center",justifyContent:"center",gap:8,padding:"12px 20px",background:"#ff6000",color:"#fff",borderRadius:8,fontSize:14,fontWeight:700,textDecoration:"none",minHeight:44}}>📞 {lang==="en"?"Call":"Ara"}: 0545 608 7008</a>
-          <a href={whatsappQuoteHref} target="_blank" rel="noopener noreferrer" onClick={() => { recordLeadEvent("whatsapp", { source:"product_desc_whatsapp", href:whatsappQuoteHref, product:p, value:(p.price || 0) * qty }); metaTrack("Contact", metaProductPayload(p, qty, p.cat)); }} style={{flex:"1 1 150px",display:"flex",alignItems:"center",justifyContent:"center",gap:8,padding:"12px 20px",background:"#25D366",color:"#fff",borderRadius:8,fontSize:14,fontWeight:700,textDecoration:"none",minHeight:44}}>💬 WhatsApp: 0850 888 7881</a>
-          <a href="mailto:info@frenciniz.com" style={{flex:"1 1 150px",display:"flex",alignItems:"center",justifyContent:"center",gap:8,padding:"12px 20px",background:"#fff",color:"#333",border:"1px solid #ddd",borderRadius:8,fontSize:14,fontWeight:600,textDecoration:"none",minHeight:44}}>✉️ E-posta</a>
+          <div style={{width:"100%",fontSize:13,fontWeight:700,color:"#c05200",marginBottom:4}}>{lang==="en"?"Ask for price, stock and compatibility":"Fiyat, stok ve uyumluluk icin hemen ulasin"}</div>
+          <a href={whatsappQuoteHref} target="_blank" rel="noopener noreferrer" onClick={() => { recordLeadEvent("whatsapp", { source:"product_desc_whatsapp", href:whatsappQuoteHref, product:p, value:(p.price || 0) * qty }); metaTrack("Contact", metaProductPayload(p, qty, p.cat)); }} style={{flex:"1 1 210px",display:"flex",alignItems:"center",justifyContent:"center",gap:8,padding:"12px 20px",background:"#25D366",color:"#062813",borderRadius:8,fontSize:15,fontWeight:950,textDecoration:"none",minHeight:48}}>💬 WhatsApp'tan Sor</a>
+          <a href="tel:+905456087008" onClick={() => { recordLeadEvent("phone", { source:"product_desc_phone", product:p, value:p.price || 0 }); metaTrackCustom("PhoneLead", { source:"product_desc", product_id:p.id, sku:p.sku }); }} style={{flex:"1 1 210px",display:"flex",alignItems:"center",justifyContent:"center",gap:8,padding:"12px 20px",background:"#ff6000",color:"#fff",borderRadius:8,fontSize:15,fontWeight:950,textDecoration:"none",minHeight:48}}>📞 {lang==="en"?"Call now":"Hemen Ara"}: 0545 608 7008</a>
         </div>
         <section aria-label="Urun uyumluluk sorulari" style={{marginTop:18,padding:18,background:"#f8fafc",border:"1px solid #e2e8f0",borderRadius:8}}>
           <h2 style={{fontSize:18,fontWeight:950,color:"#111827",margin:"0 0 12px"}}>{seoDisplayName} uyumluluk ve OEM bilgisi</h2>
@@ -3805,22 +3809,15 @@ function ProductDetailPage() {
       {related.length > 0 && <div><h2 style={{fontSize:20,fontWeight:700,marginBottom:16}}>{t("similarProducts")}</h2><div style={{display:"grid",gridTemplateColumns:isMobile?"repeat(2,1fr)":"repeat(4,1fr)",gap:isMobile?10:16}}>{related.map(rp => <ProductCard key={rp.id} p={rp} />)}</div></div>}
       <RecentlyViewed />
       {isMobile && (
-        <nav aria-label="Urun hizli islemleri" style={{position:"fixed",left:0,right:0,bottom:0,zIndex:998,padding:"8px 10px calc(8px + env(safe-area-inset-bottom))",background:"linear-gradient(180deg,rgba(7,10,18,.94),#070a12)",borderTop:"1px solid rgba(255,255,255,.12)",boxShadow:"0 -14px 38px rgba(0,0,0,.34)",display:"grid",gridTemplateColumns:".85fr 1.35fr .72fr .95fr",gap:7,alignItems:"stretch"}}>
-          <div style={{minWidth:0,color:"#fff",display:"flex",flexDirection:"column",justifyContent:"center",lineHeight:1.1}}>
-            <span style={{fontSize:10,color:"#a7b0c0",fontWeight:800}}>Fiyat</span>
-            <strong style={{fontSize:14,whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}>{fp(p.price)}</strong>
-          </div>
+        <nav aria-label="Urun hizli islemleri" style={{position:"fixed",left:0,right:0,bottom:0,zIndex:998,padding:"8px 10px calc(8px + env(safe-area-inset-bottom))",background:"linear-gradient(180deg,rgba(7,10,18,.94),#070a12)",borderTop:"1px solid rgba(255,255,255,.12)",boxShadow:"0 -14px 38px rgba(0,0,0,.34)",display:"grid",gridTemplateColumns:"1.35fr .85fr",gap:8,alignItems:"stretch"}}>
           <a href={whatsappQuoteHref} target="_blank" rel="noopener noreferrer" onClick={() => { recordLeadEvent("whatsapp", { source:"product_mobile_sticky_whatsapp", href:whatsappQuoteHref, product:p, value:(p.price || 0) * qty }); metaTrack("Contact", metaProductPayload(p, qty, p.cat)); }}
-            style={{minHeight:48,borderRadius:8,background:"linear-gradient(135deg,#16a34a,#25D366)",color:"#062813",textDecoration:"none",fontSize:12,fontWeight:950,display:"flex",alignItems:"center",justifyContent:"center",textAlign:"center",padding:"0 8px"}}>
-            Fiyat ve uyum sor
+            style={{minHeight:54,borderRadius:8,background:"linear-gradient(135deg,#16a34a,#25D366)",color:"#062813",textDecoration:"none",fontSize:14,fontWeight:950,display:"flex",alignItems:"center",justifyContent:"center",textAlign:"center",padding:"0 10px"}}>
+            WhatsApp'tan Sor
           </a>
           <a href="tel:+905456087008" onClick={() => { recordLeadEvent("phone", { source:"product_mobile_sticky_phone", product:p, value:p.price || 0 }); metaTrackCustom("PhoneLead", { source: "product_sticky_bar", product_id: p.id, sku: p.sku }); }}
-            style={{minHeight:48,borderRadius:8,background:"linear-gradient(135deg,#ff6000,#facc15)",color:"#111827",textDecoration:"none",fontSize:12,fontWeight:950,display:"flex",alignItems:"center",justifyContent:"center",textAlign:"center",padding:"0 8px"}}>
-            Ara
+            style={{minHeight:54,borderRadius:8,background:"linear-gradient(135deg,#ff6000,#facc15)",color:"#111827",textDecoration:"none",fontSize:14,fontWeight:950,display:"flex",alignItems:"center",justifyContent:"center",textAlign:"center",padding:"0 10px"}}>
+            Hemen Ara
           </a>
-          <button onClick={checkoutNow} disabled={!p.stock} style={{minHeight:48,borderRadius:8,border:"1px solid rgba(255,255,255,.14)",background:p.stock?"linear-gradient(135deg,#ff6000,#f97316)":"#1f2937",color:p.stock?"#fff":"#9ca3af",fontSize:12,fontWeight:950,cursor:p.stock?"pointer":"default",padding:"0 8px"}}>
-            {p.stock ? "Öde" : "Tukendi"}
-          </button>
         </nav>
       )}
     </div>
