@@ -17,46 +17,6 @@
       "destination": "/api/sitemap?type=meta"
     },
     {
-      "source": "/feeds/google-merchant.xml",
-      "destination": "/api/sitemap?type=merchant"
-    },
-    {
-      "source": "/feeds/google-merchant-feed.xml",
-      "destination": "/api/sitemap?type=merchant"
-    },
-    {
-      "source": "/feeds/meta-catalog.csv",
-      "destination": "/api/sitemap?type=meta"
-    },
-    {
-      "source": "/feeds/meta-catalog-feed.csv",
-      "destination": "/api/sitemap?type=meta"
-    },
-    {
-      "source": "/feeds/facebook-catalog-feed.csv",
-      "destination": "/api/sitemap?type=meta"
-    },
-    {
-      "source": "/urunler",
-      "destination": "/api/sitemap?type=catalog"
-    },
-    {
-      "source": "/filo-toplu-alim",
-      "destination": "/api/sitemap?type=fleet"
-    },
-    {
-      "source": "/rehber/:slug",
-      "destination": "/api/sitemap?type=guide&slug=:slug"
-    },
-    {
-      "source": "/katalog/:slug",
-      "destination": "/api/sitemap?type=catalog_segment&slug=:slug"
-    },
-    {
-      "source": "/frencoo-kaliper-tamir-takimi",
-      "destination": "/api/sitemap?type=demand&slug=frencoo-kaliper-tamir-takimi"
-    },
-    {
       "source": "/mercedes-actros-fren-diski",
       "destination": "/api/sitemap?type=landing&slug=mercedes-actros-fren-diski"
     },
@@ -303,6 +263,38 @@
     {
       "source": "/9433340945-mercedes-axor-on-porya",
       "destination": "/api/sitemap?type=landing&slug=9433340945-mercedes-axor-on-porya"
+    },
+    {
+      "source": "/5802234113-iveco-eurocargo-stralis-trakker-fren-diski",
+      "destination": "/api/sitemap?type=landing&slug=5802234113-iveco-eurocargo-stralis-trakker-fren-diski"
+    },
+    {
+      "source": "/515069174-ror-meritor-dorse-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=515069174-ror-meritor-dorse-suspansiyon-korugu"
+    },
+    {
+      "source": "/4029106300-saf-dorse-abs-sensoru",
+      "destination": "/api/sitemap?type=landing&slug=4029106300-saf-dorse-abs-sensoru"
+    },
+    {
+      "source": "/2617884-scania-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=2617884-scania-suspansiyon-korugu"
+    },
+    {
+      "source": "/0542940030-saf-dorse-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=0542940030-saf-dorse-suspansiyon-korugu"
+    },
+    {
+      "source": "/2229000300-volvo-suspansiyon-korugu",
+      "destination": "/api/sitemap?type=landing&slug=2229000300-volvo-suspansiyon-korugu"
+    },
+    {
+      "source": "/9463560701-agir-vasita-porya",
+      "destination": "/api/sitemap?type=landing&slug=9463560701-agir-vasita-porya"
+    },
+    {
+      "source": "/23-616-24-62-arf-16-24-dorse-fren-korugu",
+      "destination": "/api/sitemap?type=landing&slug=23-616-24-62-arf-16-24-dorse-fren-korugu"
     },
     {
       "source": "/mercedes-actros-fren-kampanasi",
@@ -5047,6 +5039,46 @@
     {
       "source": "/suspansiyon-korugu",
       "destination": "/api/sitemap?type=category&slug=suspansiyon-korugu"
+    },
+    {
+      "source": "/feeds/google-merchant.xml",
+      "destination": "/api/sitemap?type=merchant"
+    },
+    {
+      "source": "/feeds/google-merchant-feed.xml",
+      "destination": "/api/sitemap?type=merchant"
+    },
+    {
+      "source": "/feeds/meta-catalog.csv",
+      "destination": "/api/sitemap?type=meta"
+    },
+    {
+      "source": "/feeds/meta-catalog-feed.csv",
+      "destination": "/api/sitemap?type=meta"
+    },
+    {
+      "source": "/feeds/facebook-catalog-feed.csv",
+      "destination": "/api/sitemap?type=meta"
+    },
+    {
+      "source": "/urunler",
+      "destination": "/api/sitemap?type=catalog"
+    },
+    {
+      "source": "/filo-toplu-alim",
+      "destination": "/api/sitemap?type=fleet"
+    },
+    {
+      "source": "/rehber/:slug",
+      "destination": "/api/sitemap?type=guide&slug=:slug"
+    },
+    {
+      "source": "/katalog/:slug",
+      "destination": "/api/sitemap?type=catalog_segment&slug=:slug"
+    },
+    {
+      "source": "/frencoo-kaliper-tamir-takimi",
+      "destination": "/api/sitemap?type=demand&slug=frencoo-kaliper-tamir-takimi"
     },
     {
       "source": "/urun/:id/:slug*",

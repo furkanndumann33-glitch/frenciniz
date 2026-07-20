@@ -422,8 +422,9 @@ function buildSeoProductDescription(product, categories = [], max = 5000) {
   const stock = Number(product?.stock || 0);
   const catalogDescription = merchantSafeProductText(product?.desc || "");
   const catalogHaystack = catalogDescription.toLowerCase();
+  const demandGroup = matchOemDemandGroup(product);
   const pieces = [
-    catalogDescription || productSearchDescription(product, categories, 260),
+    demandGroup ? productSearchDescription(product, categories, 300) : (catalogDescription || productSearchDescription(product, categories, 260)),
     catalogDescription && catalogHaystack.includes(productName.toLowerCase()) ? "" : `${productName}, ${category} kategorisinde ${brand} marka agir vasita fren parcasi.`,
     sku && !catalogHaystack.includes(sku.toLowerCase()) ? `Stok kodu: ${sku}.` : "",
     oem && !catalogHaystack.includes(oem.toLowerCase()) ? `OEM / muadil kod: ${oem}.` : "",
@@ -505,6 +506,8 @@ function productJsonLdSeo(product, canonical, image, categories = [], relatedPro
   const price = Number(product.price || 0);
   const seoName = productSearchName(product, categories, 140);
   const stock = Number(product.stock || 0);
+  const safeSku = schemaSku(product);
+  const safeMpn = schemaMpn(product);
   return {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -512,8 +515,8 @@ function productJsonLdSeo(product, canonical, image, categories = [], relatedPro
     name: seoName || product.name,
     image: [image],
     description: buildSeoProductDescription(product, categories, 500),
-    sku: schemaSku(product),
-    mpn: schemaMpn(product),
+    ...(safeSku ? { sku: safeSku } : {}),
+    ...(safeMpn ? { mpn: safeMpn } : {}),
     productID: String(product.id || ""),
     url: canonical,
     brand: { "@type": "Brand", name: product.brand || "Ekersan" },
@@ -763,7 +766,7 @@ function renderSeoProductHtml(product, categories = [], products = []) {
   const canonical = productSeoUrl(SITE, product);
   const title = buildSeoProductTitle(product, categories);
   const description = buildSeoProductDescription(product, categories, 165);
-  const image = absoluteUrl(product.img || (Array.isArray(product.images) && product.images[0]) || "/img/site/frenciniz-logo-real-og.jpg");
+  const image = absoluteUrl(productPrimaryImage(product, "/img/site/frenciniz-logo-real-og.jpg"));
   const seoName = productSearchName(product, categories, 140) || product.name;
   const longDescription = buildSeoProductDescription(product, categories, 5000);
   const relatedProducts = relatedSeoProducts(product, products, 12);

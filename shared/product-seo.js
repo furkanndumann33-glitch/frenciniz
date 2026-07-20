@@ -1,4 +1,4 @@
-import { prioritySeoProductName } from "./oem-demand-priority.js";
+import { matchOemDemandGroup, prioritySeoProductName } from "./oem-demand-priority.js";
 
 const TR_MAP = {
   "ı": "i",
@@ -167,8 +167,14 @@ export function productVehicleSignals(product, max = 3) {
   return known.filter(term => haystack.includes(normalizeSearchText(term))).slice(0, max);
 }
 
+function productSeoVehicleSignals(product, max = 3) {
+  const demandGroup = matchOemDemandGroup(product);
+  if (demandGroup?.vehicle) return [demandGroup.vehicle].slice(0, max);
+  return productVehicleSignals(product, max);
+}
+
 export function productVehiclePhrase(product, max = 5) {
-  return productVehicleSignals(product, max).join(", ");
+  return productSeoVehicleSignals(product, max).join(", ");
 }
 
 export function productSeoSearchPhrases(product, categories = [], max = 8) {
@@ -177,7 +183,7 @@ export function productSeoSearchPhrases(product, categories = [], max = 8) {
   const code = productPrimaryCode(product);
   const sku = firstUsefulCode(product?.sku);
   const oem = firstUsefulCode(product?.oem);
-  const vehicles = productVehicleSignals(product, 4);
+  const vehicles = productSeoVehicleSignals(product, 4);
   const vehiclePhrases = vehicles.flatMap(vehicle => [
     `${vehicle} ${part}`,
     code ? `${vehicle} ${code}` : "",
@@ -218,7 +224,7 @@ export function productSearchName(product, categories = [], max = 128) {
 
 export function productSearchTitle(product, categories = [], max = 74) {
   const part = productPartLabel(product, categories);
-  const vehicleSignals = productVehicleSignals(product, 2);
+  const vehicleSignals = productSeoVehicleSignals(product, 2);
   const primaryCode = productPrimaryCode(product);
   const sku = cleanText(product?.sku).slice(0, 24) || cleanText(product?.id);
   const usefulCode = /\d/.test(primaryCode) ? primaryCode : sku;
@@ -227,6 +233,7 @@ export function productSearchTitle(product, categories = [], max = 74) {
   const available = Math.max(30, max - suffix.length);
   const candidates = [
     uniqueParts([usefulCode, distinctSku, vehicleSignals[0], part, "Fiyatı"]).join(" "),
+    uniqueParts([usefulCode, vehicleSignals[0], part, "Fiyatı"]).join(" "),
     uniqueParts([usefulCode, distinctSku, part, "Fiyatı"]).join(" "),
     uniqueParts([usefulCode, ...vehicleSignals, part, "Fiyatı"]).join(" "),
   ].filter(Boolean);
@@ -237,7 +244,7 @@ export function productSearchTitle(product, categories = [], max = 74) {
 
 export function productSearchDescription(product, categories = [], max = 165) {
   const name = productSearchName(product, categories, 120);
-  const vehicles = productVehicleSignals(product).join(", ");
+  const vehicles = productSeoVehicleSignals(product).join(", ");
   const code = productPrimaryCode(product);
   const stock = Number(product?.stock || 0);
   const searchPhrases = productSeoSearchPhrases(product, categories, 4)
