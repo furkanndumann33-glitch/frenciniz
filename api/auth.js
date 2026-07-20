@@ -48,6 +48,12 @@ function cleanProductAction(value) {
   ].includes(action) ? action : "product_action";
 }
 
+function isLikelyAutomatedRequest(userAgent = "") {
+  const ua = String(userAgent || "").toLowerCase();
+  if (!ua) return false;
+  return /(bot|crawler|spider|slurp|storebot|google-inspectiontool|googleother|facebookexternalhit|facebot|bingpreview|headlesschrome|lighthouse|pagespeed|pingdom|uptimerobot|semrush|ahrefs|mj12bot|bytespider|petalbot|yandexbot)/i.test(ua);
+}
+
 export default async function handler(req, res) {
   const action = String(req.query.action || "").toLowerCase();
 
@@ -336,6 +342,7 @@ export default async function handler(req, res) {
         const productKey = productId || sku || "unknown";
         const ip = (req.headers["x-forwarded-for"] || "").split(",")[0].trim() || req.headers["x-real-ip"] || "unknown";
         const ua = String(req.headers["user-agent"] || "").slice(0, 180);
+        if (isLikelyAutomatedRequest(ua)) return res.status(200).json({ ok: true, ignored: "automated" });
         const city = decodeURIComponent(String(req.headers["x-vercel-ip-city"] || "")).replace(/\+/g, " ");
         const country = String(req.headers["x-vercel-ip-country"] || "");
 
@@ -369,6 +376,7 @@ export default async function handler(req, res) {
         const { path = "/", search = "", ref = "" } = req.body || {};
         const ip = (req.headers["x-forwarded-for"] || "").split(",")[0].trim() || req.headers["x-real-ip"] || "unknown";
         const ua = String(req.headers["user-agent"] || "").slice(0, 200);
+        if (isLikelyAutomatedRequest(ua)) return res.status(200).json({ ok: true, ignored: "automated" });
         const day = new Date().toISOString().slice(0, 10);
         const visitorKey = crypto.createHash("sha256").update(`${ip}|${ua}|${day}`).digest("hex").slice(0, 16);
         const pathClean = String(path).slice(0, 100).replace(/[?#].*$/, "");

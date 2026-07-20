@@ -497,12 +497,13 @@ function generalWhatsAppUrl(topic = "agir vasita fren parcasi") {
   ].join("\n"));
 }
 
-function discountCouponWhatsAppUrl() {
+function compatibilityCheckWhatsAppUrl() {
   return waUrl([
-    "Merhaba Frenciniz, indirim kuponu almak istiyorum.",
+    "Merhaba Frenciniz, parca uyumlulugunu teyit etmek istiyorum.",
     "Ilgilendigim urun / OEM kodu:",
     "Arac marka-model / sase:",
-    "Bugun siparis icin uygun kupon ve fiyat rica ederim.",
+    "Eski parca fotografini gonderebilirim.",
+    "Guncel fiyat ve stok bilgisi rica ederim.",
   ].join("\n"));
 }
 
@@ -701,7 +702,7 @@ function recordFunnelEvent(type, data = {}) {
 // receiving organic traffic. This turns a landing-page visit into another
 // relevant internal click instead of sending every visitor back to a generic
 // category grid.
-const HOME_PRIORITY_PRODUCT_IDS = ["142", "422", "813", "174", "915", "132", "205", "183", "783"];
+const HOME_PRIORITY_PRODUCT_IDS = ["138", "459", "456", "227", "178", "135", "133", "213", "534", "724", "752", "248", "142", "422", "813"];
 
 const HOME_INTENT_LINKS = [
   { href: "/yay", title: "Ağır Vasıta Fren Yayları", desc: "Dorse, treyler ve kamyon fren yayı seçenekleri; ölçü ve stok teyidi" },
@@ -2102,7 +2103,7 @@ export default function App() {
         {!isAdminPage && mobileFilterOpen && <MobileFilterDrawer />}
         <div style={{marginLeft: ((page==="home" || page==="products") && !isMobile) ? 220 : 0}}>
         <main style={{minHeight:isAdminPage?"100vh":"60vh"}}>
-          {!isAdminPage && <DiscountCouponBanner />}
+          {!isAdminPage && <CompatibilityCheckBanner />}
           {page==="home"&&<HomePage/>}
           {page==="products"&&<ProductsPage/>}
           {page==="product"&&<ProductDetailPage/>}
@@ -2312,23 +2313,23 @@ function TodaySalesStrip() {
   );
 }
 
-function DiscountCouponBanner() {
+function CompatibilityCheckBanner() {
   const {isMobile, page, lang} = use$();
   if (page === "admin") return null;
-  const href = discountCouponWhatsAppUrl();
+  const href = compatibilityCheckWhatsAppUrl();
   return (
     <section style={{background:"linear-gradient(90deg,#fff7ed,#fef3c7 54%,#dcfce7)",borderBottom:"1px solid #fed7aa",color:"#111827"}}>
       <div style={{maxWidth:1220,margin:"0 auto",padding:isMobile?"10px 14px":"10px 24px",display:"flex",alignItems:isMobile?"stretch":"center",justifyContent:"space-between",gap:10,flexDirection:isMobile?"column":"row"}}>
         <div style={{display:"flex",alignItems:isMobile?"flex-start":"center",gap:10,minWidth:0,flexDirection:isMobile?"column":"row"}}>
           <span style={{background:"#ff6000",color:"#fff",fontSize:11,fontWeight:950,padding:"5px 8px",borderRadius:999,whiteSpace:"nowrap"}}>
-            {lang==="en"?"DISCOUNT COUPON":"INDIRIM KUPONU"}
+            {lang==="en"?"PART CHECK":"PARCA TEYIDI"}
           </span>
           <strong style={{fontSize:isMobile?13:14,lineHeight:1.4}}>
-            {lang==="en"?"Contact us on WhatsApp for a discount coupon before ordering.":"Indirim kuponu icin WhatsApp ile iletisime gecin; urun kodunu yazin, uygun kuponu netlestirelim."}
+            {lang==="en"?"Send the OEM code, chassis or old-part photo before ordering.":"OEM kodunu, saseyi veya eski parca fotografini gonderin; fiyat, stok ve uyumlulugu teyit edelim."}
           </strong>
         </div>
-        <a href={href} target="_blank" rel="noopener noreferrer" onClick={() => { recordLeadEvent("whatsapp", { source:"coupon_banner_whatsapp", href }); metaTrackCustom("WhatsAppCouponLead", { source:"coupon_banner" }); }} style={{minHeight:38,padding:"9px 14px",borderRadius:8,background:"#25D366",color:"#062813",fontSize:13,fontWeight:950,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center",whiteSpace:isMobile?"normal":"nowrap",textAlign:"center",boxShadow:"0 10px 22px rgba(37,211,102,.2)"}}>
-          {lang==="en"?"Ask on WhatsApp":"WhatsApp'tan kupon iste"}
+        <a href={href} target="_blank" rel="noopener noreferrer" onClick={() => { recordLeadEvent("whatsapp", { source:"compatibility_banner_whatsapp", href }); metaTrackCustom("WhatsAppCompatibilityLead", { source:"compatibility_banner" }); }} style={{minHeight:38,padding:"9px 14px",borderRadius:8,background:"#25D366",color:"#062813",fontSize:13,fontWeight:950,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center",whiteSpace:isMobile?"normal":"nowrap",textAlign:"center",boxShadow:"0 10px 22px rgba(37,211,102,.2)"}}>
+          {lang==="en"?"Send code/photo":"Kod/fotograf gonder"}
         </a>
       </div>
     </section>
@@ -2770,7 +2771,7 @@ function ProductCard({p, eager}) {
         <a href={quoteHref} target="_blank" rel="noopener noreferrer" data-lead-source="product_card_whatsapp" data-lead-product-id={p.id} data-lead-sku={p.sku || ""} data-lead-category={p.cat || ""} data-lead-value={p.price || 0}
           onClick={e => {e.stopPropagation(); recordLeadEvent("whatsapp", { source:"product_card_whatsapp", href:quoteHref, productId:p.id, sku:p.sku || "", category:p.cat || "", value:p.price || 0 }); metaTrack("Contact", metaProductPayload(p, 1, p.cat)); metaTrackCustom("WhatsAppLead", { source: "product_card", productId: p.id, category: p.cat });}}
           style={{minHeight:isMobile?40:38,borderRadius:6,background:"linear-gradient(135deg,#16a34a,#25D366)",color:"#062813",display:"flex",alignItems:"center",justifyContent:"center",textDecoration:"none",fontSize:isMobile?11:12,fontWeight:950,marginTop:2,textAlign:"center",padding:"0 8px",boxShadow:"0 10px 22px rgba(37,211,102,.16)"}}>
-          Kargo dahil kuponlu fiyat al
+          Fiyat, stok ve uyumluluk sor
         </a>
         {showAlert && <StockAlertInline productId={p.id} onClose={() => setShowAlert(false)} />}
       </div>
@@ -2930,7 +2931,7 @@ function QuickQuoteBox({source = "quick_quote", product = null, dark = false}) {
             {lang==="en"?"Fast quote desk":"Hizli teklif masasi"}
           </div>
           <div style={{fontSize:isMobile?14:16,fontWeight:950,color:text,marginTop:3,lineHeight:1.25}}>
-            Kod, sase veya eski parca bilgisini gonderin; kargo dahil kuponlu fiyat ve uyumu teyit edelim.
+            Kod, sase veya eski parca bilgisini gonderin; guncel fiyat, stok ve uyumu teyit edelim.
           </div>
         </div>
         <span style={{fontSize:11,fontWeight:900,color:dark?"#86efac":"#15803d",background:dark?"rgba(34,197,94,.14)":"#dcfce7",borderRadius:999,padding:"5px 8px",whiteSpace:"nowrap"}}>WhatsApp</span>
@@ -3388,10 +3389,10 @@ function ProductsPage() {
           {!term && items.length > 0 && <div style={{border:"1px solid #bbf7d0",borderRadius:8,background:"linear-gradient(135deg,#f0fdf4,#fff)",padding:isMobile?"12px":"14px 16px",marginBottom:16,boxShadow:"0 12px 34px rgba(22,163,74,.08)"}}>
             <div style={{display:"flex",justifyContent:"space-between",gap:12,alignItems:isMobile?"flex-start":"center",marginBottom:10,flexDirection:isMobile?"column":"row"}}>
               <div>
-                <div style={{fontSize:12,fontWeight:950,color:"#16a34a",textTransform:"uppercase",letterSpacing:.3}}>Kargo dahil kuponlu fiyat</div>
+                <div style={{fontSize:12,fontWeight:950,color:"#16a34a",textTransform:"uppercase",letterSpacing:.3}}>OEM / sase ile parca teyidi</div>
                 <div style={{fontSize:isMobile?14:16,fontWeight:950,color:"#111827",marginTop:3,lineHeight:1.35}}>{catName} icin kod, sase veya eski parca fotosu gonderin.</div>
               </div>
-              <a href={generalWhatsAppUrl(`${catName} kargo dahil kuponlu fiyat`)} target="_blank" rel="noopener noreferrer" onClick={() => { const href = generalWhatsAppUrl(`${catName} kargo dahil kuponlu fiyat`); recordLeadEvent("whatsapp", { source:"category_quote_nudge_whatsapp", href, category:catName }); metaTrackCustom("WhatsAppCategoryLead", { source:"category_quote_nudge", category: cat }); }} style={{minHeight:40,padding:"9px 13px",borderRadius:8,background:"#25D366",color:"#062813",fontSize:13,fontWeight:950,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center",whiteSpace:isMobile?"normal":"nowrap",textAlign:"center"}}>
+              <a href={generalWhatsAppUrl(`${catName} OEM sase fotograf ile fiyat stok uyumluluk teyidi`)} target="_blank" rel="noopener noreferrer" onClick={() => { const href = generalWhatsAppUrl(`${catName} OEM sase fotograf ile fiyat stok uyumluluk teyidi`); recordLeadEvent("whatsapp", { source:"category_quote_nudge_whatsapp", href, category:catName }); metaTrackCustom("WhatsAppCategoryLead", { source:"category_quote_nudge", category: cat }); }} style={{minHeight:40,padding:"9px 13px",borderRadius:8,background:"#25D366",color:"#062813",fontSize:13,fontWeight:950,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center",whiteSpace:isMobile?"normal":"nowrap",textAlign:"center"}}>
                 WhatsApp'tan netlestir
               </a>
             </div>
@@ -3467,15 +3468,15 @@ function ProductConversionPanel({p, qty, href, isMobile, fp}) {
       <div style={{display:"flex",alignItems:isMobile?"stretch":"center",justifyContent:"space-between",gap:14,flexDirection:isMobile?"column":"row"}}>
         <div style={{minWidth:0}}>
           <div style={{fontSize:11,fontWeight:950,color:"#facc15",textTransform:"uppercase",letterSpacing:.2,marginBottom:5}}>Urunu dogru secin</div>
-          <h2 style={{fontSize:isMobile?18:20,lineHeight:1.2,margin:"0 0 7px",fontWeight:950}}>Fiyat, stok ve uyumlulugu tek mesajda sorun.</h2>
-          <p style={{fontSize:13,lineHeight:1.55,color:"#d1d5db",margin:"0 0 11px"}}>Butona tiklayinca urun kodlari ve sayfa linki hazir gelir. Arac modelinizi veya sase numaranizi ekleyip gonderin.</p>
+          <h2 style={{fontSize:isMobile?18:20,lineHeight:1.2,margin:"0 0 7px",fontWeight:950}}>Kod veya fotograf gonderin, dogru parcayi teyit edelim.</h2>
+          <p style={{fontSize:13,lineHeight:1.55,color:"#d1d5db",margin:"0 0 11px"}}>Butona tiklayinca urun, SKU, OEM ve sayfa linki hazir gelir. Arac/sase bilgisini ekleyin; gerekirse eski parca fotografini WhatsApp'tan gonderin.</p>
           <div style={{fontSize:11,color:"#a7f3d0",background:"rgba(37,211,102,.1)",border:"1px solid rgba(37,211,102,.22)",borderRadius:6,padding:"7px 8px",overflowWrap:"anywhere"}}>Kod: {partCode}</div>
         </div>
         <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr",gap:8,minWidth:isMobile?0:210}}>
           <a href={href} target="_blank" rel="noopener noreferrer" data-lead-source="product_detail_primary_whatsapp" data-lead-product-id={p?.id} data-lead-sku={p?.sku || ""} data-lead-category={p?.cat || ""} data-lead-value={(Number(p?.price || 0) * Number(qty || 1)) || 0}
             onClick={() => { recordLeadEvent("whatsapp", leadPayload); metaTrack("Contact", metaProductPayload(p, qty, p?.cat)); metaTrackCustom("WhatsAppLead", { source:"product_detail_primary", productId:p?.id, sku:p?.sku }); }}
             style={{minHeight:50,borderRadius:7,background:"linear-gradient(135deg,#16a34a,#25D366)",color:"#062813",textDecoration:"none",fontSize:15,fontWeight:950,display:"flex",alignItems:"center",justifyContent:"center",textAlign:"center",padding:"0 16px",boxShadow:"0 12px 22px rgba(37,211,102,.22)"}}>
-            WhatsApp'tan fiyat ve uyumluluk sor
+            Kod/fotograf gonder - WhatsApp
           </a>
           <a href="tel:+905456087008" data-lead-source="product_detail_primary_phone" onClick={() => { recordLeadEvent("phone", { source:"product_detail_primary_phone", product:p, value:p?.price || 0 }); metaTrackCustom("PhoneLead", { source:"product_detail_primary", productId:p?.id }); }}
             style={{minHeight:42,borderRadius:7,background:"rgba(255,255,255,.08)",border:"1px solid rgba(255,255,255,.18)",color:"#fff",textDecoration:"none",fontSize:13,fontWeight:900,display:"flex",alignItems:"center",justifyContent:"center",textAlign:"center",padding:"0 14px"}}>

@@ -706,8 +706,8 @@ function productSeoFallbackHtml(product, categories = [], canonical = "", relate
     "Eski parca fotografi gonderebilirim.",
   ].filter(Boolean).join("\n");
   const whatsappHref = `https://wa.me/908508887881?text=${encodeURIComponent(whatsappText)}`;
-  const couponText = [
-    "Merhaba Frenciniz, bu urun icin indirim kuponu ve kargo dahil net fiyat istiyorum.",
+  const compatibilityText = [
+    "Merhaba Frenciniz, bu urun icin fiyat, stok ve uyumluluk teyidi istiyorum.",
     `Urun: ${seoName}`,
     product?.sku ? `Stok kodu: ${product.sku}` : "",
     product?.oem ? `OEM / muadil: ${String(product.oem).slice(0, 140)}` : "",
@@ -715,7 +715,7 @@ function productSeoFallbackHtml(product, categories = [], canonical = "", relate
     "Arac marka-model / sase:",
     "Adet:",
   ].filter(Boolean).join("\n");
-  const couponHref = `https://wa.me/908508887881?text=${encodeURIComponent(couponText)}`;
+  const compatibilityHref = `https://wa.me/908508887881?text=${encodeURIComponent(compatibilityText)}`;
   const relatedLinks = relatedProducts.slice(0, 12)
     .map(item => `<li><a href="${xmlEscape(productSeoUrl(SITE, item))}">${xmlEscape(productSearchName(item, categories, 125) || item.name)}</a></li>`)
     .join("");
@@ -729,11 +729,11 @@ function productSeoFallbackHtml(product, categories = [], canonical = "", relate
       </nav>
       <section style="margin:0 0 18px;padding:12px 14px;border:1px solid #fed7aa;border-radius:8px;background:linear-gradient(90deg,#fff7ed,#fef3c7 54%,#dcfce7);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
         <div style="min-width:220px;flex:1">
-          <div style="display:inline-block;background:#ff6000;color:#fff;font-size:11px;font-weight:900;border-radius:999px;padding:5px 8px;margin-bottom:6px">INDIRIM KUPONU</div>
-          <strong style="display:block;color:#111827;font-size:16px;line-height:1.35">Kargo dahil kuponlu net fiyat ve uyumluluk teyidi icin urun kodunu WhatsApp'a gonderin.</strong>
+          <div style="display:inline-block;background:#ff6000;color:#fff;font-size:11px;font-weight:900;border-radius:999px;padding:5px 8px;margin-bottom:6px">PARCA TEYIDI</div>
+          <strong style="display:block;color:#111827;font-size:16px;line-height:1.35">Guncel fiyat, stok ve uyumluluk teyidi icin urun kodunu veya eski parca fotografini WhatsApp'a gonderin.</strong>
           <span style="display:block;color:#475569;font-size:13px;margin-top:4px">SKU/OEM, adet, arac modeli ve eski parca fotografi ile yanlis parca riskini azaltalim.</span>
         </div>
-        <a href="${xmlEscape(couponHref)}" data-lead-source="product_coupon_banner" style="min-height:42px;display:inline-flex;align-items:center;justify-content:center;background:#25D366;color:#062813;text-decoration:none;font-weight:900;border-radius:8px;padding:10px 14px">WhatsApp'tan kuponlu fiyat al</a>
+        <a href="${xmlEscape(compatibilityHref)}" data-lead-source="product_compatibility_banner" style="min-height:42px;display:inline-flex;align-items:center;justify-content:center;background:#25D366;color:#062813;text-decoration:none;font-weight:900;border-radius:8px;padding:10px 14px">Kod/fotograf gonder</a>
       </section>
       <article itemscope itemtype="https://schema.org/Product" style="display:grid;grid-template-columns:minmax(220px,360px) 1fr;gap:22px;align-items:start">
         <img itemprop="image" src="${xmlEscape(image)}" alt="${xmlEscape(seoName)}" width="360" height="360" style="width:100%;height:auto;border:1px solid #e5e7eb;border-radius:8px;object-fit:contain;background:#f8fafc">
@@ -883,13 +883,14 @@ function categoryWhatsAppUrl(category, count) {
   return `https://wa.me/908508887881?text=${encodeURIComponent(text)}`;
 }
 
-function categoryCouponWhatsAppUrl(category) {
+function categoryCompatibilityWhatsAppUrl(category) {
   const text = [
-    "Merhaba Frenciniz, indirim kuponu almak istiyorum.",
+    "Merhaba Frenciniz, parca uyumlulugunu teyit etmek istiyorum.",
     `Kategori: ${category?.name || category?.id || "Fren aksami"}`,
     "Ilgilendigim urun / OEM kodu:",
     "Arac marka-model / sase:",
-    "Bugun siparis icin uygun kupon ve fiyat rica ederim.",
+    "Eski parca fotografini gonderebilirim.",
+    "Guncel fiyat ve stok bilgisi rica ederim.",
   ].join("\n");
   return `https://wa.me/908508887881?text=${encodeURIComponent(text)}`;
 }
@@ -974,7 +975,7 @@ function renderSeoCategoryHtml(category, products = [], categories = [], matched
     },
   ];
   const wa = categoryWhatsAppUrl(category, matched.length);
-  const couponWa = categoryCouponWhatsAppUrl(category);
+  const compatibilityWa = categoryCompatibilityWhatsAppUrl(category);
   const related = categories
     .filter(item => item.id !== "all" && item.id !== category.id && (item.parent === category.parent || item.parent === category.id || item.id === category.parent))
     .slice(0, 12)
@@ -1057,7 +1058,7 @@ function renderSeoCategoryHtml(category, products = [], categories = [], matched
 </head>
 <body>
   <header class="top"><div class="bar"><a class="brand" href="${SITE}">FRENCINIZ<span>.com</span></a><div class="contact"><a href="tel:+905456087008">0545 608 7008</a><a href="https://wa.me/908508887881">WhatsApp</a></div></div></header>
-  <section class="coupon-strip"><div class="coupon-inner"><div class="coupon-copy"><span class="coupon-badge">INDIRIM KUPONU</span><strong>Indirim kuponu icin WhatsApp ile iletisime gecin; urun kodunu yazin, uygun kuponu netlestirelim.</strong></div><a href="${xmlEscape(couponWa)}" data-lead-source="category_coupon_banner">WhatsApp'tan kupon iste</a></div></section>
+  <section class="coupon-strip"><div class="coupon-inner"><div class="coupon-copy"><span class="coupon-badge">PARCA TEYIDI</span><strong>OEM kodunu, saseyi veya eski parca fotografini gonderin; fiyat, stok ve uyumlulugu teyit edelim.</strong></div><a href="${xmlEscape(compatibilityWa)}" data-lead-source="category_compatibility_banner">Kod/fotograf gonder</a></div></section>
   <section class="hero"><div class="hero-inner"><div><div class="eyebrow">Stoklu kategori · OEM kodu ile teyit</div><h1>${xmlEscape(heading)}</h1><p class="lead">${xmlEscape(description)} Yanlis parca riskini azaltmak icin OEM kodu, sase no veya eski parca fotografi ile teyit alin.</p><a class="cta" href="${xmlEscape(wa)}" data-lead-source="category_hero">WhatsApp'tan teklif al</a></div><div class="trust"><strong>${matched.length}</strong><div>ilgili urun ve muadil secenek</div><p class="muted" style="color:#cbd5e1">14:00'a kadar stoklu urunde hizli kargo, 3000 TL uzeri standart kargo ucretsiz.</p></div></div></section>
   <main class="wrap"><div class="head"><div><h2>${xmlEscape(cleanName)} Urunleri</h2><div class="muted">Fiyat, stok ve uyumluluk icin urunu acin veya WhatsApp'tan kod gonderin.</div></div><a class="cta" href="${xmlEscape(wa)}" data-lead-source="category_top">Kod gonder, teklif al</a></div><form data-category-callback data-lead-source="category_callback_form" style="margin:0 0 18px;padding:14px;border:1px solid #dbe3ef;border-radius:8px;background:#fff;box-shadow:0 10px 26px rgba(15,23,42,.05)"><div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:10px"><div><strong style="display:block;color:#111;font-size:16px">Telefonunuzu birakin, ${xmlEscape(cleanName)} icin sizi arayalim.</strong><span class="muted">OEM/parca kodu ve arac bilgisini yazin; stok, fiyat ve uyumlulugu netlestirelim.</span></div><span style="font-size:12px;font-weight:900;color:#087f3d;background:#dcfce7;border:1px solid #bbf7d0;border-radius:999px;padding:6px 9px">WhatsApp sart degil</span></div><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;align-items:stretch"><input name="phone" inputmode="tel" autocomplete="tel" placeholder="Telefon: 05xx xxx xx xx" style="width:100%;min-height:42px;border:1px solid #d1d5db;border-radius:7px;padding:0 11px;font-size:13px;font-weight:700"><input name="code" placeholder="OEM / parca kodu" style="width:100%;min-height:42px;border:1px solid #d1d5db;border-radius:7px;padding:0 11px;font-size:13px;font-weight:700"><input name="vehicle" placeholder="Arac / sase notu" style="width:100%;min-height:42px;border:1px solid #d1d5db;border-radius:7px;padding:0 11px;font-size:13px;font-weight:700"><input name="note" placeholder="Not / adet" style="width:100%;min-height:42px;border:1px solid #d1d5db;border-radius:7px;padding:0 11px;font-size:13px;font-weight:700"><button type="submit" style="min-height:42px;border:none;border-radius:7px;background:#ff6000;color:#fff;font-size:13px;font-weight:950;padding:0 14px;white-space:nowrap">Beni arayin</button></div><div data-callback-status style="margin-top:8px;font-size:12px;font-weight:800;color:#15803d"></div></form><section class="products">${matched.slice(0, 36).map(product => renderCategoryProductCard(product, categories)).join("\n")}</section>${matched.length > 36 ? `<section class="product-index" aria-label="${xmlEscape(cleanName)} tum urun baglantilari"><h2>${xmlEscape(cleanName)} urun dizini</h2><p class="muted">Bu kategorideki diger stoklu urunlere ve OEM kodlarina dogrudan ulasin.</p><ul>${matched.slice(36).map(product => renderCategoryProductIndexLink(product, categories)).join("")}</ul></section>` : ""}<section class="info"><div class="panel"><h2>${xmlEscape(cleanName)} secimi</h2><p>${xmlEscape(cleanName)} alirken OEM/parca kodu, olcu, dingil/aks tipi ve arac modeli birlikte kontrol edilmelidir. Frenciniz ekibi kamyon, tir, otobus ve dorse fren sistemleri icin uyumluluk teyidi yapar.</p><p>Eski parcadaki kodu veya fotografi WhatsApp hattina gondererek stok, fiyat ve kargo bilgisini hizli alabilirsiniz.</p>${guideLink}</div><aside class="panel"><h2>Yakin kategoriler</h2><div class="links">${related}</div></aside></section></main>
   <div class="sticky"><div class="sticky-inner"><div><strong>${xmlEscape(cleanName)} icin hizli teklif</strong><div style="font-size:13px;color:#cbd5e1">OEM kodu veya eski parca fotosu ile teyit.</div></div><a href="${xmlEscape(wa)}" data-lead-source="category_sticky">WhatsApp Teklif</a></div></div>
