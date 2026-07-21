@@ -702,9 +702,14 @@ function recordFunnelEvent(type, data = {}) {
 // receiving organic traffic. This turns a landing-page visit into another
 // relevant internal click instead of sending every visitor back to a generic
 // category grid.
-const HOME_PRIORITY_PRODUCT_IDS = ["138", "459", "456", "227", "178", "135", "133", "213", "534", "724", "752", "248", "142", "422", "813"];
+const HOME_PRIORITY_PRODUCT_IDS = ["459", "959", "785", "227", "138", "456", "178", "135", "133", "213", "534", "724", "752", "248", "142", "422", "813"];
 
 const HOME_INTENT_LINKS = [
+  { href: "/urun/459/ford-cargo-krone-dorse-kogel-dorse-suspansiyon-korugu-ft-34881-ekersan", title: "FT 34881 Suspansiyon Korugu", desc: "Google'dan talep alan stoklu dorse korugu; kod, olcu ve arac teyidi" },
+  { href: "/urun/959/ford-cargo-krone-dorse-kogel-dorse-imdatli-fren-korugu-8120-ekersan", title: "8120 Imdatli Fren Korugu", desc: "Ford Cargo ve dorse uygulamalari; tip, baglanti ve sase teyidi" },
+  { href: "/urun/785/4029106300-saf-holland-dorse-abs-sensoru-eyd-91-11-ekersan", title: "4029106300 ABS Sensoru", desc: "SAF ve dorse ABS/EBS sistemi; OEM koduyla uyumluluk kontrolu" },
+  { href: "/urun/227/9604210412-mercedes-axor-actros-arocs-fren-diski-ekersan", title: "9604210412 Mercedes Fren Diski", desc: "Axor, Actros ve Arocs icin stoklu fren diski; sase ve aks teyidi" },
+  { href: "/urun/138/82db1125aa-ford-cargo-fren-kampanasi-on-esk-040-04-ekersan", title: "82DB1125AA Ford Cargo Kampana", desc: "ESK 040 04 on fren kampanasi; model ve olcu teyidi" },
   { href: "/yay", title: "Ağır Vasıta Fren Yayları", desc: "Dorse, treyler ve kamyon fren yayı seçenekleri; ölçü ve stok teyidi" },
   { href: "/fren-balatasi", title: "Ağır Vasıta Fren Balatası", desc: "Ford Cargo, Mercedes, SAF, BPW ve dorse fren balataları" },
   { href: "/urun/142/fren-kampanasi-kampana-522-profesyonel-f-r-oem-57rs302616ub-esk-030-13-ekersan", title: "57RS302616UB BMC Fren Kampanası", desc: "ESK 030 13 BMC fren kampanası; OEM, ölçü ve stok teyidi" },
@@ -2973,9 +2978,14 @@ function HomePage() {
   const featured = useMemo(() => {
     const pool = productList.filter(p => p.stock > 0);
     const priority = ["fren-diski","fren-kampanasi","fren-korugu","suspansiyon-korugu","kaliper-tamir-takimi","bijon","porya","fren-balatasi"];
-    const picks = [];
-    priority.forEach(cat => picks.push(...pool.filter(p => p.cat === cat).slice(0, 2)));
-    return picks.slice(0, 16);
+    const hotProducts = HOME_PRIORITY_PRODUCT_IDS
+      .map(id => pool.find(p => String(p.id) === String(id)))
+      .filter(Boolean);
+    const categoryPicks = [];
+    priority.forEach(cat => categoryPicks.push(...pool.filter(p => p.cat === cat).slice(0, 2)));
+    return [...hotProducts, ...categoryPicks]
+      .filter((product, index, list) => list.findIndex(item => String(item.id) === String(product.id)) === index)
+      .slice(0, 16);
   }, [productList]);
   const discounted = productList.filter(p => p.old).slice(0, 4);
   const totalCount = productList.length || 1055;
@@ -2995,11 +3005,11 @@ function HomePage() {
     {cat:"kaliper-tamir-takimi", title:lang==="en"?"Caliper Repair":"Kaliper Tamir", text:lang==="en"?"Knorr, Wabco, ELSA, PAN":"Knorr, Wabco, ELSA, PAN", color:"#8b5cf6"},
   ];
   const heroIntentChips = [
-    {label:"ESC 80422 Arocs circir", href:"/urun/86/esc-80422-mercedes-arocs-fren-circiri-sol-ekersan"},
-    {label:"3010097AA fren diski", href:"/urun/281/3010097aa-ford-cargo-otokar-sultan-doruk-krone-dorse-fren-diski-abs-li-arka-ekersan"},
-    {label:"FT 344183 koruk", href:"/urun/452/ford-cargo-krone-dorse-kogel-dorse-suspansiyon-korugu-ft-344183-ekersan"},
-    {label:"PWR-5027 dorse balata", href:"/urun/718/29328-ford-cargo-krone-dorse-kogel-dorse-disk-fren-balatasi-ekersan"},
-    {label:"PWR-5009 SAF balata", href:"/urun/731/29159-29126-saf-dorse-disk-fren-balatasi-pwr-5009-ekersan"},
+    {label:"FT 34881 koruk", href:"/urun/459/ford-cargo-krone-dorse-kogel-dorse-suspansiyon-korugu-ft-34881-ekersan"},
+    {label:"8120 imdatli koruk", href:"/urun/959/ford-cargo-krone-dorse-kogel-dorse-imdatli-fren-korugu-8120-ekersan"},
+    {label:"4029106300 ABS", href:"/urun/785/4029106300-saf-holland-dorse-abs-sensoru-eyd-91-11-ekersan"},
+    {label:"9604210412 Mercedes disk", href:"/urun/227/9604210412-mercedes-axor-actros-arocs-fren-diski-ekersan"},
+    {label:"82DB1125AA Cargo kampana", href:"/urun/138/82db1125aa-ford-cargo-fren-kampanasi-on-esk-040-04-ekersan"},
   ];
 
   return <>
