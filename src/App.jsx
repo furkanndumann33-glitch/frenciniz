@@ -510,7 +510,7 @@ function compatibilityCheckWhatsAppUrl() {
 function productWhatsAppUrl(product, qty = 1) {
   const seoName = productSearchName(product, CATS, 140) || product?.name || "-";
   return waUrl([
-    "Merhaba Frenciniz, bu urun icin fiyat, stok ve uyumluluk teyidi istiyorum.",
+    "Merhaba Frenciniz, bu urun icin fiyat, stok ve uyumluluk teyidi istiyorum. Varsa uygun indirim kuponu hakkinda da bilgi rica ederim.",
     `Urun: ${seoName}`,
     `SKU: ${product?.sku || "-"}`,
     `OEM / muadil: ${product?.oem || "-"}`,
@@ -544,7 +544,7 @@ function cartWhatsAppUrl(cartItems = [], total = 0, shipping = 0, discount = 0) 
 function quickQuoteWhatsAppUrl({product, code, vehicle, phone, note} = {}) {
   const seoName = productSearchName(product, CATS, 140) || product?.name || "-";
   return waUrl([
-    "Merhaba Frenciniz, hizli fiyat ve uyumluluk teyidi almak istiyorum.",
+    "Merhaba Frenciniz, hizli fiyat ve uyumluluk teyidi almak istiyorum. Varsa uygun indirim kuponu hakkinda da bilgi rica ederim.",
     product ? `Urun: ${seoName}` : "",
     product ? `SKU: ${product.sku || "-"}` : "",
     product?.oem ? `OEM / muadil: ${product.oem}` : "",
@@ -1034,7 +1034,7 @@ function categorySalesInfo(catId, catName, items, productList, catList, lang) {
   const chips = [...new Set([...(copy.chips || []), ...compat, ...brands])].slice(0, 8);
   const displayCat = catName || found?.name || "Tüm Ürünler";
   const msg = [
-    "Merhaba Frenciniz, kategori için teklif almak istiyorum.",
+    "Merhaba Frenciniz, kategori için teklif almak istiyorum. Varsa uygun indirim kuponu hakkinda da bilgi rica ederim.",
     `Kategori: ${displayCat}`,
     `Listede görünen ürün sayısı: ${itemCount}`,
     "OEM/parça kodum:",
@@ -2960,7 +2960,7 @@ function QuickQuoteBox({source = "quick_quote", product = null, dark = false}) {
         </button>
         <button type="submit" data-lead-source={source} data-lead-product-id={product?.id || ""} data-lead-sku={product?.sku || ""} data-lead-category={product?.cat || ""} data-lead-value={product?.price || 0}
           style={{minHeight:44,border:"none",borderRadius:7,background:"linear-gradient(135deg,#16a34a,#25D366)",color:"#062813",fontSize:13,fontWeight:950,padding:"0 14px",cursor:"pointer"}}>
-          Guncel fiyati WhatsApp'tan al
+          İndirim kuponu için WhatsApp'tan iletişime geçin
         </button>
         <div style={{fontSize:12,color:muted,lineHeight:1.45}}>
           {callbackStatus || (sent ? "Talep kaydedildi; WhatsApp acildi." : callbackSent ? "Arama talebi kaydedildi." : "Telefon yazarsaniz WhatsApp acmadan da sizi arayabiliriz.")}
@@ -3372,7 +3372,7 @@ function ProductsPage() {
                 </div>}
                 <a href={salesInfo.whatsappHref} target="_blank" rel="noopener noreferrer" onClick={() => { recordLeadEvent("whatsapp", { source:"category_hero_whatsapp", href:salesInfo.whatsappHref, category:catName }); metaTrackCustom("WhatsAppCategoryLead", { category: cat, name: salesInfo.title }); }}
                   style={{display:"inline-flex",alignItems:"center",justifyContent:"center",gap:8,minHeight:44,padding:"12px 16px",background:"#25D366",color:"#07111f",borderRadius:6,textDecoration:"none",fontSize:14,fontWeight:950,boxShadow:"0 14px 28px rgba(37,211,102,.22)"}}>
-                  Güncel fiyat al
+                  İndirim kuponu için WhatsApp'tan iletişime geçin
                 </a>
               </div>
               <div style={{display:"grid",gridTemplateColumns:"repeat(2,minmax(0,1fr))",gap:10}}>
@@ -3713,7 +3713,7 @@ function ProductDetailPage() {
                 <div style={{display:"grid",gridTemplateColumns:"1.35fr .85fr",gap:8,marginTop:8}}>
                   <a href={whatsappQuoteHref} target="_blank" rel="noopener noreferrer" onClick={() => { recordLeadEvent("whatsapp", { source:"product_price_box_whatsapp", href:whatsappQuoteHref, product:p, value:(p.price || 0) * qty }); metaTrack("Contact", metaProductPayload(p, qty, p.cat)); }}
                     style={{minHeight:44,borderRadius:7,background:"linear-gradient(135deg,#16a34a,#25D366)",color:"#062813",textDecoration:"none",fontSize:12,fontWeight:950,display:"flex",alignItems:"center",justifyContent:"center",textAlign:"center",padding:"0 9px"}}>
-                    WhatsApp'tan sor
+                    Kupon ve fiyat için WhatsApp
                   </a>
                   <a href="tel:+905456087008" onClick={() => { recordLeadEvent("phone", { source:"product_price_box_phone", product:p, value:p.price || 0 }); metaTrackCustom("PhoneLead", { source:"product_price_box", product_id:p.id, sku:p.sku }); }}
                     style={{minHeight:44,borderRadius:7,background:"linear-gradient(135deg,#ff6000,#facc15)",color:"#111827",textDecoration:"none",fontSize:12,fontWeight:950,display:"flex",alignItems:"center",justifyContent:"center",textAlign:"center",padding:"0 9px"}}>
