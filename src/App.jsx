@@ -561,6 +561,7 @@ function recordLeadEvent(type = "whatsapp", data = {}) {
   if (typeof window === "undefined") return;
   const payload = createLeadPayload(type, data);
   try {
+    window.__frencinizLeadHandled = { kind: type, at: Date.now() };
     if (typeof window.gtag === "function") {
       window.gtag("event", "generate_lead", {
         event_category: "lead",
@@ -702,9 +703,14 @@ function recordFunnelEvent(type, data = {}) {
 // receiving organic traffic. This turns a landing-page visit into another
 // relevant internal click instead of sending every visitor back to a generic
 // category grid.
-const HOME_PRIORITY_PRODUCT_IDS = ["459", "959", "785", "227", "138", "456", "178", "135", "133", "213", "534", "724", "752", "248", "142", "422", "813"];
+const HOME_PRIORITY_PRODUCT_IDS = ["894", "809", "428", "739", "811", "459", "152", "614", "330", "429", "892", "882", "615", "821", "449", "959", "785"];
 
 const HOME_INTENT_LINKS = [
+  { href: "/urun/894/21961374-volvo-fh12-fm-fl-suspansiyon-korugu-427803-c-ekersan", title: "21961374 Volvo Suspansiyon Korugu", desc: "Volvo FH/FM icin OEM koduyla aranan komple koruk; stok ve sase teyidi" },
+  { href: "/urun/809/ford-cargo-krone-dorse-kogel-dorse-porya-kapagi-eyd-700-08-ekersan", title: "EYD 700 08 Porya Kapagi", desc: "Dorse dingil grubu porya kapagi; olcu, stok ve uyumluluk teyidi" },
+  { href: "/urun/428/0003270101-mercedes-travego-tourismo-suspansiyon-korugu-ekersan", title: "0003270101 Mercedes Koruk", desc: "Mercedes ve Setra otobus uygulamalari; OEM ve sase ile uyumluluk kontrolu" },
+  { href: "/urun/739/29167-ford-cargo-bpw-dorse-krone-dorse-kogel-dorse-disk-fren-balatasi-pwr-5000-ekersan", title: "29167 PWR-5000 Fren Balatasi", desc: "Knorr-Bremse, BPW ve Fruehauf uygulamalari; olcu ve aks teyidi" },
+  { href: "/urun/811/ford-cargo-krone-dorse-kogel-dorse-porya-kapagi-eyd-700-06-ekersan", title: "EYD 700 06 Porya Kapagi", desc: "Dorse ve agir vasita porya kapagi; stok, olcu ve uyumluluk teyidi" },
   { href: "/urun/459/ford-cargo-krone-dorse-kogel-dorse-suspansiyon-korugu-ft-34881-ekersan", title: "FT 34881 Suspansiyon Korugu", desc: "Google'dan talep alan stoklu dorse korugu; kod, olcu ve arac teyidi" },
   { href: "/urun/959/ford-cargo-krone-dorse-kogel-dorse-imdatli-fren-korugu-8120-ekersan", title: "8120 Imdatli Fren Korugu", desc: "Ford Cargo ve dorse uygulamalari; tip, baglanti ve sase teyidi" },
   { href: "/urun/785/4029106300-saf-holland-dorse-abs-sensoru-eyd-91-11-ekersan", title: "4029106300 ABS Sensoru", desc: "SAF ve dorse ABS/EBS sistemi; OEM koduyla uyumluluk kontrolu" },
@@ -793,7 +799,7 @@ function HomeIntentLinks({isMobile, lang}) {
     <section style={{maxWidth:1220,margin:"0 auto",padding:isMobile?"8px 18px 28px":"8px 24px 34px"}}>
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"end",gap:16,marginBottom:14}}>
         <div>
-          <div style={{fontSize:12,color:"#16a34a",fontWeight:950,textTransform:"uppercase",letterSpacing:.5}}>{lang==="en"?"Search shortcuts":"Google'da en cok arananlar"}</div>
+          <div style={{fontSize:12,color:"#16a34a",fontWeight:950,textTransform:"uppercase",letterSpacing:.5}}>{lang==="en"?"Popular searches":"Ziyaretcilerin en cok baktiklari"}</div>
           <h2 style={{fontSize:isMobile?22:28,fontWeight:950,color:"#111827",letterSpacing:0}}>{lang==="en"?"Popular fitment pages":"Model ve parca uyumluluk sayfalari"}</h2>
         </div>
         {!isMobile && <span style={{fontSize:12,color:"#64748b",fontWeight:800}}>OEM / sase / eski parca fotosu ile teyit</span>}
@@ -1733,7 +1739,7 @@ export default function App() {
         {q:"Kargo süresi nedir?",a:"14:00'a kadar verilen siparişler aynı gün kargoya verilir. Aras Kargo ile gönderim yapılır."},
         {q:"Ürünler orijinal mi?",a:"Orijinal ve eşdeğer parça seçenekleri sunuyoruz; üretici/sertifika bilgisi ürün bazında OEM kodu, ambalaj ve stok kaydıyla teyit edilir."},
         {q:"İade yapabilir miyim?",a:"Kullanılmamış ürünler 14 gün içinde koşulsuz iade edilebilir. Hasarlı/yanlış üründe kargo ücreti tarafımıza aittir."},
-        {q:"Toplu alım indirimi var mı?",a:"5.000₺ üzeri siparişlerde indirim mevcuttur. B2B teklif için 0545 608 7008 numaralı telefondan ulaşabilirsiniz."},
+        {q:"Toplu alım için teklif alabilir miyim?",a:"Evet. Adet, araç listesi ve OEM/parça kodlarını ileterek B2B teklif isteyebilirsiniz. Güncel fiyat için 0545 608 7008 numaralı telefondan ulaşabilirsiniz."},
         {q:"Taksit yapılıyor mu?",a:"Tüm kredi kartlarına 12 taksit imkânı mevcuttur. PayTR güvenli ödeme altyapısı kullanılır."},
         {q:"Ürün aracıma uyar mı?",a:"Ürün sayfasında uyumluluk adayları ve OEM referansları yer alır. Kesin sipariş öncesi şase numarası, eski parça fotoğrafı veya OEM koduyla 0545 608 7008'den teyit alabilirsiniz."},
         {q:"Kargo ücreti ne kadar?",a:"3000₺ altı siparişlerde 150₺, 3000₺ üzeri siparişlerde ücretsiz kargo."},
@@ -2954,7 +2960,7 @@ function QuickQuoteBox({source = "quick_quote", product = null, dark = false}) {
         </button>
         <button type="submit" data-lead-source={source} data-lead-product-id={product?.id || ""} data-lead-sku={product?.sku || ""} data-lead-category={product?.cat || ""} data-lead-value={product?.price || 0}
           style={{minHeight:44,border:"none",borderRadius:7,background:"linear-gradient(135deg,#16a34a,#25D366)",color:"#062813",fontSize:13,fontWeight:950,padding:"0 14px",cursor:"pointer"}}>
-          Kuponlu fiyati WhatsApp'tan al
+          Guncel fiyati WhatsApp'tan al
         </button>
         <div style={{fontSize:12,color:muted,lineHeight:1.45}}>
           {callbackStatus || (sent ? "Talep kaydedildi; WhatsApp acildi." : callbackSent ? "Arama talebi kaydedildi." : "Telefon yazarsaniz WhatsApp acmadan da sizi arayabiliriz.")}
@@ -3366,7 +3372,7 @@ function ProductsPage() {
                 </div>}
                 <a href={salesInfo.whatsappHref} target="_blank" rel="noopener noreferrer" onClick={() => { recordLeadEvent("whatsapp", { source:"category_hero_whatsapp", href:salesInfo.whatsappHref, category:catName }); metaTrackCustom("WhatsAppCategoryLead", { category: cat, name: salesInfo.title }); }}
                   style={{display:"inline-flex",alignItems:"center",justifyContent:"center",gap:8,minHeight:44,padding:"12px 16px",background:"#25D366",color:"#07111f",borderRadius:6,textDecoration:"none",fontSize:14,fontWeight:950,boxShadow:"0 14px 28px rgba(37,211,102,.22)"}}>
-                  Kuponlu fiyat al
+                  Güncel fiyat al
                 </a>
               </div>
               <div style={{display:"grid",gridTemplateColumns:"repeat(2,minmax(0,1fr))",gap:10}}>
@@ -4029,6 +4035,7 @@ function CheckoutPage() {
   const [card, setCard] = useState({number:"", holder:"", exp:"", cvv:"", installment:1});
   const ship = cartTotal >= 3000 ? 0 : 150;
   const grandTotal = Math.max(0, cartTotal - discount + ship);
+  const checkoutWhatsAppHref = cartWhatsAppUrl(cart, cartTotal, ship, discount);
   const checkoutFunnelKey = cart.map(item => `${item.id}:${item.qty}`).sort().join("|") || "empty";
   const IS = {width:"100%",padding:"10px 14px",border:"1px solid #ddd",borderRadius:6,fontSize:14};
 
@@ -4142,7 +4149,11 @@ function CheckoutPage() {
             <div><label style={{fontSize:13,color:"#666",display:"block",marginBottom:4}}>Adres</label><textarea rows={3} value={ship_form.address} onChange={e=>setShipForm(f=>({...f,address:e.target.value}))} placeholder="Teslimat adresi" autoComplete="street-address" style={{...IS,resize:"vertical"}}/></div>
           </div>
           {payError && <div style={{marginTop:12,padding:"10px 14px",background:"#fee2e2",borderRadius:6,border:"1px solid #fecaca",fontSize:13,color:"#991b1b"}}>⚠ {payError}</div>}
-          <button onClick={continueToPayment} style={{width:isMobile?"100%":"auto",padding:"13px 30px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:15,fontWeight:950,cursor:"pointer",marginTop:18,boxShadow:"0 10px 24px rgba(255,96,0,.18)"}}>Ödemeye Geç →</button>
+          <div style={{display:"flex",flexDirection:isMobile?"column":"row",gap:10,alignItems:"stretch",marginTop:18}}>
+            <button onClick={continueToPayment} style={{width:isMobile?"100%":"auto",padding:"13px 30px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:15,fontWeight:950,cursor:"pointer",boxShadow:"0 10px 24px rgba(255,96,0,.18)"}}>Ödemeye Geç →</button>
+            <a href={checkoutWhatsAppHref} target="_blank" rel="noopener noreferrer" onClick={() => recordLeadEvent("whatsapp", { source:"checkout_whatsapp", href:checkoutWhatsAppHref, value:grandTotal, items:cart.reduce((sum,item)=>sum+Number(item.qty||1),0) })} style={{padding:"13px 18px",borderRadius:6,background:"#25D366",color:"#062813",fontSize:14,fontWeight:950,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center",textAlign:"center"}}>WhatsApp ile sipariş ver</a>
+          </div>
+          <div style={{fontSize:11,color:"#64748b",marginTop:8,lineHeight:1.45}}>Kartla ödemek istemezseniz sepetiniz WhatsApp mesajına otomatik eklenir.</div>
         </>}
         {step===2 && <>
           <h2 style={{fontSize:18,fontWeight:700,marginBottom:20}}>Ödeme</h2>
@@ -5426,7 +5437,7 @@ function FaqPage() {
     {q:"Kargo süresi nedir?",a:"14:00'a kadar verilen siparişler aynı gün kargoya verilir."},
     {q:"Ürünler orijinal mi?",a:"Orijinal ve eşdeğer seçenekler sunuyoruz; sertifika/üretici bilgisi ürün bazında teyit edilir."},
     {q:"İade yapabilir miyim?",a:"Kullanılmamış ürünler 14 gün içinde iade edilebilir."},
-    {q:"Toplu alım indirimi var mı?",a:"5.000₺ üzeri siparişlerde indirim. B2B teklif alabilirsiniz."},
+    {q:"Toplu alım için teklif alabilir miyim?",a:"Evet. Adet, araç listesi ve OEM/parça kodlarını ileterek güncel B2B teklif isteyebilirsiniz."},
     {q:"Taksit yapılıyor mu?",a:"Tüm kredi kartlarına 12 taksit imkânı mevcuttur."},
     {q:"Ürün aracıma uyar mı?",a:"Ürün sayfasında uyumluluk adayları ve OEM referansları yer alır; kesin sipariş öncesi şase, OEM kodu veya eski parça fotoğrafıyla teyit alın."}
   ];

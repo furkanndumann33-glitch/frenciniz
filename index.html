@@ -92,8 +92,14 @@
       }
 
       function trackLead(kind, href, link) {
-        sendInternalLead(kind, href, link);
-        if (window.gtag) {
+        // React links also record a richer lead payload in their onClick
+        // handler. Wait until that handler runs and avoid counting the same
+        // customer action twice. Static links still use this fallback.
+        window.setTimeout(function () {
+          var handled = window.__frencinizLeadHandled;
+          if (handled && handled.kind === kind && Date.now() - handled.at < 1000) return;
+          sendInternalLead(kind, href, link);
+          if (window.gtag) {
           window.gtag('event', 'generate_lead', {
             event_category: 'lead',
             event_label: kind,
@@ -104,20 +110,21 @@
             event_label: href || window.location.pathname,
             transport_type: 'beacon'
           });
-        }
-        if (window.frencinizTrackAdsConversion) {
+          }
+          if (window.frencinizTrackAdsConversion) {
           window.frencinizTrackAdsConversion(kind === 'phone' ? 'phone' : 'lead', {
             kind: kind,
             label: href || kind,
             value: 1
           });
-        }
-        if (window.fbq) {
+          }
+          if (window.fbq) {
           window.fbq('track', 'Contact', {
             content_name: kind,
             content_category: 'lead'
           });
-        }
+          }
+        }, 0);
       }
 
       document.addEventListener('click', function (event) {
