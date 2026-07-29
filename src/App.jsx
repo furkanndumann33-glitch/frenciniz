@@ -489,6 +489,7 @@ function waUrl(message) {
 function generalWhatsAppUrl(topic = "agir vasita fren parcasi") {
   return waUrl([
     "Merhaba Frenciniz, bugun fiyat/stok ve uyumluluk teyidi almak istiyorum.",
+    "Varsa siparisime uygun indirim kuponu hakkinda bilgi rica ederim.",
     `Konu: ${topic}`,
     "OEM/parca kodum:",
     "Arac / sase no:",
@@ -500,6 +501,7 @@ function generalWhatsAppUrl(topic = "agir vasita fren parcasi") {
 function compatibilityCheckWhatsAppUrl() {
   return waUrl([
     "Merhaba Frenciniz, parca uyumlulugunu teyit etmek istiyorum.",
+    "Varsa siparisime uygun indirim kuponu hakkinda bilgi rica ederim.",
     "Ilgilendigim urun / OEM kodu:",
     "Arac marka-model / sase:",
     "Eski parca fotografini gonderebilirim.",
@@ -2014,8 +2016,8 @@ export default function App() {
           title="WhatsApp ile yazın">
           <svg viewBox="0 0 32 32" width="34" height="34" fill="#fff"><path d="M16.01 2.93A13.07 13.07 0 0 0 2.93 16a12.94 12.94 0 0 0 1.75 6.53L2.93 29.07l6.72-1.76A13.07 13.07 0 1 0 16.01 2.93Zm0 23.9a10.8 10.8 0 0 1-5.52-1.51l-.4-.23-3.98 1.04 1.06-3.88-.26-.41a10.83 10.83 0 1 1 9.1 5Z"/><path d="M22.36 18.76c-.35-.17-2.05-1.01-2.37-1.13-.32-.11-.55-.17-.78.17-.23.35-.9 1.13-1.1 1.36-.2.23-.41.26-.76.09-.35-.18-1.47-.54-2.8-1.73-1.04-.92-1.73-2.06-1.94-2.41-.2-.35-.02-.54.15-.71.16-.16.35-.41.53-.61.17-.21.23-.35.35-.59.12-.23.06-.44-.03-.61-.09-.17-.78-1.88-1.07-2.57-.28-.68-.57-.59-.78-.6h-.67a1.28 1.28 0 0 0-.93.44 3.93 3.93 0 0 0-1.22 2.92c0 1.72 1.25 3.38 1.43 3.61.17.24 2.47 3.77 5.98 5.28.84.36 1.49.58 2 .74.84.27 1.6.23 2.2.14.67-.1 2.05-.84 2.34-1.65.29-.81.29-1.5.2-1.65-.08-.14-.32-.23-.67-.4Z"/></svg>
           <span style={{display:"flex",flexDirection:"column",lineHeight:1.05}}>
-            <strong style={{fontSize:15,fontWeight:950}}>WhatsApp teklif al</strong>
-            <span style={{fontSize:11,fontWeight:800,opacity:.86}}>Kod/foto gonder</span>
+            <strong style={{fontSize:15,fontWeight:950}}>Kupon için WhatsApp</strong>
+            <span style={{fontSize:11,fontWeight:800,opacity:.86}}>Fiyat, stok ve kupon sor</span>
           </span>
         </a>
 
@@ -2028,7 +2030,7 @@ export default function App() {
           <div style={{background:"linear-gradient(90deg,#090d16,#151821 48%,#ff6000)",padding:isMobile?"5px 0":"6px 0"}}>
             <div style={{maxWidth:1200,margin:"0 auto",padding:isMobile?"0 14px":"0 20px",display:"flex",justifyContent:isMobile?"center":"space-between",alignItems:"center"}}>
               <div style={{display:"flex",gap:12,alignItems:"center"}}>
-                <span style={{color:"#f8fafc",fontSize:isMobile?11:12,fontWeight:isMobile?800:400,whiteSpace:"nowrap",letterSpacing:isMobile?.2:0}}>{lang==="tr"?(isMobile?"Kod/sase gonder, teklif al":"Kod/sase gonder, uyum teyidi al | 3000 TL uzeri ucretsiz kargo"):(isMobile?"Send code, get quote":"Send code for fitment check | Free shipping over 3000 TL")}</span>
+                <span style={{color:"#f8fafc",fontSize:isMobile?11:12,fontWeight:isMobile?800:400,whiteSpace:"nowrap",letterSpacing:isMobile?.2:0}}>{lang==="tr"?(isMobile?"İndirim kuponu için WhatsApp":"İndirim kuponu için WhatsApp'tan iletişime geçin | 3000 TL üzeri ücretsiz kargo"):(isMobile?"Ask for a coupon on WhatsApp":"Contact us on WhatsApp for an available coupon | Free shipping over 3000 TL")}</span>
                 {!isMobile && rates.EUR>0 && <span style={{color:"#aaa",fontSize:11,borderLeft:"1px solid #444",paddingLeft:10}}>€1 = ₺{(1/rates.EUR).toFixed(2)} | $1 = ₺{(1/rates.USD).toFixed(2)}</span>}
               </div>
               {!isMobile && <div style={{display:"flex",gap:12,alignItems:"center"}}>
@@ -2108,6 +2110,8 @@ export default function App() {
           </div>
           
         </header>
+
+        {!isAdminPage && <CouponWhatsAppStrip />}
 
         {/* CONTENT */}
         {!isAdminPage && mobileMenuOpen && <MobileMenu />}
@@ -2265,13 +2269,30 @@ function MobileBottomBar() {
     <nav aria-label={lang==="en"?"Quick actions":"Hizli islemler"} style={{position:"fixed",left:0,right:0,bottom:0,zIndex:997,padding:"8px 12px calc(8px + env(safe-area-inset-bottom))",background:"linear-gradient(180deg,rgba(7,10,18,.92),#070a12)",borderTop:"1px solid rgba(255,255,255,.12)",boxShadow:"0 -14px 38px rgba(0,0,0,.34)",display:"grid",gridTemplateColumns:"repeat(2,minmax(0,1fr))",gap:8}}>
       <a href={generalWhatsAppUrl("mobil alt bar")} target="_blank" rel="noopener noreferrer" onClick={() => { recordLeadEvent("whatsapp", { source:"mobile_bottom_bar", href:generalWhatsAppUrl("mobil alt bar") }); metaTrackCustom("WhatsAppLead", { source: "mobile_bottom_bar" }); }} style={{...itemStyle,background:"linear-gradient(135deg,#16a34a,#25D366)",color:"#062813"}}>
         <span style={{fontSize:10,letterSpacing:.3}}>WhatsApp</span>
-        <strong style={{fontSize:14,lineHeight:1}}>Fiyat ve Stok Sor</strong>
+        <strong style={{fontSize:14,lineHeight:1}}>Kupon ve Fiyat Sor</strong>
       </a>
       <a href="tel:+905456087008" onClick={() => { recordLeadEvent("phone", { source:"mobile_bottom_bar" }); metaTrackCustom("PhoneLead", { source: "mobile_bottom_bar" }); }} style={{...itemStyle,background:"linear-gradient(135deg,#ff6000,#facc15)",color:"#111827"}}>
         <span style={{fontSize:10,letterSpacing:.3}}>Telefon</span>
         <strong style={{fontSize:14,lineHeight:1}}>Hemen Ara</strong>
       </a>
     </nav>
+  );
+}
+
+function CouponWhatsAppStrip() {
+  const {isMobile, lang} = use$();
+  const href = generalWhatsAppUrl("indirim kuponu talebi");
+  return (
+    <section aria-label={lang==="en"?"WhatsApp coupon request":"İndirim kuponu WhatsApp iletişimi"} style={{background:"linear-gradient(90deg,#052e16,#166534 52%,#25D366)",color:"#fff",borderBottom:"1px solid rgba(255,255,255,.2)",boxShadow:"0 8px 22px rgba(22,101,52,.16)"}}>
+      <div style={{maxWidth:1220,margin:"0 auto",padding:isMobile?"9px 12px":"10px 24px",display:"flex",alignItems:"center",justifyContent:"center",gap:isMobile?8:16,flexDirection:isMobile?"column":"row",textAlign:"center"}}>
+        <strong style={{fontSize:isMobile?13:15,lineHeight:1.35}}>
+          {lang==="en"?"Contact us on WhatsApp for an available discount coupon.":"İndirim kuponu için WhatsApp'tan iletişime geçin."}
+        </strong>
+        <a href={href} target="_blank" rel="noopener noreferrer" onClick={() => { recordLeadEvent("whatsapp", { source:"coupon_whatsapp_strip", href }); metaTrackCustom("WhatsAppCouponLead", { source:"coupon_whatsapp_strip" }); }} style={{minHeight:38,padding:"9px 16px",borderRadius:999,background:"#fff",color:"#14532d",fontSize:13,fontWeight:950,textDecoration:"none",display:"inline-flex",alignItems:"center",justifyContent:"center",whiteSpace:"nowrap",boxShadow:"0 8px 18px rgba(0,0,0,.16)"}}>
+          {lang==="en"?"Ask on WhatsApp":"WhatsApp'tan kupon sor"}
+        </a>
+      </div>
+    </section>
   );
 }
 
