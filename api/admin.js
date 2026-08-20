@@ -25,9 +25,72 @@ export default async function handler(req, res) {
       const users = [];
       for (const id of ids) {
         const u = await readUser(id);
-        if (u) users.push(publicUser(u));
+        if (u) users.push({ ...publicUser(u), customerType: "member", orderCount: 0, totalSpent: 0, addresses: [] });
       }
-      users.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+      // Siparişler üyeliksiz de verilebildiği için müşteri listesini yalnız
+      // kullanıcı hesaplarından üretmek adres ve sipariş bilgisini gizliyordu.
+      // Ödenmiş siparişleri e-posta/telefon üzerinden üyelerle birleştir; misafir
+      // alıcıları da ayrı müşteri olarak göster.
+      const customerKey = (email, phone, fallback = "") => {
+        const cleanEmail = String(email || "").trim().toLowerCase();
+        const cleanPhone = String(phone || "").replace(/\D/g, "");
+        return cleanEmail ? `email:${cleanEmail}` : cleanPhone ? `phone:${cleanPhone}` : `guest:${fallback}`;
+      };
+      const byKey = new Map();
+      for (const user of users) {
+        byKey.set(customerKey(user.email, user.phone, user.id), user);
+      }
+      const refs = (await kv.lrange("orders:index", 0, 999)) || [];
+      for (const ref of refs) {
+        const order = await readOrder(ref);
+        if (!order || order.status !== "paid") continue;
+        const buyer = order.buyer || {};
+        const billing = order.billingAddress || {};
+        const email = buyer.emailAddress || order.customerMail || billing.emailAddress || "";
+        const phone = buyer.phoneNumber || order.customerPhone || billing.phoneNumber || "";
+        const key = customerKey(email, phone, order.orderRef || ref);
+        let customer = byKey.get(key);
+        if (!customer) {
+          customer = {
+            id: `guest_${String(order.orderRef || ref).replace(/[^a-zA-Z0-9_-]/g, "")}`,
+            name: [buyer.name, buyer.surName].filter(Boolean).join(" ").trim() || order.customerName || billing.contactName || "Misafir müşteri",
+            email,
+            phone,
+            role: "customer",
+            customerType: "guest",
+            createdAt: order.createdAt || order.paidAt || "",
+            orderCount: 0,
+            totalSpent: 0,
+            addresses: [],
+          };
+          users.push(customer);
+          byKey.set(key, customer);
+        }
+        const address = {
+          contactName: billing.contactName || [buyer.name, buyer.surName].filter(Boolean).join(" ").trim() || customer.name || "",
+          address: billing.address || buyer.registrationAddress || "",
+          district: billing.district || "",
+          city: billing.city || buyer.city || "",
+          country: billing.country || buyer.country || "Türkiye",
+          zipCode: billing.zipCode || buyer.zipCode || "",
+          phone: billing.phoneNumber || phone,
+          orderRef: order.orderRef || ref,
+          lastUsedAt: order.paidAt || order.createdAt || "",
+        };
+        const addressKey = [address.address, address.district, address.city, address.phone].join("|").toLowerCase();
+        if (address.address && !customer.addresses.some(item => item._key === addressKey)) {
+          customer.addresses.push({ ...address, _key: addressKey });
+        }
+        customer.orderCount = Number(customer.orderCount || 0) + 1;
+        customer.totalSpent = Number(customer.totalSpent || 0) + Number(order.amount || 0);
+        customer.lastOrderAt = order.paidAt || order.createdAt || customer.lastOrderAt || "";
+      }
+      for (const user of users) {
+        user.addresses = (user.addresses || []).map(({ _key, ...address }) => address);
+        user.lastAddress = user.addresses[0] || null;
+      }
+      users.sort((a,b) => new Date(b.lastOrderAt || b.createdAt || 0) - new Date(a.lastOrderAt || a.createdAt || 0));
       return res.status(200).json({ users, total: users.length });
     }
 

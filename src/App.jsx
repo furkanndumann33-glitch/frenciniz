@@ -6091,36 +6091,67 @@ function AOrds(){
   const [orders,setOrders]=useState([]);
   const [loading,setLoading]=useState(true);
   const [err,setErr]=useState("");
+  const [openRef,setOpenRef]=useState(null);
+  const [shipping,setShipping]=useState({});
   useEffect(()=>{
     fetch("/api/admin/orders",{credentials:"include"}).then(r=>r.json()).then(d=>{
       if(d.error) setErr(d.error); else setOrders(d.orders||[]);
     }).catch(e=>setErr(e.message)).finally(()=>setLoading(false));
   },[]);
-  async function updateStatus(orderRef,status){
-    setOrders(p=>p.map(x=>x.orderRef===orderRef?{...x,fulfillmentStatus:status}:x));
+  async function updateStatus(orderRef,status,extra={}){
+    setOrders(p=>p.map(x=>x.orderRef===orderRef?{...x,fulfillmentStatus:status,...extra}:x));
     try{
-      await fetch("/api/admin/orders",{method:"PATCH",credentials:"include",headers:{"Content-Type":"application/json"},body:JSON.stringify({orderRef,status})});
-    }catch{}
+      const r=await fetch("/api/admin/orders",{method:"PATCH",credentials:"include",headers:{"Content-Type":"application/json"},body:JSON.stringify({orderRef,status,...extra})});
+      const d=await r.json();
+      if(!r.ok||d.error) throw new Error(d.error||"Sipariş güncellenemedi");
+    }catch(e){setErr(e.message||"Sipariş güncellenemedi")}
   }
   if(loading) return <div style={{padding:20,color:"#999"}}>Yükleniyor…</div>;
   if(err) return <div style={{padding:20,color:"#dc2626"}}>⚠ {err}</div>;
   return <ACard title={`Siparişler (${orders.length})`}>
     {orders.length===0?<div style={{color:"#999",fontSize:13,padding:"12px 0"}}>Henüz sipariş yok.</div>:
-    <table style={{width:"100%",borderCollapse:"collapse",fontSize:13}}>
-      <thead><tr style={{borderBottom:"2px solid #eee"}}>{["No","Müşteri","Tutar","Tarih","Durum","İşlem"].map(h=><th key={h} style={{padding:"8px",textAlign:"left",fontSize:12,color:"#999",fontWeight:600}}>{h}</th>)}</tr></thead>
-      <tbody>{orders.map(o=>{
+    <div style={{display:"flex",flexDirection:"column",gap:10}}>{orders.map(o=>{
         const st=o.fulfillmentStatus||"Hazırlanıyor";
         const dt=o.paidAt||o.createdAt;
-        const d=dt?new Date(dt).toLocaleDateString("tr-TR"):"—";
-        return <tr key={o.orderRef} style={{borderBottom:"1px solid #f0f0f0"}}>
-          <td style={{padding:"10px",fontWeight:600,fontFamily:"monospace"}}>{o.orderRef}</td>
-          <td style={{padding:"10px"}}><div style={{fontWeight:500}}>{o.customerName||o.buyer?.name||"—"}</div><div style={{fontSize:11,color:"#999"}}>{o.customerPhone||o.buyer?.phoneNumber||""}</div></td>
-          <td style={{padding:"10px",fontWeight:600}}>₺{Number(o.amount||0).toLocaleString("tr-TR")}</td>
-          <td style={{padding:"10px",fontSize:12,color:"#888"}}>{d}</td>
-          <td style={{padding:"10px"}}><span style={{padding:"4px 10px",borderRadius:4,fontSize:11,fontWeight:600,background:sc[st]?.bg||"#f5f5f5",color:sc[st]?.c||"#666"}}>{st}</span></td>
-          <td style={{padding:"10px"}}><select value={st} onChange={e=>updateStatus(o.orderRef,e.target.value)} style={{padding:"5px 8px",border:"1px solid #ddd",borderRadius:4,fontSize:12}}>{statuses.map(s=><option key={s}>{s}</option>)}</select></td>
-        </tr>;
-      })}</tbody></table>}</ACard>;
+        const d=dt?new Date(dt).toLocaleString("tr-TR"):"—";
+        const buyer=o.buyer||{};
+        const billing=o.billingAddress||{};
+        const items=o.basket?.basketItems||o.items||[];
+        const isOpen=openRef===o.orderRef;
+        const ship=shipping[o.orderRef]||{cargoFirma:o.cargoFirma||"",trackingNo:o.trackingNo||""};
+        const fullName=[buyer.name,buyer.surName].filter(Boolean).join(" ").trim()||o.customerName||billing.contactName||"—";
+        return <div key={o.orderRef} style={{border:"1px solid #e5e7eb",borderRadius:9,background:"#fff",overflow:"hidden"}}>
+          <button onClick={()=>setOpenRef(isOpen?null:o.orderRef)} style={{width:"100%",border:"none",background:isOpen?"#fff7ed":"#fff",padding:14,display:"grid",gridTemplateColumns:"minmax(170px,1.2fr) minmax(140px,1fr) 110px 150px 105px",gap:12,alignItems:"center",textAlign:"left"}}>
+            <div><div style={{fontWeight:800,fontFamily:"monospace",fontSize:12}}>{o.orderRef}</div><div style={{fontSize:11,color:"#888",marginTop:3}}>{d}</div></div>
+            <div><div style={{fontWeight:700}}>{fullName}</div><div style={{fontSize:11,color:"#888"}}>{buyer.phoneNumber||o.customerPhone||billing.phoneNumber||"Telefon yok"}</div></div>
+            <div><strong>{items.reduce((sum,item)=>sum+Number(item.numberOfProducts||item.qty||1),0)} adet</strong><div style={{fontSize:11,color:"#888"}}>{items.length} kalem</div></div>
+            <div style={{fontWeight:800,color:"#059669"}}>₺{Number(o.amount||0).toLocaleString("tr-TR",{minimumFractionDigits:2})}</div>
+            <div><span style={{padding:"5px 9px",borderRadius:4,fontSize:11,fontWeight:700,background:sc[st]?.bg||"#f5f5f5",color:sc[st]?.c||"#666"}}>{st}</span><span style={{marginLeft:7,color:"#888"}}>{isOpen?"▲":"▼"}</span></div>
+          </button>
+          {isOpen&&<div style={{padding:16,borderTop:"1px solid #fed7aa",display:"grid",gridTemplateColumns:"minmax(0,1.25fr) minmax(280px,.75fr)",gap:18}}>
+            <div>
+              <h3 style={{fontSize:14,marginBottom:9}}>Alınan ürünler</h3>
+              {items.map((item,index)=><div key={`${item.itemId||item.sku||index}-${index}`} style={{display:"grid",gridTemplateColumns:"1fr 70px 105px",gap:10,padding:"10px 0",borderBottom:"1px solid #f0f0f0",alignItems:"center"}}>
+                <div><div style={{fontWeight:700,fontSize:13}}>{item.name||"Ürün"}</div><div style={{fontSize:11,color:"#888",marginTop:3}}>SKU: {item.sku||"—"}{item.brand?` · ${item.brand}`:""}</div></div>
+                <div style={{fontSize:12,fontWeight:700}}>{Number(item.numberOfProducts||item.qty||1)} adet</div>
+                <div style={{textAlign:"right",fontSize:12}}>₺{Number(item.totalPrice||(Number(item.unitPrice||item.price||0)*Number(item.numberOfProducts||item.qty||1))).toLocaleString("tr-TR",{minimumFractionDigits:2})}</div>
+              </div>)}
+            </div>
+            <div style={{background:"#f8fafc",border:"1px solid #e2e8f0",borderRadius:8,padding:14}}>
+              <h3 style={{fontSize:14,marginBottom:9}}>Teslimat ve kargo</h3>
+              <div style={{fontSize:13,lineHeight:1.65,marginBottom:12}}><strong>{billing.contactName||fullName}</strong><br/>{billing.address||buyer.registrationAddress||"Adres belirtilmemiş"}<br/>{[billing.district,billing.city,billing.zipCode,billing.country].filter(Boolean).join(" / ")}<br/><a href={`tel:${buyer.phoneNumber||o.customerPhone||billing.phoneNumber||""}`} style={{color:"#2563eb"}}>{buyer.phoneNumber||o.customerPhone||billing.phoneNumber||"Telefon belirtilmemiş"}</a><br/>{buyer.emailAddress||o.customerMail||billing.emailAddress||"E-posta belirtilmemiş"}</div>
+              <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}}>
+                <AIn placeholder="Kargo firması" value={ship.cargoFirma} onChange={e=>setShipping(p=>({...p,[o.orderRef]:{...ship,cargoFirma:e.target.value}}))}/>
+                <AIn placeholder="Takip numarası" value={ship.trackingNo} onChange={e=>setShipping(p=>({...p,[o.orderRef]:{...ship,trackingNo:e.target.value}}))}/>
+              </div>
+              <div style={{display:"flex",gap:8,marginTop:9,flexWrap:"wrap"}}>
+                <select value={st} onChange={e=>updateStatus(o.orderRef,e.target.value)} style={{padding:"8px",border:"1px solid #ddd",borderRadius:6,fontSize:12}}>{statuses.map(s=><option key={s}>{s}</option>)}</select>
+                <ABtn onClick={()=>updateStatus(o.orderRef,"Kargoda",ship)}>Kargoya ver ve kaydet</ABtn>
+              </div>
+            </div>
+          </div>}
+        </div>;
+      })}</div>}</ACard>;
 }
 
 function ACusts(){
@@ -6135,14 +6166,14 @@ function ACusts(){
   if(loading) return <div style={{padding:20,color:"#999"}}>Yükleniyor…</div>;
   if(err) return <div style={{padding:20,color:"#dc2626"}}>⚠ {err}</div>;
   return <ACard title={`Müşteriler (${users.length})`}>
-    {users.length===0?<div style={{color:"#999",fontSize:13,padding:"12px 0"}}>Henüz üye yok.</div>:
+    {users.length===0?<div style={{color:"#999",fontSize:13,padding:"12px 0"}}>Henüz müşteri yok.</div>:
     <table style={{width:"100%",borderCollapse:"collapse",fontSize:13}}>
-      <thead><tr style={{borderBottom:"2px solid #eee"}}>{["İsim","E-posta","Telefon","Kayıt","Sipariş","Toplam"].map(h=><th key={h} style={{padding:"8px",textAlign:"left",fontSize:12,color:"#999",fontWeight:600}}>{h}</th>)}</tr></thead>
+      <thead><tr style={{borderBottom:"2px solid #eee"}}>{["İsim","İletişim","Teslimat adresi","Son sipariş","Sipariş","Toplam"].map(h=><th key={h} style={{padding:"8px",textAlign:"left",fontSize:12,color:"#999",fontWeight:600}}>{h}</th>)}</tr></thead>
       <tbody>{users.map(c=><tr key={c.id} style={{borderBottom:"1px solid #f0f0f0"}}>
-        <td style={{padding:"10px",fontWeight:600}}>{c.name}</td>
-        <td style={{padding:"10px",color:"#888"}}>{c.email||"—"}</td>
-        <td style={{padding:"10px",color:"#888"}}>{c.phone?`0${c.phone}`:"—"}</td>
-        <td style={{padding:"10px",color:"#888",fontSize:12}}>{c.createdAt?new Date(c.createdAt).toLocaleDateString("tr-TR"):"—"}</td>
+        <td style={{padding:"10px",fontWeight:600}}>{c.name}<div style={{fontSize:10,color:c.customerType==="guest"?"#b45309":"#059669",marginTop:3}}>{c.customerType==="guest"?"Misafir alışveriş":"Üye"}</div></td>
+        <td style={{padding:"10px",color:"#666",fontSize:12}}>{c.email||"—"}<br/>{c.phone||c.lastAddress?.phone||"—"}</td>
+        <td style={{padding:"10px",color:"#555",fontSize:12,lineHeight:1.5,maxWidth:320}}>{c.lastAddress?<><strong>{c.lastAddress.contactName||c.name}</strong><br/>{c.lastAddress.address}<br/>{[c.lastAddress.district,c.lastAddress.city,c.lastAddress.zipCode].filter(Boolean).join(" / ")}</>:"Sipariş adresi yok"}</td>
+        <td style={{padding:"10px",color:"#888",fontSize:12}}>{c.lastOrderAt?new Date(c.lastOrderAt).toLocaleDateString("tr-TR"):"—"}</td>
         <td style={{padding:"10px",fontWeight:600}}>{c.orderCount||0}</td>
         <td style={{padding:"10px",fontWeight:600,color:"#059669"}}>₺{Number(c.totalSpent||0).toLocaleString("tr-TR")}</td></tr>)}</tbody></table>}</ACard>;
 }
