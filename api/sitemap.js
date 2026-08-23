@@ -31,10 +31,10 @@ const STATIC_PAGES = [
   { loc: "/rehber/oem-parca-kodu-nasil-bulunur", priority: "0.7", changefreq: "monthly" },
   { loc: "/rehber/kaliper-tamir-takimi-nasil-secilir", priority: "0.7", changefreq: "monthly" },
   { loc: "/rehber/fren-diski-olcusu-nasil-alinir", priority: "0.7", changefreq: "monthly" },
-  { loc: "/rehber/fren-kampanasi-olcusu-nasil-alinir", priority: "0.7", changefreq: "monthly" },
-  { loc: "/rehber/suspansiyon-korugu-nasil-secilir", priority: "0.7", changefreq: "monthly" },
-  { loc: "/rehber/kaliper-ayar-mekanizmasi-nasil-secilir", priority: "0.7", changefreq: "monthly" },
-  { loc: "/rehber/agir-vasita-bijon-olcusu-nasil-alinir", priority: "0.7", changefreq: "monthly" },
+  { loc: "/rehber/fren-kampanasi-olcusu-nasil-alinir", priority: "0.7", changefreq: "monthly", lastmod: "2026-08-23" },
+  { loc: "/rehber/suspansiyon-korugu-nasil-secilir", priority: "0.7", changefreq: "monthly", lastmod: "2026-08-23" },
+  { loc: "/rehber/kaliper-ayar-mekanizmasi-nasil-secilir", priority: "0.7", changefreq: "monthly", lastmod: "2026-08-23" },
+  { loc: "/rehber/agir-vasita-bijon-olcusu-nasil-alinir", priority: "0.7", changefreq: "monthly", lastmod: "2026-08-23" },
   { loc: "/katalog/mercedes-agir-vasita", priority: "0.8", changefreq: "weekly" },
   { loc: "/katalog/man-bmc-agir-vasita", priority: "0.8", changefreq: "weekly" },
   { loc: "/katalog/avrupa-kamyon", priority: "0.8", changefreq: "weekly" },
@@ -470,6 +470,24 @@ function productSitemapChangefreq(product) {
   if (stock > 0 && label === "sales-priority-1") return "daily";
   if (stock > 0 && label === "sales-priority-2") return "weekly";
   return "monthly";
+}
+
+function sitemapLastmod(value) {
+  const match = String(value || "").trim().match(/^(\d{4}-\d{2}-\d{2})/);
+  if (!match) return "";
+  const timestamp = Date.parse(`${match[1]}T00:00:00Z`);
+  if (!Number.isFinite(timestamp) || timestamp > Date.now() + 86400000) return "";
+  return match[1];
+}
+
+function productSitemapLastmod(product) {
+  return sitemapLastmod(
+    product?.updatedAt ||
+    product?.updated_at ||
+    product?.modifiedAt ||
+    product?.lastModified ||
+    product?.compat_updated_at
+  );
 }
 
 function buildSeoProductTitle(product, categories = [], max = 74) {
@@ -1706,6 +1724,7 @@ export default async function handler(req, res) {
     for (const p of STATIC_PAGES) {
       urls.push(
         `<url><loc>${SITE}${p.loc}</loc>` +
+        (p.lastmod ? `<lastmod>${p.lastmod}</lastmod>` : "") +
         (p.changefreq ? `<changefreq>${p.changefreq}</changefreq>` : "") +
         (p.priority ? `<priority>${p.priority}</priority>` : "") +
         `</url>`
@@ -1728,9 +1747,10 @@ export default async function handler(req, res) {
 
     // Ürünler
     for (const p of products) {
-      if (!p.id || Number(p.stock || 0) <= 0) continue;
+      if (!p.id) continue;
       const rawImg = productPrimaryImage(p, "");
       const hasImg = isRealProductImage(rawImg);
+      const lastmod = productSitemapLastmod(p);
       // Image URL absolute olmalı (sitemap protokolü gereği) — relative ise SITE prefix ekle
       let imgUrl = null;
       if (hasImg) {
@@ -1739,6 +1759,7 @@ export default async function handler(req, res) {
       urls.push(
         `<url>` +
         `<loc>${xmlEscape(productSeoUrl(SITE, p))}</loc>` +
+        (lastmod ? `<lastmod>${lastmod}</lastmod>` : "") +
         `<changefreq>${productSitemapChangefreq(p)}</changefreq>` +
         `<priority>${productSitemapPriority(p)}</priority>` +
         (imgUrl ? `<image:image><image:loc>${xmlEscape(imgUrl)}</image:loc><image:title>${xmlEscape(productSearchName(p, categories, 140) || p.name)}</image:title></image:image>` : "") +
@@ -1753,7 +1774,7 @@ ${urls.join("\n")}
 </urlset>`;
 
     res.setHeader("Content-Type", "application/xml; charset=utf-8");
-    res.setHeader("Cache-Control", "public, max-age=600, s-maxage=86400, stale-while-revalidate=604800");
+    res.setHeader("Cache-Control", "public, max-age=300, s-maxage=3600, stale-while-revalidate=86400");
     res.status(200).send(xml);
   } catch (err) {
     console.error("Sitemap error:", err);
