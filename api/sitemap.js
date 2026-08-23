@@ -31,6 +31,10 @@ const STATIC_PAGES = [
   { loc: "/rehber/oem-parca-kodu-nasil-bulunur", priority: "0.7", changefreq: "monthly" },
   { loc: "/rehber/kaliper-tamir-takimi-nasil-secilir", priority: "0.7", changefreq: "monthly" },
   { loc: "/rehber/fren-diski-olcusu-nasil-alinir", priority: "0.7", changefreq: "monthly" },
+  { loc: "/rehber/fren-kampanasi-olcusu-nasil-alinir", priority: "0.7", changefreq: "monthly" },
+  { loc: "/rehber/suspansiyon-korugu-nasil-secilir", priority: "0.7", changefreq: "monthly" },
+  { loc: "/rehber/kaliper-ayar-mekanizmasi-nasil-secilir", priority: "0.7", changefreq: "monthly" },
+  { loc: "/rehber/agir-vasita-bijon-olcusu-nasil-alinir", priority: "0.7", changefreq: "monthly" },
   { loc: "/katalog/mercedes-agir-vasita", priority: "0.8", changefreq: "weekly" },
   { loc: "/katalog/man-bmc-agir-vasita", priority: "0.8", changefreq: "weekly" },
   { loc: "/katalog/avrupa-kamyon", priority: "0.8", changefreq: "weekly" },
@@ -168,6 +172,62 @@ const BUYING_GUIDES = {
       ["Gobekli disk yerine gobeksiz disk kullanilir mi?", "Arac ve aks uygulamasina baglidir; montaj yapisi farkli oldugu icin dogrudan muadil kabul edilmemelidir."],
     ],
   },
+  "fren-kampanasi-olcusu-nasil-alinir": {
+    title: "Agir Vasita Fren Kampanasi Olcusu Nasil Alinir? Secim Rehberi",
+    description: "Kamyon, otobus ve dorse fren kampanasinda ic cap, dis cap, genislik, toplam yukseklik, merkez deligi ve bijon yapisi nasil kontrol edilir?",
+    heading: "Agir vasita fren kampanasi olcusu nasil alinir?",
+    intro: "Fren kampanasinda yalnizca arac markasi veya ic cap yeterli degildir. Ayni aracta aks ve fren sistemine gore toplam yukseklik, balata yuzeyi, merkezleme ve bijon yapisi degisebilir.",
+    checks: ["Kampana ic capi ve izin verilen azami cap", "Balata calisma yuzeyi genisligi", "Toplam kampana yuksekligi", "Merkez deligi capi", "Bijon deligi sayisi ve delik dairesi", "Poryaya icten veya distan montaj", "OEM, aks ve kampana uretici kodu"],
+    warning: "Asinmis kampananin ic capi yeni parca olcusundan buyuk olabilir. Guvenli kullanim siniri ve torna uygunlugu uretici verisine gore yetkin servis tarafindan kontrol edilmelidir.",
+    category: "/fren-kampanasi",
+    categoryLabel: "Stoklu agir vasita fren kampanalarini incele",
+    faq: [
+      ["Fren kampanasi sadece ic capa gore secilir mi?", "Hayir. Genislik, yukseklik, merkez deligi, bijon yapisi, aks ve OEM kodu birlikte eslesmelidir."],
+      ["Asinmis kampanadan olcu almak dogru mudur?", "Karsilastirma icin kullanilabilir; ancak asinma nedeniyle ic cap buyumus olabilir. Yeni parca katalog olcusu ve OEM kodu esas alinmalidir."],
+    ],
+  },
+  "suspansiyon-korugu-nasil-secilir": {
+    title: "Kamyon ve Dorse Suspansiyon Korugu Nasil Secilir? Olcu Rehberi",
+    description: "Hava suspansiyon korugunda OEM kodu, alt-ust tabla, piston, saplama araligi, hava girisi ve calisma yuksekligi nasil kontrol edilir?",
+    heading: "Suspansiyon korugu nasil secilir?",
+    intro: "Suspansiyon korukleri benzer gorunse de tabla, piston, saplama ve hava girisi yerlesimleri farkli olabilir. Arac modeli tek basina kesin uyumluluk saglamaz; aks ve eski parca bilgisi birlikte kontrol edilmelidir.",
+    checks: ["Koruk uzerindeki OEM ve uretici kodu", "Alt ve ust tabla capi", "Piston tipi ve malzemesi", "Saplama sayisi ve merkez araliklari", "Hava girisinin yeri ve dis olcusu", "Kapali, acik ve calisma yuksekligi", "Arac, aks ve montaj konumu"],
+    warning: "Hava suspansiyonu basincli ve yuk tasiyan bir sistemdir. Koruk degisimi uygun kaldirma ve emniyet ekipmani kullanan yetkin servis tarafindan yapilmalidir.",
+    category: "/suspansiyon-korugu",
+    categoryLabel: "Stoklu suspansiyon koruklerini incele",
+    faq: [
+      ["Suspansiyon korugu arac modeline gore bulunur mu?", "Model yararli bir baslangictir; OEM kodu, aks, tabla, piston ve baglanti olculeriyle teyit edilmelidir."],
+      ["Pistonlu ve pistonsuz koruk ayni midir?", "Hayir. Montaj yapisi ve calisma geometrisi farklidir; dogrudan muadil kabul edilmemelidir."],
+    ],
+  },
+  "kaliper-ayar-mekanizmasi-nasil-secilir": {
+    title: "Kaliper Ayar Mekanizmasi Nasil Secilir? Knorr WABCO Meritor Rehberi",
+    description: "Agir vasita kaliper ayar mekanizmasinda kaliper marka-modeli, mekanizma dislisi, mil, yon ve OEM kodu nasil kontrol edilir?",
+    heading: "Kaliper ayar mekanizmasi nasil secilir?",
+    intro: "Kaliper ayar mekanizmasi, disk-balata boslugunun dogru kalmasinda gorev alir. Benzer gorunen mekanizmalar farkli kaliper ailelerine ait olabilir; kaliper govde etiketi ve mekanizma kodu birlikte okunmalidir.",
+    checks: ["Kaliper ureticisi ve govde modeli", "Knorr, WABCO, Meritor veya Haldex sistem ailesi", "Mekanizma uzerindeki OEM veya uretici kodu", "Mil, disli ve yatak olculeri", "Sag-sol ya da montaj yonu", "Takim icerigi ve birlikte degisecek parcalar", "Arac ve aks uygulamasi"],
+    warning: "Fren kaliperi guvenlik parcasidir. Ariza nedeni belirlenmeden yalnizca mekanizma degistirmek tekrarlayan sikisma veya ayar sorununa yol acabilir; servis kontrolu gerekir.",
+    category: "/kaliper-ayar-mekanizmasi",
+    categoryLabel: "Stoklu kaliper ayar mekanizmalarini incele",
+    faq: [
+      ["Kaliper markasi bilinmeden ayar mekanizmasi secilir mi?", "Guvenli degildir. Govde modeli, mekanizma kodu, olculer ve sistem ailesi teyit edilmelidir."],
+      ["Ayar mekanizmasi arizasi balatayi etkiler mi?", "Evet. Yanlis bosluk, duzensiz asinma, isinma veya fren performansi sorunlarina yol acabilir; sistem butun olarak kontrol edilmelidir."],
+    ],
+  },
+  "agir-vasita-bijon-olcusu-nasil-alinir": {
+    title: "Agir Vasita Bijon Olcusu Nasil Alinir? Dis, Boy ve Somun Rehberi",
+    description: "Kamyon, otobus ve dorse bijonunda dis capi ve adimi, toplam boy, tirtil, konik-duz somun yuvasi ve sag-sol dis nasil kontrol edilir?",
+    heading: "Agir vasita bijon olcusu nasil alinir?",
+    intro: "Agir vasita bijonlarinda ayni dis capinda farkli adim, boy, tirtil ve somun oturma yuzeyi bulunabilir. Porya, jant ve somun yapisi birlikte eslesmeden siparis verilmemelidir.",
+    checks: ["Dis capi ve dis adimi", "Toplam boy ve disli kisim uzunlugu", "Tirtil capi ve tirtil uzunlugu", "Sag veya sol dis yonu", "Konik, kure veya duz somun oturma yuzeyi", "Jant ve porya uygulamasi", "OEM ve bijon uretici kodu"],
+    warning: "Bijon ve somunlar ureticinin belirttigi tork ve sikma sirasi ile takilmalidir. Hasarli dis, yanlis somun veya uygunsuz tork teker guvenligini tehlikeye atabilir.",
+    category: "/bijon",
+    categoryLabel: "Stoklu agir vasita bijonlarini incele",
+    faq: [
+      ["Bijon olcusu sadece toplam boyla bulunur mu?", "Hayir. Dis capi ve adimi, tirtil, somun yuvasi, porya ve OEM kodu da eslesmelidir."],
+      ["Sag ve sol dis bijon nasil ayirt edilir?", "Eski parcanin dis yonu ve arac uygulamasi kontrol edilmelidir. Zorlayarak takma yapilmamali, uygun somunla birlikte teyit edilmelidir."],
+    ],
+  },
 };
 
 const CATEGORY_GUIDE_LINKS = {
@@ -176,6 +236,10 @@ const CATEGORY_GUIDE_LINKS = {
   "abs-sensoru-modulu-kablo": "axor-abs-sensoru-nasil-secilir",
   "kaliper-tamir-takimi": "kaliper-tamir-takimi-nasil-secilir",
   "fren-diski": "fren-diski-olcusu-nasil-alinir",
+  "fren-kampanasi": "fren-kampanasi-olcusu-nasil-alinir",
+  "suspansiyon-korugu": "suspansiyon-korugu-nasil-secilir",
+  "kaliper-ayar-mekanizmasi": "kaliper-ayar-mekanizmasi-nasil-secilir",
+  "bijon": "agir-vasita-bijon-olcusu-nasil-alinir",
 };
 
 function catalogSegmentText(product) {
