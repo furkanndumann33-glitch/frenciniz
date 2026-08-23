@@ -77,9 +77,9 @@ const DEMAND_COLLECTIONS = {
   "frencoo-kaliper-tamir-takimi": {
     id: "frencoo-kaliper-tamir-takimi",
     name: "Frencoo Kaliper Tamir Takımı",
-    title: "Frencoo Kaliper Tamir Takımı ve Parçaları | Frenciniz",
-    heading: "Frencoo Kaliper Tamir Takımı ve Parçaları",
-    description: "Frencoo adıyla aranan stoklu kaliper tamir takımı ve fren kaliper parçaları. Ürün kodu, kaliper tipi ve eski parça fotoğrafıyla uyumluluk teyidi alın.",
+    title: "Frencoo Kaliper Tamir Takımı Fiyatları ve Stok | Frenciniz",
+    heading: "Frencoo Kaliper Tamir Takımı Fiyatları ve Stok",
+    description: "Frencoo kaliper tamir takımı ve fren kaliper parçalarında fiyat ve stok seçenekleri. Ürün kodu, kaliper tipi veya eski parça fotoğrafını WhatsApp'tan göndererek uyumluluk teyidi alın.",
     matches(product) {
       const text = [product?.name, product?.desc, product?.sku, product?.oem].filter(Boolean).join(" ").toLowerCase();
       return Number(product?.stock || 0) > 0 && text.includes("frencoo");
