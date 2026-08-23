@@ -1,4 +1,11 @@
 {
+  "redirects": [
+    {
+      "source": "/pages/cerez-politikasi",
+      "destination": "/privacy",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/sitemap.xml",
