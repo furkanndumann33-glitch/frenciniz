@@ -221,6 +221,7 @@ export const LANDING_PAGES = [
     terms: ["dorse", "treyler", "krone", "kogel", "schmitz", "fren korugu", "koruk", "16/24", "24/30", "30/30"],
     primaryTerm: "Dorse",
     part: "fren korugu",
+    guideSlug: "dorse-fren-korugu-nasil-secilir",
     priority: "0.9",
   },
   {

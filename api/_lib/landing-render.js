@@ -101,6 +101,7 @@ export function renderLanding(page, products, categories, seoState = null, selec
     .map(cat => `<a href="${SITE}/${cat}">${htmlEscape(categoryName(categories, cat))}</a>`)
     .join("");
   const couponHref = landingCouponWhatsAppUrl(page);
+  const guideHref = page.guideSlug ? `${SITE}/rehber/${page.guideSlug}` : "";
   const relatedLinks = relatedPages
     .map(related => `<a href="${SITE}/${related.slug}">${htmlEscape(related.heading)}</a>`)
     .join("");
@@ -469,6 +470,7 @@ export function renderLanding(page, products, categories, seoState = null, selec
       <div class="panel">
         <h2>${htmlEscape(page.heading)} seçerken nelere bakılır?</h2>
         <p>${htmlEscape(page.primaryTerm)} için ${htmlEscape(page.part)} seçerken ürün kodu, OEM numarası, araç modeli, dingil tipi ve ölçü uyumluluğu beraber kontrol edilmelidir. Yanlış parça hem montaj süresini uzatır hem de aracın fren güvenliğini riske atar.</p>
+        ${guideHref ? `<p><a href="${htmlEscape(guideHref)}"><strong>${htmlEscape(page.heading)} ölçü ve seçim rehberini okuyun</strong></a></p>` : ""}
         <p>Frenciniz, Dumanlar Ticaret çatısı altında ağır vasıta fren aksamında stoklu ürün, hızlı teyit ve Türkiye geneli kargo desteği sunar. Elinizdeki eski parçanın kodunu veya fotoğrafını WhatsApp hattımıza göndererek doğru ürünü hızlıca bulabilirsiniz.</p>
         <h2 style="font-size:20px;margin-top:22px">Katalogdan OEM ve uyumluluk özeti</h2>
         <p><strong>${matched.length} eşleşen ürün</strong> bulundu; bunların <strong>${inStockCount} tanesi stoklu</strong> görünüyor.</p>
