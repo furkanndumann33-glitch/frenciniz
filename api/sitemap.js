@@ -480,14 +480,24 @@ function sitemapLastmod(value) {
   return match[1];
 }
 
+const SEO_TITLE_REFRESH_DATE = "2026-08-25";
+const SEO_TITLE_REFRESH_PRODUCT_IDS = new Set([
+  9, 25, 68, 78, 175, 263, 267, 279, 280, 282, 307, 328, 329, 485,
+  486, 496, 535, 562, 587, 651, 657, 658, 718, 736, 905, 906, 907,
+].map(String));
+
 function productSitemapLastmod(product) {
-  return sitemapLastmod(
+  const catalogLastmod = sitemapLastmod(
     product?.updatedAt ||
     product?.updated_at ||
     product?.modifiedAt ||
     product?.lastModified ||
     product?.compat_updated_at
   );
+  if (!SEO_TITLE_REFRESH_PRODUCT_IDS.has(String(product?.id))) return catalogLastmod;
+  return catalogLastmod && catalogLastmod > SEO_TITLE_REFRESH_DATE
+    ? catalogLastmod
+    : SEO_TITLE_REFRESH_DATE;
 }
 
 function buildSeoProductTitle(product, categories = [], max = 74) {
