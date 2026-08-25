@@ -233,8 +233,8 @@ export function productSearchTitle(product, categories = [], max = 74) {
   const available = Math.max(30, max - suffix.length);
   const candidates = [
     uniqueParts([usefulCode, distinctSku, vehicleSignals[0], part, "Fiyatı"]).join(" "),
-    uniqueParts([usefulCode, vehicleSignals[0], part, "Fiyatı"]).join(" "),
     uniqueParts([usefulCode, distinctSku, part, "Fiyatı"]).join(" "),
+    uniqueParts([usefulCode, vehicleSignals[0], part, "Fiyatı"]).join(" "),
     uniqueParts([usefulCode, ...vehicleSignals, part, "Fiyatı"]).join(" "),
   ].filter(Boolean);
   const base = candidates.find(value => value.length <= available)
