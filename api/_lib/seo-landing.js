@@ -215,7 +215,7 @@ export const LANDING_PAGES = [
   {
     slug: "dorse-fren-korugu",
     heading: "Dorse Fren Körüğü",
-    title: "Dorse Fren Körüğü Fiyatları ve Stok | Frenciniz",
+    title: "Dorse Fren Körüğü Fiyatları | 16/24, 24/30, 30/30 | Frenciniz",
     description: "Dorse, treyler, Krone, Kögel ve Schmitz uyumlu fren körüğü ürünleri. 16/24, 24/30 ve 30/30 ölçü teyidi, stok, fiyat ve WhatsApp teklifi.",
     cats: ["fren-korugu"],
     terms: ["dorse", "treyler", "krone", "kogel", "schmitz", "fren korugu", "koruk", "16/24", "24/30", "30/30"],

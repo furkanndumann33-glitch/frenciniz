@@ -26,7 +26,7 @@ const STATIC_PAGES = [
   { loc: "/filo-toplu-alim", priority: "0.9", changefreq: "weekly" },
   { loc: "/frencoo-kaliper-tamir-takimi", priority: "0.8", changefreq: "weekly" },
   { loc: "/rehber/fren-circiri-nasil-secilir", priority: "0.7", changefreq: "monthly" },
-  { loc: "/rehber/dorse-fren-korugu-nasil-secilir", priority: "0.7", changefreq: "monthly" },
+  { loc: "/rehber/dorse-fren-korugu-nasil-secilir", priority: "0.7", changefreq: "monthly", lastmod: "2026-08-25" },
   { loc: "/rehber/axor-abs-sensoru-nasil-secilir", priority: "0.7", changefreq: "monthly" },
   { loc: "/rehber/oem-parca-kodu-nasil-bulunur", priority: "0.7", changefreq: "monthly" },
   { loc: "/rehber/kaliper-tamir-takimi-nasil-secilir", priority: "0.7", changefreq: "monthly" },
@@ -49,6 +49,10 @@ const STATIC_PAGES = [
   { loc: "/privacy", priority: "0.3", changefreq: "yearly" },
   { loc: "/kvkk", priority: "0.3", changefreq: "yearly" },
 ];
+
+const LANDING_LASTMOD = {
+  "dorse-fren-korugu": "2026-08-25",
+};
 
 const CATEGORY_SEO_OVERRIDES = {
   "fren-circiri": {
@@ -103,16 +107,17 @@ const BUYING_GUIDES = {
     ],
   },
   "dorse-fren-korugu-nasil-secilir": {
-    title: "Dorse Fren Korugu Nasil Secilir? Tip, Olcu ve OEM Rehberi",
-    description: "Dorse fren korugu seciminde 16/24, 20/24, 24/24, disk veya kampana tipi, mil boyu, baglanti ve OEM kodu nasil kontrol edilir?",
-    heading: "Dorse fren korugu nasil secilir?",
-    intro: "Dorse fren koruklerinde oda olcusu ayni gorunse bile disk-kampana tipi, mil boyu, baglanti acisi ve imdat mekanizmasi degisebilir. Yalnizca 16/24 veya 24/24 ifadesiyle siparis vermek yeterli degildir.",
-    checks: ["Koruk tipi ve oda olcusu", "Disk veya kampana fren uygulamasi", "Mil boyu ve catal yapisi", "Baglanti saplamalarinin araligi", "Hava girislerinin konumu", "OEM veya Arfesan urun kodu"],
+    title: "Dorse Fren Korugu Olculeri: 16/24, 24/30, 30/30 Secim Rehberi",
+    description: "Dorse fren korugu seciminde 16/24, 20/24, 24/24, 24/30 ve 30/30 oda sinifi; disk veya kampana tipi, mil boyu, baglanti ve OEM kodu nasil kontrol edilir?",
+    heading: "Dorse fren korugu olculeri ve secim rehberi",
+    intro: "Dorse fren koruklerinde 16/24, 20/24, 24/24, 24/30 ve 30/30 ifadeleri oda boyutu sinifini belirtir; tek basina parcanin uydugunu kanitlamaz. Ayni sinifta disk-kampana tipi, mil boyu, baglanti acisi ve imdat mekanizmasi degisebilir.",
+    checks: ["16/24, 20/24, 24/24, 24/30 veya 30/30 oda sinifi", "Disk veya kampana fren uygulamasi", "Mil boyu ve catal yapisi", "Baglanti saplamalarinin araligi", "Hava girislerinin konumu", "OEM veya Arfesan urun kodu"],
     warning: "Koruk yay mekanizmasi basincli bir guvenlik parcasidir. Montaj ve sokme islemi yetkin servis tarafindan yapilmalidir.",
     category: "/fren-korugu",
     categoryLabel: "Stoklu dorse fren koruklarini incele",
     faq: [
-      ["16/24 ile 24/24 fren korugu ayni midir?", "Hayir. Servis ve imdat odasi olculeri ile uygulama tipi farklidir."],
+      ["16/24, 24/30 ve 30/30 neyi ifade eder?", "Bu ifadeler servis ve imdat odalarinin boyut sinifini belirtir. Mil, baglanti ve fren tipi yine ayrica kontrol edilmelidir."],
+      ["16/24 ile 24/24 fren korugu ayni midir?", "Hayir. Servis ve imdat odasi siniflari ile uygulama tipi farklidir."],
       ["Disk tipi koruk kampana frende kullanilir mi?", "Genellikle dogrudan muadil kabul edilmez. Aks ve fren sistemi spesifikasyonu kontrol edilmelidir."],
     ],
   },
@@ -1746,7 +1751,12 @@ export default async function handler(req, res) {
     const landingSeoIndex = buildLandingSeoIndex(products);
     for (const page of LANDING_PAGES) {
       if (!landingSeoIndex.get(page.slug)?.indexable) continue;
-      urls.push(`<url><loc>${SITE}/${xmlEscape(page.slug)}</loc></url>`);
+      const lastmod = sitemapLastmod(LANDING_LASTMOD[page.slug]);
+      urls.push(
+        `<url><loc>${SITE}/${xmlEscape(page.slug)}</loc>` +
+        (lastmod ? `<lastmod>${lastmod}</lastmod>` : "") +
+        `</url>`
+      );
     }
 
     // Kategoriler (hem alt-kategori hem grup ana sayfası — grup sayfaları da listeleme yapıyor)
