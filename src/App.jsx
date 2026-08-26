@@ -1850,6 +1850,7 @@ export default function App() {
           .admin-card-body table { min-width: 720px; }
           .admin-card-body td, .admin-card-body th { vertical-align: top; }
           .admin-button { min-height: 36px; }
+          .admin-mobile-tab-select { display: none; }
           .admin-input, [data-admin-panel] select, [data-admin-panel] textarea {
             min-height: 38px;
           }
@@ -1879,11 +1880,19 @@ export default function App() {
             }
             .admin-brand-title { font-size: 17px !important; }
             .admin-menu {
-              display: flex !important;
-              gap: 7px !important;
-              overflow-x: auto !important;
-              padding: 4px 0 2px !important;
-              scrollbar-width: thin;
+              display: none !important;
+            }
+            .admin-mobile-tab-select {
+              display: block !important;
+              width: 100% !important;
+              min-height: 46px !important;
+              border: 1px solid rgba(255,255,255,.16) !important;
+              border-radius: 9px !important;
+              padding: 0 12px !important;
+              color: #fff !important;
+              background: #202631 !important;
+              font-size: 14px !important;
+              font-weight: 800 !important;
             }
             .admin-menu button {
               flex: 0 0 auto !important;
@@ -1995,6 +2004,14 @@ export default function App() {
             }
             .admin-login-card {
               padding: 22px !important;
+            }
+            .traffic-mobile-metrics,
+            .traffic-mobile-actions {
+              grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            }
+            .traffic-mobile-tabs {
+              display: grid !important;
+              grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
             }
           }
         `}</style>
@@ -5905,8 +5922,11 @@ function AdminPanel() {
             </button>
           ))}
         </div>
+        <select className="admin-mobile-tab-select" value={tab} onChange={e=>setTab(e.target.value)} aria-label="Yönetim bölümü seç">
+          {menu.map(m=><option key={m.id} value={m.id}>{m.icon} {m.label}</option>)}
+        </select>
         <div className="admin-sidebar-footer" style={{padding:"12px 16px",borderTop:"1px solid #333",marginTop:8}}>
-          <button onClick={()=>{setAdmin(false);go("home")}} style={{width:"100%",padding:"8px",background:"#333",color:"#999",border:"none",borderRadius:6,fontSize:12,cursor:"pointer",fontFamily:"inherit"}}>← Siteye Dön</button>
+          <button onClick={async()=>{try{await fetch("/api/auth/logout",{method:"POST",credentials:"include"})}catch{};setAdmin(false);go("admin-login")}} style={{width:"100%",padding:"8px",background:"#333",color:"#999",border:"none",borderRadius:6,fontSize:12,cursor:"pointer",fontFamily:"inherit"}}>Çıkış Yap</button>
         </div>
       </div>
       <div className="admin-content" style={{flex:1,padding:24,overflowY:"auto"}}>
@@ -6929,26 +6949,166 @@ function ASMSCfg(){
   </div></ACard>;
 }
 
+function MobileTrafficPanel({data,leadData,visitors,vLoading,onRefresh,refreshing,updatedAt}){
+  const [view,setView]=useState("summary");
+  const [period,setPeriod]=useState("today");
+  const chart=Array.isArray(data?.chart)?data.chart:[];
+  const leadChart=Array.isArray(leadData?.chart)?leadData.chart:[];
+  const actions=data?.productActions||{};
+  const periodCount=period==="today"?1:period==="7d"?7:30;
+  const periodLabel=period==="today"?"Bugün":period==="7d"?"Son 7 gün":"Son 30 gün";
+  const trafficRows=chart.slice(-periodCount);
+  const leadRows=leadChart.slice(-periodCount);
+  const views=trafficRows.reduce((sum,row)=>sum+Number(row.views||0),0);
+  const unique=trafficRows.reduce((sum,row)=>sum+Number(row.unique||0),0);
+  const whatsapp=leadRows.reduce((sum,row)=>sum+Number(row.whatsapp||0),0);
+  const phone=leadRows.reduce((sum,row)=>sum+Number(row.phone||0),0);
+  const email=leadRows.reduce((sum,row)=>sum+Number(row.email||0),0);
+  const actionKey=period==="today"?"today":period==="7d"?"last7":"totals";
+  const periodActions=actions[actionKey]||{};
+  const contactClicks=whatsapp+phone+email;
+  const contactRate=unique?((contactClicks/unique)*100).toFixed(1):"0.0";
+  const maxViews=Math.max(...trafficRows.map(row=>Number(row.views||0)),1);
+  const tabs=[
+    {id:"summary",label:"Özet",icon:"📊"},
+    {id:"contacts",label:"İletişim",icon:"💬"},
+    {id:"pages",label:"Sayfalar",icon:"📦"},
+    {id:"visitors",label:"Ziyaretçiler",icon:"👥"},
+  ];
+  const sourceNames={
+    product_card_whatsapp:"Ürün kartı WhatsApp",
+    product_detail:"Ürün detayı",
+    product_lead_nudge:"Ürün hatırlatma kutusu",
+    floating_whatsapp:"Sabit WhatsApp",
+    site_whatsapp:"Site WhatsApp",
+    coupon_whatsapp:"İndirim kuponu",
+    fleet_bulk_quote_form:"Filo teklif formu",
+  };
+  const sourceLabel=value=>sourceNames[value]||String(value||"Bilinmeyen kaynak").replace(/_/g," ");
+  const typeLabel=value=>value==="whatsapp"?"WhatsApp":value==="phone"?"Telefon":value==="email"?"E-posta":value||"İletişim";
+  const typeColor=value=>value==="whatsapp"?"#16a34a":value==="phone"?"#ff6000":"#2563eb";
+  const shortPath=value=>{
+    const raw=String(value||"/");
+    try{return decodeURIComponent(raw)}catch{return raw}
+  };
+  const refLabel=value=>{
+    if(!value)return "Doğrudan giriş";
+    try{return new URL(value).hostname.replace(/^www\./,"")}catch{return String(value)}
+  };
+  const Metric=({label,value,icon,color,note})=><div style={{background:"#fff",border:"1px solid #e5e7eb",borderRadius:12,padding:13,boxShadow:"0 2px 8px rgba(15,23,42,.04)"}}>
+    <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",gap:8}}><span style={{fontSize:11,color:"#64748b",fontWeight:800,lineHeight:1.25}}>{label}</span><span style={{fontSize:18}}>{icon}</span></div>
+    <div style={{fontSize:26,fontWeight:950,color:color||"#111827",marginTop:7,lineHeight:1}}>{Number(value||0).toLocaleString("tr-TR")}</div>
+    {note&&<div style={{fontSize:10,color:"#94a3b8",marginTop:6}}>{note}</div>}
+  </div>;
+  const Empty=({children="Henüz veri yok."})=><div style={{padding:"24px 12px",textAlign:"center",color:"#94a3b8",fontSize:13}}>{children}</div>;
+  const SectionTitle=({children,note})=><div style={{margin:"18px 2px 9px"}}><div style={{fontSize:15,fontWeight:950,color:"#111827"}}>{children}</div>{note&&<div style={{fontSize:11,color:"#64748b",marginTop:3,lineHeight:1.4}}>{note}</div>}</div>;
+  const Card=({children})=><div style={{background:"#fff",border:"1px solid #e5e7eb",borderRadius:12,overflow:"hidden",boxShadow:"0 2px 8px rgba(15,23,42,.04)"}}>{children}</div>;
+
+  return <div style={{display:"flex",flexDirection:"column",gap:12,paddingBottom:24}}>
+    <div style={{display:"flex",alignItems:"flex-start",justifyContent:"space-between",gap:10}}>
+      <div><h1 style={{fontSize:21,fontWeight:950,margin:"0 0 3px",color:"#111827"}}>Site Trafiği</h1><div style={{fontSize:11,color:"#64748b"}}>{updatedAt?`Son güncelleme ${updatedAt.toLocaleTimeString("tr-TR",{hour:"2-digit",minute:"2-digit"})}`:"Canlı veriler"}</div></div>
+      <button onClick={onRefresh} disabled={refreshing} style={{minWidth:104,minHeight:42,border:"none",borderRadius:9,background:refreshing?"#fed7aa":"#ff6000",color:"#fff",fontWeight:900,fontSize:12}}>{refreshing?"Yenileniyor…":"↻ Yenile"}</button>
+    </div>
+
+    <div className="traffic-mobile-tabs" style={{position:"sticky",top:104,zIndex:30,background:"#f3f4f6",padding:"3px 0 5px",gap:5}}>
+      {tabs.map(tab=><button key={tab.id} onClick={()=>setView(tab.id)} style={{minHeight:48,border:view===tab.id?"1px solid #ff6000":"1px solid #e5e7eb",borderRadius:9,background:view===tab.id?"#fff4ed":"#fff",color:view===tab.id?"#c2410c":"#64748b",fontSize:10,fontWeight:900,padding:"5px 2px"}}><span style={{display:"block",fontSize:17,marginBottom:2}}>{tab.icon}</span>{tab.label}</button>)}
+    </div>
+
+    {view!=="visitors"&&<div style={{display:"grid",gridTemplateColumns:"repeat(3,minmax(0,1fr))",gap:6}}>
+      {[{id:"today",label:"Bugün"},{id:"7d",label:"7 Gün"},{id:"30d",label:"30 Gün"}].map(item=><button key={item.id} onClick={()=>setPeriod(item.id)} style={{minHeight:40,border:period===item.id?"none":"1px solid #dbe2ea",borderRadius:8,background:period===item.id?"#111827":"#fff",color:period===item.id?"#fff":"#475569",fontWeight:900,fontSize:12}}>{item.label}</button>)}
+    </div>}
+
+    {view==="summary"&&<>
+      <div className="traffic-mobile-metrics" style={{display:"grid",gridTemplateColumns:"repeat(2,minmax(0,1fr))",gap:9}}>
+        <Metric label="Görüntüleme" value={views} icon="👁️" color="#ff6000" note={periodLabel}/>
+        <Metric label={period==="today"?"Bugünkü ziyaretçi":"Tekil ziyaretçi"} value={unique} icon="👤" color="#2563eb" note={periodLabel}/>
+        <Metric label="WhatsApp tıklaması" value={whatsapp} icon="💬" color="#16a34a" note="Mesaj sayısı değildir"/>
+        <Metric label="Telefon tıklaması" value={phone} icon="📞" color="#7c3aed" note="Arama sayısı değildir"/>
+      </div>
+
+      <div style={{padding:14,borderRadius:12,border:`1px solid ${contactClicks?"#bbf7d0":"#fecaca"}`,background:contactClicks?"#f0fdf4":"#fff7f7"}}>
+        <div style={{fontSize:13,fontWeight:950,color:contactClicks?"#166534":"#b91c1c"}}>{contactClicks?`${periodLabel}: ${contactClicks} iletişim tıklaması`:`${periodLabel}: iletişim tıklaması yok`}</div>
+        <div style={{fontSize:11,color:contactClicks?"#15803d":"#991b1b",marginTop:4,lineHeight:1.45}}>Tekil ziyaretçiden iletişim tıklamasına geçiş: <strong>%{contactRate}</strong>. Tıklama, gerçekleşmiş mesaj veya arama anlamına gelmez.</div>
+      </div>
+
+      <SectionTitle>Satış hareketleri</SectionTitle>
+      <div className="traffic-mobile-actions" style={{display:"grid",gridTemplateColumns:"repeat(2,minmax(0,1fr))",gap:8}}>
+        {[{label:"Ürün görüntüleme",value:periodActions.view_product,icon:"📦",color:"#2563eb"},{label:"Sepete ekleme",value:periodActions.add_to_cart,icon:"🛒",color:"#ff6000"},{label:"Ödeme başlangıcı",value:periodActions.begin_checkout,icon:"💳",color:"#7c3aed"},{label:"PayTR yönlendirme",value:periodActions.payment_redirect,icon:"✅",color:"#15803d"}].map(item=><div key={item.label} style={{padding:12,background:"#fff",border:"1px solid #e5e7eb",borderRadius:10}}><div style={{fontSize:11,color:"#64748b",fontWeight:800}}>{item.icon} {item.label}</div><div style={{fontSize:22,fontWeight:950,color:item.color,marginTop:5}}>{Number(item.value||0).toLocaleString("tr-TR")}</div></div>)}
+      </div>
+
+      {period!=="today"&&<><SectionTitle>Günlük trafik</SectionTitle><Card><div style={{height:150,display:"flex",alignItems:"flex-end",gap:period==="30d"?2:7,padding:"16px 12px 8px"}}>{trafficRows.map((row,index)=>{const height=Math.max(4,(Number(row.views||0)/maxViews)*112);const uniqueHeight=Math.max(2,(Number(row.unique||0)/maxViews)*112);return <div key={row.date} title={`${row.date}: ${row.views} görüntüleme, ${row.unique} tekil`} style={{flex:1,height:120,display:"flex",alignItems:"flex-end",position:"relative"}}><div style={{width:"100%",height,borderRadius:"4px 4px 1px 1px",background:"#ff6000",position:"relative",overflow:"hidden"}}><div style={{position:"absolute",left:0,right:0,bottom:0,height:uniqueHeight,background:"#fed7aa"}}/></div></div>})}</div><div style={{display:"flex",justifyContent:"space-between",padding:"0 12px 12px",fontSize:10,color:"#94a3b8"}}><span>{trafficRows[0]?.date?.slice(5)}</span><span>Turuncu: görüntüleme</span><span>{trafficRows[trafficRows.length-1]?.date?.slice(5)}</span></div></Card></>}
+
+      <SectionTitle note="Bir önceki adıma göre ilerleme">Satış hunisi</SectionTitle>
+      <Card>{[
+        {label:"Ürün görüntüleme",value:periodActions.view_product,color:"#2563eb"},
+        {label:"Sepete ekleme",value:periodActions.add_to_cart,color:"#ff6000"},
+        {label:"Ödeme başlangıcı",value:periodActions.begin_checkout,color:"#7c3aed"},
+        {label:"Teslimat bilgileri",value:periodActions.checkout_contact,color:"#0f766e"},
+        {label:"PayTR yönlendirme",value:periodActions.payment_redirect,color:"#15803d"},
+      ].map((stage,index,rows)=>{const previous=index?Number(rows[index-1].value||0):Number(stage.value||0);const rate=index?(previous?Math.min(100,(Number(stage.value||0)/previous)*100):0):100;return <div key={stage.label} style={{padding:"12px 14px",borderBottom:index<rows.length-1?"1px solid #f1f5f9":"none"}}><div style={{display:"flex",justifyContent:"space-between",gap:10,alignItems:"center"}}><span style={{fontSize:12,fontWeight:850,color:"#334155"}}>{stage.label}</span><span style={{fontSize:16,fontWeight:950,color:stage.color}}>{Number(stage.value||0).toLocaleString("tr-TR")}{index>0&&<small style={{fontSize:10,color:"#64748b",marginLeft:6}}>%{rate.toFixed(1)}</small>}</span></div><div style={{height:5,borderRadius:9,background:"#e2e8f0",marginTop:7,overflow:"hidden"}}><div style={{width:`${rate}%`,height:"100%",background:stage.color,borderRadius:9}}/></div></div>})}</Card>
+    </>}
+
+    {view==="contacts"&&<>
+      <div className="traffic-mobile-metrics" style={{display:"grid",gridTemplateColumns:"repeat(2,minmax(0,1fr))",gap:9}}>
+        <Metric label="WhatsApp" value={whatsapp} icon="💬" color="#16a34a"/>
+        <Metric label="Telefon" value={phone} icon="📞" color="#7c3aed"/>
+        <Metric label="E-posta" value={email} icon="✉️" color="#2563eb"/>
+        <Metric label="İletişim oranı" value={contactRate} icon="%" color="#ff6000" note="Tekil ziyaretçiye göre"/>
+      </div>
+      <SectionTitle note="Kaynak toplamları son 7 gündür">En çok dönüş getiren yerler</SectionTitle>
+      <Card>{!leadData?.topSources?.length?<Empty/>:leadData.topSources.map((row,index)=><div key={`${row.type}-${row.source}-${index}`} style={{display:"flex",justifyContent:"space-between",gap:10,alignItems:"center",padding:"12px 14px",borderBottom:index<leadData.topSources.length-1?"1px solid #f1f5f9":"none"}}><div><div style={{fontSize:12,fontWeight:900,color:typeColor(row.type)}}>{typeLabel(row.type)}</div><div style={{fontSize:11,color:"#64748b",marginTop:3,textTransform:"capitalize"}}>{sourceLabel(row.source)}</div></div><div style={{minWidth:34,height:34,borderRadius:10,display:"grid",placeItems:"center",background:"#f8fafc",fontSize:15,fontWeight:950,color:"#111827"}}>{Number(row.count||0)}</div></div>)}</Card>
+      <SectionTitle>Son iletişim hareketleri</SectionTitle>
+      <Card>{!leadData?.recent?.length?<Empty/>:leadData.recent.slice(0,20).map((row,index)=>{const date=row.at?new Date(row.at):null;const detail=[row.code&&`Kod: ${row.code}`,row.vehicle&&`Araç: ${row.vehicle}`,row.note].filter(Boolean).join(" • ");return <div key={index} style={{padding:"12px 14px",borderBottom:index<Math.min(20,leadData.recent.length)-1?"1px solid #f1f5f9":"none"}}><div style={{display:"flex",justifyContent:"space-between",gap:10}}><span style={{fontSize:12,fontWeight:950,color:typeColor(row.type)}}>{typeLabel(row.type)}</span><span style={{fontSize:10,color:"#94a3b8"}}>{date?date.toLocaleString("tr-TR",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}):"-"}</span></div><div style={{fontSize:11,color:"#475569",marginTop:5,overflowWrap:"anywhere"}}>{shortPath(row.path)}</div>{detail&&<div style={{fontSize:11,color:"#111827",fontWeight:700,marginTop:5,lineHeight:1.4}}>{detail}</div>}</div>})}</Card>
+    </>}
+
+    {view==="pages"&&<>
+      <SectionTitle note="Son 7 gün">En çok ziyaret edilen sayfalar</SectionTitle>
+      <Card>{!data?.topPaths?.length?<Empty/>:data.topPaths.map((row,index)=><div key={`${row.path}-${index}`} style={{display:"flex",justifyContent:"space-between",gap:10,alignItems:"center",padding:"12px 14px",borderBottom:index<data.topPaths.length-1?"1px solid #f1f5f9":"none"}}><div style={{fontSize:11,color:"#334155",fontWeight:750,overflowWrap:"anywhere",paddingRight:6}}>{shortPath(row.path)}</div><div style={{minWidth:38,textAlign:"right",fontSize:16,fontWeight:950,color:"#ff6000"}}>{Number(row.count||0)}</div></div>)}</Card>
+      <SectionTitle note="Son 7 gün">En çok sepete eklenen ürünler</SectionTitle>
+      <Card>{!actions.topProducts?.add_to_cart?.length?<Empty/>:actions.topProducts.add_to_cart.slice(0,10).map((row,index)=><div key={`${row.productId}-${index}`} style={{display:"flex",justifyContent:"space-between",gap:10,padding:"12px 14px",borderBottom:index<Math.min(10,actions.topProducts.add_to_cart.length)-1?"1px solid #f1f5f9":"none"}}><div><div style={{fontSize:12,fontWeight:900,color:"#111827",lineHeight:1.35}}>{row.name||row.productId||"Ürün"}</div><div style={{fontSize:10,color:"#64748b",marginTop:3}}>{row.sku?`Stok kodu: ${row.sku}`:""}</div></div><div style={{fontSize:17,fontWeight:950,color:"#ff6000"}}>{Number(row.count||0)}</div></div>)}</Card>
+      <SectionTitle>Son sepet ve favori hareketleri</SectionTitle>
+      <Card>{!actions.recent?.length?<Empty/>:actions.recent.slice(0,20).map((row,index)=>{const date=row.at?new Date(row.at):null;return <div key={index} style={{padding:"12px 14px",borderBottom:index<Math.min(20,actions.recent.length)-1?"1px solid #f1f5f9":"none"}}><div style={{display:"flex",justifyContent:"space-between",gap:8}}><span style={{fontSize:11,fontWeight:950,color:row.type==="favorite"?"#e11d48":"#ff6000"}}>{row.type==="favorite"?"♥ Favori":"🛒 Sepet"}</span><span style={{fontSize:10,color:"#94a3b8"}}>{date?date.toLocaleString("tr-TR",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}):"-"}</span></div><div style={{fontSize:12,fontWeight:850,color:"#334155",marginTop:5,lineHeight:1.35}}>{row.name||row.sku||row.productId||"Ürün"}</div><div style={{fontSize:10,color:"#64748b",marginTop:4,overflowWrap:"anywhere"}}>{shortPath(row.path)}</div></div>})}</Card>
+    </>}
+
+    {view==="visitors"&&<>
+      <div style={{padding:12,borderRadius:10,background:"#eff6ff",border:"1px solid #bfdbfe",fontSize:11,color:"#1e40af",lineHeight:1.45}}>Son ziyaretler burada görünür. Aynı kişinin farklı sayfalara geçişleri ayrı hareket olarak listelenebilir.</div>
+      {vLoading&&!visitors.length?<Empty>Yükleniyor…</Empty>:!visitors.length?<Empty/>:<div style={{display:"flex",flexDirection:"column",gap:8}}>{visitors.map((row,index)=>{const date=row.at?new Date(row.at):null;return <div key={index} style={{padding:13,background:"#fff",border:"1px solid #e5e7eb",borderRadius:11}}><div style={{display:"flex",justifyContent:"space-between",gap:8,alignItems:"center"}}><div style={{fontSize:12,fontWeight:950,color:"#111827"}}>📍 {row.city||row.region||row.country||"Konum bilinmiyor"}</div><div style={{fontSize:10,color:"#94a3b8",whiteSpace:"nowrap"}}>{date?date.toLocaleString("tr-TR",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}):"-"}</div></div><div style={{fontSize:11,color:"#334155",fontWeight:750,marginTop:7,overflowWrap:"anywhere"}}>{shortPath(row.path)}</div><div style={{fontSize:10,color:"#64748b",marginTop:5}}>Kaynak: {refLabel(row.ref)}</div></div>})}</div>}
+    </>}
+  </div>;
+}
+
 function ATraffic(){
+  const {isMobile}=use$();
   const [data,setData]=useState(null);
   const [leadData,setLeadData]=useState(null);
   const [err,setErr]=useState("");
   const [visitors,setVisitors]=useState([]);
   const [vLoading,setVLoading]=useState(true);
+  const [refreshing,setRefreshing]=useState(false);
+  const [updatedAt,setUpdatedAt]=useState(null);
   const refreshVisitors=()=>{
     setVLoading(true);
     fetch("/api/admin/traffic-visitors?limit=200",{credentials:"include"}).then(r=>r.json()).then(d=>{
       setVisitors(d.visitors||[]);
     }).catch(()=>{}).finally(()=>setVLoading(false));
   };
+  const loadAll=async()=>{
+    setRefreshing(true); setErr(""); setVLoading(true);
+    try{
+      const [traffic,leads,visitorData]=await Promise.all([
+        fetch("/api/admin/traffic",{credentials:"include"}).then(r=>r.json()),
+        fetch("/api/admin/leads",{credentials:"include"}).then(r=>r.json()),
+        fetch("/api/admin/traffic-visitors?limit=200",{credentials:"include"}).then(r=>r.json()),
+      ]);
+      if(traffic.error) throw new Error(traffic.error);
+      setData(traffic);
+      if(!leads.error) setLeadData(leads);
+      setVisitors(visitorData.visitors||[]);
+      setUpdatedAt(new Date());
+    }catch(e){setErr(e.message||"Trafik verileri yüklenemedi")}finally{setRefreshing(false);setVLoading(false)}
+  };
   useEffect(()=>{
-    fetch("/api/admin/traffic",{credentials:"include"}).then(r=>r.json()).then(d=>{
-      if(d.error) setErr(d.error); else setData(d);
-    }).catch(e=>setErr(e.message));
-    fetch("/api/admin/leads",{credentials:"include"}).then(r=>r.json()).then(d=>{
-      if(!d.error) setLeadData(d);
-    }).catch(()=>{});
-    refreshVisitors();
+    loadAll();
   },[]);
   if(err) return <div style={{padding:20,color:"#dc2626"}}>⚠ {err}</div>;
   if(!data) return <div style={{padding:20,color:"#999"}}>Yükleniyor…</div>;
@@ -6975,6 +7135,8 @@ function ATraffic(){
     errors: productActions.totals?.payment_error || 0,
   };
   const funnelRate = (value, base) => base > 0 ? `%${((value / base) * 100).toFixed(1)}` : "-";
+
+  if(isMobile) return <MobileTrafficPanel data={data} leadData={leadData} visitors={visitors} vLoading={vLoading} onRefresh={loadAll} refreshing={refreshing} updatedAt={updatedAt}/>;
 
   return <div style={{display:"flex",flexDirection:"column",gap:16}}>
     {/* Stats cards */}
