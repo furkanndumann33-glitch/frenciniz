@@ -5681,6 +5681,7 @@ function ChatWidget() {
   const messagesEndRef = useRef(null);
   const sessionIdRef = useRef(null);
   const pollRef = useRef(null);
+  const lastAdminMessageRef = useRef("");
 
   // Session ID oluştur/al
   useEffect(() => {
@@ -5738,7 +5739,19 @@ function ChatWidget() {
         const data = await res.json();
         if (data.messages && data.messages.length > 0) {
           setChatMessages(data.messages.map(m => ({...m, time: m.time || new Date().toISOString()})));
-          if (!chatOpen && data.messages.some(m=>m.from==="admin")) setInviteVisible(true);
+          const adminMessages = data.messages.filter(m=>m.from==="admin");
+          const latestAdmin = adminMessages[adminMessages.length-1];
+          if (latestAdmin) {
+            const adminKey = `${latestAdmin.time||""}|${latestAdmin.text||""}`;
+            let seenKey = lastAdminMessageRef.current;
+            try { seenKey = seenKey || localStorage.getItem(`frenciniz_chat_admin_seen:${sid}`) || ""; } catch {}
+            if (adminKey && adminKey !== seenKey) {
+              lastAdminMessageRef.current = adminKey;
+              try { localStorage.setItem(`frenciniz_chat_admin_seen:${sid}`, adminKey); } catch {}
+              setInviteVisible(false);
+              setChatOpen(true);
+            }
+          }
         }
       } catch {}
     };
