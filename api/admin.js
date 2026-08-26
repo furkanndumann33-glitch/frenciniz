@@ -716,6 +716,21 @@ export default async function handler(req, res) {
     }
 
     // ── Chat history ──────────────────────────────
+    if (action === "live-alerts") {
+      res.setHeader("Cache-Control", "no-store");
+      const serverNow = new Date().toISOString();
+      const sinceRaw = String(req.query.since || "");
+      const sinceTime = Date.parse(sinceRaw);
+      const raw = (await kv.lrange("support:events", 0, 99)) || [];
+      const parsed = raw.map(item => {
+        try { return typeof item === "string" ? JSON.parse(item) : item; } catch { return null; }
+      }).filter(Boolean);
+      const events = Number.isFinite(sinceTime)
+        ? parsed.filter(event => Date.parse(event.at || 0) > sinceTime).slice(0, 30).reverse()
+        : [];
+      const unreadChats = parsed.filter(event => event.type === "message").length;
+      return res.status(200).json({ serverNow, events, unreadChats });
+    }
     if (action === "chat-sessions") {
       const sessionIds = (await kv.lrange("chat:sessions", 0, 99)) || [];
       const sessions = [];
@@ -731,7 +746,31 @@ export default async function handler(req, res) {
       if (!sid) return res.status(400).json({ error: "sid zorunlu" });
       const raw = (await kv.lrange(`chat:messages:${sid}`, 0, 499)) || [];
       const messages = raw.map(r => { try { return typeof r === "string" ? JSON.parse(r) : r; } catch { return null; }}).filter(Boolean);
+      const session = await kv.get(`chat:session:${sid}`);
+      if (session) await kv.set(`chat:session:${sid}`, { ...session, unread: 0 });
       return res.status(200).json({ messages });
+    }
+    if (action === "chat-reply" && req.method === "POST") {
+      const sid = String(req.body?.sessionId || "").trim().slice(0, 120);
+      const message = String(req.body?.message || "").trim().slice(0, 2000);
+      if (!sid || !message) return res.status(400).json({ error: "Oturum ve mesaj zorunlu" });
+      const sessionKey = `chat:session:${sid}`;
+      const session = await kv.get(sessionKey);
+      if (!session) return res.status(404).json({ error: "Sohbet bulunamadı" });
+      const msg = { from: "admin", text: message, time: new Date().toISOString() };
+      await kv.rpush(`chat:messages:${sid}`, JSON.stringify(msg));
+      await kv.set(sessionKey, {
+        ...session,
+        status: "chatting",
+        lastMessage: `[Canlı destek] ${message.slice(0, 80)}`,
+        lastTime: msg.time,
+        messageCount: Number(session.messageCount || 0) + 1,
+        unread: 0,
+      });
+      await kv.expire(sessionKey, 2592000);
+      await kv.expire(`chat:messages:${sid}`, 2592000);
+      await logActivity("chat.reply", { sessionId: sid, by: admin.userId });
+      return res.status(200).json({ ok: true, message: msg });
     }
 
     return res.status(404).json({ error: "Bilinmeyen action: " + action });

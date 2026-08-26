@@ -2,10 +2,12 @@ import messagesHandler from "./_lib/chat/messages.js";
 import replyHandler from "./_lib/chat/reply.js";
 import sendHandler from "./_lib/chat/send.js";
 import sessionsHandler from "./_lib/chat/sessions.js";
+import presenceHandler from "./_lib/chat/presence.js";
 import { getSmartReply } from "./_lib/chat/smart-reply.js";
 
 const HANDLERS = {
   messages: messagesHandler,
+  presence: presenceHandler,
   reply: replyHandler,
   send: sendHandler,
   sessions: sessionsHandler,

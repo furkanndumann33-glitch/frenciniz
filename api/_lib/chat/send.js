@@ -1,5 +1,6 @@
 import { kv } from "@vercel/kv";
 import { getSmartReply } from "./smart-reply.js";
+import { recordSupportEvent, sanitizePresence } from "./events.js";
 
 export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -9,25 +10,33 @@ export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
 
   try {
-    const { sessionId, message, from } = req.body;
+    const { sessionId, message } = req.body;
     if (!sessionId || !message) return res.status(400).json({ error: "Missing fields" });
+    if (!/^s_[a-z0-9_\-]{6,120}$/i.test(String(sessionId))) return res.status(400).json({ error: "Invalid session" });
+    const rateKey = `chat:message-rate:${sessionId}:${Math.floor(Date.now() / 60000)}`;
+    const rate = Number(await kv.incr(rateKey)) || 0;
+    if (rate === 1) await kv.expire(rateKey, 120);
+    if (rate > 20) return res.status(429).json({ error: "Too many messages" });
 
     const sessionKey = `chat:session:${sessionId}`;
     const messagesKey = `chat:messages:${sessionId}`;
 
     // Mesajı kaydet
-    const msg = { from: from || "user", text: message, time: new Date().toISOString() };
+    const msg = { from: "user", text: String(message).trim().slice(0, 2000), time: new Date().toISOString() };
     await kv.rpush(messagesKey, JSON.stringify(msg));
 
     // Session bilgisini güncelle
     const session = await kv.get(sessionKey) || {};
+    const meta = sanitizePresence({ ...req.body, sessionId });
     await kv.set(sessionKey, {
       ...session,
+      ...meta,
       id: sessionId,
-      lastMessage: message.slice(0, 100),
+      status: "chatting",
+      lastMessage: msg.text.slice(0, 100),
       lastTime: msg.time,
       messageCount: (session.messageCount || 0) + 1,
-      unread: from === "user" ? (session.unread || 0) + 1 : session.unread || 0,
+      unread: (session.unread || 0) + 1,
     });
 
     // Session ID'yi listeye ekle (eğer yoksa)
@@ -40,10 +49,12 @@ export default async function handler(req, res) {
     await kv.expire(sessionKey, 2592000);
     await kv.expire(messagesKey, 2592000);
 
+    try { await recordSupportEvent({ type: "message", ...meta, message: msg.text }); } catch {}
+
     // Otomatik bot cevabı (sadece kullanıcı mesajında)
     let botReply = null;
-    if (from !== "admin") {
-      const replyText = getSmartReply(message);
+    {
+      const replyText = getSmartReply(msg.text);
       botReply = { from: "bot", text: replyText, time: new Date().toISOString() };
       await kv.rpush(messagesKey, JSON.stringify(botReply));
 

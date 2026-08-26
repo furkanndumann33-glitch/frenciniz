@@ -1188,7 +1188,11 @@ export default function App() {
   const [couponError, setCouponError] = useState("");
   const [stockAlerts, setStockAlerts] = useState([]);
   const [chatOpen, setChatOpen] = useState(false);
-  const [chatMessages, setChatMessages] = useState([]);
+  const [chatMessages, setChatMessages] = useState(() => [{
+    from:"bot",
+    text:"Frenciniz’e hoş geldiniz 👋 Aracınıza uygun parçayı bulmamız için marka/model, şase numarası veya OEM kodunu paylaşabilirsiniz.",
+    time:new Date().toISOString(),
+  }]);
   const [pastOrders, setPastOrders] = useState([]);
   const [lang, setLang] = useState("tr");
   const [curr, setCurr] = useState("TRY"); // TRY, EUR, USD
@@ -2185,6 +2189,7 @@ export default function App() {
 
         {!isAdminPage && page !== "product" && <MobileBottomBar />}
         {!isAdminPage && <ProductLeadNudge />}
+        {!isAdminPage && <ChatWidget />}
 
         {/* FOOTER */}
         <footer style={{display:isAdminPage?"none":"block",background:"#1a1a1a",color:"#ccc",padding:"40px 0 20px",marginTop:40}}>
@@ -5668,9 +5673,11 @@ function ImageGalleryLegacy({images, discount}) {
 
 // ===== LIVE CHAT WIDGET =====
 function ChatWidget() {
-  const {chatOpen, setChatOpen, chatMessages, setChatMessages} = use$();
+  const {chatOpen, setChatOpen, chatMessages, setChatMessages, page, params, products, isMobile} = use$();
   const [input, setInput] = useState("");
   const [typing, setTyping] = useState(false);
+  const [inviteVisible, setInviteVisible] = useState(false);
+  const [supportActive, setSupportActive] = useState(false);
   const messagesEndRef = useRef(null);
   const sessionIdRef = useRef(null);
   const pollRef = useRef(null);
@@ -5685,9 +5692,43 @@ function ChatWidget() {
     sessionIdRef.current = sid;
   }, []);
 
+  const currentProduct = page === "product"
+    ? (params?.product || products.find(item => String(item.id) === String(params?.id)))
+    : null;
+  const supportMeta = () => {
+    let source = new URLSearchParams(window.location.search).get("utm_source") || "";
+    if (!source && document.referrer) {
+      try { source = new URL(document.referrer).hostname.replace(/^www\./, ""); } catch {}
+    }
+    return {
+      sessionId: sessionIdRef.current,
+      path: window.location.pathname || "/",
+      pageTitle: document.title || "Frenciniz",
+      productId: currentProduct?.id || "",
+      productName: currentProduct?.name || "",
+      source: source || "direct",
+    };
+  };
+
+  // Gerçek ilgi sinyali: ürün sayfasında 15 sn, diğer sayfalarda 25 sn kalan ziyaretçi.
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const meta = supportMeta();
+      if (!meta.sessionId) return;
+      fetch("/api/chat/presence", {
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify(meta),
+        keepalive:true,
+      }).then(()=>setSupportActive(true)).catch(()=>{});
+      if (!chatOpen) setInviteVisible(true);
+    }, page === "product" ? 15000 : 25000);
+    return () => clearTimeout(timer);
+  }, [page, params?.id]);
+
   // Admin cevaplarını poll et
   useEffect(() => {
-    if (!chatOpen) return;
+    if (!chatOpen && !supportActive) return;
     const poll = async () => {
       try {
         const sid = sessionIdRef.current;
@@ -5697,13 +5738,14 @@ function ChatWidget() {
         const data = await res.json();
         if (data.messages && data.messages.length > 0) {
           setChatMessages(data.messages.map(m => ({...m, time: m.time || new Date().toISOString()})));
+          if (!chatOpen && data.messages.some(m=>m.from==="admin")) setInviteVisible(true);
         }
       } catch {}
     };
     poll();
     pollRef.current = setInterval(poll, 5000);
     return () => clearInterval(pollRef.current);
-  }, [chatOpen]);
+  }, [chatOpen, supportActive]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({behavior:"smooth"});
@@ -5716,12 +5758,13 @@ function ChatWidget() {
     setChatMessages(prev => [...prev, userMsg]);
     setInput("");
     setTyping(true);
+    setSupportActive(true);
 
     try {
       const res = await fetch("/api/chat/send", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({sessionId: sessionIdRef.current, message: text, from: "user"})
+        body: JSON.stringify({...supportMeta(), message: text, from: "user"})
       });
       const data = await res.json();
       if (data.botReply) {
@@ -5739,15 +5782,21 @@ function ChatWidget() {
   };
 
   return <>
+    {inviteVisible && !chatOpen && <div style={{position:"fixed",bottom:isMobile?150:164,right:isMobile?12:24,zIndex:999,width:isMobile?"calc(100vw - 88px)":300,maxWidth:300,padding:"13px 14px",background:"#fff",border:"1px solid #e5e7eb",borderRadius:12,boxShadow:"0 12px 34px rgba(15,23,42,.2)"}}>
+      <button onClick={()=>setInviteVisible(false)} aria-label="Canlı destek davetini kapat" style={{position:"absolute",top:5,right:7,border:"none",background:"transparent",color:"#94a3b8",fontSize:16}}>×</button>
+      <div style={{fontSize:13,fontWeight:900,color:"#111827",paddingRight:14}}>Canlı destek buradayız 👋</div>
+      <div style={{fontSize:11,color:"#64748b",lineHeight:1.45,marginTop:4}}>Parça kodunu veya araç bilgilerini yazın, doğru ürünü birlikte bulalım.</div>
+      <button onClick={()=>{setInviteVisible(false);setChatOpen(true)}} style={{marginTop:9,minHeight:36,width:"100%",border:"none",borderRadius:8,background:"#ff6000",color:"#fff",fontSize:12,fontWeight:900}}>Canlı desteği aç</button>
+    </div>}
     {/* Toggle button */}
-    <button onClick={() => setChatOpen(!chatOpen)}
-      style={{position:"fixed",bottom:24,right:24,zIndex:1000,width:56,height:56,borderRadius:"50%",background:chatOpen?"#333":"#ff6000",color:"#fff",border:"none",boxShadow:"0 4px 16px rgba(0,0,0,.2)",fontSize:22,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",transition:"background .2s"}}>
+    <button onClick={() => {setInviteVisible(false);setChatOpen(!chatOpen)}} aria-label={chatOpen?"Canlı desteği kapat":"Canlı desteği aç"}
+      style={{position:"fixed",bottom:isMobile?86:96,right:isMobile?14:24,zIndex:1000,width:56,height:56,borderRadius:"50%",background:chatOpen?"#333":"#ff6000",color:"#fff",border:"none",boxShadow:"0 4px 16px rgba(0,0,0,.2)",fontSize:22,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",transition:"background .2s"}}>
       {chatOpen ? "✕" : "💬"}
     </button>
 
     {/* Chat window */}
     {chatOpen && (
-      <div style={{position:"fixed",bottom:92,right:24,zIndex:1000,width:360,height:460,background:"#fff",borderRadius:12,boxShadow:"0 8px 40px rgba(0,0,0,.15)",display:"flex",flexDirection:"column",overflow:"hidden",animation:"slideUp .3s ease",border:"1px solid #e0e0e0"}}>
+      <div style={{position:"fixed",bottom:isMobile?154:164,right:isMobile?12:24,zIndex:1000,width:isMobile?"calc(100vw - 24px)":360,height:isMobile?"min(520px, calc(100vh - 180px))":460,background:"#fff",borderRadius:12,boxShadow:"0 8px 40px rgba(0,0,0,.15)",display:"flex",flexDirection:"column",overflow:"hidden",animation:"slideUp .3s ease",border:"1px solid #e0e0e0"}}>
         {/* Header */}
         <div style={{padding:"14px 18px",background:"#ff6000",color:"#fff",display:"flex",alignItems:"center",gap:12}}>
           <div style={{width:36,height:36,borderRadius:"50%",background:"rgba(255,255,255,.2)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:16}}>🎧</div>
@@ -5884,7 +5933,7 @@ function AdminLoginPage() {
 
 function AdminPanel() {
   const {go, admin, setAdmin, stockAlerts, authChecked} = use$();
-  const [tab, setTab] = useState("dashboard");
+  const [tab, setTab] = useState(()=>new URLSearchParams(window.location.search).get("adminTab")||"dashboard");
   // Auth check tamamlanmadan yönlendirme yapma — refresh sırasında session yüklenirken bekle
   if (!authChecked) return <div style={{padding:60,textAlign:"center",color:"#888"}}>Yetkilendirme kontrol ediliyor…</div>;
   if(!admin) { go("admin-login"); return null; }
@@ -7960,59 +8009,103 @@ function AEmailTemplates(){
 
 // ── CHAT HISTORY ──
 function AChatHistory(){
+  const {isMobile}=use$();
   const [sessions,setSessions]=useState([]);
   const [loading,setLoading]=useState(true);
   const [sel,setSel]=useState(null);
   const [messages,setMessages]=useState([]);
   const [loadingMsgs,setLoadingMsgs]=useState(false);
-  useEffect(()=>{
-    fetch("/api/admin/chat-sessions",{credentials:"include"}).then(r=>r.json()).then(d=>{
+  const [reply,setReply]=useState("");
+  const [sending,setSending]=useState(false);
+  const [err,setErr]=useState("");
+  const messagesEndRef=useRef(null);
+  const quickReplies=[
+    "Hoş geldiniz, Frenciniz canlı desteğe bağlandınız. Size nasıl yardımcı olabiliriz?",
+    "Aracın marka/modelini ve mümkünse şase numarasını paylaşabilir misiniz?",
+    "Parçanın üzerindeki OEM veya stok kodunu ya da ürün fotoğrafını paylaşabilir misiniz?",
+  ];
+  const loadSessions=async()=>{
+    try{
+      const d=await fetch("/api/admin/chat-sessions",{credentials:"include",cache:"no-store"}).then(r=>r.json());
+      if(d.error) throw new Error(d.error);
       setSessions(d.sessions||[]);
-    }).finally(()=>setLoading(false));
-  },[]);
+      if(sel){const fresh=(d.sessions||[]).find(item=>item.id===sel.id);if(fresh)setSel(fresh)}
+    }catch(e){setErr(e.message||"Sohbetler yüklenemedi")}finally{setLoading(false)}
+  };
+  const loadMessages=async(session=sel)=>{
+    if(!session?.id)return;
+    setLoadingMsgs(true);
+    try{
+      const d=await fetch(`/api/admin/chat-messages?sid=${encodeURIComponent(session.id)}`,{credentials:"include",cache:"no-store"}).then(r=>r.json());
+      if(d.error)throw new Error(d.error);
+      setMessages(d.messages||[]);
+      setTimeout(()=>messagesEndRef.current?.scrollIntoView({behavior:"smooth"}),50);
+    }catch(e){setErr(e.message||"Mesajlar yüklenemedi")}finally{setLoadingMsgs(false)}
+  };
+  useEffect(()=>{
+    loadSessions();
+    const timer=setInterval(loadSessions,5000);
+    return()=>clearInterval(timer);
+  },[sel?.id]);
   useEffect(()=>{
     if(!sel) return;
-    setLoadingMsgs(true);
-    fetch(`/api/admin/chat-messages?sid=${encodeURIComponent(sel.id)}`,{credentials:"include"}).then(r=>r.json()).then(d=>{
-      setMessages(d.messages||[]);
-    }).finally(()=>setLoadingMsgs(false));
-  },[sel]);
+    loadMessages(sel);
+    const timer=setInterval(()=>loadMessages(sel),3500);
+    return()=>clearInterval(timer);
+  },[sel?.id]);
+  async function sendReply(textOverride){
+    const text=String(textOverride||reply).trim();
+    if(!sel?.id||!text||sending)return;
+    setSending(true);setErr("");
+    try{
+      const r=await fetch("/api/admin/chat-reply",{method:"POST",credentials:"include",headers:{"Content-Type":"application/json"},body:JSON.stringify({sessionId:sel.id,message:text})});
+      const d=await r.json();
+      if(!r.ok||d.error)throw new Error(d.error||"Mesaj gönderilemedi");
+      setReply("");
+      setMessages(prev=>[...prev,d.message]);
+      await loadSessions();
+      setTimeout(()=>messagesEndRef.current?.scrollIntoView({behavior:"smooth"}),50);
+    }catch(e){setErr(e.message)}finally{setSending(false)}
+  }
   if(loading) return <div style={{padding:20,color:"#999"}}>Yükleniyor…</div>;
-  return <ACard title={`Canlı Destek Geçmişi (${sessions.length} sohbet)`}>
-    {!sel?(sessions.length===0?<div style={{color:"#999",fontSize:13,padding:"12px 0"}}>Henüz chat kaydı yok.</div>:sessions.map((ch,i)=>{
-      const dt=ch.lastTime?new Date(ch.lastTime).toLocaleString("tr-TR"):"";
-      const name=ch.name||ch.customer||`Ziyaretçi #${String(ch.id||"").slice(-4)}`;
-      return <div key={ch.id} onClick={()=>setSel(ch)} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"14px 0",borderBottom:i<sessions.length-1?"1px solid #f0f0f0":"none",cursor:"pointer"}}>
-        <div>
-          <div style={{fontSize:14,fontWeight:600}}>{name}</div>
-          <div style={{fontSize:12,color:"#888",marginTop:2}}>{(ch.lastMessage||"").slice(0,80)}</div>
+  const sessionList=<div style={{border:"1px solid #e5e7eb",borderRadius:10,overflow:"hidden",background:"#fff"}}>
+    <div style={{padding:"12px 14px",background:"#f8fafc",borderBottom:"1px solid #e5e7eb",display:"flex",justifyContent:"space-between",alignItems:"center"}}><strong style={{fontSize:13}}>Ziyaretçiler ({sessions.length})</strong><button onClick={loadSessions} style={{border:"none",background:"transparent",color:"#ff6000",fontWeight:900}}>↻</button></div>
+    <div style={{maxHeight:isMobile?"none":620,overflowY:"auto"}}>{sessions.length===0?<div style={{color:"#999",fontSize:13,padding:18}}>Henüz canlı destek ziyareti yok.</div>:sessions.map((ch,i)=>{
+      const dt=ch.lastSeen||ch.lastTime;
+      const name=ch.productName||ch.pageTitle||`Ziyaretçi #${String(ch.id||"").slice(-4)}`;
+      const active=sel?.id===ch.id;
+      return <button key={ch.id} onClick={()=>{setSel(ch);setErr("")}} style={{display:"block",width:"100%",border:"none",borderBottom:i<sessions.length-1?"1px solid #f1f5f9":"none",background:active?"#fff4ed":"#fff",padding:"12px 14px",textAlign:"left",cursor:"pointer"}}>
+        <div style={{display:"flex",justifyContent:"space-between",gap:8,alignItems:"center"}}><span style={{fontSize:12,fontWeight:900,color:"#111827",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{name}</span>{Number(ch.unread||0)>0&&<span style={{minWidth:22,height:22,borderRadius:11,display:"grid",placeItems:"center",background:"#dc2626",color:"#fff",fontSize:10,fontWeight:950}}>{ch.unread}</span>}</div>
+        <div style={{fontSize:11,color:"#64748b",marginTop:4,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{ch.lastMessage||ch.path||"Siteyi inceliyor"}</div>
+        <div style={{display:"flex",justifyContent:"space-between",gap:8,fontSize:10,color:"#94a3b8",marginTop:5}}><span>{ch.status==="chatting"?"💬 Sohbette":"🟢 Sitede"}</span><span>{dt?new Date(dt).toLocaleString("tr-TR",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}):""}</span></div>
+      </button>})}</div>
+  </div>;
+  return <div>
+    <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",gap:12,marginBottom:14,flexWrap:"wrap"}}><div><h1 style={{fontSize:22,fontWeight:900,margin:"0 0 4px"}}>Canlı Destek</h1><div style={{fontSize:12,color:"#64748b"}}>İlgili ziyaretçileri görün, hazır cevapla anında karşılayın.</div></div><ABtn onClick={loadSessions}>↻ Yenile</ABtn></div>
+    {err&&<div style={{padding:10,background:"#fef2f2",border:"1px solid #fecaca",borderRadius:8,color:"#b91c1c",fontSize:12,marginBottom:10}}>⚠ {err}</div>}
+    <div style={{display:"grid",gridTemplateColumns:sel&&!isMobile?"minmax(280px,.8fr) minmax(0,1.5fr)":"1fr",gap:14}}>
+      {(!isMobile||!sel)&&sessionList}
+      {sel&&<div style={{border:"1px solid #e5e7eb",borderRadius:10,overflow:"hidden",background:"#fff",display:"flex",flexDirection:"column",minHeight:520}}>
+        <div style={{padding:"12px 14px",background:"#111827",color:"#fff"}}>
+          {isMobile&&<button onClick={()=>{setSel(null);setMessages([])}} style={{border:"none",background:"transparent",color:"#fdba74",fontSize:12,fontWeight:900,padding:"0 0 8px"}}>← Ziyaretçilere dön</button>}
+          <div style={{fontSize:14,fontWeight:950}}>{sel.productName||sel.pageTitle||`Ziyaretçi #${String(sel.id||"").slice(-4)}`}</div>
+          <div style={{fontSize:10,color:"#cbd5e1",marginTop:4,overflowWrap:"anywhere"}}>{sel.path||"/"}{sel.source?` • Kaynak: ${sel.source}`:""}</div>
         </div>
-        <div style={{textAlign:"right"}}>
-          <div style={{fontSize:12,color:"#999"}}>{dt}</div>
-          <div style={{fontSize:11,color:"#ff6000",marginTop:2}}>{ch.messageCount||0} mesaj</div>
-        </div>
-      </div>;
-    })):<div>
-      <button onClick={()=>{setSel(null);setMessages([])}} style={{background:"none",border:"none",color:"#ff6000",fontSize:13,cursor:"pointer",marginBottom:16}}>← Geri</button>
-      <div style={{display:"flex",justifyContent:"space-between",marginBottom:16}}>
-        <div style={{fontSize:16,fontWeight:700}}>{sel.name||sel.customer||`Ziyaretçi #${String(sel.id||"").slice(-4)}`}</div>
-        <span style={{fontSize:12,color:"#999"}}>{sel.lastTime?new Date(sel.lastTime).toLocaleString("tr-TR"):""}</span>
-      </div>
-      {loadingMsgs?<div style={{color:"#999",fontSize:13}}>Mesajlar yükleniyor…</div>:
-        <div style={{background:"#f9f9f9",borderRadius:8,padding:16}}>
-          {messages.length===0?<div style={{color:"#999",fontSize:13,textAlign:"center"}}>Bu sohbette mesaj bulunmuyor.</div>:messages.map((m,i)=>{
-            const tm=m.time||(m.at?new Date(m.at).toLocaleTimeString("tr-TR",{hour:"2-digit",minute:"2-digit"}):"");
+        <div style={{flex:1,minHeight:260,maxHeight:430,overflowY:"auto",padding:14,background:"#f8fafc"}}>
+          {loadingMsgs&&messages.length===0?<div style={{color:"#999",fontSize:13}}>Mesajlar yükleniyor…</div>:messages.length===0?<div style={{textAlign:"center",padding:"30px 10px"}}><div style={{fontSize:30}}>👋</div><div style={{fontSize:13,fontWeight:900,color:"#334155",marginTop:8}}>Ziyaretçi henüz mesaj yazmadı</div><div style={{fontSize:11,color:"#64748b",marginTop:4}}>Hazır karşılama mesajıyla konuşmayı siz başlatabilirsiniz.</div></div>:messages.map((m,i)=>{
             const isUser=m.from==="user";
-            return <div key={i} style={{display:"flex",justifyContent:isUser?"flex-end":"flex-start",marginBottom:10}}>
-              <div style={{maxWidth:"70%",padding:"10px 14px",borderRadius:isUser?"12px 12px 2px 12px":"12px 12px 12px 2px",background:isUser?"#ff6000":"#fff",color:isUser?"#fff":"#333",fontSize:13,lineHeight:1.5}}>
-                {m.text}
-                <div style={{fontSize:10,opacity:.6,marginTop:4,textAlign:"right"}}>{tm}</div>
-              </div>
-            </div>;
-          })}
-        </div>}
-    </div>}
-  </ACard>;
+            const isAdmin=m.from==="admin";
+            const tm=m.time?new Date(m.time).toLocaleTimeString("tr-TR",{hour:"2-digit",minute:"2-digit"}):"";
+            return <div key={i} style={{display:"flex",justifyContent:isUser?"flex-start":"flex-end",marginBottom:9}}><div style={{maxWidth:"82%",padding:"9px 12px",borderRadius:isUser?"2px 12px 12px 12px":"12px 12px 2px 12px",background:isUser?"#fff":isAdmin?"#2563eb":"#e2e8f0",color:isUser?"#111827":isAdmin?"#fff":"#334155",border:isUser?"1px solid #e5e7eb":"none",fontSize:12,lineHeight:1.45,overflowWrap:"anywhere"}}>{m.text}<div style={{fontSize:9,opacity:.65,textAlign:"right",marginTop:3}}>{tm}</div></div></div>
+          })}<div ref={messagesEndRef}/>
+        </div>
+        <div style={{padding:10,borderTop:"1px solid #e5e7eb",background:"#fff"}}>
+          <div style={{display:"flex",gap:6,overflowX:"auto",paddingBottom:8}}>{quickReplies.map((text,i)=><button key={i} onClick={()=>sendReply(text)} disabled={sending} style={{flex:"0 0 auto",maxWidth:220,minHeight:34,border:"1px solid #fed7aa",borderRadius:8,background:"#fff7ed",color:"#9a3412",fontSize:10,fontWeight:800,padding:"6px 9px",textAlign:"left"}}>{i===0?"👋 Hoş geldiniz":i===1?"🚚 Araç bilgisi iste":"🔎 OEM/fotoğraf iste"}</button>)}</div>
+          <div style={{display:"flex",gap:7}}><textarea value={reply} onChange={e=>setReply(e.target.value)} onKeyDown={e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();sendReply()}}} placeholder="Mesajınızı yazın…" rows={2} style={{flex:1,resize:"none",border:"1px solid #d1d5db",borderRadius:8,padding:"9px 10px",fontSize:12,fontFamily:"inherit"}}/><button onClick={()=>sendReply()} disabled={sending||!reply.trim()} style={{minWidth:76,border:"none",borderRadius:8,background:sending||!reply.trim()?"#cbd5e1":"#ff6000",color:"#fff",fontWeight:900,fontSize:12}}>{sending?"…":"Gönder"}</button></div>
+        </div>
+      </div>}
+    </div>
+  </div>;
 }
 
 // ── REVENUE REPORT ──
