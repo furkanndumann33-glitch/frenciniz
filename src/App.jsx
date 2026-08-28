@@ -2133,13 +2133,14 @@ export default function App() {
           
         </header>
 
+        {!isAdminPage && !isMobile && <div className="fr3-global-category"><CategorySidebarV2 go={go} activeCat={page==="products"?(params?.cat||"all"):"all"} isFixed /></div>}
+        <div className={isAdminPage?"":"fr3-store-shell"}>
         {!isAdminPage && <StoreCategoryNav />}
         {!isAdminPage && <CouponWhatsAppStrip />}
 
         {/* CONTENT */}
         {!isAdminPage && mobileMenuOpen && <MobileMenu />}
         {!isAdminPage && mobileFilterOpen && <MobileFilterDrawer />}
-        <div style={{marginLeft:0}}>
         <main className={isAdminPage?"":"fr2-storefront-main"} style={{minHeight:isAdminPage?"100vh":"60vh"}}>
           {!isAdminPage && <CompatibilityCheckBanner />}
           {page==="home"&&<HomePage/>}
@@ -2643,7 +2644,7 @@ function CategorySidebarV2({go, activeCat, onSelect, isFixed}) {
   }, [activeCat]);
 
   const shellStyle = isFixed
-    ? {position:"fixed",left:0,top:0,width:232,height:"100vh",overflowY:"auto",borderRight:"1px solid #e5e7eb",background:"#fff",padding:`${headerH + 12}px 10px 12px`,zIndex:50,boxShadow:"10px 0 28px rgba(15,23,42,.08)",color:"#1f2937"}
+    ? {position:"fixed",left:0,top:headerH,width:232,height:`calc(100vh - ${headerH}px)`,overflowY:"auto",borderRight:"1px solid #e5e7eb",background:"#fff",padding:"12px 10px",zIndex:50,boxShadow:"10px 0 28px rgba(15,23,42,.08)",color:"#1f2937"}
     : {borderRadius:12,background:"#fff",padding:8,color:"#1f2937",border:"1px solid #e5e7eb",boxShadow:"0 4px 14px rgba(15,23,42,.05)"};
   const allVisual = categoryVisual("all");
   const rowBase = {display:"flex",alignItems:"center",gap:9,borderRadius:8,cursor:"pointer",transition:"background .15s,border-color .15s,color .15s,transform .15s"};
@@ -2654,7 +2655,7 @@ function CategorySidebarV2({go, activeCat, onSelect, isFixed}) {
         <CategoryIcon visual={allVisual} small alt={t("categories")} />
         <span>{t("categories")}</span>
       </div>}
-      {onSelect && <div onClick={() => onSelect("all")} style={{...rowBase,padding:"9px 8px",margin:"3px 0 6px",fontSize:12,color:activeCat==="all"?"#c2410c":"#475569",fontWeight:activeCat==="all"?900:700,background:activeCat==="all"?"#fff2e8":"#f8fafc",border:`1px solid ${activeCat==="all"?"#ffc89f":"#edf0f3"}`}}>
+      {(onSelect || isFixed) && <div onClick={() => onSelect ? onSelect("all") : go("products")} style={{...rowBase,padding:"9px 8px",margin:"3px 0 6px",fontSize:12,color:activeCat==="all"?"#c2410c":"#475569",fontWeight:activeCat==="all"?900:700,background:activeCat==="all"?"#fff2e8":"#f8fafc",border:`1px solid ${activeCat==="all"?"#ffc89f":"#edf0f3"}`}}>
         <CategoryIcon visual={allVisual} small alt={t("allProducts")} />
         <span>{t("allProducts")}</span>
       </div>}
@@ -3515,7 +3516,7 @@ function ProductsPage() {
       
       <div className="fr3-products-layout" style={{display:"flex",gap:20,alignItems:"flex-start"}}>
         {/* Desktop sidebar */}
-        {!isMobile && <div className="fr3-products-sidebar" style={{width:240,flexShrink:0,position:"sticky",top:128,maxHeight:"calc(100vh - 144px)",overflowY:"auto",paddingRight:4}}><FilterPanel includeCategory={true} /></div>}
+        {!isMobile && <div className="fr3-products-sidebar" style={{width:220,flexShrink:0,position:"sticky",top:128,maxHeight:"calc(100vh - 144px)",overflowY:"auto",paddingRight:4}}><FilterPanel includeCategory={false} /></div>}
 
         <div style={{flex:1}}>
           {!term && <div className="fr2-category-hero" style={{position:"relative",overflow:"hidden",borderRadius:8,background:"linear-gradient(135deg,#07111f 0%,#111827 54%,#7c2d12 100%)",color:"#fff",padding:isMobile?"18px 16px":"24px 26px",marginBottom:18,boxShadow:"0 20px 50px rgba(15,23,42,.18)",border:"1px solid rgba(255,255,255,.1)"}}>
