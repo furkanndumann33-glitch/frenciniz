@@ -2133,6 +2133,7 @@ export default function App() {
           
         </header>
 
+        {!isAdminPage && <StoreCategoryNav />}
         {!isAdminPage && <CouponWhatsAppStrip />}
 
         {/* CONTENT */}
@@ -2305,7 +2306,7 @@ function CouponWhatsAppStrip() {
   const {isMobile, lang} = use$();
   const href = generalWhatsAppUrl("indirim kuponu talebi");
   return (
-    <section aria-label={lang==="en"?"WhatsApp coupon request":"İndirim kuponu WhatsApp iletişimi"} style={{background:"linear-gradient(90deg,#052e16,#166534 52%,#25D366)",color:"#fff",borderBottom:"1px solid rgba(255,255,255,.2)",boxShadow:"0 8px 22px rgba(22,101,52,.16)"}}>
+    <section className="fr3-coupon-strip" aria-label={lang==="en"?"WhatsApp coupon request":"İndirim kuponu WhatsApp iletişimi"} style={{background:"linear-gradient(90deg,#052e16,#166534 52%,#25D366)",color:"#fff",borderBottom:"1px solid rgba(255,255,255,.2)",boxShadow:"0 8px 22px rgba(22,101,52,.16)"}}>
       <div style={{maxWidth:1220,margin:"0 auto",padding:isMobile?"9px 12px":"10px 24px",display:"flex",alignItems:"center",justifyContent:"center",gap:isMobile?8:16,flexDirection:isMobile?"column":"row",textAlign:"center"}}>
         <strong style={{fontSize:isMobile?13:15,lineHeight:1.35}}>
           {lang==="en"?"Contact us on WhatsApp for an available discount coupon.":"İndirim kuponu için WhatsApp'tan iletişime geçin."}
@@ -2316,6 +2317,18 @@ function CouponWhatsAppStrip() {
       </div>
     </section>
   );
+}
+
+function StoreCategoryNav() {
+  const {go, lang} = use$();
+  const items = lang === "en" ? [
+    ["all","All products"],["fren-diski","Brake discs"],["fren-kampanasi","Brake drums"],["fren-balatasi","Brake pads"],["fren-korugu","Brake chambers"],["kaliper-tamir-takimi","Caliper parts"],["abs-sensoru-modulu-kablo","ABS / EBS"],["bijon","Wheel studs"],
+  ] : [
+    ["all","Tüm ürünler"],["fren-diski","Fren diskleri"],["fren-kampanasi","Fren kampanaları"],["fren-balatasi","Fren balataları"],["fren-korugu","Fren körükleri"],["kaliper-tamir-takimi","Kaliper parçaları"],["abs-sensoru-modulu-kablo","ABS / EBS"],["bijon","Bijon ve porya"],
+  ];
+  return <nav className="fr3-category-nav" aria-label={lang==="en"?"Product categories":"Ürün kategorileri"}>
+    <div>{items.map(([id,label])=><button key={id} onClick={()=>go("products",id==="all"?{}:{cat:id})}>{label}</button>)}</div>
+  </nav>;
 }
 
 function WhatsAppTrustStrip() {
@@ -2372,7 +2385,7 @@ function CompatibilityCheckBanner() {
   if (page === "admin" || page === "home") return null;
   const href = compatibilityCheckWhatsAppUrl();
   return (
-    <section style={{background:"linear-gradient(90deg,#fff7ed,#fef3c7 54%,#dcfce7)",borderBottom:"1px solid #fed7aa",color:"#111827"}}>
+    <section className="fr3-compat-strip" style={{background:"linear-gradient(90deg,#fff7ed,#fef3c7 54%,#dcfce7)",borderBottom:"1px solid #fed7aa",color:"#111827"}}>
       <div style={{maxWidth:1220,margin:"0 auto",padding:isMobile?"10px 14px":"10px 24px",display:"flex",alignItems:isMobile?"stretch":"center",justifyContent:"space-between",gap:10,flexDirection:isMobile?"column":"row"}}>
         <div style={{display:"flex",alignItems:isMobile?"flex-start":"center",gap:10,minWidth:0,flexDirection:isMobile?"column":"row"}}>
           <span style={{background:"#ff6000",color:"#fff",fontSize:11,fontWeight:950,padding:"5px 8px",borderRadius:999,whiteSpace:"nowrap"}}>
@@ -3049,9 +3062,9 @@ function HomePage() {
     <section className="fr2-hero">
       <div className="fr2-container fr2-hero-grid">
         <div className="fr2-hero-copy">
-          <span className="fr2-kicker">Ağır vasıta fren parçasında uzman destek</span>
-          <h1>Doğru parçayı<br/><em>ilk seferde</em> bulun.</h1>
-          <p>OEM kodunu, araç modelini veya parça adını yazın. Stoktaki uygun ürünü, fiyatı ve teslimat seçeneğini tek ekranda görün.</p>
+          <span className="fr2-kicker">1.000+ stoklu ağır vasıta ürünü</span>
+          <h1>Aracınıza uygun fren parçasını <em>kolayca bulun.</em></h1>
+          <p>OEM kodu, SKU, araç modeli veya ürün adıyla arayın. Güncel fiyatı görün, güvenle sepete ekleyin.</p>
           <form className="fr2-part-search" onSubmit={submitSearch}>
             <div><span>OEM / SKU / ARAÇ</span><input value={partQuery} onChange={event=>setPartQuery(event.target.value)} placeholder="Örn. 9604210412 veya Actros fren diski" aria-label="Parça ara" /></div>
             <button type="submit">Parçayı bul</button>
@@ -3070,14 +3083,14 @@ function HomePage() {
           <div className="fr2-stock-pill">Stokta</div>
           <div className="fr2-product-stage"><OptImg src={prodImg(heroProduct)} alt={heroProduct.name} eager style={{maxWidth:"86%",maxHeight:"86%",objectFit:"contain"}} /></div>
           <div className="fr2-hero-product-info">
-            <span>Bugünün öne çıkan ürünü</span><h2>{heroProduct.name}</h2>
+            <span>Öne çıkan fırsat</span><h2>{heroProduct.name}</h2>
             <div><b>{heroProduct.sku}</b><strong>{Number(heroProduct.price).toLocaleString("tr-TR",{style:"currency",currency:"TRY"})}</strong></div>
           </div>
         </article>}
       </div>
     </section>
     <section className="fr2-section fr2-container">
-      <div className="fr2-section-head"><div><span>Hızlı seçim</span><h2>Aradığınız parça grubu</h2></div><button onClick={()=>go("products")}>Tüm ürünler <b>→</b></button></div>
+      <div className="fr2-section-head"><div><span>Kolay alışveriş</span><h2>Popüler kategoriler</h2></div><button onClick={()=>go("products")}>Tüm ürünler <b>→</b></button></div>
       <div className="fr2-category-grid">{categories.map(item=><button key={item.cat} onClick={()=>go("products",{cat:item.cat})}><span className="fr2-category-code">{item.code}</span><div><strong>{item.title}</strong><small>{item.note}</small></div><b>→</b></button>)}</div>
     </section>
     <section className="fr2-products-section"><div className="fr2-container">
@@ -3085,7 +3098,7 @@ function HomePage() {
       <div className="fr2-product-grid">{featured.map((product,index)=><ProductCard key={product.id} p={product} eager={index<3}/>)}</div>
     </div></section>
     <section className="fr2-how"><div className="fr2-container">
-      <div className="fr2-section-head fr2-section-head-light"><div><span>Yanlış parça riskini azaltın</span><h2>Üç adımda doğru parça</h2></div></div>
+      <div className="fr2-section-head fr2-section-head-light"><div><span>Frenciniz avantajları</span><h2>Alışveriş burada daha kolay</h2></div></div>
       <div className="fr2-steps"><article><b>1</b><h3>Kodu veya aracı yazın</h3><p>OEM, SKU, şase bilgisi ya da eski parça fotoğrafı yeterli.</p></article><article><b>2</b><h3>Uyumluluğu teyit edin</h3><p>Ekibimiz stok, ölçü ve araç bilgisini siparişten önce kontrol eder.</p></article><article><b>3</b><h3>Güvenle sipariş verin</h3><p>Kartla güvenli ödeme veya WhatsApp üzerinden hızlı sipariş.</p></article></div>
     </div></section>
     <section className="fr2-fleet"><div className="fr2-container fr2-fleet-grid">
@@ -3772,7 +3785,7 @@ function ProductDetailPage() {
       <div style={{fontSize:13,color:"#999",marginBottom:20}}>
         <span style={{cursor:"pointer"}} onClick={() => go("home")}>{t("home")}</span> / {(() => { const sub = CATS.find(c=>c.id===p.cat); const grp = sub?.parent ? CATS.find(c=>c.id===sub.parent) : null; return <>{grp && <><span style={{cursor:"pointer"}} onClick={() => go("products",{cat:grp.id})}>{translateCat(grp,lang)}</span> / </>}<span style={{cursor:"pointer"}} onClick={() => go("products",{cat:p.cat})}>{sub ? translateCat(sub,lang) : p.cat}</span></>; })()} / <span style={{color:"#555"}}>{lang==="en" ? translateName(p.name,lang) : seoDisplayName}</span>
       </div>
-      <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr",gap:isMobile?20:32,marginBottom:40}}>
+      <div className="fr3-product-main" style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr",gap:isMobile?20:32,marginBottom:40}}>
         {/* Image Gallery */}
         {galleryImages.length ? (
           <ImageGallery images={galleryImages} discount={disc} />
@@ -3810,48 +3823,48 @@ function ProductDetailPage() {
                 <div style={{fontSize:13,color:"#667085",lineHeight:1.55}}>Araç modeli, şase veya OEM koduyla hızlı uyumluluk teyidi alın.</div>
               )}
             </div>
-            <div style={{padding:"14px 15px",background:"linear-gradient(135deg,#07111f,#172033)",border:"1px solid rgba(255,96,0,.2)",borderRadius:8,color:"#fff",boxShadow:"0 12px 26px rgba(15,23,42,.12)"}}>
-              <div style={{fontSize:12,fontWeight:900,color:"#facc15",textTransform:"uppercase",letterSpacing:0,marginBottom:8}}>OEM / parça kodu</div>
-              <div style={{fontSize:13,lineHeight:1.6,color:"#e5e7eb",overflowWrap:"anywhere"}}>{p.oem || p.sku || "Kod ile teyit"}</div>
-              <div style={{marginTop:12,paddingTop:12,borderTop:"1px solid rgba(255,255,255,.12)"}}>
+            <div className="fr3-buy-box" style={{padding:"14px 15px",background:"linear-gradient(135deg,#07111f,#172033)",border:"1px solid rgba(255,96,0,.2)",borderRadius:8,color:"#fff",boxShadow:"0 12px 26px rgba(15,23,42,.12)"}}>
+              <div className="fr3-buy-label" style={{fontSize:12,fontWeight:900,color:"#facc15",textTransform:"uppercase",letterSpacing:0,marginBottom:8}}>OEM / parça kodu</div>
+              <div className="fr3-buy-code" style={{fontSize:13,lineHeight:1.6,color:"#e5e7eb",overflowWrap:"anywhere"}}>{p.oem || p.sku || "Kod ile teyit"}</div>
+              <div className="fr3-buy-content" style={{marginTop:12,paddingTop:12,borderTop:"1px solid rgba(255,255,255,.12)"}}>
                 <div style={{display:"flex",alignItems:"baseline",justifyContent:"space-between",gap:10,marginBottom:8}}>
                   <div>
-                    <div style={{fontSize:11,fontWeight:900,color:"#a7b0c0",textTransform:"uppercase",marginBottom:3}}>Fiyat</div>
-                    <div style={{fontSize:24,fontWeight:950,color:"#fff",lineHeight:1}}>{fp(p.price)}</div>
+                    <div className="fr3-buy-price-label" style={{fontSize:11,fontWeight:900,color:"#a7b0c0",textTransform:"uppercase",marginBottom:3}}>Fiyat</div>
+                    <div className="fr3-buy-price" style={{fontSize:24,fontWeight:950,color:"#fff",lineHeight:1}}>{fp(p.price)}</div>
                   </div>
                   <div style={{fontSize:11,fontWeight:900,color:p.stock?"#86efac":"#fecaca",background:p.stock?"rgba(34,197,94,.12)":"rgba(239,68,68,.12)",border:`1px solid ${p.stock?"rgba(34,197,94,.24)":"rgba(239,68,68,.24)"}`,borderRadius:999,padding:"5px 8px",whiteSpace:"nowrap"}}>
                     {p.stock ? `${p.stock} stok` : "Stok yok"}
                   </div>
                 </div>
                 <div style={{display:"grid",gridTemplateColumns:"104px 1fr",gap:8,alignItems:"stretch"}}>
-                  <div style={{display:"grid",gridTemplateColumns:"32px 40px 32px",border:"1px solid rgba(255,255,255,.18)",borderRadius:7,overflow:"hidden",background:"rgba(255,255,255,.06)",minHeight:40}}>
+                  <div className="fr3-buy-qty" style={{display:"grid",gridTemplateColumns:"32px 40px 32px",border:"1px solid rgba(255,255,255,.18)",borderRadius:7,overflow:"hidden",background:"rgba(255,255,255,.06)",minHeight:40}}>
                     <button onClick={() => setQty(Math.max(1,qty-1))} style={{border:"none",background:"rgba(255,255,255,.08)",color:"#fff",fontSize:16,fontWeight:900,cursor:"pointer"}}>-</button>
                     <span style={{display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,fontWeight:950,color:"#fff"}}>{qty}</span>
                     <button onClick={() => setQty(qty+1)} style={{border:"none",background:"rgba(255,255,255,.08)",color:"#fff",fontSize:16,fontWeight:900,cursor:"pointer"}}>+</button>
                   </div>
-                  <button onClick={() => p.stock && addToCart(p, qty)} disabled={!p.stock} style={{minHeight:40,borderRadius:7,border:"1px solid rgba(255,255,255,.16)",background:p.stock?"#fff":"rgba(255,255,255,.08)",color:p.stock?"#111827":"#94a3b8",fontSize:12,fontWeight:950,cursor:p.stock?"pointer":"default",padding:"0 10px"}}>
+                  <button className="fr3-buy-add" onClick={() => p.stock && addToCart(p, qty)} disabled={!p.stock} style={{minHeight:40,borderRadius:7,border:"1px solid rgba(255,255,255,.16)",background:p.stock?"#fff":"rgba(255,255,255,.08)",color:p.stock?"#111827":"#94a3b8",fontSize:12,fontWeight:950,cursor:p.stock?"pointer":"default",padding:"0 10px"}}>
                     Sepete ekle
                   </button>
                 </div>
                 <div style={{display:"grid",gridTemplateColumns:"1.35fr .85fr",gap:8,marginTop:8}}>
-                  <a href={whatsappQuoteHref} target="_blank" rel="noopener noreferrer" onClick={() => { recordLeadEvent("whatsapp", { source:"product_price_box_whatsapp", href:whatsappQuoteHref, product:p, value:(p.price || 0) * qty }); metaTrack("Contact", metaProductPayload(p, qty, p.cat)); }}
+                  <a className="fr3-buy-wa" href={whatsappQuoteHref} target="_blank" rel="noopener noreferrer" onClick={() => { recordLeadEvent("whatsapp", { source:"product_price_box_whatsapp", href:whatsappQuoteHref, product:p, value:(p.price || 0) * qty }); metaTrack("Contact", metaProductPayload(p, qty, p.cat)); }}
                     style={{minHeight:44,borderRadius:7,background:"linear-gradient(135deg,#16a34a,#25D366)",color:"#062813",textDecoration:"none",fontSize:12,fontWeight:950,display:"flex",alignItems:"center",justifyContent:"center",textAlign:"center",padding:"0 9px"}}>
                     Kupon ve fiyat için WhatsApp
                   </a>
-                  <a href="tel:+905456087008" onClick={() => { recordLeadEvent("phone", { source:"product_price_box_phone", product:p, value:p.price || 0 }); metaTrackCustom("PhoneLead", { source:"product_price_box", product_id:p.id, sku:p.sku }); }}
+                  <a className="fr3-buy-phone" href="tel:+905456087008" onClick={() => { recordLeadEvent("phone", { source:"product_price_box_phone", product:p, value:p.price || 0 }); metaTrackCustom("PhoneLead", { source:"product_price_box", product_id:p.id, sku:p.sku }); }}
                     style={{minHeight:44,borderRadius:7,background:"linear-gradient(135deg,#ff6000,#facc15)",color:"#111827",textDecoration:"none",fontSize:12,fontWeight:950,display:"flex",alignItems:"center",justifyContent:"center",textAlign:"center",padding:"0 9px"}}>
                     Hemen ara
                   </a>
                 </div>
-                <button onClick={checkoutNow} disabled={!p.stock} style={{width:"100%",minHeight:38,marginTop:8,borderRadius:7,border:"1px solid rgba(255,255,255,.18)",background:p.stock?"rgba(255,255,255,.08)":"#1f2937",color:p.stock?"#fff":"#94a3b8",fontSize:12,fontWeight:900,cursor:p.stock?"pointer":"default"}}>
+                <button className="fr3-buy-checkout" onClick={checkoutNow} disabled={!p.stock} style={{width:"100%",minHeight:38,marginTop:8,borderRadius:7,border:"1px solid rgba(255,255,255,.18)",background:p.stock?"rgba(255,255,255,.08)":"#1f2937",color:p.stock?"#fff":"#94a3b8",fontSize:12,fontWeight:900,cursor:p.stock?"pointer":"default"}}>
                   Online ödemeye geç
                 </button>
               </div>
-              <div style={{fontSize:12,color:"#a7b0c0",marginTop:8,lineHeight:1.45}}>Siparişten önce eski parça fotoğrafı veya şase ile kontrol önerilir.</div>
+              <div className="fr3-buy-note" style={{fontSize:12,color:"#a7b0c0",marginTop:8,lineHeight:1.45}}>Siparişten önce eski parça fotoğrafı veya şase ile kontrol önerilir.</div>
             </div>
           </div>
           <div style={{fontSize:14,color:"#666",lineHeight:1.7,marginBottom:16,whiteSpace:"pre-line"}}>{linkifyContacts(detailDesc)}</div>
-          <div style={{padding:"16px 20px",background:"#f9f9f9",borderRadius:8,marginBottom:20,border:"1px solid #eee"}}>
+          <div className="fr3-legacy-price" style={{padding:"16px 20px",background:"#f9f9f9",borderRadius:8,marginBottom:20,border:"1px solid #eee"}}>
             <div style={{display:"flex",alignItems:"baseline",gap:10}}>
               <span style={{fontSize:32,fontWeight:800}}>{fp(p.price)}</span>
               {p.old && <span style={{fontSize:16,color:"#bbb",textDecoration:"line-through"}}>{fp(p.old)}</span>}
@@ -3859,7 +3872,7 @@ function ProductDetailPage() {
             </div>
             <div style={{marginTop:8,fontSize:13,color:p.stock?"#4caf50":"#e53935",fontWeight:600}}>{p.stock ? t("stockXItems").replace("{0}",p.stock) : t("outOfStockFull")}</div>
           </div>
-          <div style={{display:"flex",gap:10,flexWrap:"wrap",marginBottom:p.stock?20:10}}>
+          <div className="fr3-legacy-actions" style={{display:"flex",gap:10,flexWrap:"wrap",marginBottom:p.stock?20:10}}>
             <div style={{display:"flex",border:"1px solid #ddd",borderRadius:6,overflow:"hidden"}}>
               <button onClick={() => setQty(Math.max(1,qty-1))} style={{width:40,height:44,background:"#f5f5f5",border:"none",fontSize:18,color:"#555"}}>−</button>
               <span style={{width:48,display:"flex",alignItems:"center",justifyContent:"center",fontWeight:600}}>{qty}</span>
@@ -5666,7 +5679,7 @@ function ImageGallery({images, discount}) {
 
   return (
     <div>
-      <div onClick={() => setZoomed(true)}
+      <div className="fr3-gallery-stage" onClick={() => setZoomed(true)}
         style={{background:"radial-gradient(circle at 70% 12%, rgba(255,96,0,.24), transparent 31%), linear-gradient(145deg,#0b1020,#171d2c 62%,#222835)",borderRadius:8,height:400,display:"flex",alignItems:"center",justifyContent:"center",border:"1px solid rgba(15,23,42,.1)",position:"relative",cursor:"zoom-in",overflow:"hidden",boxShadow:"0 18px 50px rgba(15,23,42,.12)"}}>
         <div style={{position:"absolute",inset:0,background:"linear-gradient(135deg,rgba(255,255,255,.12),transparent 35%,rgba(14,165,233,.14))",pointerEvents:"none"}} />
         <img src={cdnImg(current,600)} srcSet={cdnSrcSet(current,600)} sizes="(max-width: 768px) 90vw, 600px" alt="" fetchpriority="high" decoding="async" style={{maxWidth:"86%",maxHeight:"86%",objectFit:"contain",transition:"transform .3s",filter:"drop-shadow(0 22px 26px rgba(0,0,0,.38))"}} onError={e=>{e.target.src=SITE_IMAGES.missingProduct}}/>
@@ -5677,7 +5690,7 @@ function ImageGallery({images, discount}) {
       {images.length > 1 && (
         <div style={{display:"flex",gap:8,marginTop:10,overflowX:"auto",paddingBottom:4}}>
           {images.map((img, i) => (
-            <div key={i} onClick={() => setActive(i)}
+            <div className="fr3-gallery-thumb" key={i} onClick={() => setActive(i)}
               style={{width:72,height:72,borderRadius:6,border:`2px solid ${active===i?"#ff6000":"#e2e8f0"}`,background:"#101624",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",flexShrink:0,transition:"border-color .2s",overflow:"hidden"}}>
               <img src={cdnImg(img,100)} alt="" loading="lazy" decoding="async" width={72} height={72} style={{maxWidth:"88%",maxHeight:"88%",objectFit:"contain"}} onError={e=>{e.target.src=SITE_IMAGES.missingProduct}}/>
             </div>
