@@ -2791,8 +2791,8 @@ function ProductCard({p, eager}) {
       style={{border:"1px solid rgba(15,23,42,.08)",borderRadius:8,overflow:"hidden",cursor:"pointer",background:"#fff",transition:"transform .22s ease, box-shadow .22s ease, border-color .22s ease",boxShadow:"0 12px 34px rgba(15,23,42,.08)",minHeight:"100%",display:"flex",flexDirection:"column"}}
       onMouseEnter={e => {e.currentTarget.style.boxShadow=`0 20px 55px ${accentA}33`;e.currentTarget.style.borderColor=`${accentA}66`;}}
       onMouseLeave={e => {e.currentTarget.style.boxShadow="0 12px 34px rgba(15,23,42,.08)";e.currentTarget.style.borderColor="rgba(15,23,42,.08)";}}>
-      <div style={{height:isMobile?176:212,background:`radial-gradient(circle at 78% 18%, ${accentB}33, transparent 32%), linear-gradient(145deg,#0b1020,#161b29 58%,#222835)`,display:"flex",alignItems:"center",justifyContent:"center",position:"relative",overflow:"hidden"}}>
-        <div style={{position:"absolute",inset:0,background:"linear-gradient(135deg,rgba(255,255,255,.14),transparent 35%,rgba(255,96,0,.16))",pointerEvents:"none"}} />
+      <div className="fr4-product-media" style={{height:isMobile?176:212,background:`radial-gradient(circle at 78% 18%, ${accentB}33, transparent 32%), linear-gradient(145deg,#0b1020,#161b29 58%,#222835)`,display:"flex",alignItems:"center",justifyContent:"center",position:"relative",overflow:"hidden"}}>
+        <div className="fr4-product-shine" style={{position:"absolute",inset:0,background:"linear-gradient(135deg,rgba(255,255,255,.14),transparent 35%,rgba(255,96,0,.16))",pointerEvents:"none"}} />
         {displayImage ? (
           <OptImg src={prodImg(p)} alt={lang==="en" ? translateName(p.name,lang) : seoCardName} eager={eager} style={{maxWidth:"82%",maxHeight:"82%",objectFit:"contain",filter:"drop-shadow(0 18px 24px rgba(0,0,0,.38))",transition:"transform .25s ease"}} />
         ) : (
@@ -2808,13 +2808,13 @@ function ProductCard({p, eager}) {
         </button>
         {!p.stock && <div style={{position:"absolute",inset:0,background:"rgba(7,10,18,.68)",display:"flex",alignItems:"center",justifyContent:"center"}}><span style={{background:"#fff",padding:"7px 16px",borderRadius:4,fontSize:12,fontWeight:800,color:"#d9480f"}}>{t("outOfStock")}</span></div>}
       </div>
-      <div style={{padding:isMobile?"11px 10px 12px":"13px 14px 16px",display:"flex",flexDirection:"column",gap:7,flex:1,minWidth:0}}>
-        <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:8}}>
+      <div className="fr4-product-body" style={{padding:isMobile?"11px 10px 12px":"13px 14px 16px",display:"flex",flexDirection:"column",gap:7,flex:1,minWidth:0}}>
+        <div className="fr4-product-meta" style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:8}}>
           <div style={{fontSize:11,color:accentA,fontWeight:900,textTransform:"uppercase",letterSpacing:.2}}>{p.brand || "Ekersan"}</div>
           <div style={{fontSize:10,color:"#64748b",fontWeight:700,background:"#f1f5f9",padding:"3px 7px",borderRadius:4,whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis",maxWidth:isMobile?72:120}}>{catName}</div>
         </div>
-        <div style={{fontSize:isMobile?13:14,fontWeight:800,color:"#111827",lineHeight:1.32,minHeight:isMobile?34:38,overflowWrap:"anywhere"}}>{lang==="en" ? translateName(p.name,lang) : seoCardName}</div>
-        <div style={{display:"flex",flexWrap:"wrap",alignItems:"center",gap:5,fontSize:11,color:"#64748b"}}>
+        <div className="fr4-product-title" style={{fontSize:isMobile?13:14,fontWeight:800,color:"#111827",lineHeight:1.32,minHeight:isMobile?34:38,overflowWrap:"anywhere"}}>{lang==="en" ? translateName(p.name,lang) : seoCardName}</div>
+        <div className="fr4-product-codes" style={{display:"flex",flexWrap:"wrap",alignItems:"center",gap:5,fontSize:11,color:"#64748b"}}>
           <span style={{fontWeight:900,color:"#111827",background:"#f8fafc",border:"1px solid #e2e8f0",borderRadius:5,padding:"4px 7px",lineHeight:1}}>SKU {p.sku}</span>
           {p.oem ? (
             <span title={String(p.oem)} style={{fontWeight:800,color:"#475569",background:"#fff7ed",border:"1px solid #fed7aa",borderRadius:5,padding:"4px 7px",lineHeight:1,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",maxWidth:"100%"}}>OEM {String(p.oem).slice(0,32)}</span>
@@ -2830,7 +2830,7 @@ function ProductCard({p, eager}) {
           })}
           {p.compat.length > 4 && <span style={{fontSize:9,padding:"2px 6px",color:"#999"}}>+{p.compat.length-4}</span>}
         </div>}
-        <div style={{display:"flex",alignItems:isMobile?"stretch":"center",justifyContent:"space-between",gap:isMobile?7:10,marginTop:"auto",paddingTop:4,flexDirection:isMobile?"column":"row",minWidth:0}}>
+        <div className="fr4-product-price-row" style={{display:"flex",alignItems:isMobile?"stretch":"center",justifyContent:"space-between",gap:isMobile?7:10,marginTop:"auto",paddingTop:4,flexDirection:isMobile?"column":"row",minWidth:0}}>
           <div style={{minWidth:0}}>
             <span style={{fontSize:isMobile?18:21,fontWeight:900,color:"#0f172a"}}>{fp(p.price)}</span>
             {p.old && <span style={{fontSize:13,color:"#bbb",textDecoration:"line-through",marginLeft:6}}>{fp(p.old)}</span>}
@@ -3100,7 +3100,7 @@ function HomePage() {
           <div className="fr2-product-stage"><OptImg src={prodImg(heroProduct)} alt={heroProduct.name} eager style={{maxWidth:"86%",maxHeight:"86%",objectFit:"contain"}} /></div>
           <div className="fr2-hero-product-info">
             <span>Stoktan teslim</span><h2>{heroProduct.name}</h2>
-            <div><b>{heroProduct.sku}</b><strong>{Number(heroProduct.price).toLocaleString("tr-TR",{style:"currency",currency:"TRY"})}</strong></div>
+            <div className="fr4-hero-product-bottom"><div><b>SKU {heroProduct.sku}</b><small>Uyumluluk kontrolü yapılır</small></div><strong>{Number(heroProduct.price).toLocaleString("tr-TR",{style:"currency",currency:"TRY"})}</strong><button>Ürünü incele →</button></div>
           </div>
         </article>}
       </div>
@@ -3113,9 +3113,15 @@ function HomePage() {
     </section>
     <section className="fr2-section fr2-container">
       <div className="fr2-section-head"><div><span>Ağır vasıta fren ürün grupları</span><h2>Aradığınız fren aksamını seçin</h2></div><button onClick={()=>go("products")}>Tüm ürünler <b>→</b></button></div>
-      <div className="fr2-category-grid">{categories.map(item=><button key={item.cat} onClick={()=>go("products",{cat:item.cat})}><span className="fr2-category-code">{item.code}</span><div><strong>{item.title}</strong><small>{item.note}</small></div><b>→</b></button>)}</div>
+      <div className="fr2-category-grid">{categories.map(item=><button key={item.cat} onClick={()=>go("products",{cat:item.cat})}><span className="fr2-category-code"><CategoryIcon visual={categoryVisual(item.cat)} alt={item.title} /></span><div><strong>{item.title}</strong><small>{item.note}</small></div><b>→</b></button>)}</div>
     </section>
     <section className="fr3-brand-strip"><div className="fr2-container"><span>Markaya göre hızlı arama</span><div>{brandLinks.map(brand=><button key={brand} onClick={()=>go("products",{q:brand})}>{brand}</button>)}</div></div></section>
+    <section className="fr4-service-strip"><div className="fr2-container">
+      <article><span>01</span><div><strong>OEM ve şase kontrolü</strong><small>Siparişten önce araç uyumluluğunu teyit edin.</small></div></article>
+      <article><span>02</span><div><strong>Stoktan hızlı gönderim</strong><small>Hazır ürünlerde hızlı kargo sürecinden yararlanın.</small></div></article>
+      <article><span>03</span><div><strong>Güvenli ödeme</strong><small>Kartla ödeme ve taksit seçeneklerini kullanın.</small></div></article>
+      <article><span>04</span><div><strong>Uzman parça desteği</strong><small>Fotoğraf veya kodla doğru parçayı birlikte bulun.</small></div></article>
+    </div></section>
     <section className="fr2-products-section"><div className="fr2-container">
       <div className="fr2-section-head"><div><span>Stoktan hızlı teslim</span><h2>Ağır vasıtada en çok aranan parçalar</h2></div><p>Ürün kodu, stok bilgisi ve araç uyumluluğu tek ekranda.</p></div>
       <div className="fr2-product-grid">{featured.map((product,index)=><ProductCard key={product.id} p={product} eager={index<3}/>)}</div>
