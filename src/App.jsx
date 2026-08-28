@@ -2047,8 +2047,8 @@ export default function App() {
           style={{position:"fixed",bottom:100,right:24,zIndex:999,width:44,height:44,borderRadius:"50%",background:"#fff",border:"1px solid #ddd",boxShadow:"0 2px 8px rgba(0,0,0,.1)",fontSize:18,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",animation:"fadeIn .3s"}}>↑</button>}
 
         {/* HEADER */}
-        <header style={{display:isAdminPage?"none":"block",background:"#080d17",borderBottom:"1px solid rgba(255,255,255,.08)",position:"sticky",top:0,zIndex:100,boxShadow:"0 12px 34px rgba(0,0,0,.28)",backdropFilter:"blur(12px)"}}>
-          <div style={{background:"linear-gradient(90deg,#090d16,#151821 48%,#ff6000)",padding:isMobile?"5px 0":"6px 0"}}>
+        <header className="fr2-header" style={{display:isAdminPage?"none":"block",background:"#080d17",borderBottom:"1px solid rgba(255,255,255,.08)",position:"sticky",top:0,zIndex:100,boxShadow:"0 12px 34px rgba(0,0,0,.28)",backdropFilter:"blur(12px)"}}>
+          <div className="fr2-topbar" style={{background:"linear-gradient(90deg,#090d16,#151821 48%,#ff6000)",padding:isMobile?"5px 0":"6px 0"}}>
             <div style={{maxWidth:1200,margin:"0 auto",padding:isMobile?"0 14px":"0 20px",display:"flex",justifyContent:isMobile?"center":"space-between",alignItems:"center"}}>
               <div style={{display:"flex",gap:12,alignItems:"center"}}>
                 <span style={{color:"#f8fafc",fontSize:isMobile?11:12,fontWeight:isMobile?800:400,whiteSpace:"nowrap",letterSpacing:isMobile?.2:0}}>{lang==="tr"?(isMobile?"İndirim kuponu için WhatsApp":"İndirim kuponu için WhatsApp'tan iletişime geçin | 3000 TL üzeri ücretsiz kargo"):(isMobile?"Ask for a coupon on WhatsApp":"Contact us on WhatsApp for an available coupon | Free shipping over 3000 TL")}</span>
@@ -2082,16 +2082,17 @@ export default function App() {
               </div>}
             </div>
           </div>
-          <div style={isMobile ? {padding:"9px 14px 11px",display:"flex",alignItems:"center",gap:10,flexWrap:"wrap",background:"radial-gradient(circle at 88% 18%, rgba(255,96,0,.36), transparent 28%), linear-gradient(135deg,#0b1020,#151b2b 62%,#24150c)",color:"#fff"} : {padding:"10px 24px",display:"grid",gridTemplateColumns:"minmax(0,1fr) auto minmax(0,1fr)",alignItems:"center",gap:16,background:"radial-gradient(circle at 6% 45%, rgba(14,165,233,.24), transparent 24%), radial-gradient(circle at 91% 18%, rgba(255,96,0,.34), transparent 30%), linear-gradient(135deg,#090d16,#121a2a 58%,#24150c)",color:"#fff"}}>
+          <div className="fr2-header-main" style={isMobile ? {padding:"9px 14px 11px",display:"flex",alignItems:"center",gap:10,flexWrap:"wrap",background:"radial-gradient(circle at 88% 18%, rgba(255,96,0,.36), transparent 28%), linear-gradient(135deg,#0b1020,#151b2b 62%,#24150c)",color:"#fff"} : {padding:"10px 24px",display:"grid",gridTemplateColumns:"minmax(0,1fr) auto minmax(0,1fr)",alignItems:"center",gap:16,background:"radial-gradient(circle at 6% 45%, rgba(14,165,233,.24), transparent 24%), radial-gradient(circle at 91% 18%, rgba(255,96,0,.34), transparent 30%), linear-gradient(135deg,#090d16,#121a2a 58%,#24150c)",color:"#fff"}}>
             {/* Mobile hamburger */}
             {isMobile && <button onClick={()=>setMobileMenuOpen(!mobileMenuOpen)} style={{width:40,height:40,display:"flex",alignItems:"center",justifyContent:"center",background:"none",border:"none",fontSize:22,color:"#fff",padding:0,cursor:"pointer",flex:"0 0 auto"}}>☰</button>}
 
-            <div style={{cursor:"pointer",flexShrink:0,justifySelf:"start",order:isMobile?2:"initial"}} onClick={() => go("home")}>
+            <div className="fr2-wordmark" role="button" tabIndex={0} aria-label="Frenciniz ana sayfa" style={{cursor:"pointer",flexShrink:0,justifySelf:"start",order:isMobile?2:"initial"}} onClick={() => go("home")} onKeyDown={event=>{if(event.key==="Enter"||event.key===" ") go("home")}}>
               <img src={BRAND_LOGO} alt="Frenciniz" width={isMobile?236:348} height={isMobile?53:78} fetchpriority="high" style={{height:isMobile?53:78,width:isMobile?"min(236px, calc(100vw - 160px))":"auto",objectFit:"contain",display:"block",imageRendering:"auto",filter:"drop-shadow(0 12px 22px rgba(0,0,0,.35))"}} onError={e=>{e.currentTarget.src="/logo.webp?v=3"}}/>
+              <span className="fr2-wordmark-text">Frenciniz<em>.com</em></span>
             </div>
 
             {/* Desktop: arama tam ortada (grid center col) */}
-            {!isMobile && <div style={{width:500,display:"flex",border:"2px solid rgba(255,96,0,.9)",borderRadius:8,overflow:"hidden",justifySelf:"center",background:"#fff",boxShadow:"0 16px 34px rgba(255,96,0,.22)"}}>
+            {!isMobile && <div className="fr2-header-search" style={{width:500,display:"flex",border:"2px solid rgba(255,96,0,.9)",borderRadius:8,overflow:"hidden",justifySelf:"center",background:"#fff",boxShadow:"0 16px 34px rgba(255,96,0,.22)"}}>
               <input value={q} onChange={e => setQ(e.target.value)} onKeyDown={e => {if(e.key==="Enter" && q.trim()) go("products",{q})}}
                 placeholder={t("search")}
                 style={{flex:1,padding:"10px 14px",border:"none",fontSize:14,outline:"none"}} />
@@ -2099,7 +2100,7 @@ export default function App() {
             </div>}
 
             {/* Desktop actions — sağa yaslı */}
-            {!isMobile && <div style={{display:"flex",alignItems:"center",gap:20,flexShrink:0,justifySelf:"end"}}>
+            {!isMobile && <div className="fr2-header-actions" style={{display:"flex",alignItems:"center",gap:20,flexShrink:0,justifySelf:"end"}}>
               <button onClick={() => go("favs")} style={{background:"none",border:"none",color:"#e5e7eb",fontSize:13,display:"flex",flexDirection:"column",alignItems:"center",gap:2,position:"relative",cursor:"pointer"}}>
                 <span style={{fontSize:20}}>♡</span><span>{t("favs")}</span>
                 {favs.length > 0 && <span style={{position:"absolute",top:-4,right:-8,background:"#ff6000",color:"#fff",fontSize:10,fontWeight:700,width:18,height:18,borderRadius:"50%",display:"flex",alignItems:"center",justifyContent:"center"}}>{favs.length}</span>}
@@ -2114,7 +2115,7 @@ export default function App() {
             </div>}
 
             {/* Mobile search */}
-            {isMobile && <div style={{order:4,flex:"1 0 100%",width:"100%",display:"flex",border:"2px solid #ff6000",borderRadius:8,overflow:"hidden",background:"#fff"}}>
+            {isMobile && <div className="fr2-header-search fr2-header-search-mobile" style={{order:4,flex:"1 0 100%",width:"100%",display:"flex",border:"2px solid #ff6000",borderRadius:8,overflow:"hidden",background:"#fff"}}>
               <input value={q} onChange={e => setQ(e.target.value)} onKeyDown={e => {if(e.key==="Enter" && q.trim()) go("products",{q})}}
                 placeholder={t("search")}
                 style={{flex:1,padding:"8px 10px",border:"none",fontSize:13,outline:"none"}} />
@@ -2137,8 +2138,8 @@ export default function App() {
         {/* CONTENT */}
         {!isAdminPage && mobileMenuOpen && <MobileMenu />}
         {!isAdminPage && mobileFilterOpen && <MobileFilterDrawer />}
-        <div style={{marginLeft: ((page==="home" || page==="products") && !isMobile) ? 220 : 0}}>
-        <main style={{minHeight:isAdminPage?"100vh":"60vh"}}>
+        <div style={{marginLeft:0}}>
+        <main className={isAdminPage?"":"fr2-storefront-main"} style={{minHeight:isAdminPage?"100vh":"60vh"}}>
           {!isAdminPage && <CompatibilityCheckBanner />}
           {page==="home"&&<HomePage/>}
           {page==="products"&&<ProductsPage/>}
@@ -2192,10 +2193,10 @@ export default function App() {
         {!isAdminPage && <ChatWidget />}
 
         {/* FOOTER */}
-        <footer style={{display:isAdminPage?"none":"block",background:"#1a1a1a",color:"#ccc",padding:"40px 0 20px",marginTop:40}}>
+        <footer className="fr2-footer" style={{display:isAdminPage?"none":"block",background:"#1a1a1a",color:"#ccc",padding:"40px 0 20px",marginTop:40}}>
           <div style={{maxWidth:1200,margin:"0 auto",padding:"0 20px"}}>
             {/* Newsletter */}
-            <div style={{background:"#252525",borderRadius:8,padding:isMobile?"20px":"24px 28px",marginBottom:32,display:"flex",flexDirection:isMobile?"column":"row",justifyContent:"space-between",alignItems:isMobile?"stretch":"center",gap:isMobile?16:20}}>
+            <div className="fr2-newsletter" style={{background:"#252525",borderRadius:8,padding:isMobile?"20px":"24px 28px",marginBottom:32,display:"flex",flexDirection:isMobile?"column":"row",justifyContent:"space-between",alignItems:isMobile?"stretch":"center",gap:isMobile?16:20}}>
               <div>
                 <div style={{fontSize:isMobile?16:18,fontWeight:700,color:"#fff",marginBottom:4}}>{t("newsletter")}</div>
                 <div style={{fontSize:13,color:"#888"}}>{t("newsletterDesc")}</div>
@@ -2369,7 +2370,7 @@ function TodaySalesStrip() {
 
 function CompatibilityCheckBanner() {
   const {isMobile, page, lang} = use$();
-  if (page === "admin") return null;
+  if (page === "admin" || page === "home") return null;
   const href = compatibilityCheckWhatsAppUrl();
   return (
     <section style={{background:"linear-gradient(90deg,#fff7ed,#fef3c7 54%,#dcfce7)",borderBottom:"1px solid #fed7aa",color:"#111827"}}>
@@ -3015,6 +3016,87 @@ function QuickQuoteBox({source = "quick_quote", product = null, dark = false}) {
 
 // ===== HOME =====
 function HomePage() {
+  const {go, products} = use$();
+  const [partQuery, setPartQuery] = useState("");
+  const productList = products || [];
+  const featured = useMemo(() => {
+    const pool = productList.filter(product => Number(product.stock || 0) > 0);
+    const priority = ["fren-diski","fren-kampanasi","fren-korugu","kaliper-tamir-takimi","bijon","porya","fren-balatasi"];
+    const hotProducts = HOME_PRIORITY_PRODUCT_IDS.map(id => pool.find(product => String(product.id) === String(id))).filter(Boolean);
+    const categoryPicks = priority.flatMap(category => pool.filter(product => product.cat === category).slice(0, 2));
+    return [...hotProducts, ...categoryPicks]
+      .filter((product, index, list) => list.findIndex(item => String(item.id) === String(product.id)) === index)
+      .slice(0, 8);
+  }, [productList]);
+  const totalCount = productList.length || 1055;
+  const stockCount = productList.filter(product => Number(product.stock || 0) > 0).length || totalCount;
+  const heroProduct = featured.find(hasRealImg) || featured[0];
+  useCriticalImagePreload(featured, 3, 420);
+  const categories = [
+    {cat:"fren-diski", code:"01", title:"Fren Diski", note:"Kamyon, tır ve dorse"},
+    {cat:"fren-kampanasi", code:"02", title:"Fren Kampanası", note:"Ford Cargo, BPW, SAF"},
+    {cat:"fren-balatasi", code:"03", title:"Fren Balatası", note:"Disk ve kampana grubu"},
+    {cat:"fren-korugu", code:"04", title:"Fren Körüğü", note:"Servis ve imdatlı tipler"},
+    {cat:"kaliper-tamir-takimi", code:"05", title:"Kaliper Parçaları", note:"Knorr, Wabco, Meritor"},
+    {cat:"abs-sensoru-modulu-kablo", code:"06", title:"ABS / EBS", note:"Sensör, kablo ve modül"},
+  ];
+  const submitSearch = event => {
+    event.preventDefault();
+    if (partQuery.trim()) go("products", {q: partQuery.trim()});
+  };
+  const whatsappHref = generalWhatsAppUrl("ana sayfa parça teyidi");
+
+  return <>
+    <section className="fr2-hero">
+      <div className="fr2-container fr2-hero-grid">
+        <div className="fr2-hero-copy">
+          <span className="fr2-kicker">Ağır vasıta fren parçasında uzman destek</span>
+          <h1>Doğru parçayı<br/><em>ilk seferde</em> bulun.</h1>
+          <p>OEM kodunu, araç modelini veya parça adını yazın. Stoktaki uygun ürünü, fiyatı ve teslimat seçeneğini tek ekranda görün.</p>
+          <form className="fr2-part-search" onSubmit={submitSearch}>
+            <div><span>OEM / SKU / ARAÇ</span><input value={partQuery} onChange={event=>setPartQuery(event.target.value)} placeholder="Örn. 9604210412 veya Actros fren diski" aria-label="Parça ara" /></div>
+            <button type="submit">Parçayı bul</button>
+          </form>
+          <div className="fr2-hero-actions">
+            <a className="fr2-wa" href={whatsappHref} target="_blank" rel="noopener noreferrer" onClick={() => recordLeadEvent("whatsapp", {source:"home_hero_new", href:whatsappHref})}>WhatsApp’tan fotoğraf gönder</a>
+            <a className="fr2-phone" href="tel:+905456087008" onClick={() => recordLeadEvent("phone", {source:"home_hero_new"})}>0545 608 7008</a>
+          </div>
+          <div className="fr2-proof-row">
+            <div><strong>{stockCount.toLocaleString("tr-TR")}</strong><span>stoklu ürün</span></div>
+            <div><strong>14:00</strong><span>aynı gün kargo</span></div>
+            <div><strong>12 taksit</strong><span>PayTR güvencesi</span></div>
+          </div>
+        </div>
+        {heroProduct && <article className="fr2-hero-product" onClick={()=>go("product",{id:heroProduct.id})}>
+          <div className="fr2-stock-pill">Stokta</div>
+          <div className="fr2-product-stage"><OptImg src={prodImg(heroProduct)} alt={heroProduct.name} eager style={{maxWidth:"86%",maxHeight:"86%",objectFit:"contain"}} /></div>
+          <div className="fr2-hero-product-info">
+            <span>Bugünün öne çıkan ürünü</span><h2>{heroProduct.name}</h2>
+            <div><b>{heroProduct.sku}</b><strong>{Number(heroProduct.price).toLocaleString("tr-TR",{style:"currency",currency:"TRY"})}</strong></div>
+          </div>
+        </article>}
+      </div>
+    </section>
+    <section className="fr2-section fr2-container">
+      <div className="fr2-section-head"><div><span>Hızlı seçim</span><h2>Aradığınız parça grubu</h2></div><button onClick={()=>go("products")}>Tüm ürünler <b>→</b></button></div>
+      <div className="fr2-category-grid">{categories.map(item=><button key={item.cat} onClick={()=>go("products",{cat:item.cat})}><span className="fr2-category-code">{item.code}</span><div><strong>{item.title}</strong><small>{item.note}</small></div><b>→</b></button>)}</div>
+    </section>
+    <section className="fr2-products-section"><div className="fr2-container">
+      <div className="fr2-section-head"><div><span>Stoktan hızlı teslim</span><h2>En çok aranan parçalar</h2></div><p>Gerçek ürün bilgisi, görünür OEM kodu ve tek dokunuşla teklif.</p></div>
+      <div className="fr2-product-grid">{featured.map((product,index)=><ProductCard key={product.id} p={product} eager={index<3}/>)}</div>
+    </div></section>
+    <section className="fr2-how"><div className="fr2-container">
+      <div className="fr2-section-head fr2-section-head-light"><div><span>Yanlış parça riskini azaltın</span><h2>Üç adımda doğru parça</h2></div></div>
+      <div className="fr2-steps"><article><b>1</b><h3>Kodu veya aracı yazın</h3><p>OEM, SKU, şase bilgisi ya da eski parça fotoğrafı yeterli.</p></article><article><b>2</b><h3>Uyumluluğu teyit edin</h3><p>Ekibimiz stok, ölçü ve araç bilgisini siparişten önce kontrol eder.</p></article><article><b>3</b><h3>Güvenle sipariş verin</h3><p>Kartla güvenli ödeme veya WhatsApp üzerinden hızlı sipariş.</p></article></div>
+    </div></section>
+    <section className="fr2-fleet"><div className="fr2-container fr2-fleet-grid">
+      <div><span>Filo · Servis · Toptan alım</span><h2>Parça listenizi gönderin,<br/>tek teklif hazırlayalım.</h2><p>Araç parkı, OEM kodları ve adetleri paylaşın. Stok ve termin bilgisini tek listede alın.</p></div>
+      <div><QuickQuoteBox source="home_fleet_new" dark /></div>
+    </div></section>
+  </>;
+}
+
+function HomePagePrevious() {
   const {go, isMobile, t, lang, products} = use$();
   const productList = products || [];
   const popular = useMemo(() => {
@@ -3394,8 +3476,7 @@ function ProductsPage() {
 
   return (
     <>
-    {!isMobile && <CategorySidebarV2 activeCat={cat} onSelect={(id) => go("products", id === "all" ? {} : {cat: id})} go={go} isFixed={true} />}
-    <div style={{maxWidth:1200,margin:"0 auto",padding:"20px"}}>
+    <div className="fr2-products-page" style={{maxWidth:1200,margin:"0 auto",padding:"20px"}}>
       <div style={{fontSize:13,color:"#999",marginBottom:16}}><span style={{cursor:"pointer"}} onClick={() => go("home")}>{t("home")}</span> / <span style={{color:"#555"}}>{term ? `"${term}"` : catName}</span></div>
       
       <div style={{display:"flex",gap:20,alignItems:"flex-start"}}>
@@ -3403,7 +3484,7 @@ function ProductsPage() {
         {!isMobile && <div style={{width:220,flexShrink:0,position:"sticky",top:150,maxHeight:"calc(100vh - 170px)",overflowY:"auto"}}><FilterPanel includeCategory={false} /></div>}
 
         <div style={{flex:1}}>
-          {!term && <div style={{position:"relative",overflow:"hidden",borderRadius:8,background:"linear-gradient(135deg,#07111f 0%,#111827 54%,#7c2d12 100%)",color:"#fff",padding:isMobile?"18px 16px":"24px 26px",marginBottom:18,boxShadow:"0 20px 50px rgba(15,23,42,.18)",border:"1px solid rgba(255,255,255,.1)"}}>
+          {!term && <div className="fr2-category-hero" style={{position:"relative",overflow:"hidden",borderRadius:8,background:"linear-gradient(135deg,#07111f 0%,#111827 54%,#7c2d12 100%)",color:"#fff",padding:isMobile?"18px 16px":"24px 26px",marginBottom:18,boxShadow:"0 20px 50px rgba(15,23,42,.18)",border:"1px solid rgba(255,255,255,.1)"}}>
             <div style={{position:"absolute",inset:0,background:"radial-gradient(circle at 80% 10%, rgba(250,204,21,.26), transparent 28%), radial-gradient(circle at 10% 80%, rgba(255,96,0,.25), transparent 32%)",pointerEvents:"none"}} />
             <div style={{position:"relative",display:"grid",gridTemplateColumns:isMobile?"1fr":"minmax(0,1fr) 260px",gap:isMobile?16:22,alignItems:"center"}}>
               <div style={{minWidth:0}}>
@@ -3482,7 +3563,7 @@ function ProductsPage() {
               </a>
             </div>
           ) : (
-            <div style={{display:"grid",gridTemplateColumns:isMobile?"repeat(2,1fr)":"repeat(3,1fr)",gap:isMobile?10:16}}>{items.map((p,i) => <ProductCard key={p.id} p={p} eager={i<2} />)}</div>
+            <div className="fr2-catalog-grid" style={{display:"grid",gridTemplateColumns:isMobile?"repeat(2,1fr)":"repeat(3,1fr)",gap:isMobile?10:16}}>{items.map((p,i) => <ProductCard key={p.id} p={p} eager={i<2} />)}</div>
           )}
         </div>
       </div>
@@ -3688,7 +3769,7 @@ function ProductDetailPage() {
   };
 
   return (
-    <div style={{maxWidth:1200,margin:"0 auto",padding:isMobile?"16px 12px 104px":"20px"}}>
+    <div className="fr2-product-detail" style={{maxWidth:1200,margin:"0 auto",padding:isMobile?"16px 12px 104px":"20px"}}>
       <div style={{fontSize:13,color:"#999",marginBottom:20}}>
         <span style={{cursor:"pointer"}} onClick={() => go("home")}>{t("home")}</span> / {(() => { const sub = CATS.find(c=>c.id===p.cat); const grp = sub?.parent ? CATS.find(c=>c.id===sub.parent) : null; return <>{grp && <><span style={{cursor:"pointer"}} onClick={() => go("products",{cat:grp.id})}>{translateCat(grp,lang)}</span> / </>}<span style={{cursor:"pointer"}} onClick={() => go("products",{cat:p.cat})}>{sub ? translateCat(sub,lang) : p.cat}</span></>; })()} / <span style={{color:"#555"}}>{lang==="en" ? translateName(p.name,lang) : seoDisplayName}</span>
       </div>
@@ -3970,7 +4051,7 @@ function CartPage() {
     : "Kupon";
 
   return (
-    <div style={{maxWidth:1200,margin:"0 auto",padding:isMobile?"16px 12px 24px":"20px",overflow:"hidden"}}>
+    <div className="fr2-cart-page" style={{maxWidth:1200,margin:"0 auto",padding:isMobile?"16px 12px 24px":"20px",overflow:"hidden"}}>
       <h1 style={{fontSize:isMobile?20:22,fontWeight:700,marginBottom:isMobile?14:20}}>Sepetim</h1>
       {cart.length === 0 ? (
         <div style={{textAlign:"center",padding:"60px 0"}}><div style={{fontSize:48,marginBottom:12}}>🛒</div><p style={{color:"#999",marginBottom:16}}>Sepetiniz boş</p>
@@ -4154,7 +4235,7 @@ function CheckoutPage() {
   if(!cart.length) return <div style={{textAlign:"center",padding:"60px 20px"}}><p style={{color:"#999"}}>Sepetiniz boş.</p></div>;
 
   return (
-    <div style={{maxWidth:800,margin:"0 auto",padding:isMobile?"16px 12px 24px":"20px",overflow:"hidden"}}>
+    <div className="fr2-checkout-page" style={{maxWidth:800,margin:"0 auto",padding:isMobile?"16px 12px 24px":"20px",overflow:"hidden"}}>
       <h1 style={{fontSize:isMobile?20:22,fontWeight:700,marginBottom:isMobile?14:20}}>Sipariş</h1>
       <div style={{display:"flex",gap:isMobile?6:16,marginBottom:isMobile?18:28,alignItems:"center",justifyContent:isMobile?"space-between":"flex-start",minWidth:0}}>
         {[{n:1,l:"Teslimat"},{n:2,l:"Ödeme"},{n:3,l:"Onay"}].map((s,i) => (
