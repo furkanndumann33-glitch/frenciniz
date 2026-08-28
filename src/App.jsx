@@ -2322,9 +2322,9 @@ function CouponWhatsAppStrip() {
 function StoreCategoryNav() {
   const {go, lang} = use$();
   const items = lang === "en" ? [
-    ["all","All products"],["fren-diski","Brake discs"],["fren-kampanasi","Brake drums"],["fren-balatasi","Brake pads"],["fren-korugu","Brake chambers"],["kaliper-tamir-takimi","Caliper parts"],["abs-sensoru-modulu-kablo","ABS / EBS"],["bijon","Wheel studs"],
+    ["all","All products"],["fren-diski","Brake discs"],["fren-kampanasi","Brake drums"],["fren-balatasi","Brake pads"],["fren-korugu","Brake chambers"],["suspansiyon-korugu","Air springs"],["kaliper-tamir-takimi","Caliper parts"],["abs-sensoru-modulu-kablo","ABS / EBS"],["bijon","Hub & studs"],
   ] : [
-    ["all","Tüm ürünler"],["fren-diski","Fren diskleri"],["fren-kampanasi","Fren kampanaları"],["fren-balatasi","Fren balataları"],["fren-korugu","Fren körükleri"],["kaliper-tamir-takimi","Kaliper parçaları"],["abs-sensoru-modulu-kablo","ABS / EBS"],["bijon","Bijon ve porya"],
+    ["all","Tüm ürünler"],["fren-diski","Fren diskleri"],["fren-kampanasi","Fren kampanaları"],["fren-balatasi","Fren balataları"],["fren-korugu","Fren körükleri"],["suspansiyon-korugu","Süspansiyon körükleri"],["kaliper-tamir-takimi","Kaliper parçaları"],["abs-sensoru-modulu-kablo","ABS / EBS"],["bijon","Bijon ve porya"],
   ];
   return <nav className="fr3-category-nav" aria-label={lang==="en"?"Product categories":"Ürün kategorileri"}>
     <div>{items.map(([id,label])=><button key={id} onClick={()=>go("products",id==="all"?{}:{cat:id})}>{label}</button>)}</div>
@@ -3051,13 +3051,22 @@ function HomePage() {
   const heroProduct = featured.find(hasRealImg) || featured[0];
   useCriticalImagePreload(featured, 3, 420);
   const categories = [
-    {cat:"fren-diski", code:"01", title:"Fren Diski", note:"Kamyon, tır ve dorse"},
-    {cat:"fren-kampanasi", code:"02", title:"Fren Kampanası", note:"Ford Cargo, BPW, SAF"},
-    {cat:"fren-balatasi", code:"03", title:"Fren Balatası", note:"Disk ve kampana grubu"},
-    {cat:"fren-korugu", code:"04", title:"Fren Körüğü", note:"Servis ve imdatlı tipler"},
-    {cat:"kaliper-tamir-takimi", code:"05", title:"Kaliper Parçaları", note:"Knorr, Wabco, Meritor"},
-    {cat:"abs-sensoru-modulu-kablo", code:"06", title:"ABS / EBS", note:"Sensör, kablo ve modül"},
+    {cat:"fren-diski", code:"DİSK", title:"Fren Diskleri", note:"Kamyon, çekici, otobüs ve dorse"},
+    {cat:"fren-kampanasi", code:"KMP", title:"Fren Kampanaları", note:"Ford Cargo, BPW, SAF ve ROR"},
+    {cat:"fren-balatasi", code:"BLT", title:"Fren Balataları", note:"Disk ve kampana fren sistemleri"},
+    {cat:"fren-korugu", code:"FRK", title:"Fren Körükleri", note:"Servis, imdatlı ve çiftli tipler"},
+    {cat:"suspansiyon-korugu", code:"SÜS", title:"Süspansiyon Körükleri", note:"Kamyon, otobüs ve dorse grubu"},
+    {cat:"kaliper-tamir-takimi", code:"KLP", title:"Kaliper Parçaları", note:"Knorr, Wabco, Meritor ve ELSA"},
+    {cat:"abs-sensoru-modulu-kablo", code:"ABS", title:"ABS / EBS", note:"Sensör, kablo ve modülatör"},
+    {cat:"bijon", code:"PRY", title:"Bijon ve Porya", note:"Aks, göbek ve bağlantı grubu"},
   ];
+  const vehicleLinks = [
+    {id:"kamyon",label:"Kamyon",note:"Ford Cargo · Mercedes · MAN"},
+    {id:"tir",label:"Çekici",note:"Actros · TGX · XF · FH"},
+    {id:"otobus",label:"Otobüs",note:"Travego · Tourismo · Fortuna"},
+    {id:"dorse",label:"Dorse",note:"BPW · SAF · ROR · Krone"},
+  ];
+  const brandLinks = ["Mercedes","Ford Cargo","MAN","DAF","Volvo","Scania","BPW","SAF"];
   const submitSearch = event => {
     event.preventDefault();
     if (partQuery.trim()) go("products", {q: partQuery.trim()});
@@ -3068,47 +3077,54 @@ function HomePage() {
     <section className="fr2-hero">
       <div className="fr2-container fr2-hero-grid">
         <div className="fr2-hero-copy">
-          <span className="fr2-kicker">1.000+ stoklu ağır vasıta ürünü</span>
-          <h1>Aracınıza uygun fren parçasını <em>kolayca bulun.</em></h1>
-          <p>OEM kodu, SKU, araç modeli veya ürün adıyla arayın. Güncel fiyatı görün, güvenle sepete ekleyin.</p>
+          <span className="fr2-kicker">Ağır vasıta fren aksamında uzman mağaza</span>
+          <h1>Kamyon, çekici, otobüs ve dorse için <em>doğru fren parçası.</em></h1>
+          <p>Fren diski, kampana, balata, körük, kaliper ve ABS/EBS ürünlerini OEM kodu, SKU veya araç modeliyle bulun.</p>
           <form className="fr2-part-search" onSubmit={submitSearch}>
             <div><span>OEM / SKU / ARAÇ</span><input value={partQuery} onChange={event=>setPartQuery(event.target.value)} placeholder="Örn. 9604210412 veya Actros fren diski" aria-label="Parça ara" /></div>
             <button type="submit">Parçayı bul</button>
           </form>
           <div className="fr2-hero-actions">
-            <a className="fr2-wa" href={whatsappHref} target="_blank" rel="noopener noreferrer" onClick={() => recordLeadEvent("whatsapp", {source:"home_hero_new", href:whatsappHref})}>WhatsApp’tan fotoğraf gönder</a>
-            <a className="fr2-phone" href="tel:+905456087008" onClick={() => recordLeadEvent("phone", {source:"home_hero_new"})}>0545 608 7008</a>
+            <a className="fr2-wa" href={whatsappHref} target="_blank" rel="noopener noreferrer" onClick={() => recordLeadEvent("whatsapp", {source:"home_hero_new", href:whatsappHref})}>Parça fotoğrafını WhatsApp’tan gönder</a>
+            <a className="fr2-phone" href="tel:+905456087008" onClick={() => recordLeadEvent("phone", {source:"home_hero_new"})}>Uzmanı ara: 0545 608 7008</a>
           </div>
           <div className="fr2-proof-row">
-            <div><strong>{stockCount.toLocaleString("tr-TR")}</strong><span>stoklu ürün</span></div>
-            <div><strong>14:00</strong><span>aynı gün kargo</span></div>
-            <div><strong>12 taksit</strong><span>PayTR güvencesi</span></div>
+            <div><strong>{stockCount.toLocaleString("tr-TR")}</strong><span>stoklu ağır vasıta parçası</span></div>
+            <div><strong>OEM teyidi</strong><span>yanlış parça riskini azaltın</span></div>
+            <div><strong>Güvenli ödeme</strong><span>kartla ödeme ve taksit</span></div>
           </div>
         </div>
         {heroProduct && <article className="fr2-hero-product" onClick={()=>go("product",{id:heroProduct.id})}>
           <div className="fr2-stock-pill">Stokta</div>
           <div className="fr2-product-stage"><OptImg src={prodImg(heroProduct)} alt={heroProduct.name} eager style={{maxWidth:"86%",maxHeight:"86%",objectFit:"contain"}} /></div>
           <div className="fr2-hero-product-info">
-            <span>Öne çıkan fırsat</span><h2>{heroProduct.name}</h2>
+            <span>Stoktan teslim</span><h2>{heroProduct.name}</h2>
             <div><b>{heroProduct.sku}</b><strong>{Number(heroProduct.price).toLocaleString("tr-TR",{style:"currency",currency:"TRY"})}</strong></div>
           </div>
         </article>}
       </div>
     </section>
+    <section className="fr3-vehicle-finder" aria-label="Araç tipine göre ağır vasıta fren parçaları">
+      <div className="fr2-container">
+        <div className="fr3-vehicle-title"><span>Aracınızı seçin</span><strong>Doğru ürün grubuna hızlı geçin</strong></div>
+        <div className="fr3-vehicle-grid">{vehicleLinks.map(item=><button key={item.id} onClick={()=>go("products",{veh:item.id})}><b>{item.label}</b><small>{item.note}</small><span>→</span></button>)}</div>
+      </div>
+    </section>
     <section className="fr2-section fr2-container">
-      <div className="fr2-section-head"><div><span>Kolay alışveriş</span><h2>Popüler kategoriler</h2></div><button onClick={()=>go("products")}>Tüm ürünler <b>→</b></button></div>
+      <div className="fr2-section-head"><div><span>Ağır vasıta fren ürün grupları</span><h2>Aradığınız fren aksamını seçin</h2></div><button onClick={()=>go("products")}>Tüm ürünler <b>→</b></button></div>
       <div className="fr2-category-grid">{categories.map(item=><button key={item.cat} onClick={()=>go("products",{cat:item.cat})}><span className="fr2-category-code">{item.code}</span><div><strong>{item.title}</strong><small>{item.note}</small></div><b>→</b></button>)}</div>
     </section>
+    <section className="fr3-brand-strip"><div className="fr2-container"><span>Markaya göre hızlı arama</span><div>{brandLinks.map(brand=><button key={brand} onClick={()=>go("products",{q:brand})}>{brand}</button>)}</div></div></section>
     <section className="fr2-products-section"><div className="fr2-container">
-      <div className="fr2-section-head"><div><span>Stoktan hızlı teslim</span><h2>En çok aranan parçalar</h2></div><p>Gerçek ürün bilgisi, görünür OEM kodu ve tek dokunuşla teklif.</p></div>
+      <div className="fr2-section-head"><div><span>Stoktan hızlı teslim</span><h2>Ağır vasıtada en çok aranan parçalar</h2></div><p>Ürün kodu, stok bilgisi ve araç uyumluluğu tek ekranda.</p></div>
       <div className="fr2-product-grid">{featured.map((product,index)=><ProductCard key={product.id} p={product} eager={index<3}/>)}</div>
     </div></section>
     <section className="fr2-how"><div className="fr2-container">
-      <div className="fr2-section-head fr2-section-head-light"><div><span>Frenciniz avantajları</span><h2>Alışveriş burada daha kolay</h2></div></div>
-      <div className="fr2-steps"><article><b>1</b><h3>Kodu veya aracı yazın</h3><p>OEM, SKU, şase bilgisi ya da eski parça fotoğrafı yeterli.</p></article><article><b>2</b><h3>Uyumluluğu teyit edin</h3><p>Ekibimiz stok, ölçü ve araç bilgisini siparişten önce kontrol eder.</p></article><article><b>3</b><h3>Güvenle sipariş verin</h3><p>Kartla güvenli ödeme veya WhatsApp üzerinden hızlı sipariş.</p></article></div>
+      <div className="fr2-section-head fr2-section-head-light"><div><span>Doğru parça güvencesi</span><h2>Ağır vasıtada parçayı şansa bırakmayın</h2></div></div>
+      <div className="fr2-steps"><article><b>1</b><h3>OEM kodunu veya aracı yazın</h3><p>SKU, şase bilgisi veya eski parça fotoğrafıyla aradığınız ürünü netleştirin.</p></article><article><b>2</b><h3>Uyumluluğu birlikte doğrulayın</h3><p>Araç, aks, ölçü ve bağlantı bilgilerini siparişten önce kontrol edelim.</p></article><article><b>3</b><h3>Stoktan güvenle sipariş verin</h3><p>Kartla güvenli ödeme yapın veya uzman desteğiyle siparişi tamamlayın.</p></article></div>
     </div></section>
     <section className="fr2-fleet"><div className="fr2-container fr2-fleet-grid">
-      <div><span>Filo · Servis · Toptan alım</span><h2>Parça listenizi gönderin,<br/>tek teklif hazırlayalım.</h2><p>Araç parkı, OEM kodları ve adetleri paylaşın. Stok ve termin bilgisini tek listede alın.</p></div>
+      <div><span>Filo · Servis · Toptan alım</span><h2>Ağır vasıta filonuz için<br/>tek noktadan fren tedariki.</h2><p>Araç parkını, OEM kodlarını ve adetleri paylaşın. Diskten kalipere, körükten ABS/EBS grubuna kadar stok ve termin bilgisini tek teklifte alın.</p></div>
       <div><QuickQuoteBox source="home_fleet_new" dark /></div>
     </div></section>
   </>;
