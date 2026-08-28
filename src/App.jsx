@@ -5739,15 +5739,20 @@ function ChatWidget() {
         const data = await res.json();
         if (data.messages && data.messages.length > 0) {
           setChatMessages(data.messages.map(m => ({...m, time: m.time || new Date().toISOString()})));
-          const adminMessages = data.messages.filter(m=>m.from==="admin");
-          const latestAdmin = adminMessages[adminMessages.length-1];
-          if (latestAdmin) {
-            const adminKey = `${latestAdmin.time||""}|${latestAdmin.text||""}`;
+          const supportMessages = data.messages.filter(m=>m.from==="admin" || m.from==="bot");
+          const latestSupport = supportMessages[supportMessages.length-1];
+          if (latestSupport) {
+            const supportKey = `${latestSupport.time||""}|${latestSupport.text||""}`;
             let seenKey = lastAdminMessageRef.current;
-            try { seenKey = seenKey || localStorage.getItem(`frenciniz_chat_admin_seen:${sid}`) || ""; } catch {}
-            if (adminKey && adminKey !== seenKey) {
-              lastAdminMessageRef.current = adminKey;
-              try { localStorage.setItem(`frenciniz_chat_admin_seen:${sid}`, adminKey); } catch {}
+            try {
+              seenKey = seenKey
+                || localStorage.getItem(`frenciniz_chat_support_seen:${sid}`)
+                || localStorage.getItem(`frenciniz_chat_admin_seen:${sid}`)
+                || "";
+            } catch {}
+            if (supportKey && supportKey !== seenKey) {
+              lastAdminMessageRef.current = supportKey;
+              try { localStorage.setItem(`frenciniz_chat_support_seen:${sid}`, supportKey); } catch {}
               setInviteVisible(false);
               setChatOpen(true);
             }

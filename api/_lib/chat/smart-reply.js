@@ -92,7 +92,7 @@ function normalize(s) {
 }
 
 function fp(price) {
-  return "₺" + Number(price).toLocaleString("tr-TR");
+  return "₺" + Number(price).toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
 function detectVehicle(normMsg) {
@@ -128,6 +128,7 @@ function searchProducts(msg, products, opts = {}) {
 
   const scored = [];
   for (const p of products) {
+    if (Number(p.stock || 0) <= 0) continue;
     if (filterCat && p.cat !== filterCat) continue;
     if (filterVeh) {
       const compat = (p.compat || []).map(c => normalize(c)).join(" ");
@@ -156,7 +157,7 @@ function searchProducts(msg, products, opts = {}) {
 }
 
 function productLine(p) {
-  const stock = p.stock > 0 ? `Stokta (${p.stock})` : "Tükendi";
+  const stock = p.stock > 0 ? "Stokta" : "Stok teyidi gerekli";
   const url = productSeoUrl(SITE, p);
   let line = `• ${p.name}\n`;
   line += `   Fiyat: ${fp(p.price)}  |  ${stock}\n`;
@@ -220,37 +221,21 @@ const INTENT_RULES = [
   {
     id: "return",
     test: (n) => /(iade|geri iade|hasarl|bozuk|yanlis gel|degisim|degistir|kirik|garanti is)/.test(n),
-    reply: () => "♻️ İade ve değişim koşullarımız çok basit:\n\n" +
-      "• 14 gün koşulsuz iade hakkı\n" +
-      "• Hasarlı veya yanlış ürünse iade kargo bizden\n" +
-      "• Ürün kullanılmamış ve orijinal ambalajda olmalı\n" +
-      "• Fatura/irsaliye ile birlikte gönderilmeli\n\n" +
-      "Başlatmak için: Hesabım > Siparişlerim > İade Başlat\n" +
-      "Veya 0545 608 7008'i arayın, e-posta: info@frenciniz.com\n\n" +
-      "İade onayı sonrası para iadesi 3-5 iş günü içinde hesabınıza geçer."
+    reply: () => "♻️ Kullanılmamış ürünlerde 14 günlük iade sürecimiz vardır. Hasarlı veya yanlış ürün geldiyse ürünü kullanmadan ambalaj ve etiket fotoğraflarıyla bize ulaşın.\n\n" +
+      "Sipariş numaranızı yazın; kaydınızı bulup izlenecek adımı netleştirelim.\n" +
+      "Telefon: 0545 608 7008  |  WhatsApp: 0850 888 7881  |  E-posta: info@frenciniz.com"
   },
   {
     id: "shipping",
     test: (n) => /(kargo|gonderi|teslimat|kac gunde|ne zaman gel|ucretsiz kargo|aras|ptt|yurtici|mng|sevk|kac gun sur)/.test(n),
-    reply: () => "🚚 Kargo bilgilerimiz:\n\n" +
-      "Sipariş süresi: 14:00'a kadar verilen siparişler aynı gün kargoya verilir.\n\n" +
-      "Teslimat süresi:\n" +
-      "• İstanbul / Ankara / İzmir: 1-2 iş günü\n" +
-      "• Marmara / Ege: 2-3 iş günü\n" +
-      "• Diğer iller: 2-4 iş günü\n\n" +
-      "Kargo ücreti:\n" +
-      "• 500₺ üzeri ücretsiz 🎁\n" +
-      "• 500₺ altı: ₺49,90\n\n" +
-      "Anlaşmalı kargo: Aras Kargo. Takip numarası e-postanıza otomatik gelir."
+    reply: () => "🚚 Stoklu ürünlerde 14:00'a kadar tamamlanan siparişleri aynı gün kargoya hazırlıyoruz. 3.000 ₺ üzeri siparişlerde kargo ücretsizdir.\n\n" +
+      "Kesin teslim süresi il, ürün ölçüsü ve kargo firmasına göre değişir. İl/ilçenizi ve ürün kodunu yazarsanız gönderim durumunu teyit edelim."
   },
   {
     id: "payment",
     test: (n) => /(odeme|taksit|kredi kart|havale|eft|nakit|ne ile odeme|kac taksit|kart secen)/.test(n),
-    reply: () => "💳 Ödeme seçeneklerimiz:\n\n" +
-      "• Kredi/banka kartı (Visa, Mastercard, Troy) — 2-12 taksit\n" +
-      "• Havale / EFT — %3 ek indirim, ödeme sonrası 1 iş günü içinde kargo\n" +
-      "• 3D Secure ile tüm ödemeler korunur\n\n" +
-      "Ödeme altyapısı: Garanti BBVA, PayTR, Param.\n500₺ üzeri tüm siparişlerde kargo bedava."
+    reply: () => "💳 Ödemeler PayTR güvenli ödeme sayfasında alınır. Kredi kartlarında bankanın sunduğu seçeneklere göre 2-12 taksit görülebilir; banka kartı tek çekimdir. Kart bilgileri Frenciniz tarafından saklanmaz.\n\n" +
+      "Ürünü yazarsanız güncel site fiyatını ve satın alma bağlantısını göndereyim."
   },
   {
     id: "warranty",
@@ -280,14 +265,13 @@ const INTENT_RULES = [
   {
     id: "b2b",
     test: (n) => /(toplu|bayi|b2b|toptanc|toptan|iskonto|ozel fiyat|musteri olmak|uye olmak|kurumsal|filo)/.test(n),
-    reply: () => "🤝 Kurumsal ve B2B müşterilerimize özel:\n\n" +
-      "Adet bazlı indirim:\n" +
-      "• 10+ adet: %5\n" +
-      "• 25+ adet: %10\n" +
-      "• 50+ adet: özel teklif\n" +
-      "• 100+ adet: fabrika fiyatı\n\n" +
-      "Bayilik isteyenler için il/ilçe bayiliği, vadeli satış ve teknik destek de sağlıyoruz.\n\n" +
-      "Direkt iletişim: 0545 608 7008  |  info@frenciniz.com"
+    reply: () => "🤝 Filo, servis ve toplu alımlarda ürün kodu ile adet bazında özel teklif hazırlıyoruz.\n\n" +
+      "Şunları yazın:\n" +
+      "• Firma adı ve araç sayısı\n" +
+      "• Araç marka/modeli\n" +
+      "• OEM veya parça kodları\n" +
+      "• İstenen adetler\n\n" +
+      "Listeyi buraya yapıştırabilir veya WhatsApp'tan 0850 888 7881'e gönderebilirsiniz. Net iskonto, stok ve termin liste incelendikten sonra verilir."
   },
   {
     id: "brands",
@@ -320,14 +304,48 @@ const INTENT_RULES = [
     test: (n) => /^(stok var mi|stok|mevcut mu|stokta var mi)$/.test(n),
     reply: () => "Hangi üründen bahsediyorsunuz? Ürün adı, SKU veya OEM yazın — stok durumunu hemen söyleyeyim."
   },
+  {
+    id: "discount",
+    test: (n) => /(indirim|kupon|son fiyat|iskonto|pazarlik)/.test(n),
+    reply: () => "İndirim kuponu ve adet bazlı teklif için ürün kodunu, adedi ve araç bilgisini yazın. En hızlı teklif için WhatsApp: 0850 888 7881. Kesin fiyat, stok ve uyumluluk teyidinden sonra verilir."
+  },
+  {
+    id: "photo",
+    test: (n) => /(fotograf|foto |resim|eski parca|sase|ruhsat)/.test(n),
+    reply: () => "Doğru parçayı bulmak için eski parçanın üzerindeki kodun ve bağlantı/ölçü noktalarının net fotoğrafını WhatsApp'tan gönderebilirsiniz: 0850 888 7881.\n\nŞase paylaşacaksanız güvenlik için yalnızca uyumluluk kontrolünde gereken bilgiyi gönderin; kimlik veya ödeme bilgisi göndermeyin."
+  },
 ];
 
+function findContextProduct(context, products) {
+  const productId = String(context?.productId || "").trim();
+  if (!productId) return null;
+  return products.find(p => String(p.id) === productId) || null;
+}
+
+function priorUserText(context) {
+  const messages = Array.isArray(context?.messages) ? context.messages : [];
+  return messages
+    .filter(m => m && m.from === "user")
+    .slice(-4)
+    .map(m => String(m.text || ""))
+    .join(" ");
+}
+
 // ─────────────────────── ANA FONKSİYON ───────────────────────
-export function getSmartReply(message) {
+export function getSmartReply(message, context = {}) {
   const msg = String(message || "").trim();
   if (!msg) return "Yazdığınız mesaj boş görünüyor. Size nasıl yardımcı olabilirim?";
 
   const norm = normalize(msg);
+  const { products } = loadProducts();
+  const contextProduct = findContextProduct(context, products);
+
+  // Ürün sayfasındaki kısa soruları doğrudan o ürünle ilişkilendir.
+  if (contextProduct && /(bu urun|uyar mi|uyumlu mu|fiyati|fiyat ne|stok var|mevcut mu|ne kadar|kac para)/.test(norm)) {
+    let r = `Baktığınız ürün:\n\n${productLine(contextProduct)}\n\n`;
+    r += "Kesin uyumluluk için araç marka/model, model yılı ve OEM kodunu (veya eski parça fotoğrafını) paylaşın. Kaç adet gerektiğini de yazarsanız teklifi hızlandıralım.";
+    return r;
+  }
 
   // 1) Niyet kuralları
   for (const rule of INTENT_RULES) {
@@ -335,12 +353,13 @@ export function getSmartReply(message) {
   }
 
   // 2) Araç + kategori birleşik sorgu
-  const { products } = loadProducts();
-  const veh = detectVehicle(norm);
-  const cat = detectCategory(norm);
+  const conversationText = `${priorUserText(context)} ${msg}`.trim();
+  const conversationNorm = normalize(conversationText);
+  const veh = detectVehicle(conversationNorm);
+  const cat = detectCategory(conversationNorm);
 
   if (veh || cat) {
-    const found = searchProducts(msg, products, {
+    const found = searchProducts(conversationText, products, {
       vehicle: veh,
       cat: cat,
       limit: 5,
@@ -356,7 +375,7 @@ export function getSmartReply(message) {
       // Devam linki
       const moreUrl = cat ? `${SITE}/${cat}` : (veh ? `${SITE}/?veh=${veh}` : `${SITE}/urunler`);
       r += `\n\nTümünü görmek için: ${moreUrl}`;
-      r += "\n\nBaşka bir parça mı arıyorsunuz? Adını yazabilirsiniz.";
+      r += "\n\nDoğru ürünü netleştirmek için model yılı, OEM kodu ve ihtiyacınız olan adedi yazın. Eski parça fotoğrafını WhatsApp'tan da gönderebilirsiniz: 0850 888 7881.";
       return r;
     }
     // Eşleşme yoksa yardımcı yönlendirme
@@ -373,7 +392,7 @@ export function getSmartReply(message) {
   if (found.length > 0) {
     let r = `🔍 "${msg}" için bulduğum ürünler:\n\n`;
     r += formatProducts(found, 5);
-    r += "\n\nDetay için ürün linkine tıklayın. Başka bir aramada yardım edeyim mi?";
+    r += "\n\nDoğru ürünü netleştirmek için araç marka/model, model yılı, OEM kodu ve adedi yazın. Detay için ürün bağlantısına tıklayabilirsiniz.";
     return r;
   }
 

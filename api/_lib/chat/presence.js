@@ -30,8 +30,13 @@ export default async function handler(req, res) {
     await kv.expire(dedupeKey, 900);
 
     const sessionKey = `chat:session:${meta.sessionId}`;
+    const messagesKey = `chat:messages:${meta.sessionId}`;
     const existing = await kv.get(sessionKey) || {};
     const now = new Date().toISOString();
+    const shouldWelcome = !existing.botWelcomed;
+    const welcomeText = meta.productName
+      ? `Merhaba 👋 ${meta.productName} ürününü inceliyorsunuz. Aracın marka/modelini, model yılını ve varsa OEM numarasını yazın; stoktaki doğru ürünü birlikte netleştirelim.`
+      : "Merhaba 👋 Frenciniz'e hoş geldiniz. Aracın marka/modelini, aradığınız parçayı veya OEM kodunu yazın; stoktaki uygun ürünleri bulup bağlantılarını paylaşayım.";
     await kv.set(sessionKey, {
       ...existing,
       ...meta,
@@ -40,10 +45,16 @@ export default async function handler(req, res) {
       firstSeen: existing.firstSeen || now,
       lastSeen: now,
       lastTime: existing.lastTime || now,
-      messageCount: Number(existing.messageCount || 0),
+      messageCount: Number(existing.messageCount || 0) + (shouldWelcome ? 1 : 0),
       unread: Number(existing.unread || 0),
+      botWelcomed: existing.botWelcomed || shouldWelcome,
     });
     await kv.expire(sessionKey, 2592000);
+
+    if (shouldWelcome) {
+      await kv.rpush(messagesKey, JSON.stringify({ from: "bot", text: welcomeText, time: now }));
+      await kv.expire(messagesKey, 2592000);
+    }
 
     const sessions = (await kv.lrange("chat:sessions", 0, 499)) || [];
     if (!sessions.includes(meta.sessionId)) await kv.lpush("chat:sessions", meta.sessionId);

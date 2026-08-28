@@ -54,7 +54,12 @@ export default async function handler(req, res) {
     // Otomatik bot cevabı (sadece kullanıcı mesajında)
     let botReply = null;
     {
-      const replyText = getSmartReply(msg.text);
+      const recentRaw = await kv.lrange(messagesKey, -8, -1) || [];
+      const recentMessages = recentRaw.map(item => {
+        if (typeof item !== "string") return item;
+        try { return JSON.parse(item); } catch { return null; }
+      }).filter(Boolean);
+      const replyText = getSmartReply(msg.text, { ...meta, messages: recentMessages });
       botReply = { from: "bot", text: replyText, time: new Date().toISOString() };
       await kv.rpush(messagesKey, JSON.stringify(botReply));
 
