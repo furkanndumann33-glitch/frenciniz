@@ -234,6 +234,11 @@ body,.fr2-storefront-main { background:#f6f7f9; color:#1f2937; font-family:Inter
 .fr3-buy-checkout { border-color:#dbe1e8 !important; background:#f8fafc !important; color:#334155 !important; border-radius:9px !important; }
 .fr3-buy-note { color:#64748b !important; }
 .fr3-legacy-price,.fr3-legacy-actions { display:none !important; }
+.fr3-products-sidebar { scrollbar-width:thin; scrollbar-color:#cbd5e1 transparent; }
+.fr3-products-sidebar::-webkit-scrollbar { width:6px; }
+.fr3-products-sidebar::-webkit-scrollbar-thumb { background:#cbd5e1; border-radius:999px; }
+.fr3-sidebar-categories { position:relative; }
+.fr3-sidebar-categories > aside { border:0 !important; box-shadow:none !important; padding:0 !important; }
 .fr2-cart-page [style*="border-radius:8"],.fr2-checkout-page [style*="border-radius:8"] { border-radius:14px !important; }
 .fr2-cart-page > h1,.fr2-checkout-page > h1 { font-size:30px !important; }
 

@@ -2636,19 +2636,25 @@ function CategorySidebarV2({go, activeCat, onSelect, isFixed}) {
     return () => { window.removeEventListener("resize", measure); if (ro) ro.disconnect(); };
   }, [isFixed]);
 
+  useEffect(() => {
+    if (!activeCat || activeCat === "all") return;
+    const selected = CATS.find(item => item.id === activeCat);
+    setOpenGroup(selected?.parent || (selected?.isGroup ? selected.id : null));
+  }, [activeCat]);
+
   const shellStyle = isFixed
-    ? {position:"fixed",left:0,top:0,width:220,height:"100vh",overflowY:"auto",borderRight:"1px solid rgba(255,255,255,.1)",background:"radial-gradient(circle at 16% 8%, rgba(255,96,0,.22), transparent 34%), linear-gradient(180deg,#0b1020,#111827 58%,#1b1110)",padding:`${headerH + 12}px 10px 12px`,zIndex:50,boxShadow:"16px 0 38px rgba(0,0,0,.28)",color:"#fff"}
-    : {borderRadius:8,background:"radial-gradient(circle at 10% 0%, rgba(255,96,0,.22), transparent 38%), linear-gradient(180deg,#0b1020,#111827)",padding:10,color:"#fff",border:"1px solid rgba(255,255,255,.1)"};
+    ? {position:"fixed",left:0,top:0,width:232,height:"100vh",overflowY:"auto",borderRight:"1px solid #e5e7eb",background:"#fff",padding:`${headerH + 12}px 10px 12px`,zIndex:50,boxShadow:"10px 0 28px rgba(15,23,42,.08)",color:"#1f2937"}
+    : {borderRadius:12,background:"#fff",padding:8,color:"#1f2937",border:"1px solid #e5e7eb",boxShadow:"0 4px 14px rgba(15,23,42,.05)"};
   const allVisual = categoryVisual("all");
   const rowBase = {display:"flex",alignItems:"center",gap:9,borderRadius:8,cursor:"pointer",transition:"background .15s,border-color .15s,color .15s,transform .15s"};
 
   return (
     <aside style={shellStyle}>
-      {isFixed && <div style={{padding:"6px 8px 12px",fontSize:13,fontWeight:950,color:"#fff",borderBottom:"1px solid rgba(255,255,255,.1)",marginBottom:8,display:"flex",alignItems:"center",gap:8}}>
+      {isFixed && <div style={{padding:"6px 8px 12px",fontSize:13,fontWeight:950,color:"#111827",borderBottom:"1px solid #e5e7eb",marginBottom:8,display:"flex",alignItems:"center",gap:8}}>
         <CategoryIcon visual={allVisual} small alt={t("categories")} />
         <span>{t("categories")}</span>
       </div>}
-      {onSelect && <div onClick={() => onSelect("all")} style={{...rowBase,padding:"8px 8px",margin:"3px 0 6px",fontSize:12,color:activeCat==="all"?"#fff":"#cbd5e1",fontWeight:activeCat==="all"?900:700,background:activeCat==="all"?"rgba(255,96,0,.2)":"rgba(255,255,255,.04)",border:"1px solid rgba(255,255,255,.08)"}}>
+      {onSelect && <div onClick={() => onSelect("all")} style={{...rowBase,padding:"9px 8px",margin:"3px 0 6px",fontSize:12,color:activeCat==="all"?"#c2410c":"#475569",fontWeight:activeCat==="all"?900:700,background:activeCat==="all"?"#fff2e8":"#f8fafc",border:`1px solid ${activeCat==="all"?"#ffc89f":"#edf0f3"}`}}>
         <CategoryIcon visual={allVisual} small alt={t("allProducts")} />
         <span>{t("allProducts")}</span>
       </div>}
@@ -2665,13 +2671,13 @@ function CategorySidebarV2({go, activeCat, onSelect, isFixed}) {
                 if (onSelect) onSelect(g.id);
                 else go("products",{cat:g.id});
               }}
-              style={{...rowBase,padding:"8px 8px",fontSize:12,fontWeight:900,color:isActive?"#fff":"#e5e7eb",background:isActive?`linear-gradient(135deg,${visual.bg},rgba(255,255,255,.08))`:"rgba(255,255,255,.035)",border:`1px solid ${isActive?visual.color:"rgba(255,255,255,.07)"}`}}
-              onMouseEnter={e=>{e.currentTarget.style.background=`linear-gradient(135deg,${visual.bg},rgba(255,255,255,.09))`;e.currentTarget.style.transform="translateX(2px)"}}
-              onMouseLeave={e=>{e.currentTarget.style.background=isActive?`linear-gradient(135deg,${visual.bg},rgba(255,255,255,.08))`:"rgba(255,255,255,.035)";e.currentTarget.style.transform="translateX(0)"}}
+              style={{...rowBase,padding:"9px 8px",fontSize:12,fontWeight:850,color:isActive?"#c2410c":"#334155",background:isActive?"#fff2e8":"#fff",border:`1px solid ${isActive?"#ffc89f":"transparent"}`}}
+              onMouseEnter={e=>{e.currentTarget.style.background="#fff7f0";e.currentTarget.style.transform="translateX(2px)"}}
+              onMouseLeave={e=>{e.currentTarget.style.background=isActive?"#fff2e8":"#fff";e.currentTarget.style.transform="translateX(0)"}}
             >
               <CategoryIcon visual={visual} alt={translateCat(g,lang)} />
               <span style={{flex:1,lineHeight:1.25}}>{translateCat(g,lang)}</span>
-              <span style={{fontSize:14,color:visual.color,transition:"transform .2s",transform:isOpen?"rotate(90deg)":"rotate(0deg)"}}>▶</span>
+              <span style={{fontSize:12,color:isActive?"#ff6000":"#94a3b8",transition:"transform .2s",transform:isOpen?"rotate(90deg)":"rotate(0deg)"}}>▶</span>
             </div>
             {isOpen && subs.map(s => {
               const subVisual = categoryVisual(s);
@@ -2683,9 +2689,9 @@ function CategorySidebarV2({go, activeCat, onSelect, isFixed}) {
                     if (onSelect) onSelect(s.id);
                     else go("products",{cat:s.id});
                   }}
-                  style={{...rowBase,margin:"4px 0 4px 18px",padding:"6px 8px",fontSize:11,color:activeCat===s.id?"#fff":"#aeb8c7",fontWeight:activeCat===s.id?900:700,background:activeCat===s.id?subVisual.bg:"transparent",border:"1px solid transparent"}}
-                  onMouseEnter={e=>{e.currentTarget.style.background=subVisual.bg;e.currentTarget.style.color="#fff"}}
-                  onMouseLeave={e=>{e.currentTarget.style.background=activeCat===s.id?subVisual.bg:"transparent";e.currentTarget.style.color=activeCat===s.id?"#fff":"#aeb8c7"}}
+                  style={{...rowBase,margin:"3px 0 3px 18px",padding:"7px 8px",fontSize:11,color:activeCat===s.id?"#c2410c":"#64748b",fontWeight:activeCat===s.id?900:700,background:activeCat===s.id?"#fff2e8":"transparent",border:"1px solid transparent"}}
+                  onMouseEnter={e=>{e.currentTarget.style.background="#fff7f0";e.currentTarget.style.color="#c2410c"}}
+                  onMouseLeave={e=>{e.currentTarget.style.background=activeCat===s.id?"#fff2e8":"transparent";e.currentTarget.style.color=activeCat===s.id?"#c2410c":"#64748b"}}
                 >
                   <CategoryIcon visual={subVisual} small alt={translateCat(s,lang)} />
                   <span style={{lineHeight:1.25}}>{translateCat(s,lang)}</span>
@@ -3470,8 +3476,8 @@ function ProductsPage() {
 
   const FilterPanel = ({includeCategory=true}={}) => (
     <>
-      {includeCategory && <div style={{border:"1px solid rgba(255,96,0,.22)",borderRadius:8,padding:10,marginBottom:16,background:"#0b1020",boxShadow:"0 14px 32px rgba(15,23,42,.12)"}}>
-        <div style={{fontSize:14,fontWeight:950,margin:"2px 4px 10px",color:"#fff"}}>{t("category")}</div>
+      {includeCategory && <div className="fr3-sidebar-categories" style={{border:"1px solid #e5e7eb",borderRadius:14,padding:10,marginBottom:16,background:"#fff",boxShadow:"0 4px 14px rgba(15,23,42,.05)"}}>
+        <div style={{fontSize:15,fontWeight:950,margin:"3px 4px 10px",color:"#111827"}}>{t("category")}</div>
         <CategorySidebarV2 activeCat={cat} onSelect={(id) => go("products", id === "all" ? {} : {cat: id})} go={go} />
       </div>}
       <div style={{border:"1px solid #eee",borderRadius:8,padding:16,marginBottom:16}}>
@@ -3491,9 +3497,9 @@ function ProductsPage() {
     <div className="fr2-products-page" style={{maxWidth:1200,margin:"0 auto",padding:"20px"}}>
       <div style={{fontSize:13,color:"#999",marginBottom:16}}><span style={{cursor:"pointer"}} onClick={() => go("home")}>{t("home")}</span> / <span style={{color:"#555"}}>{term ? `"${term}"` : catName}</span></div>
       
-      <div style={{display:"flex",gap:20,alignItems:"flex-start"}}>
+      <div className="fr3-products-layout" style={{display:"flex",gap:20,alignItems:"flex-start"}}>
         {/* Desktop sidebar */}
-        {!isMobile && <div style={{width:220,flexShrink:0,position:"sticky",top:150,maxHeight:"calc(100vh - 170px)",overflowY:"auto"}}><FilterPanel includeCategory={false} /></div>}
+        {!isMobile && <div className="fr3-products-sidebar" style={{width:240,flexShrink:0,position:"sticky",top:128,maxHeight:"calc(100vh - 144px)",overflowY:"auto",paddingRight:4}}><FilterPanel includeCategory={true} /></div>}
 
         <div style={{flex:1}}>
           {!term && <div className="fr2-category-hero" style={{position:"relative",overflow:"hidden",borderRadius:8,background:"linear-gradient(135deg,#07111f 0%,#111827 54%,#7c2d12 100%)",color:"#fff",padding:isMobile?"18px 16px":"24px 26px",marginBottom:18,boxShadow:"0 20px 50px rgba(15,23,42,.18)",border:"1px solid rgba(255,255,255,.1)"}}>
