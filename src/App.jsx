@@ -3049,7 +3049,6 @@ function HomePage() {
   }, [productList]);
   const totalCount = productList.length || 1055;
   const stockCount = productList.filter(product => Number(product.stock || 0) > 0).length || totalCount;
-  const heroProduct = featured.find(hasRealImg) || featured[0];
   useCriticalImagePreload(featured, 3, 420);
   const categories = [
     {cat:"fren-diski", code:"DİSK", title:"Fren Diskleri", note:"Kamyon, çekici, otobüs ve dorse"},
@@ -3075,9 +3074,9 @@ function HomePage() {
   const whatsappHref = generalWhatsAppUrl("ana sayfa parça teyidi");
 
   return <>
-    <section className="fr2-hero">
+    <section className="fr2-hero fr5-truck-hero">
       <div className="fr2-container fr2-hero-grid">
-        <div className="fr2-hero-copy">
+        <div className="fr2-hero-copy fr5-truck-copy">
           <span className="fr2-kicker">Ağır vasıta fren aksamında uzman mağaza</span>
           <h1>Kamyon, çekici, otobüs ve dorse için <em>doğru fren parçası.</em></h1>
           <p>Fren diski, kampana, balata, körük, kaliper ve ABS/EBS ürünlerini OEM kodu, SKU veya araç modeliyle bulun.</p>
@@ -3095,14 +3094,6 @@ function HomePage() {
             <div><strong>Güvenli ödeme</strong><span>kartla ödeme ve taksit</span></div>
           </div>
         </div>
-        {heroProduct && <article className="fr2-hero-product" onClick={()=>go("product",{id:heroProduct.id})}>
-          <div className="fr2-stock-pill">Stokta</div>
-          <div className="fr2-product-stage"><OptImg src={prodImg(heroProduct)} alt={heroProduct.name} eager style={{maxWidth:"86%",maxHeight:"86%",objectFit:"contain"}} /></div>
-          <div className="fr2-hero-product-info">
-            <span>Stoktan teslim</span><h2>{heroProduct.name}</h2>
-            <div className="fr4-hero-product-bottom"><div><b>SKU {heroProduct.sku}</b><small>Uyumluluk kontrolü yapılır</small></div><strong>{Number(heroProduct.price).toLocaleString("tr-TR",{style:"currency",currency:"TRY"})}</strong><button>Ürünü incele →</button></div>
-          </div>
-        </article>}
       </div>
     </section>
     <section className="fr3-vehicle-finder" aria-label="Araç tipine göre ağır vasıta fren parçaları">
