@@ -505,6 +505,16 @@ function productSitemapLastmod(product) {
     : SEO_TITLE_REFRESH_DATE;
 }
 
+function categorySitemapLastmod(category, categories = [], products = []) {
+  const categoryIds = new Set(categoryIdsForSeo(category, categories));
+  return products
+    .filter(product => categoryIds.has(product?.cat))
+    .map(productSitemapLastmod)
+    .filter(Boolean)
+    .sort()
+    .at(-1) || "";
+}
+
 function buildSeoProductTitle(product, categories = [], max = 74) {
   return productSearchTitle(product, categories, max);
 }
@@ -942,6 +952,13 @@ function renderSeoProductHtml(product, categories = [], products = []) {
   html = html.replace(
     /<div id="root">[\s\S]*?<\/div>\s*<noscript>/i,
     `<div id="root">${fallbackHtml}</div>\n<noscript>`
+  );
+  // The generic no-JavaScript fallback also contains a site-wide H1. Product
+  // responses already have a specific H1, so demote only that generic heading
+  // to keep one unambiguous primary heading in the raw HTML Google receives.
+  html = html.replace(
+    /(<noscript>[\s\S]*?)<h1>(Frenciniz - A\u011f\u0131r Vas\u0131ta Fren Aksam\u0131 ve Yedek Par\u00e7a \| Isparta)<\/h1>/i,
+    "$1<h2>$2</h2>"
   );
   return html.replace("</head>", `${jsonLd}\n${relatedItemList}\n</head>`);
 }
@@ -1762,7 +1779,12 @@ export default async function handler(req, res) {
     // Kategoriler (hem alt-kategori hem grup ana sayfası — grup sayfaları da listeleme yapıyor)
     for (const c of categories) {
       if (!c.id || c.id === "all") continue;
-      urls.push(`<url><loc>${SITE}/${xmlEscape(c.id)}</loc></url>`);
+      const lastmod = categorySitemapLastmod(c, categories, products);
+      urls.push(
+        `<url><loc>${SITE}/${xmlEscape(c.id)}</loc>` +
+        (lastmod ? `<lastmod>${lastmod}</lastmod>` : "") +
+        `<changefreq>weekly</changefreq><priority>${c.isGroup ? "0.86" : "0.82"}</priority></url>`
+      );
     }
 
     // Ürünler
