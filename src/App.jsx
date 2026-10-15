@@ -3096,7 +3096,7 @@ function HomePage() {
           <div className="fr2-proof-row">
             <div><strong>{stockCount.toLocaleString("tr-TR")}</strong><span>stoklu ağır vasıta parçası</span></div>
             <div><strong>OEM teyidi</strong><span>yanlış parça riskini azaltın</span></div>
-            <div><strong>Güvenli ödeme</strong><span>kartla ödeme ve taksit</span></div>
+            <div><strong>Uzman desteği</strong><span>OEM ve uyumluluk teyidi</span></div>
           </div>
         </div>
       </div>
@@ -3115,7 +3115,7 @@ function HomePage() {
     <section className="fr4-service-strip"><div className="fr2-container">
       <article><span>01</span><div><strong>OEM ve şase kontrolü</strong><small>Siparişten önce araç uyumluluğunu teyit edin.</small></div></article>
       <article><span>02</span><div><strong>Stoktan hızlı gönderim</strong><small>Hazır ürünlerde hızlı kargo sürecinden yararlanın.</small></div></article>
-      <article><span>03</span><div><strong>Güvenli ödeme</strong><small>Kartla ödeme ve taksit seçeneklerini kullanın.</small></div></article>
+      <article><span>03</span><div><strong>Bilgi alarak ilerleyin</strong><small>Ürün, stok ve uyumluluk bilgisini teyit edin.</small></div></article>
       <article><span>04</span><div><strong>Uzman parça desteği</strong><small>Fotoğraf veya kodla doğru parçayı birlikte bulun.</small></div></article>
     </div></section>
     <section className="fr2-products-section"><div className="fr2-container">
@@ -3124,7 +3124,7 @@ function HomePage() {
     </div></section>
     <section className="fr2-how"><div className="fr2-container">
       <div className="fr2-section-head fr2-section-head-light"><div><span>Doğru parça güvencesi</span><h2>Ağır vasıtada parçayı şansa bırakmayın</h2></div></div>
-      <div className="fr2-steps"><article><b>1</b><h3>OEM kodunu veya aracı yazın</h3><p>SKU, şase bilgisi veya eski parça fotoğrafıyla aradığınız ürünü netleştirin.</p></article><article><b>2</b><h3>Uyumluluğu birlikte doğrulayın</h3><p>Araç, aks, ölçü ve bağlantı bilgilerini siparişten önce kontrol edelim.</p></article><article><b>3</b><h3>Stoktan güvenle sipariş verin</h3><p>Kartla güvenli ödeme yapın veya uzman desteğiyle siparişi tamamlayın.</p></article></div>
+      <div className="fr2-steps"><article><b>1</b><h3>OEM kodunu veya aracı yazın</h3><p>SKU, şase bilgisi veya eski parça fotoğrafıyla aradığınız ürünü netleştirin.</p></article><article><b>2</b><h3>Uyumluluğu birlikte doğrulayın</h3><p>Araç, aks, ölçü ve bağlantı bilgilerini siparişten önce kontrol edelim.</p></article><article><b>3</b><h3>Ürünü inceleyin ve bilgi alın</h3><p>Online satış kapalıdır; stok ve uyumluluk için uzman desteği alabilirsiniz.</p></article></div>
     </div></section>
     <section className="fr2-fleet"><div className="fr2-container fr2-fleet-grid">
       <div><span>Filo · Servis · Toptan alım</span><h2>Ağır vasıta filonuz için<br/>tek noktadan fren tedariki.</h2><p>Araç parkını, OEM kodlarını ve adetleri paylaşın. Diskten kalipere, körükten ABS/EBS grubuna kadar stok ve termin bilgisini tek teklifte alın.</p></div>
