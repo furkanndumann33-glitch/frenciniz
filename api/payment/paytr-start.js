@@ -2,8 +2,15 @@ import { kv } from "@vercel/kv";
 import { paytrConfig, buildPaytrToken, randomOrderRef, getClientIp, encodeBasket } from "../_lib/paytr.js";
 import { getSession } from "../_lib/auth.js";
 
+const ONLINE_SALES_ENABLED = false;
+
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
+  // Also block stale clients and direct requests before tokens or orders are created.
+  if (!ONLINE_SALES_ENABLED) {
+    res.setHeader("Cache-Control", "no-store");
+    return res.status(403).json({ code: "SALES_CLOSED", error: "Online satış kapalıdır. Şu anda sipariş ve ödeme alınmamaktadır." });
+  }
 
   try {
     const cfg = paytrConfig();

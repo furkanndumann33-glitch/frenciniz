@@ -2,6 +2,9 @@ import { useState, useEffect, useCallback, useMemo, createContext, useContext, u
 import { productIdFromRoute, productSeoFaqItems, productSearchDescription, productSearchName, productSearchTitle, productSeoPath, productSeoUrl } from "../shared/product-seo.js";
 import { buildOrganizationJsonLd, buildProductJsonLd } from "../shared/structured-data.js";
 
+// Catalog remains public; online orders and payments are closed.
+const ONLINE_SALES_ENABLED = false;
+
 // ===== TRANSLATIONS =====
 const TR = {
   search:"Ürün adı, parça kodu veya OEM ara...",searchBtn:"Ara",cart:"Sepetim",login:"Giriş Yap",favs:"Favoriler",
@@ -1373,6 +1376,7 @@ export default function App() {
   }, [buildUrl]);
 
   const addToCart = useCallback((product, qty=1) => {
+    if (!ONLINE_SALES_ENABLED) return;
     if(!product.stock) return;
     setCart(prev => {
       const existing = prev.find(c => c.id === product.id);
@@ -1771,7 +1775,7 @@ export default function App() {
       title = `${page} - Frenciniz`;
       // Begin checkout / view cart events
       try {
-        if (typeof window !== 'undefined' && typeof window.gtag === 'function' && cart.length > 0) {
+        if (ONLINE_SALES_ENABLED && typeof window !== 'undefined' && typeof window.gtag === 'function' && cart.length > 0) {
           const evt = page === "checkout" ? "begin_checkout" : (page === "cart" ? "view_cart" : null);
           if (evt) {
             window.gtag('event', evt, {
@@ -1789,7 +1793,7 @@ export default function App() {
           }
         }
       } catch(e) {}
-      if (cart.length > 0) {
+      if (ONLINE_SALES_ENABLED && cart.length > 0) {
         const metaPayload = metaCartPayload(cart);
         if (page === "checkout") metaTrack('InitiateCheckout', metaPayload);
         else if (page === "cart") metaTrackCustom('ViewCart', metaPayload);
@@ -2136,7 +2140,8 @@ export default function App() {
         {!isAdminPage && !isMobile && <div className="fr3-global-category"><CategorySidebarV2 go={go} activeCat={page==="products"?(params?.cat||"all"):"all"} isFixed /></div>}
         <div className={isAdminPage?"":"fr3-store-shell"}>
         {!isAdminPage && <StoreCategoryNav />}
-        {!isAdminPage && <CouponWhatsAppStrip />}
+        {!isAdminPage && !ONLINE_SALES_ENABLED && <div role="status" style={{padding:"12px 20px",background:"#fff7ed",color:"#9a3412",textAlign:"center",fontWeight:700}}>Online satış kapalıdır. Ürünleri inceleyebilir, bilgi almak için bizimle iletişime geçebilirsiniz.</div>}
+        {!isAdminPage && ONLINE_SALES_ENABLED && <CouponWhatsAppStrip />}
 
         {/* CONTENT */}
         {!isAdminPage && mobileMenuOpen && <MobileMenu />}
@@ -2146,8 +2151,8 @@ export default function App() {
           {page==="home"&&<HomePage/>}
           {page==="products"&&<ProductsPage/>}
           {page==="product"&&<ProductDetailPage/>}
-          {page==="cart"&&<CartPage/>}
-          {page==="checkout"&&<CheckoutPage/>}
+          {page==="cart"&&(ONLINE_SALES_ENABLED ? <CartPage/> : <SalesClosedPage/>)}
+          {page==="checkout"&&(ONLINE_SALES_ENABLED ? <CheckoutPage/> : <SalesClosedPage/>)}
           {page==="auth"&&<AuthPage/>}
           {page==="account"&&<AccountPage/>}
           {page==="favs"&&<FavsPage/>}
@@ -2836,10 +2841,10 @@ function ProductCard({p, eager}) {
             {p.old && <span style={{fontSize:13,color:"#bbb",textDecoration:"line-through",marginLeft:6}}>{fp(p.old)}</span>}
             <div style={{fontSize:10,color:"#16a34a",fontWeight:900,marginTop:3,lineHeight:1.25}}>Kargo + uyum teyidi</div>
           </div>
-          <button onClick={e => {e.stopPropagation(); p.stock ? addToCart(p) : setShowAlert(true)}}
+          <button disabled={!ONLINE_SALES_ENABLED} onClick={e => {e.stopPropagation(); p.stock ? addToCart(p) : setShowAlert(true)}}
             className="fr-card-action"
             style={{width:isMobile?"100%":"auto",padding:isMobile?"9px 8px":"9px 13px",background:p.stock?"#111827":"#fff",color:p.stock?"#fff":"#ff6000",border:p.stock?"none":"1px solid #ff6000",borderRadius:6,fontSize:isMobile?11:(p.stock?12:11),fontWeight:900,whiteSpace:"nowrap",transition:"background .2s ease,color .2s ease",textAlign:"center",boxSizing:"border-box"}}>
-            {p.stock ? t("addToCart") : t("notifyMe")}
+            {!ONLINE_SALES_ENABLED ? "Online satış kapalı" : p.stock ? t("addToCart") : t("notifyMe")}
           </button>
         </div>
         <a href={quoteHref} target="_blank" rel="noopener noreferrer" data-lead-source="product_card_whatsapp" data-lead-product-id={p.id} data-lead-sku={p.sku || ""} data-lead-category={p.cat || ""} data-lead-value={p.price || 0}
@@ -2891,9 +2896,9 @@ function ProductCardLegacy({p, eager}) {
             <span style={{fontSize:20,fontWeight:700,color:"#1a1a1a"}}>{fp(p.price)}</span>
             {p.old && <span style={{fontSize:13,color:"#bbb",textDecoration:"line-through",marginLeft:6}}>{fp(p.old)}</span>}
           </div>
-          <button onClick={e => {e.stopPropagation(); p.stock ? addToCart(p) : setShowAlert(true)}}
+          <button disabled={!ONLINE_SALES_ENABLED} onClick={e => {e.stopPropagation(); p.stock ? addToCart(p) : setShowAlert(true)}}
             style={{padding:"8px 14px",background:p.stock?"#ff6000":"#fff",color:p.stock?"#fff":"#ff6000",border:p.stock?"none":"1px solid #ff6000",borderRadius:6,fontSize:p.stock?13:11,fontWeight:600}}>
-            {p.stock ? t("addToCart") : t("notifyMe")}
+            {!ONLINE_SALES_ENABLED ? "Online satış kapalı" : p.stock ? t("addToCart") : t("notifyMe")}
           </button>
         </div>
         {/* Stock Alert Mini Form */}
@@ -3794,6 +3799,7 @@ function ProductDetailPage() {
   const seoFaqItems = productSeoFaqItems(p, CATS);
   const galleryImages = productGalleryImages(p);
   const checkoutNow = () => {
+    if (!ONLINE_SALES_ENABLED) return;
     if (!p.stock) return;
     addToCart(p, qty);
     metaTrackCustom("BuyNowClick", { source: "product_detail", product_id: p.id, sku: p.sku, value: (p.price || 0) * qty });
@@ -3862,8 +3868,8 @@ function ProductDetailPage() {
                     <span style={{display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,fontWeight:950,color:"#fff"}}>{qty}</span>
                     <button onClick={() => setQty(qty+1)} style={{border:"none",background:"rgba(255,255,255,.08)",color:"#fff",fontSize:16,fontWeight:900,cursor:"pointer"}}>+</button>
                   </div>
-                  <button className="fr3-buy-add" onClick={() => p.stock && addToCart(p, qty)} disabled={!p.stock} style={{minHeight:40,borderRadius:7,border:"1px solid rgba(255,255,255,.16)",background:p.stock?"#fff":"rgba(255,255,255,.08)",color:p.stock?"#111827":"#94a3b8",fontSize:12,fontWeight:950,cursor:p.stock?"pointer":"default",padding:"0 10px"}}>
-                    Sepete ekle
+                  <button className="fr3-buy-add" onClick={() => p.stock && addToCart(p, qty)} disabled={!ONLINE_SALES_ENABLED || !p.stock} style={{minHeight:40,borderRadius:7,border:"1px solid rgba(255,255,255,.16)",background:p.stock?"#fff":"rgba(255,255,255,.08)",color:p.stock?"#111827":"#94a3b8",fontSize:12,fontWeight:950,cursor:p.stock?"pointer":"default",padding:"0 10px"}}>
+                    {ONLINE_SALES_ENABLED ? "Sepete ekle" : "Online satış kapalı"}
                   </button>
                 </div>
                 <div style={{display:"grid",gridTemplateColumns:"1.35fr .85fr",gap:8,marginTop:8}}>
@@ -3876,8 +3882,8 @@ function ProductDetailPage() {
                     Hemen ara
                   </a>
                 </div>
-                <button className="fr3-buy-checkout" onClick={checkoutNow} disabled={!p.stock} style={{width:"100%",minHeight:38,marginTop:8,borderRadius:7,border:"1px solid rgba(255,255,255,.18)",background:p.stock?"rgba(255,255,255,.08)":"#1f2937",color:p.stock?"#fff":"#94a3b8",fontSize:12,fontWeight:900,cursor:p.stock?"pointer":"default"}}>
-                  Online ödemeye geç
+                <button className="fr3-buy-checkout" onClick={checkoutNow} disabled={!ONLINE_SALES_ENABLED || !p.stock} style={{width:"100%",minHeight:38,marginTop:8,borderRadius:7,border:"1px solid rgba(255,255,255,.18)",background:p.stock?"rgba(255,255,255,.08)":"#1f2937",color:p.stock?"#fff":"#94a3b8",fontSize:12,fontWeight:900,cursor:p.stock?"pointer":"default"}}>
+                  {ONLINE_SALES_ENABLED ? "Online ödemeye geç" : "Online ödeme kapalı"}
                 </button>
               </div>
               <div className="fr3-buy-note" style={{fontSize:12,color:"#a7b0c0",marginTop:8,lineHeight:1.45}}>Siparişten önce eski parça fotoğrafı veya şase ile kontrol önerilir.</div>
@@ -3898,12 +3904,12 @@ function ProductDetailPage() {
               <span style={{width:48,display:"flex",alignItems:"center",justifyContent:"center",fontWeight:600}}>{qty}</span>
               <button onClick={() => setQty(qty+1)} style={{width:40,height:44,background:"#f5f5f5",border:"none",fontSize:18,color:"#555"}}>+</button>
             </div>
-            <button onClick={() => p.stock && addToCart(p, qty)} style={{flex:"1 1 130px",padding:"12px",background:p.stock?"#fff":"#eee",color:p.stock?"#111827":"#999",border:p.stock?"1px solid #d1d5db":"none",borderRadius:6,fontSize:15,fontWeight:800,cursor:p.stock?"pointer":"default"}}>
-              {p.stock ? t("addToCart") : t("outOfStockFull")}
+            <button disabled={!ONLINE_SALES_ENABLED || !p.stock} onClick={() => p.stock && addToCart(p, qty)} style={{flex:"1 1 130px",padding:"12px",background:p.stock?"#fff":"#eee",color:p.stock?"#111827":"#999",border:p.stock?"1px solid #d1d5db":"none",borderRadius:6,fontSize:15,fontWeight:800,cursor:p.stock?"pointer":"default"}}>
+              {!ONLINE_SALES_ENABLED ? "Online satış kapalı" : p.stock ? t("addToCart") : t("outOfStockFull")}
             </button>
             {p.stock && (
-              <button onClick={checkoutNow} style={{flex:"1.25 1 170px",padding:"12px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:16,fontWeight:950,cursor:"pointer",boxShadow:"0 10px 24px rgba(255,96,0,.24)"}}>
-                Hemen Al - Ödemeye Geç
+              <button disabled={!ONLINE_SALES_ENABLED || !p.stock} onClick={checkoutNow} style={{flex:"1.25 1 170px",padding:"12px",background:"#ff6000",color:"#fff",border:"none",borderRadius:6,fontSize:16,fontWeight:950,cursor:"pointer",boxShadow:"0 10px 24px rgba(255,96,0,.24)"}}>
+                {ONLINE_SALES_ENABLED ? "Hemen Al - Ödemeye Geç" : "Online ödeme kapalı"}
               </button>
             )}
             <button onClick={() => toggleFav(p.id)} style={{width:48,height:48,border:"1px solid #eee",borderRadius:6,background:"#fff",fontSize:22,color:isFav?"#ff6000":"#ccc",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer"}}>
@@ -4181,6 +4187,16 @@ function CartPage() {
 }
 
 // ===== CHECKOUT =====
+function SalesClosedPage() {
+  const {go} = use$();
+  return <section style={{maxWidth:700,margin:"32px auto",padding:24,textAlign:"center"}}>
+    <h1>Online satış kapalı</h1>
+    <p>Şu anda sitemizden sipariş ve ödeme alınmamaktadır. PayTR ödeme sayfasına yönlendirme yapılmaz.</p>
+    <p>Ürün kataloğumuzu incelemeye devam edebilirsiniz.</p>
+    <button onClick={() => go("products")} style={{padding:"12px 20px",border:0,borderRadius:6,background:"#ff6000",color:"#fff",cursor:"pointer"}}>Ürünleri incele</button>
+  </section>;
+}
+
 function CheckoutPage() {
   const {cart, cartTotal, go, discount, completePurchase, isMobile, fp, user, addresses} = use$();
   const [step, setStep] = useState(1);
@@ -4668,9 +4684,9 @@ function AccountPage() {
                   <div style={{fontSize:16,fontWeight:700}}>{fp(item.price)}</div>
                   {item.currentProduct && <div style={{fontSize:11,color:item.currentProduct.stock?"#4caf50":"#e53935"}}>{item.currentProduct.stock ? (en?"In Stock":"Stokta") : (en?"Sold Out":"Tükendi")}</div>}
                 </div>
-                <button onClick={() => {if(item.currentProduct?.stock) addToCart(item.currentProduct)}}
+                <button disabled={!ONLINE_SALES_ENABLED} onClick={() => {if(item.currentProduct?.stock) addToCart(item.currentProduct)}}
                   style={{padding:"8px 16px",background:item.currentProduct?.stock?"#ff6000":"#eee",color:item.currentProduct?.stock?"#fff":"#999",border:"none",borderRadius:6,fontSize:13,fontWeight:600,cursor:item.currentProduct?.stock?"pointer":"default",whiteSpace:"nowrap"}}>
-                  {en?"Reorder":"Tekrar Al"}
+                  {!ONLINE_SALES_ENABLED ? "Online satış kapalı" : en?"Reorder":"Tekrar Al"}
                 </button>
               </div>
             ))}
